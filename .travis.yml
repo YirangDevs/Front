@@ -17,6 +17,7 @@ script:
   - yarn test
   - yarn build
 before_deploy:
+  - rm -rf node_modules
   - zip -r build *
   - mkdir -p deploy
   - mv build.zip deploy/build.zip
