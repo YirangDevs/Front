@@ -20,7 +20,7 @@ before_deploy:
   - mkdir -p before-deploy
   - cp deploy.sh before-deploy/
   - cp appspec.yml before-deploy/
-  - cp build before-deploy/
+  - cp -r build before-deploy/
   - cd before-deploy && zip -r before-deploy * # Before-deploy folder 압축
   - cd ../ && mkdir -p deploy
   - mv before-deploy/before-deploy.zip deploy/yirang-front.zip
