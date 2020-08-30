@@ -17,10 +17,14 @@ script:
   - yarn test
   - yarn build
 before_deploy:
-  - rm -rf node_modules
-  - zip -r build *
-  - mkdir -p deploy
-  - mv build.zip deploy/build.zip
+  - mkdir -p before-deploy
+  - cp deploy.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cp build before-deploy/
+  - cd before-deploy && zip -r before-deploy * # Before-deploy folder 압축
+  - cd ../ && mkdir -p deploy
+  - mv before-deploy/before-deploy.zip deploy/yirang-front.zip
+
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY
@@ -30,4 +34,15 @@ deploy:
     skip_cleanup: true
     acl: private
     local_dir: deploy
+    wait_until_deployed: true
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: yirang-react
+    key: yirang-front.zip
+    bundle_type: zip
+    application: yirang-spring-api
+    deployment_group: yirang-spring 
+    region: ap-northeast-2
     wait_until_deployed: true
