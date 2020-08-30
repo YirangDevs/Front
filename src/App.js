@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          CI/CD 끝
+          CI/CD 끝 signin
         </p>
         <a
           className="App-link"
