@@ -13,6 +13,9 @@ notifications:
 cache:
   directories:
     - node_modules
+script:
+  - yarn test
+  - yarn build
 before_deploy:
   - cd yirang-react && zip -r build *
   - mkdir -p deploy
