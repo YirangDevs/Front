@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - "12.18.3"
+before_install:
+  - npm install -g yarn
+branches:
+  only:
+    - master
+notifications:
+  email:
+    recipients:
+      - yongwon0824@naver.com
+cache:
+  directories:
+    - node_modules
+script:
+  - npm test
+  - npm run build
+before_deploy:
+  - cd yirang-react && zip -r build *
+  - mkdir -p deploy
+  - mv build.zip deploy/build.zip
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: yirang-react
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait_until_deployed: true
