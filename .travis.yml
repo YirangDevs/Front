@@ -42,7 +42,7 @@ deploy:
     bucket: yirang-react
     key: yirang-front.zip
     bundle_type: zip
-    application: yirang-spring-api
-    deployment_group: yirang-spring 
+    application: yirang-springboot-api
+    deployment_group: yirang-springboot-api-group
     region: ap-northeast-2
     wait_until_deployed: true
