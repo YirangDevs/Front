@@ -17,7 +17,7 @@ script:
   - yarn test
   - yarn build
 before_deploy:
-  - cd yirang-react && zip -r build *
+  - zip -r build *
   - mkdir -p deploy
   - mv build.zip deploy/build.zip
 deploy:
