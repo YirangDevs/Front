@@ -2,8 +2,8 @@ version: 0.0
 os: linux
 files:
   - source: /
-  - destination: /home/ec2-user/app/front/zip
-  - overwrite: yes
+    destination: /home/ec2-user/app/front/zip
+    overwrite: yes
 
 permissions:
   - object: /
@@ -14,5 +14,5 @@ permissions:
 hooks:
   ApplicationStart:
     - location: deploy.sh
-    - timeout: 200
+      timeout: 200
       runas: ec2-user
