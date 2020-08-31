@@ -1,4 +1,4 @@
-import store from "redux"
+import {createStore} from "redux"
 import login_reducer from "./reducers/login_reducer"
 
-store.createStore(login_reducer)
+export default createStore(login_reducer)
