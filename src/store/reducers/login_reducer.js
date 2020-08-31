@@ -11,5 +11,7 @@ export default (state, action)=>{
             return {
                 ...state, login: false
             }
+        default:
+            return { ...state }
     }
 }
