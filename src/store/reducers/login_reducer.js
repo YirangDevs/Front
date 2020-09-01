@@ -1,7 +1,7 @@
 import ACTION from "../actions/login_action"
 
 export default (state, action)=>{
-    if(state==undefined) { return { logined : false }}
+    if(state===undefined) { return { logined : false }}
     switch(action){
         case ACTION.LOGIN:
             return {
