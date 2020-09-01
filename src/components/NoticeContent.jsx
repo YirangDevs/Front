@@ -4,7 +4,7 @@ import NoticeTable from "./NoticeTable"
 
 const NoticeContent = () =>(
         <>
-        <div class="content__notice__wrapper">
+        <div className="content__notice__wrapper">
             <NoticeTitle></NoticeTitle>
             <NoticeTable></NoticeTable>
         </div>

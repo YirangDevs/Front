@@ -1,10 +1,12 @@
 import React from "react"
 import NoticeContent from "./NoticeContent"
+import KakaoLoginBtn from "./KakaoLoginBtn"
 
 const Content = () =>(
     <>
-        <div class="content__wrapper">
+        <div className="content__wrapper">
             <NoticeContent></NoticeContent>
+            <KakaoLoginBtn></KakaoLoginBtn>
         </div>
     </>
 )

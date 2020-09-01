@@ -158,6 +158,16 @@ body, html {
   text-align: center;
 }
 
+.content__login__wrapper{
+  width: 20%;
+  height: 100%;
+}
+
+.content__login__btn{
+  width: 100%;
+  height:auto;
+}
+
 .content__menu__wrapper{
   width: 40%;
   height: 100%;
@@ -165,6 +175,7 @@ body, html {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  display:none;
 }
 
 .content__nav__wrapper{
@@ -174,7 +185,7 @@ body, html {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  
+  display:none;
 
 }
 
