@@ -14,7 +14,7 @@ cache:
   directories:
     - node_modules
 script:
-  - yarn test
+  # - yarn test
   - yarn build
 before_deploy:
   - mkdir -p before-deploy
