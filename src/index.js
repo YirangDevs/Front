@@ -5,14 +5,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux"
 import store from "./store/store"
-
-
+import Kakao from "./kakao/init"
+Kakao.test()
 ReactDOM.render(
-  <Provider store={store}>
+  
     <React.StrictMode>
+    <Provider store={store}>
       <App />
+    </Provider>
     </React.StrictMode>
-  </Provider>,
+  ,
   document.getElementById('root')
 );
 

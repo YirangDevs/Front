@@ -1,9 +1,9 @@
 import React from "react";
 
-const MenuInfo = () => (
+const MenuInfo = (props) => (
   <>
     <div className="content__info__wrapper">
-      <div className="content__info__title">안녕하세요 '최용원'님</div>
+      <div className="content__info__title">안녕하세요 {props.username}님</div>
       <div className="content__info__card">
         <div className="content__info__card--key">MODE</div>
         <div className="content__info__card--value">관리자 모드</div>

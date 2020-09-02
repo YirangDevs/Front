@@ -27,6 +27,7 @@
     <title>React App</title>
   </head>
   <body>
+    
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -39,5 +40,13 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('JAVASCRIPT_KEY');
+
+        // SDK 초기화 여부를 판단합니다.
+        
+    </script>
   </body>
 </html>

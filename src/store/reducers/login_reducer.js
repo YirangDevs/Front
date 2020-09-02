@@ -1,15 +1,15 @@
 import ACTION from "../actions/login_action"
 
 export default (state, action)=>{
-    if(state===undefined) { return { logined : false }}
-    switch(action){
+    if(state===undefined) { return { logined : false}}
+    switch(action.type){
         case ACTION.LOGIN:
             return {
-                ...state, login: true
+                ...state, logined: true, username: ACTION.username
             }
         case ACTION.LOGOUT:
             return {
-                ...state, login: false
+                ...state, logined: false
             }
         default:
             return { ...state }
