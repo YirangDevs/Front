@@ -1,17 +1,16 @@
 import ACTION from "../actions/user_action"
 
 export default (state, action)=>{
-    if(state===undefined) { return { user : {}}}
-    console.log(action)
+    if(state===undefined) { return {}}
     switch(action.type){
         
-        case ACTION.SET_NAME:
+        case ACTION.SET_USER:
             return {
-                ...state, username : action.username
+                ...state, ...action.user
             }
-        case ACTION.SET_EMAIL:
+        case ACTION.DELETE_USER:
             return {
-                ...state, logined: action.user_email
+                
             }
         default:
             return { ...state }

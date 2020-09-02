@@ -2,8 +2,9 @@ import { connect } from "react-redux"
 import Content from "../components/Content"
 
 const mapStateToProps = (state) => {
+    
     return {
-        logined : state.logined
+        logined : state.login_reducer.logined
     }
 }
 

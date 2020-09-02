@@ -9,8 +9,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        Logined: function(payload){
+        LOGINED: function(payload){
             dispatch(ACTION.LOGIN_ACTION_FUNC(payload))
+        },
+        SET_USER: function(payload){
+            dispatch(ACTION.SET_USER__ACTION_FUNC(payload))
         }
     }
 }

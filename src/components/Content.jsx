@@ -4,6 +4,7 @@ import KakaoLoginBtn from "./KakaoLoginBtn";
 import MenuContent from "./MenuContent";
 
 const Content = (props) => {
+  
   return (
   <>
     
