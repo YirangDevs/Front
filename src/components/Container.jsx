@@ -1,7 +1,7 @@
 import React from "react"
 import TopBar from "./TopBar"
 import MainImg from "./MainImg"
-import Content from "./Content"
+import Content from "../containers/Content"
 
 const Container = () => (
     <>
