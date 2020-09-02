@@ -67,6 +67,7 @@ const NoticeTable = () => (
                         <td>118</td>
                     </tr>
                 </tbody>
+
                 
             </table>
         </div>
