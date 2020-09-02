@@ -1,15 +1,17 @@
 import React from 'react';
-import './App.css';
 import Container from "./components/Container"
+import Redirect from "./containers/Redirect"
 import {BrowserRouter, Switch, Route} from "react-router-dom"
+
 
 function App() {
   return (
     <>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <Container></Container>
+        <Route exact path="/" component={Container}>
+        </Route>
+        <Route path="/login" component={Redirect}>
         </Route>
       </Switch>
     </BrowserRouter>
