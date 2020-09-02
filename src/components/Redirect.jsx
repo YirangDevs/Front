@@ -2,22 +2,23 @@ import React from "react"
 import qs from "qs"
 import _ from "../config/config"
 
-const getUser = async() => {
+const getUser = async(callback) => {
     
     window.Kakao.API.request({
         
         url: '/v2/user/me',
         success: function(res) {
             console.log(res.properties.nickname)
-            return res.properties.nickname
-
+            callback({
+                username : res.properties.nickname
+            })
         },
         fail: function(error) {
           console.log(
             'login success, but failed to request user information: ' +
               JSON.stringify(error)
           )
-          return false;
+          
         },
       })
 }
@@ -62,10 +63,7 @@ const getToken = async (AUTHORIZATION_CODE) => {
 const getUserThen = async (AUTHORIZATION_CODE, callback) => {
     let token = await getToken(AUTHORIZATION_CODE)
     if(token){
-        let user = await getUser();
-        callback({
-            username : user
-        })
+        getUser(callback)
     }
 
 }
