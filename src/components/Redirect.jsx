@@ -35,7 +35,7 @@ const sendToken = async (ACCESS_TOKEN) => {
 }
 
 const getToken = async (AUTHORIZATION_CODE, callback) => {
-    let payload = "grant_type=authorization_code&client_id="+_.DEV_REST_KEY+"&redirect_url="+_.DEV_REDIRECT_URL+"&code="+AUTHORIZATION_CODE;
+    let payload = "grant_type=authorization_code&client_id="+_.REST_KEY+"&redirect_url="+_.REDIRECT_URL+"&code="+AUTHORIZATION_CODE;
     let data = await fetch(_.KAKAO_TOKEN_URL, {
         method: "POST",
         headers : { 
