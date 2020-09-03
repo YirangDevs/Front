@@ -28,8 +28,8 @@ const sendToken = async (ACCESS_TOKEN) => {
            },
         body: JSON.stringify({
             access_token : ACCESS_TOKEN
-        }).then(res => res.json()).then(res => console.log(res))
-    })
+        })
+    }).then(res => res.json()).then(res => console.log(res))
 }
 
 const getToken = async (AUTHORIZATION_CODE, callback) => {
