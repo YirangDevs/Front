@@ -19,6 +19,26 @@ html {
   height: 100%;
 }
 
+.side__nav__wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 1;
+  display:none;
+}
+
+.side__nav {
+  display : flex;
+  width: 0;
+  height: 100%;
+  position: fixed;
+  background-color: white;
+  overflow-x: hidden;
+  transition:width 1s ease;
+  z-index: 2;
+}
+
 .top__bar__wrapper {
   position: absolute;
   width: 100%;
@@ -36,7 +56,6 @@ html {
   background-color: rgba(0, 0, 0, 0.18);
 }
 .top__bar__bar {
-  display: none;
   position: absolute;
   color: white;
   left: 1.2rem;
@@ -57,7 +76,7 @@ html {
 
 .main__image__wrapper {
   width: 100%;
-  height: 30%;
+  height: 35%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,7 +98,7 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .content__notice__wrapper {
@@ -160,7 +179,9 @@ td {
 
 .content__login__wrapper {
   width: 20%;
-  height: 100%;
+  height: 60%;
+  display: flex;
+  align-items: center;
 }
 
 .content__login__btn {
@@ -299,6 +320,11 @@ td {
     margin: auto auto;
     flex-direction: column;
     flex-flow: column-reverse;
+    align-items: center;
+  }
+  .content__login__wrapper {
+    width: 20%;
+    height: 5%;
   }
 
   .content__notice__title {
@@ -385,5 +411,8 @@ td {
   }
   .top__bar__bar {
     opacity: 1;
+  }
+  .content__login__wrapper {
+    display: none;
   }
 }

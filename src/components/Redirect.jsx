@@ -2,19 +2,21 @@ import React from "react"
 import qs from "qs"
 import _ from "../config/config"
 
-const getUser = async(callback) => {
+const getUser = async(callback, history_callbkack) => {
     window.Kakao.API.request({
         url: '/v2/user/me',
         success: function(res) {
             callback({
                 user : { username : res.properties.nickname }
             })
+            history_callbkack();
         },
         fail: function(error) {
           console.log(
             'login success, but failed to request user information: ' +
               JSON.stringify(error)
           )
+          history_callbkack();
           
         },
       })
@@ -54,12 +56,13 @@ const getToken = async (AUTHORIZATION_CODE, callback) => {
     }
 }
 
-const LoginProcess = async (AUTHORIZATION_CODE, logined_callback, set_user_callback) => {
+const LoginProcess = async (AUTHORIZATION_CODE, logined_callback, set_user_callback, history_callbkack) => {
     let token = await getToken(AUTHORIZATION_CODE, logined_callback)
     if(token){
-        await getUser(set_user_callback)
+        await getUser(set_user_callback, history_callbkack)
     }else{
         return false
+        history_callbkack()
     }
 
 }
@@ -69,8 +72,9 @@ const Redirect =  ({location, history, LOGINED, SET_USER})=>{
         ignoreQueryPrefix:true
     })
     if(!query.code) alert("정상적인 접근이 아닙니다.")
-    else LoginProcess(query.code, LOGINED, SET_USER)
-    history.push("/")
+    else LoginProcess(query.code, LOGINED, SET_USER, ()=>{
+        history.push("/")
+    })
     return (
         <>
             
