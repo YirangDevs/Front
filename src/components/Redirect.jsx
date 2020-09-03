@@ -6,7 +6,6 @@ const getUser = async(callback) => {
     window.Kakao.API.request({
         url: '/v2/user/me',
         success: function(res) {
-            console.log(res)
             callback({
                 user : { username : res.properties.nickname }
             })
@@ -29,7 +28,7 @@ const sendToken = async (ACCESS_TOKEN) => {
            },
         body: JSON.stringify({
             access_token : ACCESS_TOKEN
-        }).then(res => res.json())
+        }).then(res => res.json()).then(res => console.log(res))
     })
 }
 
