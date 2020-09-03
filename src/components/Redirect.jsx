@@ -21,7 +21,7 @@ const getUser = async(callback) => {
 }
 
 const sendToken = async (ACCESS_TOKEN) => {
-    return await fetch(_.HOST_URL+":8080", {
+    return await fetch(_.HOST_URL+":8080/auth/test", {
         method: "POST",
         headers : { 
             'Content-Type': 'application/json'
