@@ -61,8 +61,9 @@ const LoginProcess = async (AUTHORIZATION_CODE, logined_callback, set_user_callb
     if(token){
         await getUser(set_user_callback, history_callbkack)
     }else{
-        return false
         history_callbkack()
+        return false
+        
     }
 
 }
