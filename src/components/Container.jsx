@@ -2,7 +2,7 @@ import React from "react"
 import TopBar from "./TopBar"
 import MainImg from "./MainImg"
 import Content from "../containers/Content"
-import SideNav from "../components/SideNav"
+import SideNav from "../containers/SideNav"
 
 const Container = () => (
     <>
