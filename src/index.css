@@ -180,7 +180,7 @@ html {
 
 .content__notice__wrapper {
   width: 80%;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -270,7 +270,7 @@ td {
 
 .content__menu__wrapper {
   width: 40%;
-  height: 100%;
+  height:auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -279,7 +279,7 @@ td {
 
 .content__nav__wrapper {
   width: 90%;
-  height: 45%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -382,9 +382,18 @@ td {
     height: 60%;
   }
 
+
   .content__nav__wrapper {
     height: auto;
   }
+
+  .content__login__wrapper {
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -400,6 +409,11 @@ td {
     flex-direction: column;
     flex-flow: column-reverse;
     align-items: center;
+    justify-content: flex-end ;
+  }
+
+  .content__notice__wrapper{
+    margin-top: 1rem;
   }
   .content__login__wrapper {
     width: 20%;
@@ -416,13 +430,15 @@ td {
 
   .content__menu__wrapper {
     width: 80%;
-    height: 50%;
+    height: 30%;
+    min-height: 14rem;
     flex-direction: row;
+    align-items: flex-start;
   }
 
   .content__nav__wrapper {
     width: 50%;
-    height: 100%;
+    height: auto;
     align-items: flex-start;
   }
   .content__nav__title {
@@ -434,7 +450,7 @@ td {
 
   .content__info__wrapper {
     width: 50%;
-    height: 100%;
+    height: auto;
     margin-top: 0;
     align-items: center;
   }

@@ -1,5 +1,5 @@
 import React from "react"
-import _ from "../config/config"
+import _ from "../config/env"
 
 const KakaoLoginBtn = () => (
     <>

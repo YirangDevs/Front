@@ -1,6 +1,6 @@
 import React from "react"
 import qs from "qs"
-import _ from "../config/config"
+import _ from "../config/env"
 
 const getUser = async(callback, history_callbkack) => {
     window.Kakao.API.request({
