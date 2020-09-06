@@ -2,7 +2,7 @@ import _ from "./config"
 
 const env = "production"
 
-export default (env==="develop") ? {
+export default (env==="development") ? {
     ..._,
     REDIRECT_URL : _.DEV_REDIRECT_URL,
     REST_KEY: _.DEV_REST_KEY,
