@@ -1,4 +1,4 @@
-import ACTION from "../actions/login_action"
+import ACTION from "../actions/auth_action"
 
 export default (state, action)=>{
     if(state===undefined) { return { logined : false}}
