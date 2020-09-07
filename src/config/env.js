@@ -3,7 +3,7 @@ import _ from "./config"
 //const env = "production"
 const env = "develop"
 
-export default (env==="develop") ? {
+export default (env==="development") ? {
     ..._,
     REDIRECT_URL : _.DEV_REDIRECT_URL,
     LOGOUT_REDIRECT_URL : _.DEV_LOGOUT_REDIRECT_URL,
