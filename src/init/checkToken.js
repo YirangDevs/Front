@@ -1,3 +1,5 @@
+import decoding from "../business/service/decode_yat"
+
 export default ()=> {
     return new Promise((resolve, reject)=>{
         let ACCESS_TOKEN = localStorage.getItem("YAT")
@@ -5,8 +7,7 @@ export default ()=> {
             //토큰뜯기 -> 유효기간확인 -> 유효하면 true 안하면 false
 
             //base64 디코딩
-            const decodedToken = Buffer.from(ACCESS_TOKEN, "base64").toString();
-            console.log(decodedToken); //이건 그냥 적음
+            const decodedToken = decoding(ACCESS_TOKEN);
 
             resolve(true)
         }
