@@ -1,4 +1,5 @@
 import decoding from "../business/service/decode_yat"
+import checkExpiredIn from "../business/service/check_expired_in"
 
 export default ()=> {
     return new Promise((resolve, reject)=>{
@@ -8,8 +9,12 @@ export default ()=> {
 
             //base64 디코딩
             const decodedToken = decoding(ACCESS_TOKEN);
-
-            resolve(true)
+            const tokenExpired = checkExpiredIn(decodedToken);
+            if(tokenExpired){
+                resolve(true)
+            }else{
+                throw new Error("Token is expired")
+            }
         }
         else throw new Error("Token non exists")
     })
