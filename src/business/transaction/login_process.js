@@ -11,7 +11,7 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
                 kakaoRefreshTokenExpiredTime : token.refresh_token_expires_in,
             })
             localStorage.setItem("YAT",YIRANG_TOKEN)
-            //YAT 뜯기
+            //YAT parcing
             //Redux Store에 user_id, user_role 추가
         }else{
 
