@@ -8,7 +8,7 @@ export default {
                 'Content-Type': 'application/json'
                },
             body: JSON.stringify(KAKAO_TOKEN_DATA)
-        }).then(res => res.headers).then(res => console.log(res.get("Authorization")))
+        }).then(res => res.headers).then(res => res.get("Authorization"))
     },
 
     decode : (ACCESS_TOKEN) =>{
