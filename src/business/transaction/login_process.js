@@ -11,6 +11,7 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
                 refreshToken : token.refresh_token,
                 refreshTokenExpiredTime : token.refresh_token_expires_in,
             })
+            YIRANG_TOKEN = YIRANG_TOKEN.split(" ")[1]
             localStorage.setItem("YAT",YIRANG_TOKEN)
             //YAT parcing
             //Redux Store에 user_id, user_role 추가
