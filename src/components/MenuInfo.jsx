@@ -1,11 +1,15 @@
 import React from "react";
+import _ from "../config/env"
+
 
 const MenuInfo = (props) => {
 
+  
   const handleClick = (event) => {
     event.persist();
     props.LOGOUT()
-    localStorage.removeItem("KAKAO_ACCESS_TOKEN")
+    localStorage.removeItem("YAT")
+    window.location.href="https://kauth.kakao.com/oauth/logout?client_id="+_.REST_KEY+"&logout_redirect_uri="+_.LOGOUT_REDIRECT_URL
   }
 
 
