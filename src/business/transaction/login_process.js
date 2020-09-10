@@ -6,9 +6,9 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
         let token = await getTokenFromKakao(AUTHORIZATION_CODE)
         if(token.access_token){//if access token exists
             let YIRANG_TOKEN = await YAT.get({
-                kakaoAccessToken : token.access_token,
-                kakaoRefreshToken : token.refresh_token,
-                kakaoRefreshTokenExpiredTime : token.refresh_token_expires_in,
+                accessToken : token.access_token,
+                refreshToken : token.refresh_token,
+                refreshTokenExpiredTime : token.refresh_token_expires_in,
             })
             localStorage.setItem("YAT",YIRANG_TOKEN)
             //YAT parcing
