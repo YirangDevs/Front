@@ -12,10 +12,10 @@ export default ()=> {
             if(tokenExpired){
                 resolve(true)
             }else{
-                throw new Error("Token is expired")
+                reject(new Error("Token is expired"))
             }
         }
-        else throw new Error("Token non exists")
+        else reject(new Error("Token is non exists"))
     })
     
 }

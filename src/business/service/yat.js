@@ -1,4 +1,5 @@
 import _ from "../../config/env"
+import jwt_decode from "jwt-decode"
 
 export default {
     get :  (KAKAO_TOKEN_DATA) => {
@@ -11,19 +12,14 @@ export default {
         }).then(res => res.headers).then(res => res.get("Authorization"))
     },
 
-    decode : (ACCESS_TOKEN) =>{
-        const decodedToken=Buffer.from(ACCESS_TOKEN, "base64").toString();
-        return decodedToken;
+    decode (token) {
+        return jwt_decode(token)
     },
 
     IsExpiredIn : (decodedToken) =>{
-        const data = JSON.parse(decodedToken);
-        const expireData = data["exp"];
-        if(expireData)
-            return true;
-        else
-            return false;
+        const expireDate = decodedToken["exp"] * 1000;
+        const date = Date.now();
+        return (expireDate>date) ? true : false;
     }
-    
 }
 //유효시간 확인 등등 yat에 관련된 함수 제공
