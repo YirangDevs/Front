@@ -1,11 +1,11 @@
 import getTokenFromKakao from "../service/get_token_from_kakao"
-import getYirangToken from "../service/get_yirang_token"
+import YAT from "../service/yat"
 
 const LoginProcess = (AUTHORIZATION_CODE) => {
-    return Promise(async(resolve, reject)=>{
+    return new Promise(async(resolve, reject)=>{
         let token = await getTokenFromKakao(AUTHORIZATION_CODE)
         if(token.access_token){//if access token exists
-            let YIRANG_TOKEN = await getYirangToken({
+            let YIRANG_TOKEN = await YAT.get({
                 kakaoAccessToken : token.access_token,
                 kakaoRefreshToken : token.refresh_token,
                 kakaoRefreshTokenExpiredTime : token.refresh_token_expires_in,
