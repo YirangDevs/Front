@@ -1,4 +1,5 @@
 import decoding from "../business/service/decode_yat"
+import checkExpiredIn from "../business/service/check_expired_in"
 
 export default ()=> {
     return new Promise((resolve, reject)=>{
@@ -12,7 +13,7 @@ export default ()=> {
             if(tokenExpired){
                 resolve(true)
             }else{
-                reject();
+                throw new Error("Token is expired")
             }
         }
         else throw new Error("Token non exists")
