@@ -4,6 +4,7 @@ import YAT from "../service/yat"
 const LoginProcess = (AUTHORIZATION_CODE) => {
     return new Promise(async(resolve, reject)=>{
         let token = await getTokenFromKakao(AUTHORIZATION_CODE)
+        console.log(token)
         if(token.access_token){//if access token exists
             let YIRANG_TOKEN = await YAT.get({
                 accessToken : token.access_token,
