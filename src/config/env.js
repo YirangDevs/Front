@@ -1,7 +1,7 @@
 import _ from "./config"
 
 //const env = "production"
-const env = "develop"
+const env = "development"
 
 export default (env==="development") ? {
     ..._,
