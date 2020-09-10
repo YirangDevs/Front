@@ -12,7 +12,7 @@ const SideNav = (props) => {
     const logout_click = (event) => {
         event.persist();
         props.LOGOUT()
-        localStorage.removeItem("KAKAO_ACCESS_TOKEN")
+        localStorage.removeItem("YAT")
     }
     
     return (

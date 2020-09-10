@@ -11,10 +11,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         LOGOUT : function(payload){
-            window.Kakao.Auth.logout(function() {
                 dispatch(ACTION.LOGOUT_ACTION_FUNC(payload))
                 dispatch({type:ACTION.DELETE_USER})
-            })
+            
         }
     }
 }

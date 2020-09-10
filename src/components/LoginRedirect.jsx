@@ -9,7 +9,15 @@ const LoginRedirect =  ({location, history, LOGINED, SET_USER})=>{
     })
     if(!query.code) alert("정상적인 접근이 아닙니다.")
     else{
-        LoginProcess(query.code).then(()=>{LOGINED()}).then(()=> getUserProcess()).then((user)=>{SET_USER(user)}).then(()=>history.push("/"))
+        LoginProcess(query.code).then(
+                                    (payload)=>{
+                                        SET_USER({user : {...payload}})
+                                        LOGINED()
+                                    }
+                                )
+                                .then(()=> getUserProcess())
+                                .then((user)=>{SET_USER(user)})
+                                .then(()=>history.push("/")).catch((err)=>{alert(err)})
     } 
     return (
         <>
