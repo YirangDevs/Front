@@ -5,7 +5,7 @@ import store from "../store/store"
 import ACTION from "../store/actions/action"
 
 export default () =>{
-    checkToken().then(renewToken()).then((response)=>response.headers.get('Authorization')).then((YAT)=>getUserFromServer(YAT)).then((res)=>res.json()).then(
+    checkToken().then(()=>console.log("test")).then(renewToken()).then((response)=>response.headers.get('Authorization')).then((YAT)=>getUserFromServer(YAT)).then((res)=>res.json()).then(
         (user)=>{
             store.dispatch(ACTION.LOGIN_ACTION_FUNC())
             store.dispatch(ACTION.SET_USER__ACTION_FUNC({
