@@ -8,8 +8,12 @@ export default ()=> {
 
             //base64 디코딩
             const decodedToken = decoding(ACCESS_TOKEN);
-
-            resolve(true)
+            const tokenExpired = checkExpiredIn(decodedToken);
+            if(tokenExpired){
+                resolve(true)
+            }else{
+                reject();
+            }
         }
         else throw new Error("Token non exists")
     })
