@@ -10,7 +10,7 @@ export default ()=> {
             const decodedToken = YAT.decode(ACCESS_TOKEN);
             const tokenExpired = YAT.IsExpiredIn(decodedToken);
             if(tokenExpired){
-                resolve(true)
+                resolve(ACCESS_TOKEN)
             }else{
                 reject(new Error("Token is expired"))
             }

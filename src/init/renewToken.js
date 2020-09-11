@@ -7,10 +7,11 @@ export default function(YAT) {
      headers : {
        Authorization : "Bearer " + YAT,
     }})
-    if(data.ok){
+    if(data){
+      console.log(data)
       resolve(data)
     }else{
-      reject(new Error("토큰 갱신 오류"))
+      reject(new Error("토큰 갱신서버와 통신 불가"))
     }
    })
 }

@@ -9,7 +9,8 @@ const getUserFromServer = (YAT, id) => {
           Authorization : "Bearer "+ YAT,
           Accept : "application/json"
         },
-      }).then(res => res.json() )
+      }).then(res => res.json())
+      
       if(data) resolve(data)
       else reject(new Error("User non exist"))
     })
