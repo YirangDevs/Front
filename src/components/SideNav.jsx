@@ -13,6 +13,7 @@ const SideNav = (props) => {
         event.persist();
         props.LOGOUT()
         localStorage.removeItem("YAT")
+        window.location.href="https://kauth.kakao.com/oauth/logout?client_id="+_.REST_KEY+"&logout_redirect_uri="+_.LOGOUT_REDIRECT_URL
     }
     
     return (

@@ -19,7 +19,7 @@ const MenuInfo = (props) => {
         <div className="content__info__title">안녕하세요 {props.username}님</div>
         <div className="content__info__card">
           <div className="content__info__card--key">MODE</div>
-          <div className="content__info__card--value">관리자 모드</div>
+          <div className="content__info__card--value">{(props.role==="USER") ? "유저" : "관리자"} 모드</div>
         </div>
         <div className="content__info__card">
           <div className="content__info__card--key">LOGIN</div>
