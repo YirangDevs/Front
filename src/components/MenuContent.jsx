@@ -4,7 +4,7 @@ import MenuInfo from "../containers/MenuInfo";
 
 const MenuContent = () => (
   <>
-    <div className="content__menu__wrapper">
+    <div className="menu content__menu">
       <MenuNav></MenuNav>
       <MenuInfo></MenuInfo>
     </div>

@@ -4,7 +4,7 @@ import React from "react"
 const MainImg = () => (
     <>
         
-        <div className="main__image__wrapper">
+        <div className="main-image container__main-image">
         </div>
     </>
 )
