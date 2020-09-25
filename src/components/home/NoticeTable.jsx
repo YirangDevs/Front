@@ -2,8 +2,8 @@ import React from "react"
 
 const NoticeTable = () => (
     <>
-        <div className="content__notice__list">
-            <table className="content__notice__table">
+        <div className="notice__list">
+            <table className="notice__table">
                 <thead>
                     <tr>
                         <th></th>
