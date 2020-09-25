@@ -1,7 +1,7 @@
 import React from 'react';
-import Container from "./components/Container"
-import LoginRedirect from "./containers/LoginRedirect"
-import LogoutRedirect from "./containers/LogoutRedirect"
+import Container from "./components/home/Container"
+import LoginRedirect from "./containers/home/LoginRedirect"
+import LogoutRedirect from "./containers/home/LogoutRedirect"
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 
 

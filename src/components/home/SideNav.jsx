@@ -1,5 +1,5 @@
 import React from "react"
-import _ from "../config/env"
+import _ from "../../config/env"
 
 
 const SideNav = (props) => {
@@ -39,7 +39,7 @@ const SideNav = (props) => {
             (
                 <div className="side-nav__login-wrapper">
                 <a  href={_.AUTHORIZATION_URL+"authorize?client_id="+_.REST_KEY+"&redirect_uri="+_.REDIRECT_URL+"&response_type=code"}>
-                    <img src={require("../img/kakaobtn.png") } alt="" className="side-nav__login-btn"/>
+                    <img src={require("../../img/kakaobtn.png") } alt="" className="side-nav__login-btn"/>
                 </a>
                 
             </div>

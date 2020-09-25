@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import SideNav from "../components/SideNav"
-import ACTION from "../store/actions/action"
+import SideNav from "../../components/home/SideNav"
+import ACTION from "../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {

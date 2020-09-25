@@ -1,5 +1,5 @@
 import React from "react";
-import _ from "../config/env"
+import _ from "../../config/env"
 
 
 const MenuInfo = (props) => {

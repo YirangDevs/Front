@@ -1,6 +1,6 @@
 import React from "react";
 import MenuNav from "./MenuNav";
-import MenuInfo from "../containers/MenuInfo";
+import MenuInfo from "../../containers/home/MenuInfo";
 
 const MenuContent = () => (
   <>
