@@ -8,7 +8,7 @@ const Content = (props) => {
   return (
   <>
     
-    <div className="content__wrapper">
+    <div className="content container__content">
       <NoticeContent></NoticeContent>
       {
         
