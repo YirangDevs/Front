@@ -6,6 +6,7 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
         getTokenFromKakao(AUTHORIZATION_CODE)
         .then((token)=>{//백엔드 서버에 카카오 토큰정보 넘기고 YAT 발급
             if(token.access_token){
+                console.log(token.accessToken)
                 return YAT.get({
                     accessToken : token.access_token,
                     refreshToken : token.refresh_token,
