@@ -22,6 +22,8 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
             let payload = YAT.decode(YIRANG_ACCESS_TOKEN)
             
             resolve({
+                username : payload.username,
+                imgUrl : payload.imgUrl,
                 userId : payload.userId,
                 role : payload.role
             })
