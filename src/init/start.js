@@ -20,7 +20,7 @@ export default () =>{
                         role : claim.role
                     }
                 }))
-                console.log("끝끝")
+                store.dispatch(ACTION.LOGIN_ACTION_FUNC());
             })
             .catch((err)=>{
                 console.log(err)
