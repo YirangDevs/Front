@@ -7,8 +7,8 @@ import YAT from "../business/service/yat"
 export default () =>{
         if(!store.getState().login_reducer.logined){
             YAT.exist()
-            .then((YAT)=>renewToken(YAT))
-            .then((response)=>response.headers.get('Authorization').split(" ")[1])
+            // .then((YAT)=>renewToken(YAT))
+            //.then((response)=>response.headers.get('Authorization').split(" ")[1])
             .then((token)=>{
                 
                 let claim = YAT.decode(token)
