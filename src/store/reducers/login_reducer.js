@@ -1,7 +1,7 @@
 import ACTION from "../actions/auth_action"
 
 export default (state, action)=>{
-    if(state===undefined) { return { logined : false, loading: false}}
+    if(state===undefined) { return { logined : false, loading: true}}
     switch(action.type){
         
         case ACTION.LOGIN:
