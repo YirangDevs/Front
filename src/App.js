@@ -2,6 +2,8 @@ import React from 'react';
 import Container from "./components/home/Container"
 import LoginRedirect from "./containers/home/LoginRedirect"
 import LogoutRedirect from "./containers/home/LogoutRedirect"
+import Manage from "./components/manage/Container"
+import Create from "./components/create/Container"
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 
 
@@ -16,7 +18,11 @@ function App() {
         </Route>
         <Route path="/logout" component={LogoutRedirect}>
         </Route>
-      </Switch>
+        <Route path ="/manage" component={Manage}>
+        </Route>
+        <Route path ="/create" component={Create}>
+          </Route> 
+      </Switch> 
     </BrowserRouter>
     </>
   );
