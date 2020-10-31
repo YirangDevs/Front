@@ -4,8 +4,8 @@ import ACTION from "../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {
-        username: state.user_reducer.username,
         role: state.user_reducer.role,
+        logined: state.login_reducer.logined
     }
 }
 
