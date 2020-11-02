@@ -1,10 +1,8 @@
 import React from "react";
-import {useEffect} from "react"
 import NoticeContent from "./NoticeContent";
 import KakaoLoginBtn from "./KakaoLoginBtn";
 import MenuContent from "./MenuContent";
 import Loading from "./Loading"
-import YAT from "../../business/service/yat"
 
 const Content = (props) => {
 
