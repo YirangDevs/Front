@@ -1,7 +1,16 @@
 import React from 'react'
+import _ from "../../config/env"
+
+const MenuInfo = (props) => {
+
+    const handleClick = (event) => {
+        event.persist();
+        props.LOGOUT();
+        localStorage.removeItem("YAT")
+        window.location.href = "https://kauth.kakao.com/oauth/logout?client_id=" + _.REST_KEY + "&logout_redirect_uri=" + _.LOGOUT_REDIRECT_URL
+    }
 
 
-const MenuInfo = () => {
     return (
         <>
             <div className="info menu__info">
@@ -12,7 +21,7 @@ const MenuInfo = () => {
                 </div>
                 <div className="info__card">
                     <div className="info__card--key">LOGIN</div>
-                    <div className="info__card--value" onClick="{handleClick}">LOGOUT</div>
+                    <div className="info__card--value" onClick={handleClick}>LOGOUT</div>
                 </div>
             </div>
         </>

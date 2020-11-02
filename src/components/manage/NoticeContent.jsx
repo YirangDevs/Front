@@ -2,7 +2,7 @@
 import React from 'react'
 import NoticeInformation from './NoticeInformation'
 import NoticeSelect from './NoticeSelect'
-import NoticeList from './NoticeList'
+import NoticeList from '../../containers/manage/NoticeList'
 const NoticeContent = () => {
     return (
         <>

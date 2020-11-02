@@ -1,7 +1,7 @@
 //Content
 import React from 'react'
 import MenuNav from './MenuNav'
-import MenuInfo from './MenuInfo'
+import MenuInfo from '../../containers/manage/MenuInfo'
 import MenuMake from './MenuMake'
 const MenuContent = () => (
     <>

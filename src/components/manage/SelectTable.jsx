@@ -1,7 +1,10 @@
 //Select
 import React from 'react'
+import { Link } from 'react-router-dom';
+const SelectTable = (props) => {
+    const handleClick = (e) => {
 
-const SelectTable = () => {
+    }
     return (
         <>
             <table className="select__table">
@@ -10,15 +13,15 @@ const SelectTable = () => {
                         <th></th>
                         <th>제목</th>
                         <th>봉사날짜</th>
-                        <th>봉사시간</th>
+                        <th>봉사지역</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody onClick={handleClick} >
                     <tr>
-                        <td>1</td>
-                        <td>수성구 재가봉사 09/20 모집합니다.</td>
-                        <td>20/09/20</td>
-                        <td>14:00</td>
+                        <td>{props.id} </td>
+                        <td><Link to="/read">{props.title}</Link></td>
+                        <td>{props.dov}</td>
+                        <td>{props.nor}</td>
                     </tr>
                 </tbody>
             </table>

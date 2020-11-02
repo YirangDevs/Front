@@ -1,15 +1,15 @@
 //notice
 import React from 'react'
-import Table from './SelectTable'
-import Btn from './SelectBtn'
+import SelectTable from '../../containers/manage/SelectTable'
+import SelectBtn from './SelectBtn'
 
 const NoticeSelect = () => {
     return (
         <>
             <div className="notice__select">
-                <Table></Table>
+                <SelectTable></SelectTable>
                 {/* <div className="select__table"></div> */}
-                <Btn></Btn>
+                <SelectBtn></SelectBtn>
                 {/* <div className="select__btn"></div> */}
             </div>
         </>

@@ -2,7 +2,7 @@ import React from 'react'
 import _ from "../../config/env"
 //import YAT from "../service/yat"
 
-const DoneButton = (props, history) => {
+const DoneButton = (props) => {
 
     const data = JSON.stringify({
         "title": props.title,
@@ -38,7 +38,6 @@ const DoneButton = (props, history) => {
 
     }
 
-
     const onClick = async (event) => {
         //여기서 fetch ( method : post)
 
@@ -47,11 +46,10 @@ const DoneButton = (props, history) => {
             console.log(props.title)
             props.SUBMIT();
 
-            //history.push('/manage')
         }
     }
 
-        ;
+
 
     return (
         <>
