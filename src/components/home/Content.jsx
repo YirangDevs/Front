@@ -8,14 +8,6 @@ import YAT from "../../business/service/yat"
 
 const Content = (props) => {
 
-  useEffect(()=>{
-    YAT.exist().then(()=>{
-      props.SET_LOADING();
-    }).catch((err)=>{
-      props.SET_LOADING_OUT();
-      console.log(err)
-    })
-  })
   
   return (
   <>

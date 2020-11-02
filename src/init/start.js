@@ -6,8 +6,11 @@ import YAT from "../business/service/yat"
 export default () =>{
         if(!store.getState().login_reducer.logined){
             YAT.exist()
-            // .then((YAT)=>renewToken(YAT))
-            //.then((response)=>response.headers.get('Authorization').split(" ")[1])
+            .then((YAT)=>{
+                store.dispatch(ACTION.LOADING_ACTION_FUNC())
+                renewToken(YAT)
+            })
+            .then((response)=>response.headers.get('Authorization').split(" ")[1])
             .then((token)=>{
                 
                 let claim = YAT.decode(token)
@@ -19,9 +22,11 @@ export default () =>{
                         role : claim.role
                     }
                 }))
+                
                 store.dispatch(ACTION.LOGIN_ACTION_FUNC());
             })
             .catch((err)=>{
+                store.dispatch(ACTION.LOADING_OUT_ACTION_FUNC(payload))
                 console.log(err)
                 
             })

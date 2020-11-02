@@ -12,12 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-       SET_LOADING : function(payload){
-           dispatch(ACTION.LOADING_ACTION_FUNC(payload))
-       },
-       SET_LOADING_OUT : function(payload){
-        dispatch(ACTION.LOADING_OUT_ACTION_FUNC(payload))
-    }
+       
     }
 }
 
