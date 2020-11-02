@@ -4,7 +4,7 @@ import ACTION from "../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {
-        region: "1수성구",
+        region: "region x",
         dov: state.select_reducer.selectDov,
         tov: state.select_reducer.selectTov,
         dod: state.select_reducer.selectDod,

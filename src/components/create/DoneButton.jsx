@@ -22,8 +22,10 @@ const DoneButton = (props, history) => {
             },
             body: data,
         }).then(response => response.text())
+            .then(next => { props.SUBMIT(); window.close() })
             .then(result => console.log(result))
             .catch(error => console.log('error', error))
+
     }
 
 
@@ -39,13 +41,17 @@ const DoneButton = (props, history) => {
     }
 
 
-    const onClick = async (event) => {
+    const onClick = () => {
         //여기서 fetch ( method : post)
 
         if (isValue(props) === true) {
-            POSTdata(data)
-            console.log(props.title)
-            props.SUBMIT();
+
+            POSTdata(data, function (props) {
+                console.log("callback")
+                props.SUBMIT()
+            })
+            //window.close()
+
 
             //history.push('/manage')
         }
