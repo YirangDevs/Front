@@ -146,8 +146,6 @@ select:focus {
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-left: 1px solid #ccd4e0;
-  border-right: 1px solid #ccd4e0;
 }
 .main__location--value {
   width: 10%;
@@ -297,6 +295,7 @@ select:focus {
     height: auto;
   }
   .contents {
+    margin: 3rem auto;
     justify-content: start;
   }
   .contents__text {

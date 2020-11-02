@@ -2,16 +2,16 @@ import { connect } from "react-redux"
 import SelectTable from "../../components/manage/SelectTable";
 import ACTION from "../../store/actions/action"
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        id: store.select_reducer.selectId,
-        title: store.select_reducer.selectTitle,
-        content: store.select_reducer.selectContent,
-        nor: store.select_reducer.selectNor,
-        dov: store.select_reducer.selectDov,
-        tov: store.select_reducer.selectTov,
-        dod: store.select_reducer.selectDod,
-        region: store.select_reducer.selectRegion
+        id: state.select_reducer.selectId,
+        title: state.select_reducer.selectTitle,
+        content: state.select_reducer.selectContent,
+        nor: state.select_reducer.selectNor,
+        dov: state.select_reducer.selectDov,
+        tov: state.select_reducer.selectTov,
+        dod: state.select_reducer.selectDod,
+        region: state.select_reducer.selectRegion
     }
 }
 

@@ -11,31 +11,34 @@ const NoticeList = ({ SET_SELECT }) => {
 
         getNotice()
             .then((data) => {
-                setNotices([...data.notices])
+                setNotices(data.notices)
                 setTest(1)
                 console.log(notices)
-                return data.notices
-            }).then((notices) => {
-                // InitSelect(notices)
+                //return data.notices
             })
+
+        //.then((notices) => {
+        // InitSelect(notices)
+        //})
 
     }, [test])
 
 
-    let InitSelect = (notices) => {
-        console.log(notices[0]);
-        console.log(notices);
-        SET_SELECT({
-            select: {
-                selectId: notices[0].id,
-                selectTitle: notices[0].title,
-                selectDov: notices[0].dov,
-                selectNor: notices[0].nor
-            }
-        })
+
+    // let InitSelect = (notices) => {
+    //     console.log(notices[0]);
+    //     console.log(notices);
+    //     SET_SELECT({
+    //         select: {
+    //             selectId: notices[0].id,
+    //             selectTitle: notices[0].title,
+    //             selectDov: notices[0].dov,
+    //             selectNor: notices[0].nor
+    //         }
+    //     })
 
 
-    }
+    // }
 
 
     // SET_SELECT({
@@ -52,7 +55,7 @@ const NoticeList = ({ SET_SELECT }) => {
         console.log(ID)
         //console.log(notices);
         //console.log(users[2]);
-        const selectValue = notices.filter(notices => Number(notices.id) == ID)
+        const selectValue = notices.filter(notices => Number(notices.id) === Number(ID))
         console.log(selectValue[0]);
 
         SET_SELECT({
@@ -65,6 +68,7 @@ const NoticeList = ({ SET_SELECT }) => {
 
             }
         })
+
     }
 
     if (!notices) return null;
