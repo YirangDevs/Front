@@ -1,6 +1,7 @@
 import store from "../store/store"
 import ACTION from "../store/actions/action"
 import YAT from "../business/service/yat"
+import renewToken from "./renewToken"
 
 
 export default () =>{
@@ -26,7 +27,7 @@ export default () =>{
                 store.dispatch(ACTION.LOGIN_ACTION_FUNC());
             })
             .catch((err)=>{
-                store.dispatch(ACTION.LOADING_OUT_ACTION_FUNC(payload))
+                store.dispatch(ACTION.LOADING_OUT_ACTION_FUNC())
                 console.log(err)
                 
             })
