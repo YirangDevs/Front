@@ -9,7 +9,7 @@ export default () =>{
             YAT.exist()
             .then((YAT)=>{
                 store.dispatch(ACTION.LOADING_ACTION_FUNC())
-                renewToken(YAT)
+                return renewToken(YAT)
             })
             .then((response)=>response.headers.get('Authorization').split(" ")[1])
             .then((token)=>{
