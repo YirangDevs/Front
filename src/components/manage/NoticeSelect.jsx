@@ -1,7 +1,7 @@
 //notice
 import React from 'react'
 import SelectTable from '../../containers/manage/SelectTable'
-import SelectBtn from './SelectBtn'
+import SelectBtn from '../../containers/manage/SelectBtn'
 
 const NoticeSelect = () => {
     return (

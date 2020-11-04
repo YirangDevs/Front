@@ -5,6 +5,9 @@ import '../../css/manage.css';
 import run from '../../init/start'
 const Container = () => {
     run();
+    if (localStorage.getItem('SELECT_ID')) {
+        localStorage.removeItem('SELECT_ID')
+    }
     return (
         <>
             <div id="root">

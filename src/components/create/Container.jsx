@@ -7,6 +7,7 @@ import Content from './Content'
 import run from '../../init/start'
 const Container = () => {
     run();
+
     return (
         <>
             <div className="container">

@@ -53,7 +53,7 @@ const Content = (props) => {
     setData();
     return (
         <>
-            <div className="contents container__contents">
+            <div className="contents container__contents-read">
                 <ContentInput></ContentInput>
                 <ContentText></ContentText>
             </div>

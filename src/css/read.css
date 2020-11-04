@@ -158,9 +158,32 @@
   justify-content: center;
 }
 
+.container__contents-read {
+  width: 92%;
+  height: 70%;
+}
+
+.container__urgentButton-read {
+  margin: auto auto;
+  width: 92%;
+  height: 20%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.urgentButton {
+  width: 12rem;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  /* border: solid 1px #ccd4e0; */
+  background-color: #ffeeef;
+}
+
 @media screen and (max-width: 768px) {
-  .container__contents {
-    height: 90%;
+  .container__contents-read {
+    height: 80%;
   }
   .main__title--name-read {
     width: 100%;

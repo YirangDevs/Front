@@ -22,8 +22,8 @@ const DoneButton = (props, history) => {
             },
             body: data,
         }).then(response => response.text())
-            .then(next => { props.SUBMIT(); window.close() })
-            .then(result => console.log(result))
+            .then(response => { props.SUBMIT() })
+            .then(result => { console.log(result); })
             .catch(error => console.log('error', error))
 
     }
@@ -46,10 +46,11 @@ const DoneButton = (props, history) => {
 
         if (isValue(props) === true) {
 
-            POSTdata(data, function (props) {
-                console.log("callback")
-                props.SUBMIT()
-            })
+            POSTdata(data)
+
+            props.SUBMIT()
+            console.log("create success")
+            window.history.back();
             //window.close()
 
 

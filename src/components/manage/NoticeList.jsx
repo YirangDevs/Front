@@ -1,6 +1,6 @@
 //notice
 import React, { useState, useEffect } from 'react';
-import getNotice from "../../init/fetchGETdata"
+import getNotice from "../../init/fetchGetData"
 
 
 const NoticeList = ({ SET_SELECT }) => {
