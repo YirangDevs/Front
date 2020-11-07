@@ -74,7 +74,7 @@ const NoticeList = ({ SET_SELECT }) => {
     if (!notices) return null;
     return (
         <>
-            <div className="notice__list">
+            <div className="notice__list" id="reloadPage">
                 <table id="myTable" className="notice__table">
                     <thead>
                         <tr>

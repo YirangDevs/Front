@@ -10,33 +10,10 @@ export default (state, action)=>{
             }
         case ACTION.DELETE_CONFIG:
             {
-                return{
-                    
-                }
+                return{ }
             }
-
         default:
             return { ...state }
     }
 }
 
-// const initialState = {
-
-// "notice":
-
-// {
-
-// "id": 0,
-
-// "title": "0",
-
-// "nor": "0",
-
-// "dov": "0",
-
-// "tov": "0"
-
-// }
-
-
-// }

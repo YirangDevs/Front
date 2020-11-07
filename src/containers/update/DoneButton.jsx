@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import urgentButton from "../../components/read/urgentButton"
+import DoneButton from "../../components/update/DoneButton"
 
 
 const mapStateToProps = (state) => {
@@ -12,4 +12,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, null)(urgentButton)
+export default connect(mapStateToProps, null)(DoneButton)

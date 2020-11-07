@@ -10,7 +10,7 @@ export default (state, action)=>{
             }
             case ACTION.DELETE_SELECT:
                 return {
-                    
+                
                 }
         default:
             return { ...state }

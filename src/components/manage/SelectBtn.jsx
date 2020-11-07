@@ -1,6 +1,8 @@
 //Select
 import React from 'react'
 import _ from "../../config/env"
+import { Link } from "react-router-dom";
+
 const SelectBtn = (props) => {
 
     const updateButton = () => {
@@ -15,7 +17,7 @@ const SelectBtn = (props) => {
         if (props.selectTitle) {
             console.log("DELETE working,,,,");
             new Promise(async (resolve, reject) => {
-                let DeleteSelect = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/force/" + Number(props.selectId), {
+                let DeleteSelect = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
                     method: "DELETE",
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("YAT"),
@@ -25,13 +27,27 @@ const SelectBtn = (props) => {
                     console.log("200 ok")
                     console.log(DeleteSelect)
                     resolve(DeleteSelect)
-                    console.log("Delete Success"); alert("💥게시글 삭제 성공!💥")
+                    console.log("Delete Success");
+                    alert("💥게시글 삭제 성공!💥")
                     window.location.reload()
                 }
                 else {
 
-                    console.log(DeleteSelect)
-                    console.log("Delete ERROR ")
+                    if (window.confirm("이게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
+                        console.log("i have  a power");
+
+                        await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/force/" + Number(props.selectId), {
+                            method: "DELETE",
+                            headers: {
+                                Authorization: "Bearer " + localStorage.getItem("YAT"),
+                            }
+                        }).then((response) => {
+                            console.log(response)
+                            console.log("force 삭제 성공");
+                            alert("💥게시글 및 활동 삭제 성공!💥")
+                        })
+
+                    }
                 }
             })
         } else {
@@ -44,8 +60,11 @@ const SelectBtn = (props) => {
     return (
         <>
             <div className="select__btn">
-                <div className="update__btn" onClick={updateButton}>수정<span role="img" aria-label="update">🚧</span></div>
+                <Link to="/update" >
+                    <div className="update__btn" onClick={updateButton}>수정<span role="img" aria-label="update">🚧</span></div>
+                </Link>
                 <div className="delete__btn" onClick={deleteButton}>삭제<span role="img" aria-label="delete">🗑️</span></div>
+
             </div>
         </>
     )

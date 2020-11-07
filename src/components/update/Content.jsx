@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import ContentInput from './ContentInput';
-import ContentText from '../../containers/read/ContentText';
+import ContentText from '../../containers/update/ContentText';
 
 import _ from "../../config/env"
+
 
 
 const Content = (props) => {
 
     useEffect(() => {
         if (props.selectId) {
-            console.log("working");
+            console.log("UPDATE working");
             console.log(props.selectId);
             new Promise(async (resolve, reject) => {
                 let selectNotice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
@@ -28,21 +29,20 @@ const Content = (props) => {
         }
     }, [])
 
-
     const setData = (notice) => {
         console.log(notice)
         if (notice) {
-            console.log(notice)
-            props.SET_SELECT({
-                select: {
-                    selectTitle: notice.title,
-                    selectContent: notice.content,
-                    selectNor: notice.nor,
-                    selectNoa: notice.noa,
-                    selectDov: notice.dov,
-                    selectTov: notice.tov,
-                    selectDod: notice.dod,
-                    selectRegion: notice.region
+            console.log(notice.title)
+            props.SET_CONFIG({
+                notice: {
+                    Title: notice.title,
+                    tContent: notice.content,
+                    Nor: notice.nor,
+                    Noa: notice.noa,
+                    Dov: notice.dov,
+                    Tov: notice.tov,
+                    Dod: notice.dod,
+                    Region: notice.region
 
                 }
             })
@@ -51,7 +51,7 @@ const Content = (props) => {
 
     return (
         <>
-            <div className="contents container__contents-read">
+            <div className="contents container__contents">
                 <ContentInput></ContentInput>
                 <ContentText></ContentText>
             </div>

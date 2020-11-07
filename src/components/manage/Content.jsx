@@ -3,6 +3,8 @@ import React from 'react'
 import Notice from './NoticeContent'
 import Menu from './MenuContent'
 const Content = () => {
+
+
     return (
         <>
             <div className="content container__content">

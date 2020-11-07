@@ -1,23 +1,25 @@
 import React from 'react'
 
+import { Button } from "@material-ui/core"
 
 const urgentButton = () => {
 
     const onClick_urgent = () => {
-        document.querySelector(".nomain__nor--value-read").style.backgroundColor = "rgba(204, 212, 224, 0.57)"
-        document.querySelector(".main__location--value-read").style.backgroundColor = "rgba(204, 212, 224, 0.57)"
-        document.querySelector(".nomain__dov--value-read").style.backgroundColor = "rgba(204, 212, 224, 0.57)"
-        document.querySelector(".nomain__tov--value-read").style.backgroundColor = "rgba(204, 212, 224, 0.57)"
-        document.querySelector(".nomain__dod--value-read").style.backgroundColor = "rgba(204, 212, 224, 0.57)"
-        document.querySelector(".contents__text-read").style.backgroundColor = "rgba(204, 212, 224, 0.57)"
+
+        document.querySelector(".container__urgent").style.display = "flex"
+        document.querySelector(".urgent_wrapper").style.display = "flex"
+
     }
     return (
         <>
             <>
                 <div className="urgent container__urgentButton-read" >
-                    <div className="urgentButton" onClick={onClick_urgent}>
+                    {/* <div className="urgentButton" onClick={onClick_urgent}>
                         <span role="img" aria-label="create">🚨</span>급구 게시물 올리기<span role="img" aria-label="create">🚨</span>
-                    </div>
+                    </div> */}
+                    <Button variant="outlined" color="secondary" onClick={onClick_urgent} className="urgentButton">
+                        <span role="img" aria-label="create">🚨</span>급구 게시물 올리기<span role="img" aria-label="create">🚨</span>
+                    </Button>
                 </div>
 
             </>
