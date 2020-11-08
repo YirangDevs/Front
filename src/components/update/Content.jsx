@@ -32,13 +32,11 @@ const Content = (props) => {
     const setData = (notice) => {
         console.log(notice)
         if (notice) {
-            console.log(notice.title)
             props.SET_CONFIG({
                 notice: {
                     Title: notice.title,
-                    tContent: notice.content,
+                    Content: notice.content,
                     Nor: notice.nor,
-                    Noa: notice.noa,
                     Dov: notice.dov,
                     Tov: notice.tov,
                     Dod: notice.dod,

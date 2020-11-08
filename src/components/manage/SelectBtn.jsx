@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 const SelectBtn = (props) => {
 
     const updateButton = () => {
-
+        if (!props.selectId) {
+            alert("게시물을 선택해 주세요")
+            console.log("Update ERROR(NOT select)")
+            window.history.back();
+        }
     }
-
     const deleteButton = () => {
-
-
-
         console.log(props.selectTitle, props.selectId)
         if (props.selectTitle) {
             console.log("DELETE working,,,,");
@@ -32,7 +32,6 @@ const SelectBtn = (props) => {
                     window.location.reload()
                 }
                 else {
-
                     if (window.confirm("이게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
                         console.log("i have  a power");
 
@@ -45,6 +44,7 @@ const SelectBtn = (props) => {
                             console.log(response)
                             console.log("force 삭제 성공");
                             alert("💥게시글 및 활동 삭제 성공!💥")
+                            window.location.reload()
                         })
 
                     }

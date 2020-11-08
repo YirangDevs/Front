@@ -1,10 +1,13 @@
 import { connect } from "react-redux"
-import ContentText from "../../components/update/ContentText"
+import InputNomain from "../../components/update/InputNomain"
 import ACTION from "../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {
-        Content: state.notice_reducer.Content
+        Nor: state.notice_reducer.Nor,
+        Dov: state.notice_reducer.Dov,
+        Tov: state.notice_reducer.Tov,
+        Dod: state.notice_reducer.Dod
     }
 }
 
@@ -16,4 +19,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContentText)
+export default connect(mapStateToProps, mapDispatchToProps)(InputNomain)

@@ -2,27 +2,27 @@ import React from 'react'
 import _ from "../../config/env"
 //import YAT from "../service/yat"
 
-const DoneButton = (props, history) => {
+const DoneButton = (props) => {
 
     const data = JSON.stringify({
-        "title": props.title,
+        "title": props.Title,
         "activityRegisterRequestDto": {
-            "content": props.content, "region": props.region, "nor": parseInt(props.nor),
-            "dov": props.dov, "tov": props.tov + ":00", "dod": props.dod
+            "content": props.Content, "region": props.Region, "nor": parseInt(props.Nor),
+            "dov": props.Dov, "tov": props.Tov, "dod": props.Dod
         }
 
     });
 
-    const POSTdata = (data) => {
-        fetch(_.HOST_URL + ":8080/v1/apis/manage/notices", {
-            method: 'POST',
+    const PUTdata = (data) => {
+        fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(props.Id), {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: "Bearer " + localStorage.getItem("YAT"),
             },
             body: data,
         }).then(response => response.text())
-            .then(response => { props.SUBMIT() })
+            .then(response => { props.SUBMIT(); console.log("update success") })
             .then(result => { console.log(result); })
             .catch(error => console.log('error', error))
 
@@ -30,7 +30,7 @@ const DoneButton = (props, history) => {
 
 
     const isValue = (props) => {
-        if (props.title === undefined || props.content === undefined || props.nor === undefined || props.dov === undefined || props.tov === undefined || props.dod === undefined || props.region === undefined) {
+        if (props.Title === undefined || props.Content === undefined || props.Nor === undefined || props.Dov === undefined || props.Tov === undefined || props.Dod === undefined || props.Region === undefined) {
             console.log(props);
             alert('내용을 모두 입력하세요');
 
@@ -45,26 +45,22 @@ const DoneButton = (props, history) => {
         //여기서 fetch ( method : post)
 
         if (isValue(props) === true) {
+            console.log(props.Tov)
+            PUTdata(data)
 
-            POSTdata(data)
+            //props.SUBMIT()
 
-            props.SUBMIT()
-            console.log("create success")
             window.history.back();
-            //window.close()
-
-
-            //history.push('/manage')
         }
     }
 
-        ;
+
 
     return (
         <>
             <div className="done container__done">
 
-                <div className="done__btn" onClick={onClick}>게시글 작성 완료</div>
+                <div className="done__btn" onClick={onClick}><span role="img" aria-label="update">🚧</span>게시글 수정 완료<span role="img" aria-label="update">🚧</span></div>
             </div>
         </>
     )

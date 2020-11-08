@@ -2,14 +2,15 @@
 import React from 'react'
 
 
-const ContentText = ({ SET_CONFIG }) => {
-
-    const value = "초기값"
+const ContentText = (props) => {
+    console.log(props.Content)
+    var Content = props.Content
+    console.log(Content)
     const onChange = (mainValue) => {
         const value = mainValue.target.value;
         const type = mainValue.target.name;
         console.log([type], value);
-        SET_CONFIG({
+        props.SET_CONFIG({
             notice: {
                 [type]: value
             }
@@ -19,7 +20,7 @@ const ContentText = ({ SET_CONFIG }) => {
     return (
         <>
             <div className="text contents__text">
-                <textarea className="text__content--value" name='content' onChange={onChange} placeholder="내용을 입력하세요" value={value} >
+                <textarea className="text__content--value" name='Content' onChange={onChange} value={Content} >
                 </textarea>
             </div>
         </>

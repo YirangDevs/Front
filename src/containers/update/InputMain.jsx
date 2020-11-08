@@ -1,10 +1,11 @@
 import { connect } from "react-redux"
-import ContentText from "../../components/update/ContentText"
+import InputMain from "../../components/update/InputMain"
 import ACTION from "../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {
-        Content: state.notice_reducer.Content
+        Title: state.notice_reducer.Title,
+        Region: state.notice_reducer.Region
     }
 }
 
@@ -16,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContentText)
+export default connect(mapStateToProps, mapDispatchToProps)(InputMain)

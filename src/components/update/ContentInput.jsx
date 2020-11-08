@@ -1,7 +1,7 @@
 //content
 import React from 'react'
-import InputMain from '../../containers/create/InputMain'
-import InputNomain from '../../containers/create/InputNomain'
+import InputMain from '../../containers/update/InputMain'
+import InputNomain from '../../containers/update/InputNomain'
 
 const ContentInput = () => {
     return (
