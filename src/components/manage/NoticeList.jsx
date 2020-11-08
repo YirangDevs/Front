@@ -1,26 +1,47 @@
 //notice
 import React, { useState, useEffect } from 'react';
-import getNotice from "../../init/fetchGetData"
+//import getNotice from "../../init/fetchGetData"
 import Switch from "@material-ui/core/Switch"
-import { FormControlLabel } from '@material-ui/core';
-
+import { Button, ButtonGroup, FormControlLabel } from '@material-ui/core';
+import _ from "../../config/env"
 const NoticeList = ({ SET_SELECT }) => {
     const [notices, setNotices] = useState([]);
-    const [test, setTest] = useState(0)
 
     var checked
-
+    const [pagingNum, setpagingNum] = useState("0")
+    const [totalPage, settotalPage] = useState("0")
     useEffect(() => {
 
-        getNotice()
-            .then((data) => {
-                setNotices(data.notices)
-                setTest(1)
-                console.log(notices)
-                //return data.notices
-            })
+        new Promise(async (resolve, reject) => {
+            let getNum = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/nums", {
+                method: 'GET',
 
-    }, [test])
+            }).then((res) => res.json());
+            if (getNum) { resolve(getNum); settotalPage(Math.ceil(getNum.totalNoticeNums / 6)) }
+            else (console.log("전체 페이지 값 안들어옴"))
+        }).then((data) => {
+            console.log(data.totalNoticeNums)
+            console.log(totalPage)
+        })
+        //Number(pagingNum)
+        new Promise(async (resolve, reject) => {
+            let notice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
+                method: 'GET',
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("YAT"),
+                }
+            }).then((res) => res.json());
+            if (notice) { resolve(notice) }
+        }).then((data) => {
+            setNotices(data.notices)
+            console.log(data)
+
+            //console.log(notices)
+            //return data.notices
+        })
+
+    }, [pagingNum])
+
 
     const SelectId = (e) => {
         console.log(e.target)
@@ -49,10 +70,24 @@ const NoticeList = ({ SET_SELECT }) => {
         }
     }
 
-
     const readOntable = (e) => {
         checked = e.target.checked
     }
+
+    const pagingClick = (e) => {
+        const id = e.target.id
+        console.log(id - 1)
+        setpagingNum(id - 1)
+        console.log(pagingNum)
+    }
+
+    const pageNumber = [];
+
+    // Math.ceil: 올림
+    for (let i = 1; i <= totalPage; i++) {
+        pageNumber.push(i);
+    }
+
 
     if (!notices) return null;
     return (
@@ -87,7 +122,7 @@ const NoticeList = ({ SET_SELECT }) => {
                                 <td id={notice.id}></td>
                                 <td id={notice.id}> {notice.title}</td>
                                 <td id={notice.id}>{notice.dov}</td>
-                                <td id={notice.id}>{notice.tov}</td>
+                                <td id={notice.id}>{notice.region}</td>
                                 <td id={notice.id}>{notice.nor}</td>
                             </tr>
                         </tbody>
@@ -95,6 +130,26 @@ const NoticeList = ({ SET_SELECT }) => {
                     ))}
 
                 </table>
+                <div className="notice__table--paging">
+                    {/* 
+                    <ButtonGroup size="small" variant="text" color="primary" aria-label="text primary button group">
+                        <Button name="1" onClick={pagingClick} value="1">1</Button>
+                        <Button name="2" onClick={pagingClick} value="2">2</Button>
+                        <Button name="3" onClick={pagingClick} value="3">3</Button>
+                    </ButtonGroup> */}
+                    <ul className="pagination">
+                        {pageNumber.map((pageNum) => (
+                            <li
+                                key={pageNum}
+                                id={pageNum}
+                                className="pagination_item"
+                                onClick={pagingClick}
+                            > {pageNum}
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
             </div>
 
         </>
