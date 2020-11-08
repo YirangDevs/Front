@@ -1,11 +1,14 @@
 //notice
 import React, { useState, useEffect } from 'react';
 import getNotice from "../../init/fetchGetData"
-
+import Switch from "@material-ui/core/Switch"
+import { FormControlLabel } from '@material-ui/core';
 
 const NoticeList = ({ SET_SELECT }) => {
     const [notices, setNotices] = useState([]);
     const [test, setTest] = useState(0)
+
+    var checked
 
     useEffect(() => {
 
@@ -17,38 +20,8 @@ const NoticeList = ({ SET_SELECT }) => {
                 //return data.notices
             })
 
-        //.then((notices) => {
-        // InitSelect(notices)
-        //})
-
     }, [test])
 
-
-
-    // let InitSelect = (notices) => {
-    //     console.log(notices[0]);
-    //     console.log(notices);
-    //     SET_SELECT({
-    //         select: {
-    //             selectId: notices[0].id,
-    //             selectTitle: notices[0].title,
-    //             selectDov: notices[0].dov,
-    //             selectNor: notices[0].nor
-    //         }
-    //     })
-
-
-    // }
-
-
-    // SET_SELECT({
-    //     select: {
-    //         selectId: "1",
-    //         selectTitle: users[1].title,
-    //         selectDov: users[0].dov,
-    //         selectRegion: users[0].region
-    //     }
-    // })
     const SelectId = (e) => {
         console.log(e.target)
         const ID = e.target.id;
@@ -67,14 +40,37 @@ const NoticeList = ({ SET_SELECT }) => {
                 selectTov: selectValue[0].tov
 
             }
-        })
+        });
 
+        if (checked) {
+            localStorage.setItem("SELECT_ID", ID)
+            window.open('http://localhost:3000/read', 'window_name',
+                'width=530,height=633,location=no,status=no,scrollbars=yes')
+        }
+    }
+
+
+    const readOntable = (e) => {
+        checked = e.target.checked
     }
 
     if (!notices) return null;
     return (
         <>
             <div className="notice__list" id="reloadPage">
+                <div className="notice__list--button">
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={checked}
+                                onChange={readOntable}
+                                name="checked"
+                            // color="primary"
+                            />
+                        } label="테이블에서 바로 조회하기✏️"
+                    />
+
+                </div>
                 <table id="myTable" className="notice__table">
                     <thead>
                         <tr>
@@ -100,6 +96,7 @@ const NoticeList = ({ SET_SELECT }) => {
 
                 </table>
             </div>
+
         </>
     )
 }

@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import InputMain from "../../components/read/InputMain"
-import ACTION from "../../store/actions/action"
+
 
 const mapStateToProps = (state) => {
     return {
