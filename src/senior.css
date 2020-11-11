@@ -141,6 +141,7 @@ html {
     display: grid;
     width: 90%;
     background-color: #f1f3f6;
+    margin:0;
 }
 .item {
     height: 4rem;
