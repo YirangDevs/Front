@@ -1,0 +1,339 @@
+.main__title--name-read {
+  width: 8%;
+  height: 100%;
+  color: #707070;
+  font-family: NotoSansCJKKR;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__title--value-read {
+  width: calc(100% - 26%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 95%;
+  border: none;
+}
+
+.main__location--name-read {
+  width: 8%;
+  height: 100%;
+  color: #707070;
+
+  font-family: NotoSansCJKKR;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-right: 1px solid #ccd4e0;
+}
+
+.main__location--value-read {
+  width: 10%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input__nomain-read {
+  height: 50%;
+  width: 100%;
+}
+.nomain__nor--name-read {
+  width: 18rem;
+  height: 100%;
+  font-family: NotoSansCJKKR;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #707070;
+  border-right: 1px solid #ccd4e0;
+  border-left: 1px solid #ccd4e0;
+}
+.nomain__nor--value-read {
+  width: 12.5%;
+  height: 95%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* dov = 봉사날짜 */
+.nomain__dov--name-read {
+  width: 12.5%;
+  height: 100%;
+  font-family: NotoSansCJKKR;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #707070;
+  border-left: 1px solid #ccd4e0;
+  border-right: 1px solid #ccd4e0;
+}
+.nomain__dov--value-read {
+  /* width: 338px; */
+  width: 12.5%;
+  height: 100%;
+  border: none;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* tov : 봉사시간 */
+.nomain__tov--name-read {
+  width: 12.5%;
+  height: 100%;
+  font-family: NotoSansCJKKR;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #707070;
+  border-left: 1px solid #ccd4e0;
+  border-right: 1px solid #ccd4e0;
+}
+.nomain__tov--value-read {
+  width: 12.5%;
+  height: 100%;
+  border: none;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* dod : 마감날짜  */
+.nomain__dod--name-read {
+  width: 12.5%;
+  height: 100%;
+  font-family: NotoSansCJKKR;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #707070;
+  border-left: 1px solid #ccd4e0;
+  border-right: 1px solid #ccd4e0;
+}
+.nomain__dod--value-read {
+  width: 12.5%;
+  height: 100%;
+  border: none;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contents__text-read {
+  width: 100%;
+  height: 80%;
+  border-radius: 3px;
+  border: solid 1px #ccd4e0;
+  margin-top: 2rem;
+}
+
+.text__content--value-read {
+  width: 98%;
+  height: 100%;
+  border: none;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container__contents-read {
+  width: 92%;
+  height: 70%;
+}
+
+.container__urgentButton-read {
+  margin: auto auto;
+  width: 92%;
+  height: 20%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.urgentButton {
+  width: 18rem;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  /* border: solid 1px #ccd4e0; */
+  background-color: #ffeeef;
+}
+
+.urgent_wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  display: none;
+  position: absolute;
+}
+.urgent_wrapper__objection {
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.container__urgent {
+  display: none;
+  position: fixed;
+  margin: 15% 20%;
+  background-color: white;
+  z-index: 2;
+  width: 60%;
+  height: 23%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.urgent__input-title {
+  width: 90%;
+  height: 40%;
+}
+.urgent__input-title--value {
+  height: 60%;
+  width: 100%;
+}
+.urgent__submit-button {
+  width: 80%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.urgentButton__submit {
+  /* height: 80%;
+  width: 80%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccd4e0;
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 768px) {
+  .container__contents-read {
+    height: 80%;
+  }
+  .main__title--name-read {
+    width: 100%;
+    height: 35px;
+    font-size: 1.3rem;
+    background-color: rgba(204, 212, 224, 0.1);
+  }
+
+  .main__title--value-read {
+    width: 100%;
+    height: 40px;
+    border-top: 1px solid #ccd4e0;
+    font-size: 1.2rem;
+  }
+
+  .main__location--name-read {
+    width: 100%;
+    height: 35px;
+    font-size: 1.3rem;
+    border-right: none;
+    background-color: rgba(204, 212, 224, 0.1);
+  }
+  .main__location--value-read {
+    width: 100%;
+    height: 40px;
+    border: none;
+    font-size: 1.2rem;
+    border-top: 1px solid #ccd4e0;
+    border-bottom: 1px solid #ccd4e0;
+  }
+  .input__nomain-read {
+    height: 80%;
+    width: 100%;
+  }
+  .nomain__nor--name-read {
+    width: 100%;
+    height: 35px;
+    background-color: rgba(204, 212, 224, 0.1);
+    border-top: 1px solid #ccd4e0;
+    border-left: none;
+    border-right: none;
+    font-size: 1.3rem;
+  }
+  .nomain__nor--value-read {
+    width: 100%;
+    height: 40px;
+    border-top: 1px solid #ccd4e0;
+    font-size: 1.2rem;
+  }
+  .nomain__dov--name-read {
+    width: 100%;
+    height: 35px;
+    border: none;
+    background-color: rgba(204, 212, 224, 0.1);
+    font-size: 1.3rem;
+  }
+
+  .nomain__dov--value-read {
+    width: 100%;
+    height: 40px;
+    border-top: 1px solid #ccd4e0;
+    border-bottom: 1px solid #ccd4e0;
+    font-size: 1.2rem;
+  }
+  .nomain__tov--name-read {
+    width: 100%;
+    height: 35px;
+    border: none;
+    background-color: rgba(204, 212, 224, 0.1);
+    font-size: 1.3rem;
+  }
+  .nomain__tov--value-read {
+    width: 100%;
+    height: 40px;
+    border-top: 1px solid #ccd4e0;
+    border-bottom: 1px solid #ccd4e0;
+    font-size: 1.2rem;
+  }
+  .nomain__dod--name-read {
+    width: 100%;
+    height: 35px;
+    border: none;
+    background-color: rgba(204, 212, 224, 0.1);
+    font-size: 1.3rem;
+  }
+
+  .nomain__dod--value-read {
+    width: 100%;
+    height: 40px;
+    border-top: 1px solid #ccd4e0;
+    border-bottom: 1px solid #ccd4e0;
+    font-size: 1.2rem;
+  }
+
+  .container__urgent {
+    margin: 40% 15%;
+    width: 70%;
+    height: 20%;
+  }
+}
