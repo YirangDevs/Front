@@ -9,14 +9,14 @@ const EditDelete = (props) => {
         if(props.id != null) {
             await deleteSeniorFromServer(props.id)
             
-            //window.location.reload();
+            window.location.reload();
         }
 
     }
     const onClickEdit = async () => {
         const {id, ...newProps}=props;
-        console.log(newProps)
-        console.log(props.id)
+        //console.log(newProps)
+        //console.log(props.id)
         if(props.id != null) {
             await editSeniorFromServer(props.id, newProps)
            // window.location.reload();

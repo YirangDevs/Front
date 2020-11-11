@@ -1,6 +1,7 @@
 const postSeniorToServer = async (props) => {
     console.log(props)
     let payload = JSON.stringify(props);
+    console.log(typeof(payload))
     return fetch("http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/seniors",{
         method: 'POST',
         headers: {

@@ -4,9 +4,13 @@ import MainImg from "./MainImg"
 import Content from "../../containers/home/Content"
 import SideNav from "../../containers/home/SideNav"
 import run from "../../init/start"
+import { useEffect } from "react"
 
 const Container = () => {
-    run()
+    useEffect(()=>{
+        run()
+    })
+    
     return (<>
         <div className="container">
             <SideNav></SideNav>

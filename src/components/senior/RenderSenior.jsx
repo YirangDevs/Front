@@ -10,10 +10,10 @@ const renderSenior = (senior, props) => {
         console.log(trs[indexValue].children[0].innerText)
         store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {id : trs[indexValue].children[0].innerText}}));
         store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {name : trs[indexValue].children[1].innerText}}));
-        store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {sex : trs[indexValue].children[2].innerText}}));
+        store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {sex : trs[indexValue].children[2].innerText==="남"?"male":"female"}}));
         store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {region : trs[indexValue].children[3].innerText}}));
         store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {phone : trs[indexValue].children[4].innerText}}));
-        store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {type : trs[indexValue].children[5].innerText}}));
+        store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {type : trs[indexValue].children[5].innerText==="재가봉사"?"work":"talk"}}));
         store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {date : trs[indexValue].children[6].innerText}}));
         store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {priority : trs[indexValue].children[7].innerText}}));
         store.dispatch(ACTION.INPUT_SENIORS__ACTION_FUNC({senior : {address : trs[indexValue].children[8].innerText}}));

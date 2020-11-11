@@ -13,8 +13,8 @@ const VolunteerTypeForm = (props) => {
     return(
     <>
         <div className="item">
-                <input type="radio" name="type" defaultChecked={props.type==="work"} onClick={onClick} className="volunteerType" value="work"/>노력봉사
-                <input type="radio" name="type" defaultChecked={props.type==="talk"} onClick={onClick} className="volunteerType" value="talk"/>말벗봉사
+                <input type="radio" name="type" checked={props.type==="work"} onClick={onClick} className="volunteerType" value="work"/>노력봉사
+                <input type="radio" name="type" checked={props.type==="talk"} onClick={onClick} className="volunteerType" value="talk"/>말벗봉사
         </div>
     </>
     )

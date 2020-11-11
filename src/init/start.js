@@ -1,43 +1,33 @@
-import renewToken from "./renewToken"
-import getUserFromServer from "../business/service/get_user_from_server"
 import store from "../store/store"
 import ACTION from "../store/actions/action"
 import YAT from "../business/service/yat"
+import renewToken from "./renewToken"
 
 
 export default () =>{
         if(!store.getState().login_reducer.logined){
             YAT.exist()
-            .then((YAT)=>renewToken(YAT))
+            .then((YAT)=>{
+                store.dispatch(ACTION.LOADING_ACTION_FUNC())
+                return renewToken(YAT)
+            })
             .then((response)=>response.headers.get('Authorization').split(" ")[1])
             .then((token)=>{
                 
-                let YIRANG_ACCESS_TOKEN = YAT.decode(token)
-                console.log(YIRANG_ACCESS_TOKEN)
+                let claim = YAT.decode(token)
                 store.dispatch(ACTION.SET_USER__ACTION_FUNC({
                     user: {
-                        userId : YIRANG_ACCESS_TOKEN.userId,
-                        role : YIRANG_ACCESS_TOKEN.role
+                        username : claim.username,
+                        imgUrl : claim.imgUrl,
+                        userId : claim.userId,
+                        role : claim.role
                     }
                 }))
-                return {token : token, id: YIRANG_ACCESS_TOKEN.userId}
+                
+                store.dispatch(ACTION.LOGIN_ACTION_FUNC());
             })
-            .then((data)=>getUserFromServer(data.token, data.id))
-            
-            .then(
-                (user)=>{
-                    store.dispatch(ACTION.LOGIN_ACTION_FUNC())
-                    store.dispatch(ACTION.SET_USER__ACTION_FUNC({
-                        user: {
-                            username : user.username,
-                            imageUrl : user.imageUrl,
-                            sex : user.sex,
-                            email : user.email
-                        }
-                    }))
-                    console.log("끝")
-                }
-            ).catch((err)=>{
+            .catch((err)=>{
+                store.dispatch(ACTION.LOADING_OUT_ACTION_FUNC())
                 console.log(err)
                 
             })

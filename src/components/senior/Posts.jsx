@@ -16,10 +16,13 @@ const Posts = ({posts}) => {
                             <td>우선순위</td>
                         </tr>
                     </thead>
-
+                
+                {posts?
                     <tbody>
-                        {posts.map(renderSenior)}
-                    </tbody>
+                    {posts.map(renderSenior)}
+                </tbody>:null
+                }
+                    
 
                 </table>
             </div>
