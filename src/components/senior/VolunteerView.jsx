@@ -1,5 +1,5 @@
 import React from "react";
-import TableView from "./TableView";
+import TableView from "../../containers/senior/TableView";
 
 const Content = () => {
   

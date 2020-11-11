@@ -1,47 +1,81 @@
-import React, { useState } from "react"
+import React from "react"
 import XLSX from "xlsx"
-import Preview from "./Preview"
+import Preview from "../../containers/senior/Preview"
 
-const Function = () => {
-    let [isModalOpen, setModal] = useState(false);
-    let [data, setData] = useState(null);
-
+const Function = ({UPLOAD_SENIORS, SET_BUTTON, id}) => {
     const onClick = () => {
         document.getElementById('selectedFile').click();
-        setModal(true);
     }
 
-    const openModal = (event) => {
+
+    const openModal = async (event) => {
       
-        var input = event.target;
-        var reader = new FileReader();
+        let input = event.target;
+        let reader = new FileReader();
         reader.onload = function(){
-            var fileData = reader.result;
-            var wb = XLSX.read(fileData, {type : 'binary'});
+            let fileData = reader.result;
+            let wb = XLSX.read(fileData, {type : 'binary'});
             wb.SheetNames.forEach(function(sheetName){
-              var rowObj =XLSX.utils.sheet_to_json(wb.Sheets[sheetName]);
-              const seniors=JSON.stringify(rowObj)
-              setData(seniors);
+            const rowObj =XLSX.utils.sheet_to_json(wb.Sheets[sheetName], {raw:false});
+            parsingData(rowObj)
             })
         }
         reader.readAsBinaryString(input.files[0])
-        setModal(true);
-    };
+        
+        const parsingData = (rowObj) => {
+            
+            const addressarray=[]
+            const seniorjson=[]
 
-    const closeModal = () =>{
-        setModal(false);
+            for(let i=0; i<rowObj.length; i++){
+                const regionarray = rowObj[i].주소.split(" ")          
+            
+            
+            for(let j=2; j<regionarray.length; j++){
+                addressarray.push(regionarray[j])
+            }
+            const namedata = rowObj[i]["어르신 성함"]
+            const sexdata = rowObj[i]["성별"]
+            const regiondata=regionarray[1]
+            const addressdata = addressarray.join(" ")
+            const phonedata = rowObj[i]["전화번호"]
+            const typedata = rowObj[i]["봉사유형"]
+            const datedata = rowObj[i]["봉사날짜"]
+            const prioritydata = rowObj[i]["어르신 우선순위"]
+
+            seniorjson.push({name: namedata, sex: sexdata, region : regiondata, address : addressdata, phone : phonedata, type : typedata, date : datedata, priority : prioritydata})
+            }
+            getData(seniorjson)
+
+        }
+        const getData = (rowObj) => {
+            UPLOAD_SENIORS({
+                isModalOpen: true,
+                data: rowObj
+            })
+        }
+
     };
+    const addbutton = () => {
+        if(!id){
+            SET_BUTTON({button: true});
+        }
+        
+    }
+
+    const editdeletebutton = () => {
+        SET_BUTTON({button : false});
+    }
+    
 
      return(
     <>
         <div className="function">
-            <input type="file" id="selectedFile" onChange={openModal}/>
+            <input type="file" id="selectedFile" name="aFile" onChange={openModal}/>
             <input type="button" className="select-function" value="업로드" onClick={onClick} />
-            <input type="button" className="select-function" value="추가"/>
-            <input type="button" className="select-function" value="수정/삭제"/>
-            {data?(
-          <Preview isOpen={isModalOpen} close={closeModal} seniors={data}/>
-        ):null}
+            <input type="button" className="select-function" value="추가" onClick={addbutton}/>
+            <input type="button" className="select-function" value="수정/삭제" onClick={editdeletebutton}/>
+            <Preview/>
         </div>
     </>
     )

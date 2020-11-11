@@ -15,7 +15,7 @@ html {
     align-items: center;
 }
 
-.top-bar {
+.senior__top-bar {
     position: relative;
     width: 100%;
     height: 4rem;
@@ -24,6 +24,7 @@ html {
     align-items: center;
     background-color: #ccd4e0;
 }
+
 
 .top-bar__logo {
     width: auto;
@@ -34,7 +35,9 @@ html {
     color: white;
     opacity: 1;
 }
-
+.logo-to-home {
+    color: white;
+  }
 
 .content {
     display: flex;
@@ -59,7 +62,7 @@ html {
     margin-bottom: 10px;
 }
 
-.table-view{
+.table-view, .modal-table-view{
     width:100%;
     text-align: center;
     border-spacing: 0;
@@ -87,6 +90,40 @@ html {
 .table-view__title{
     background-color: #f1f3f6;
 }
+.primaryKey {
+    cursor: pointer;
+}
+#hiddenField {
+    display: none;
+}
+
+/*=============pagination====================*/
+.pagination {
+    margin-top: 3rem;
+    padding: 0;
+    justify-content: center;
+    position: fixed;
+    top: 40rem;
+}
+.page-item {
+    display: inline;
+    list-style-type: none;
+}
+.page-link {
+    display:inline;
+    width: 1rem;
+    font-size: 20px;
+    text-decoration: none;
+    margin:0;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccd4e0;
+    color: #adadad;
+}
+.page-link:active{
+    background-color: #707070;
+}
+
+/*=============pagination====================*/
 
 .admin-view {
     width: 50%;
@@ -155,9 +192,11 @@ html {
     width: 2.3rem;
 }
 .confirm {
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 5%;
 }
 .confirm__button {
     width: 90%;
@@ -168,6 +207,19 @@ html {
     color: #707070;
     border: 1px solid #ccd4e0;
     background-color: #f1f3f6;
+}
+.edit__button, .delete__button {
+    float: left;
+    width: 50%;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    padding: 0;
+    color: #707070;
+    border: 1px solid #ccd4e0;
+    background-color: #f1f3f6;
+}
+.delete__button{
+    margin-left: 0.5rem;
 }
 .function {
     width: 100%;
@@ -291,20 +343,16 @@ html {
       padding: 20px;
       background: #fff;
           }      /*로그인 배경이다 */
-      .close {
-        float: right;
-        font-size: 25px;
-        cursor: pointer;
-      }
       .modalContents {
         margin: 0 auto;
         width: 100%;
         position: relative;
-        padding:0 10px 10px;
+        padding:30px 10px 10px;
         box-sizing: border-box;
         display: flex;
         justify-content: center;
         flex-direction: column;
+
       }
       .modal__button {
           margin-top: 10px;
@@ -346,6 +394,10 @@ html {
         align-items: center;
         margin-bottom: 20rem;
     }
+    .pagination {
+        position: absolute;
+        top:40rem;
+    }
     .volunteer-view{
         width: 100%;
     }
@@ -353,7 +405,10 @@ html {
         width: 35%;
     }
     .admin-view {
-        width: 100%;
+        width: 90%;
+        /* margin-top: 8rem; */
+        position: fixed;
+        top: 45rem;
     }
     .input, .confirm, .confirm__button {
         width: 100%;

@@ -9,6 +9,10 @@ html {
 a {
   text-decoration: none;
 }
+.senior-link {
+  color: #707070;
+}
+
 #root {
   height: 100%;
   width: 100%;

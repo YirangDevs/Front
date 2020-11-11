@@ -1,6 +1,6 @@
 import React from "react";
 import VolunteerView from "./VolunteerView"
-import AdminView from "./AdminView"
+import AdminView from "../../containers/senior/AdminView"
 
 const Content = () => {
   
@@ -9,7 +9,7 @@ const Content = () => {
     
     <div className="content">
         <VolunteerView></VolunteerView>
-        <AdminView></AdminView>   
+        <AdminView></AdminView>
     </div>
   </>
   );

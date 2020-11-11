@@ -1,13 +1,32 @@
 import React from "react"
 
-const NameGenderForm = () => (
-    <>
+const NameGenderForm = (props) => {
+
+    const onChange = (e) => {
+        const value = e.target.value;
+        props.INPUT_SENIORS({
+            senior:{
+                name: value
+            }
+        })
+    }
+    const onClick = (e) => {
+        const value = e.target.value;
+        props.INPUT_SENIORS({
+            senior:{
+                sex: value
+            }
+        })
+    }
+    return(
+        <>
         <div className="item">
-                <p className="name-text">이름 : </p><input type="text" className="form__name" placeholder="홍길동"/>
-                <label className="gender-radio"><input type="radio" name="gender" value="male" checked="defaultChecked"/><span>남성</span></label>
-                <label className="gender-radio"><input type="radio" name="gender" value="female"/><span>여성</span></label>
+                <p className="name-text">이름 : </p><input type="text" onChange={onChange} value={props.name} className="form__name" placeholder="이름 입력"/>
+                <label className="gender-radio"><input type="radio" onClick={onClick} name="gender" value="male" defaultChecked={props.sex==="male"}/><span>남성</span></label>
+                <label className="gender-radio"><input type="radio" onClick={onClick} name="gender" value="female" defaultChecked={props.sex==="female"}/><span>여성</span></label>
         </div>
     </>
-)
+    )
+}
 
 export default NameGenderForm

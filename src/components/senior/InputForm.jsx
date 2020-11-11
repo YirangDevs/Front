@@ -1,9 +1,9 @@
 import React from "react"
-import DetailAddressForm from "./DetailAddressForm"
-import NameGenderForm from "./NameGenderForm"
-import PriorityDatePhoneForm from "./PriorityDatePhoneForm"
-import VolunteerRegionForm from "./VolunteerRegionForm"
-import VolunteerTypeForm from "./VolunteerTypeForm"
+import DetailAddressForm from "../../containers/senior/DetailAddressForm"
+import NameGenderForm from "../../containers/senior/NameGenderForm"
+import PriorityDatePhoneForm from "../../containers/senior/PriorityDatePhoneForm"
+import VolunteerRegionForm from "../../containers/senior/VolunteerRegionForm"
+import VolunteerTypeForm from "../../containers/senior/VolunteerTypeForm"
 
 const InputForm = () => (
     <div className="input">

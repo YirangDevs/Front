@@ -1,39 +1,40 @@
 import React from "react";
+import TableScrollbar from "react-table-scrollbar"
+import postSeniorsToServer from "../../business/service/post_seniors_to_server"
 
 const Preview = (props) => {
-  const seniors=JSON.parse(props.seniors)  
-  const renderSenior = (senior, index) =>{
-    return(
-      <tr key={index}>
-        <td>{senior.name}</td>
-        <td>{senior.sex}</td>
-        <td>{senior.region}</td>
-        <td>{senior.phone}</td>
-        <td>{senior.type}</td>
-        <td>{senior.date}</td>
-        <td>{senior.priority}</td>
-      </tr>
-    )
-  }
+   const seniors=props.senior
+    const tableSenior = (senior, index) =>{
+      return(
+        <tr key={index}>
+          <td>{senior.name}</td>
+          <td>{senior.sex}</td>
+          <td>{senior.region}</td>
+          <td>{senior.phone}</td>
+          <td>{senior.type}</td>
+          <td>{senior.date}</td>
+          <td>{senior.priority}</td>
+        </tr>
+      )
+    }
   
   const confirmData = () => {
-      props.close();
+      props.CLOSE_MODAL();
+      postSeniorsToServer(props)
   }
   const removeData = () => {
-      props.close();
+      props.CLOSE_MODAL()
+      window.location.reload();
   }
 
 
   return (
     <>
-        {props.isOpen ? (  
+        {props.isModalOpen ? (  
           <div className="modal">
               <div className="PreviewModal">
-                <span className="close" onClick={props.close}>
-                  &times;
-                </span>
                 <div className="modalContents">
-
+                <TableScrollbar rows={12}>
                 <table className="modal-table-view">
                     <thead>
                         <tr className="table-view__title">
@@ -47,9 +48,10 @@ const Preview = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                    {seniors? seniors.map(renderSenior):null}
+                    {seniors? seniors.map(tableSenior):null}
                   </tbody>
                 </table>
+                </TableScrollbar>
                 <div className="modal__button">
                     <button className="modal__confirm" onClick={confirmData}>확인</button>
                     <button className="modal__cancel" onClick={removeData}>취소</button>

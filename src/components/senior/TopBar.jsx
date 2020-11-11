@@ -10,7 +10,7 @@ const TopBar = () => {
 
     return (
     <>
-    <div className="top-bar">
+    <div className="senior__top-bar">
     <i className="fas fa-bars top-bar__bar" onClick={bar_click}></i>
         <div className="top-bar__logo">
             <a className="logo-to-home" href="http://localhost:3000">YIRANG</a>
