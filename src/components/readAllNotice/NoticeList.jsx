@@ -85,7 +85,7 @@ const NoticeList = ({ SET_SELECT }) => {
                             <th>제목</th>
                             <th>봉사날짜</th>
                             <th>봉사지역</th>
-                            <th>인원수</th>
+                            <th>필요 인원수</th>
                         </tr>
                     </thead>
                     {notices.map((notice) => (
