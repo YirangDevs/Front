@@ -4,7 +4,8 @@ import Content from "../../components/home/Content"
 const mapStateToProps = (state) => {
     
     return {
-        logined : state.login_reducer.logined
+        logined : state.login_reducer.logined,
+        loading: state.login_reducer.loading
     }
 }
 

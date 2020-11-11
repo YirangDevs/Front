@@ -2,8 +2,10 @@ import React from "react";
 import NoticeContent from "./NoticeContent";
 import KakaoLoginBtn from "./KakaoLoginBtn";
 import MenuContent from "./MenuContent";
+import Loading from "./Loading"
 
 const Content = (props) => {
+
   
   return (
   <>
@@ -11,8 +13,8 @@ const Content = (props) => {
     <div className="content container__content">
       <NoticeContent></NoticeContent>
       {
-        
-        (props.logined) ? <MenuContent></MenuContent> : <KakaoLoginBtn></KakaoLoginBtn>
+        //loading = YAT가 있으면 true 없으면 false
+        (props.loading) ? (props.logined) ? <MenuContent></MenuContent> : <Loading></Loading> : <KakaoLoginBtn></KakaoLoginBtn>
       }
     </div>
   </>
