@@ -3,6 +3,8 @@ import store from "../store/store"
 
 
 export default () =>{
+
+    
     if(!store.getState().select_reducer.selectId)
     {
         console.log("localStorge에서 id받는중,,,")

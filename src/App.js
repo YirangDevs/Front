@@ -6,6 +6,7 @@ import Manage from "./components/manage/Container"
 import Create from "./components/create/Container"
 import Read from "./components/read/Container"
 import Update from "./components/update/Container"
+import ReadAllNotice from './components/readAllNotice/Container'
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 
 
@@ -27,6 +28,8 @@ function App() {
         <Route path ="/read" component={Read}>
         </Route> 
         <Route path ="/update" component={Update}>
+        </Route> 
+        <Route path ="/ReadAllNotice" component={ReadAllNotice}>
         </Route> 
       </Switch> 
     </BrowserRouter>
