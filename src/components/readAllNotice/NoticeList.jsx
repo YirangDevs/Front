@@ -1,12 +1,8 @@
 //notice
 import React, { useState, useEffect } from 'react';
-import Switch from "@material-ui/core/Switch"
-import { Button, ButtonGroup, FormControlLabel } from '@material-ui/core';
 import _ from "../../config/env"
 const NoticeList = ({ SET_SELECT }) => {
     const [notices, setNotices] = useState([]);
-
-    var checked
     const [pagingNum, setpagingNum] = useState("0")
     const [totalPage, settotalPage] = useState("0")
     useEffect(() => {
