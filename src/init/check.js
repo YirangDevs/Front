@@ -8,7 +8,7 @@ let check = {
         console.log(store.getState().login_reducer.logined)
         console.log(store.getState().user_reducer.role)
         if(store.getState().login_reducer.logined)
-        console.log( console.log(store.getState().login_reducer.logined))
+        
     }
 
 
