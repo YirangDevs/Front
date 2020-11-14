@@ -6,7 +6,7 @@ import VolunteerRegionForm from "../../containers/senior/VolunteerRegionForm"
 import VolunteerTypeForm from "../../containers/senior/VolunteerTypeForm"
 
 const InputForm = () => (
-    <div className="input">
+    <div className="senior__input">
             <NameGenderForm></NameGenderForm>
             <VolunteerTypeForm></VolunteerTypeForm>
             <PriorityDatePhoneForm></PriorityDatePhoneForm>
