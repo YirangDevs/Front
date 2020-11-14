@@ -7,29 +7,7 @@ import _ from "../../config/env"
 
 const Content = (props) => {
 
-    useEffect(() => {
-        if (props.selectId) {
-            console.log("working");
-            console.log(props.selectId);
-            new Promise(async (resolve, reject) => {
-                let selectNotice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
-                    method: 'GET',
-                    headers: {
-                        Authorization: "Bearer " + localStorage.getItem("YAT"),
-                    }
-                }).then((res) => res.json());
-                if (selectNotice) {
-                    console.log("200 ok")
-                    setData(selectNotice);
-                }
-            })
-        } else {
-            console.log("No selected")
-        }
-    }, [])
-
-
-    const setData = (notice) => {
+    const setSelectData = (notice) => {
         console.log(notice)
         if (notice) {
             console.log(notice)
@@ -48,6 +26,26 @@ const Content = (props) => {
             })
         }
     }
+    useEffect(() => {
+        new Promise(async (resolve, reject) => {
+            let file = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
+                method: 'GET',
+
+            }).then((res) => res.json());
+            if (file) {
+                resolve(file);
+                console.log(file);
+            } else reject(new Error('User non exist'));
+        }).then((resolve) => {
+            console.log(resolve);
+            setSelectData(resolve)
+        });
+        // 데이터는 response.data 안에 들어있습니다.
+    })
+
+
+
+
 
     return (
         <>

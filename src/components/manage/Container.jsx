@@ -16,7 +16,7 @@ const Container = () => {
     return (
         <>
             <div id="root">
-                <div className="container">
+                <div className="container--manage">
                     <TopBar></TopBar>
                     <Content></Content>
                 </div>

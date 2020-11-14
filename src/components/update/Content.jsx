@@ -27,7 +27,7 @@ const Content = (props) => {
         } else {
             console.log("No selected")
         }
-    }, [])
+    })
 
     const setData = (notice) => {
         console.log(notice)

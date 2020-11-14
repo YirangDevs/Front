@@ -1,6 +1,6 @@
 import ACTION from "../actions/notice_action"
 
-export default (state, action)=>{
+export default (state = InitialValue, action)=>{
     if(state===undefined) { return { }}
     switch(action.type){
         
@@ -16,4 +16,9 @@ export default (state, action)=>{
             return { ...state }
     }
 }
+
+const InitialValue = {
+    region : "수성구"
+}
+
 

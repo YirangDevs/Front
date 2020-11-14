@@ -1,17 +1,20 @@
 a {
-  text-emphasis: none;
+  /* text-emphasis: none; */
   text-decoration: none;
+  color: #707070;
 }
 
-.top-bar {
+.container__top-bar--manage {
   position: static;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(204, 212, 224, 0.77);
+  width: 100%;
+  height: 4rem;
 }
 
-.top-bar__logo {
+.top-bar__logo--manage {
   width: auto;
   height: auto;
   font-family: Montserrat;
@@ -21,11 +24,13 @@ a {
   opacity: 1;
 }
 
-.container__create {
-  width: 92%;
-  height: 10%;
-  margin: auto auto;
+.container--manage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
+
 .create {
   display: flex;
   flex-direction: row;
@@ -44,13 +49,13 @@ a {
   font-family: NotoSansCJKKR;
 }
 
-.container__content {
+.container__content--manage {
   width: 92%;
   height: 78%;
 
   /* border: 1px solid black; */
 }
-.content {
+.content--manage {
   /* 원래 : margin: auto auto; */
   margin: auto auto;
   display: flex;
@@ -62,20 +67,20 @@ a {
   /* border: 2px solid blueviolet; */
 }
 
-.content__notice {
+.content__notice--manage {
   width: 70%;
   height: 100%; /*이상하면 이거 수정*/
 
   /* border: 1px solid blue; */
 }
-.notice {
+.notice--manage {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
 
-.notice__information {
+.notice__information--manage {
   display: flex;
   flex-direction: row;
   /* width: 279px;  */
@@ -87,7 +92,7 @@ a {
   border: solid 1px #ccd4e0;
 }
 
-.information__text {
+.information__text--manage {
   width: auto;
   height: 100%;
   display: flex;
@@ -96,7 +101,7 @@ a {
   font-size: 1rem;
   color: #adadad;
 }
-.information__icon {
+.information__icon--manage {
   width: auto;
   display: flex;
   justify-content: center;
@@ -198,11 +203,12 @@ td {
   border-radius: 3px;
   border: solid 1px #ccd4e0;
   background-color: #f1f3f6;
+  cursor: pointer;
 }
 
 /* ///////////////////////////listtable//////////// */
 
-.notice__list {
+.notice__list--manage {
   margin-top: 10px;
   width: 100%;
   height: 95%;
@@ -220,18 +226,18 @@ td {
   margin-bottom: 10px;
   justify-content: flex-end;
 }
-.notice__table {
+.notice__table--manage {
   width: 100%;
   border-spacing: 0;
   border-top: solid #ccd4e0 2px;
 }
 
-.notice__table th,
+.notice__table--manage th,
 td {
   padding: 0.8rem 0.3rem;
   border: none;
 }
-.notice__table th {
+.notice__table--manage th {
   background-color: #f1f3f6;
   font-family: NotoSansCJKKR;
   font-size: 1rem;
@@ -239,7 +245,7 @@ td {
   color: #707070;
 }
 
-.notice__table td {
+.notice__table--manage td {
   font-family: NotoSansCJKKR;
   font-size: 1rem;
   font-weight: normal;
@@ -248,15 +254,15 @@ td {
   color: #707070;
   border-bottom: solid #ccd4e0 1px;
 }
-.notice__table th:nth-child(1) {
+.notice__table--manage th:nth-child(1) {
   width: 1rem;
 }
 
-.notice__table th:nth-child(2) {
+.notice__table--manage th:nth-child(2) {
   width: 55%;
 }
 
-.notice__table td:nth-child(2) {
+.notice__table--manage td:nth-child(2) {
   max-width: 100px;
   text-align: left;
   text-overflow: ellipsis;
@@ -264,21 +270,21 @@ td {
   overflow: hidden;
   cursor: pointer;
 }
-.notice__table th:nth-child(3),
-.notice__table th:nth-child(4) {
-  min-width: 4rem;
+.notice__table--manage th:nth-child(3),
+.notice__table--manage th:nth-child(4) {
+  min-width: 5rem;
 }
-.notice__table th:nth-child(5) {
+.notice__table--manage th:nth-child(5) {
   min-width: 3rem;
 }
-.notice__table td {
+.notice__table--manage td {
   text-align: center;
 }
 
 .notice__table--paging {
   height: 40px;
   width: 100%;
-
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -305,39 +311,39 @@ ul.pagination li:hover {
 
 /* ///////////////////////////////menu content///////// */
 
-.menu {
+.menu--manage {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
-.content__menu {
+.content__menu--manage {
   width: 30%;
   height: 100%;
   margin-top: 25px;
   margin-left: 20px;
 }
 
-.menu__nav {
+.menu__nav--manage {
   width: 99%;
   height: auto;
   margin-left: 15px;
   /* border: 1px solid red; */
 }
 
-.menu__info {
+.menu__info--manage {
   width: 95%;
   height: 25%;
 }
 
-.nav {
+.nav--manage {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
-.nav__title {
+.nav__title--manage {
   width: 100%;
   font-family: NotoSansCJKKR;
   font-size: 1.125rem;
@@ -347,7 +353,7 @@ ul.pagination li:hover {
   margin-bottom: 12px;
 }
 
-.nav__btn {
+.nav__btn--manage {
   width: 95%;
   position: relative;
   padding: 1rem;
@@ -363,7 +369,7 @@ ul.pagination li:hover {
   background-color: #f1f3f6;
 }
 
-.info {
+.info--manage {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -371,7 +377,7 @@ ul.pagination li:hover {
   margin-top: 2rem;
 }
 
-.info__title {
+.info__title--manage {
   width: 90%;
   font-family: NotoSansCJKKR;
   font-size: 1.125rem;
@@ -380,14 +386,14 @@ ul.pagination li:hover {
   text-align: left;
   margin-bottom: 1rem;
 }
-.info__card {
+.info__card--manage {
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
 }
 
-.info__card--key {
+.info__card--key--manage {
   width: 5rem;
   height: auto;
   background-color: #ccd4e0;
@@ -400,7 +406,7 @@ ul.pagination li:hover {
   box-sizing: content-box;
 }
 
-.info__card--value {
+.info__card--value--manage {
   width: 100%;
   height: auto;
   background-color: #f1f3f6;
@@ -415,7 +421,7 @@ ul.pagination li:hover {
   cursor: pointer;
 }
 
-.menu__make {
+.menu__make--manage {
   width: 95%;
   height: 15%;
   display: flex;
@@ -423,7 +429,7 @@ ul.pagination li:hover {
   justify-content: center;
 }
 
-.make {
+.make--manage {
   border-radius: 6px;
   border: solid 1px #ccd4e0;
   background-color: #f1f3f6;
@@ -436,23 +442,23 @@ ul.pagination li:hover {
 @media screen and (max-width: 1024px) {
   html,
   body {
-    font-size: 13px;
+    font-size: 14px;
   }
 
-  .container__content {
+  .container__content--manage {
     width: 92%;
     height: 70%;
   }
 
-  .nav {
+  .nav--manage {
     height: auto;
   }
 
-  .information__text {
+  .information__text--manage {
     font-size: 0.75rem;
   }
 
-  .nav__btn {
+  .nav__btn--manage {
     width: 90%;
     padding: 0.5rem 0.3rem 0.5rem 0.2rem;
   }
@@ -461,18 +467,15 @@ ul.pagination li:hover {
 @media screen and (max-width: 768px) {
   html,
   body {
-    font-size: 11px;
+    font-size: 12px;
   }
 
-  .container__create {
-    width: 100%;
-  }
-  .container__content {
+  .container__content--manage {
     width: 100%;
     height: 90%;
   }
 
-  .content {
+  .content--manage {
     margin: auto auto;
     flex-direction: column;
     flex-flow: column-reverse;
@@ -480,68 +483,64 @@ ul.pagination li:hover {
     justify-content: flex-end;
   }
 
-  .content__menu {
+  .content__menu--manage {
     margin-left: 5%;
   }
-  .notice {
+  .notice--manage {
     margin-top: 1rem;
   }
-  .notice__information {
+  .notice__information--manage {
     width: 96%;
     justify-content: center;
     align-items: center;
   }
 
-  .notice__title {
+  .notice__list--manage {
     width: 100%;
   }
 
-  .notice__list {
-    width: 100%;
-  }
-
-  .content__menu {
+  .content__menu--manage {
     width: 80%;
     height: 20%;
     min-height: 12rem;
   }
 
-  .menu {
+  .menu--manage {
     flex-direction: row;
     align-items: flex-start;
   }
 
-  .menu__nav {
+  .menu__nav--manage {
     width: 50%;
     height: auto;
     margin-left: 20px;
   }
-  .nav {
+  .nav--manage {
     align-items: flex-start;
   }
-  .nav__title {
+  .nav__title--manage {
     width: 90%;
     margin: 2rem 0 1rem 0;
   }
-  .nav__btn {
+  .nav__btn--manage {
     width: 90%;
     padding: 0.3rem 0.2rem 0.3rem 0.2rem;
   }
 
-  .menu__info {
+  .menu__info--manage {
     width: 50%;
     height: auto;
     display: none;
   }
 
-  .menu {
+  .menu--manage {
     margin-top: 0;
     align-items: center;
   }
-  .info__card {
+  .info__card--manage {
     width: 85%;
   }
-  .menu__make {
+  .menu__make--manage {
     width: 35%;
     height: 52%;
     margin-top: 4.5rem;
@@ -551,24 +550,18 @@ ul.pagination li:hover {
 @media screen and (max-width: 480px) {
   html,
   body {
-    font-size: 9px;
+    font-size: 10px;
   }
 
-  .container__main-image {
-    height: 22%;
-  }
-  .container__create {
-    width: 100%;
-  }
-  .container__content {
+  .container__content--manage {
     width: 100%;
     height: 90%;
   }
 
-  .content {
+  .content--manage {
     margin: auto auto;
   }
-  .content__notice {
+  .content__notice--manage {
     width: 95%;
   }
 
@@ -582,46 +575,45 @@ ul.pagination li:hover {
     display: none;
   } */
 
-  .notice__title {
+  .notice__list--manage {
     width: 100%;
   }
-
-  .notice__list {
-    width: 100%;
-  }
-  .notice__table th:nth-child(2) {
+  .notice__table--manage th:nth-child(2) {
     width: 80%;
   }
 
-  .notice__table th:nth-child(3) {
+  .notice__table--manage th:nth-child(3) {
     min-width: 2rem;
   }
 
-  .notice__table th:nth-child(4) {
+  .notice__table--manage th:nth-child(4) {
     display: none;
   }
 
-  .notice__table td:nth-child(4) {
+  .notice__table--manage td:nth-child(4) {
     display: none;
   }
-  .notice__table th:nth-child(5) {
+  .notice__table--manage th:nth-child(5) {
     display: none;
   }
-  .notice__table td:nth-child(5) {
+  .notice__table--manage td:nth-child(5) {
     display: none;
   }
 
-  .content__menu {
+  .content__menu--manage {
     width: 90%;
     margin-left: 0;
   }
 
-  .menu__nav,
-  .menu__info {
+  .menu__nav--manage,
+  .menu__info--manage {
     display: none;
   }
-  .menu__make {
+  .menu__make--manage {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 1rem;
+  }
+  .notice__table--paging {
+    margin-bottom: 3rem;
   }
 }

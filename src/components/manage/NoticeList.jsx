@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 //import getNotice from "../../init/fetchGetData"
 import Switch from "@material-ui/core/Switch"
-import { Button, ButtonGroup, FormControlLabel } from '@material-ui/core';
+import { FormControlLabel } from '@material-ui/core';
 import _ from "../../config/env"
 const NoticeList = ({ SET_SELECT }) => {
     const [notices, setNotices] = useState([]);
@@ -10,6 +10,7 @@ const NoticeList = ({ SET_SELECT }) => {
     var checked
     const [pagingNum, setpagingNum] = useState("0")
     const [totalPage, settotalPage] = useState("0")
+
     useEffect(() => {
 
         new Promise(async (resolve, reject) => {
@@ -21,9 +22,12 @@ const NoticeList = ({ SET_SELECT }) => {
             else (console.log("전체 페이지 값 안들어옴"))
         }).then((data) => {
             console.log(data.totalNoticeNums)
-            console.log(totalPage)
+
         })
-        //Number(pagingNum)
+    }, [])
+
+    useEffect(() => {
+
         new Promise(async (resolve, reject) => {
             let notice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
                 method: 'GET',
@@ -35,9 +39,6 @@ const NoticeList = ({ SET_SELECT }) => {
         }).then((data) => {
             setNotices(data.notices)
             console.log(data)
-
-            //console.log(notices)
-            //return data.notices
         })
 
     }, [pagingNum])
@@ -92,7 +93,7 @@ const NoticeList = ({ SET_SELECT }) => {
     if (!notices) return null;
     return (
         <>
-            <div className="notice__list" id="reloadPage">
+            <div className="notice__list--manage" id="reloadPage">
                 <div className="notice__list--button">
                     <FormControlLabel
                         control={
@@ -106,7 +107,7 @@ const NoticeList = ({ SET_SELECT }) => {
                     />
 
                 </div>
-                <table id="myTable" className="notice__table">
+                <table id="myTable" className="notice__table--manage">
                     <thead>
                         <tr>
                             <th></th>
@@ -131,12 +132,6 @@ const NoticeList = ({ SET_SELECT }) => {
 
                 </table>
                 <div className="notice__table--paging">
-                    {/* 
-                    <ButtonGroup size="small" variant="text" color="primary" aria-label="text primary button group">
-                        <Button name="1" onClick={pagingClick} value="1">1</Button>
-                        <Button name="2" onClick={pagingClick} value="2">2</Button>
-                        <Button name="3" onClick={pagingClick} value="3">3</Button>
-                    </ButtonGroup> */}
                     <ul className="pagination">
                         {pageNumber.map((pageNum) => (
                             <li

@@ -9,7 +9,7 @@ const SelectBtn = (props) => {
         if (!props.selectId) {
             alert("게시물을 선택해 주세요")
             console.log("Update ERROR(NOT select)")
-            window.history.back();
+            window.location.href = "/manage"
         }
     }
     const deleteButton = () => {

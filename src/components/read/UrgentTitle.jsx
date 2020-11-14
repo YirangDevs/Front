@@ -72,7 +72,8 @@ const UrgentTitle = () => {
                 console.log("urgentSuccess");
                 setValue(" ");
                 urgentWrapper_Click()
-                window.location.reload()
+                window.opener.location.reload(true);
+
             })
             .then(result => { console.log(result); })
             .catch(error => console.log('error', error))
@@ -85,15 +86,9 @@ const UrgentTitle = () => {
             alert("title를 입력하세요")
         }
         else if (titleValue) {
-            // addEmoji(titleValue);
-
-            // console.log(emojiTitle)
-            // console.log(String(emojiTitle))
-            // console.log(emojiValue + titleValue)
-            // console.log(dataUrgent)
-            // //urgentPost(dataUrgent);
             if (state.checkedA === true && state.checkedB === true) {
                 urgentPost(bothUrgent);
+
             }
             else if (state.checkedA) {
                 urgentPost(AUrgent);

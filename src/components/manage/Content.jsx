@@ -7,7 +7,7 @@ const Content = () => {
 
     return (
         <>
-            <div className="content container__content">
+            <div className="content--manage container__content--manage">
                 <Notice></Notice>
                 <Menu></Menu>
             </div>
