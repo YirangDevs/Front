@@ -8,6 +8,7 @@ import Read from "./components/read/Container"
 import Update from "./components/update/Container"
 import ReadAllNotice from './components/readAllNotice/Container'
 import {BrowserRouter, Switch, Route} from "react-router-dom"
+import Seniors from "./components/senior/Container"
 
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
         <Route path="/login" component={LoginRedirect}>
         </Route>
         <Route path="/logout" component={LogoutRedirect}>
+        </Route>
+        <Route path="/seniors" component={Seniors}>
+
         </Route>
         <Route path ="/manage" component={Manage}>
         </Route>
