@@ -106,7 +106,7 @@ const NoticeList = ({ SET_SELECT }) => {
 
                 </table>
                 <div className="notice__table--paging">
-                    <ul className="pagination">
+                    <ul className="pagination--notice">
                         {pageNumber.map((pageNum) => (
                             <li
                                 key={pageNum}

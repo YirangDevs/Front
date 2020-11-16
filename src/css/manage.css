@@ -290,21 +290,21 @@ td {
   align-items: center;
 }
 
-ul.pagination {
+ul.pagination--notice {
   display: flex;
   flex-direction: row;
   padding: 0;
   margin: 0;
 }
 
-ul.pagination li {
+ul.pagination--notice li {
   display: flex;
   padding: 4px 10px;
   color: #707070;
   justify-content: center;
   align-items: center;
 }
-ul.pagination li:hover {
+ul.pagination--notice li:hover {
   background-color: #ccd4e0;
   color: #fff;
 }

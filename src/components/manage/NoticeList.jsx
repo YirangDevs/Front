@@ -107,7 +107,7 @@ const NoticeList = ({ SET_SELECT }) => {
                     />
 
                 </div>
-                <table id="myTable" className="notice__table--manage">
+                <table className="notice__table--manage">
                     <thead>
                         <tr>
                             <th></th>
@@ -132,7 +132,7 @@ const NoticeList = ({ SET_SELECT }) => {
 
                 </table>
                 <div className="notice__table--paging">
-                    <ul className="pagination">
+                    <ul className="pagination--notice">
                         {pageNumber.map((pageNum) => (
                             <li
                                 key={pageNum}
