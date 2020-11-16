@@ -1,7 +1,7 @@
 import React from "react"
 import XLSX from "xlsx"
 import Preview from "../../containers/senior/Preview"
-import ButtonBox from "../atoms/ButtonBox"
+import FunctionButtonBox from "../atoms/FunctionButtonBox"
 
 const Function = ({UPLOAD_SENIORS, SET_BUTTON, id}) => {
     const onClick = () => {
@@ -73,9 +73,9 @@ const Function = ({UPLOAD_SENIORS, SET_BUTTON, id}) => {
     <>
         <div className="function">
             <input type="file" id="selectedFile" name="aFile" accept=".xls,.xlsx" onChange={openModal}/>
-            <ButtonBox width="29.5%" height="3rem" background="#ccd4e0" color="#707070" border="0" value="업로드" onClick={onClick}/>
-            <ButtonBox width="29.5%" height="3rem" background="#ccd4e0" color="#707070" border="0" margin="0 1%" value="추가" onClick={addbutton}/>
-            <ButtonBox width="29.5%" height="3rem" background="#ccd4e0" color="#707070" border="0" value="수정/삭제" onClick={editdeletebutton}/>
+            <FunctionButtonBox width="29.5%" height="3rem" value="업로드" onClick={onClick}/>
+            <FunctionButtonBox width="29.5%" height="3rem" margin="0 1%" value="추가" onClick={addbutton}/>
+            <FunctionButtonBox width="29.5%" height="3rem" value="수정/삭제" onClick={editdeletebutton}/>
             <Preview/>
         </div>
     </>

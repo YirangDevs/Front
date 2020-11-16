@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-const Text = styled.input.attrs(props=>({type: "text"}))`
+export const Text = styled.input.attrs(props=>({type: "text"}))`
     width : ${props=>props.width};
     height: ${props=>props.height};
     font-size: 1rem;

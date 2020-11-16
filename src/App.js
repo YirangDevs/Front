@@ -8,7 +8,7 @@ import Read from "./components/read/Container"
 import Update from "./components/update/Container"
 import ReadAllNotice from './components/readAllNotice/Container'
 import {BrowserRouter, Switch, Route} from "react-router-dom"
-import Seniors from "./components/senior/Container"
+import Seniors from "./pages/Seniors"
 
 
 function App() {
