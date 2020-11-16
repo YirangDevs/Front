@@ -59,14 +59,15 @@ const NoticeList = ({ SET_SELECT }) => {
                 selectTitle: selectValue[0].title,
                 selectNor: selectValue[0].nor,
                 selectDov: selectValue[0].dov,
-                selectTov: selectValue[0].tov
+                selectTov: selectValue[0].tov,
+                selectRegion: selectValue[0].region
 
             }
         });
 
         if (checked) {
             localStorage.setItem("SELECT_ID", ID)
-            window.open('http://localhost:3000/read', 'window_name',
+            window.open(_.HOST_URL + '/read', 'window_name',
                 'width=530,height=633,location=no,status=no,scrollbars=yes')
         }
     }

@@ -9,7 +9,7 @@ const SelectBtn = (props) => {
         if (!props.selectId) {
             alert("게시물을 선택해 주세요")
             console.log("Update ERROR(NOT select)")
-            window.location.href = "/manage"
+            props.history.push("/manage")
         }
     }
     const deleteButton = () => {
@@ -24,12 +24,9 @@ const SelectBtn = (props) => {
                     }
                 })
                 if (DeleteSelect.ok) {
-                    console.log("200 ok")
-                    console.log(DeleteSelect)
                     resolve(DeleteSelect)
-                    console.log("Delete Success");
                     alert("💥게시글 삭제 성공!💥")
-                    window.location.reload()
+                    props.history.push("/manage")
                 }
                 else {
                     if (window.confirm("이게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {

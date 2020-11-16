@@ -56,7 +56,7 @@ const NoticeList = ({ SET_SELECT }) => {
             }
         });
         localStorage.setItem("SELECT_ID", ID)
-        window.open('http://localhost:3000/read', 'window_name',
+        window.open(_.HOST_URL + '/read', 'window_name',
             'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
 

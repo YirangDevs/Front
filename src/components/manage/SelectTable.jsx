@@ -1,6 +1,6 @@
 //Select
 import React from 'react'
-
+import _ from "../../config/config"
 
 
 const SelectTable = (props) => {
@@ -9,7 +9,7 @@ const SelectTable = (props) => {
 
         if (props.id) {
             localStorage.setItem("SELECT_ID", props.id)
-            window.open('http://localhost:3000/read', 'window_name',
+            window.open(_.HOST_URL + '/read', 'window_name',
                 'width=530,height=633,location=no,status=no,scrollbars=yes');
         } else {
             alert("게시물을 선택해 주세요");
@@ -34,7 +34,7 @@ const SelectTable = (props) => {
                         {/* <td><Link to="/read">{(props.title) ? props.title : "해당게시글을 선택하세요"}</Link></td> */}
                         <td >{(props.title) ? props.title : "수정및 삭제할 게시글을 선택하세요"}</td>
                         <td>{props.dov}</td>
-                        <td>{props.nor}</td>
+                        <td>{props.region}</td>
                     </tr>
                 </tbody>
             </table>
