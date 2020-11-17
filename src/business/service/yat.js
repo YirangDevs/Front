@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode"
 
 let obj = {
     get :  (KAKAO_TOKEN_DATA) => {
-        return fetch(_.HOST_URL+":8080/v1/apis/auth/signin", {
+        return fetch(_.SERVER_URL+":8080/v1/apis/auth/signin", {
             method: "POST",
             headers : { 
                 'Content-Type': 'application/json'

@@ -18,15 +18,11 @@ const VolunteerUpdateFormWrapper = styled.div`
 const SelectBoxOptions1 = ["우선순위","1","2","3","4","5"]
 const SelectBoxOptions2 = ["전체","수성구","중구","동구","서구","남구","북구","달서구"]
 
-const NTextBox = TextBox.withComponent('input.attrs.text')`
-    background-color: black;
-`;
-
 const VolunteerUpdateForm = ({name,region, address, nameOnChange, genderOnChange, typeOnChange, priorityOnChange, dateOnChange, phoneOnChange, regionOnChange, AddressOnChange}) => {
     return (
         <>
         <VolunteerUpdateFormWrapper>
-            <NTextBox width="40%" height="2.2rem" onChange={nameOnChange} defaultValue={name} placeholder="이름 입력"></NTextBox>
+            <TextBox width="40%" height="2.2rem" onChange={nameOnChange} defaultValue={name} placeholder="이름 입력"></TextBox>
             <RadioButtonRect name="gender" onClick={genderOnChange} value="male">남성</RadioButtonRect>
             <RadioButtonRect name="gender"  onClick={genderOnChange} value="male">여성</RadioButtonRect>
             <RadioButton onClick={typeOnChange}>노력봉사</RadioButton>

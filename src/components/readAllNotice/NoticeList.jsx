@@ -28,7 +28,7 @@ const NoticeList = ({ SET_SELECT }) => {
     useEffect(() => {
         //Number(pagingNum)
         new Promise(async (resolve, reject) => {
-            let notice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
+            let notice = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
                 method: 'GET',
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("YAT"),
@@ -54,7 +54,7 @@ const NoticeList = ({ SET_SELECT }) => {
             }
         });
         localStorage.setItem("SELECT_ID", ID)
-        window.open(_.HOST_URL + '/read', 'window_name',
+        window.open(_.HOST_URL + 'read', 'window_name',
             'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
 
