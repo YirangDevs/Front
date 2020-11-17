@@ -1,7 +1,14 @@
+/*
+ * @Author: chaeeun 
+ * @Date: 2020-11-17 14:39:13 
+ * @Last Modified by: euncherry
+ * @Last Modified time: 2020-11-17 18:26:20
+ */
 //Select
 import React from 'react'
 import _ from "../../config/env"
 import { Link } from "react-router-dom";
+import fetchdata from "../../business/service/get_notice_list"
 
 const SelectBtn = (props) => {
 
@@ -9,7 +16,6 @@ const SelectBtn = (props) => {
         if (!props.selectId) {
             alert("게시물을 선택해 주세요")
             console.log("Update ERROR(NOT select)")
-            props.history.push("/manage")
         }
     }
     const deleteButton = () => {
@@ -25,8 +31,17 @@ const SelectBtn = (props) => {
                 })
                 if (DeleteSelect.ok) {
                     resolve(DeleteSelect)
+                    props.DELETE_SELECT();
                     alert("💥게시글 삭제 성공!💥")
-                    props.history.push("/manage")
+                    fetchdata.getNum()
+                        .then((resolve) => {
+                            console.log(resolve.totalNoticeNums);
+                            props.SET_TOTALNUM({
+                                totalNum: {
+                                    totalNum: resolve.totalNoticeNums
+                                }
+                            })
+                        })
                 }
                 else {
                     if (window.confirm("이게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
@@ -41,7 +56,16 @@ const SelectBtn = (props) => {
                             console.log(response)
                             console.log("force 삭제 성공");
                             alert("💥게시글 및 활동 삭제 성공!💥")
-                            window.location.reload()
+                            props.DELETE_SELECT();
+                            fetchdata.getNum()
+                                .then((resolve) => {
+                                    console.log(resolve.totalNoticeNums);
+                                    props.SET_TOTALNUM({
+                                        totalNum: {
+                                            totalNum: resolve.totalNoticeNums
+                                        }
+                                    })
+                                })
                         })
 
                     }
@@ -57,9 +81,13 @@ const SelectBtn = (props) => {
     return (
         <>
             <div className="select__btn">
-                <Link to="/update" >
+                {(props.selectId) ?
+                    <Link to="/update" >
+                        <div className="update__btn" onClick={updateButton}>수정<span role="img" aria-label="update">🚧</span></div>
+                    </Link>
+                    :
                     <div className="update__btn" onClick={updateButton}>수정<span role="img" aria-label="update">🚧</span></div>
-                </Link>
+                }
                 <div className="delete__btn" onClick={deleteButton}>삭제<span role="img" aria-label="delete">🗑️</span></div>
 
             </div>
