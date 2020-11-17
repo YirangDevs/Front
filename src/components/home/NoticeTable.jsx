@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useEffect } from "react"
 import fetchdata from "../../business/service/get_notice_list"
+import _ from "../../config/env"
 
 const NoticeTable = () => {
     const [notices, setNotices] = useState([]);
@@ -36,10 +37,9 @@ const NoticeTable = () => {
         localStorage.setItem("SELECT_ID", ID)
         //  window.open(_.HOST_URL + '/read', 'window_name',
         //  'width=530,height=633,location=no,status=no,scrollbars=yes')
-        window.open('http://localhost:3000/read', 'window_name',
+        window.open(_.HOST_URL + '/read', 'window_name',
             'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
-
     //paging 함수들 
     const pagingClick = (e) => {
         const id = e.target.id
