@@ -14,7 +14,7 @@ const Button = styled.input.attrs(props=>({type: "button"}))`
 
 const ConfirmButtonBox=({width, height, value, onClick})=>(
     <>
-        <Button width={width} height={height} value={value} onChange={onClick}>
+        <Button width={width} height={height} value={value} onClick={onClick}>
         </Button>
     </>
 )

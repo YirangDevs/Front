@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-const RadioButton = styled.input.attrs((props)=> ({type:"radio"}))`
+export const RadioButton = styled.input.attrs((props)=> ({type:"radio"}))`
     display: none;
     border:1px solid #dfdfdf;    
     width: auto;
