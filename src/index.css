@@ -231,6 +231,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  flex-direction: column;
 }
 
 .notice__table {
@@ -277,7 +278,15 @@ td {
   overflow: hidden;
   cursor: pointer;
 }
-
+.notice__table td:nth-child(3) {
+  min-width: 7rem;
+}
+.notice__table th:nth-child(4) {
+  min-width: 4rem;
+}
+.notice__table th:nth-child(5) {
+  min-width: 3rem;
+}
 .notice__table td {
   text-align: center;
 }
