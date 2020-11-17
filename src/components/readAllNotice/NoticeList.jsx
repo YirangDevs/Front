@@ -5,8 +5,6 @@ import Buttons from '../../containers/readAllNotice/Buttons'
 
 const NoticeList = ({ SET_SELECT }) => {
     const [notices, setNotices] = useState([]);
-
-
     const [pagingNum, setpagingNum] = useState("0")
     const [totalPage, settotalPage] = useState("0")
 
