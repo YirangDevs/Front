@@ -54,6 +54,7 @@ const NoticeList = ({ SET_SELECT }) => {
             }
         });
         localStorage.setItem("SELECT_ID", ID)
+        console.log("이채은바보뭉탱이",_.HOST_URL)
         window.open(_.HOST_URL + 'read', 'window_name',
             'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
