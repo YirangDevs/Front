@@ -40,7 +40,6 @@ const NoticeTable = () => {
         window.open(_.HOST_URL + '/read', 'window_name',
             'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
-
     //paging 함수들 
     const pagingClick = (e) => {
         const id = e.target.id
