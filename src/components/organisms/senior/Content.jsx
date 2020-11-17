@@ -6,8 +6,9 @@ import Pagination from "../../atoms/Pagination"
 import UpdateButton from "../senior/UpdateButton"
 import VolunteerUpdateForm from "../senior/VolunteerUpdateForm"
 import ConfirmButtonBox from "../../atoms/ConfirmButtonBox"
-import EditDelete from "../../../containers/senior/EditDelete"
+import EditDeleteGroup from "../../molecules/EditDeleteButton"
 import GuideButtonGroup from "../../molecules/GuideButtonGroup"
+import postSeniorToServer from "../../../business/service/post_senior_to_server"
 
 const Container = styled.div`
     display: flex;
@@ -32,7 +33,7 @@ const AdminLayout = styled.div`
 const selectBoxOptions = ["전체","수성구","중구","동구","서구","남구","북구","달서구"]
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위"]
 
-const Content = ({currentSenior, button, region, posts, selectRegion, selectPage, selectSenior, nameOnChange, genderOnChange, typeOnChange, priorityOnChange, dateOnChange, phoneOnChange, regionOnChange, addressOnChange, uploadFile, uploadOnClick, addButton, EditDeleteButton}) => {
+const Content = ({currentSenior, button, region, posts, selectRegion, selectPage, selectSenior, nameOnChange, genderOnChange, typeOnChange, priorityOnChange, dateOnChange, phoneOnChange, regionOnChange, addressOnChange, uploadFile, uploadOnClick, addButton, editDeleteButton}) => {
     return (
         <>
             <Container>
@@ -44,9 +45,9 @@ const Content = ({currentSenior, button, region, posts, selectRegion, selectPage
                 <AdminLayout>
                     {/* <InputForm></InputForm> */}
                     <VolunteerUpdateForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange}></VolunteerUpdateForm>
-                    {button? <ConfirmButtonBox></ConfirmButtonBox>:<EditDelete></EditDelete>}
+                    {button? <ConfirmButtonBox width="90%" height="2.5rem" value="확인" onClick={postSeniorToServer}></ConfirmButtonBox>:<EditDeleteGroup></EditDeleteGroup>}
                     {/* <Function></Function> */}
-                    <UpdateButton uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} EditDeleteButton={EditDeleteButton}></UpdateButton>
+                    <UpdateButton uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton}></UpdateButton>
                     <GuideButtonGroup></GuideButtonGroup>  
                 </AdminLayout>
             </Container>
