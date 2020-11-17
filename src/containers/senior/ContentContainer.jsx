@@ -156,6 +156,7 @@ const ContentContainer = () => {
                 addButton={addButton}
                 editDeleteButton={editDeleteButton}
                 uploadFile={uploadFile}
+                button={button}
             ></Content>
             </Container>
         </>
