@@ -1,10 +1,7 @@
 import React, { useState } from "react"
 import { useEffect } from "react"
 import fetchdata from "../../business/service/get_notice_list"
-<<<<<<< HEAD
 import _ from "../../config/env"
-=======
->>>>>>> 517ea086788ee277a2cd053e9d2a68ee7b77fb01
 
 const NoticeTable = () => {
     const [notices, setNotices] = useState([]);
@@ -40,11 +37,7 @@ const NoticeTable = () => {
         localStorage.setItem("SELECT_ID", ID)
         //  window.open(_.HOST_URL + '/read', 'window_name',
         //  'width=530,height=633,location=no,status=no,scrollbars=yes')
-<<<<<<< HEAD
         window.open(_.HOST_URL + '/read', 'window_name',
-=======
-        window.open('http://localhost:3000/read', 'window_name',
->>>>>>> 517ea086788ee277a2cd053e9d2a68ee7b77fb01
             'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
 
