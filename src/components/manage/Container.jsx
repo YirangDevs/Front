@@ -5,12 +5,12 @@ import '../../css/manage.css';
 import run from '../../init/start'
 import check from '../../init/check';
 import store from '../../store/store'
+
+
 const Container = () => {
     run();
     check.manage();
-    if (store.getState().login_reducer.logined) {
-        console.log(store.getState().login_reducer.logined)
-    }
+
 
     console.log(store.getState().user_reducer.role)
     return (

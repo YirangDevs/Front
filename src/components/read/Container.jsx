@@ -8,7 +8,7 @@ import '../../css/read.css';
 import UrgentButton from "./urgentButton"
 import UrgentTitle from "./UrgentTitle"
 
-const Container = () => {
+const Container = (props) => {
     run();
 
     getId();
@@ -19,7 +19,10 @@ const Container = () => {
                 <UrgentTitle></UrgentTitle>
                 <TopBar></TopBar>
                 <Content></Content>
-                <UrgentButton></UrgentButton>
+                {(props.role === "ADMIN") ?
+                    <UrgentButton></UrgentButton> :
+                    <></>
+                }
             </div>
         </>
     )
