@@ -3,57 +3,42 @@ import React, { useState, useEffect } from 'react';
 //import getNotice from "../../init/fetchGetData"
 import Switch from "@material-ui/core/Switch"
 import { FormControlLabel } from '@material-ui/core';
-import _ from "../../config/env"
-const NoticeList = ({ SET_SELECT }) => {
+import fetchdata from '../../business/service/get_notice_list';
+import _ from "../../config/config"
+
+
+const NoticeList = (props) => {
     const [notices, setNotices] = useState([]);
 
     var checked
     const [pagingNum, setpagingNum] = useState("0")
-    const [totalPage, settotalPage] = useState("0")
+
 
     useEffect(() => {
-
-        new Promise(async (resolve, reject) => {
-            let getNum = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/nums", {
-                method: 'GET',
-
-            }).then((res) => res.json());
-            if (getNum) { resolve(getNum); settotalPage(Math.ceil(getNum.totalNoticeNums / 6)) }
-            else (console.log("전체 페이지 값 안들어옴"))
-        }).then((data) => {
-            console.log(data.totalNoticeNums)
-
-        })
-    }, [])
-
-    useEffect(() => {
-
-        new Promise(async (resolve, reject) => {
-            let notice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
-                method: 'GET',
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem("YAT"),
-                }
-            }).then((res) => res.json());
-            if (notice) { resolve(notice) }
-        }).then((data) => {
-            setNotices(data.notices)
-            console.log(data)
-        })
-
+        fetchdata.getList(pagingNum)
+            .then((resolve) => {
+                console.log(resolve.notices)
+                setNotices(resolve.notices);
+            })
     }, [pagingNum])
+
+    useEffect(() => {
+        fetchdata.getList(0)
+            .then((resolve) => {
+                console.log(resolve.notices)
+                setNotices(resolve.notices);
+            })
+    }, [props.totalNum])
 
 
     const SelectId = (e) => {
         console.log(e.target)
         const ID = e.target.id;
         console.log(ID)
-        //console.log(notices);
-        //console.log(users[2]);
         const selectValue = notices.filter(notices => Number(notices.id) === Number(ID))
         console.log(selectValue[0]);
 
-        SET_SELECT({
+        props.SET_SELECT({
             select: {
                 selectId: ID,
                 selectTitle: selectValue[0].title,
@@ -67,6 +52,8 @@ const NoticeList = ({ SET_SELECT }) => {
 
         if (checked) {
             localStorage.setItem("SELECT_ID", ID)
+            //  window.open(_.HOST_URL + '/read', 'window_name',
+            //  'width=530,height=633,location=no,status=no,scrollbars=yes')
             window.open(_.HOST_URL + '/read', 'window_name',
                 'width=530,height=633,location=no,status=no,scrollbars=yes')
         }
@@ -86,7 +73,7 @@ const NoticeList = ({ SET_SELECT }) => {
     const pageNumber = [];
 
     // Math.ceil: 올림
-    for (let i = 1; i <= totalPage; i++) {
+    for (let i = 1; i <= Math.ceil(props.totalNum / 6); i++) {
         pageNumber.push(i);
     }
 
