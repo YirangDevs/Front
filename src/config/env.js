@@ -4,7 +4,7 @@ import _ from "./config"
 //const env = "development"
 const env = "production"
 
-export default (env==="production") ? {
+export default (env==="development") ? {
     ..._,
     HOST_URL: _.DEV_HOST_URL,
     REDIRECT_URL : _.DEV_REDIRECT_URL,
