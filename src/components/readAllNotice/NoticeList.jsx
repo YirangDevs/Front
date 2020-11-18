@@ -5,8 +5,6 @@ import Buttons from '../../containers/readAllNotice/Buttons'
 
 const NoticeList = ({ SET_SELECT }) => {
     const [notices, setNotices] = useState([]);
-
-
     const [pagingNum, setpagingNum] = useState("0")
     const [totalPage, settotalPage] = useState("0")
 
@@ -30,7 +28,7 @@ const NoticeList = ({ SET_SELECT }) => {
     useEffect(() => {
         //Number(pagingNum)
         new Promise(async (resolve, reject) => {
-            let notice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
+            let notice = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
                 method: 'GET',
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("YAT"),
@@ -56,7 +54,8 @@ const NoticeList = ({ SET_SELECT }) => {
             }
         });
         localStorage.setItem("SELECT_ID", ID)
-        window.open(_.HOST_URL + '/read', 'window_name',
+        console.log("이채은바보뭉탱이",_.HOST_URL)
+        window.open(_.HOST_URL + 'read', 'window_name',
             'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
 

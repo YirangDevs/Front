@@ -60,7 +60,7 @@ const UrgentTitle = () => {
     //POST
     const urgentPost = (data) => {
         console.log(localStorage.getItem("SELECT_ID"))
-        fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(localStorage.getItem("SELECT_ID")) + "/urgent", {
+        fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(localStorage.getItem("SELECT_ID")) + "/urgent", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

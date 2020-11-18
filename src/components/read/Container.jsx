@@ -7,19 +7,20 @@ import getId from '../../init/getSelectId'
 import '../../css/read.css';
 import UrgentButton from "./urgentButton"
 import UrgentTitle from "./UrgentTitle"
+import store from "../../store/store"
 
-const Container = (props) => {
+const Container = () => {
     run();
 
     getId();
-
+    var userRole = store.getState().user_reducer.role
     return (
         <>
             <div className="container">
                 <UrgentTitle></UrgentTitle>
                 <TopBar></TopBar>
                 <Content></Content>
-                {(props.role === "ADMIN") ?
+                {(userRole === "ADMIN") ?
                     <UrgentButton></UrgentButton> :
                     <></>
                 }
