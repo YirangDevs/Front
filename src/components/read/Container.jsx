@@ -7,7 +7,6 @@ import getId from '../../init/getSelectId'
 import '../../css/read.css';
 import UrgentButton from "./urgentButton"
 import UrgentTitle from "./UrgentTitle"
-import store from "../../store/store"
 
 const Container = () => {
     run();
