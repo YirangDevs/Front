@@ -13,7 +13,6 @@ const Container = () => {
     run();
 
     getId();
-    var userRole = store.getState().user_reducer.role
     return (
         <>
             <div className="container">
