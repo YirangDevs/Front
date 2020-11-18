@@ -9,7 +9,7 @@ const SelectTable = (props) => {
 
         if (props.id) {
             localStorage.setItem("SELECT_ID", props.id)
-            window.open(_.HOST_URL + 'read', 'window_name',
+            window.open(_.HOST_URL + '/read', 'window_name',
                 'width=530,height=633,location=no,status=no,scrollbars=yes');
         } else {
             alert("게시물을 선택해 주세요");
