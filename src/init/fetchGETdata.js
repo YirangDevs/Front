@@ -3,7 +3,7 @@ import _ from "../config/env"
 
         //요청이 시작 할 때는 error , user  초기화
 let getNotice = () => new Promise(async (resolve, reject)=> {
-    let notice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices?page="+Number(0), {
+    let notice = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices?page="+Number(0), {
     method: 'GET',
     headers: {
         Authorization: "Bearer " + localStorage.getItem("YAT"),

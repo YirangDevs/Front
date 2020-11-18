@@ -54,7 +54,7 @@ const NoticeList = (props) => {
             localStorage.setItem("SELECT_ID", ID)
             //  window.open(_.HOST_URL + '/read', 'window_name',
             //  'width=530,height=633,location=no,status=no,scrollbars=yes')
-            window.open(_.HOST_URL + 'read', 'window_name',
+            window.open(_.HOST_URL + '/read', 'window_name',
                 'width=530,height=633,location=no,status=no,scrollbars=yes')
         }
     }
