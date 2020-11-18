@@ -20,10 +20,7 @@ const Container = () => {
                 <UrgentTitle></UrgentTitle>
                 <TopBar></TopBar>
                 <Content></Content>
-                {(userRole === "ADMIN") ?
-                    <UrgentButton></UrgentButton> :
-                    <></>
-                }
+                <UrgentButton></UrgentButton>
             </div>
         </>
     )
