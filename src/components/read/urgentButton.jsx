@@ -14,6 +14,7 @@ const urgentButton = () => {
         <>
             <>
                 <div className="urgent container__urgentButton-read" >
+
                     <Button variant="outlined" color="secondary" onClick={onClick_urgent} className="urgentButton">
                         <span role="img" aria-label="create">🚨</span>급구 게시물 올리기<span role="img" aria-label="create">🚨</span>
                     </Button>

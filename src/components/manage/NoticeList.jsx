@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Switch from "@material-ui/core/Switch"
 import { FormControlLabel } from '@material-ui/core';
 import fetchdata from '../../business/service/get_notice_list';
-import _ from "../../config/config"
+import _ from "../../config/env"
 
 
 const NoticeList = (props) => {
