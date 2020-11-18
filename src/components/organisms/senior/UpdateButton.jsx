@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import FileBox from "../../atoms/FileBox"
 import FunctionButtonBox from "../../atoms/FunctionButtonBox"
+import ExcelPreview from "../../../pages/ExcelPreview"
 
 
 const VolunteerButtonWrapper = styled.div`
@@ -11,7 +12,7 @@ const VolunteerButtonWrapper = styled.div`
     margin-bottom: 10px;
 `
 
-const VolunteerButton = ({uploadFile, uploadOnClick, addButton, editDeleteButton}) => {
+const UpdateButton = ({uploadFile, uploadOnClick, addButton, editDeleteButton, isModalOpen, excelData, closeModal, postSeniorsOnClick}) => {
     return(
         <>
         <VolunteerButtonWrapper>
@@ -20,9 +21,10 @@ const VolunteerButton = ({uploadFile, uploadOnClick, addButton, editDeleteButton
             <FunctionButtonBox width="29.5%" height="3rem" value="업로드" onClick={uploadOnClick}/>
             <FunctionButtonBox width="29.5%" height="3rem" value="추가" onClick={addButton}/>
             <FunctionButtonBox width="29.5%" height="3rem" value="수정/삭제" onClick={editDeleteButton}/>
+            <ExcelPreview isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick}></ExcelPreview>
         </VolunteerButtonWrapper>
         </>
     )
 }
 
-export default VolunteerButton
+export default UpdateButton

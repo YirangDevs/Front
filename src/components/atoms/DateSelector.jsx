@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-const DateForm = styled.input.attrs((props)=> ({type:"date"}))`
+export const DateForm = styled.input.attrs((props)=> ({type:"date"}))`
     width: ${props=>props.width};
     height: ${props=>props.height};
     font-size: 1.2rem;
@@ -11,10 +11,10 @@ const DateForm = styled.input.attrs((props)=> ({type:"date"}))`
     background-color: #f1f3f6;
 `
 
-const DateSelector = ({width, height}) => (
+const DateSelector = ({width, height, defaultValue, onChange}) => (
 
     <>
-        <DateForm width={width} height={height}></DateForm>
+        <DateForm onChange={onChange} defaultValue={defaultValue}width={width} height={height}></DateForm>
     </>
 )
 

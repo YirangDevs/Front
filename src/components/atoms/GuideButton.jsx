@@ -1,11 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 
-const Button = styled.input.attrs(props=>({type: "button"}))`
+export const Button = styled.input.attrs(props=>({type: "button"}))`
     width: 90%;
     padding: 0.8rem;
-    border-radius: 2px;
-    border-bottom: solid 1px #ccd4e0;
+    border-radius: 1px;
+    border: solid 1px #ccd4e0;
     font-family: NotoSansCJKKR;
     font-size: 1rem;
     font-weight: normal;
@@ -19,9 +19,9 @@ const Button = styled.input.attrs(props=>({type: "button"}))`
     position: inherit;
 `
 
-const GuideButton=({value})=>(
+const GuideButton=({value, onClick})=>(
     <>
-        <Button value={value}/>
+        <Button value={value} onClick={onClick}/>
     </>
 )
 

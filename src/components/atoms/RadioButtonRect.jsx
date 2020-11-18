@@ -2,7 +2,6 @@ import React from "react"
 import styled from "styled-components"
 
 export const RadioButton = styled.input.attrs((props)=> ({type:"radio"}))`
-    display: none;
     border:1px solid #dfdfdf;    
     width: auto;
     height:2rem;
@@ -12,11 +11,13 @@ export const RadioButton = styled.input.attrs((props)=> ({type:"radio"}))`
 
 
 
-const RadioButtonRect = ({name, value}) => (
+
+const RadioButtonRect = ({name, defaultValue, text, onClick}) => (
     //options = selectBox 목록 DataType = Array
 
     <>
-        <RadioButton name={name} value={value}></RadioButton>
+        <RadioButton name={name} defaultValue={defaultValue} onClick={onClick}></RadioButton>{text}
+
     </>
 )
 

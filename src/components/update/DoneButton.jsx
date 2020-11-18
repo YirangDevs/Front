@@ -14,7 +14,7 @@ const DoneButton = (props) => {
     });
 
     const PUTdata = (data) => {
-        fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(props.Id), {
+        fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(props.Id), {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

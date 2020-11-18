@@ -11,9 +11,9 @@ export const Text = styled.input.attrs(props=>({type: "text"}))`
     background-color: #f1f3f6;
 `
 
-const TextBox=({width, height, defaultValue, onChange, placeholder})=>(
+const TextBox=({width, height, value, onChange, placeholder})=>(
     <>
-        <Text width={width} height={height} dafaultValue={defaultValue} onChange={onChange} placeholder={placeholder}>
+        <Text width={width} height={height} value={value||""} onChange={onChange} placeholder={placeholder}>
         </Text>
     </>
 )
