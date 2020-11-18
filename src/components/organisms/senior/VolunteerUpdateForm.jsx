@@ -19,6 +19,15 @@ const VolunteerUpdateFormWrapper = styled.div`
 const SelectBoxOptions1 = ["우선순위","1","2","3","4","5"]
 const SelectBoxOptions2 = ["전체","수성구","중구","동구","서구","남구","북구","달서구"]
 
+const NTextBox = styled(Text)`
+    grid-column: 1/3;
+
+`;
+const ATextBox = styled(Text)`
+    grid-column: 1/3;
+`
+
+
 const VolunteerUpdateForm = ({name,region, address, nameOnChange, genderOnChange, typeOnChange, priorityOnChange, dateOnChange, phoneOnChange, regionOnChange, AddressOnChange}) => {
     return (
         <>
