@@ -8,10 +8,10 @@ import run from "../../init/start"
 import { useEffect } from "react"
 
 const Container = () => {
-    useEffect(()=>{
+    useEffect(() => {
         run()
     })
-    
+
     return (<>
         <div className="container">
             <SideNav></SideNav>

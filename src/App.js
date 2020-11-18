@@ -16,8 +16,6 @@ function App() {
     <>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Container}>
-        </Route>
         <Route path="/login" component={LoginRedirect}>
         </Route>
         <Route path="/logout" component={LogoutRedirect}>
@@ -34,7 +32,9 @@ function App() {
         <Route path ="/update" component={Update}>
         </Route> 
         <Route path ="/ReadAllNotice" component={ReadAllNotice}>
-        </Route> 
+        </Route>
+        <Route exact path="/" component={Container}>
+        </Route>
       </Switch> 
     </BrowserRouter>
     </>

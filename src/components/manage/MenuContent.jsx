@@ -5,7 +5,7 @@ import MenuInfo from '../../containers/manage/MenuInfo'
 import MenuMake from './MenuMake'
 const MenuContent = () => (
     <>
-        <div className="menu content__menu">
+        <div className="menu--manage content__menu--manage">
             <MenuNav></MenuNav>
             <MenuInfo></MenuInfo>
             <MenuMake></MenuMake>

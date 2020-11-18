@@ -60,7 +60,7 @@ const UrgentTitle = () => {
     //POST
     const urgentPost = (data) => {
         console.log(localStorage.getItem("SELECT_ID"))
-        fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(localStorage.getItem("SELECT_ID")) + "/urgent", {
+        fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(localStorage.getItem("SELECT_ID")) + "/urgent", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +72,8 @@ const UrgentTitle = () => {
                 console.log("urgentSuccess");
                 setValue(" ");
                 urgentWrapper_Click()
-                window.location.reload()
+                window.opener.location.reload(true);
+
             })
             .then(result => { console.log(result); })
             .catch(error => console.log('error', error))
@@ -85,15 +86,9 @@ const UrgentTitle = () => {
             alert("title를 입력하세요")
         }
         else if (titleValue) {
-            // addEmoji(titleValue);
-
-            // console.log(emojiTitle)
-            // console.log(String(emojiTitle))
-            // console.log(emojiValue + titleValue)
-            // console.log(dataUrgent)
-            // //urgentPost(dataUrgent);
             if (state.checkedA === true && state.checkedB === true) {
                 urgentPost(bothUrgent);
+
             }
             else if (state.checkedA) {
                 urgentPost(AUrgent);

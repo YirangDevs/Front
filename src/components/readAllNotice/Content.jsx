@@ -1,6 +1,5 @@
 import React from 'react'
 import NoticeList from '../../containers/readAllNotice/NoticeList'
-import Main from './Main'
 
 // RAN
 const Content = () => {
@@ -9,7 +8,7 @@ const Content = () => {
             <div className="containerRan__content">
 
                 <NoticeList></NoticeList>
-                <Main></Main>
+
             </div>
         </>
     )

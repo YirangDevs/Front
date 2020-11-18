@@ -1,10 +1,15 @@
 //notice
 import React, { useState, useEffect } from 'react';
 import _ from "../../config/env"
+import Buttons from '../../containers/readAllNotice/Buttons'
+
 const NoticeList = ({ SET_SELECT }) => {
     const [notices, setNotices] = useState([]);
     const [pagingNum, setpagingNum] = useState("0")
     const [totalPage, settotalPage] = useState("0")
+
+
+
     useEffect(() => {
 
         new Promise(async (resolve, reject) => {
@@ -16,11 +21,14 @@ const NoticeList = ({ SET_SELECT }) => {
             else (console.log("전체 페이지 값 안들어옴"))
         }).then((data) => {
             console.log(data.totalNoticeNums)
-            console.log(totalPage)
+
         })
+    }, [])
+
+    useEffect(() => {
         //Number(pagingNum)
         new Promise(async (resolve, reject) => {
-            let notice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
+            let notice = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
                 method: 'GET',
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("YAT"),
@@ -30,9 +38,6 @@ const NoticeList = ({ SET_SELECT }) => {
         }).then((data) => {
             setNotices(data.notices)
             console.log(data)
-
-            //console.log(notices)
-            //return data.notices
         })
 
     }, [pagingNum])
@@ -49,7 +54,7 @@ const NoticeList = ({ SET_SELECT }) => {
             }
         });
         localStorage.setItem("SELECT_ID", ID)
-        window.open('http://localhost:3000/read', 'window_name',
+        window.open(_.HOST_URL + 'read', 'window_name',
             'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
 
@@ -73,8 +78,8 @@ const NoticeList = ({ SET_SELECT }) => {
     if (!notices) return null;
     return (
         <>
-            <div className="notice__list" id="reloadPage">
-                <table id="myTable" className="notice__table">
+            <div className="notice__list_Ran" id="reloadPage">
+                <table id="myTable" className="notice__table_Ran">
                     <thead>
                         <tr>
                             <th></th>
@@ -99,7 +104,7 @@ const NoticeList = ({ SET_SELECT }) => {
 
                 </table>
                 <div className="notice__table--paging">
-                    <ul className="pagination">
+                    <ul className="pagination--notice">
                         {pageNumber.map((pageNum) => (
                             <li
                                 key={pageNum}
@@ -112,6 +117,7 @@ const NoticeList = ({ SET_SELECT }) => {
                     </ul>
 
                 </div>
+                <Buttons></Buttons>
             </div>
 
         </>

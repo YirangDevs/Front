@@ -1,22 +1,21 @@
 
 import store from "../store/store"
+import fetchdata from "../business/service/get_notice_list"
+import action from "../store/actions/action"
 
 let check = {
 
     manage : () =>{
         localStorage.removeItem("SELECT_ID")
-        console.log(store.getState().login_reducer.logined)
-        console.log(store.getState().user_reducer.role)
-        // if(store.getState().login_reducer.logined && store.getState().user_reducer.role == "ADMIN")
-        // {
-        //     console.log("mange Start")
-        // }
-        // else {
-        //     alert("권한이 없습니다.")
-        //     console.log(store.getState().login_reducer.logined)
-        //     console.log(store.getState().user_reducer.role)
-        //     window.history.back();
-        // };
+        fetchdata.getNum()
+        .then((resolve) => {
+            console.log(resolve.totalNoticeNums);
+            store.dispatch(action.SET_TOTALNUM__ACTION_FUNC({
+                totalNum: {
+                    totalNum: resolve.totalNoticeNums
+                }
+            }))
+        })
     }
 
 

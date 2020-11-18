@@ -2,70 +2,59 @@
 import React, { useState, useEffect } from 'react';
 //import getNotice from "../../init/fetchGetData"
 import Switch from "@material-ui/core/Switch"
-import { Button, ButtonGroup, FormControlLabel } from '@material-ui/core';
+import { FormControlLabel } from '@material-ui/core';
+import fetchdata from '../../business/service/get_notice_list';
 import _ from "../../config/env"
-const NoticeList = ({ SET_SELECT }) => {
+
+
+const NoticeList = (props) => {
     const [notices, setNotices] = useState([]);
 
     var checked
     const [pagingNum, setpagingNum] = useState("0")
-    const [totalPage, settotalPage] = useState("0")
+
+
     useEffect(() => {
-
-        new Promise(async (resolve, reject) => {
-            let getNum = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/nums", {
-                method: 'GET',
-
-            }).then((res) => res.json());
-            if (getNum) { resolve(getNum); settotalPage(Math.ceil(getNum.totalNoticeNums / 6)) }
-            else (console.log("전체 페이지 값 안들어옴"))
-        }).then((data) => {
-            console.log(data.totalNoticeNums)
-            console.log(totalPage)
-        })
-        //Number(pagingNum)
-        new Promise(async (resolve, reject) => {
-            let notice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices?page=" + Number(pagingNum), {
-                method: 'GET',
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem("YAT"),
-                }
-            }).then((res) => res.json());
-            if (notice) { resolve(notice) }
-        }).then((data) => {
-            setNotices(data.notices)
-            console.log(data)
-
-            //console.log(notices)
-            //return data.notices
-        })
-
+        fetchdata.getList(pagingNum)
+            .then((resolve) => {
+                console.log(resolve.notices)
+                setNotices(resolve.notices);
+            })
     }, [pagingNum])
+
+    useEffect(() => {
+        fetchdata.getList(0)
+            .then((resolve) => {
+                console.log(resolve.notices)
+                setNotices(resolve.notices);
+            })
+    }, [props.totalNum])
 
 
     const SelectId = (e) => {
         console.log(e.target)
         const ID = e.target.id;
         console.log(ID)
-        //console.log(notices);
-        //console.log(users[2]);
         const selectValue = notices.filter(notices => Number(notices.id) === Number(ID))
         console.log(selectValue[0]);
 
-        SET_SELECT({
+        props.SET_SELECT({
             select: {
                 selectId: ID,
                 selectTitle: selectValue[0].title,
                 selectNor: selectValue[0].nor,
                 selectDov: selectValue[0].dov,
-                selectTov: selectValue[0].tov
+                selectTov: selectValue[0].tov,
+                selectRegion: selectValue[0].region
 
             }
         });
 
         if (checked) {
             localStorage.setItem("SELECT_ID", ID)
-            window.open('http://localhost:3000/read', 'window_name',
+            //  window.open(_.HOST_URL + '/read', 'window_name',
+            //  'width=530,height=633,location=no,status=no,scrollbars=yes')
+            window.open(_.HOST_URL + 'read', 'window_name',
                 'width=530,height=633,location=no,status=no,scrollbars=yes')
         }
     }
@@ -84,7 +73,7 @@ const NoticeList = ({ SET_SELECT }) => {
     const pageNumber = [];
 
     // Math.ceil: 올림
-    for (let i = 1; i <= totalPage; i++) {
+    for (let i = 1; i <= Math.ceil(props.totalNum / 6); i++) {
         pageNumber.push(i);
     }
 
@@ -92,7 +81,7 @@ const NoticeList = ({ SET_SELECT }) => {
     if (!notices) return null;
     return (
         <>
-            <div className="notice__list" id="reloadPage">
+            <div className="notice__list--manage" id="reloadPage">
                 <div className="notice__list--button">
                     <FormControlLabel
                         control={
@@ -106,7 +95,7 @@ const NoticeList = ({ SET_SELECT }) => {
                     />
 
                 </div>
-                <table id="myTable" className="notice__table">
+                <table className="notice__table--manage">
                     <thead>
                         <tr>
                             <th></th>
@@ -131,13 +120,7 @@ const NoticeList = ({ SET_SELECT }) => {
 
                 </table>
                 <div className="notice__table--paging">
-                    {/* 
-                    <ButtonGroup size="small" variant="text" color="primary" aria-label="text primary button group">
-                        <Button name="1" onClick={pagingClick} value="1">1</Button>
-                        <Button name="2" onClick={pagingClick} value="2">2</Button>
-                        <Button name="3" onClick={pagingClick} value="3">3</Button>
-                    </ButtonGroup> */}
-                    <ul className="pagination">
+                    <ul className="pagination--notice">
                         {pageNumber.map((pageNum) => (
                             <li
                                 key={pageNum}
