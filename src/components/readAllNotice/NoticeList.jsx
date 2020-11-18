@@ -13,7 +13,7 @@ const NoticeList = ({ SET_SELECT }) => {
     useEffect(() => {
 
         new Promise(async (resolve, reject) => {
-            let getNum = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/nums", {
+            let getNum = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/nums", {
                 method: 'GET',
 
             }).then((res) => res.json());
@@ -54,8 +54,8 @@ const NoticeList = ({ SET_SELECT }) => {
             }
         });
         localStorage.setItem("SELECT_ID", ID)
-        console.log("이채은바보뭉탱이",_.HOST_URL)
-        window.open(_.HOST_URL + 'read', 'window_name',
+
+        window.open(_.HOST_URL + '/read', 'window_name',
             'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
 
