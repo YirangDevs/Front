@@ -1,12 +1,12 @@
 import React from "react";
-import TableView from "../../containers/senior/TableView";
+import TableViewContainer from "../../containers/senior/TableViewContainer";
 
 const Content = () => {
   
   return (
   <>
     <div className="volunteer-view">
-        <TableView></TableView>  
+        <TableViewContainer></TableViewContainer>
     </div>
   </>
   );

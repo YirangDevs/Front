@@ -15,7 +15,7 @@ const MenuMake = () => {
 
     return (
         <>
-            <Link to="/create" className="make menu__make">
+            <Link to="/create" className="make--manage menu__make--manage">
                 <div >
 
                     <span role="img" aria-label="create">✍</span>게시글 작성<span role="img" aria-label="create">✍</span>

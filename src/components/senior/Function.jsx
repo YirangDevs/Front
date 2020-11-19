@@ -1,6 +1,7 @@
 import React from "react"
 import XLSX from "xlsx"
 import Preview from "../../containers/senior/Preview"
+import FunctionButtonBox from "../atoms/FunctionButtonBox"
 
 const Function = ({UPLOAD_SENIORS, SET_BUTTON, id}) => {
     const onClick = () => {
@@ -34,16 +35,16 @@ const Function = ({UPLOAD_SENIORS, SET_BUTTON, id}) => {
             for(let j=2; j<regionarray.length; j++){
                 addressarray.push(regionarray[j])
             }
-            const namedata = rowObj[i]["어르신 성함"]
-            const sexdata = rowObj[i]["성별"]
-            const regiondata=regionarray[1]
-            const addressdata = addressarray.join(" ")
-            const phonedata = rowObj[i]["전화번호"]
-            const typedata = rowObj[i]["봉사유형"]
-            const datedata = rowObj[i]["봉사날짜"]
-            const prioritydata = rowObj[i]["어르신 우선순위"]
+            const nameData = rowObj[i]["어르신 성함"]
+            const sexData = rowObj[i]["성별"]
+            const regionData=regionarray[1]
+            const addressData = addressarray.join(" ")
+            const phoneData = rowObj[i]["전화번호"]
+            const typeData = rowObj[i]["봉사유형"]
+            const dateData = rowObj[i]["봉사날짜"]
+            const priorityData = rowObj[i]["어르신 우선순위"]
 
-            seniorjson.push({name: namedata, sex: sexdata, region : regiondata, address : addressdata, phone : phonedata, type : typedata, date : datedata, priority : prioritydata})
+            seniorjson.push({name: nameData, sex: sexData, region : regionData, address : addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData})
             }
             getData(seniorjson)
 
@@ -71,10 +72,10 @@ const Function = ({UPLOAD_SENIORS, SET_BUTTON, id}) => {
      return(
     <>
         <div className="function">
-            <input type="file" id="selectedFile" name="aFile" onChange={openModal}/>
-            <input type="button" className="select-function" value="업로드" onClick={onClick} />
-            <input type="button" className="select-function" value="추가" onClick={addbutton}/>
-            <input type="button" className="select-function" value="수정/삭제" onClick={editdeletebutton}/>
+            <input type="file" id="selectedFile" name="aFile" accept=".xls,.xlsx" onChange={openModal}/>
+            <FunctionButtonBox width="29.5%" height="3rem" value="업로드" onClick={onClick}/>
+            <FunctionButtonBox width="29.5%" height="3rem" margin="0 1%" value="추가" onClick={addbutton}/>
+            <FunctionButtonBox width="29.5%" height="3rem" value="수정/삭제" onClick={editdeletebutton}/>
             <Preview/>
         </div>
     </>

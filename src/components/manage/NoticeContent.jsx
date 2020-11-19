@@ -6,7 +6,7 @@ import NoticeList from '../../containers/manage/NoticeList'
 const NoticeContent = () => {
     return (
         <>
-            <div className="notice content__notice">
+            <div className="notice--manage content__notice--manage">
                 <NoticeInformation></NoticeInformation>
                 {/* <div className="notice__information"></div> */}
                 <NoticeSelect></NoticeSelect>

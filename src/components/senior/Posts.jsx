@@ -11,9 +11,9 @@ const Posts = ({posts}) => {
                             <th>성별</th>
                             <th>지역</th>
                             <th>전화번호</th>
-                            <td>봉사종류</td>
-                            <td>봉사날짜</td>
-                            <td>우선순위</td>
+                            <th>봉사종류</th>
+                            <th>봉사날짜</th>
+                            <th>우선순위</th>
                         </tr>
                     </thead>
                 

@@ -1,5 +1,6 @@
 import React from "react"
 import postSeniorToServer from "../../business/service/post_senior_to_server"
+import Button from "../atoms/Button";
 
 const Confirm = (props) => {
     const onClick = () => {
@@ -8,7 +9,7 @@ const Confirm = (props) => {
     
     return(
     <>
-        <input type="button" value="확인" onClick={onClick} className="confirm__button"/>
+        <Button width="90%" height="2.5rem" value="확인" onClick={onClick}/>
     </>
     )
 }

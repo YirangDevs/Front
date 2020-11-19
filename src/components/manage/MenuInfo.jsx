@@ -13,15 +13,15 @@ const MenuInfo = (props) => {
 
     return (
         <>
-            <div className="info menu__info">
-                <div className="info__title">안녕하세요 망나뇽님</div>
-                <div className="info__card">
-                    <div className="info__card--key">MODE</div>
-                    <div className="info__card--value">"관리자" 모드</div>
+            <div className="info--manage menu__info--manage">
+                <div className="info__title--manage">안녕하세요 {props.username}님</div>
+                <div className="info__card--manage">
+                    <div className="info__card--key--manage">MODE</div>
+                    <div className="info__card--value--manage">{(props.role === "VOLUNTEER") ? "유저" : "관리자"} 모드</div>
                 </div>
-                <div className="info__card">
-                    <div className="info__card--key">LOGIN</div>
-                    <div className="info__card--value" onClick={handleClick}>LOGOUT</div>
+                <div className="info__card--manage">
+                    <div className="info__card--key--manage">LOGIN</div>
+                    <div className="info__card--value--manage" onClick={handleClick}>LOGOUT</div>
                 </div>
             </div>
         </>

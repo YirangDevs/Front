@@ -1,7 +1,7 @@
-const editSeniorFromServer = async (id, props) => {
-    const {dispatch, ...newProps}=props
-    console.log(newProps)
-    let payloadData1 = JSON.stringify(newProps)
+const editSeniorFromServer = async (id, data) => {
+
+
+    let payloadData1 = JSON.stringify(data)
     let payloadData2 = payloadData1.replace(/"sex":"남"/g,'"sex":"male"') //남자 영문으로 전환
     let payloadData3 = payloadData2.replace(/"sex":"여"/g,'"sex":"female"') //여자 영문으로 전환
     let payloadData4 = payloadData3.replace(/노력봉사/g,'work') //노력봉사 영문으로 전환
@@ -15,7 +15,7 @@ const editSeniorFromServer = async (id, props) => {
             'Authorization' : "Bearer "+ localStorage.getItem("YAT")
         },
         body: payload
-    }).then(res => (res.ok) ? res : res.json()).then(data=> console.log(data))
+    })
 }
 
 export default editSeniorFromServer

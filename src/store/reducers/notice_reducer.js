@@ -1,7 +1,7 @@
 import ACTION from "../actions/notice_action"
 
-export default (state, action)=>{
-    if(state===undefined) { return { }}
+export default (state , action)=>{
+    if(state===undefined) { return {region : "수성구" }}
     switch(action.type){
         
         case ACTION.SET_CONFIG:
@@ -16,4 +16,7 @@ export default (state, action)=>{
             return { ...state }
     }
 }
+
+
+
 

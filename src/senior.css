@@ -137,7 +137,7 @@ html {
     display: none;
 }
 
-.input {
+.senior__input {
     display: grid;
     width: 90%;
     background-color: #f1f3f6;
@@ -196,20 +196,9 @@ html {
     width: 90%;
     display: flex;
     justify-content: center;
-    margin-top: 1%;
-    margin-bottom: 5%;
 }
-.confirm__button {
-    width: 90%;
-    height: 2.5rem;
-    font-size: 1.5rem;
-    margin-top: 1%;
-    margin-bottom: 5%;
-    color: #707070;
-    border: 1px solid #ccd4e0;
-    background-color: #f1f3f6;
-}
-.edit__button, .delete__button {
+
+/* .edit__button, .delete__button {
     float: left;
     width: 50%;
     height: 2.5rem;
@@ -221,78 +210,18 @@ html {
 }
 .delete__button{
     margin-left: 0.5rem;
-}
+} */
 .function {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
 }
-.select-function {
-    width: 29.5%;
-    height: 3rem;
-    background-color: #ccd4e0;
-    border: 0;
-    font-size: 1.5rem;
-    color: #707070;
-  }
-.select-function:nth-child(3){
-    margin-left: 4px;
-    margin-right: 4px;
-}
-.select-region {
-    width: 95%;
-    height: 2.3rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    color: #707070;
-    border: 1px solid #ccd4e0;
-    background-color: #f1f3f6;
-    padding-left: 3px;
-    padding-right: 15px;
-}
-.detail-address {
-    width: 90%;
-    height: 2.3rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    color: #707070;
-    border: 1px solid #ccd4e0;
-    background-color: #f1f3f6;
-}
-.form__name {
-    width: 40%;
-    height: 2.2rem;
-    margin-right: 5%;
-    border-radius: 5px;
-    color: #707070;
-    border: 1px solid #ccd4e0;
-    background-color: #f1f3f6;
-}
-.form__order {
-    margin-left: 5px;
-    width: 20%;
-    height: 2.2rem;
-    margin-right: 2%;
-    border-radius: 5px;
-    color: #707070;
-    border: 1px solid #ccd4e0;
-    background-color: #f1f3f6;
-}
 .form__date {
     width: 35%;
     height: 2.2rem;
     margin-right: 2%;
     font-size: 1.2rem;
-    border-radius: 5px;
-    color: #707070;
-    border: 1px solid #ccd4e0;
-    background-color: #f1f3f6;
-}
-.form__phone {
-    margin-right: 5px;
-    width: 35%;
-    height: 2.2rem;
     border-radius: 5px;
     color: #707070;
     border: 1px solid #ccd4e0;
@@ -323,6 +252,7 @@ html {
   box-sizing: border-box;
   white-space: nowrap;
   cursor: pointer;
+  position: inherit;
 }
 /*==================Modal 아웃풋====================*/
 

@@ -1,4 +1,5 @@
 import React from "react"
+import SelectBox from "../atoms/SelectBox"
 
 const VolunteerRegionForm = (props) => {
 
@@ -13,6 +14,7 @@ const VolunteerRegionForm = (props) => {
 
     return(
     <>
+    {/*}
         <div className="item">
             <select className="select-region" value={props.region} onChange={onChange}>
                 <option value="all">봉사지역</option>
@@ -24,6 +26,11 @@ const VolunteerRegionForm = (props) => {
                 <option value="북구">북구</option>
             </select>
         </div>
+    */}
+    <div className="item">
+    <SelectBox width="95%" height="2.3rem" defaultValue={props.region} options = {["전체","수성구","중구","동구","서구","남구","북구","달서구"]}></SelectBox>
+    </div>
+    
     </>
     )
 }

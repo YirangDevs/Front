@@ -1,4 +1,5 @@
 export default {
+    DEV_HOST_URL : "http://localhost:3000",
     DEV_REDIRECT_URL : "http://localhost:3000/login",
     DEV_LOGOUT_REDIRECT_URL : "http://localhost:3000/logout",
     DEV_REST_KEY : "8a0a75ba5fe2323acaf4a809b83f4ad3",
@@ -11,4 +12,5 @@ export default {
     AUTHORIZATION_URL : "https://kauth.kakao.com/oauth/",
     KAKAO_TOKEN_URL : "https://kauth.kakao.com/oauth/token",
     KAKAO_LOGOUT_URL : "https://kauth.kakao.com/oauth/logout",
+    SERVER_URL : "http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com"
 }

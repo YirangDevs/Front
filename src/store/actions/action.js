@@ -5,6 +5,7 @@ import inputSenior_action from "./inputSenior_action"
 import setButton_action from "./setButton_action"
 import notice_action from "./notice_action"
 import select_action from "./select_action"
+import noticetotalnum_action from "./noticetotalnum_action"
 
 export default {
     ...auth_action,
@@ -13,5 +14,6 @@ export default {
     ...inputSenior_action,
     ...setButton_action,
     ...notice_action,
-    ...select_action
+    ...select_action,
+    ...noticetotalnum_action,
 }

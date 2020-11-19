@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import _ from "../../config/env"
 
 
@@ -30,8 +31,13 @@ const SideNav = (props) => {
                                 <div className="side-nav__logout" onClick={logout_click}>Logout</div>
                             </div>
                             <div className="side-nav__menu-wrapper">
-                                <div className="side-nav__menu">봉사자 데이터 업로드</div>
-                                <div className="side-nav__menu">봉사 공고글 관리</div>
+                                <Link to="/Seniors" className="side-nav__menu">
+                                    <div >봉사자 데이터 업로드</div>
+                                </Link>
+
+                                <Link to="/manage" className="side-nav__menu">
+                                    <div >봉사 공고글 관리</div>
+                                </Link>
                                 <div className="side-nav__menu">매칭결과 확인</div>
                             </div>
                         </>
