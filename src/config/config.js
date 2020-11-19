@@ -1,5 +1,5 @@
 export default {
-    DEV_HOST_URL : "http://localhost:3000/",
+    DEV_HOST_URL : "http://localhost:3000",
     DEV_REDIRECT_URL : "http://localhost:3000/login",
     DEV_LOGOUT_REDIRECT_URL : "http://localhost:3000/logout",
     DEV_REST_KEY : "8a0a75ba5fe2323acaf4a809b83f4ad3",

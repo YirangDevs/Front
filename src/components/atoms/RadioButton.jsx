@@ -6,11 +6,11 @@ const Radio = styled.input.attrs((props)=> ({type:"radio"}))`
 `
 
 
-const RadioButton = ({name, value, onClick}) => (
+const RadioButton = ({name, defaultValue, onClick,value, text}) => (
     //options = selectBox 목록 DataType = Array
 
     <>
-        <Radio onClick={onClick} name={name} value={value}></Radio>
+        <Radio onChange={onClick} name={name} value={value} checked={defaultValue}></Radio>{text}
     </>
 )
 

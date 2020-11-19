@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-const Button = styled.input.attrs(props=>({type: "button"}))`
+const ButtonComponent = styled.input.attrs(props=>({type: "button"}))`
     width : ${props=>props.width};
     height: ${props=>props.height};
     background-color: #f1f3f6;
@@ -12,11 +12,11 @@ const Button = styled.input.attrs(props=>({type: "button"}))`
     
 `
 
-const ConfirmButtonBox=({width, height, value, onClick})=>(
+const Button=({width, height, value, onClick})=>(
     <>
-        <Button width={width} height={height} value={value} onClick={onClick}>
-        </Button>
+        <ButtonComponent width={width} height={height} value={value} onClick={onClick}>
+        </ButtonComponent>
     </>
 )
 
-export default ConfirmButtonBox
+export default Button

@@ -7,6 +7,7 @@ const Table = styled.table`
     text-align:center;
     border-spacing:0;
     border-top: solid ##ccd4e0 2px;
+    
 `
 
 const TableRow = styled.tr`
@@ -29,6 +30,7 @@ const TableBody = styled.td`
     font-stretch: normal;
     color: #707070;
     border-bottom: solid #ccd4e0 1px;
+
 `
 
 const PrimaryKey = styled(TableBody)`
@@ -54,7 +56,7 @@ const TableBox = ({headList, bodyList, primaryKey, onClick}) => (
                             return (
                             <TableRow key={index}>
                                 {Object.keys(i).map((data, index)=>{
-                                    return (data==primaryKey) ?
+                                    return (data===primaryKey) ?
                                     <PrimaryKey key={index} onClick={onClick}>{i[data]}</PrimaryKey>
                                     :
                                     <TableBody key={index}>{i[data]}</TableBody>

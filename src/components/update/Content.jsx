@@ -13,7 +13,7 @@ const Content = (props) => {
             console.log("UPDATE working");
             console.log(props.selectId);
             new Promise(async (resolve, reject) => {
-                let selectNotice = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
+                let selectNotice = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
                     method: 'GET',
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("YAT"),
