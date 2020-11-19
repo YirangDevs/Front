@@ -7,13 +7,13 @@ import getId from '../../init/getSelectId'
 import '../../css/read.css';
 import UrgentButton from "./urgentButton"
 import UrgentTitle from "./UrgentTitle"
-import store from "../../store/store"
+
 
 const Container = () => {
     run();
 
     getId();
-    var userRole = store.getState().user_reducer.role
+
     return (
         <>
             <div className="container">
@@ -21,8 +21,6 @@ const Container = () => {
                 <TopBar></TopBar>
                 <Content></Content>
                 <UrgentButton></UrgentButton>
-
-
             </div>
         </>
     )

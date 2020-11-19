@@ -28,7 +28,7 @@ const Content = (props) => {
     }
     useEffect(() => {
         new Promise(async (resolve, reject) => {
-            let file = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
+            let file = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
                 method: 'GET',
 
             }).then((res) => res.json());

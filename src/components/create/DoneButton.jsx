@@ -14,7 +14,7 @@ const DoneButton = (props, history) => {
     });
 
     const POSTdata = (data) => {
-        fetch(_.HOST_URL + ":8080/v1/apis/manage/notices", {
+        fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,8 +22,7 @@ const DoneButton = (props, history) => {
             },
             body: data,
         }).then(response => response.text())
-            .then(response => { props.SUBMIT() })
-            .then(result => { console.log(result); })
+            .then(response => {props.SUBMIT() })
             .catch(error => console.log('error', error))
 
     }

@@ -23,7 +23,7 @@ const SelectBtn = (props) => {
         if (props.selectTitle) {
             console.log("DELETE working,,,,");
             new Promise(async (resolve, reject) => {
-                let DeleteSelect = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
+                let DeleteSelect = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
                     method: "DELETE",
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("YAT"),
@@ -47,7 +47,7 @@ const SelectBtn = (props) => {
                     if (window.confirm("이게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
                         console.log("i have  a power");
 
-                        await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/force/" + Number(props.selectId), {
+                        await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/force/" + Number(props.selectId), {
                             method: "DELETE",
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("YAT"),
