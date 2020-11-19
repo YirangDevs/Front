@@ -32,10 +32,10 @@ const TableBody = styled.td`
     border-bottom: solid #ccd4e0 1px;
 
 `
-
 const PrimaryKey = styled(TableBody)`
     cursor: pointer;
 `
+
 
 const TableBox = ({headList, bodyList, primaryKey, onClick}) => (
     <>

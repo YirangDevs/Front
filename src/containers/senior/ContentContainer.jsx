@@ -158,7 +158,8 @@ const ContentContainer = () => {
         setBufferSenior((state)=>({...state, address:address}))
     }
     const addButton = () => {
-        setButton(true)
+        if(!bufferSenior.id){ setButton(true) }
+        
     }
     const editDeleteButton = () => {
         setButton(false)
@@ -166,21 +167,36 @@ const ContentContainer = () => {
     const uploadOnClick = (e) => {
         e.target.parentNode.children[0].click()
     }
-    const editOnClick = (e) => {
-        editSeniorFromServer(bufferSenior.id, bufferSenior).then(res=>{
-            if(res.ok){ history.go(0); alert("수정 성공"); }
+    const editOnClick = async () => {
+        await editSeniorFromServer(bufferSenior.id, bufferSenior).then(res=>{
+            if(res.ok){ alert("수정 성공"); }
         })
+        addEditDeleteRender();
     }
-    const deleteOnClick = (e) => {
-        deleteSeniorFromServer(bufferSenior.id).then(res=>{
-            if(res.ok){ history.go(0); alert("삭제 성공"); }
+    const deleteOnClick = async () => {
+        await deleteSeniorFromServer(bufferSenior.id).then(res=>{
+            if(res.ok){alert("삭제 성공"); }
         })
+        addEditDeleteRender();
+        setButton(true);
     }
-    const postOnClick = (e) => {
+    
+    const postOnClick = async (e) => {
         console.log(bufferSenior)
-        postSeniorToServer(bufferSenior).then(res=>{
-            if(res.ok){ history.go(0); alert("추가 성공"); }
+        await postSeniorToServer(bufferSenior).then(res=>{
+            if(res.ok){ alert("추가 성공");}
         })
+        addEditDeleteRender();
+    }
+    const addEditDeleteRender = () => {
+        setBufferSenior({})
+        console.log(bufferSenior)
+        fetchRegion(region)
+                .then((resolve) => {
+                    console.log(resolve)
+                    setSeniors(resolve);
+                })
+                .catch((e) => setSeniors([]));
     }
 
     const postSeniorsOnClick = (e) => {
