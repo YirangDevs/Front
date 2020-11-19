@@ -13,7 +13,7 @@ const VolunteerUpdateFormWrapper = styled.div`
 
 `
 
-const SelectBoxOptions1 = ["우선순위","1","2","3","4","5"]
+const SelectBoxOptions1 = ["우선순위","1","2","3","4","5","6","7","8","9","10"]
 const SelectBoxOptions2 = ["전체","수성구","중구","동구","서구","남구","북구","달서구"]
 
 const RadioGroup = styled.div`
@@ -41,7 +41,6 @@ const Group = styled.div`
 
 
 const VolunteerUpdateForm = ({nameOnChange, genderOnChange, typeOnChange, priorityOnChange, dateOnChange, phoneOnChange, regionOnChange, addressOnChange, currentSenior}) => {
-
     return (
         <>
         <VolunteerUpdateFormWrapper>
