@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from "../../config/env"
+import fetchData from "../../business/service/fetch_notice"
 //import YAT from "../service/yat"
 
 const DoneButton = (props) => {
@@ -13,18 +13,9 @@ const DoneButton = (props) => {
 
     });
 
-    const PUTdata = (data) => {
-        fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(props.Id), {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: "Bearer " + localStorage.getItem("YAT"),
-            },
-            body: data,
-        }).then(response => response.text())
-            .then(response => { props.SUBMIT(); console.log("update success") })
-            .then(result => { console.log(result); })
-            .catch(error => console.log('error', error))
+    const updateNotice = (data) => {
+        fetchData.updateNotice(props.Id, data)
+            .then(response => console.log(response))
 
     }
 
@@ -42,14 +33,9 @@ const DoneButton = (props) => {
 
 
     const onClick = () => {
-        //여기서 fetch ( method : post)
-
         if (isValue(props) === true) {
             console.log(props.Tov)
-            PUTdata(data)
-
-            //props.SUBMIT()
-
+            updateNotice(data);
             window.history.back();
         }
     }
@@ -59,8 +45,7 @@ const DoneButton = (props) => {
     return (
         <>
             <div className="done container__done">
-
-                <div className="done__btn" onClick={onClick}><span role="img" aria-label="update">🚧</span>게시글 수정 완료<span role="img" aria-label="update">🚧</span></div>
+                <div className="done__btn" onClick={onClick}>게시글 수정 완료</div>
             </div>
         </>
     )
