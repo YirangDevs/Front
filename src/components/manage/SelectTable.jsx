@@ -18,26 +18,31 @@ const SelectTable = (props) => {
 
 
     return (
-        <>
-            <table className="select__table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>제목</th>
-                        <th>봉사날짜</th>
-                        <th>봉사지역</th>
-                    </tr>
-                </thead>
-                <tbody onClick={handleClick} >
-                    <tr>
-                        <td></td>
-                        {/* <td><Link to="/read">{(props.title) ? props.title : "해당게시글을 선택하세요"}</Link></td> */}
-                        <td >{(props.title) ? props.title : "수정및 삭제할 게시글을 선택하세요"}</td>
-                        <td>{props.dov}</td>
-                        <td>{props.region}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <>{
+            notices.map((notice) => (
+                <table className="select__table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>제목</th>
+                            <th>봉사날짜</th>
+                            <th>봉사지역</th>
+                        </tr>
+                    </thead>
+                    <tbody onClick={handleClick} >
+                        <tr>
+                            <td></td>
+                            {/* <td><Link to="/read">{(props.title) ? props.title : "해당게시글을 선택하세요"}</Link></td> */}
+                            <td >{(props.title) ? props.title : "수정및 삭제할 게시글을 선택하세요"}</td>
+                            <td>{props.dov}</td>
+                            <td>{props.region}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            ))
+
+        }
         </>
     )
 }

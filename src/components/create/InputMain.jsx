@@ -28,7 +28,7 @@ const InputMain = ({ SET_CONFIG }) => {
                     <option value="중구">중구</option>
                     <option value="동구">동구</option>
                     <option value="서구">서구</option>
-                    <option value="서구">달서구</option>
+                    <option value="달서구">달서구</option>
                     <option value="남구">남구</option>
                     <option value="북구">북구</option>
                 </select>

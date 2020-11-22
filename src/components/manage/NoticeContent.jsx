@@ -1,7 +1,6 @@
 // content
 import React from 'react'
 import NoticeInformation from './NoticeInformation'
-import NoticeSelect from './NoticeSelect'
 import NoticeList from '../../containers/manage/NoticeList'
 const NoticeContent = () => {
     return (
@@ -9,7 +8,7 @@ const NoticeContent = () => {
             <div className="notice--manage content__notice--manage">
                 <NoticeInformation></NoticeInformation>
                 {/* <div className="notice__information"></div> */}
-                <NoticeSelect></NoticeSelect>
+                {/* <NoticeSelect></NoticeSelect> */}
                 {/* <div className="notice__select"></div> */}
                 <NoticeList></NoticeList>
                 {/* <div className="list"></div> */}
