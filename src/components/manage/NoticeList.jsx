@@ -1,16 +1,12 @@
 //notice
 import React, { useState, useEffect } from 'react';
-//import getNotice from "../../init/fetchGetData"
-import Switch from "@material-ui/core/Switch"
-import { FormControlLabel } from '@material-ui/core';
 import fetchdata from '../../business/service/get_notice_list';
 import _ from "../../config/env"
+import { Link } from 'react-router-dom';
 
 
 const NoticeList = (props) => {
     const [notices, setNotices] = useState([]);
-
-    var checked
     const [pagingNum, setpagingNum] = useState("0")
 
 
@@ -31,36 +27,85 @@ const NoticeList = (props) => {
     }, [props.totalNum])
 
 
-    const SelectId = (e) => {
+    const noticeClick = (e) => {
         console.log(e.target)
         const ID = e.target.id;
         console.log(ID)
-        const selectValue = notices.filter(notices => Number(notices.id) === Number(ID))
-        console.log(selectValue[0]);
-
-        props.SET_SELECT({
-            select: {
-                selectId: ID,
-                selectTitle: selectValue[0].title,
-                selectNor: selectValue[0].nor,
-                selectDov: selectValue[0].dov,
-                selectTov: selectValue[0].tov,
-                selectRegion: selectValue[0].region
-
-            }
-        });
-
-        if (checked) {
-            localStorage.setItem("SELECT_ID", ID)
-            //  window.open(_.HOST_URL + '/read', 'window_name',
-            //  'width=530,height=633,location=no,status=no,scrollbars=yes')
-            window.open(_.HOST_URL + '/read', 'window_name',
-                'width=530,height=633,location=no,status=no,scrollbars=yes')
-        }
+        localStorage.setItem("SELECT_ID", ID)
+        //     window.open(_.HOST_URL + '/read', 'window_name',
+        //         'width=530,height=633,location=no,status=no,scrollbars=yes')
+        window.open(_.HOST_URL + '/read', 'window_name',
+            'width=530,height=633,location=no,status=no,scrollbars=yes')
     }
 
-    const readOntable = (e) => {
-        checked = e.target.checked
+    const updateClick = (e) => {
+        console.log(e.target)
+        const updateID = e.target.id;
+        console.log(updateID)
+        props.SET_SELECT({
+            select: {
+                selectId: updateID,
+            }
+        })
+    }
+    const deleteClick = (e) => {
+        console.log(e.target)
+        const deleteID = e.target.id;
+        if (deleteID) {
+            console.log("DELETE working,,,,");
+            new Promise(async (resolve, reject) => {
+                let DeleteSelect = await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/" + Number(e.target.id), {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("YAT"),
+                    }
+                })
+                if (DeleteSelect.ok) {
+                    resolve(DeleteSelect)
+                    props.DELETE_SELECT();
+                    alert("💥게시글 삭제 성공!💥")
+                    fetchdata.getNum()
+                        .then((resolve) => {
+                            console.log(resolve.totalNoticeNums);
+                            props.SET_TOTALNUM({
+                                totalNum: {
+                                    totalNum: resolve.totalNoticeNums
+                                }
+                            })
+                        })
+                }
+                else {
+                    if (window.confirm("이게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
+                        console.log("i have  a power");
+
+                        await fetch(_.HOST_URL + ":8080/v1/apis/manage/notices/force/" + Number(e.target.id), {
+                            method: "DELETE",
+                            headers: {
+                                Authorization: "Bearer " + localStorage.getItem("YAT"),
+                            }
+                        }).then((response) => {
+                            console.log(response)
+                            console.log("force 삭제 성공");
+                            alert("💥게시글 및 활동 삭제 성공!💥")
+                            props.DELETE_SELECT();
+                            fetchdata.getNum()
+                                .then((resolve) => {
+                                    console.log(resolve.totalNoticeNums);
+                                    props.SET_TOTALNUM({
+                                        totalNum: {
+                                            totalNum: resolve.totalNoticeNums
+                                        }
+                                    })
+                                })
+                        })
+
+                    }
+                }
+            })
+        } else {
+            alert("게시물을 선택해 주세요")
+            console.log("Delete ERROR(NOT select)")
+        }
     }
 
     const pagingClick = (e) => {
@@ -82,43 +127,42 @@ const NoticeList = (props) => {
     return (
         <>
             <div className="notice__list--manage" id="reloadPage">
-                <div className="notice__list--button">
-                    <FormControlLabel
-                        control={
-                            <Switch
-                                checked={checked}
-                                onChange={readOntable}
-                                name="checked"
-                            // color="primary"
-                            />
-                        } label="테이블에서 바로 조회하기✏️"
-                    />
+                <div className="notice__select">
+                    {
+                        notices.map((notice) => (
+                            <div className="select__table__btn" key={notice.id}>
+                                <table className="select__table" >
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>제목</th>
+                                            <th>봉사날짜</th>
+                                            <th>봉사지역</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody onClick={noticeClick} >
+                                        <tr>
+                                            <td id={notice.id}>{notice.id}</td>
+                                            <td id={notice.id}> {notice.title}</td>
+                                            <td id={notice.id}>{notice.dov}</td>
+                                            <td id={notice.id}>{notice.region}</td>
+                                        </tr>
+                                    </tbody>
+                                    {/* <SelectBtn></SelectBtn> */}
+                                </table>
+                                <div className="select__btn">
+                                    <Link to="/update" >
+                                        <div className="update__btn" id={notice.id} onClick={updateClick} >수정</div>
+                                    </Link>
+                                    <div className="delete__btn" id={notice.id} onClick={deleteClick}>삭제</div>
+
+                                </div>
+                            </div>
+                        ))
+
+                    }
 
                 </div>
-                <table className="notice__table--manage">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>제목</th>
-                            <th>봉사날짜</th>
-                            <th>봉사지역</th>
-                            <th>인원수</th>
-                        </tr>
-                    </thead>
-                    {notices.map((notice) => (
-                        <tbody onClick={SelectId} key={notice.id} name={notice.id}>
-                            <tr >
-                                <td id={notice.id}></td>
-                                <td id={notice.id}> {notice.title}</td>
-                                <td id={notice.id}>{notice.dov}</td>
-                                <td id={notice.id}>{notice.region}</td>
-                                <td id={notice.id}>{notice.nor}</td>
-                            </tr>
-                        </tbody>
-
-                    ))}
-
-                </table>
                 <div className="notice__table--paging">
                     <ul className="pagination--notice">
                         {pageNumber.map((pageNum) => (
