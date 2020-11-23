@@ -1,6 +1,6 @@
 //notice
 import React, { useState, useEffect } from 'react';
-import fetchdata from '../../business/service/get_notice_list';
+import fetchData from '../../business/service/fetch_notice';
 import _ from "../../config/env"
 import { Link } from 'react-router-dom';
 
@@ -11,18 +11,18 @@ const NoticeList = (props) => {
 
 
     useEffect(() => {
-        fetchdata.getList(pagingNum)
-            .then((resolve) => {
-                console.log(resolve.notices)
-                setNotices(resolve.notices);
+        fetchData.getList(pagingNum)
+            .then((response) => {
+                console.log(response.notices)
+                setNotices(response.notices);
             })
     }, [pagingNum])
 
     useEffect(() => {
-        fetchdata.getList(0)
-            .then((resolve) => {
-                console.log(resolve.notices)
-                setNotices(resolve.notices);
+        fetchData.getList(0)
+            .then((response) => {
+                console.log(response.notices)
+                setNotices(response.notices);
             })
     }, [props.totalNum])
 
@@ -46,63 +46,49 @@ const NoticeList = (props) => {
             }
         })
     }
+
     const deleteClick = (e) => {
-        console.log(e.target)
         const deleteID = e.target.id;
         if (deleteID) {
             console.log("DELETE working,,,,");
-            new Promise(async (resolve, reject) => {
-                let DeleteSelect = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(e.target.id), {
-                    method: "DELETE",
-                    headers: {
-                        Authorization: "Bearer " + localStorage.getItem("YAT"),
-                    }
-                })
-                if (DeleteSelect.ok) {
-                    resolve(DeleteSelect)
-                    props.DELETE_SELECT();
-                    alert("💥게시글 삭제 성공!💥")
-                    fetchdata.getNum()
-                        .then((resolve) => {
-                            console.log(resolve.totalNoticeNums);
-                            props.SET_TOTALNUM({
-                                totalNum: {
-                                    totalNum: resolve.totalNoticeNums
-                                }
-                            })
-                        })
-                }
-                else {
-                    if (window.confirm("이게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
-                        console.log("i have  a power");
-
-                        await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/force/" + Number(e.target.id), {
-                            method: "DELETE",
-                            headers: {
-                                Authorization: "Bearer " + localStorage.getItem("YAT"),
-                            }
-                        }).then((response) => {
-                            console.log(response)
-                            console.log("force 삭제 성공");
-                            alert("💥게시글 및 활동 삭제 성공!💥")
-                            props.DELETE_SELECT();
-                            fetchdata.getNum()
-                                .then((resolve) => {
-                                    console.log(resolve.totalNoticeNums);
-                                    props.SET_TOTALNUM({
-                                        totalNum: {
-                                            totalNum: resolve.totalNoticeNums
-                                        }
-                                    })
+            fetchData.deleteNotice(deleteID)
+                .then((response) => {
+                    if (response.ok) {
+                        props.DELETE_SELECT();
+                        alert("💥게시글 삭제 성공!💥")
+                        fetchData.getNum()
+                            .then((response) => {
+                                props.SET_TOTALNUM({
+                                    totalNum: {
+                                        totalNum: response.totalNoticeNums
+                                    }
                                 })
-                        })
-
+                            })
                     }
-                }
-            })
-        } else {
-            alert("게시물을 선택해 주세요")
-            console.log("Delete ERROR(NOT select)")
+                    else {
+                        if (window.confirm("이게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
+                            console.log("i have  a power");
+                            fetchData.deletePowerNotice(deleteID)
+                                .then((response) => {
+                                    console.log(response)
+                                    console.log("force 삭제 성공");
+                                    alert("💥게시글 및 활동 삭제 성공!💥")
+                                    props.DELETE_SELECT();
+                                    fetchData.getNum()
+                                        .then((response) => {
+                                            console.log(response.totalNoticeNums);
+                                            props.SET_TOTALNUM({
+                                                totalNum: {
+                                                    totalNum: response.totalNoticeNums
+                                                }
+                                            })
+                                        })
+                                })
+
+                        }
+                    }
+
+                })
         }
     }
 
@@ -140,13 +126,12 @@ const NoticeList = (props) => {
                                     </thead>
                                     <tbody onClick={noticeClick} >
                                         <tr>
-                                            <td id={notice.id}>{notice.id}</td>
+                                            <td id={notice.id}></td>
                                             <td id={notice.id}> {notice.title}</td>
                                             <td id={notice.id}>{notice.dov}</td>
                                             <td id={notice.id}>{notice.region}</td>
                                         </tr>
                                     </tbody>
-                                    {/* <SelectBtn></SelectBtn> */}
                                 </table>
                                 <div className="select__btn">
                                     <Link to="/update" >

@@ -1,6 +1,6 @@
 
 import store from "../store/store"
-import fetchdata from "../business/service/get_notice_list"
+import fetchdata from "../business/service/fetch_notice"
 import action from "../store/actions/action"
 
 let check = {

@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from "../../config/env"
+import fetchData from "../../business/service/fetch_notice"
 //import YAT from "../service/yat"
 
 const DoneButton = (props, history) => {
@@ -14,17 +14,11 @@ const DoneButton = (props, history) => {
     });
 
     const POSTdata = (data) => {
-        fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: "Bearer " + localStorage.getItem("YAT"),
-            },
-            body: data,
-        }).then(response => response.text())
-            .then(response => {props.SUBMIT() })
-            .catch(error => console.log('error', error))
-
+        fetchData.createNotice(data)
+            .then((response) => {
+                console.log(response)
+                props.SUBMIT()
+            })
     }
 
 
@@ -47,7 +41,7 @@ const DoneButton = (props, history) => {
 
             POSTdata(data)
 
-            props.SUBMIT()
+            //props.SUBMIT()
             console.log("create success")
             window.history.back();
             //window.close()
