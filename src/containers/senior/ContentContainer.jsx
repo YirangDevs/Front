@@ -121,9 +121,8 @@ const ContentContainer = () => {
         const senior = seniors.filter((i)=>i.phone===primaryKey)[0]
         setBufferSenior(senior)
         setCurrentSenior(senior)
-        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[0].disabled=true;
-        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[1].disabled=true;
 
+        genderRadioDisabled(e)
     }
 
     const nameOnChange = (e) => {
@@ -134,6 +133,14 @@ const ContentContainer = () => {
         const sex=e.target.value
         setBufferSenior((state)=>({...state, sex:sex}))
         console.log(e.target)
+    }
+    const genderRadioDisabled=(e)=>{
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[0].disabled=true;
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[1].disabled=true;
+    }
+    const genderRadioAbled = (e) => {
+        e.target.parentNode.previousSibling.firstChild.lastChild.children[0].disabled=false;
+        e.target.parentNode.previousSibling.firstChild.lastChild.children[1].disabled=false;
     }
     const typeOnChange = (e) => {
         //console.log("눌림")
@@ -170,22 +177,27 @@ const ContentContainer = () => {
     const uploadOnClick = (e) => {
         e.target.parentNode.children[0].click()
     }
-    const editOnClick = async () => {
+    const editOnClick = async (e) => {
+        genderRadioAbled(e)
         await editSeniorFromServer(bufferSenior.id, bufferSenior).then(res=>{
             if(res.ok){ alert("수정 성공"); }
         })
+        
         addEditDeleteRender();
+        
     }
-    const deleteOnClick = async () => {
+    const deleteOnClick = async (e) => {
+        genderRadioAbled(e)
         await deleteSeniorFromServer(bufferSenior.id).then(res=>{
             if(res.ok){alert("삭제 성공"); }
         })
         addEditDeleteRender();
         setButton(true);
+        
     }
     
-    const postOnClick = async (e) => {
-        console.log(bufferSenior)
+    const postOnClick = async () => {
+        //console.log(bufferSenior)
         await postSeniorToServer(bufferSenior).then(res=>{
             if(res.ok){ alert("추가 성공");}
         })
