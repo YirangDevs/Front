@@ -1,0 +1,1 @@
+SELECT notice_id FROM `notice` where notice_id<800;

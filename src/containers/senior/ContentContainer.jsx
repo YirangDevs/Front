@@ -121,6 +121,8 @@ const ContentContainer = () => {
         const senior = seniors.filter((i)=>i.phone===primaryKey)[0]
         setBufferSenior(senior)
         setCurrentSenior(senior)
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[0].disabled=true;
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[1].disabled=true;
 
     }
 
@@ -131,6 +133,7 @@ const ContentContainer = () => {
     const genderOnChange = (e) => {
         const sex=e.target.value
         setBufferSenior((state)=>({...state, sex:sex}))
+        console.log(e.target)
     }
     const typeOnChange = (e) => {
         //console.log("눌림")
