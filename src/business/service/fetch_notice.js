@@ -43,15 +43,21 @@ let data = {
      * @method GET
      * @query ?page = pageNum
      */
-    getList : async (pageNum) => {
-        const res = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices?page=" + Number(pageNum), {
+    getList : (pageNum) => {
+        return fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices?page=" + Number(pageNum), {
             method: 'GET',
-        })
-        if(res)
-            {
-                console.log(res);
+        }).then(res=>{
+            if(res.ok){
+                console.log("jdsalkfslk",res.json())
+                return res.json()
+            }else{
+
+               throw Error("No Page")
             }
-        return await res.json();
+
+        }).catch((e)=>{
+            return [];
+        })
     },
 
     /**

@@ -24,8 +24,7 @@ const NoticeTable = () => {
     useEffect(() => {
         fetchData.getList(pagingNum)
             .then((resolve) => {
-                console.log(resolve.notices)
-                setNotices(resolve.notices);
+                setNotices(resolve);
             })
     }, [pagingNum])
 
