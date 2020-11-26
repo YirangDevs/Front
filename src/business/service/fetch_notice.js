@@ -48,7 +48,6 @@ let data = {
             method: 'GET',
         }).then(res=>{
             if(res.ok){
-                console.log("jdsalkfslk",res.json())
                 return res.json()
             }else{
 

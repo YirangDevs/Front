@@ -13,8 +13,8 @@ const NoticeList = (props) => {
     useEffect(() => {
         fetchData.getList(pagingNum)
             .then((response) => {
-                console.log(response.notices)
-                setNotices(response);
+
+                setNotices(response.notices);
             })
     }, [pagingNum])
 
