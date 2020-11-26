@@ -14,7 +14,7 @@ const NoticeList = (props) => {
         fetchData.getList(pagingNum)
             .then((response) => {
                 console.log(response.notices)
-                setNotices(response.notices);
+                setNotices(response);
             })
     }, [pagingNum])
 
