@@ -74,7 +74,7 @@ const ContentContainer = () => {
                             type : i.type,
                             date: i.date,
                             priority : i.priority,
-
+                            needs : i.needs
 
                         }
                     })
@@ -150,6 +150,10 @@ const ContentContainer = () => {
     const priorityOnChange = (e) => {
         const priority=e.target.value
         setBufferSenior((state)=>({...state, priority:priority}))
+    }
+    const needsOnChange = (e) => {
+        const needs=e.target.value
+        setBufferSenior((state)=>({...state, needs:needs}))
     }
     const dateOnChange = (e) => {
         const date=e.target.value
@@ -259,8 +263,9 @@ const ContentContainer = () => {
             const typeData = rowObj[i]["봉사유형"]
             const dateData = rowObj[i]["봉사날짜"]
             const priorityData = rowObj[i]["어르신 우선순위"]
+            const needsData = rowObj[i]["필요인원"]
 
-            seniorjson.push({name: nameData, sex: sexData, region : regionData, address : addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData})
+            seniorjson.push({name: nameData, sex: sexData, region : regionData, address : addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData})
         }
         setExcelData(seniorjson)
     }
@@ -288,6 +293,7 @@ const ContentContainer = () => {
                 genderOnChange={genderOnChange}
                 typeOnChange={typeOnChange}
                 priorityOnChange={priorityOnChange}
+                needsOnChange={needsOnChange}
                 dateOnChange={dateOnChange}
                 phoneOnChange={phoneOnChange}
                 regionOnChange={regionOnChange}

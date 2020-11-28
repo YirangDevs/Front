@@ -53,7 +53,7 @@ const SelectBoxWrapper = styled.div`
 `
 
 const selectBoxOptions = ["전체","수성구","중구","동구","서구","남구","북구","달서구"]
-const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위"]
+const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"]
 
 const Content = ({
                      currentSenior,
@@ -69,6 +69,7 @@ const Content = ({
                      genderOnChange,
                      typeOnChange,
                      priorityOnChange,
+                     needsOnChange,
                      dateOnChange,
                      phoneOnChange,
                      regionOnChange,
@@ -96,7 +97,7 @@ const Content = ({
                 </VolunteerLayout>
                 <AdminLayout>
                     {/* <InputForm></InputForm> */}
-                    <VolunteerUpdateForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}></VolunteerUpdateForm>
+                    <VolunteerUpdateForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}></VolunteerUpdateForm>
 
                     {button? <Button width="90%" height="2.5rem" onClick={postOnClick} value="확인" ></Button>:
                         <EditDeleteLayout>
