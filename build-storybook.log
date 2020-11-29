@@ -1,0 +1,53 @@
+info @storybook/react v6.1.8
+info 
+info => Cleaning outputDir /tmp/chromatic--279-GUcs4K0K8ii4
+info => Copying static files from: public
+info => Using prebuilt manager
+info => Building preview..
+info => Loading preview config..
+info => Loading presets
+info => Loading 1 config file in "./.storybook"
+info => Loading 7 other files in "./.storybook"
+info => Adding stories defined in ".storybook/main.js"
+info => Loading Webpack configuration from `node_modules/react-scripts`
+info => Removing existing JavaScript and TypeScript rules.
+info => Modifying Create React App rules.
+info => Using default Webpack setup
+info => Compiling preview..
+<s> [webpack.Progress] 0% compiling
+<s> [webpack.Progress] 10% building 0/0 modules 0 active 
+<s> [webpack.Progress] 10% building 0/1 modules 1 active multi /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/core/dist/server/common/polyfills.js /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/core/dist/server/preview/globals.js /mnt/c/Users/yongw/Desktop/YirangDev/.storybook/storybook-init-framework-entry.js /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/common/config.js-generated-other-entry.js /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js-generated-other-entry.js /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-links/dist/preset/addDecorator.js-generated-other-entry.js /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-actions/dist/preset/addDecorator.js-generated-other-entry.js /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-actions/dist/preset/addArgs.js-generated-other-entry.js /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-backgrounds/dist/preset/addDecorator.js-generated-other-entry.js /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-backgrounds/dist/preset/addParameter.js-generated-other-entry.js /mnt/c/Users/yongw/Desktop/YirangDev/.storybook/preview.js-generated-config-entry.js /mnt/c/Users/yongw/Desktop/YirangDev/.storybook/generated-stories-entry.js
+<s> [webpack.Progress] 10% building 1/1 modules 0 active 
+<s> [webpack.Progress] 10% building 1/2 modules 1 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-links/dist/preset/addDecorator.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 1/3 modules 2 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-actions/dist/preset/addDecorator.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 1/4 modules 3 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-actions/dist/preset/addArgs.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 1/5 modules 4 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-backgrounds/dist/preset/addDecorator.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 1/6 modules 5 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-backgrounds/dist/preset/addParameter.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 1/7 modules 6 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/common/config.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 1/8 modules 7 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 2/8 modules 6 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 3/8 modules 5 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 4/8 modules 4 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 5/8 modules 3 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 6/8 modules 2 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 7/8 modules 1 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js-generated-other-entry.js
+<s> [webpack.Progress] 10% building 8/8 modules 0 active 
+<s> [webpack.Progress] 10% building 8/9 modules 1 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/core/dist/server/preview/globals.js
+<s> [webpack.Progress] 10% building 8/10 modules 2 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/core/dist/server/common/polyfills.js
+<s> [webpack.Progress] 10% building 8/11 modules 3 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-links/dist/preset/addDecorator.js
+<s> [webpack.Progress] 10% building 8/12 modules 4 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-actions/dist/preset/addDecorator.js
+<s> [webpack.Progress] 10% building 8/13 modules 5 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-backgrounds/dist/preset/addDecorator.js
+<s> [webpack.Progress] 10% building 8/14 modules 6 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-backgrounds/dist/preset/addParameter.js
+<s> [webpack.Progress] 10% building 8/15 modules 7 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-actions/dist/preset/addArgs.js
+<s> [webpack.Progress] 10% building 8/16 modules 8 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/common/config.js
+<s> [webpack.Progress] 10% building 8/17 modules 9 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js
+<s> [webpack.Progress] 11% building 9/17 modules 8 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js
+<s> [webpack.Progress] 11% building 10/17 modules 7 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js
+<s> [webpack.Progress] 11% building 11/17 modules 6 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js
+<s> [webpack.Progress] 11% building 12/17 modules 5 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js
+<s> [webpack.Progress] 11% building 13/17 modules 4 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js
+<s> [webpack.Progress] 11% building 14/17 modules 3 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js
+<s> [webpack.Progress] 11% building 15/17 modules 2 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js
+<s> [webpack.Progress] 11% building 15/18 modules 3 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/react-scripts/node_modules/babel-loader/lib/index.js??ref--10-oneOf-1!/mnt/c/Users/yongw/Desktop/YirangDev/node_modules/eslint-loader/dist/cjs.js??ref--9-0!/mnt/c/Users/yongw/Desktop/YirangDev/.storybook/storybook-init-framework-entry.js
+<s> [webpack.Progress] 11% building 15/19 modules 4 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/react-scripts/node_modules/babel-loader/lib/index.js??ref--10-oneOf-1!/mnt/c/Users/yongw/Desktop/YirangDev/node_modules/eslint-loader/dist/cjs.js??ref--9-0!/mnt/c/Users/yongw/Desktop/YirangDev/.storybook/preview.js-generated-config-entry.js
+<s> [webpack.Progress] 11% building 15/20 modules 5 active /mnt/c/Users/yongw/Desktop/YirangDev/node_modules/react-scripts/node_modules/babel-loader/lib/index.js??ref--10-oneOf-1!/mnt/c/Users/yongw/Desktop/YirangDev/node_modules/eslint-loader/dist/cjs.js??ref--9-0!/mnt/c/Users/yongw/Desktop/YirangDev/.storybook/generated-stories-entry.js
