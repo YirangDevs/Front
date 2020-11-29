@@ -12,7 +12,8 @@ const Template = (args) => <Button {...args} />;
 
 export const Btn = Template.bind({});
 Btn.args = {
-    width: 'auto',
+    width: '9rem',
+    height: '2.5rem',
     value: 'Button',
 };
 
