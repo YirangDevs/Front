@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Logo from "../atoms/Logo"
+import Logo from "../atoms/Logo/index"
 
 const TopBarStyle = styled.div`
   position: absolute;

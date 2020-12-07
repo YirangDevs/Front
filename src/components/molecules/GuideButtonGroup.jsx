@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import GuideButton from "../atoms/GuideButton"
+import GuideButton from "../atoms/GuideButton/index"
 import {useHistory} from "react-router-dom";
 
 

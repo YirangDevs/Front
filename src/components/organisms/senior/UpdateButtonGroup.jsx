@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import FileBox from "../../atoms/FileBox"
-import FunctionButton from "../../atoms/FunctionButton"
+import FileBox from "../../atoms/FileBox/index"
+import FunctionButton from "../../atoms/FunctionButton/index"
 import ExcelPreview from "../../../pages/ExcelPreview"
 
 

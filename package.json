@@ -18,6 +18,7 @@
     "react-table-scrollbar": "^0.1.9",
     "redux": "^4.0.5",
     "serialize-javascript": "^5.0.1",
+    "storybook": "^6.1.10",
     "styled-components": "^5.2.1",
     "xlsx": "^0.16.8",
     "xlsx-to-json-lc": "^0.5.0",
@@ -54,7 +55,6 @@
     "@storybook/node-logger": "^6.1.8",
     "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/react": "^6.1.8",
-    "babel-loader": "^8.2.2",
     "chromatic": "^5.4.0"
   }
 }
