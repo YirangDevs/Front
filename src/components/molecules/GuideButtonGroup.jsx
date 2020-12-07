@@ -18,17 +18,17 @@ const GuideButtonGroup = () => {
     return(
         <>
             <GuideButtonWrapper>
-                <Index value="피봉사자 데이터 업로드" onClick={()=>history.push("/Seniors")}>
+                <GuideButton value="피봉사자 데이터 업로드" onClick={()=>history.push("/Seniors")}>
 
-                </Index>
+                </GuideButton>
 
 
-                <Index value="봉사 공고글 관리" onClick={()=>history.push("/manage")}>
+                <GuideButton value="봉사 공고글 관리" onClick={()=>history.push("/manage")}>
 
-                </Index>
-                <Index value="매칭 결과 확인">
+                </GuideButton>
+                <GuideButton value="매칭 결과 확인">
 
-                </Index>
+                </GuideButton>
             </GuideButtonWrapper>
 
         </>
