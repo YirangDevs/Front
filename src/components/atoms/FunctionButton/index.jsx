@@ -11,11 +11,11 @@ const Button = styled.input.attrs(props=>({type: "button"}))`
     
 `
 
-const FunctionButtonBox=({width, height, value, onClick})=>(
+const Index=({width, height, value, onClick})=>(
     <>
         <Button width={width} height={height} value={value} onClick={onClick}>
         </Button>
     </>
 )
 
-export default FunctionButtonBox
+export default Index

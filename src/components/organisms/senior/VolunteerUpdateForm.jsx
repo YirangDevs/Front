@@ -50,14 +50,14 @@ const VolunteerUpdateForm = ({nameOnChange, genderOnChange, typeOnChange, priori
 
                     <RadioButton name="gender" onClick={genderOnChange} value="남" defaultValue={currentSenior.sex==="남"} text="남성"></RadioButton>
 
-                    <RadioButton name="gender"  onClick={genderOnChange} value="여" defaultValue={currentSenior.sex==="여"} text="여성"></RadioButton>
+                    <RadioButton name="gender" onClick={genderOnChange} value="여" defaultValue={currentSenior.sex==="여"} text="여성"></RadioButton>
                 </RadioGroup>
 
             </Group>
             <Group>
                 <RadioGroup>
-                    <RadioButton onClick={typeOnChange} name="work" value="노력봉사" defaultValue={currentSenior.type==="노력봉사"}text="노력봉사"></RadioButton>
-                    <RadioButton onClick={typeOnChange} name="work" value="말벗봉사" defaultValue={currentSenior.type==="말벗봉사"}text="말벗봉사"></RadioButton>
+                    <RadioButton onClick={typeOnChange} name="work" value="노력봉사" defaultValue={currentSenior.type==="노력봉사"} text="노력봉사"></RadioButton>
+                    <RadioButton onClick={typeOnChange} name="work" value="말벗봉사" defaultValue={currentSenior.type==="말벗봉사"} text="말벗봉사"></RadioButton>
                 </RadioGroup>
             </Group>
             <Group>

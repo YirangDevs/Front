@@ -1,7 +1,7 @@
 import React from "react"
 import deleteSeniorFromServer from "../../business/service/delete_senior_from_server"
 import editSeniorFromServer from "../../business/service/edit_senior_from_server"
-import Button from "../atoms/Button"
+import Index from "../atoms/Button"
 
 const EditDelete = (props) => {
     
@@ -29,8 +29,8 @@ const EditDelete = (props) => {
     <div className="confirm">
     {/* <input type="button" value="수정" onClick={onClickEdit} className="edit__button"/>
         <input type="button" value="삭제" onClick={onClickDelete} className="delete__button"/> */}
-        <Button width="50%" height="2.5rem" value="수정" onClick={onClickEdit}/>
-        <Button width="50%" height="2.5rem" value="삭제" onClick={onClickDelete}/>
+        <Index width="50%" height="2.5rem" value="수정" onClick={onClickEdit}/>
+        <Index width="50%" height="2.5rem" value="삭제" onClick={onClickDelete}/>
     </div>
         
     </>

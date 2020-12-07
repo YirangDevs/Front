@@ -3,7 +3,7 @@ import styled from "styled-components"
 import SelectBox from "../../atoms/SelectBox"
 import TableBox from "../../atoms/TableBox"
 import Pagination from "../../atoms/Pagination"
-import UpdateButton from "../senior/UpdateButton"
+import UpdateButtonGroup from "./UpdateButtonGroup"
 import VolunteerUpdateForm from "../senior/VolunteerUpdateForm"
 import Button from "../../atoms/Button"
 import GuideButtonGroup from "../../molecules/GuideButtonGroup"
@@ -90,7 +90,7 @@ const Content = ({
             <Container>
                 <VolunteerLayout>
                     <SelectBoxWrapper>
-                        <SelectBox width="20%" height="2rem"defaultValue={region} onChange={selectRegion} options={selectBoxOptions}/>
+                        <SelectBox width="20%" height="2rem" defaultValue={region} onChange={selectRegion} options={selectBoxOptions}/>
                     </SelectBoxWrapper>
                     <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior}/>
 
@@ -105,7 +105,7 @@ const Content = ({
                             <Button onClick={deleteOnClick} width="50%" height="2.5rem" value="삭제"></Button>
                         </EditDeleteLayout>}
                     {/* <Function></Function> */}
-                    <UpdateButton postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen = {isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButton>
+                    <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen = {isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButtonGroup>
                     <GuideButtonGroup></GuideButtonGroup>
                 </AdminLayout>
 

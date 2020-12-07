@@ -1,8 +1,8 @@
 import React from "react"
-import TableBox from "../components/atoms/TableBox";
+import Index from "../components/atoms/TableBox";
 import styled from "styled-components"
 import TableScrollbar from "react-table-scrollbar"
-import FunctionButtonBox from "../components/atoms/FunctionButtonBox";
+import Index from "../components/atoms/FunctionButton";
 
 const Modal = styled.div`
     position: fixed;
@@ -15,7 +15,7 @@ const Modal = styled.div`
 `
 
 const PreviewModal = styled.div`
-      width: 650px;
+      width: 580px;
       height: 621px;
       display: flex;
       flex-direction: column;
@@ -51,7 +51,7 @@ const ButtonLayout = styled.div`
     
 `
 
-const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"]
+const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위"]
 const ExcelPreview = ({isModalOpen, excelData, closeModal, postSeniorsOnClick}) => {
 
     const filteredData = excelData.map((i)=>{
@@ -66,13 +66,13 @@ const ExcelPreview = ({isModalOpen, excelData, closeModal, postSeniorsOnClick}) 
         <PreviewModal>
             <ModalContent>
                 <TableScrollbar rows={10}>
-                    <TableBox headList={TableBoxHeadLists} bodyList={filteredData}>
+                    <Index headList={TableBoxHeadLists} bodyList={filteredData}>
 
-                    </TableBox>
+                    </Index>
                 </TableScrollbar>
                 <ButtonLayout>
-                    <FunctionButtonBox width="45%" height="90%" onClick={postSeniorsOnClick} value="확인"></FunctionButtonBox>
-                    <FunctionButtonBox width="45%" height="90%" onClick={closeModal} value="취소"></FunctionButtonBox>
+                    <Index width="45%" height="90%" onClick={closeModal} value="취소"></Index>
+                    <Index width="45%" height="90%" onClick={postSeniorsOnClick} value="확인"></Index>
                 </ButtonLayout>
 
             </ModalContent>

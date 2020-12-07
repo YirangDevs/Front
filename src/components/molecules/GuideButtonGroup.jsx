@@ -23,7 +23,7 @@ const GuideButtonGroup = () => {
                 </GuideButton>
 
 
-                <GuideButton value="봉사 공고글 관리"onClick={()=>history.push("/manage")}>
+                <GuideButton value="봉사 공고글 관리" onClick={()=>history.push("/manage")}>
 
                 </GuideButton>
                 <GuideButton value="매칭 결과 확인">
