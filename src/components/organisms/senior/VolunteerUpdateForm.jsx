@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import TextBox from "../../atoms/TextBox"
-import RadioButton from "../../atoms/RadioButton"
-import SelectBox from "../../atoms/SelectBox"
-import DateSelector from "../../atoms/DateSelector"
+import TextBox from "../../atoms/TextBox/index"
+import RadioButton from "../../atoms/RadioButton/index"
+import SelectBox from "../../atoms/SelectBox/index"
+import DateSelector from "../../atoms/DateSelector/index"
 
 const VolunteerUpdateFormWrapper = styled.div`
     display: grid;

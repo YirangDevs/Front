@@ -1,11 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-import SelectBox from "../../atoms/SelectBox"
-import TableBox from "../../atoms/TableBox"
-import Pagination from "../../atoms/Pagination"
+import SelectBox from "../../atoms/SelectBox/index"
+import TableBox from "../../atoms/TableBox/index"
+import Pagination from "../../atoms/Pagination/index"
 import UpdateButtonGroup from "./UpdateButtonGroup"
 import VolunteerUpdateForm from "../senior/VolunteerUpdateForm"
-import Button from "../../atoms/Button"
+import Button from "../../atoms/Button/index"
 import GuideButtonGroup from "../../molecules/GuideButtonGroup"
 
 
