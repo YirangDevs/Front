@@ -1,8 +1,8 @@
 import React from "react"
-import Index from "../components/atoms/TableBox";
+import TableBox from "../components/atoms/TableBox";
 import styled from "styled-components"
 import TableScrollbar from "react-table-scrollbar"
-import Index from "../components/atoms/FunctionButton";
+import FunctionButton from "../components/atoms/FunctionButton";
 
 const Modal = styled.div`
     position: fixed;
@@ -66,13 +66,13 @@ const ExcelPreview = ({isModalOpen, excelData, closeModal, postSeniorsOnClick}) 
         <PreviewModal>
             <ModalContent>
                 <TableScrollbar rows={10}>
-                    <Index headList={TableBoxHeadLists} bodyList={filteredData}>
+                    <TableBox headList={TableBoxHeadLists} bodyList={filteredData}>
 
-                    </Index>
+                    </TableBox>
                 </TableScrollbar>
                 <ButtonLayout>
-                    <Index width="45%" height="90%" onClick={closeModal} value="취소"></Index>
-                    <Index width="45%" height="90%" onClick={postSeniorsOnClick} value="확인"></Index>
+                    <FunctionButton width="45%" height="90%" onClick={closeModal} value="취소"></FunctionButton>
+                    <FunctionButton width="45%" height="90%" onClick={postSeniorsOnClick} value="확인"></FunctionButton>
                 </ButtonLayout>
 
             </ModalContent>

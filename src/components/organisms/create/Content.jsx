@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Button from "../../atoms/Button"
+import Button from "../../atoms/Button/index"
 import NoticeUpdateForm from "./NoticeUpdateForm"
 
 const Container = styled.div`

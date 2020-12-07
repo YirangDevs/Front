@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Index from "../atoms/Logo"
+import Logo from "../atoms/Logo"
 
 const TopBarStyle = styled.div`
   position: absolute;
@@ -16,7 +16,7 @@ const TopBar = () => {
     return (
         <>
             <TopBarStyle>
-                <Index></Index>
+                <Logo></Logo>
             </TopBarStyle>
         </>
     )

@@ -5,7 +5,7 @@ import TableBox from "../../atoms/TableBox"
 import Pagination from "../../atoms/Pagination"
 import UpdateButtonGroup from "./UpdateButtonGroup"
 import VolunteerUpdateForm from "../senior/VolunteerUpdateForm"
-import Button from "../../atoms/Button"
+import Button from "../../atoms/Button/index"
 import GuideButtonGroup from "../../molecules/GuideButtonGroup"
 
 
