@@ -19,10 +19,10 @@ export const Button = styled.input.attrs(props=>({type: "button"}))`
     position: inherit;
 `
 
-const GuideButton=({value, onClick})=>(
+const Index=({value, onClick})=>(
     <>
         <Button value={value} onClick={onClick}/>
     </>
 )
 
-export default GuideButton
+export default Index

@@ -37,7 +37,7 @@ const PrimaryKey = styled(TableBody)`
 `
 
 
-const TableBox = ({headList, bodyList, primaryKey, onClick}) => (
+const Index = ({headList, bodyList, primaryKey, onClick}) => (
     <>
                 <Table>
                     <thead>
@@ -73,4 +73,4 @@ const TableBox = ({headList, bodyList, primaryKey, onClick}) => (
     </>
 )
 
-export default TableBox
+export default Index

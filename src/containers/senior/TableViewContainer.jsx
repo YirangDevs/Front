@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import fetchAllData from "../../business/service/fetchAllData";
 import fetchRegion from "../../business/service/fetchRegion";
 import Pagination from "../../components/senior/Pagination";
-import SelectBox from "../../components/atoms/SelectBox"
-import TableBox from "../../components/atoms/TableBox"
+import Index from "../../components/atoms/SelectBox"
+import Index from "../../components/atoms/TableBox"
 
 const TableViewContainer = () => {
     const [seniors, setSeniors] = useState([]);
@@ -82,8 +82,8 @@ const TableViewContainer = () => {
     return (
         <>
 
-            <SelectBox width="20%" height="2rem"defaultValue={region} onChange={selectRegion} options={["전체","수성구","중구","동구","서구","남구","북구","달서구"]}/>
-            <TableBox headList={["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위"]} bodyList={posts} primaryKey={"name"} onClick={(e)=>selectSenior(e)}/>
+            <Index width="20%" height="2rem" defaultValue={region} onChange={selectRegion} options={["전체","수성구","중구","동구","서구","남구","북구","달서구"]}/>
+            <Index headList={["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위"]} bodyList={posts} primaryKey={"name"} onClick={(e)=>selectSenior(e)}/>
             <Pagination postsPerPage={postsPerPage} totalPosts={seniors.length} paginate={selectPage}/>
         </>
     )

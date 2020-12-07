@@ -16,7 +16,7 @@ const PaginationItem = styled.li`
     cursor: pointer;
 `
 
-const Pagination = ({num, onClick}) => {
+const Index = ({num, onClick}) => {
     const pageNum = []
     for(let i=0;i<num;i++){
         pageNum.push(i+1)
@@ -34,4 +34,4 @@ const Pagination = ({num, onClick}) => {
     )
 }
 
-export default Pagination
+export default Index

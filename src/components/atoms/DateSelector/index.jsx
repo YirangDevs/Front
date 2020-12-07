@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import PropTypes from "prop-types";
 
 export const DateForm = styled.input.attrs((props)=> ({type:"date"}))`
     width: ${props=>props.width};
@@ -17,5 +18,19 @@ const DateSelector = ({width, height, defaultValue, onChange}) => (
         <DateForm onChange={onChange} defaultValue={defaultValue}width={width} height={height}></DateForm>
     </>
 )
+
+DateSelector.propTypes = {
+    width : PropTypes.string,
+    height: PropTypes.string,
+    defaultValue : PropTypes.string,
+    onChange : PropTypes.func
+}
+
+DateSelector.defaultProps = {
+    width: "auto",
+    height: "auto",
+    defaultValue: undefined,
+    onClick: undefined,
+};
 
 export default DateSelector

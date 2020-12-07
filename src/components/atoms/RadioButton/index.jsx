@@ -6,7 +6,7 @@ const Radio = styled.input.attrs((props)=> ({type:"radio"}))`
 `
 
 
-const RadioButton = ({name, defaultValue, onClick,value, text}) => (
+const Index = ({name, defaultValue, onClick,value, text}) => (
     //options = selectBox 목록 DataType = Array
 
     <>
@@ -14,4 +14,4 @@ const RadioButton = ({name, defaultValue, onClick,value, text}) => (
     </>
 )
 
-export default RadioButton
+export default Index

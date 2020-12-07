@@ -1,5 +1,5 @@
 import React from "react"
-import SelectBox from "../atoms/SelectBox"
+import Index from "../atoms/SelectBox"
 
 const VolunteerRegionForm = (props) => {
 
@@ -28,7 +28,7 @@ const VolunteerRegionForm = (props) => {
         </div>
     */}
     <div className="item">
-    <SelectBox width="95%" height="2.3rem" defaultValue={props.region} options = {["전체","수성구","중구","동구","서구","남구","북구","달서구"]}></SelectBox>
+    <Index width="95%" height="2.3rem" defaultValue={props.region} options = {["전체","수성구","중구","동구","서구","남구","북구","달서구"]}></Index>
     </div>
     
     </>

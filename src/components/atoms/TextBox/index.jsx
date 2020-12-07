@@ -11,11 +11,11 @@ export const Text = styled.input.attrs(props=>({type: "text"}))`
     background-color: #f1f3f6;
 `
 
-const TextBox=({width, height, value, onChange, placeholder})=>(
+const Index=({width, height, value, onChange, placeholder})=>(
     <>
         <Text width={width} height={height} value={value||""} onChange={onChange} placeholder={placeholder}>
         </Text>
     </>
 )
 
-export default TextBox
+export default Index

@@ -17,7 +17,7 @@ const LogoStyle = styled.div`
 
 
 
-const Logo = () => {
+const Index = () => {
     const history = useHistory();
     return (
         <>
@@ -28,4 +28,4 @@ const Logo = () => {
     )
 }
 
-export default Logo
+export default Index

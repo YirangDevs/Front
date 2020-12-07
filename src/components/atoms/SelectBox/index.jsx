@@ -12,7 +12,7 @@ export const Select = styled.select`
     
 `
 
-const SelectBox = ({width,height,defaultValue, onChange, options}) => (
+const Index = ({width,height,defaultValue, onChange, options}) => (
     //options = selectBox 목록 DataType = Array
 
     <>
@@ -22,4 +22,4 @@ const SelectBox = ({width,height,defaultValue, onChange, options}) => (
     </>
 )
 
-export default SelectBox
+export default Index
