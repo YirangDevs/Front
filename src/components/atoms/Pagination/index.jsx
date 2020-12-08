@@ -26,7 +26,7 @@ const Index = ({num, onClick}) => {
             <PaginationWrapper>
                 {
                     pageNum.map((i, index)=>{
-                        return <PaginationItem key={index} onClick={onClick}>{pageNum[index]}</PaginationItem>
+                        return <PaginationItem key={index} onClick={onClick}>{pageNum[index-1]}</PaginationItem>
                     })
                 }
             </PaginationWrapper>

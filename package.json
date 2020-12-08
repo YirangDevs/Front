@@ -18,6 +18,7 @@
     "react-table-scrollbar": "^0.1.9",
     "redux": "^4.0.5",
     "serialize-javascript": "^5.0.1",
+    "storybook": "^6.1.10",
     "styled-components": "^5.2.1",
     "xlsx": "^0.16.8",
     "xlsx-to-json-lc": "^0.5.0",

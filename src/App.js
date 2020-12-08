@@ -3,7 +3,7 @@ import Container from "./components/home/Container"
 import LoginRedirect from "./containers/home/LoginRedirect"
 import LogoutRedirect from "./containers/home/LogoutRedirect"
 import Manage from "./components/manage/Container"
-import Create from "./components/create/Container"
+import Create from "./pages/Create"
 import Read from "./components/read/Container"
 import Update from "./components/update/Container"
 import ReadAllNotice from './components/readAllNotice/Container'
