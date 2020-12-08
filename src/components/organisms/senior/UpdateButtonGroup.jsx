@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import FileBox from "../../atoms/FileBox/index"
 import FunctionButton from "../../atoms/FunctionButton/index"
-import ExcelPreview from "../../../pages/ExcelPreview"
+import ExcelPreview from "../../../pages/ExcelPreview/index"
 
 
 const VolunteerButtonWrapper = styled.div`

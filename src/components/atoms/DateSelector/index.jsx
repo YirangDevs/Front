@@ -17,28 +17,17 @@ ${props=>{
             return `
                 padding : 8px 16px;
             `
+        
     }
 }}
-    ${
-        (props=>{
-            switch(props.theme){
-                case "default":
-                    return `
-                        border : none;
-
-                    `
-                case "gray":
-                    return `
-                        background-color: #f1f3f6;
-                        border: 1px solid #ccd4e0;
-                        color: #707070;
-                    `
-            }
-        })
+    
 
     }
     font-size: 1.2rem;
     border-radius: 5px;
+    background-color: #f1f3f6;
+    border: 1px solid #ccd4e0;
+    color: #707070;
     
 `
 

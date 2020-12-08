@@ -11,33 +11,21 @@ const Template = (args) => <SelectBox {...args} />;
 
 const options = ["수성구", "동구", "서구", "남구", "북구", "중구", "달서구"];
 
-export const SelectBox_Small_Gray = Template.bind({});
-SelectBox_Small_Gray.args = {
+export const Small_SelectBox = Template.bind({});
+Small_SelectBox.args = {
     size: "small",
-    theme: {main: "gray"},
     defaultValue: '',
     options: options,
 };
-export const SelectBox_Default_Gray = Template.bind({});
-SelectBox_Default_Gray.args = {
+export const Default_SelectBox = Template.bind({});
+Default_SelectBox.args = {
     size: "default",
-    theme: {main: "gray"},
     defaultValue: '',
     options: options,
 };
-export const SelectBox_Large_Gray = Template.bind({});
-SelectBox_Large_Gray.args = {
+export const Large_SelectBox = Template.bind({});
+Large_SelectBox.args = {
     size: "large",
-    theme: {main: "gray"},
     defaultValue: '',
     options: options,
 };
-
-
-export const SelectBox_Default = Template.bind({});
-SelectBox_Default.args = {
-    theme: {},
-    defaultValue: '',
-    options: options,
-};
-

@@ -8,29 +8,19 @@ export default {
 
 const Template = (args) => <TextBox {...args} />;
 
-export const TextBox_Small_Gray = Template.bind({});
-TextBox_Small_Gray.args = {
+export const Small_TextBox = Template.bind({});
+Small_TextBox.args = {
     size: "small",
-    theme: {main: "gray"},
     defaultValue: '',
 };
-export const TextBox_Default_Gray = Template.bind({});
-TextBox_Default_Gray.args = {
+export const Default_TextBox = Template.bind({});
+Default_TextBox.args = {
     size: "default",
-    theme: {main: "gray"},
     defaultValue: '',
 };
-export const TextBox_Large_Gray = Template.bind({});
-TextBox_Large_Gray.args = {
+export const Large_TextBox = Template.bind({});
+Large_TextBox.args = {
     size: "large",
-    theme: {main: "gray"},
     defaultValue: '',
 };
-
-
-export const TextBox_Default = Template.bind({});
-TextBox_Default.args = {
-    theme: {},
-    defaultValue: '',
-}
 

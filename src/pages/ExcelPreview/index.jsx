@@ -1,5 +1,5 @@
 import React from "react"
-import TableBox from "../components/atoms/TableBox";
+import TableBox from "../../components/atoms/TableBox";
 import styled from "styled-components"
 import TableScrollbar from "react-table-scrollbar"
 import FunctionButton from "../components/atoms/FunctionButton";

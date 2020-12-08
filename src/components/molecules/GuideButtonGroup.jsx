@@ -18,7 +18,7 @@ const GuideButtonGroup = () => {
     return(
         <>
             <GuideButtonWrapper>
-                <GuideButton value="피봉사자 데이터 업로드" onClick={()=>history.push("/Seniors")}>
+                <GuideButton value="피봉사자 데이터 업로드" onClick={()=>history.push("/Index")}>
 
                 </GuideButton>
 

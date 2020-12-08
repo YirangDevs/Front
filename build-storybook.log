@@ -11,7 +11,7 @@ info => Loading 7 other files in "./.storybook"
 info => Adding stories defined in ".storybook/main.js"
 info => Loading Webpack configuration from `node_modules/react-scripts`
 info => Removing existing JavaScript and TypeScript rules.
-info => Modifying Create React App rules.
+info => Modifying Index React App rules.
 info => Using default Webpack setup
 info => Compiling preview..
 <s> [webpack.Progress] 0% compiling
