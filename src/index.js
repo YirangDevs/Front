@@ -5,14 +5,24 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux"
 import store from "./store/store"
+import {createGlobalStyle} from "styled-components";
 
+const GlobalStyle = createGlobalStyle`
+body {
+    padding : 0;
+    margin : 0;
+}
+`
 
 ReactDOM.render(
   
     <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <GlobalStyle>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </GlobalStyle>
+
     </React.StrictMode>
   ,
   document.getElementById('root')
