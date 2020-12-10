@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import ContentInput from './ContentInput';
 import ContentText from '../../containers/read/ContentText';
+import fetchData from "../../business/service/fetch_notice"
 
-import _ from "../../config/env"
 
 
 const Content = (props) => {
 
     const setSelectData = (notice) => {
-        console.log(notice)
         if (notice) {
             console.log(notice)
             props.SET_SELECT({
@@ -27,25 +26,11 @@ const Content = (props) => {
         }
     }
     useEffect(() => {
-        new Promise(async (resolve, reject) => {
-            let file = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(props.selectId), {
-                method: 'GET',
-
-            }).then((res) => res.json());
-            if (file) {
-                resolve(file);
-                console.log(file);
-            } else reject(new Error('User non exist'));
-        }).then((resolve) => {
-            console.log(resolve);
-            setSelectData(resolve)
-        });
-        // 데이터는 response.data 안에 들어있습니다.
+        fetchData.getNotice(props.selectId)
+            .then((response) => {
+                setSelectData(response);
+            })
     })
-
-
-
-
 
     return (
         <>

@@ -3,8 +3,8 @@ import fetchAllData from '../../business/service/fetchAllData';
 import fetchRegion from "../../business/service/fetchRegion";
 import Posts from './Posts';
 import Pagination from "./Pagination";
-import SelectBox from "../atoms/SelectBox"
-import TableBox from "../atoms/TableBox"
+import Index from "../atoms/SelectBox"
+import Index from "../atoms/TableBox"
 
 const RList = ({INPUT_SENIORS}) => {
     const [seniors, setSeniors] = useState([]);
@@ -54,8 +54,8 @@ const RList = ({INPUT_SENIORS}) => {
 
     return (
         <>
-            <SelectBox width="20%" height="2rem"defaultValue={region} onChange={selectRegion} options={["전체","수성구","중구","동구","서구","남구","북구","달서구"]}/>
-            <TableBox headList={["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위"]} bodyList={filteredPosts} primaryKey={"name"} onClick={(e)=>console.log(e.currentTarget)}/>
+            <Index width="20%" height="2rem" defaultValue={region} onChange={selectRegion} options={["전체","수성구","중구","동구","서구","남구","북구","달서구"]}/>
+            <Index headList={["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위"]} bodyList={filteredPosts} primaryKey={"name"} onClick={(e)=>console.log(e.currentTarget)}/>
             <Pagination postsPerPage={postsPerPage} totalPosts={seniors.length} paginate={paginate}/>
         </>
     )

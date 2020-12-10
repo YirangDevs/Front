@@ -1,11 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-import SelectBox from "../../atoms/SelectBox"
-import TableBox from "../../atoms/TableBox"
-import Pagination from "../../atoms/Pagination"
-import UpdateButton from "../senior/UpdateButton"
+import SelectBox from "../../atoms/SelectBox/index"
+import TableBox from "../../atoms/TableBox/index"
+import Pagination from "../../atoms/Pagination/index"
+import UpdateButtonGroup from "./UpdateButtonGroup"
 import VolunteerUpdateForm from "../senior/VolunteerUpdateForm"
-import Button from "../../atoms/Button"
+import Button from "../../atoms/Button/index"
 import GuideButtonGroup from "../../molecules/GuideButtonGroup"
 
 
@@ -53,7 +53,7 @@ const SelectBoxWrapper = styled.div`
 `
 
 const selectBoxOptions = ["전체","수성구","중구","동구","서구","남구","북구","달서구"]
-const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위"]
+const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"]
 
 const Content = ({
                      currentSenior,
@@ -69,6 +69,7 @@ const Content = ({
                      genderOnChange,
                      typeOnChange,
                      priorityOnChange,
+                     needsOnChange,
                      dateOnChange,
                      phoneOnChange,
                      regionOnChange,
@@ -89,14 +90,14 @@ const Content = ({
             <Container>
                 <VolunteerLayout>
                     <SelectBoxWrapper>
-                        <SelectBox width="20%" height="2rem"defaultValue={region} onChange={selectRegion} options={selectBoxOptions}/>
+                        <SelectBox width="20%" height="2rem" defaultValue={region} onChange={selectRegion} options={selectBoxOptions}/>
                     </SelectBoxWrapper>
                     <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior}/>
 
                 </VolunteerLayout>
                 <AdminLayout>
                     {/* <InputForm></InputForm> */}
-                    <VolunteerUpdateForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}></VolunteerUpdateForm>
+                    <VolunteerUpdateForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}></VolunteerUpdateForm>
 
                     {button? <Button width="90%" height="2.5rem" onClick={postOnClick} value="확인" ></Button>:
                         <EditDeleteLayout>
@@ -104,7 +105,7 @@ const Content = ({
                             <Button onClick={deleteOnClick} width="50%" height="2.5rem" value="삭제"></Button>
                         </EditDeleteLayout>}
                     {/* <Function></Function> */}
-                    <UpdateButton postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen = {isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButton>
+                    <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen = {isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButtonGroup>
                     <GuideButtonGroup></GuideButtonGroup>
                 </AdminLayout>
 

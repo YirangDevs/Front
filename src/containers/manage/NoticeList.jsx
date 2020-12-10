@@ -13,7 +13,13 @@ const mapDispatchToProps = (dispatch) => {
         SET_SELECT: function (payload) {
             dispatch(ACTION.SELECT_CONFIG__ACTION_FUNC(payload))
         },
+        DELETE_SELECT: function (payload) {
+            dispatch(ACTION.DELETE_SELECT__ACTION_FUNC(payload))
 
+        },
+        SET_TOTALNUM: function (payload) {
+            dispatch(ACTION.SET_TOTALNUM__ACTION_FUNC(payload))
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useCallback} from "react"
 import {useHistory} from "react-router-dom"
-import Content from "../../components/organisms/senior/Content"
+ import Content from "../../components/organisms/senior/Content"
+//import Content from "../../pages/Seniors/index"
 import fetchAllData from "../../business/service/fetchAllData"
 import fetchRegion from "../../business/service/fetchRegion"
 import styled from "styled-components"
@@ -47,12 +48,13 @@ const ContentContainer = () => {
         fetchAllData()
             .then((data) => {
                 setSeniors(data)
+
             })
             .catch((e) => setSeniors([]));
 
     }, [])
     
-
+    
     useEffect(()=>{
         currentSenior.id? setButton(false) : setButton(true)
     },[currentSenior])
@@ -74,7 +76,7 @@ const ContentContainer = () => {
                             type : i.type,
                             date: i.date,
                             priority : i.priority,
-
+                            needs : i.needs
 
                         }
                     })
@@ -122,6 +124,7 @@ const ContentContainer = () => {
         setBufferSenior(senior)
         setCurrentSenior(senior)
 
+        genderRadioDisabled(e)
     }
 
     const nameOnChange = (e) => {
@@ -131,6 +134,15 @@ const ContentContainer = () => {
     const genderOnChange = (e) => {
         const sex=e.target.value
         setBufferSenior((state)=>({...state, sex:sex}))
+        console.log(e.target)
+    }
+    const genderRadioDisabled=(e)=>{
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[0].disabled=true;
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[1].disabled=true;
+    }
+    const genderRadioAbled = (e) => {
+        e.target.parentNode.previousSibling.firstChild.lastChild.children[0].disabled=false;
+        e.target.parentNode.previousSibling.firstChild.lastChild.children[1].disabled=false;
     }
     const typeOnChange = (e) => {
         //console.log("눌림")
@@ -140,6 +152,10 @@ const ContentContainer = () => {
     const priorityOnChange = (e) => {
         const priority=e.target.value
         setBufferSenior((state)=>({...state, priority:priority}))
+    }
+    const needsOnChange = (e) => {
+        const needs=e.target.value
+        setBufferSenior((state)=>({...state, needs:needs}))
     }
     const dateOnChange = (e) => {
         const date=e.target.value
@@ -167,22 +183,27 @@ const ContentContainer = () => {
     const uploadOnClick = (e) => {
         e.target.parentNode.children[0].click()
     }
-    const editOnClick = async () => {
+    const editOnClick = async (e) => {
+        genderRadioAbled(e)
         await editSeniorFromServer(bufferSenior.id, bufferSenior).then(res=>{
             if(res.ok){ alert("수정 성공"); }
         })
+        
         addEditDeleteRender();
+        
     }
-    const deleteOnClick = async () => {
+    const deleteOnClick = async (e) => {
+        genderRadioAbled(e)
         await deleteSeniorFromServer(bufferSenior.id).then(res=>{
             if(res.ok){alert("삭제 성공"); }
         })
         addEditDeleteRender();
         setButton(true);
+        
     }
     
-    const postOnClick = async (e) => {
-        console.log(bufferSenior)
+    const postOnClick = async () => {
+        //console.log(bufferSenior)
         await postSeniorToServer(bufferSenior).then(res=>{
             if(res.ok){ alert("추가 성공");}
         })
@@ -244,8 +265,9 @@ const ContentContainer = () => {
             const typeData = rowObj[i]["봉사유형"]
             const dateData = rowObj[i]["봉사날짜"]
             const priorityData = rowObj[i]["어르신 우선순위"]
+            const needsData = rowObj[i]["필요인원"]
 
-            seniorjson.push({name: nameData, sex: sexData, region : regionData, address : addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData})
+            seniorjson.push({name: nameData, sex: sexData, region : regionData, address : addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData})
         }
         setExcelData(seniorjson)
     }
@@ -273,6 +295,7 @@ const ContentContainer = () => {
                 genderOnChange={genderOnChange}
                 typeOnChange={typeOnChange}
                 priorityOnChange={priorityOnChange}
+                needsOnChange={needsOnChange}
                 dateOnChange={dateOnChange}
                 phoneOnChange={phoneOnChange}
                 regionOnChange={regionOnChange}

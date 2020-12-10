@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useEffect } from "react"
-import fetchdata from "../../business/service/get_notice_list"
+import fetchData from "../../business/service/fetch_notice"
 import _ from "../../config/env"
 
 const NoticeTable = () => {
@@ -11,7 +11,7 @@ const NoticeTable = () => {
 
 
     useEffect(() => {
-        fetchdata.getNum()
+        fetchData.getNum()
             .then((resolve) => {
                 console.log(resolve.totalNoticeNums);
 
@@ -22,9 +22,9 @@ const NoticeTable = () => {
 
     //전체 게시물 받아옴 
     useEffect(() => {
-        fetchdata.getList(pagingNum)
+        fetchData.getList(pagingNum)
             .then((resolve) => {
-                console.log(resolve.notices)
+                console.log("게시물",resolve)
                 setNotices(resolve.notices);
             })
     }, [pagingNum])

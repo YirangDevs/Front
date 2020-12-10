@@ -51,7 +51,7 @@ a {
 
 .container__content--manage {
   width: 92%;
-  height: 78%;
+  height: 80%;
 
   /* border: 1px solid black; */
 }
@@ -115,18 +115,29 @@ a {
 .notice__select {
   margin-top: 20px;
   width: 100%;
-  height: 20%;
+  height: auto;
   display: flex;
+  flex-direction: column;
   justify-content: left;
   align-items: flex-start;
   /* border: solid 1px red; */
 }
-
+.select__table__btn {
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
 .select__table {
   width: 84%;
   height: 100%;
-  border: solid 1px #ccd4e0;
+  /* height: 20%; */
+  border: solid 1px rgb(204, 212, 224);
   color: #adadad;
+}
+.select__table thead {
+  background-color: rgb(204, 212, 224, 0.2);
 }
 .select__table th,
 td {
@@ -156,7 +167,7 @@ td {
   width: 55%;
 }
 .select__table th:nth-child(3) {
-  min-width: 4rem;
+  min-width: 6rem;
 }
 .select__table th:nth-child(4) {
   min-width: 4rem;
@@ -175,7 +186,8 @@ td {
 }
 
 .select__btn {
-  width: 16%;
+  margin-left: 1px;
+  width: 12%;
   height: 100%;
   color: #959595;
   font-size: 1.2rem;
@@ -321,7 +333,7 @@ ul.pagination--notice li:hover {
 .content__menu--manage {
   width: 30%;
   height: 100%;
-  margin-top: 25px;
+  margin-top: 40px;
   margin-left: 20px;
 }
 
@@ -335,6 +347,7 @@ ul.pagination--notice li:hover {
 .menu__info--manage {
   width: 95%;
   height: 25%;
+  min-height: 10rem;
 }
 
 .nav--manage {
@@ -425,6 +438,7 @@ ul.pagination--notice li:hover {
 .menu__make--manage {
   width: 95%;
   height: 15%;
+  min-height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -448,7 +462,7 @@ ul.pagination--notice li:hover {
 
   .container__content--manage {
     width: 92%;
-    height: 70%;
+    height: 80%;
   }
 
   .nav--manage {
@@ -462,6 +476,9 @@ ul.pagination--notice li:hover {
   .nav__btn--manage {
     width: 90%;
     padding: 0.5rem 0.3rem 0.5rem 0.2rem;
+  }
+  .select__btn {
+    width: 16%;
   }
 }
 
@@ -546,6 +563,9 @@ ul.pagination--notice li:hover {
     height: 52%;
     margin-top: 4.5rem;
   }
+  .select__btn {
+    width: 16%;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -565,39 +585,28 @@ ul.pagination--notice li:hover {
   .content__notice--manage {
     width: 95%;
   }
-
+  .select__table th,
+  td {
+    padding: 0;
+  }
   .select__table th:nth-child(3) {
     min-inline-size: 4rem;
   }
   .select__table th:nth-child(4) {
     min-inline-size: 4rem;
   }
-  /* .notice__information {
-    display: none;
-  } */
-
+  .select__btn {
+    width: 16%;
+  }
   .notice__list--manage {
     width: 100%;
   }
-  .notice__table--manage th:nth-child(2) {
-    width: 80%;
-  }
 
-  .notice__table--manage th:nth-child(3) {
-    min-width: 2rem;
-  }
-
-  .notice__table--manage th:nth-child(4) {
+  .select__table th:nth-child(3) {
     display: none;
   }
 
-  .notice__table--manage td:nth-child(4) {
-    display: none;
-  }
-  .notice__table--manage th:nth-child(5) {
-    display: none;
-  }
-  .notice__table--manage td:nth-child(5) {
+  .select__table td:nth-child(3) {
     display: none;
   }
 

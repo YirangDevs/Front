@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import TextBox from "../../atoms/TextBox"
-import RadioButton from "../../atoms/RadioButton"
-import SelectBox from "../../atoms/SelectBox"
-import DateSelector from "../../atoms/DateSelector"
+import TextBox from "../../atoms/TextBox/index"
+import RadioButton from "../../atoms/RadioButton/index"
+import SelectBox from "../../atoms/SelectBox/index"
+import DateSelector from "../../atoms/DateSelector/index"
 
 const VolunteerUpdateFormWrapper = styled.div`
     display: grid;
@@ -40,7 +40,7 @@ const Group = styled.div`
 `
 
 
-const VolunteerUpdateForm = ({nameOnChange, genderOnChange, typeOnChange, priorityOnChange, dateOnChange, phoneOnChange, regionOnChange, addressOnChange, currentSenior}) => {
+const VolunteerUpdateForm = ({nameOnChange, genderOnChange, typeOnChange, priorityOnChange, needsOnChange, dateOnChange, phoneOnChange, regionOnChange, addressOnChange, currentSenior}) => {
     return (
         <>
         <VolunteerUpdateFormWrapper>
@@ -50,20 +50,21 @@ const VolunteerUpdateForm = ({nameOnChange, genderOnChange, typeOnChange, priori
 
                     <RadioButton name="gender" onClick={genderOnChange} value="남" defaultValue={currentSenior.sex==="남"} text="남성"></RadioButton>
 
-                    <RadioButton name="gender"  onClick={genderOnChange} value="여" defaultValue={currentSenior.sex==="여"} text="여성"></RadioButton>
+                    <RadioButton name="gender" onClick={genderOnChange} value="여" defaultValue={currentSenior.sex==="여"} text="여성"></RadioButton>
                 </RadioGroup>
 
             </Group>
             <Group>
                 <RadioGroup>
-                    <RadioButton onClick={typeOnChange} name="work" value="노력봉사" defaultValue={currentSenior.type==="노력봉사"}text="노력봉사"></RadioButton>
-                    <RadioButton onClick={typeOnChange} name="work" value="말벗봉사" defaultValue={currentSenior.type==="말벗봉사"}text="말벗봉사"></RadioButton>
+                    <RadioButton onClick={typeOnChange} name="work" value="노력봉사" defaultValue={currentSenior.type==="노력봉사"} text="노력봉사"></RadioButton>
+                    <RadioButton onClick={typeOnChange} name="work" value="말벗봉사" defaultValue={currentSenior.type==="말벗봉사"} text="말벗봉사"></RadioButton>
                 </RadioGroup>
             </Group>
             <Group>
                 <SelectBox width="20%" height="2.2rem" options={SelectBoxOptions1} defaultValue={currentSenior.priority} onChange={priorityOnChange}></SelectBox>
-                <DateSelector width="35%" height="2.2rem" onChange={dateOnChange} defaultValue={currentSenior.date}></DateSelector>
-                <TextBox width="35%" height="2.2rem" onChange={phoneOnChange} value={currentSenior.phone} placeholder="- 를 제외하고 입력"></TextBox>
+                <TextBox width="15%" height="2.2rem" onChange={needsOnChange} value={currentSenior.needs} placeholder="필요 인원"></TextBox>
+                <DateSelector width="28%" height="2.2rem" onChange={dateOnChange} defaultValue={currentSenior.date}></DateSelector>
+                <TextBox width="25%" height="2.2rem" onChange={phoneOnChange} value={currentSenior.phone} placeholder="- 를 제외하고 입력"></TextBox>
             </Group>
             <Group>
                 <SelectBox width="95%" height="2.3rem" onChange={regionOnChange} defaultValue={currentSenior.region} options = {SelectBoxOptions2}></SelectBox>
