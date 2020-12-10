@@ -6,6 +6,7 @@ const ContentStyle = styled.div`
     height : auto;
     display : flex;
     justify-content : center;
+    flex-wrap : wrap;
 `
 
 const Content = ({children}) => {

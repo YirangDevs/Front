@@ -20,9 +20,12 @@ ${props=>{
         default:
             return `
                 font-size: 16px;
+                
             `
     }
 }}
+    
+    color: #707070;
 `
 
 

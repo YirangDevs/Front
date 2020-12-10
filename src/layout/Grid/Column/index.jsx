@@ -26,15 +26,16 @@ const ColumnLayout = styled.div`
     ${props=>props.gutter[1].xl ? `@media(min-width: 1200px){ padding-right : `+ props.gutter[1].xl+`px; padding-left : `+ props.gutter[1].xl`+px;}` : null}
     ${props=>props.gutter[0].xxl ? `@media(min-width: 1600px){ padding-top : `+ props.gutter[0].xxl+`px; padding-bottom : `+ props.gutter[0].xxl`+px;}` : null}
     ${props=>props.gutter[1].xxl ? `@media(min-width: 1600px){ padding-right : `+ props.gutter[1].xxl+`px; padding-left : `+ props.gutter[1].xxl`+px;}` : null}
-    
+   
+    ${props=>props.rightborder ? `border-right: 1px solid #ccd4e0;` : null }
 `
-const Col=({span, xs, sm, md, lg, xl, xxl, children})=>{
+const Col=({span,rightborder, xs, sm, md, lg, xl, xxl, children})=>{
     return (
 
     <>
         <RowContext.Consumer>
             {(value)=>(
-                <ColumnLayout span={span} gutter={value} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xxl}>
+                <ColumnLayout span={span} gutter={value} rightborder={rightborder} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xxl}>
                     {children}
                 </ColumnLayout>
             )}

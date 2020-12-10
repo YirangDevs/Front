@@ -1,16 +1,17 @@
 import React from "react"
 //import ContentContainer from "../../containers/senior/ContentContainer"
 import TopBar from "../../components/molecules/TopBar";
-import TableView from "./TableView"
+import SeniorContent from "./SeniorContent"
 
-const Seniors = () => {
+const Content = ({posts}) => {
+    console.log({posts});
     return (
         <>
             <TopBar/>
             {/* <ContentContainer/> */}
-            <TableView></TableView>
+            <SeniorContent posts={posts}></SeniorContent>
         </>
     )
 }
 
-export default Seniors
+export default Content
