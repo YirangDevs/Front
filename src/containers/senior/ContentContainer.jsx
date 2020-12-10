@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useCallback} from "react"
 import {useHistory} from "react-router-dom"
-import Content from "../../components/organisms/senior/Content"
+ import Content from "../../components/organisms/senior/Content"
+//import Content from "../../pages/Seniors/index"
 import fetchAllData from "../../business/service/fetchAllData"
 import fetchRegion from "../../business/service/fetchRegion"
 import styled from "styled-components"
@@ -47,12 +48,13 @@ const ContentContainer = () => {
         fetchAllData()
             .then((data) => {
                 setSeniors(data)
+
             })
             .catch((e) => setSeniors([]));
 
     }, [])
     
-
+    
     useEffect(()=>{
         currentSenior.id? setButton(false) : setButton(true)
     },[currentSenior])

@@ -11,13 +11,14 @@ const RowLayout = styled.div`
     
     ${props=>props.justify ? 'justify-content : '+props.justify +';': null}
     ${props=>props.align ? 'align-items : ' +props.align +';': null}
+    ${props=>props.border ? `border-top: 1px solid #ccd4e0; border-bottom: 1px solid #ccd4e0;` : null}
 
     
 `
-const Row=({justify, align, gutter, children})=>(
+const Row=({justify, align, border, gutter, children})=>(
     <>
         <RowContext.Provider value={gutter}>
-            <RowLayout justify={justify} align={align}>
+            <RowLayout justify={justify} border={border} align={align}>
                 {children}
             </RowLayout>
         </RowContext.Provider>
@@ -28,7 +29,8 @@ const Row=({justify, align, gutter, children})=>(
 Row.propTypes = {
     justify: PropTypes.string,
     align : PropTypes.string,
-    gutter : PropTypes.array
+    gutter : PropTypes.array,
+    border : PropTypes.bool,
 }
 
 Row.defaultProps = {

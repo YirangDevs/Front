@@ -14,11 +14,10 @@ ${props=>{
             `
         default:
             return `
-                padding : 8px 16px;
+                padding : 8px 12px;
             `
     }
 }}
-
     font-size: 1rem;
     border-radius: 5px;
     color: #adadad;

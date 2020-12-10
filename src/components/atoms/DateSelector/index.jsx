@@ -15,15 +15,12 @@ ${props=>{
             `
         default:
             return `
-                padding : 8px 16px;
+                padding : 6px 24px;
             `
         
     }
 }}
-    
-
-    }
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-radius: 5px;
     background-color: #f1f3f6;
     border: 1px solid #ccd4e0;

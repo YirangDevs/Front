@@ -7,7 +7,7 @@ ${props=>{
     switch(props.size){
         case "small":
             return `
-                padding : 2px 8px;
+                padding : 2px;
             `
         case "large":
             return `
@@ -19,7 +19,7 @@ ${props=>{
             `
     }
 }}
-
+    ${props=>(props.block) ? `width : 90%;` : null}
     font-size: 1rem;
     border-radius: 5px;
     background-color: #f1f3f6;
@@ -27,9 +27,9 @@ ${props=>{
     color: #707070;
 `
 
-const TextBox=({size, value, onChange, placeholder})=>(
+const TextBox=({size, block, value, onChange, placeholder})=>(
     <>
-        <Text size={size} value={value||""} onChange={onChange} placeholder={placeholder}>
+        <Text size={size} block={block} value={value||""} onChange={onChange} placeholder={placeholder}>
         </Text>
     </>
 )
