@@ -2,13 +2,13 @@ import React from "react"
 import Header from "../../layout/Header/index"
 import TopBar from "../../components/molecules/TopBar";
 import Image from "../../components/atoms/Image/index"
-const MainImagePath = "../../../img/main-img.png"
+import MainImg from "../../img/main-img.jpg"
 
 const Home = () => (
     <>
             <Header>
                 <TopBar></TopBar>
-                <Image src={MainImagePath} width={100}></Image>
+                <Image src={MainImg} width={100}></Image>
             </Header>
         </>
 )
