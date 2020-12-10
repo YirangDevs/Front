@@ -3,19 +3,24 @@ import styled from "styled-components"
 import Logo from "../atoms/Logo/index"
 
 const TopBarStyle = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.18);
+${props => props.main ? `
+     position : absolute; 
+     background-color: rgba(0, 0, 0, 0.18);
+     `: `
+     position: static;
+     background-color: rgba(204, 212, 224, 0.77);
+     `} 
+     width: 100%;
+     height: 4rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
 `
 
-const TopBar = () => {
+const TopBar = ({ main }) => {
     return (
         <>
-            <TopBarStyle>
+            <TopBarStyle main={main}>
                 <Logo></Logo>
             </TopBarStyle>
         </>

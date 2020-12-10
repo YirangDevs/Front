@@ -2,19 +2,20 @@
  * @author: chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2020-12-08 21:30:23
+ * @Last Modified time: 2020-12-09 01:25:22
  */
 
 
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import fetchNotice from "../../business/service/fetch_notice"
 import Content from "../../components/organisms/manage/Content"
+
 const Container = styled.div`
 display: flex;
 flex-direction: column;
 width: 100%;
-height: 100%;
+height: 100% - 4rem;
 `
 
 const ContentContainer = () => {
@@ -45,14 +46,15 @@ const ContentContainer = () => {
     }, [])
 
     // page별로 6개씩 받아오기 (pagination눌러서 페이지가 바뀔떄 )
-    useEffect(() => {
-        fetchNotice.getList(pagingNum)
-            .then((res) => {
-                console.log("pagination눌러서 페이지가 바뀔떄")
-                console.log(res.notices)
-                setLists(res.notices)
-            })
-    }, [pagingNum])
+
+    // useEffect(() => {
+    //     fetchNotice.getList(pagingNum)
+    //         .then((res) => {
+    //             console.log("pagination눌러서 페이지가 바뀔떄")
+    //             console.log(res.notices)
+    //             setLists(res.notices)
+    //         })
+    // }, [pagingNum])
 
     // 전체 페이지 갯수가 바뀔 때 마다 선택된 페이지 새로 받아오기 (삭제되었을때 바로 반영이 되로=도록)
     useEffect(() => {
@@ -63,7 +65,7 @@ const ContentContainer = () => {
                 console.log(res.notices)
                 setLists(res.notices);
             })
-    }, [listTotalNum])
+    }, [listTotalNum, pagingNum])
 
 
     /**
@@ -117,21 +119,20 @@ const ContentContainer = () => {
                             })
                     }
                     else {
-                        (window.confirm("이 게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) ?
-                            (
-                                console.log("i have a power"),
-                                fetchNotice.deletePowerNotice(deleteId)
-                                    .then((res) => {
-                                        console.log("force 삭제 성공");
-                                        alert("💥게시글 및 활동 삭제 성공!💥");
-                                        setDeleteId(null);
-                                        fetchNotice.getNum()
-                                            .then((res) => {
-                                                setListTotalNum(res.totalNoticeNums)
-                                            })
-                                    })
-                            ) :
-                            null
+                        if (window.confirm("이 게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
+                            console.log("i have a power")
+                            fetchNotice.deletePowerNotice(deleteId)
+                                .then((res) => {
+                                    console.log("force 삭제 성공");
+                                    alert("💥게시글 및 활동 삭제 성공!💥");
+                                    setDeleteId(null);
+                                    fetchNotice.getNum()
+                                        .then((res) => {
+                                            setListTotalNum(res.totalNoticeNums)
+                                        })
+                                });
+
+                        }
                     }
                 })
         }
@@ -146,12 +147,12 @@ const ContentContainer = () => {
     const pagingClick = (e) => {
         const pagingId = e.target.id;
         console.log(pagingId - 1)
-        setPagingNum(id - 1)
+        setPagingNum(pagingId - 1)
     }
 
     const pageNumber = []; // pagNation 배열 
 
-    for (let i = 1; i <= Math.ceil(totalNum / 6); i++) {
+    for (let i = 1; i <= Math.ceil(listTotalNum / 6); i++) {
         pageNumber.push(i);
     }
 
@@ -215,8 +216,8 @@ const ContentContainer = () => {
                     deleteClick={deleteClick} // notice를 삭제하기 버튼 눌었을떄 
                     pagingClick={pagingClick} // paging 클릭 시  
                     updateFunction={updateFunction} // notice를 수정 하기 위한 함수들 
-                >
-                </Content>
+                > </Content>
+
             </Container>
         </>
     )

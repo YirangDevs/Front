@@ -2,6 +2,10 @@ import React from "react"
 import styled from "styled-components"
 import PropTypes from 'prop-types';
 
+/**
+ * @description Information atomic
+ * @param 
+ */
 const ButtonComponent = styled.input.attrs(props=>({type: "button"}))`
     ${props=>{
         switch(props.size){
@@ -24,7 +28,7 @@ const ButtonComponent = styled.input.attrs(props=>({type: "button"}))`
     font-size: 0.9rem;
     border: 1px solid #ccd4e0;
     color: #707070;
-` 
+`
 
 const Button=({size, block, value, onClick})=>(
     <>
@@ -32,6 +36,8 @@ const Button=({size, block, value, onClick})=>(
         </ButtonComponent>
     </>
 )
+
+const Information = ({})
 
 Button.propTypes = {
     size: PropTypes.string,
@@ -45,4 +51,4 @@ Button.defaultProps = {
     onClick: undefined,
 };
 
-export default Button
+export default Information
