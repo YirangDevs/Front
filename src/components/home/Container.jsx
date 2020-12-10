@@ -1,6 +1,6 @@
 
 import React from "react"
-import TopBar from "../../components/molecules/TopBar"
+import TopBar from "./TopBar"
 import MainImg from "./MainImg"
 import Content from "../../containers/home/Content"
 import SideNav from "../../containers/home/SideNav"
@@ -16,7 +16,7 @@ const Container = () => {
     return (<>
         <div className="container">
             <SideNav></SideNav>
-            <TopBar main></TopBar>
+            <TopBar></TopBar>
             <Star></Star>
             <MainImg></MainImg>
             <Content></Content>

@@ -2,13 +2,18 @@ import React from 'react';
 import Container from "./components/home/Container"
 import LoginRedirect from "./containers/home/LoginRedirect"
 import LogoutRedirect from "./containers/home/LogoutRedirect"
+<<<<<<< HEAD
 import Manage from "./pages/Manages"
 import Create from "./components/create/Container"
+=======
+import Manage from "./components/manage/Container"
+import Create from "./pages/Create/index"
+>>>>>>> stage
 import Read from "./components/read/Container"
 import Update from "./components/update/Container"
 import ReadAllNotice from './components/readAllNotice/Container'
 import {BrowserRouter, Switch, Route} from "react-router-dom"
-import Seniors from "./pages/Seniors"
+import Seniors from "./pages/Seniors/index"
 
 
 function App() {

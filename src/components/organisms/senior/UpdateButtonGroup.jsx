@@ -1,8 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import FileBox from "../../atoms/FileBox/index"
-import FunctionButton from "../../atoms/FunctionButton/index"
-import ExcelPreview from "../../../pages/ExcelPreview"
+import Row from "../../../layout/Grid/Row/index"
+import Col from "../../../layout/Grid/Column/index"
+import Button from "../../atoms/Button/index"
+import ExcelPreview from "../../../pages/ExcelPreview/index"
 
 
 const VolunteerButtonWrapper = styled.div`
@@ -17,11 +19,22 @@ const UpdateButtonGroup = ({uploadFile, uploadOnClick, addButton, editDeleteButt
         <>
         <VolunteerButtonWrapper>
             <FileBox name="aFile" accept=".xls, .xlsx" onChange={uploadFile}/>
-            {/* <input type="file" id="selectedFile" name="aFile" accept=".xls,.xlsx" onChange={openModal}/> */}
+            {/*//<input type="file" id="selectedFile" name="aFile" accept=".xls,.xlsx" onChange={openModal}/>
             <FunctionButton width="29.5%" height="3rem" value="업로드" onClick={uploadOnClick}/>
             <FunctionButton width="29.5%" height="3rem" value="추가" onClick={addButton}/>
             <FunctionButton width="29.5%" height="3rem" value="수정/삭제" onClick={editDeleteButton}/>
-            <ExcelPreview isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick}></ExcelPreview>
+            <ExcelPreview isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick}></ExcelPreview> */}
+            <Row>
+                <Col span={4}>
+                    <Button value="업로드" onClick={uploadOnClick} block/>
+                </Col>
+                <Col span={4}>
+                    <Button value="추가" onClick={addButton} block/>
+                </Col>
+                <Col span={4}>
+                    <Button value="수정/삭제" onClick={editDeleteButton} block/>
+                </Col>
+            </Row>
         </VolunteerButtonWrapper>
         </>
     )

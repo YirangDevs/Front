@@ -31,7 +31,7 @@ const SideNav = (props) => {
                                 <div className="side-nav__logout" onClick={logout_click}>Logout</div>
                             </div>
                             <div className="side-nav__menu-wrapper">
-                                <Link to="/Seniors" className="side-nav__menu">
+                                <Link to="/Index" className="side-nav__menu">
                                     <div >봉사자 데이터 업로드</div>
                                 </Link>
 

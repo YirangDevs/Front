@@ -40,7 +40,7 @@ const Group = styled.div`
 `
 
 
-const VolunteerUpdateForm = ({nameOnChange, genderOnChange, typeOnChange, priorityOnChange, dateOnChange, phoneOnChange, regionOnChange, addressOnChange, currentSenior}) => {
+const VolunteerUpdateForm = ({nameOnChange, genderOnChange, typeOnChange, priorityOnChange, needsOnChange, dateOnChange, phoneOnChange, regionOnChange, addressOnChange, currentSenior}) => {
     return (
         <>
         <VolunteerUpdateFormWrapper>
@@ -62,8 +62,9 @@ const VolunteerUpdateForm = ({nameOnChange, genderOnChange, typeOnChange, priori
             </Group>
             <Group>
                 <SelectBox width="20%" height="2.2rem" options={SelectBoxOptions1} defaultValue={currentSenior.priority} onChange={priorityOnChange}></SelectBox>
-                <DateSelector width="35%" height="2.2rem" onChange={dateOnChange} defaultValue={currentSenior.date}></DateSelector>
-                <TextBox width="35%" height="2.2rem" onChange={phoneOnChange} value={currentSenior.phone} placeholder="- 를 제외하고 입력"></TextBox>
+                <TextBox width="15%" height="2.2rem" onChange={needsOnChange} value={currentSenior.needs} placeholder="필요 인원"></TextBox>
+                <DateSelector width="28%" height="2.2rem" onChange={dateOnChange} defaultValue={currentSenior.date}></DateSelector>
+                <TextBox width="25%" height="2.2rem" onChange={phoneOnChange} value={currentSenior.phone} placeholder="- 를 제외하고 입력"></TextBox>
             </Group>
             <Group>
                 <SelectBox width="95%" height="2.3rem" onChange={regionOnChange} defaultValue={currentSenior.region} options = {SelectBoxOptions2}></SelectBox>

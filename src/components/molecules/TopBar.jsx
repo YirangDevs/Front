@@ -17,10 +17,10 @@ ${props => props.main ? `
      align-items: center;
 `
 
-const TopBar = ({ main }) => {
+const TopBar = ({ absolute }) => {
     return (
         <>
-            <TopBarStyle main={main}>
+            <TopBarStyle main={absolute}>
                 <Logo></Logo>
             </TopBarStyle>
         </>

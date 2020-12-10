@@ -1,6 +1,7 @@
-import React, {useState, useEffect, useCallback} from "react"
-import {useHistory} from "react-router-dom"
+import React, { useState, useEffect, useCallback } from "react"
+import { useHistory } from "react-router-dom"
 import Content from "../../components/organisms/senior/Content"
+//import Content from "../../pages/Seniors/index"
 import fetchAllData from "../../business/service/fetchAllData"
 import fetchRegion from "../../business/service/fetchRegion"
 import styled from "styled-components"
@@ -12,7 +13,7 @@ import postSeniorsToServer from "../../business/service/post_seniors_to_server";
 
 const Container = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100%-4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,14 +22,14 @@ const Container = styled.div`
 const ContentContainer = () => {
 
     const [currentSenior, setCurrentSenior] = useState({
-        id : 0,
+        id: 0,
         name: "",
-        sex : "",
-        region : "",
-        phone : "",
-        type : "",
+        sex: "",
+        region: "",
+        phone: "",
+        type: "",
         date: "",
-        priority : 0,
+        priority: 0,
 
     })
     const [seniors, setSeniors] = useState([]);
@@ -47,47 +48,48 @@ const ContentContainer = () => {
         fetchAllData()
             .then((data) => {
                 setSeniors(data)
+
             })
             .catch((e) => setSeniors([]));
 
     }, [])
-    
-
-    useEffect(()=>{
-        currentSenior.id? setButton(false) : setButton(true)
-    },[currentSenior])
 
 
-    const updatePosts = useCallback(() =>{
+    useEffect(() => {
+        currentSenior.id ? setButton(false) : setButton(true)
+    }, [currentSenior])
+
+
+    const updatePosts = useCallback(() => {
         let data = seniors
-                    .slice((currentPage-1) * postsPerPage, currentPage * postsPerPage )
-                    .map((i)=>{
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i) => {
 
-                       /* let  data = i
-                        delete data.id
-                        delete data.address*/
-                        return {
-                            name : i.name,
-                            sex : i.sex,
-                            region : i.region,
-                            phone : i.phone,
-                            type : i.type,
-                            date: i.date,
-                            priority : i.priority,
+                /* let  data = i
+                 delete data.id
+                 delete data.address*/
+                return {
+                    name: i.name,
+                    sex: i.sex,
+                    region: i.region,
+                    phone: i.phone,
+                    type: i.type,
+                    date: i.date,
+                    priority: i.priority,
+                    needs: i.needs
 
-
-                        }
-                    })
+                }
+            })
         setPosts(data)
     }, [currentPage, seniors])
-    useCallback(()=>{
+    useCallback(() => {
         updatePosts()
-    },[updatePosts])
-    useEffect(()=>{
+    }, [updatePosts])
+    useEffect(() => {
         updatePosts()
     }, [seniors, updatePosts])
 
-    useEffect(()=>{
+    useEffect(() => {
         updatePosts()
     }, [currentPage, updatePosts])
 
@@ -118,48 +120,62 @@ const ContentContainer = () => {
 
     const selectSenior = (e) => {
         const primaryKey = e.target.parentNode.children[3].innerText //phoneNum
-        const senior = seniors.filter((i)=>i.phone===primaryKey)[0]
+        const senior = seniors.filter((i) => i.phone === primaryKey)[0]
         setBufferSenior(senior)
         setCurrentSenior(senior)
 
+        genderRadioDisabled(e)
     }
 
     const nameOnChange = (e) => {
-        const name=e.target.value
-        setBufferSenior((state)=>({...state, name:name}))
+        const name = e.target.value
+        setBufferSenior((state) => ({ ...state, name: name }))
     }
     const genderOnChange = (e) => {
-        const sex=e.target.value
-        setBufferSenior((state)=>({...state, sex:sex}))
+        const sex = e.target.value
+        setBufferSenior((state) => ({ ...state, sex: sex }))
+        console.log(e.target)
+    }
+    const genderRadioDisabled = (e) => {
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[0].disabled = true;
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[1].disabled = true;
+    }
+    const genderRadioAbled = (e) => {
+        e.target.parentNode.previousSibling.firstChild.lastChild.children[0].disabled = false;
+        e.target.parentNode.previousSibling.firstChild.lastChild.children[1].disabled = false;
     }
     const typeOnChange = (e) => {
         //console.log("눌림")
-        const type=e.target.value
-        setBufferSenior((state)=>({...state, type:type}))
+        const type = e.target.value
+        setBufferSenior((state) => ({ ...state, type: type }))
     }
     const priorityOnChange = (e) => {
-        const priority=e.target.value
-        setBufferSenior((state)=>({...state, priority:priority}))
+        const priority = e.target.value
+        setBufferSenior((state) => ({ ...state, priority: priority }))
+    }
+    const needsOnChange = (e) => {
+        const needs = e.target.value
+        setBufferSenior((state) => ({ ...state, needs: needs }))
     }
     const dateOnChange = (e) => {
-        const date=e.target.value
-        setBufferSenior((state)=>({...state, date:date}))
+        const date = e.target.value
+        setBufferSenior((state) => ({ ...state, date: date }))
     }
     const phoneOnChange = (e) => {
-        const phone=e.target.value
-        setBufferSenior((state)=>({...state, phone:phone}))
+        const phone = e.target.value
+        setBufferSenior((state) => ({ ...state, phone: phone }))
     }
     const regionOnChange = (e) => {
-        const region=e.target.value
-        setBufferSenior((state)=>({...state, region:region}))
+        const region = e.target.value
+        setBufferSenior((state) => ({ ...state, region: region }))
     }
     const addressOnChange = (e) => {
-        const address=e.target.value
-        setBufferSenior((state)=>({...state, address:address}))
+        const address = e.target.value
+        setBufferSenior((state) => ({ ...state, address: address }))
     }
     const addButton = () => {
-        if(!bufferSenior.id){ setButton(true) }
-        
+        if (!bufferSenior.id) { setButton(true) }
+
     }
     const editDeleteButton = () => {
         setButton(false)
@@ -167,24 +183,29 @@ const ContentContainer = () => {
     const uploadOnClick = (e) => {
         e.target.parentNode.children[0].click()
     }
-    const editOnClick = async () => {
-        await editSeniorFromServer(bufferSenior.id, bufferSenior).then(res=>{
-            if(res.ok){ alert("수정 성공"); }
+    const editOnClick = async (e) => {
+        genderRadioAbled(e)
+        await editSeniorFromServer(bufferSenior.id, bufferSenior).then(res => {
+            if (res.ok) { alert("수정 성공"); }
         })
+
         addEditDeleteRender();
+
     }
-    const deleteOnClick = async () => {
-        await deleteSeniorFromServer(bufferSenior.id).then(res=>{
-            if(res.ok){alert("삭제 성공"); }
+    const deleteOnClick = async (e) => {
+        genderRadioAbled(e)
+        await deleteSeniorFromServer(bufferSenior.id).then(res => {
+            if (res.ok) { alert("삭제 성공"); }
         })
         addEditDeleteRender();
         setButton(true);
+
     }
-    
-    const postOnClick = async (e) => {
-        console.log(bufferSenior)
-        await postSeniorToServer(bufferSenior).then(res=>{
-            if(res.ok){ alert("추가 성공");}
+
+    const postOnClick = async () => {
+        //console.log(bufferSenior)
+        await postSeniorToServer(bufferSenior).then(res => {
+            if (res.ok) { alert("추가 성공"); }
         })
         addEditDeleteRender();
     }
@@ -192,20 +213,21 @@ const ContentContainer = () => {
         setBufferSenior({})
         console.log(bufferSenior)
         fetchRegion(region)
-                .then((resolve) => {
-                    console.log(resolve)
-                    setSeniors(resolve);
-                })
-                .catch((e) => setSeniors([]));
+            .then((resolve) => {
+                console.log(resolve)
+                setSeniors(resolve);
+            })
+            .catch((e) => setSeniors([]));
     }
 
     const postSeniorsOnClick = (e) => {
-        postSeniorsToServer(excelData).then(res=>{
-            if(res.ok){ history.go(0); alert("업로드 성공");
-            console.log(res)
-            return res.json()
+        postSeniorsToServer(excelData).then(res => {
+            if (res.ok) {
+                history.go(0); alert("업로드 성공");
+                console.log(res)
+                return res.json()
             }
-        }).then(res=>alert(res))
+        }).then(res => alert(res))
     }
 
     const openModal = async (event) => {
@@ -215,9 +237,9 @@ const ContentContainer = () => {
         let reader = new FileReader();
         reader.onload = function () {
             let fileData = reader.result;
-            let wb = XLSX.read(fileData, {type: 'binary'});
+            let wb = XLSX.read(fileData, { type: 'binary' });
             wb.SheetNames.forEach(function (sheetName) {
-                const rowObj = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], {raw: false});
+                const rowObj = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], { raw: false });
                 console.log(rowObj)
                 parsingData(rowObj)
             })
@@ -226,70 +248,72 @@ const ContentContainer = () => {
     }
     const parsingData = (rowObj) => {
 
-        const addressarray=[]
-        const seniorjson=[]
+        const addressarray = []
+        const seniorjson = []
 
-        for(let i=0; i<rowObj.length; i++){
+        for (let i = 0; i < rowObj.length; i++) {
             const regionarray = rowObj[i]["주소"].split(" ")
 
 
-            for(let j=2; j<regionarray.length; j++){
+            for (let j = 2; j < regionarray.length; j++) {
                 addressarray.push(regionarray[j])
             }
             const nameData = rowObj[i]["어르신 성함"]
             const sexData = rowObj[i]["성별"]
-            const regionData=regionarray[1]
+            const regionData = regionarray[1]
             const addressData = addressarray.join(" ")
             const phoneData = rowObj[i]["전화번호"]
             const typeData = rowObj[i]["봉사유형"]
             const dateData = rowObj[i]["봉사날짜"]
             const priorityData = rowObj[i]["어르신 우선순위"]
+            const needsData = rowObj[i]["필요인원"]
 
-            seniorjson.push({name: nameData, sex: sexData, region : regionData, address : addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData})
+            seniorjson.push({ name: nameData, sex: sexData, region: regionData, address: addressData, phone: phoneData, type: typeData, date: dateData, priority: priorityData, needs: needsData })
         }
         setExcelData(seniorjson)
     }
 
-     const closeModal = () => {
+    const closeModal = () => {
         setModal(false)
-     }
+    }
 
     return (
         <>
-        <Container>
-            <Content 
-                currentSenior={bufferSenior}
-                region={region}
-                posts={posts}
-                seniors={seniors}
+            <Container>
+                <Content
+                    currentSenior={bufferSenior}
+                    region={region}
+                    posts={posts}
+                    seniors={seniors}
 
 
-                selectRegion={selectRegion}
-                selectPage={selectPage}
-                selectSenior={selectSenior}
-                closeModal = {closeModal}
+                    selectRegion={selectRegion}
+                    selectPage={selectPage}
+                    selectSenior={selectSenior}
+                    closeModal={closeModal}
 
-                nameOnChange={nameOnChange}
-                genderOnChange={genderOnChange}
-                typeOnChange={typeOnChange}
-                priorityOnChange={priorityOnChange}
-                dateOnChange={dateOnChange}
-                phoneOnChange={phoneOnChange}
-                regionOnChange={regionOnChange}
-                addressOnChange={addressOnChange}
+                    nameOnChange={nameOnChange}
+                    genderOnChange={genderOnChange}
+                    typeOnChange={typeOnChange}
+                    priorityOnChange={priorityOnChange}
+                    needsOnChange={needsOnChange}
+                    dateOnChange={dateOnChange}
+                    phoneOnChange={phoneOnChange}
+                    regionOnChange={regionOnChange}
+                    addressOnChange={addressOnChange}
 
-                postSeniorsOnClick={postSeniorsOnClick}
-                postOnClick={postOnClick}
-                editOnClick={editOnClick}
-                deleteOnClick={deleteOnClick}
-                uploadOnClick={uploadOnClick}
-                addButton={addButton}
-                editDeleteButton={editDeleteButton}
-                uploadFile={openModal}
-                button={button}
-                isModalOpen={modal}
-                excelData = {excelData}
-            ></Content>
+                    postSeniorsOnClick={postSeniorsOnClick}
+                    postOnClick={postOnClick}
+                    editOnClick={editOnClick}
+                    deleteOnClick={deleteOnClick}
+                    uploadOnClick={uploadOnClick}
+                    addButton={addButton}
+                    editDeleteButton={editDeleteButton}
+                    uploadFile={openModal}
+                    button={button}
+                    isModalOpen={modal}
+                    excelData={excelData}
+                ></Content>
             </Container>
         </>
     )
