@@ -8,6 +8,7 @@ import Button from "../../components/atoms/Button/index"
 import UpdateButtonGroup from "../../components/organisms/senior/UpdateButtonGroup"
 import SeniorInfoForm from "../../components/organisms/senior/SeniorInfoForm"
 import TableBox from "../../components/atoms/TableBox/index"
+import EditDeleteButton from "../../components/molecules/editDeleteButton"
 
 const Box = styled.div`
     // background: #0092ff;
@@ -18,7 +19,35 @@ const Box = styled.div`
 `
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"];
 const regionoptions = ["지역선택", "수성구", "동구", "서구", "남구", "북구", "중구", "달서구"];
-const SeniorContent = ({posts}) => {
+const SeniorContent = ({currentSenior,
+    button,
+    region,
+    posts,
+    seniors,
+    selectRegion,
+    selectPage,
+    selectSenior,
+    closeModal,
+    nameOnChange,
+    genderOnChange,
+    typeOnChange,
+    priorityOnChange,
+    needsOnChange,
+    dateOnChange,
+    phoneOnChange,
+    regionOnChange,
+    addressOnChange,
+    uploadFile,
+    postSeniorsOnClick,
+
+    postOnClick,
+    editOnClick,
+    uploadOnClick,
+    deleteOnClick,
+    addButton,
+    editDeleteButton,
+    isModalOpen,
+    excelData}) => {
     return (
         <>
         
@@ -27,7 +56,7 @@ const SeniorContent = ({posts}) => {
             {/* 지역 선택 파트 */}
             <Row align="start" justify="start" gutter={[10,10]}>
                 <Col span={4}>
-                        <SelectBox size="large" options={regionoptions}></SelectBox>
+                        <SelectBox size="large" options={regionoptions} onChange={selectRegion} defaultValue={region}></SelectBox>
                 </Col>
             </Row>
 
@@ -36,7 +65,7 @@ const SeniorContent = ({posts}) => {
                 {/* 피봉사자 표 출력 파트 */}
                 <Col span={7}>
                     <Box>
-                        {/* <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"}></TableBox> */}
+                        <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior}></TableBox>
                     </Box>
                 </Col>
 
@@ -44,7 +73,7 @@ const SeniorContent = ({posts}) => {
                 <Col span={5}>
                     {/* 그리드로 구현 */}
                     <Box>
-                        <SeniorInfoForm></SeniorInfoForm>
+                        <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}></SeniorInfoForm>
                     </Box>
                 </Col>
             </Row>
@@ -52,9 +81,13 @@ const SeniorContent = ({posts}) => {
             {/* 입력/수정 후 api 전송 버튼 파트 */}
             <Row align="start" justify="flex-end" gutter={[10,10]}>
                 <Col span={5}>
+                    {button?
                     <Box>
-                        <Button value="확인" block/>
-                    </Box>
+                        <Button value="확인" onClick={postOnClick} block/>
+                    </Box>:
+                    <EditDeleteButton editOnClick={editOnClick} deleteOnClick={deleteOnClick}></EditDeleteButton>
+                    }
+
                 </Col>
             </Row>
 
@@ -62,7 +95,7 @@ const SeniorContent = ({posts}) => {
             <Row align="start" justify="flex-end" gutter={[10,10]}>
                 <Col span={5}>
                     <Box>
-                        <UpdateButtonGroup></UpdateButtonGroup>
+                        <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen = {isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButtonGroup>
                     </Box>
                 </Col>
             </Row>

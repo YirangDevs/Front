@@ -10,7 +10,7 @@ const Container = styled.div`
 const Content = () => {
     return (
         <Container>
-            <Button width="100%" height="95%" value="게시글 작성 완료"></Button>
+            <Button value="게시글 작성 완료" block/>
             <NoticeUpdateForm></NoticeUpdateForm>
         </Container>
     )

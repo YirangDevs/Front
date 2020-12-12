@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types";
 
-export const DateForm = styled.input.attrs((props)=> ({type:"date"}))`
+export const TimeForm = styled.input.attrs((props)=> ({type:"time"}))`
 ${props=>{
     switch(props.size){
         case "small":
@@ -39,23 +39,23 @@ ${props=>{
     
 `
 
-const DateSelector = ({size, defaultValue, onChange, theme}) => (
+const TimeSelector = ({size, defaultValue, onChange, theme}) => (
 
     <>
-        <DateForm size={size} theme={theme} onChange={onChange} defaultValue={defaultValue}></DateForm>
+        <TimeForm size={size} theme={theme} onChange={onChange} defaultValue={defaultValue}></TimeForm>
     </>
 )
 
-DateSelector.propTypes = {
+TimeSelector.propTypes = {
     theme : PropTypes.string,
     size : PropTypes.string,
     defaultValue : PropTypes.string,
     onChange : PropTypes.func
 }
 
-DateSelector.defaultProps = {
+TimeSelector.defaultProps = {
     defaultValue: undefined,
     onClick: undefined,
 };
 
-export default DateSelector
+export default TimeSelector

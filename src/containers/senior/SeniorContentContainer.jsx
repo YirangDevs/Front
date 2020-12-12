@@ -1,7 +1,6 @@
+import SeniorContent from "../../pages/Seniors/SeniorContent"
 import React, {useState, useEffect, useCallback} from "react"
 import {useHistory} from "react-router-dom"
- import Content from "../../components/organisms/senior/Content"
-//import Content from "../../pages/Seniors/index"
 import fetchAllData from "../../business/service/fetchAllData"
 import fetchRegion from "../../business/service/fetchRegion"
 import styled from "styled-components"
@@ -19,8 +18,7 @@ const Container = styled.div`
     align-items: center;
 `
 
-const ContentContainer = () => {
-
+const SeniorContentContainer = () => {
     const [currentSenior, setCurrentSenior] = useState({
         id : 0,
         name: "",
@@ -65,9 +63,7 @@ const ContentContainer = () => {
                     .slice((currentPage-1) * postsPerPage, currentPage * postsPerPage )
                     .map((i)=>{
 
-                       /* let  data = i
-                        delete data.id
-                        delete data.address*/
+                
                         return {
                             name : i.name,
                             sex : i.sex,
@@ -181,7 +177,7 @@ const ContentContainer = () => {
         setButton(false)
     }
     const uploadOnClick = (e) => {
-        e.target.parentNode.children[0].click()
+        e.target.parentNode.parentNode.previousSibling.click()
     }
     const editOnClick = async (e) => {
         genderRadioAbled(e)
@@ -221,6 +217,7 @@ const ContentContainer = () => {
     }
 
     const postSeniorsOnClick = (e) => {
+        console.log(excelData)
         postSeniorsToServer(excelData).then(res=>{
             if(res.ok){ history.go(0); alert("업로드 성공");
             console.log(res)
@@ -276,10 +273,9 @@ const ContentContainer = () => {
         setModal(false)
      }
 
-    return (
-        <>
-        <Container>
-            <Content 
+     return (
+         <Container>
+             <SeniorContent 
                 currentSenior={bufferSenior}
                 region={region}
                 posts={posts}
@@ -312,11 +308,10 @@ const ContentContainer = () => {
                 button={button}
                 isModalOpen={modal}
                 excelData = {excelData}
-            ></Content>
-            
-            </Container>
-        </>
-    )
+                >
+             </SeniorContent>
+         </Container>
+     )
 }
 
-export default ContentContainer
+export default SeniorContentContainer

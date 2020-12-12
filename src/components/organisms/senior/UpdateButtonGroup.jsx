@@ -36,6 +36,7 @@ const UpdateButtonGroup = ({uploadFile, uploadOnClick, addButton, editDeleteButt
                 </Col>
             </Row>
         </VolunteerButtonWrapper>
+        <ExcelPreview isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick}></ExcelPreview>
         </>
     )
 }

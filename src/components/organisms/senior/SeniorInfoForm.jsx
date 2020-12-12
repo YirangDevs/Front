@@ -25,58 +25,69 @@ const priorityoptions = ["우선순위", "1", "2", "3", "4", "5", "6", "7", "8",
 const needsoptions = ["필요인원", "2", "4", "6"];
 const regionoptions = ["수성구", "동구", "서구", "남구", "북구", "중구", "달서구"];
 
-const SeniorInfoForm = () => {
+const SeniorInfoForm = ({
+    nameOnChange,
+    genderOnChange,
+    typeOnChange,
+    priorityOnChange,
+    needsOnChange,
+    dateOnChange,
+    phoneOnChange,
+    regionOnChange,
+    addressOnChange,
+    currentSenior
+}) => {
     return (
         <>
         <FormWrapper>
             <Row>
                 <Col span={4}>
                     <Box>
-                        <TextBox size="default" placeholder="이름 입력" />
+                        <TextBox size="default" placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name}/>
                     </Box>
                 </Col>
                 <Col span={4} rightborder>
                     <Box>
-                        <RadioBox size="large" name="gender" options={genderoptions}/>
+                        <RadioBox size="large" name="gender" options={genderoptions} onClick={genderOnChange}/>
                     </Box>
                 </Col>
                 <Col span={4}>
                     <Box>
-                    <RadioBox size="large" name="type" options={typeoptions}/>
+                    <RadioBox size="large" name="type" options={typeoptions} onClick={typeOnChange}/>
                     </Box>
                 </Col>
             </Row>
             <Row border>
                 <Col span={2}>
                     <Box>
-                        <SelectBox size="default" options={priorityoptions}/>
+                        <SelectBox size="default" options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority}/>
                     </Box>
                 </Col>
                 <Col span={2}>
                     <Box>
-                        <SelectBox size="default" options={needsoptions}/>
+                        <SelectBox size="default" options={needsoptions} onChange={needsOnChange} value={currentSenior.needs}/>
                     </Box>
                 </Col>
                 <Col span={4}>
                     <Box>
-                        <DateSelector size="default" defaultValue="2020-12-01"></DateSelector>
+                        <DateSelector size="default" onChange={dateOnChange} defaultValue={currentSenior.date}></DateSelector>
                     </Box>
                 </Col>
                 <Col span={4}>
                     <Box>
-                        <TextBox size="default" placeholder="-를 제외하고 입력" /> 
+                        <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone}/> 
                     </Box>
                 </Col>
             </Row>
             <Row>
                 <Col span={2} rightborder>
                     <Box>
-                        <SelectBox size="default" options={regionoptions}></SelectBox>
+                        <SelectBox size="default" options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region}/>
                     </Box>
                 </Col>
                 <Col span={10}>
                     <Box>
-                        <TextBox size="default" placeholder="ㅇㅇ구를 제외한 상세주소 입력" block/> 
+                        <TextBox size="default" placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} block/> 
                     </Box>
                 </Col>
             </Row>

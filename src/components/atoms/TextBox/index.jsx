@@ -19,22 +19,35 @@ ${props=>{
             `
     }
 }}
+${props=>{
+    switch(props.theme){
+        case "white":
+            return `
+                border: none;
+            `
+        default:
+            return`
+            border-radius: 5px;
+            background-color: #f1f3f6;
+            border: 1px solid #ccd4e0;
+        `
+    }
+}}
     ${props=>(props.block) ? `width : 90%;` : null}
     font-size: 1rem;
-    border-radius: 5px;
-    background-color: #f1f3f6;
-    border: 1px solid #ccd4e0;
+    
     color: #707070;
 `
 
-const TextBox=({size, block, value, onChange, placeholder})=>(
+const TextBox=({theme, size, block, value, onChange, placeholder})=>(
     <>
-        <Text size={size} block={block} value={value||""} onChange={onChange} placeholder={placeholder}>
+        <Text theme={theme} size={size} block={block} value={value||""} onChange={onChange} placeholder={placeholder}>
         </Text>
     </>
 )
 
 TextBox.propTypes = {
+    theme : PropTypes.string,
     size : PropTypes.string,
     value : PropTypes.string,
     onChange : PropTypes.func
