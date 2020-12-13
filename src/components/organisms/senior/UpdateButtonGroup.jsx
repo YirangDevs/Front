@@ -26,13 +26,13 @@ const UpdateButtonGroup = ({uploadFile, uploadOnClick, addButton, editDeleteButt
             <ExcelPreview isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick}></ExcelPreview> */}
             <Row>
                 <Col span={4}>
-                    <Button value="업로드" onClick={uploadOnClick} block/>
+                    <Button theme="black" value="업로드" onClick={uploadOnClick} block/>
                 </Col>
                 <Col span={4}>
-                    <Button value="추가" onClick={addButton} block/>
+                    <Button theme="black" value="추가" onClick={addButton} block/>
                 </Col>
                 <Col span={4}>
-                    <Button value="수정/삭제" onClick={editDeleteButton} block/>
+                    <Button theme="black" value="수정/삭제" onClick={editDeleteButton} block/>
                 </Col>
             </Row>
         </VolunteerButtonWrapper>

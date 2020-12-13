@@ -14,7 +14,7 @@ ${props=>{
             `
         default:
             return `
-                padding : 8px 12px;
+                padding : 8px 0px;
             `
     }
 }}
@@ -32,15 +32,16 @@ ${props=>{
             `
     }
 }}
+    ${props=>(props.block) ? `width : 90%;` : null}
     font-size: 1rem;
     color: #707070;
 `
 
-const SelectBox = ({theme, size, defaultValue, onChange, options}) => (
+const SelectBox = ({block, theme, size, defaultValue, onChange, options}) => (
     //options = selectBox 목록 DataType = Array
 
     <>
-        <Select theme={theme} size={size} value={defaultValue} onChange={onChange}>
+        <Select block={block} theme={theme} size={size} value={defaultValue} onChange={onChange}>
             {options.map((i, index)=><option key={index} defaultValue="" value={i}>{i}</option>)}
         </Select>
     </>

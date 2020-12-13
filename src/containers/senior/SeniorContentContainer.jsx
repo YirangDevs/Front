@@ -11,11 +11,12 @@ import postSeniorToServer from "../../business/service/post_senior_to_server"
 import postSeniorsToServer from "../../business/service/post_seniors_to_server";
 
 const Container = styled.div`
-    width: 100%;
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 `
 
 const SeniorContentContainer = () => {

@@ -16,7 +16,7 @@ const Modal = styled.div`
 `
 
 const PreviewModal = styled.div`
-      width: 580px;
+      width: 645px;
       height: 621px;
       display: flex;
       flex-direction: column;

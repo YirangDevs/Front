@@ -12,7 +12,7 @@ const fetchAllData = async() => {
             }).catch((e) => {
                 console.log("에러남 " + e)
                 resolve([])
-            });
+            }).then(data=> console.log(data));
             if(data){
                 data = JSON.stringify(data)
                 data = data.replace(/FEMALE/g, "여")

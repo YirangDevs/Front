@@ -6,7 +6,7 @@ const MenuNav = () => {
         <>
             <div className="nav--manage menu__nav--manage">
                 <div className="nav__title--manage">메뉴</div>
-                <Link to='/Index' className="nav__btn--manage">
+                <Link to='/seniors' className="nav__btn--manage">
                     <div >봉사자 데이터 업로드</div>
                 </Link>
                 <Link to='/manage' className="nav__btn--manage">

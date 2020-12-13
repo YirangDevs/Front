@@ -17,7 +17,6 @@ const Box = styled.div`
     height: 4rem;
     background-color: #f1f3f6;
     //border: 1px solid red;
-    
 `
 const genderoptions = ["남성", "여성"];
 const typeoptions = ["노력봉사", "말벗봉사"];
@@ -43,51 +42,51 @@ const SeniorInfoForm = ({
             <Row>
                 <Col span={4}>
                     <Box>
-                        <TextBox size="default" placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name}/>
+                        <TextBox placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name} block/>
                     </Box>
                 </Col>
-                <Col span={4} rightborder>
+                <Col span={3} rightborder>
                     <Box>
-                        <RadioBox size="large" name="gender" options={genderoptions} onClick={genderOnChange}/>
+                        <RadioBox size="default" name="gender" options={genderoptions} onClick={genderOnChange}/>
                     </Box>
                 </Col>
-                <Col span={4}>
+                <Col span={5}>
                     <Box>
-                    <RadioBox size="large" name="type" options={typeoptions} onClick={typeOnChange}/>
+                    <RadioBox size="default" name="type" options={typeoptions} onClick={typeOnChange}/>
                     </Box>
                 </Col>
             </Row>
             <Row border>
                 <Col span={2}>
                     <Box>
-                        <SelectBox size="default" options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority}/>
+                        <SelectBox options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority} block/>
                     </Box>
                 </Col>
                 <Col span={2}>
                     <Box>
-                        <SelectBox size="default" options={needsoptions} onChange={needsOnChange} value={currentSenior.needs}/>
+                        <SelectBox options={needsoptions} onChange={needsOnChange} value={currentSenior.needs} block/>
                     </Box>
                 </Col>
                 <Col span={4}>
                     <Box>
-                        <DateSelector size="default" onChange={dateOnChange} defaultValue={currentSenior.date}></DateSelector>
+                        <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} block/>
                     </Box>
                 </Col>
                 <Col span={4}>
                     <Box>
-                        <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone}/> 
+                        <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} block/> 
                     </Box>
                 </Col>
             </Row>
             <Row>
                 <Col span={2} rightborder>
                     <Box>
-                        <SelectBox size="default" options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region}/>
+                        <SelectBox options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region} block/>
                     </Box>
                 </Col>
                 <Col span={10}>
                     <Box>
-                        <TextBox size="default" placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} block/> 
+                        <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} block/> 
                     </Box>
                 </Col>
             </Row>

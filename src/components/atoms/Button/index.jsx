@@ -19,21 +19,35 @@ const ButtonComponent = styled.input.attrs(props=>({type: "button"}))`
                 `
         }
 }}
+${props=>{
+    switch(props.theme){
+        case "black":
+            return `
+                background-color: #ccd4e0;
+                border: 1px solid #f1f3f6;
+            `
+        default:
+            return `
+                background-color: #f1f3f6;
+                border: 1px solid #ccd4e0;
+            `
+    }
+}}
     ${props=>(props.block) ? `width : 100%;` : null}
-    background-color: #f1f3f6;
     font-size: 0.9rem;
-    border: 1px solid #ccd4e0;
     color: #707070;
 `
 
-const Button=({size, block, value, onClick})=>(
+const Button=({href, theme, size, block, value, onClick})=>(
     <>
-        <ButtonComponent size={size} block={block} value={value} onClick={onClick}>
+        <ButtonComponent href={href} theme={theme} size={size} block={block} value={value} onClick={onClick}>
         </ButtonComponent>
     </>
 )
 
 Button.propTypes = {
+    href : PropTypes.string,
+    theme : PropTypes.string,
     size: PropTypes.string,
     block : PropTypes.bool,
     value : PropTypes.string,

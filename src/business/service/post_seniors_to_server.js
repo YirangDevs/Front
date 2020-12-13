@@ -5,6 +5,7 @@ const postSeniorsToServer = async (props) => {
     let seniordata4 = seniordata3.replace(/노력봉사/g,'work') //노력봉사 영문으로 전환
     let payload = seniordata4.replace(/말벗봉사/g,'talk') //말벗봉사 영문으로 전환
     console.log(payload)
+    console.log(localStorage.getItem("YAT"))
     return fetch("http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/seniors/total", {
         method: 'POST',
         headers : {

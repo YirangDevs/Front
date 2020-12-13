@@ -13,9 +13,13 @@ ${props=>{
             return `
                 padding : 12px 20px;
             `
-        default:
+        case "default":
             return `
                 padding : 8px 16px;
+            `
+        default:
+            return `
+                padding : 8px 10px;
             `
     }
 }}
@@ -35,7 +39,6 @@ ${props=>{
 }}
     ${props=>(props.block) ? `width : 90%;` : null}
     font-size: 1rem;
-    
     color: #707070;
 `
 

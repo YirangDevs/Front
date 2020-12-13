@@ -13,10 +13,12 @@ ${props=>{
             return `
                 padding : 12px 20px;
             `
-        default:
+        case "default":
             return `
                 padding : 6px 24px;
             `
+        default:
+            return ``
         
     }
 }}

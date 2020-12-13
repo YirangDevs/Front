@@ -25,7 +25,7 @@ const TableHead = styled.th`
 `
 
 const TableBody = styled.td`
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: normal;
     font-stretch: normal;
     color: #707070;
