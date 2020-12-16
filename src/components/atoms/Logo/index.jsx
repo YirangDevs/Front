@@ -22,7 +22,7 @@ const Index = () => {
     return (
         <>
             <LogoStyle onClick={()=>history.push("/")}>
-                Yirang
+                YIRANG
             </LogoStyle>
         </>
     )

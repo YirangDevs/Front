@@ -7,7 +7,7 @@ import NoticeUpdateForm from "./NoticeUpdateForm"
 const Container = styled.div`
     width: 90%;
     height: 60%;
-    margin-top: 100px; //topbar 고치면 지워질 친구!!!!!!!!!!!!!!
+    margin-top: 30px; 
     @media(max-width: 1524px){width: 95%;}
     @media(max-width: 1445px){width: 97%;}
 `

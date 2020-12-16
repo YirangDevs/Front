@@ -29,7 +29,7 @@ const SeniorContentContainer = () => {
         type : "",
         date: "",
         priority : 0,
-
+        needs : ""
     })
     const [seniors, setSeniors] = useState([]);
     const [region, setRegion] = useState("");
@@ -41,6 +41,9 @@ const SeniorContentContainer = () => {
     const [excelData, setExcelData] = useState([]);
     const history = useHistory();
     const postsPerPage = 10
+    // const [seniorNotice, setSeniorNotice] = useState([]);
+    const [seniorNotice, setSeniorNotice] = useState({});
+
 
 
     useEffect(() => {
@@ -247,10 +250,12 @@ const SeniorContentContainer = () => {
 
         const addressarray=[]
         const seniorjson=[]
+        let needsTotal=0;
 
         for(let i=0; i<rowObj.length; i++){
             const regionarray = rowObj[i]["주소"].split(" ")
 
+            
 
             for(let j=2; j<regionarray.length; j++){
                 addressarray.push(regionarray[j])
@@ -265,9 +270,24 @@ const SeniorContentContainer = () => {
             const priorityData = rowObj[i]["어르신 우선순위"]
             const needsData = rowObj[i]["필요인원"]
 
+            needsTotal=needsTotal+Number(needsData)
+
             seniorjson.push({name: nameData, sex: sexData, region : regionData, address : addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData})
+            
         }
+            /* 여기 이거 고쳐야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+            const excelRegion = seniorjson[0].region
+            const excelDate = seniorjson[0].date
+            console.log(excelRegion) //리덕스에 저장될 지역 데이터
+            console.log(excelDate) //리덕스에 저장될 날짜 데이터
+            console.log(needsTotal) //리덕스에 저장될 총 필요인원 데이터
+            
+            setSeniorNotice((state)=>({...state, region: excelRegion}))
+        console.log(seniorNotice)
+
+        /* 여기 이거 고쳐야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
         setExcelData(seniorjson)
+        
     }
 
      const closeModal = () => {
