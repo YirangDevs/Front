@@ -15,5 +15,5 @@ export default {
     ...notice_action,
     ...select_action,
     ...noticetotalnum_action,
-    ...transferSeniorToNotice_action.js
+    ...transferSeniorToNotice_action
 }

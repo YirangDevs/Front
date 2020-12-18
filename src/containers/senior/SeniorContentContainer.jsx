@@ -9,6 +9,8 @@ import deleteSeniorFromServer from "../../business/service/delete_senior_from_se
 import editSeniorFromServer from "../../business/service/edit_senior_from_server";
 import postSeniorToServer from "../../business/service/post_senior_to_server"
 import postSeniorsToServer from "../../business/service/post_seniors_to_server";
+import store from "../../store/store"
+import action from "../../store/actions/action"
 
 const Container = styled.div`
     width: 90%;
@@ -41,9 +43,8 @@ const SeniorContentContainer = () => {
     const [excelData, setExcelData] = useState([]);
     const history = useHistory();
     const postsPerPage = 10
-    // const [seniorNotice, setSeniorNotice] = useState([]);
-    const [seniorNotice, setSeniorNotice] = useState({});
-
+    
+    const [needsTotal, setNeedsTotal] = useState(0)
 
 
     useEffect(() => {
@@ -223,10 +224,20 @@ const SeniorContentContainer = () => {
     const postSeniorsOnClick = (e) => {
         console.log(excelData)
         postSeniorsToServer(excelData).then(res=>{
-            if(res.ok){ history.go(0); alert("업로드 성공");
+            if(res.ok){ 
+                history.push("/create")
+                alert("업로드 성공");
+                store.dispatch(action.TRANSFER_SENIOR_TO_NOTICE__ACTION_FUNC({
+                    data:{
+                        region: excelData[0].region,
+                        date : excelData[0].date,
+                        needs : needsTotal
+                }}))
+                
+            }
             console.log(res)
             return res.json()
-            }
+            
         }).then(res=>alert(res))
     }
 
@@ -245,17 +256,18 @@ const SeniorContentContainer = () => {
             })
         }
         reader.readAsBinaryString(input.files[0])
-    }
+    } 
+    
     const parsingData = (rowObj) => {
 
+        console.log(rowObj)
         const addressarray=[]
         const seniorjson=[]
-        let needsTotal=0;
+        
+        let needsTotal=0
 
         for(let i=0; i<rowObj.length; i++){
             const regionarray = rowObj[i]["주소"].split(" ")
-
-            
 
             for(let j=2; j<regionarray.length; j++){
                 addressarray.push(regionarray[j])
@@ -275,19 +287,11 @@ const SeniorContentContainer = () => {
             seniorjson.push({name: nameData, sex: sexData, region : regionData, address : addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData})
             
         }
-            /* 여기 이거 고쳐야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-            const excelRegion = seniorjson[0].region
-            const excelDate = seniorjson[0].date
-            console.log(excelRegion) //리덕스에 저장될 지역 데이터
-            console.log(excelDate) //리덕스에 저장될 날짜 데이터
-            console.log(needsTotal) //리덕스에 저장될 총 필요인원 데이터
-            
-            setSeniorNotice((state)=>({...state, region: excelRegion}))
-        console.log(seniorNotice)
-
-        /* 여기 이거 고쳐야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-        setExcelData(seniorjson)
+            setNeedsTotal(needsTotal)
+            console.log(needsTotal)
         
+        setExcelData(seniorjson)
+ 
     }
 
      const closeModal = () => {
@@ -301,7 +305,6 @@ const SeniorContentContainer = () => {
                 region={region}
                 posts={posts}
                 seniors={seniors}
-
 
                 selectRegion={selectRegion}
                 selectPage={selectPage}

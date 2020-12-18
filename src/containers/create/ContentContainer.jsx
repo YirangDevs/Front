@@ -12,11 +12,6 @@ const Container = styled.div`
 `
 
 const ContentContainer = () => {
-    const [createData, setCreateData] = useState([]);
-
-    useEffect(()=>{
-        
-    },[])
 
     return (
         <>

@@ -54,7 +54,7 @@ const ButtonLayout = styled.div`
 
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"]
 const ExcelPreview = ({isModalOpen, excelData, closeModal, postSeniorsOnClick}) => {
-
+    
     const filteredData = excelData.map((i)=>{
         let  data = i
         delete data.id

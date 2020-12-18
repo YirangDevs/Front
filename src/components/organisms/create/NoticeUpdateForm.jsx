@@ -28,9 +28,10 @@ const Text = styled.div`
 `
 
 
-const regionoptions = ["수성구", "동구", "서구", "남구", "북구", "중구", "달서구"];
+const regionoptions = ["지역선택", "수성구", "동구", "서구", "남구", "북구", "중구", "달서구"];
 
-const NoticeUpdateForm = () => {
+const NoticeUpdateForm = (props) => {
+
     return (
         <>
         <NoticeUpdateFormWrapper>
@@ -45,7 +46,7 @@ const NoticeUpdateForm = () => {
                     <Box><Text>장소</Text></Box>
                 </Col>
                 <Col span={2}>
-                    <Box><SelectBox theme="white" size="large" options={regionoptions}></SelectBox></Box>
+                    <Box><SelectBox theme="white" size="large" defaultValue={props.region} options={regionoptions}></SelectBox></Box>
                 </Col>
             </Row>
             <Row>
@@ -53,13 +54,13 @@ const NoticeUpdateForm = () => {
                     <Box><Text>필요 인원수</Text></Box>
                 </Col>
                 <Col span={2}>
-                    <Box><TextBox theme="white" placeholder="필요인원 수를 입력하세요" block/></Box>
+                    <Box><TextBox theme="white" placeholder="필요인원 수를 입력하세요" value={props.needs} block/></Box>
                 </Col>
                 <Col span={0.8}>
                     <Box><Text>봉사날짜</Text></Box>
                 </Col>
                 <Col span={2}>
-                    <Box><DateSelector theme="white"/></Box>
+                    <Box><DateSelector theme="white" defaultValue={props.date}/></Box>
                 </Col>
                 <Col span={1.1}>
                     <Box><Text>봉사 시작시간</Text></Box>

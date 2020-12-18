@@ -5,6 +5,8 @@ import Row from "../../../layout/Grid/Row/index"
 import Col from "../../../layout/Grid/Column/index"
 import Button from "../../atoms/Button/index"
 import ExcelPreview from "../../../pages/ExcelPreview/index"
+import ACTION from "../../../store/actions/action"
+import store from "../../../store/store"
 
 
 const VolunteerButtonWrapper = styled.div`

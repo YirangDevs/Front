@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import EditDelete from "../../components/senior/EditDelete"
-//import ACTION from "../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {

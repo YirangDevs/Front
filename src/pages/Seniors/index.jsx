@@ -8,13 +8,11 @@ const ContentWrapper = styled.div`
     display: flex;
     justify-content: center;
 `
-const Content = ({posts}) => {
-    console.log({posts});
+const Content = () => {
     return (
         <>
         <TopBar />
         <ContentWrapper>
-            {/* <SeniorContent posts={posts}></SeniorContent> */}
             <SeniorContentContainer></SeniorContentContainer>
         </ContentWrapper>
         </>

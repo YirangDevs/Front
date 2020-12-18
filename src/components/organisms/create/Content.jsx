@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Button from "../../atoms/Button/index"
 import TextAreaBox from "../../atoms/TextAreaBox"
-import NoticeUpdateForm from "./NoticeUpdateForm"
+import CreateContainer from "../../../reduxContainer/CreateContainer"
 
 const Container = styled.div`
     width: 90%;
@@ -15,7 +15,7 @@ const Content = () => {
     return (
         <Container>
             <Button value="게시글 작성 완료" block/>
-            <NoticeUpdateForm></NoticeUpdateForm>
+            <CreateContainer></CreateContainer>
             <TextAreaBox placeholder="내용을 입력해주세요"></TextAreaBox>
         </Container>
     )
