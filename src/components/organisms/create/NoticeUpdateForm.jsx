@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import styled from "styled-components"
 import Row from "../../../layout/Grid/Row/index"
 import Col from "../../../layout/Grid/Column/index"
@@ -6,6 +6,7 @@ import TextBox from "../../atoms/TextBox"
 import SelectBox from "../../atoms/SelectBox"
 import DateSelector from "../../atoms/DateSelector"
 import TimeSelector from "../../atoms/TimeSelector"
+import { useEventCallback } from "@material-ui/core"
 
 const NoticeUpdateFormWrapper = styled.div`
     width: 100%;
@@ -21,10 +22,15 @@ const Box = styled.div`
     align-items: center;
     justify-content: center;
     
+    @media screen and (max-width: 992px){
+        ${props=>(props.title)? `background-color: #f1f3f6;`:null}
+    }   
+    
 `
 const Text = styled.div`
     font-size: 1rem;
     color: #707070;
+    
 `
 
 
@@ -32,47 +38,48 @@ const regionoptions = ["지역선택", "수성구", "동구", "서구", "남구"
 
 const NoticeUpdateForm = (props) => {
 
+    console.log(props)
     return (
         <>
         <NoticeUpdateFormWrapper>
             <Row>
-                <Col span={1}>
-                    <Box><Text>제목</Text></Box>
+                <Col span={12} xl={1} lg={1.5}>
+                    <Box title><Text>제목</Text></Box>
                 </Col>
-                <Col span={7.9}>
-                    <Box><TextBox theme="white" placeholder="제목을 입력하세요" block/></Box>
+                <Col span={12} xl={7.9} lg={10.5}>
+                    <Box><TextBox theme="white" placeholder="제목을 입력하세요" onChange={props.titleOnChange} block/></Box>
                 </Col>
-                <Col span={1.1}>
-                    <Box><Text>장소</Text></Box>
+                <Col span={12} xl={1.1} lg={1.5}>
+                    <Box title><Text>장소</Text></Box>
                 </Col>
-                <Col span={2}>
-                    <Box><SelectBox theme="white" size="large" defaultValue={props.region} options={regionoptions}></SelectBox></Box>
+                <Col span={12} xl={2} lg={4.5}>
+                    <Box><SelectBox theme="white" size="large" defaultValue={props.region} options={regionoptions} disabled="disabled" ></SelectBox></Box>
                 </Col>
-            </Row>
-            <Row>
-                <Col span={1}>
-                    <Box><Text>필요 인원수</Text></Box>
+            
+            
+                <Col span={12} xl={1} lg={1.5}>
+                    <Box title><Text>필요인원</Text></Box>
                 </Col>
-                <Col span={2}>
-                    <Box><TextBox theme="white" placeholder="필요인원 수를 입력하세요" value={props.needs} block/></Box>
+                <Col span={12} xl={2} lg={4.5}>
+                    <Box><TextBox theme="white" placeholder="필요인원 수를 입력하세요" value={props.needs} disabled="disabled" block/></Box>
                 </Col>
-                <Col span={0.8}>
-                    <Box><Text>봉사날짜</Text></Box>
+                <Col span={12} xl={0.8} lg={1.5}>
+                    <Box title><Text>봉사날짜</Text></Box>
                 </Col>
-                <Col span={2}>
-                    <Box><DateSelector theme="white" defaultValue={props.date}/></Box>
+                <Col span={12} xl={2} lg={2.5}>
+                    <Box><DateSelector theme="white" defaultValue={props.date} disabled="disabled"/></Box>
                 </Col>
-                <Col span={1.1}>
-                    <Box><Text>봉사 시작시간</Text></Box>
+                <Col span={12} xl={1.1} lg={1.5}>
+                    <Box title><Text>시작시간</Text></Box>
                 </Col>
-                <Col span={2}>
-                    <Box><TimeSelector theme="white" size="default" /></Box>
+                <Col span={12} xl={2} lg={2.5}>
+                    <Box><TimeSelector theme="white" size="default" onChange={props.timeOnChange}/></Box>
                 </Col>
-                <Col span={1.1}>
-                    <Box><Text>신청 마감날짜</Text></Box>
+                <Col span={12} xl={1.1} lg={1.5}>
+                    <Box title><Text>신청마감</Text></Box>
                 </Col>
-                <Col span={2}>
-                    <Box><DateSelector theme="white"/></Box>
+                <Col span={12} xl={2} lg={2.5}>
+                    <Box><DateSelector theme="white" onChange={props.deadlineOnChange}/></Box>
                 </Col>
             </Row>
         </NoticeUpdateFormWrapper>

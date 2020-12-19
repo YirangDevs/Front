@@ -40,11 +40,15 @@ ${props=>{
     ${props=>(props.block) ? `width : 90%;` : null}
     font-size: 1rem;
     color: #707070;
+    @media screen and (max-width: 992px){
+        text-align: center;
+    }
+    
 `
 
-const TextBox=({theme, size, block, value, onChange, placeholder})=>(
+const TextBox=({theme, size, block, value, onChange, placeholder, disabled})=>(
     <>
-        <Text theme={theme} size={size} block={block} value={value||""} onChange={onChange} placeholder={placeholder}>
+        <Text theme={theme} size={size} block={block} value={value||""} onChange={onChange} placeholder={placeholder} disabled={disabled}>
         </Text>
     </>
 )

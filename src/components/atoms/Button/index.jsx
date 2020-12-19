@@ -36,6 +36,7 @@ ${props=>{
     ${props=>(props.block) ? `width : 100%;` : null}
     font-size: 0.9rem;
     color: #707070;
+    cursor: pointer;
 `
 
 const Button=({href, theme, size, block, value, onClick})=>(

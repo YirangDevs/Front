@@ -44,10 +44,10 @@ ${props=>{
     
 `
 
-const DateSelector = ({block, size, defaultValue, onChange, theme}) => (
+const DateSelector = ({block, size, defaultValue, onChange, theme, disabled}) => (
 
     <>
-        <DateForm block={block} size={size} theme={theme} onChange={onChange} defaultValue={defaultValue}></DateForm>
+        <DateForm block={block} size={size} theme={theme} onChange={onChange} defaultValue={defaultValue} disabled={disabled}></DateForm>
     </>
 )
 

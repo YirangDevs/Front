@@ -37,11 +37,11 @@ ${props=>{
     color: #707070;
 `
 
-const SelectBox = ({block, theme, size, defaultValue, onChange, options}) => (
+const SelectBox = ({block, theme, size, defaultValue, onChange, onLoad, options, disabled}) => (
     //options = selectBox 목록 DataType = Array
 
     <>
-        <Select block={block} theme={theme} size={size} value={defaultValue} onChange={onChange}>
+        <Select block={block} theme={theme} size={size} value={defaultValue} onChange={onChange} disabled={disabled}>
             {options.map((i, index)=><option key={index} defaultValue="" value={i}>{i}</option>)}
         </Select>
     </>
