@@ -48,7 +48,7 @@ ${props=>{
 
 const TextBox=({theme, size, block, value, onChange, placeholder, disabled})=>(
     <>
-        <Text theme={theme} size={size} block={block} value={value||""} onChange={onChange} placeholder={placeholder} disabled={disabled}>
+        <Text theme={theme} size={size} block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled}>
         </Text>
     </>
 )

@@ -11,9 +11,9 @@ const TextArea = styled.textarea`
     font-size: 1rem;
 `
 
-const TextAreaBox=({placeholder})=>(
+const TextAreaBox=({placeholder, contentOnChange})=>(
     <>
-    <TextArea placeholder={placeholder}/>
+    <TextArea placeholder={placeholder} onChange={contentOnChange}/>
     </>
 )
 

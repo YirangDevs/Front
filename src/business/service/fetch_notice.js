@@ -16,14 +16,16 @@ let data = {
      * @request @body data{title , content , region , nor , dov , tov , dod}
      */
     createNotice : async (data)=>{
+
+        console.log(data)
         const res = await fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: "Bearer " + localStorage.getItem("YAT"),
             },
-            body: data,
-        });
+            body: JSON.stringify(data),
+        }).then((res)=>{if(!res.ok){return res.json()} else{return res}});
         return await res
     },
 

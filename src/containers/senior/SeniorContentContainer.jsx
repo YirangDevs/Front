@@ -8,7 +8,7 @@ import XLSX from "xlsx";
 import deleteSeniorFromServer from "../../business/service/delete_senior_from_server";
 import editSeniorFromServer from "../../business/service/edit_senior_from_server";
 import postSeniorToServer from "../../business/service/post_senior_to_server"
-import postSeniorsToServer from "../../business/service/post_seniors_to_server";
+import seniorCheck from "../../business/service/senior_check";
 import store from "../../store/store"
 import action from "../../store/actions/action"
 
@@ -31,7 +31,8 @@ const SeniorContentContainer = () => {
         type : "",
         date: "",
         priority : 0,
-        needs : ""
+        needs : "",
+        address : ""
     })
     const [seniors, setSeniors] = useState([]);
     const [region, setRegion] = useState("");
@@ -67,8 +68,6 @@ const SeniorContentContainer = () => {
         let data = seniors
                     .slice((currentPage-1) * postsPerPage, currentPage * postsPerPage )
                     .map((i)=>{
-
-                
                         return {
                             name : i.name,
                             sex : i.sex,
@@ -77,8 +76,8 @@ const SeniorContentContainer = () => {
                             type : i.type,
                             date: i.date,
                             priority : i.priority,
-                            needs : i.needs
-
+                            needs : i.needs,
+                            //address : i.address
                         }
                     })
         setPosts(data)
@@ -223,20 +222,22 @@ const SeniorContentContainer = () => {
 
     const postSeniorsOnClick = (e) => {
         console.log(excelData)
-        postSeniorsToServer(excelData).then(res=>{
+        seniorCheck(excelData).then(res=>{
+            console.log(res)
             if(res.ok){ 
-                history.push("/create")
+                
                 alert("업로드 성공");
                 store.dispatch(action.TRANSFER_SENIOR_TO_NOTICE__ACTION_FUNC({
                     data:{
                         region: excelData[0].region,
                         date : excelData[0].date,
-                        needs : needsTotal
+                        needs : needsTotal,
+                        excelData : excelData
                 }}))
+                history.push("/create")
                 
             }
-            console.log(res)
-            return res.json()
+            return res
             
         }).then(res=>alert(res))
     }
@@ -251,7 +252,6 @@ const SeniorContentContainer = () => {
             let wb = XLSX.read(fileData, {type: 'binary'});
             wb.SheetNames.forEach(function (sheetName) {
                 const rowObj = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], {raw: false});
-                console.log(rowObj)
                 parsingData(rowObj)
             })
         }
@@ -261,14 +261,16 @@ const SeniorContentContainer = () => {
     const parsingData = (rowObj) => {
 
         console.log(rowObj)
-        const addressarray=[]
+        
         const seniorjson=[]
+        const seniorjson2=[]
         
         let needsTotal=0
 
         for(let i=0; i<rowObj.length; i++){
             const regionarray = rowObj[i]["주소"].split(" ")
 
+            const addressarray=[]
             for(let j=2; j<regionarray.length; j++){
                 addressarray.push(regionarray[j])
             }
@@ -276,6 +278,7 @@ const SeniorContentContainer = () => {
             const sexData = rowObj[i]["성별"]
             const regionData=regionarray[1]
             const addressData = addressarray.join(" ")
+            console.log(addressData)
             const phoneData = rowObj[i]["전화번호"]
             const typeData = rowObj[i]["봉사유형"]
             const dateData = rowObj[i]["봉사날짜"]
@@ -283,13 +286,13 @@ const SeniorContentContainer = () => {
             const needsData = rowObj[i]["필요인원"]
 
             needsTotal=needsTotal+Number(needsData)
-
-            seniorjson.push({name: nameData, sex: sexData, region : regionData, address : addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData})
             
+            seniorjson.push({name: nameData, sex: sexData, region : regionData, address: addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData})
+            seniorjson2.push({name: nameData, sex: sexData, region : regionData, place: addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData}) 
         }
+            console.log(seniorjson)
+            console.log(seniorjson2)
             setNeedsTotal(needsTotal)
-            console.log(needsTotal)
-        
         setExcelData(seniorjson)
  
     }

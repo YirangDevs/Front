@@ -15,8 +15,8 @@ const NoticeUpdateFormWrapper = styled.div`
     border-radius: 5px;
 `
 const Box = styled.div`
-    height: 3rem;
-    border: 1px solid #ccd4e0;
+     height: 3rem;
+     border: 1px solid #ccd4e0;
     border-collapse: seperate;
     display: flex;
     align-items: center;
@@ -61,13 +61,13 @@ const NoticeUpdateForm = (props) => {
                     <Box title><Text>필요인원</Text></Box>
                 </Col>
                 <Col span={12} xl={2} lg={4.5}>
-                    <Box><TextBox theme="white" placeholder="필요인원 수를 입력하세요" value={props.needs} disabled="disabled" block/></Box>
+                    <Box><TextBox theme="white" placeholder="필요인원 수를 입력하세요" value={props.nor} disabled="disabled" block/></Box>
                 </Col>
                 <Col span={12} xl={0.8} lg={1.5}>
                     <Box title><Text>봉사날짜</Text></Box>
                 </Col>
                 <Col span={12} xl={2} lg={2.5}>
-                    <Box><DateSelector theme="white" defaultValue={props.date} disabled="disabled"/></Box>
+                    <Box><DateSelector theme="white" defaultValue={props.dov} disabled="disabled"/></Box>
                 </Col>
                 <Col span={12} xl={1.1} lg={1.5}>
                     <Box title><Text>시작시간</Text></Box>
