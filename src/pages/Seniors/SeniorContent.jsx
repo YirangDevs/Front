@@ -55,12 +55,10 @@ const SeniorContent = ({currentSenior,
     editDeleteButton,
     isModalOpen,
     excelData}) => {
+        
+        //console.log(posts)
 
-        // props.TRANSFER_SENIOR_TO_NOTICE({
-        //     region: excelRegion,
-        //     date: excelDate,
-        //     needs: needsTotal
-        // })
+        
     return (
         <>
         

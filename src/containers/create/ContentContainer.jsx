@@ -65,7 +65,9 @@ const ContentContainer = () => {
                 const excelData=store.getState().transferSeniorToNotice_reducer.excelData
                 postSeniorsToServer(excelData).then(res=>console.log(res))
             }
+            
         })
+        
     }
 
     return (

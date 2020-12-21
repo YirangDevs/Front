@@ -56,10 +56,16 @@ const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사
 const ExcelPreview = ({isModalOpen, excelData, closeModal, postSeniorsOnClick}) => {
     
     const filteredData = excelData.map((i)=>{
-        let  data = i
-        delete data.id
-        delete data.address
-        return data
+        return {
+            name : i.name,
+            sex: i.sex,
+            region: i.region,
+            date : i.date,
+            needs : i.needs,
+            phone : i.phone,
+            priority : i.priority,
+            type : i.type
+        }
     })
 
     return (isModalOpen) ?

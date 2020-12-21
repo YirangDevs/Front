@@ -1,5 +1,5 @@
 const postSeniorsToServer = async (props) => {
-    
+    console.log(props)
     let seniordata1 = JSON.stringify(props);
     let seniordata2 = seniordata1.replace(/"sex":"남"/g,'"sex":"male"') //남자 영문으로 전환
     let seniordata3 = seniordata2.replace(/"sex":"여"/g,'"sex":"female"') //여자 영문으로 전환

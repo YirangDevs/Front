@@ -52,7 +52,6 @@ const SeniorContentContainer = () => {
         fetchAllData()
             .then((data) => {
                 setSeniors(data)
-
             })
             .catch((e) => setSeniors([]));
 
@@ -76,10 +75,10 @@ const SeniorContentContainer = () => {
                             type : i.type,
                             date: i.date,
                             priority : i.priority,
-                            needs : i.needs,
-                            //address : i.address
+                            needs : i.needs
                         }
                     })
+        console.log(data)
         setPosts(data)
     }, [currentPage, seniors])
     useCallback(()=>{
@@ -263,7 +262,6 @@ const SeniorContentContainer = () => {
         console.log(rowObj)
         
         const seniorjson=[]
-        const seniorjson2=[]
         
         let needsTotal=0
 
@@ -278,7 +276,6 @@ const SeniorContentContainer = () => {
             const sexData = rowObj[i]["성별"]
             const regionData=regionarray[1]
             const addressData = addressarray.join(" ")
-            console.log(addressData)
             const phoneData = rowObj[i]["전화번호"]
             const typeData = rowObj[i]["봉사유형"]
             const dateData = rowObj[i]["봉사날짜"]
@@ -286,12 +283,11 @@ const SeniorContentContainer = () => {
             const needsData = rowObj[i]["필요인원"]
 
             needsTotal=needsTotal+Number(needsData)
+            const data = {name: nameData, sex: sexData, region : regionData, address: addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData}
             
-            seniorjson.push({name: nameData, sex: sexData, region : regionData, address: addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData})
-            seniorjson2.push({name: nameData, sex: sexData, region : regionData, place: addressData, phone : phoneData, type : typeData, date : dateData, priority : priorityData, needs : needsData}) 
+            seniorjson.push(data)
         }
             console.log(seniorjson)
-            console.log(seniorjson2)
             setNeedsTotal(needsTotal)
         setExcelData(seniorjson)
  
