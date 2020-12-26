@@ -23,9 +23,9 @@ const ContentContainer = () => {
     useEffect(()=>{
         const region=store.getState().transferSeniorToNotice_reducer.region
         setBufferNotice((state)=>({...state, region: region}))
-        const nor=store.getState().transferSeniorToNotice_reducer.needs
+        const nor=store.getState().transferSeniorToNotice_reducer.nor
         setBufferNotice((state)=>({...state, nor: nor}))
-        const dov=store.getState().transferSeniorToNotice_reducer.date
+        const dov=store.getState().transferSeniorToNotice_reducer.dov
         setBufferNotice((state)=>({...state, dov: dov}))
 
         

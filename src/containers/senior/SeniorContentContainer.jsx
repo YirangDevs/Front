@@ -1,5 +1,5 @@
 import SeniorContent from "../../pages/Seniors/SeniorContent"
-import React, {useState, useEffect, useCallback} from "react"
+import React, {useState, useEffect, useCallback, useRef} from "react"
 import {useHistory} from "react-router-dom"
 import fetchAllData from "../../business/service/fetchAllData"
 import fetchRegion from "../../business/service/fetchRegion"
@@ -46,6 +46,10 @@ const SeniorContentContainer = () => {
     const postsPerPage = 10
     
     const [needsTotal, setNeedsTotal] = useState(0)
+
+    //const genderInput = useRef(null);
+    const genderInput = useRef();
+    const typeInput = useRef();
 
 
     useEffect(() => {
@@ -136,6 +140,7 @@ const SeniorContentContainer = () => {
         console.log(e.target)
     }
     const genderRadioDisabled=(e)=>{
+        genderInput.current.disabled=true;
         // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[0].children[0].disabled=true;
         // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[1].children[0].disabled=true;
     }
@@ -304,6 +309,8 @@ const SeniorContentContainer = () => {
                 region={region}
                 posts={posts}
                 seniors={seniors}
+
+                genderInput={genderInput}
 
                 selectRegion={selectRegion}
                 selectPage={selectPage}

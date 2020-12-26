@@ -16,7 +16,6 @@ const Box = styled.div`
     width: auto;
     height: auto;
     color : white;
-    border: 1px solid red;
 `
 
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"];
@@ -29,6 +28,8 @@ const SeniorContent = ({currentSenior,
     selectRegion,
     selectPage,
     selectSenior,
+
+    genderInput,
 
     excelRegion,
     excelDate,
@@ -46,6 +47,7 @@ const SeniorContent = ({currentSenior,
     addressOnChange,
     uploadFile,
     postSeniorsOnClick,
+
 
     postOnClick,
     editOnClick,
@@ -79,19 +81,15 @@ const SeniorContent = ({currentSenior,
                         <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior}></TableBox>
                     </Box>
                 </Col>
-
+                
                 {/* 피봉사자 정보 입력 폼 파트 */}
                 <Col span={12} xxl={5} xl={6}>
                     {/* 그리드로 구현 */}
-                    <Box>
-                        <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}></SeniorInfoForm>
-                    </Box>
-                </Col>
-            </Row>
-
-            {/* 입력/수정 후 api 전송 버튼 파트 */}
-            <Row align="start" justify="flex-end" gutter={[10,10]}>
-                <Col span={12} xxl={5} xl={6}>
+                    <Row gutter={[10,10]}>
+                        <Col span={12}>
+                        <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior} genderInput={genderInput}></SeniorInfoForm>
+                        </Col>
+                        <Col span={12}>
                     {button?
                     <Box>
                         <Button value="확인" onClick={postOnClick} block/>
@@ -99,21 +97,13 @@ const SeniorContent = ({currentSenior,
                     <EditDeleteButton editOnClick={editOnClick} deleteOnClick={deleteOnClick}></EditDeleteButton>
                     }
 
-                </Col>
-            </Row>
-
-            {/* 업로드/추가/수정삭제 파트 */}
-            <Row align="start" justify="flex-end" gutter={[10,10]}>
-                <Col span={12} xxl={5} xl={6}>
+                        </Col>
+                        <Col span={12}>
                     <Box>
                         <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen = {isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButtonGroup>
                     </Box>
                 </Col>
-            </Row>
-
-            {/* 피봉사자데이터/봉사공고글관리/매칭결과확인 페이지 이동 버튼 */}
-            <Row align="start" justify="flex-end" gutter={[10,10]}>
-                <Col span={12} xxl={5} xl={6}>
+                <Col span={12}>
                     <Box>
                         <Link to="/">
                         <Button value="피봉사자 데이터 업로드" block/></Link>
@@ -122,6 +112,10 @@ const SeniorContent = ({currentSenior,
                         <Link to="/">
                         <Button value="매칭 결과 확인" block/></Link>
                     </Box>
+                </Col>
+
+                    </Row>
+                    
                 </Col>
             </Row>
        
