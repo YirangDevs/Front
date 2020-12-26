@@ -16,7 +16,7 @@ const Box = styled.div`
     width: auto;
     height: auto;
     color : white;
-    //border: 1px solid red;
+    border: 1px solid red;
 `
 
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"];

@@ -76,7 +76,7 @@ const ContentContainer = () => {
                             type : i.type,
                             date: i.date,
                             priority : i.priority,
-                            needs : i.needs
+                            needs : i.numsOfRequiredVolunteers
 
                         }
                     })

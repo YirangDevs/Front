@@ -75,7 +75,7 @@ const SeniorContentContainer = () => {
                             type : i.type,
                             date: i.date,
                             priority : i.priority,
-                            needs : i.needs
+                            needs : i.numsOfRequiredVolunteers
                         }
                     })
         console.log(data)
@@ -136,12 +136,12 @@ const SeniorContentContainer = () => {
         console.log(e.target)
     }
     const genderRadioDisabled=(e)=>{
-        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[0].disabled=true;
-        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[1].children[1].disabled=true;
+        // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[0].children[0].disabled=true;
+        // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[1].children[0].disabled=true;
     }
     const genderRadioAbled = (e) => {
-        e.target.parentNode.previousSibling.firstChild.lastChild.children[0].disabled=false;
-        e.target.parentNode.previousSibling.firstChild.lastChild.children[1].disabled=false;
+        // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[0].children[0].disabled=false;
+        // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[1].children[0].disabled=false;
     }
     const typeOnChange = (e) => {
         //console.log("눌림")
@@ -229,8 +229,8 @@ const SeniorContentContainer = () => {
                 store.dispatch(action.TRANSFER_SENIOR_TO_NOTICE__ACTION_FUNC({
                     data:{
                         region: excelData[0].region,
-                        date : excelData[0].date,
-                        needs : needsTotal,
+                        dov : excelData[0].date,
+                        nor : needsTotal,
                         excelData : excelData
                 }}))
                 history.push("/create")

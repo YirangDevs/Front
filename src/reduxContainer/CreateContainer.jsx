@@ -10,8 +10,8 @@ const mapStateToProps = (state, props) => {
         deadlineOnChange: props.deadlineOnChange,
 
         region: state.transferSeniorToNotice_reducer.region,
-        date: state.transferSeniorToNotice_reducer.date,
-        needs: state.transferSeniorToNotice_reducer.needs,
+        dov: state.transferSeniorToNotice_reducer.dov,
+        nor: state.transferSeniorToNotice_reducer.nor,
         excelData: state.transferSeniorToNotice_reducer.excelData,
     }
 }

@@ -14,7 +14,7 @@ export default (state, action) => {
 
 const initial={
     region: "",
-    date: "",
-    needs: 0,
+    dov: "",
+    nor: 0,
     excelData: {}
 }

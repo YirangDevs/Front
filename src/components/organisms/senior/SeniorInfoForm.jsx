@@ -36,6 +36,8 @@ const SeniorInfoForm = ({
     addressOnChange,
     currentSenior
 }) => {
+    console.log(currentSenior)
+    
     return (
         <>
         <FormWrapper>
@@ -47,7 +49,7 @@ const SeniorInfoForm = ({
                 </Col>
                 <Col span={3} rightborder>
                     <Box>
-                        <RadioBox size="default" name="gender" options={genderoptions} onClick={genderOnChange}/>
+                        <RadioBox size="default" name="gender" defaultValue={currentSenior.sex} options={genderoptions} onClick={genderOnChange}/>
                     </Box>
                 </Col>
                 <Col span={5}>
@@ -64,7 +66,7 @@ const SeniorInfoForm = ({
                 </Col>
                 <Col span={2}>
                     <Box>
-                        <SelectBox options={needsoptions} onChange={needsOnChange} value={currentSenior.needs} block/>
+                        <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} block/>
                     </Box>
                 </Col>
                 <Col span={4}>

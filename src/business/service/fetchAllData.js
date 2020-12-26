@@ -16,8 +16,8 @@ const fetchAllData = async() => {
                 if(data){
                     console.log(data)
                     data = JSON.stringify(data)
-                    data = data.replace(/FEMALE/g, "여")
-                    data = data.replace(/MALE/g, "남")
+                    data = data.replace(/FEMALE/g, "여성")
+                    data = data.replace(/MALE/g, "남성")
                     data = data.replace(/WORK/g, "노력봉사")
                     data = data.replace(/TALK/g, "말벗봉사")
                     data = JSON.parse(data)
