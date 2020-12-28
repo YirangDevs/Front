@@ -10,9 +10,9 @@ import transferSeniorToNotice_action from "./transferSeniorToNotice_action"
 export default {
     ...auth_action,
     ...user_action,
-    ...inputSenior_action,
-    ...setButton_action,
-    ...notice_action,
+    //...inputSenior_action,
+    //...setButton_action,
+    //...notice_action,
     ...select_action,
     ...noticetotalnum_action,
     ...transferSeniorToNotice_action

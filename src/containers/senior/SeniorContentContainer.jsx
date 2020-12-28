@@ -140,13 +140,10 @@ const SeniorContentContainer = () => {
         console.log(e.target)
     }
     const genderRadioDisabled=(e)=>{
-        genderInput.current.disabled=true;
-        // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[0].children[0].disabled=true;
-        // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[1].children[0].disabled=true;
+        //genderInput.current.disabled=true;
     }
     const genderRadioAbled = (e) => {
-        // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[0].children[0].disabled=false;
-        // e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[0].children[0].children[1].children[0].children[0].children[1].children[0].disabled=false;
+        //
     }
     const typeOnChange = (e) => {
         //console.log("눌림")

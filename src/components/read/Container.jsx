@@ -5,7 +5,6 @@
  * @Last Modified time: 2020-11-22 22:35:51
  */
 import React from 'react';
-import "../../css/create.css";
 import TopBar from '../manage/TopBar';
 import Content from '../../containers/read/Content'
 import run from '../../init/start'

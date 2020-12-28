@@ -21,11 +21,6 @@ const UpdateButtonGroup = ({uploadFile, uploadOnClick, addButton, editDeleteButt
         <>
         <VolunteerButtonWrapper>
             <FileBox name="aFile" accept=".xls, .xlsx" onChange={uploadFile}/>
-            {/*//<input type="file" id="selectedFile" name="aFile" accept=".xls,.xlsx" onChange={openModal}/>
-            <FunctionButton width="29.5%" height="3rem" value="업로드" onClick={uploadOnClick}/>
-            <FunctionButton width="29.5%" height="3rem" value="추가" onClick={addButton}/>
-            <FunctionButton width="29.5%" height="3rem" value="수정/삭제" onClick={editDeleteButton}/>
-            <ExcelPreview isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick}></ExcelPreview> */}
             <Row>
                 <Col span={4}>
                     <Button theme="black" value="업로드" onClick={uploadOnClick} block/>
