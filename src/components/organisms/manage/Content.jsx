@@ -2,49 +2,103 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2020-12-09 01:25:19
+ * @Last Modified time: 2020-12-21 16:41:49
  */
 import React from "react"
-import styled from "styled-components"
+import NoticeInformation from "../../../components/manage/NoticeInformation"
+import Row from "../../../layout/Grid/Row/index"
+import Col from "../../../layout/Grid/Column/index"
+import ContentLayout from "../../../layout/Content/index"
+import TableButton from '../../molecules/TableButton/index'
+import MenuNav from '../../../components/molecules/MenuNav/index'
+import MenuInfo from '../../../components/molecules/MenuInfo/index'
+import Button from "../../atoms/Button/index"
+import '../../../css/manage.css'; // 이거 information만들면 지우기
+// 이거 tableButton 다만들면 지우기
 
-const Container = styled.div`
-width: 92%;
-height: 80%;
 
-margin: auto auto;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: flex-start;
-`
+const NoticeTableHeadLists = [" ", "제목", "봉사날짜", "봉사지역"]
 
 
 const Content = ({
-    setListTotalNum, // set 전제 리스트 갯수 
-    setPagingNum, // set 선택한 리스트 페이지 번호
-    selectNotice, // read 로 열 notice 정보 
-    setSelectNotice, // set read로 열 notice 정보
-    updateNotice, // update 할 notice 정보 (update page에 표시될)
-    setUpdateNotice, // set update 할 notice 정보 (update page에 표시될)
-    setDeleteId,     // set 삭제할 id
+    setListTotalNum,
+    setPagingNum,
+    selectNotice,
+    setSelectNotice,
+    updateNotice,
+    setUpdateNotice,
+    setDeleteId,
     lists,
-    setLists, // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
-
-    /* props.function */
-    noticeClick,  // notice를 클릭 했을떄 notice를 read 하는 모달
-    updateClick,  // notice를 수정하기 버튼 눌었을떄 
-    deleteClick,  // notice를 삭제하기 버튼 눌었을떄 
-    pagingClick,  // paging 클릭 시  
-    updateFunction, // notice를 수정 하기 위한 함수들 
+    setLists,
+    noticeClick,
+    updateClick,
+    deleteClick,
+    pagingClick,
+    updateFunction,
+    logoutEvent
 
 }) => {
+
     return (
         <>
             {/*manage Page 의 Content를 감싸는 Container */}
-            <Container>
+            <ContentLayout>
+                {/*<Col span = {7} > = notice 영역을 감사는 layout (left) */}
+                {/*<Col span = {5} > = menu 영역을 감사는 layout (right) */}
+                <Row gutter={[10, 10]}>
+                    <Col span={7}>
+                        <NoticeInformation></NoticeInformation>
+                    </Col>
+                </Row>
+                <Row gutter={[10, 10]}>
+                    <Col span={8}>
+                        {
+                            (lists).map((lists) => {
+                                let data = Object.assign({
+                                    id: lists.id,
+                                    title: lists.title,
+                                    dov: lists.dov,
+                                    region: lists.region
+                                }, {})
+                                return (
+                                    <>
+                                        <TableButton
+                                            headList={NoticeTableHeadLists}
+                                            bodyList={[data]}
+                                            primaryKey={"title"}
+                                            noticeClick={noticeClick}
+                                            noticeId={data.id}
+                                        >
+                                        </TableButton>
+                                    </>
+                                )
+                            })
+
+                        }
+                    </Col>
+                    <Col span={4}>
+                        <MenuNav
+                            title="메뉴"
+                            firstMenu="메인화면으로 가기"
+                            secondMenu="봉사 공고글 관리"
+                            thirdMenu="봉사자 데이터 업로드"
+                            firstLink="/"
+                            secondLink="/manage"
+                            thirdLink="/Seniors"
+                        ></MenuNav>
+                        <MenuInfo
+                            userName="리덕스"
+                            ModeKey="MODE"
+                            ModeValue="리덕스"
+                            LoginKey="LOGIN"
+                            LoginValue="LOGOUT"
+                            logoutEvent={logoutEvent}
+                        ></MenuInfo>
+                    </Col>
+                </Row>
 
 
-            </Container>
+            </ContentLayout>
         </>
     )
 }

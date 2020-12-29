@@ -2,26 +2,22 @@
  * @author: chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2020-12-09 01:25:22
+ * @Last Modified time: 2020-12-21 15:45:15
  */
 
 
+import { checkPropTypes } from "prop-types"
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import fetchNotice from "../../business/service/fetch_notice"
 import Content from "../../components/organisms/manage/Content"
+import _ from "../../config/env"
 
-const Container = styled.div`
-display: flex;
-flex-direction: column;
-width: 100%;
-height: 100% - 4rem;
-`
 
 const ContentContainer = () => {
 
-    const [listTotalNum, setListTotalNum] = useState(0); //  전체 리스트 갯수
-    const [pagingNum, setPagingNum] = useState(0);//선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
+    const [listTotalNum, setListTotalNum] = useState(0); // 전체 리스트 갯수
+    const [pagingNum, setPagingNum] = useState(0);// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
     const [selectNotice, setSelectNotice] = useState({});//  read로 열 notice 정보
     const [updateNotice, setUpdateNotice] = useState({  // update할 notice 정보
         id: "",
@@ -72,14 +68,14 @@ const ContentContainer = () => {
      * @description notice를 클릭 했을때 notice 를 read 하는 모달
      * @param e - 선택한 notice target하기위한 param
      */
-    const noticeClick = (e) => {
-        console.log(e.target)
-        const readId = e.target.id
-        console.log(readId)
-        fetchNotice.getNotice(readId) // fetch해서 선택한notice 업데이트 
-            .then((res) => {
-                setSelectNotice(res.notice)
-            })
+    const noticeClick = (noticeId) => {
+        console.log(noticeId)
+        // const readId = noticeId
+        // console.log(readId)
+        // fetchNotice.getNotice(readId) // fetch해서 선택한notice 업데이트 
+        //     .then((res) => {
+        //         setSelectNotice(res.notice)
+        //     })
     }
 
     /**
@@ -192,33 +188,42 @@ const ContentContainer = () => {
         },
     }
 
+    /**
+         * @description logout 클릭 시  
+         * @param e - event.persist 를 위한  param
+         * @detail logout기능 수행 
+         */
+    const logoutEvent = (e) => {
+        console.log("Logout,,,,");
 
+        // e.persist();
+        // //props.LOGOUT() // redux에서 로그아웃 상태로 바꿔줌
+        // localStorage.removeItem("YAT")
+        // window.location.href = "https://kauth.kakao.com/oauth/logout?client_id=" + _.REST_KEY + "&logout_redirect_uri=" + _.LOGOUT_REDIRECT_URL
 
-
+    }
 
     return (
         <>
-            <Container>
-                <Content
-                    setListTotalNum={setListTotalNum} // set 전제 리스트 갯수 
-                    setPagingNum={setPagingNum} // set 선택한 리스트 페이지 번호
-                    selectNotice={selectNotice} // read 로 열 notice 정보 
-                    setSelectNotice={setSelectNotice} // set read로 열 notice 정보
-                    updateNotice={updateNotice} // update 할 notice 정보 (update page에 표시될)
-                    setUpdateNotice={setUpdateNotice} // set update 할 notice 정보 (update page에 표시될)
-                    setDeleteId={setDeleteId} // set 삭제할 id
-                    lists={lists}
-                    setLists={setLists} // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
+            <Content
+                setListTotalNum={setListTotalNum} // set 전제 리스트 갯수 
+                setPagingNum={setPagingNum} // set 선택한 리스트 페이지 번호
+                selectNotice={selectNotice} // read 로 열 notice 정보 
+                setSelectNotice={setSelectNotice} // set read로 열 notice 정보
+                updateNotice={updateNotice} // update 할 notice 정보 (update page에 표시될)
+                setUpdateNotice={setUpdateNotice} // set update 할 notice 정보 (update page에 표시될)
+                setDeleteId={setDeleteId} // set 삭제할 id
+                lists={lists}
+                setLists={setLists} // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
-                    /* props.function */
-                    noticeClick={noticeClick} // notice를 클릭 했을떄 notice를 read 하는 모달
-                    updateClick={updateClick} // notice를 수정하기 버튼 눌었을떄 
-                    deleteClick={deleteClick} // notice를 삭제하기 버튼 눌었을떄 
-                    pagingClick={pagingClick} // paging 클릭 시  
-                    updateFunction={updateFunction} // notice를 수정 하기 위한 함수들 
-                > </Content>
-
-            </Container>
+                /* props.function */
+                noticeClick={noticeClick} // notice를 클릭 했을떄 notice를 read 하는 모달
+                updateClick={updateClick} // notice를 수정하기 버튼 눌었을떄 
+                deleteClick={deleteClick} // notice를 삭제하기 버튼 눌었을떄 
+                pagingClick={pagingClick} // paging 클릭 시  
+                updateFunction={updateFunction} // notice를 수정 하기 위한 함수들 
+                logoutEvent={logoutEvent} // logout 하는 기능 
+            > </Content>
         </>
     )
 }

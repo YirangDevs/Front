@@ -22,6 +22,7 @@ const TableHead = styled.th`
     font-size: 1rem;
     font-weight: 500;
     color: #707070;
+    
 `
 
 const TableBody = styled.td`
@@ -31,45 +32,39 @@ const TableBody = styled.td`
     color: #707070;
     border-bottom: solid #ccd4e0 1px;
 
+
 `
 const PrimaryKey = styled(TableBody)`
     cursor: pointer;
 `
 
 
-const Index = ({headList, bodyList, primaryKey, onClick}) => (
+const Index = ({ headList, bodyList, primaryKey, onClick }) => (
     <>
-                <Table>
-                    <thead>
-                        <TableRow>
-
-                        {
-                            headList.map((i, index)=><TableHead key={index}>{i}</TableHead>)
-                        }
-
-                        </TableRow>
-                    </thead>
-                    <tbody>
+        <Table>
+            <thead>
+                <TableRow>
                     {
-                        bodyList.map((i, index)=>{
-
-                            return (
+                        headList.map((i, index) => <TableHead key={index}>{i}</TableHead>)
+                    }
+                </TableRow>
+            </thead>
+            <tbody>
+                {
+                    bodyList.map((i, index) => {
+                        return (
                             <TableRow key={index}>
-                                {Object.keys(i).map((data, index)=>{
-                                    return (data===primaryKey) ?
-                                    <PrimaryKey key={index} onClick={onClick}>{i[data]}</PrimaryKey>
-                                    :
-                                    <TableBody key={index}>{i[data]}</TableBody>
+                                {Object.keys(i).map((data, index) => {
+                                    return (data === primaryKey) ?
+                                        <PrimaryKey key={index} onClick={onClick}>{i[data]}</PrimaryKey>
+                                        :
+                                        <TableBody key={index}>{i[data]}</TableBody>
                                 })}
                             </TableRow>)
-                        })
-                    }
-                    </tbody>
-
-
-
-                </Table>
-
+                    })
+                }
+            </tbody>
+        </Table>
     </>
 )
 
