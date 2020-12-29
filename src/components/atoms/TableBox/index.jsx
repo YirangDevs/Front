@@ -26,20 +26,20 @@ const TableHead = styled.th`
 `
 
 const TableBody = styled.td`
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: normal;
     font-stretch: normal;
     color: #707070;
     border-bottom: solid #ccd4e0 1px;
 
+    cursor: pointer;
 
 `
 const PrimaryKey = styled(TableBody)`
     cursor: pointer;
 `
 
-
-const Index = ({ headList, bodyList, primaryKey, onClick }) => (
+const Index = ({ tooltip, headList, bodyList, primaryKey, onClick }) => (
     <>
         <Table>
             <thead>
@@ -58,7 +58,7 @@ const Index = ({ headList, bodyList, primaryKey, onClick }) => (
                                     return (data === primaryKey) ?
                                         <PrimaryKey key={index} onClick={onClick}>{i[data]}</PrimaryKey>
                                         :
-                                        <TableBody key={index}>{i[data]}</TableBody>
+                                        <TableBody key={index} data-tip={i[data]} data-for={tooltip}>{i[data]}</TableBody>
                                 })}
                             </TableRow>)
                     })

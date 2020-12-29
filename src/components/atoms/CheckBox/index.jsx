@@ -1,12 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 
-const Radio = styled.input.attrs((props)=> ({type:"radio"}))`
+const Check = styled.input.attrs((props)=> ({type:"checkbox"}))`
 
 `
-const RadioGroup = styled.div`
+const CheckBoxGroup = styled.div`
 `
-const RadioLabel = styled.label`
+const CheckBoxLabel = styled.label`
 ${props=>{
     switch(props.size){
         case "small":
@@ -29,17 +29,17 @@ ${props=>{
 `
 
 
-const RadioBox = ({size, name, defaultValue, onClick, options, ref}) => (
+const CheckBox = ({size, defaultChecked, options}) => (
+
     //options = selectBox 목록 DataType = Array
     <>
-    <RadioGroup>
-        
+    <CheckBoxGroup>
         {options.map((i)=>
-        <RadioLabel size={size}><Radio value={i} defaultValue={defaultValue===i} onClick={onClick} name={name} ref={ref}/>{i}</RadioLabel>
+        <CheckBoxLabel size={size}><Check value={i} checked={(defaultChecked===i)? "checked": null} />{i}</CheckBoxLabel>
         )}
         
-    </RadioGroup>
+    </CheckBoxGroup>
     </>
 )
 
-export default RadioBox
+export default CheckBox

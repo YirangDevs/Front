@@ -1,56 +1,87 @@
-import React from "react"
+import React, {useEffect} from "react"
 import styled from "styled-components"
-import CreateTextBox from "../../atoms/CreateTextBox"
-import TimeBox from "../../atoms/TimeBox"
-import DateBox from "../../atoms/DateBox"
+import Row from "../../../layout/Grid/Row/index"
+import Col from "../../../layout/Grid/Column/index"
+import TextBox from "../../atoms/TextBox"
+import SelectBox from "../../atoms/SelectBox"
+import DateSelector from "../../atoms/DateSelector"
+import TimeSelector from "../../atoms/TimeSelector"
+import { useEventCallback } from "@material-ui/core"
 
 const NoticeUpdateFormWrapper = styled.div`
     width: 100%;
     font-size: 16px;
-    border: 1px solid #ccd4e0;
+    margin-top: 10px;
+    border-radius: 5px;
 `
-
-const GroupFirst = styled.div`
-    height: 60px;
+const Box = styled.div`
+     height: 3rem;
+     border: 1px solid #ccd4e0;
+    border-collapse: seperate;
     display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid #ccd4e0
-`
-const GroupSecond = styled.div`
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-`
-const InputText = styled.div`
-    width: ${props=>props.width};
-    text-align:center;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    border-right: 1px solid #ccd4e0;
-    border-left: 1px solid #ccd4e0;
+    justify-content: center;
+    
+    @media screen and (max-width: 992px){
+        ${props=>(props.title)? `background-color: #f1f3f6;`:null}
+    }   
+    
+`
+const Text = styled.div`
+    font-size: 1rem;
+    color: #707070;
+    
 `
 
-const NoticeUpdateForm = () => {
+
+const regionoptions = ["지역선택", "수성구", "동구", "서구", "남구", "북구", "중구", "달서구"];
+
+const NoticeUpdateForm = (props) => {
+
+    console.log(props)
     return (
         <>
         <NoticeUpdateFormWrapper>
-            <GroupFirst>
-                <InputText width="8%">제목</InputText>
-                <CreateTextBox width="74%" placeholder="제목을 입력하세요."></CreateTextBox>
-                <InputText width="8%">장소</InputText>
-                <CreateTextBox width="10%"></CreateTextBox>
-            </GroupFirst>
-            <GroupSecond>
-                <InputText width="12.5%">필요 인원 수</InputText>
-                <CreateTextBox width="12.5%"></CreateTextBox>
-                <InputText width="12.5%">봉사 날짜</InputText>
-                <CreateTextBox width="12.5%"></CreateTextBox>
-                <InputText width="12.5%">봉사 시작 시간</InputText>
-                <TimeBox width="12.5%"></TimeBox>
-                <InputText width="12.5%">신청 마감 날짜</InputText>
-                <DateBox width="12.5%"></DateBox>
-            </GroupSecond>
+            <Row>
+                <Col span={12} xl={1} lg={1.5}>
+                    <Box title><Text>제목</Text></Box>
+                </Col>
+                <Col span={12} xl={7.9} lg={10.5}>
+                    <Box><TextBox theme="white" placeholder="제목을 입력하세요" onChange={props.titleOnChange} block/></Box>
+                </Col>
+                <Col span={12} xl={1.1} lg={1.5}>
+                    <Box title><Text>장소</Text></Box>
+                </Col>
+                <Col span={12} xl={2} lg={4.5}>
+                    <Box><SelectBox theme="white" size="large" defaultValue={props.region} options={regionoptions} disabled="disabled" ></SelectBox></Box>
+                </Col>
+            
+            
+                <Col span={12} xl={1} lg={1.5}>
+                    <Box title><Text>필요인원</Text></Box>
+                </Col>
+                <Col span={12} xl={2} lg={4.5}>
+                    <Box><TextBox theme="white" placeholder="필요인원 수를 입력하세요" value={props.nor} disabled="disabled" block/></Box>
+                </Col>
+                <Col span={12} xl={0.8} lg={1.5}>
+                    <Box title><Text>봉사날짜</Text></Box>
+                </Col>
+                <Col span={12} xl={2} lg={2.5}>
+                    <Box><DateSelector theme="white" defaultValue={props.dov} disabled="disabled"/></Box>
+                </Col>
+                <Col span={12} xl={1.1} lg={1.5}>
+                    <Box title><Text>시작시간</Text></Box>
+                </Col>
+                <Col span={12} xl={2} lg={2.5}>
+                    <Box><TimeSelector theme="white" size="default" onChange={props.timeOnChange}/></Box>
+                </Col>
+                <Col span={12} xl={1.1} lg={1.5}>
+                    <Box title><Text>신청마감</Text></Box>
+                </Col>
+                <Col span={12} xl={2} lg={2.5}>
+                    <Box><DateSelector theme="white" onChange={props.deadlineOnChange}/></Box>
+                </Col>
+            </Row>
         </NoticeUpdateFormWrapper>
         </>
     )
