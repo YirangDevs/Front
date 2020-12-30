@@ -2,11 +2,12 @@ import React from 'react';
 import Container from "./components/home/Container"
 import LoginRedirect from "./containers/home/LoginRedirect"
 import LogoutRedirect from "./containers/home/LogoutRedirect"
-import Manage from "./components/manage/Container"
+import Manage from "./pages/Manage/index"
 import Create from "./pages/Create/index"
 import Read from "./components/read/Container"
 import Update from "./components/update/Container"
 import ReadAllNotice from './components/readAllNotice/Container'
+import UserAuthority from "./pages/UserAuthority"
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import Seniors from "./pages/Seniors/index"
 
@@ -33,6 +34,10 @@ function App() {
         </Route> 
         <Route path ="/ReadAllNotice" component={ReadAllNotice}>
         </Route>
+
+        <Route path="/userauthority" component={UserAuthority}>
+        </Route>
+
         <Route exact path="/" component={Container}>
         </Route>
       </Switch> 

@@ -13,28 +13,48 @@ ${props=>{
             return `
                 padding : 12px 20px;
             `
-        default:
+        case "default":
             return `
                 padding : 8px 16px;
             `
+        default:
+            return `
+                padding : 8px 10px;
+            `
+    }
+}}
+${props=>{
+    switch(props.theme){
+        case "white":
+            return `
+                border: none;
+            `
+        default:
+            return`
+            border-radius: 5px;
+            background-color: #f1f3f6;
+            border: 1px solid #ccd4e0;
+        `
     }
 }}
     ${props=>(props.block) ? `width : 90%;` : null}
     font-size: 1rem;
-    border-radius: 5px;
-    background-color: #f1f3f6;
-    border: 1px solid #ccd4e0;
     color: #707070;
+    @media screen and (max-width: 992px){
+        text-align: center;
+    }
+    
 `
 
-const TextBox=({size, block, value, onChange, placeholder})=>(
+const TextBox=({theme, size, block, value, onChange, placeholder, disabled})=>(
     <>
-        <Text size={size} block={block} value={value||""} onChange={onChange} placeholder={placeholder}>
+        <Text theme={theme} size={size} block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled}>
         </Text>
     </>
 )
 
 TextBox.propTypes = {
+    theme : PropTypes.string,
     size : PropTypes.string,
     value : PropTypes.string,
     onChange : PropTypes.func

@@ -1,0 +1,5 @@
+export default {
+        TRANSFER_SENIOR_TO_NOTICE : "TRANSFER_SENIOR_TO_NOTICE",
+
+        TRANSFER_SENIOR_TO_NOTICE__ACTION_FUNC: (payload)=>({type : "TRANSFER_SENIOR_TO_NOTICE", ...payload}),
+}

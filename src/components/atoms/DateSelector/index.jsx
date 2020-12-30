@@ -13,29 +13,47 @@ ${props=>{
             return `
                 padding : 12px 20px;
             `
-        default:
+        case "default":
             return `
                 padding : 6px 24px;
+            `
+        default:
+            return `
+                padding : 6px 10px;
             `
         
     }
 }}
+${props=>{
+    switch(props.theme){
+        case "white":
+            return`
+                border: none;
+            `
+        default:
+            return`
+                border-radius: 5px;
+                background-color: #f1f3f6;
+                border: 1px solid #ccd4e0;
+            `
+    }
+}}
+    ${props=>(props.block) ? `width : 90%;` : null}
     font-size: 1rem;
-    border-radius: 5px;
-    background-color: #f1f3f6;
-    border: 1px solid #ccd4e0;
     color: #707070;
     
 `
 
-const DateSelector = ({size, defaultValue, onChange, theme}) => (
+const DateSelector = ({block, size, defaultValue, onChange, theme, disabled}) => (
 
     <>
-        <DateForm size={size} theme={theme} onChange={onChange} defaultValue={defaultValue}></DateForm>
+        <DateForm block={block} size={size} theme={theme} onChange={onChange} defaultValue={defaultValue} disabled={disabled}></DateForm>
     </>
 )
 
 DateSelector.propTypes = {
+    block : PropTypes.bool,
+    theme : PropTypes.string,
     size : PropTypes.string,
     defaultValue : PropTypes.string,
     onChange : PropTypes.func

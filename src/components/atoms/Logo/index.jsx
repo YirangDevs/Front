@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 const LogoStyle = styled.div`
   width: auto;
@@ -21,8 +21,8 @@ const Index = () => {
     const history = useHistory();
     return (
         <>
-            <LogoStyle onClick={()=>history.push("/")}>
-                Yirang
+            <LogoStyle onClick={() => history.push("/")}>
+                YIRANG
             </LogoStyle>
         </>
     )
