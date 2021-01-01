@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import styled from "styled-components"
 import Content from "../../components/organisms/create/Content"
-
+import {useHistory} from "react-router-dom"
 import store from "../../store/store"
 import action from "../../store/actions/action"
 import data from "../../business/service/fetch_notice"
@@ -17,6 +17,8 @@ const Container = styled.div`
 `
 
 const ContentContainer = () => {
+
+    const history = useHistory()
 
     const [bufferNotice, setBufferNotice] = useState({})
 
@@ -66,7 +68,7 @@ const ContentContainer = () => {
                 postSeniorsToServer(excelData).then(res=>console.log(res))
             }
             
-        })
+        }).then(()=>history.push("/"))
         
     }
 

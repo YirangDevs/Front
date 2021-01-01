@@ -10,6 +10,7 @@ import SeniorInfoForm from "../../components/organisms/senior/SeniorInfoForm"
 import TableBox from "../../components/atoms/TableBox/index"
 import EditDeleteButton from "../../components/molecules/editDeleteButton"
 import AdminButtonGroup from "../../components/molecules/AdminButtonGroup"
+import Pagination from "../../components/atoms/Pagination"
 
 const Box = styled.div`
     // background: #0092ff;
@@ -29,7 +30,7 @@ const SeniorContent = ({currentSenior,
     selectPage,
     selectSenior,
 
-    genderInput,
+    genderRef,
 
     excelRegion,
     excelDate,
@@ -47,6 +48,7 @@ const SeniorContent = ({currentSenior,
     addressOnChange,
     uploadFile,
     postSeniorsOnClick,
+    paginationOnClick,
 
 
     postOnClick,
@@ -80,6 +82,8 @@ const SeniorContent = ({currentSenior,
                     <Box>
                         <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior}></TableBox>
                     </Box>
+                    <Pagination num={Math.ceil(seniors.length/10)} onClick={paginationOnClick}></Pagination>
+
                 </Col>
                 
                 {/* 피봉사자 정보 입력 폼 파트 */}
@@ -87,7 +91,7 @@ const SeniorContent = ({currentSenior,
                     {/* 그리드로 구현 */}
                     <Row gutter={[10,10]}>
                         <Col span={12}>
-                        <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior} genderInput={genderInput}></SeniorInfoForm>
+                        <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior} genderRef={genderRef}></SeniorInfoForm>
                         </Col>
                         <Col span={12}>
                     {button?

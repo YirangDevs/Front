@@ -1,5 +1,5 @@
 import SeniorContent from "../../pages/Seniors/SeniorContent"
-import React, { useState, useEffect, useCallback, useRef } from "react"
+import React, { useState, useEffect, useCallback, createRef } from "react"
 import { useHistory } from "react-router-dom"
 import fetchAllData from "../../business/service/fetchAllData"
 import fetchRegion from "../../business/service/fetchRegion"
@@ -48,8 +48,7 @@ const SeniorContentContainer = () => {
     const [needsTotal, setNeedsTotal] = useState(0)
 
     //const genderInput = useRef(null);
-    const genderInput = useRef();
-    const typeInput = useRef();
+    const genderRef = createRef();
 
 
     useEffect(() => {
@@ -96,6 +95,11 @@ const SeniorContentContainer = () => {
         updatePosts()
     }, [currentPage, updatePosts])
 
+    const paginationOnClick = (e) => {
+        console.log(e.target.innerText)
+        setCurrentPage(e.target.innerText)
+    }
+
     const selectRegion = (e) => {
         if (e.target.value === "전체") {
             fetchAllData()
@@ -127,7 +131,8 @@ const SeniorContentContainer = () => {
         setBufferSenior(senior)
         setCurrentSenior(senior)
 
-        genderRadioDisabled(e)
+        // genderRadioDisabled(e)
+        console.log(genderRef.current)
     }
 
     const nameOnChange = (e) => {
@@ -139,12 +144,7 @@ const SeniorContentContainer = () => {
         setBufferSenior((state) => ({ ...state, sex: sex }))
         console.log(e.target)
     }
-    const genderRadioDisabled = (e) => {
-        //genderInput.current.disabled=true;
-    }
-    const genderRadioAbled = (e) => {
-        //
-    }
+    
     const typeOnChange = (e) => {
         //console.log("눌림")
         const type = e.target.value
@@ -155,8 +155,8 @@ const SeniorContentContainer = () => {
         setBufferSenior((state) => ({ ...state, priority: priority }))
     }
     const needsOnChange = (e) => {
-        const needs = e.target.value
-        setBufferSenior((state) => ({ ...state, needs: needs }))
+        const numsOfRequiredVolunteers = e.target.value
+        setBufferSenior((state) => ({ ...state, numsOfRequiredVolunteers: numsOfRequiredVolunteers }))
     }
     const dateOnChange = (e) => {
         const date = e.target.value
@@ -185,7 +185,6 @@ const SeniorContentContainer = () => {
         e.target.parentNode.parentNode.previousSibling.click()
     }
     const editOnClick = async (e) => {
-        genderRadioAbled(e)
         await editSeniorFromServer(bufferSenior.id, bufferSenior).then(res => {
             if (res.ok) { alert("수정 성공"); }
         })
@@ -194,7 +193,6 @@ const SeniorContentContainer = () => {
 
     }
     const deleteOnClick = async (e) => {
-        genderRadioAbled(e)
         await deleteSeniorFromServer(bufferSenior.id).then(res => {
             if (res.ok) { alert("삭제 성공"); }
         })
@@ -206,8 +204,9 @@ const SeniorContentContainer = () => {
     const postOnClick = async () => {
         //console.log(bufferSenior)
         await postSeniorToServer(bufferSenior).then(res => {
-            if (res.ok) { alert("추가 성공"); }
-        })
+            if (res.ok) { alert("추가 성공"); return res}
+            else{return res.json()}
+        }).then(data=>console.log(data))
         addEditDeleteRender();
     }
     const addEditDeleteRender = () => {
@@ -308,7 +307,7 @@ const SeniorContentContainer = () => {
                 posts={posts}
                 seniors={seniors}
 
-                genderInput={genderInput}
+                genderRef={genderRef}
 
                 selectRegion={selectRegion}
                 selectPage={selectPage}
@@ -325,6 +324,7 @@ const SeniorContentContainer = () => {
                 regionOnChange={regionOnChange}
                 addressOnChange={addressOnChange}
 
+                paginationOnClick={paginationOnClick}
                 postSeniorsOnClick={postSeniorsOnClick}
                 postOnClick={postOnClick}
                 editOnClick={editOnClick}

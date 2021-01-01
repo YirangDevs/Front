@@ -17,6 +17,7 @@ const PaginationItem = styled.li`
 `
 
 const Index = ({num, onClick}) => {
+    console.log(num)
     const pageNum = []
     for(let i=0;i<num;i++){
         pageNum.push(i+1)
@@ -26,7 +27,7 @@ const Index = ({num, onClick}) => {
             <PaginationWrapper>
                 {
                     pageNum.map((i, index)=>{
-                        return <PaginationItem key={index} onClick={onClick}>{pageNum[index-1]}</PaginationItem>
+                        return <PaginationItem key={index} onClick={onClick}>{pageNum[index]}</PaginationItem>
                     })
                 }
             </PaginationWrapper>
