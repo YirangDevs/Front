@@ -4,8 +4,8 @@ import TopBar from "../../components/molecules/TopBar";
 
 
 
-
 const Manages = () => {
+
     return (
         <>
             <TopBar />
