@@ -29,14 +29,13 @@ ${props=>{
 `
 
 
-const RadioBox = ({size, name, onClick, options}) => (
+const RadioBox = ({size, name, defaultValue, onClick, options, ref}) => (
     //options = selectBox 목록 DataType = Array
-
     <>
     <RadioGroup>
         
         {options.map((i)=>
-        <RadioLabel size={size}><Radio value={i} onClick={onClick} name={name}/>{i}</RadioLabel>
+        <RadioLabel size={size}><Radio value={i} defaultValue={defaultValue===i} onClick={onClick} name={name} ref={ref}/>{i}</RadioLabel>
         )}
         
     </RadioGroup>

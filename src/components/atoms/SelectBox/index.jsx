@@ -14,22 +14,34 @@ ${props=>{
             `
         default:
             return `
-                padding : 8px 12px;
+                padding : 8px 0px;
             `
     }
 }}
+${props=>{
+    switch(props.theme){
+        case "white" :
+            return`
+            border: none;
+            `
+        default : 
+            return`
+            border-radius: 5px;
+            border-color: #ccd4e0;
+            background-color: #f1f3f6;
+            `
+    }
+}}
+    ${props=>(props.block) ? `width : 90%;` : null}
     font-size: 1rem;
-    border-radius: 5px;
-    color: #adadad;
-    border-color: #ccd4e0;
-    background-color: #f1f3f6;
+    color: #707070;
 `
 
-const SelectBox = ({size, defaultValue, onChange, options}) => (
+const SelectBox = ({block, theme, size, defaultValue, onChange, onLoad, options, disabled}) => (
     //options = selectBox 목록 DataType = Array
 
     <>
-        <Select size={size} value={defaultValue} onChange={onChange}>
+        <Select block={block} theme={theme} size={size} value={defaultValue} onChange={onChange} disabled={disabled}>
             {options.map((i, index)=><option key={index} defaultValue="" value={i}>{i}</option>)}
         </Select>
     </>

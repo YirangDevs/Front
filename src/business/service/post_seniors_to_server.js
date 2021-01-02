@@ -1,4 +1,5 @@
 const postSeniorsToServer = async (props) => {
+    console.log(props)
     let seniordata1 = JSON.stringify(props);
     let seniordata2 = seniordata1.replace(/"sex":"남"/g,'"sex":"male"') //남자 영문으로 전환
     let seniordata3 = seniordata2.replace(/"sex":"여"/g,'"sex":"female"') //여자 영문으로 전환
@@ -12,15 +13,7 @@ const postSeniorsToServer = async (props) => {
             'Authorization' : "Bearer "+ localStorage.getItem("YAT")
         },
         body: payload
-    })
-    // return fetch("http://localhost:7000/seniors/upload", {
-    //     method: 'POST',
-    //     headers : {
-    //         'Content-type' : 'application/json',
-    //         'Authorization' : "Bearer "+ localStorage.getItem("YAT")
-    //     },
-    //     body: payload
-    // }).then(res => (res.ok) ? res : res.json()).then(data=> console.log(data))
+    }).then((res)=>{if(!res.ok){return res.json()} else{return res}});
 }
 
 export default postSeniorsToServer

@@ -2,6 +2,7 @@ import React from "react"
 import TableBox from "../../components/atoms/TableBox";
 import styled from "styled-components"
 import TableScrollbar from "react-table-scrollbar"
+import ModalButtonGroup from "../../components/molecules/ModalButtonGroup";
 //import FunctionButton from "../components/atoms/FunctionButton";
 
 const Modal = styled.div`
@@ -15,7 +16,7 @@ const Modal = styled.div`
 `
 
 const PreviewModal = styled.div`
-      width: 580px;
+      width: 645px;
       height: 621px;
       display: flex;
       flex-direction: column;
@@ -51,14 +52,20 @@ const ButtonLayout = styled.div`
     
 `
 
-const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위"]
+const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"]
 const ExcelPreview = ({isModalOpen, excelData, closeModal, postSeniorsOnClick}) => {
-
+    
     const filteredData = excelData.map((i)=>{
-        let  data = i
-        delete data.id
-        delete data.address
-        return data
+        return {
+            name : i.name,
+            sex: i.sex,
+            region: i.region,
+            date : i.date,
+            needs : i.needs,
+            phone : i.phone,
+            priority : i.priority,
+            type : i.type
+        }
     })
 
     return (isModalOpen) ?
@@ -71,8 +78,7 @@ const ExcelPreview = ({isModalOpen, excelData, closeModal, postSeniorsOnClick}) 
                     </TableBox>
                 </TableScrollbar>
                 <ButtonLayout>
-                    {/* <FunctionButton width="45%" height="90%" onClick={closeModal} value="취소"></FunctionButton>
-                    <FunctionButton width="45%" height="90%" onClick={postSeniorsOnClick} value="확인"></FunctionButton> */}
+                    <ModalButtonGroup postSeniorsOnClick={postSeniorsOnClick} closeModal={closeModal}/>
                 </ButtonLayout>
 
             </ModalContent>
