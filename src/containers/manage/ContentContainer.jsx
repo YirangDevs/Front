@@ -5,13 +5,13 @@
  * @Last Modified time: 2020-12-21 15:45:15
  */
 
-
-import { checkPropTypes } from "prop-types"
 import React, { useState, useEffect } from "react"
-import styled from "styled-components"
-import fetchNotice from "../../business/service/fetch_notice"
 import Content from "../../components/organisms/manage/Content"
-import _ from "../../config/env"
+import deleteActivity from "../../service/api/delete/delete_activity";
+import getNotice from "../../service/api/get/get_notice";
+import getNoticeByPage from "../../service/api/get/get_notice_by_page";
+import getNoticeNum from "../../service/api/get/get_notice_num";
+import deleteNotice from "../../service/api/delete/delete_notice";
 
 
 const ContentContainer = () => {
@@ -33,34 +33,18 @@ const ContentContainer = () => {
     const [lists, setLists] = useState([]);//fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
     useEffect(() => {//전체 페이지 갯수 받아오기 
-        fetchNotice.getNum()
+        getNoticeNum()
             .then((res) => {
-                console.log("전체 페이지 갯수 받아오기")
-                console.log(res.totalNoticeNums);
                 setListTotalNum(res.totalNoticeNums);// 전체 리스트 갯수 저장 
-            })
+            }).catch(error=>console.log(error))
     }, [])
-
-    // page별로 6개씩 받아오기 (pagination눌러서 페이지가 바뀔떄 )
-
-    // useEffect(() => {
-    //     fetchNotice.getList(pagingNum)
-    //         .then((res) => {
-    //             console.log("pagination눌러서 페이지가 바뀔떄")
-    //             console.log(res.notices)
-    //             setLists(res.notices)
-    //         })
-    // }, [pagingNum])
 
     // 전체 페이지 갯수가 바뀔 때 마다 선택된 페이지 새로 받아오기 (삭제되었을때 바로 반영이 되로=도록)
     useEffect(() => {
-        fetchNotice.getList(pagingNum)
+        getNoticeByPage(pagingNum)
             .then((res) => {
-                console.log(listTotalNum)
-                console.log("전체 페이지 갯수가 바뀔 때 마다 선택된 페이지 새로 받아오기")
-                console.log(res.notices)
                 setLists(res.notices);
-            })
+            }).catch(error=>console.log(error))
     }, [listTotalNum, pagingNum])
 
 
@@ -70,75 +54,51 @@ const ContentContainer = () => {
      */
     const noticeClick = (noticeId) => {
         console.log(noticeId)
-        // const readId = noticeId
-        // console.log(readId)
-        // fetchNotice.getNotice(readId) // fetch해서 선택한notice 업데이트 
-        //     .then((res) => {
-        //         setSelectNotice(res.notice)
-        //     })
     }
 
     /**
-         * @description notice를 수정하기 버튼 눌었을떄 
-         * @param e - 선택한 notice target하기위한 param
-         * @detail 수정할 notice의 id를 통해 UpdateNotice 내용을 set(update Page 에 표시될거)
-         */
+     * @description notice를 수정하기 버튼 눌었을떄
+     * @param e - 선택한 notice target하기위한 param
+     * @detail 수정할 notice의 id를 통해 UpdateNotice 내용을 set(update Page 에 표시될거)
+     */
     const updateClick = (e) => {
-        console.log(e.target)
         const updateId = e.target.id;
-        console.log(updateId)
-        fetchNotice.getNotice(updateId)
+        getNotice(updateId)
             .then((res) => {
                 setUpdateNotice(res.notice)
             })
+            .catch(error=>console.log(error))
     }
 
     /**
-         * @description notice를 삭제하기 버튼 눌었을떄 
-         * @param e - 선택한 notice target하기위한 param
-         * @detail 삭제할 notice가 마지막일 경우 force delete
-         */
+     * @description notice를 삭제하기 버튼 눌었을떄
+     * @param e - 선택한 notice target하기위한 param
+     * @detail 삭제할 notice가 마지막일 경우 force delete
+     */
 
     const deleteClick = (e) => {
-        console.log(e.target)
         setDeleteId(e.target.id);
-        if (deleteId) {
-            console.log("DELETE working ,,");
-            fetchNotice.deleteNotice(deleteId)
-                .then((res) => {
-                    if (res.ok) {
+        deleteNotice(deleteId).then(() => {
+            setDeleteId(null);
+            alert("💥게시글 삭제 성공!💥")
+            setListTotalNum(listTotalNum - 1)
+        }).catch(error=> {
+            console.log(error)
+            if (window.confirm("이 게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
+                deleteActivity(deleteId).then((res) => {
+                        alert("💥게시글 및 활동 삭제 성공!💥");
                         setDeleteId(null);
-                        alert("💥게시글 삭제 성공!💥")
-                        fetchNotice.getNum()
-                            .then((res) => {
-                                setListTotalNum(res.totalNoticeNums)
-                            })
-                    }
-                    else {
-                        if (window.confirm("이 게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
-                            console.log("i have a power")
-                            fetchNotice.deletePowerNotice(deleteId)
-                                .then((res) => {
-                                    console.log("force 삭제 성공");
-                                    alert("💥게시글 및 활동 삭제 성공!💥");
-                                    setDeleteId(null);
-                                    fetchNotice.getNum()
-                                        .then((res) => {
-                                            setListTotalNum(res.totalNoticeNums)
-                                        })
-                                });
-
-                        }
-                    }
-                })
-        }
+                        setListTotalNum(listTotalNum-1)
+                }).catch(error=>console.log(error))
+            }
+        })
     }
 
     /**
-         * @description paging 클릭 시  
-         * @param e - 선택한 page target하기위한 param
-         * @detail id -1 해야댐 (page는 0 부터 시작 )
-         */
+     * @description paging 클릭 시
+     * @param e - 선택한 page target하기위한 param
+     * @detail id -1 해야댐 (page는 0 부터 시작 )
+     */
 
     const pagingClick = (e) => {
         const pagingId = e.target.id;
@@ -189,10 +149,10 @@ const ContentContainer = () => {
     }
 
     /**
-         * @description logout 클릭 시  
-         * @param e - event.persist 를 위한  param
-         * @detail logout기능 수행 
-         */
+     * @description logout 클릭 시
+     * @param e - event.persist 를 위한  param
+     * @detail logout기능 수행
+     */
     const logoutEvent = (e) => {
         console.log("Logout,,,,");
 

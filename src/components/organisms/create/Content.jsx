@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Button from "../../atoms/Button/index"
 import TextAreaBox from "../../atoms/TextAreaBox"
-import CreateContainer from "../../../reduxContainer/CreateContainer"
+import CreateContainer from "../../../containers/redux/create/CreateContainer"
 
 const Container = styled.div`
     width: 90%;
@@ -15,8 +15,8 @@ const Content = ({titleOnChange, timeOnChange, deadlineOnChange, uploadOnClick, 
     return (
         <Container>
             <Button value="게시글 작성 완료" onClick={uploadOnClick} block/>
-            <CreateContainer titleOnChange={titleOnChange} timeOnChange={timeOnChange} deadlineOnChange={deadlineOnChange}></CreateContainer>
-            <TextAreaBox placeholder="내용을 입력해주세요" contentOnChange={contentOnChange}></TextAreaBox>
+            <CreateContainer titleOnChange={titleOnChange} timeOnChange={timeOnChange} deadlineOnChange={deadlineOnChange}/>
+            <TextAreaBox placeholder="내용을 입력해주세요" contentOnChange={contentOnChange}/>
         </Container>
     )
 }

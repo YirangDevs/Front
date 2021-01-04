@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React from "react"
 import styled from "styled-components"
 import Row from "../../../layout/Grid/Row/index"
 import Col from "../../../layout/Grid/Column/index"
@@ -6,7 +6,6 @@ import TextBox from "../../atoms/TextBox"
 import SelectBox from "../../atoms/SelectBox"
 import DateSelector from "../../atoms/DateSelector"
 import TimeSelector from "../../atoms/TimeSelector"
-import { useEventCallback } from "@material-ui/core"
 
 const NoticeUpdateFormWrapper = styled.div`
     width: 100%;

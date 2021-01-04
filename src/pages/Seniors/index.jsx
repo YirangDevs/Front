@@ -1,9 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-//import ContentContainer from "../../containers/senior/ContentContainer"
-import TopBar from "../../components/molecules/TobBar/index";
-import SeniorContentContainer from "../../containers/senior/SeniorContentContainer";
-//import SeniorContent from "./SeniorContent"
+import TopBar from "../../components/molecules/TopBar/index";
+import ContentContainer from "../../containers/senior/ContentContainer";
 const ContentWrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -14,7 +12,7 @@ const Content = () => {
         <>
             <TopBar />
             <ContentWrapper>
-                <SeniorContentContainer></SeniorContentContainer>
+                <ContentContainer></ContentContainer>
             </ContentWrapper>
         </>
     )
