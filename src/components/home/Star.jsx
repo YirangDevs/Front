@@ -1,5 +1,5 @@
 import React from 'react'
-import YAT from "../../business/service/yat"
+import YAT from "../../util/Yat/yat"
 
 import fetchPost from "../../star/fetchPost"
 import fetchDelete from "../../star/fetchDelete"

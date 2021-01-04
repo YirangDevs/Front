@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import TopBar from "../../components/molecules/TobBar/index"
+import TopBar from "../../components/molecules/TopBar/index"
 import ContentContainer from "../../containers/userauthority/ContentContainer"
 
 const ContentWrapper = styled.div`

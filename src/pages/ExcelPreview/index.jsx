@@ -3,7 +3,6 @@ import TableBox from "../../components/atoms/TableBox";
 import styled from "styled-components"
 import TableScrollbar from "react-table-scrollbar"
 import ModalButtonGroup from "../../components/molecules/ModalButtonGroup";
-//import FunctionButton from "../components/atoms/FunctionButton";
 
 const Modal = styled.div`
     position: fixed;

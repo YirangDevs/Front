@@ -9,8 +9,6 @@
 import React from 'react'
 import Col from '../../../layout/Grid/Column/index'
 import Row from '../../../layout/Grid/Row/index'
-import Button from "../../../components/atoms/Button/index"
-import { Link } from 'react-router-dom'
 import styled from "styled-components"
 
 const Title = styled.div`
@@ -45,9 +43,7 @@ cursor: pointer;
 `
 
 const MenuInfo = ({ userName, ModeKey, ModeValue, LoginKey, LoginValue, logoutEvent }) => {
-    const why = () => {
-        console.log("tlqkf");
-    }
+
     return (
 
         <Row gutter={[10, 0]} align="center">
