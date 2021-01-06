@@ -1,4 +1,4 @@
-import ACTION from "../actions/noticetotalnum_action"
+import ACTION from "../actions/noticeTotalNum_action"
 
 export default (state, action)=>{
     if(state===undefined) { return {}}

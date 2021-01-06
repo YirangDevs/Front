@@ -7,9 +7,6 @@ import TextBox from "../../components/atoms/TextBox"
 import Button from "../../components/atoms/Button"
 import TableBox from "../../components/atoms/TableBox"
 import AdminButtonGroup from "../../components/molecules/AdminButtonGroup"
-import Tooltip from "../../components/atoms/Tooltip"
-import RegionCheckBoxGroup from "../../components/organisms/senior/RegionCheckBoxGroup"
-import ReactTooltip from "react-tooltip"
 
 
 const selectAuthority = ["전체", "관리자", "일반회원"]
@@ -17,7 +14,6 @@ const userTable = ["회원등급", "이름", "성별", "연락처", "이메일"]
 const authorityTable = ["관리모드"]
 const regionTable = ["지역"]
 
-const dataTip=""
 const userSample = [{authority: "관리자", name: "홍길동", sex: "여", phone: "010-1234-5678", email: "0000@naver.com"},
                     {authority: "일반회원", name: "홍길동", sex: "남", phone: "010-1234-5678", email: "1234@naver.com"}
                     ]
@@ -50,10 +46,7 @@ const UserAuthorityContent = ({
                     </Col>
                     <Col span={1}>
                         <TableBox headList={regionTable} bodyList={regionSample} tooltip="tooltip" onClick={regionOnClick}/>
-                        <ReactTooltip id="tooltip" place="right" effect="solid" border={true} event="click" globalEventOff="click" type="light" clickable={true} getContent={(dataTip) => 
-                            <RegionCheckBoxGroup dataTip={dataTip}/>
-                        }
-                        />
+
                             
                         
                     </Col>

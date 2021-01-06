@@ -4,9 +4,9 @@ import SelectBox from "../../atoms/SelectBox/index"
 import TableBox from "../../atoms/TableBox/index"
 import Pagination from "../../atoms/Pagination/index"
 import UpdateButtonGroup from "./UpdateButtonGroup"
-import VolunteerUpdateForm from "../senior/VolunteerUpdateForm"
 import Button from "../../atoms/Button/index"
-import GuideButtonGroup from "../../molecules/GuideButtonGroup"
+import GuideButtonGroup from "../../molecules/GuideButtonGroup/index"
+import SeniorInfoForm from "../senior/SeniorInfoForm";
 
 
 const Container = styled.div`
@@ -97,16 +97,16 @@ const Content = ({
                 </VolunteerLayout>
                 <AdminLayout>
                     {/* <InputForm></InputForm> */}
-                    <VolunteerUpdateForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}></VolunteerUpdateForm>
+                    <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}/>
 
-                    {button ? <Button width="90%" height="2.5rem" onClick={postOnClick} value="확인" ></Button> :
+                    {button ? <Button width="90%" height="2.5rem" onClick={postOnClick} value="확인" /> :
                         <EditDeleteLayout>
-                            <Button onClick={editOnClick} width="50%" height="2.5rem" value="수정"></Button>
-                            <Button onClick={deleteOnClick} width="50%" height="2.5rem" value="삭제"></Button>
+                            <Button onClick={editOnClick} width="50%" height="2.5rem" value="수정"/>
+                            <Button onClick={deleteOnClick} width="50%" height="2.5rem" value="삭제"/>
                         </EditDeleteLayout>}
                     {/* <Function></Function> */}
-                    <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButtonGroup>
-                    <GuideButtonGroup></GuideButtonGroup>
+                    <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal}/>
+                    <GuideButtonGroup/>
                 </AdminLayout>
 
             </Container>
