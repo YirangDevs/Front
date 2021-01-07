@@ -5,14 +5,12 @@
  * @Last Modified time: 2020-12-21 16:41:49
  */
 import React from "react"
-import NoticeInformation from "../../../components/manage/NoticeInformation"
 import Row from "../../../layout/Grid/Row/index"
 import Col from "../../../layout/Grid/Column/index"
 import ContentLayout from "../../../layout/Content/index"
 import TableButton from '../../molecules/TableButton/index'
 import MenuNav from '../../../components/molecules/MenuNav/index'
 import MenuInfo from '../../../components/molecules/MenuInfo/index'
-import Button from "../../atoms/Button/index"
 import '../../../css/manage.css'; // 이거 information만들면 지우기
 // 이거 tableButton 다만들면 지우기
 
@@ -47,7 +45,6 @@ const Content = ({
                 {/*<Col span = {5} > = menu 영역을 감사는 layout (right) */}
                 <Row gutter={[10, 10]}>
                     <Col span={7}>
-                        <NoticeInformation></NoticeInformation>
                     </Col>
                 </Row>
                 <Row gutter={[10, 10]}>

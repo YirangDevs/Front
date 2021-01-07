@@ -3,9 +3,8 @@ import styled from "styled-components"
 import Content from "../../components/organisms/create/Content"
 import {useHistory} from "react-router-dom"
 import store from "../../store/store"
-import action from "../../store/actions/action"
-import data from "../../business/service/fetch_notice"
-import postSeniorsToServer from "../../business/service/post_seniors_to_server"
+import postSeniors from "../../service/api/post/post_seniors"
+import postNotice from "../../service/api/post/post_notice";
 
 const Container = styled.div`
     width: 100%;
@@ -52,7 +51,7 @@ const ContentContainer = () => {
     }
 
     const uploadOnClick = (e) => {
-        data.createNotice({
+        postNotice({
             activityRegisterRequestDto:{
                 content: bufferNotice.content,
                 dod: bufferNotice.dod,
@@ -63,12 +62,9 @@ const ContentContainer = () => {
             },
             title: bufferNotice.title
         }).then(res=>{
-            if(res.status==201){
-                const excelData=store.getState().transferSeniorToNotice_reducer.excelData
-                postSeniorsToServer(excelData).then(res=>console.log(res))
-            }
-            
-        }).then(()=>history.push("/"))
+            const excelData=store.getState().transferSeniorToNotice_reducer.excelData
+            postSeniors(excelData).catch(err=>console.log(err))
+        }).catch(error=>console.log(error))
         
     }
 

@@ -1,4 +1,4 @@
-import YAT from "../business/service/yat"
+import YAT from "../util/Yat/yat"
 
 export default ()=> {
     return new Promise((resolve, reject)=>{
@@ -17,5 +17,4 @@ export default ()=> {
         }
         else reject(new Error("Token is non exists"))
     })
-    
 }

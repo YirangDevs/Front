@@ -1,6 +1,6 @@
 import store from "../store/store"
 import ACTION from "../store/actions/action"
-import YAT from "../business/service/yat"
+import YAT from "../util/Yat/yat"
 import renewToken from "./renewToken"
 
 

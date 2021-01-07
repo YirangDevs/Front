@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { useEffect } from "react"
-import fetchData from "../../business/service/fetch_notice"
 import _ from "../../config/env"
+import getNoticeByPage from "../../service/api/get/get_notice_by_page";
+import getNoticeNum from "../../service/api/get/get_notice_num";
 
 const NoticeTable = () => {
     const [notices, setNotices] = useState([]);
@@ -11,22 +12,20 @@ const NoticeTable = () => {
 
 
     useEffect(() => {
-        fetchData.getNum()
+        getNoticeNum()
             .then((resolve) => {
-                console.log(resolve.totalNoticeNums);
-
                 settotalPage(Math.ceil(resolve.totalNoticeNums / 6))
             })
+            .catch(error=>console.log(error))
 
     }, [])
 
     //전체 게시물 받아옴 
     useEffect(() => {
-        fetchData.getList(pagingNum)
+        getNoticeByPage(pagingNum)
             .then((resolve) => {
-                console.log("게시물",resolve)
-                setNotices(resolve.notices);
-            })
+            setNotices(resolve.notices);
+        }).catch(error=>console.log(error))
     }, [pagingNum])
 
     //게시물 여는 거 

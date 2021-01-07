@@ -1,6 +1,6 @@
 import React from "react"
 import qs from "qs"
-import LoginProcess from "../../business/transaction/login_process"
+import LoginProcess from "../../service/transaction/login_process"
 
 const LoginRedirect =  ({location, history, LOGINED, SET_USER})=>{
     const query = qs.parse(location.search,{
@@ -14,7 +14,7 @@ const LoginRedirect =  ({location, history, LOGINED, SET_USER})=>{
                 LOGINED()
             }
         )
-        .then(()=>history.push("/")).catch((err)=>{alert(err)})
+        .then(()=>history.push("/")).catch((err)=>{console.log(err)})
     } 
     return (
         <>
