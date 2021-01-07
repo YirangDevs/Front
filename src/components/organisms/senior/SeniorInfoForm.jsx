@@ -36,7 +36,7 @@ const SeniorInfoForm = ({
     addressOnChange,
     currentSenior,
 
-    genderInput
+    genderRef
 
 }) => {
     console.log(currentSenior)
@@ -52,7 +52,7 @@ const SeniorInfoForm = ({
                 </Col>
                 <Col span={3} rightborder>
                     <Box>
-                        <RadioBox ref={genderInput} size="default" name="gender" defaultValue={currentSenior.sex} options={genderoptions} onClick={genderOnChange}/>
+                        <RadioBox ref={genderRef} size="default" name="gender" defaultValue={currentSenior.sex} options={genderoptions} onClick={genderOnChange}/>
                     </Box>
                 </Col>
                 <Col span={5}>

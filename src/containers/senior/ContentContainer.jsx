@@ -1,5 +1,5 @@
 import SeniorContent from "../../pages/Seniors/SeniorContent"
-import React, { useState, useEffect, useCallback, useRef } from "react"
+import React, { useState, useEffect, useCallback, forwardRef } from "react"
 import { useHistory } from "react-router-dom"
 import getAllAreas from "../../service/api/get/get_all_areas"
 import getArea from "../../service/api/get/get_area"
@@ -47,9 +47,11 @@ const ContentContainer = () => {
 
     const [needsTotal, setNeedsTotal] = useState(0)
 
+   
+
     //const genderInput = useRef(null);
-    const genderInput = useRef();
-    const typeInput = useRef();
+    //const genderRef = createRef();
+    const genderRef = forwardRef();
 
 
     useEffect(() => {
@@ -92,6 +94,11 @@ const ContentContainer = () => {
         updatePosts()
     }, [currentPage, updatePosts])
 
+    const paginationOnClick = (e) => {
+        console.log(e.target.innerText)
+        setCurrentPage(e.target.innerText)
+    }
+
     const selectRegion = (e) => {
         if (e.target.value === "전체") {
             getAllAreas().then((data) => {
@@ -117,7 +124,8 @@ const ContentContainer = () => {
         setBufferSenior(senior)
         setCurrentSenior(senior)
 
-        genderRadioDisabled(e)
+        // genderRadioDisabled(e)
+        console.log(genderRef.current)
     }
 
     const nameOnChange = (e) => {
@@ -128,12 +136,7 @@ const ContentContainer = () => {
         const sex = e.target.value
         setBufferSenior((state) => ({ ...state, sex: sex }))
     }
-    const genderRadioDisabled = (e) => {
-        //genderInput.current.disabled=true;
-    }
-    const genderRadioAbled = (e) => {
-        //
-    }
+    
     const typeOnChange = (e) => {
         const type = e.target.value
         setBufferSenior((state) => ({ ...state, type: type }))
@@ -143,8 +146,8 @@ const ContentContainer = () => {
         setBufferSenior((state) => ({ ...state, priority: priority }))
     }
     const needsOnChange = (e) => {
-        const needs = e.target.value
-        setBufferSenior((state) => ({ ...state, needs: needs }))
+        const numsOfRequiredVolunteers = e.target.value
+        setBufferSenior((state) => ({ ...state, numsOfRequiredVolunteers: numsOfRequiredVolunteers }))
     }
     const dateOnChange = (e) => {
         const date = e.target.value
@@ -174,7 +177,7 @@ const ContentContainer = () => {
     }
     const editOnClick = (e) => {
 
-        genderRadioAbled(e)
+        //genderRadioAbled(e)
         editSenior(bufferSenior.id, bufferSenior).then(res => {
             alert("수정 성공");
             addEditDeleteRender();
@@ -183,7 +186,7 @@ const ContentContainer = () => {
 
     }
     const deleteOnClick = (e) => {
-        genderRadioAbled(e)
+        //genderRadioAbled(e)
         deleteSenior(bufferSenior.id).then(res => {
             alert("삭제 성공");
             addEditDeleteRender();
@@ -215,7 +218,49 @@ const ContentContainer = () => {
                 }
             }))
             history.push("/create")
-        }).catch(err=>console.log(err))
+        }).catch(err=>{
+            
+            const errorToast = []
+            console.log(err)
+
+            for(let i=0; i<err.Errors.length; i++){
+            
+                console.log("seniors check error" + err.Errors[i].errorCode + "/" + err.Errors[i].errorName)
+            const errorCode = err.Errors[i].errorCode
+            if(errorCode==="100"){
+                errorToast.push("파일의 형식이나 내용을 다시 확인해주세요.\n")
+            }
+            if(errorCode==="111"){
+                let errorNum = Number(err.Errors[i].errorName.substring(11,12))+2
+                let errorName = err.Errors[i].errorName.substring(14,)
+                let columns = {
+                    'date': {'col': 'A', 'name': '봉사날짜'},
+                    '': {'col': 'B', 'name': '어르신 성함'},
+                    '': {'col': 'C', 'name': '성별'},
+                    '': {'col': 'D', 'name': '주소'},
+                    'phone': {'col': 'E', 'name': '전화번호'},
+                    '': {'col': 'F', 'name': '봉사유형'},
+                    '': {'col': 'G', 'name': '어르신 우선순위'},
+                    '': {'col': 'H', 'name': '필요인원'}
+                }
+
+                let col = `${columns[errorName].col}${errorNum} (${columns[errorName].name})`
+                errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n")
+            }
+            if(errorCode==="099"){
+                errorToast.push("업로드한 엑셀 파일에 통일되지 않은 지역 또는 날짜 데이터가 존재합니다.\n")
+            }
+            if(errorCode==="112"){
+                errorToast.push("업로드한 엑셀 파일에 중복된 피봉사자가 존재합니다.\n")
+            }
+            if(errorCode==="113"){
+                let errorNum=Number(err.Errors[i].errorName.substring(1,2))+2
+                errorToast.push("업로드된 엑셀 파일의 "+ errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n")
+            }
+            
+        }
+        if(errorToast) alert(errorToast)
+        })       
     }
 
     const openModal = async (event) => {
@@ -279,7 +324,7 @@ const ContentContainer = () => {
                 posts={posts}
                 seniors={seniors}
 
-                genderInput={genderInput}
+                genderRef={genderRef}
 
                 selectRegion={selectRegion}
                 selectPage={selectPage}
@@ -296,6 +341,7 @@ const ContentContainer = () => {
                 regionOnChange={regionOnChange}
                 addressOnChange={addressOnChange}
 
+                paginationOnClick={paginationOnClick}
                 postSeniorsOnClick={postSeniorsOnClick}
                 postOnClick={postOnClick}
                 editOnClick={editOnClick}

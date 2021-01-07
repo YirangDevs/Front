@@ -26,7 +26,8 @@ const SeniorCheck = async (data) => {
         
     }).catch(async(error)=>{
         let err =  await error.then()
-        console.log("Error from senior_check\n"+err.errorCode+"\n"+err.errorName)
+        
+
         //에러처리
         throw err
     })
