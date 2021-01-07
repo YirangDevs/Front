@@ -51,20 +51,25 @@ const ContentContainer = () => {
     }
 
     const uploadOnClick = (e) => {
-        postNotice({
-            activityRegisterRequestDto:{
-                content: bufferNotice.content,
-                dod: bufferNotice.dod,
-                dov: bufferNotice.dov,
-                nor: bufferNotice.nor,
-                region: bufferNotice.region,
-                tov: bufferNotice.tov+":00"
-            },
-            title: bufferNotice.title
-        }).then(res=>{
-            const excelData=store.getState().transferSeniorToNotice_reducer.excelData
-            postSeniors(excelData).catch(err=>console.log(err))
-        }).catch(error=>console.log(error))
+        if(bufferNotice.content!=undefined&&bufferNotice.dod!=undefined&&bufferNotice.tov!=undefined&&bufferNotice.title){
+            postNotice({
+                activityRegisterRequestDto:{
+                    content: bufferNotice.content,
+                    dod: bufferNotice.dod,
+                    dov: bufferNotice.dov,
+                    nor: bufferNotice.nor,
+                    region: bufferNotice.region,
+                    tov: bufferNotice.tov+":00"
+                },
+                title: bufferNotice.title
+            }).then(res=>{
+                const excelData=store.getState().transferSeniorToNotice_reducer.excelData
+                postSeniors(excelData).catch(err=>console.log(err))
+            }).catch(error=>console.log(error))
+        }else{
+            alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
+        }
+        
         
     }
 
