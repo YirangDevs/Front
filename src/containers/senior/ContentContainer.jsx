@@ -1,5 +1,5 @@
 import SeniorContent from "../../pages/Seniors/SeniorContent"
-import React, { useState, useEffect, useCallback, forwardRef } from "react"
+import React, { useState, useEffect, useCallback, createRef } from "react"
 import { useHistory } from "react-router-dom"
 import getAllAreas from "../../service/api/get/get_all_areas"
 import getArea from "../../service/api/get/get_area"
@@ -50,8 +50,8 @@ const ContentContainer = () => {
    
 
     //const genderInput = useRef(null);
-    //const genderRef = createRef();
-    const genderRef = forwardRef();
+    const genderRef = createRef();
+    //const genderRef = forwardRef();
 
 
     useEffect(() => {
