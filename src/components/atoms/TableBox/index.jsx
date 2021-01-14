@@ -39,7 +39,7 @@ const PrimaryKey = styled(TableBody)`
     cursor: pointer;
 `
 
-const Index = ({ black, back, headList, bodyList, primaryKey, onClick }) => (
+const Index = ({ black, back, headList, bodyList, primaryKey, onClick, dataOnClick}) => (
     <>
         <Table>
             <thead>
@@ -58,7 +58,7 @@ const Index = ({ black, back, headList, bodyList, primaryKey, onClick }) => (
                                     return (data === primaryKey) ?
                                         <PrimaryKey key={index} onClick={onClick}>{i[data]}</PrimaryKey>
                                         :
-                                        <TableBody back={back} key={index}>{i[data]}</TableBody>
+                                        <TableBody back={back} key={index} onClick={dataOnClick}>{i[data]}</TableBody>
                                 })}
                             </TableRow>)
                     })

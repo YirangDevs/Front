@@ -11,7 +11,14 @@ const Container = styled.div`
     
 `
 const regionOnClick = (e) => {
-    console.log(e)
+    console.log(e.target.innerText)
+    
+    const region = e.target.innerText
+    const regionArray=region.split(",")
+    
+    console.log(regionArray)
+    
+
 }
 
 const ContentContainer = () => {

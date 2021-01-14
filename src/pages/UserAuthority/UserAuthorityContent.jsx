@@ -18,7 +18,7 @@ const userSample = [{authority: "관리자", name: "홍길동", sex: "여", phon
                     {authority: "일반회원", name: "홍길동", sex: "남", phone: "010-1234-5678", email: "1234@naver.com"}
                     ]
 const authoritySample = [{authority: "관리모드"},{authority: "관리모드"}]
-const regionSample = [{region: "수성구"}, {region: "동구"}]
+const regionSample = [{region: "수성구,서구"}, {region: "동구"}]
 
 const UserAuthorityContent = ({
     regionOnClick
@@ -45,7 +45,7 @@ const UserAuthorityContent = ({
                         <TableBox headList={authorityTable} bodyList={authoritySample} black back/>
                     </Col>
                     <Col span={1}>
-                        <TableBox headList={regionTable} bodyList={regionSample} onClick={regionOnClick} black back/>  
+                        <TableBox headList={regionTable} bodyList={regionSample} dataOnClick={regionOnClick} black back/>  
                     </Col>
                     <Col span={0.5} /> {/* 빈칸 */}
                     <Col span={3.5}>
