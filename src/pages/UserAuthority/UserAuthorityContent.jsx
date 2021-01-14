@@ -29,11 +29,13 @@ const UserAuthorityContent = ({
             <Content>
                 <Row gutter={[10,10]}>
                     <Col span={2}>
-                            <SelectBox options={selectAuthority} block></SelectBox>
+                            <SelectBox options={selectAuthority} border block></SelectBox>
                     </Col>
-                    <Col span={3}>
-                            <TextBox placeholder="이름을 검색하십시오"></TextBox>
-                            <Button value="검색" theme="white" round/>
+                    <Col span={1.8}>
+                            <TextBox placeholder="이름을 검색하십시오" border></TextBox>
+                    </Col>
+                    <Col span={1}>
+                        <Button value="검색" theme="white" round/>
                     </Col>
                 </Row>
                 <Row>
