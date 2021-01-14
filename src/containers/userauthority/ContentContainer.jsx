@@ -10,8 +10,8 @@ const Container = styled.div`
     align-items: center;
     
 `
-const regionOnClick = () => {
-    
+const regionOnClick = (e) => {
+    console.log(e)
 }
 
 const ContentContainer = () => {

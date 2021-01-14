@@ -24,30 +24,18 @@ ${props=>{
         
     }
 }}
-${props=>{
-    switch(props.theme){
-        case "white":
-            return`
-                border: none;
-            `
-        default:
-            return`
-                border-radius: 5px;
-                background-color: #f1f3f6;
-                border: 1px solid #ccd4e0;
-            `
-    }
-}}
+    ${props=>(props.border) ? `border-radius: 5px;` : null}
     ${props=>(props.block) ? `width : 90%;` : null}
+    border: 1px solid #868789;
     font-size: 1rem;
     color: #707070;
     
 `
 
-const DateSelector = ({block, size, defaultValue, onChange, theme, disabled}) => (
+const DateSelector = ({block, size, defaultValue, onChange, border, disabled}) => (
 
     <>
-        <DateForm block={block} size={size} theme={theme} onChange={onChange} defaultValue={defaultValue} disabled={disabled}></DateForm>
+        <DateForm block={block} size={size} border={border} onChange={onChange} defaultValue={defaultValue} disabled={disabled}></DateForm>
     </>
 )
 

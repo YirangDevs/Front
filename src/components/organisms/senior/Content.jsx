@@ -99,7 +99,7 @@ const Content = ({
                     {/* <InputForm></InputForm> */}
                     <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}/>
 
-                    {button ? <Button width="90%" height="2.5rem" onClick={postOnClick} value="확인" /> :
+                    {button ? <Button width="90%" height="2.5rem" onClick={postOnClick} value="확인" theme="black"/> :
                         <EditDeleteLayout>
                             <Button onClick={editOnClick} width="50%" height="2.5rem" value="수정"/>
                             <Button onClick={deleteOnClick} width="50%" height="2.5rem" value="삭제"/>

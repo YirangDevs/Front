@@ -42,13 +42,10 @@ const UserAuthorityContent = ({
                     </Col>
                     <Col span={0.2} /> {/* 빈칸 */}
                     <Col span={1}>
-                        <TableBox headList={authorityTable} bodyList={authoritySample}/>
+                        <TableBox headList={authorityTable} bodyList={authoritySample} black back/>
                     </Col>
                     <Col span={1}>
-                        <TableBox headList={regionTable} bodyList={regionSample} tooltip="tooltip" onClick={regionOnClick}/>
-
-                            
-                        
+                        <TableBox headList={regionTable} bodyList={regionSample} onClick={regionOnClick} black back/>  
                     </Col>
                     <Col span={0.5} /> {/* 빈칸 */}
                     <Col span={3.5}>
