@@ -59,7 +59,7 @@ const ContentContainer = () => {
     useEffect(() => {
         getMyRegion().then((data)=>{
             setMyRegion(data.regions)
-        })
+        })                                                                                                                                                       
         getAllAreas().then((data) => {
                 setSeniors(data)
         }).catch(err=>console.log(err))
@@ -201,6 +201,7 @@ const ContentContainer = () => {
 
     const postOnClick = () => {
         postSenior(bufferSenior).then(res=>{
+            alert("추가 성공")
             addEditDeleteRender();
         }).catch(error=>console.log(error))
     }
@@ -262,9 +263,13 @@ const ContentContainer = () => {
                 let errorNum=Number(err.Errors[i].errorName.substring(1,2))+2
                 errorToast.push("업로드된 엑셀 파일의 "+ errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n")
             }
+            if(errorCode==="119"){
+                errorToast.push("업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다.")
+            }
             
         }
         if(errorToast) alert(errorToast)
+        setModal(false)
         })       
     }
 

@@ -51,7 +51,7 @@ const ContentContainer = () => {
     }
 
     const uploadOnClick = (e) => {
-        if(bufferNotice.content!=undefined&&bufferNotice.dod!=undefined&&bufferNotice.tov!=undefined&&bufferNotice.title){
+        if(bufferNotice.content!==undefined&&bufferNotice.dod!==undefined&&bufferNotice.tov!==undefined&&bufferNotice.title){
             postNotice({
                 activityRegisterRequestDto:{
                     content: bufferNotice.content,
