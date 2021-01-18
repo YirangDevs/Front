@@ -6,7 +6,7 @@ import SelectBox from "../../components/atoms/SelectBox"
 import TextBox from "../../components/atoms/TextBox"
 import Button from "../../components/atoms/Button"
 import TableBox from "../../components/atoms/TableBox"
-import AdminButtonGroup from "../../components/molecules/AdminButtonGroup"
+import MenuNav from "../../components/molecules/MenuNav/"
 
 
 const selectAuthority = ["전체", "관리자", "일반회원"]
@@ -51,7 +51,7 @@ const UserAuthorityContent = ({
                     </Col>
                     <Col span={0.5} /> {/* 빈칸 */}
                     <Col span={3.5}>
-                        <AdminButtonGroup />
+                        <MenuNav />
                     </Col>
                 </Row>
             </Content>

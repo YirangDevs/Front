@@ -2,7 +2,9 @@ import React from "react"
 import TableBox from "../../components/atoms/TableBox";
 import styled from "styled-components"
 import TableScrollbar from "react-table-scrollbar"
-import ModalButtonGroup from "../../components/molecules/ModalButtonGroup";
+import Col from "../../layout/Grid/Column";
+import Button from "../../components/atoms/Button";
+import Row from "../../layout/Grid/Row";
 
 const Modal = styled.div`
     position: fixed;
@@ -41,16 +43,6 @@ const ModalContent = styled.div`
         flex-direction: column;
 `
 
-const ButtonLayout = styled.div`
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
-    
-`
-
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"]
 const ExcelPreview = ({isModalOpen, excelData, closeModal, postSeniorsOnClick}) => {
     
@@ -76,9 +68,14 @@ const ExcelPreview = ({isModalOpen, excelData, closeModal, postSeniorsOnClick}) 
 
                     </TableBox>
                 </TableScrollbar>
-                <ButtonLayout>
-                    <ModalButtonGroup postSeniorsOnClick={postSeniorsOnClick} closeModal={closeModal}/>
-                </ButtonLayout>
+                <Row>
+                    <Col span={6}>
+                        <Button value="확인" onClick={postSeniorsOnClick} block/>
+                    </Col>
+                    <Col span={6}>
+                        <Button value="취소" onClick={closeModal} block/>
+                    </Col>
+                </Row>
 
             </ModalContent>
         </PreviewModal>

@@ -1,7 +1,7 @@
 /**
  * @description 개별 피봉사자 데이터 수정
  * @method PUT
- * @request @headers YAT token, Content-Type
+ * @request @headers YAT token, Index-Type
  * @request id
  */
 

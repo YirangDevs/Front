@@ -2,19 +2,21 @@ import React from "react"
 import styled from "styled-components"
 
 const ContentStyle = styled.div`
-    width: 90%;
+    width: 100%;
     height : auto;
     display : flex;
     justify-content : center;
     margin : 0 auto;
     flex-wrap : wrap;
     padding : 2rem;
+    flex-direction: column;
+    box-sizing: border-box;
 `
 
-const Content = ({ children }) => {
+const Content = ({ children, style }) => {
     return (
         <>
-            <ContentStyle>
+            <ContentStyle style={style}>
                 {children}
             </ContentStyle>
         </>
