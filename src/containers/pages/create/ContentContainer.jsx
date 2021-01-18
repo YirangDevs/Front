@@ -76,8 +76,7 @@ const ContentContainer = () => {
     return (
         <>
             <Container>
-                <Content      
-                    // title={title}
+                <Content
                     titleOnChange={titleOnChange}
                     timeOnChange={timeOnChange}
                     deadlineOnChange={deadlineOnChange}

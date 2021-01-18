@@ -15,12 +15,12 @@ const EditDeleteButton = ({editOnClick, deleteOnClick}) => {
     return(
         <>
         <ButtonWrapper>
-            <Row>
+            <Row gutter={[0,3]}>
                 <Col span={6}>
-                    <Button value="수정" onClick={editOnClick} block/>
+                    <Button theme="black" value="수정" onClick={editOnClick} round block/>
                 </Col>
                 <Col span={6}>
-                    <Button value="삭제" onClick={deleteOnClick} block/>
+                    <Button theme="black" value="삭제" onClick={deleteOnClick} round block/>
                 </Col>
             </Row>
         </ButtonWrapper>
