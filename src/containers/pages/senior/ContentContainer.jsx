@@ -1,16 +1,16 @@
-import SeniorContent from "../../pages/Seniors/SeniorContent"
+import SeniorContent from "../../../pages/Seniors/SeniorContent"
 import React, { useState, useEffect, useCallback, forwardRef } from "react"
 import { useHistory } from "react-router-dom"
-import getAllAreas from "../../service/api/get/get_all_areas"
-import getArea from "../../service/api/get/get_area"
+import getAllAreas from "../../../service/api/get/get_all_areas"
+import getArea from "../../../service/api/get/get_area"
 import styled from "styled-components"
 import XLSX from "xlsx";
-import deleteSenior from "../../service/api/delete/delete_senior";
-import editSenior from "../../service/api/put/edit_senior";
-import postSenior from "../../service/api/post/post_senior"
-import seniorCheck from "../../service/api/post/senior_check";
-import store from "../../store/store"
-import action from "../../store/actions/action"
+import deleteSenior from "../../../service/api/delete/delete_senior";
+import editSenior from "../../../service/api/put/edit_senior";
+import postSenior from "../../../service/api/post/post_senior"
+import seniorCheck from "../../../service/api/post/senior_check";
+import store from "../../../store/store"
+import action from "../../../store/actions/action"
 
 const Container = styled.div`
     width: 90%;

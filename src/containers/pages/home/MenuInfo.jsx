@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import MenuInfo from "../../components/home/MenuInfo"
-import ACTION from "../../store/actions/action"
+import MenuInfo from "../../../components/home/MenuInfo"
+import ACTION from "../../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {

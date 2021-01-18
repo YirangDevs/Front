@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react"
 import styled from "styled-components"
-import Content from "../../components/organisms/create/Content"
+import Content from "../../../components/organisms/create/Content"
 import {useHistory} from "react-router-dom"
-import store from "../../store/store"
-import postSeniors from "../../service/api/post/post_seniors"
-import postNotice from "../../service/api/post/post_notice";
+import store from "../../../store/store"
+import postSeniors from "../../../service/api/post/post_seniors"
+import postNotice from "../../../service/api/post/post_notice";
 
 const Container = styled.div`
     width: 100%;

@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import UserAuthorityContent from "../../pages/UserAuthority/UserAuthorityContent"
+import UserAuthorityContent from "../../../pages/UserAuthority/UserAuthorityContent"
 
 const Container = styled.div`
     width: 90%;

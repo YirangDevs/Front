@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import Star from "../../components/home/Star"
-import ACTION from "../../store/actions/action"
+import Star from "../../../components/home/Star"
+import ACTION from "../../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {

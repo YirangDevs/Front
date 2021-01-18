@@ -16,7 +16,7 @@ const Box2 = styled.div`
     color : white;
 `
 export default {
-    title: 'Grid2',
+    title: 'Grid',
     component: Row,
     decorators: [(Story) => <div style={{margin: "0 auto", width: "80%"}}><Story/></div>]
 };

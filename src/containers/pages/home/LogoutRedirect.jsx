@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import LogoutRedirect from "../../components/home/LogoutRedirect";
-import ACTION from "../../store/actions/action"
+import LogoutRedirect from "../../../components/home/LogoutRedirect";
+import ACTION from "../../../store/actions/action"
 
 const mapDispatchToProps = (dispatch) => {
     return {

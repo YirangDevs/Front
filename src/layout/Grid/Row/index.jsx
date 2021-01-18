@@ -15,10 +15,10 @@ const RowLayout = styled.div`
 
     
 `
-const Row=({justify, align, border, gutter, children})=>(
+const Row=({style, justify, align, border, gutter, children})=>(
     <>
         <RowContext.Provider value={gutter}>
-            <RowLayout justify={justify} border={border} align={align}>
+            <RowLayout style={style} justify={justify} border={border} align={align}>
                 {children}
             </RowLayout>
         </RowContext.Provider>

@@ -1,7 +1,8 @@
 import React from 'react';
+import Home from "./pages/Home/index"
 import Container from "./components/home/Container"
-import LoginRedirect from "./containers/home/LoginRedirect"
-import LogoutRedirect from "./containers/home/LogoutRedirect"
+import LoginRedirect from "./containers/pages/home/LoginRedirect"
+import LogoutRedirect from "./containers/pages/home/LogoutRedirect"
 import Manage from "./pages/Manage/index"
 import Create from "./pages/Create/index"
 import UserAuthority from "./pages/UserAuthority"
@@ -28,7 +29,7 @@ function App() {
         <Route path="/userauthority" component={UserAuthority}>
         </Route>
 
-        <Route exact path="/" component={Container}>
+        <Route exact path="/" component={Home}>
         </Route>
       </Switch> 
     </BrowserRouter>

@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import TopBar from "../../components/molecules/TopBar/index"
-import ContentContainer from "../../containers/userauthority/ContentContainer"
+import TopBar from "../../components/organisms/Header"
+import ContentContainer from "../../containers/pages/userauthority/ContentContainer"
 
 const ContentWrapper = styled.div`
     display: flex;

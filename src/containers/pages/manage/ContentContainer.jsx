@@ -6,12 +6,12 @@
  */
 
 import React, { useState, useEffect } from "react"
-import Content from "../../components/organisms/manage/Content"
-import deleteActivity from "../../service/api/delete/delete_activity";
-import getNotice from "../../service/api/get/get_notice";
-import getNoticeByPage from "../../service/api/get/get_notice_by_page";
-import getNoticeNum from "../../service/api/get/get_notice_num";
-import deleteNotice from "../../service/api/delete/delete_notice";
+import Content from "../../../components/organisms/manage/Content"
+import deleteActivity from "../../../service/api/delete/delete_activity";
+import getNotice from "../../../service/api/get/get_notice";
+import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
+import getNoticeNum from "../../../service/api/get/get_notice_num";
+import deleteNotice from "../../../service/api/delete/delete_notice";
 
 
 const ContentContainer = () => {
