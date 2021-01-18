@@ -1,4 +1,4 @@
-import SeniorContent from "../../../pages/Seniors/SeniorContent"
+import SeniorContent from "../../../components/organisms/senior/Content/"
 import React, { useState, useEffect, useCallback, forwardRef, createRef} from "react"
 import { useHistory } from "react-router-dom"
 import getAllAreas from "../../../service/api/get/get_all_areas"
@@ -240,13 +240,13 @@ const ContentContainer = () => {
                 let errorName = err.Errors[i].errorName.substring(14,)
                 let columns = {
                     'date': {'col': 'A', 'name': '봉사날짜'},
-                    '': {'col': 'B', 'name': '어르신 성함'},
-                    '': {'col': 'C', 'name': '성별'},
-                    '': {'col': 'D', 'name': '주소'},
+                    'name': {'col': 'B', 'name': '어르신 성함'},
+                    'sex': {'col': 'C', 'name': '성별'},
+                    'address': {'col': 'D', 'name': '주소'},
                     'phone': {'col': 'E', 'name': '전화번호'},
-                    '': {'col': 'F', 'name': '봉사유형'},
-                    '': {'col': 'G', 'name': '어르신 우선순위'},
-                    '': {'col': 'H', 'name': '필요인원'}
+                    'type': {'col': 'F', 'name': '봉사유형'},
+                    'priority': {'col': 'G', 'name': '어르신 우선순위'},
+                    'numsOfRequiredVolunteers': {'col': 'H', 'name': '필요인원'}
                 }
 
                 let col = `${columns[errorName].col}${errorNum} (${columns[errorName].name})`
@@ -322,7 +322,6 @@ const ContentContainer = () => {
     }
 
     return (
-        <Container>
             <SeniorContent
                 currentSenior={bufferSenior}
                 region={region}
@@ -361,7 +360,6 @@ const ContentContainer = () => {
                 excelData={excelData}
             >
             </SeniorContent>
-        </Container>
     )
 }
 

@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import NoticeUpdateForm from "../../../components/organisms/create/NoticeUpdateForm"
+import NoticeForm from "../../../../components/molecules/NoticeForm"
 
 const mapStateToProps = (state, props) => {
     return {
@@ -15,4 +15,4 @@ const mapStateToProps = (state, props) => {
 }
 
 
-export default connect (mapStateToProps, null)(NoticeUpdateForm)
+export default connect (mapStateToProps, null)(NoticeForm)

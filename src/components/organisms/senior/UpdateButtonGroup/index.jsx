@@ -1,20 +1,10 @@
 import React from "react"
-import styled from "styled-components"
-import FileBox from "../../atoms/FileBox/index"
-import Row from "../../../layout/Grid/Row/index"
-import Col from "../../../layout/Grid/Column/index"
-import Button from "../../atoms/Button/index"
-import ExcelPreview from "../../../pages/ExcelPreview/index"
+import FileBox from "../../../atoms/FileBox"
+import Row from "../../../../layout/Grid/Row"
+import Col from "../../../../layout/Grid/Column"
+import Button from "../../../atoms/Button"
+import ExcelPreview from "../../../../pages/ExcelPreview"
 
-
-
-
-const VolunteerButtonWrapper = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-`
 
 const UpdateButtonGroup = ({uploadFile, uploadOnClick, addButton, editDeleteButton, isModalOpen, excelData, closeModal, postSeniorsOnClick}) => {
     return(

@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import TopBar from "../../components/organisms/Header"
+import Header from "../../containers/redux/components/Header/";
 import ContentContainer from "../../containers/pages/userauthority/ContentContainer"
 
 const ContentWrapper = styled.div`
@@ -12,7 +12,7 @@ const ContentWrapper = styled.div`
 const UserAuthority = () => {
     return (
         <>
-            <TopBar />
+            <Header />
             <ContentWrapper>
             <ContentContainer/>
             </ContentWrapper>

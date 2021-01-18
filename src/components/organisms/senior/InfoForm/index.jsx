@@ -1,11 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-import Row from "../../../layout/Grid/Row/index"
-import Col from "../../../layout/Grid/Column/index"
-import TextBox from "../../atoms/TextBox/index"
-import RadioBox from "../../atoms/RadioButton/index"
-import SelectBox from "../../atoms/SelectBox"
-import DateSelector from "../../atoms/DateSelector"
+import Row from "../../../../layout/Grid/Row"
+import Col from "../../../../layout/Grid/Column"
+import TextBox from "../../../atoms/TextBox"
+import RadioBox from "../../../atoms/RadioButton"
+import SelectBox from "../../../atoms/SelectBox"
+import DateSelector from "../../../atoms/DateSelector"
 
 const genderoptions = ["남성", "여성"];
 const typeoptions = ["노력봉사", "말벗봉사"];
@@ -13,7 +13,7 @@ const priorityoptions = ["우선순위", "1", "2", "3", "4", "5", "6", "7", "8",
 const needsoptions = ["필요인원", "2", "4", "6"];
 const regionoptions = ["수성구", "동구", "서구", "남구", "북구", "중구", "달서구"];
 
-const SeniorInfoForm = ({
+const InfoForm = ({
     nameOnChange,
     genderOnChange,
     typeOnChange,
@@ -123,4 +123,4 @@ const SeniorInfoForm = ({
     )
 }
 
-export default SeniorInfoForm
+export default InfoForm

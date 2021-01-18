@@ -1,24 +1,14 @@
 import React from "react"
-import styled from "styled-components"
-import SelectBox from "../../components/atoms/SelectBox"
-import Content from "../../layout/Content"
-import Row from "../../layout/Grid/Row/index"
-import Col from "../../layout/Grid/Column/index"
-import Button from "../../components/atoms/Button/index"
-import UpdateButtonGroup from "../../components/organisms/senior/UpdateButtonGroup"
-import SeniorInfoForm from "../../components/organisms/senior/SeniorInfoForm"
-import TableBox from "../../components/atoms/TableBox/index"
-import EditDeleteButton from "../../components/molecules/editDeleteButton"
-import AdminButtonGroup from "../../components/molecules/AdminButtonGroup"
-import Pagination from "../../components/atoms/Pagination"
-import MenuNav from "../../components/molecules/MenuNav";
-
-const Box = styled.div`
-    // background: #0092ff;
-    width: auto;
-    height: auto;
-    color : white;
-`
+import SelectBox from "../../../atoms/SelectBox"
+import Content from "../../../../layout/Content"
+import Row from "../../../../layout/Grid/Row"
+import Col from "../../../../layout/Grid/Column"
+import Button from "../../../atoms/Button"
+import UpdateButtonGroup from "../UpdateButtonGroup/"
+import InfoForm from "../InfoForm/"
+import TableBox from "../../../atoms/TableBox"
+import Pagination from "../../../atoms/Pagination"
+import MenuNav from "../../../molecules/MenuNav";
 
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"];
 const regionoptions = ["지역선택"];
@@ -95,34 +85,35 @@ const SeniorContent = ({currentSenior,
                     {/* 그리드로 구현 */}
                     <Row gutter={[5,10]}>
                         <Col span={12}>
-                            <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior} genderRef={genderRef}></SeniorInfoForm>
+                            <InfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior} genderRef={genderRef}></InfoForm>
                         </Col>
                         <Col span={12}>
                             {button?
-                        <Button value="확인" onClick={postOnClick} types={"primary"} block/>
-                    :
-                    <EditDeleteButton editOnClick={editOnClick} deleteOnClick={deleteOnClick}></EditDeleteButton>
-                    }
+                                <Button value="확인" onClick={postOnClick} types={"primary"} block/>
+                            :
+                                <Row gutter={[0,3]}>
+                                    <Col span={6}>
+                                        <Button theme="black" value="수정" onClick={editOnClick} round block/>
+                                    </Col>
+                                    <Col span={6}>
+                                        <Button theme="black" value="삭제" onClick={deleteOnClick} round block/>
+                                    </Col>
+                                </Row>
+                            }
+                        </Col>
+                        <Col span={12}>
+                            <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen = {isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButtonGroup>
 
                         </Col>
                         <Col span={12}>
-
-                        <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen = {isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButtonGroup>
-
-                </Col>
-                <Col span={12}>
-
-                    <MenuNav/>
-                </Col>
-            </Row>
-                    
+                            <MenuNav/>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
        
         </Content>
-    </>
-    )
-    
+    </>)
 }
 
 export default SeniorContent

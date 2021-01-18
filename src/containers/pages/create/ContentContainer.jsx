@@ -1,19 +1,10 @@
 import React, {useEffect, useState} from "react"
 import styled from "styled-components"
-import Content from "../../../components/organisms/create/Content"
+import CreateContent from "../../../components/organisms/create/Content/"
 import {useHistory} from "react-router-dom"
 import store from "../../../store/store"
 import postSeniors from "../../../service/api/post/post_seniors"
 import postNotice from "../../../service/api/post/post_notice";
-
-const Container = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    //justify-content: center;
-`
 
 const ContentContainer = () => {
 
@@ -75,17 +66,15 @@ const ContentContainer = () => {
 
     return (
         <>
-            <Container>
-                <Content
-                    titleOnChange={titleOnChange}
-                    timeOnChange={timeOnChange}
-                    deadlineOnChange={deadlineOnChange}
-                    contentOnChange={contentOnChange}
-                    
-                    uploadOnClick={uploadOnClick}
-                >
-                </Content>
-            </Container>
+            <CreateContent
+                titleOnChange={titleOnChange}
+                timeOnChange={timeOnChange}
+                deadlineOnChange={deadlineOnChange}
+                contentOnChange={contentOnChange}
+
+                uploadOnClick={uploadOnClick}
+            >
+            </CreateContent>
         </>
     )
 }

@@ -6,7 +6,7 @@
  */
 
 import React, { useState, useEffect } from "react"
-import Content from "../../../components/organisms/manage/Content"
+import ManageContent from "../../../components/organisms/manage/Content/"
 import deleteActivity from "../../../service/api/delete/delete_activity";
 import getNotice from "../../../service/api/get/get_notice";
 import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
@@ -165,7 +165,7 @@ const ContentContainer = () => {
 
     return (
         <>
-            <Content
+            <ManageContent
                 setListTotalNum={setListTotalNum} // set 전제 리스트 갯수 
                 setPagingNum={setPagingNum} // set 선택한 리스트 페이지 번호
                 selectNotice={selectNotice} // read 로 열 notice 정보 
@@ -183,7 +183,7 @@ const ContentContainer = () => {
                 pagingClick={pagingClick} // paging 클릭 시  
                 updateFunction={updateFunction} // notice를 수정 하기 위한 함수들 
                 logoutEvent={logoutEvent} // logout 하는 기능 
-            > </Content>
+            > </ManageContent>
         </>
     )
 }
