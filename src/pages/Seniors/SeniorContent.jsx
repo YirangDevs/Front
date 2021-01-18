@@ -20,7 +20,7 @@ const Box = styled.div`
 `
 
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"];
-const regionoptions = ["지역선택", "수성구", "동구", "서구", "남구", "북구", "중구", "달서구"];
+const regionoptions = ["지역선택"];
 const SeniorContent = ({currentSenior,
     button,
     region,
@@ -29,6 +29,7 @@ const SeniorContent = ({currentSenior,
     selectRegion,
     selectPage,
     selectSenior,
+    myRegion,
 
     genderRef,
 
@@ -61,6 +62,8 @@ const SeniorContent = ({currentSenior,
     excelData}) => {
         
         //console.log(posts)
+        const regionArray = regionoptions.concat(myRegion)
+        console.log(regionArray)
 
         
     return (
@@ -71,7 +74,7 @@ const SeniorContent = ({currentSenior,
             {/* 지역 선택 파트 */}
             <Row align="start" justify="start" gutter={[10,10]}>
                 <Col span={4}>
-                        <SelectBox size="large" options={regionoptions} onChange={selectRegion} defaultValue={region}></SelectBox>
+                        <SelectBox size="large" options={regionArray} onChange={selectRegion} defaultValue={region} border></SelectBox>
                 </Col>
             </Row>
 
@@ -89,14 +92,14 @@ const SeniorContent = ({currentSenior,
                 {/* 피봉사자 정보 입력 폼 파트 */}
                 <Col span={12} xxl={5} xl={6}>
                     {/* 그리드로 구현 */}
-                    <Row gutter={[10,10]}>
+                    <Row gutter={[5,10]}>
                         <Col span={12}>
                         <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior} genderRef={genderRef}></SeniorInfoForm>
                         </Col>
                         <Col span={12}>
                     {button?
                     <Box>
-                        <Button value="확인" onClick={postOnClick} block/>
+                        <Button value="확인" onClick={postOnClick} theme="black" round block/>
                     </Box>:
                     <EditDeleteButton editOnClick={editOnClick} deleteOnClick={deleteOnClick}></EditDeleteButton>
                     }

@@ -15,7 +15,7 @@ const Box = styled.div`
     align-items: center;
     width: auto;
     height: 4rem;
-    background-color: #f1f3f6;
+    background-color: #f5f5f5;
     //border: 1px solid red;
 `
 const genderoptions = ["남성", "여성"];
@@ -47,7 +47,7 @@ const SeniorInfoForm = ({
             <Row>
                 <Col span={4}>
                     <Box>
-                        <TextBox placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name} block/>
+                        <TextBox placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name} border block/>
                     </Box>
                 </Col>
                 <Col span={3} rightborder>
@@ -64,34 +64,34 @@ const SeniorInfoForm = ({
             <Row border>
                 <Col span={2}>
                     <Box>
-                        <SelectBox options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority} block/>
+                        <SelectBox options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority} border block/>
                     </Box>
                 </Col>
                 <Col span={2}>
                     <Box>
-                        <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} block/>
+                        <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} border block/>
                     </Box>
                 </Col>
                 <Col span={4}>
                     <Box>
-                        <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} block/>
+                        <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} border block/>
                     </Box>
                 </Col>
                 <Col span={4}>
                     <Box>
-                        <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} block/> 
+                        <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border block/> 
                     </Box>
                 </Col>
             </Row>
             <Row>
                 <Col span={2} rightborder>
                     <Box>
-                        <SelectBox options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region} block/>
+                        <SelectBox options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region} border block/>
                     </Box>
                 </Col>
                 <Col span={10}>
                     <Box>
-                        <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} block/> 
+                        <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} border block/> 
                     </Box>
                 </Col>
             </Row>

@@ -23,25 +23,21 @@ ${props => {
         switch (props.theme) {
             case "black":
                 return `
-                background-color: #ccd4e0;
-                border: 1px solid #f1f3f6;
-            `
-            case "white":
-                return `
-                background-color: #ffffff;
-                border: 1px solid #ccd4e0;
+                background-color: black;
+                border: none;
+                color: white;
             `
             default:
                 return `
-                background-color: #f1f3f6;
-                border: 1px solid #ccd4e0;
+                background-color: #f5f5f5;
+                border: 1px solid black;
+                color: black;
             `
         }
     }}
     ${props => (props.round) ? `border-radius: 5px;` : null}
     ${props => (props.block) ? `width : 100%;` : null}
     font-size: 0.9rem;
-    color: #707070;
     cursor: pointer;
 `
 

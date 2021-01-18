@@ -7,6 +7,7 @@
  */
 
 const getArea = (region) => {
+    console.log(region)
         return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/seniors/area?region='+region, {
                 method: 'GET',
                 headers: {
@@ -18,8 +19,8 @@ const getArea = (region) => {
                 return res.json()
         }).then(data=>{
             let refactor=JSON.stringify(data)
-            refactor=refactor.replace(/FEMALE/g, "여")
-            refactor=refactor.replace(/MALE/g, "남")
+            refactor=refactor.replace(/FEMALE/g, "여성")
+            refactor=refactor.replace(/MALE/g, "남성")
             refactor=refactor.replace(/WORK/g, "노력봉사")
             refactor=refactor.replace(/TALK/g, "말벗봉사")
             refactor=JSON.parse(refactor)

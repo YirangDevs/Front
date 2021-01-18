@@ -21,15 +21,15 @@ const UpdateButtonGroup = ({uploadFile, uploadOnClick, addButton, editDeleteButt
         <>
         <VolunteerButtonWrapper>
             <FileBox name="aFile" accept=".xls, .xlsx" onChange={uploadFile}/>
-            <Row>
+            <Row gutter={[5,3]}>
                 <Col span={4}>
-                    <Button theme="black" value="업로드" onClick={uploadOnClick} block/>
+                    <Button theme="black" value="업로드" onClick={uploadOnClick} round block/>
                 </Col>
                 <Col span={4}>
-                    <Button theme="black" value="추가" onClick={addButton} block/>
+                    <Button theme="black" value="추가" onClick={addButton} round block/>
                 </Col>
                 <Col span={4}>
-                    <Button theme="black" value="수정/삭제" onClick={editDeleteButton} block/>
+                    <Button theme="black" value="수정/삭제" onClick={editDeleteButton} round block/>
                 </Col>
             </Row>
         </VolunteerButtonWrapper>

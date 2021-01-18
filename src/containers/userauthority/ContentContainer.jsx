@@ -10,8 +10,15 @@ const Container = styled.div`
     align-items: center;
     
 `
-const regionOnClick = () => {
+const regionOnClick = (e) => {
+    console.log(e.target.innerText)
     
+    const region = e.target.innerText
+    const regionArray=region.split(",")
+    
+    console.log(regionArray)
+    
+
 }
 
 const ContentContainer = () => {
