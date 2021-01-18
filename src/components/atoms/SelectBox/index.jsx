@@ -22,6 +22,7 @@ ${props=>{
     ${props=>(props.border) ? `border-radius: 5px;`: null}
     ${props=>(props.block) ? `width : 90%;` : null}
     border: 1px solid #868789;
+    background-color: white;
     font-size: 1rem;
     color: #707070;
 `

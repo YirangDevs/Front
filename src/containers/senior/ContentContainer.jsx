@@ -11,6 +11,7 @@ import postSenior from "../../service/api/post/post_senior"
 import seniorCheck from "../../service/api/post/senior_check";
 import store from "../../store/store"
 import action from "../../store/actions/action"
+import getMyRegion from "../../service/api/get/get_my_region"
 
 const Container = styled.div`
     width: 90%;
@@ -42,6 +43,7 @@ const ContentContainer = () => {
     const [button, setButton] = useState(true);
     const [modal, setModal] = useState(false);
     const [excelData, setExcelData] = useState([]);
+    const [myRegion, setMyRegion] = useState([]);
     const history = useHistory();
     const postsPerPage = 10
 
@@ -55,6 +57,9 @@ const ContentContainer = () => {
 
 
     useEffect(() => {
+        getMyRegion().then((data)=>{
+            setMyRegion(data.regions)
+        })
         getAllAreas().then((data) => {
                 setSeniors(data)
         }).catch(err=>console.log(err))
@@ -100,7 +105,7 @@ const ContentContainer = () => {
     }
 
     const selectRegion = (e) => {
-        if (e.target.value === "전체") {
+        if (e.target.value === "지역선택") {
             getAllAreas().then((data) => {
                 setSeniors(data);
             }).catch(err=>console.log(err))
@@ -323,6 +328,7 @@ const ContentContainer = () => {
                 region={region}
                 posts={posts}
                 seniors={seniors}
+                myRegion={myRegion}
 
                 genderRef={genderRef}
 
