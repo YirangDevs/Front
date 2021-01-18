@@ -95,19 +95,17 @@ const Content = ({
                     <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior} />
 
                 </VolunteerLayout>
-                <AdminLayout>
                     {/* <InputForm></InputForm> */}
-                    <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}/>
+                <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}/>
 
-                    {button ? <Button width="90%" height="2.5rem" onClick={postOnClick} value="확인" theme="black"/> :
-                        <EditDeleteLayout>
-                            <Button onClick={editOnClick} width="50%" height="2.5rem" value="수정"/>
-                            <Button onClick={deleteOnClick} width="50%" height="2.5rem" value="삭제"/>
-                        </EditDeleteLayout>}
-                    {/* <Function></Function> */}
-                    <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal}/>
-                    <GuideButtonGroup/>
-                </AdminLayout>
+                {button ? <Button width="90%" height="2.5rem" onClick={postOnClick} value="확인" theme="black"/> :
+                    <EditDeleteLayout>
+                        <Button onClick={editOnClick} width="50%" height="2.5rem" value="수정"/>
+                        <Button onClick={deleteOnClick} width="50%" height="2.5rem" value="삭제"/>
+                    </EditDeleteLayout>}
+                {/* <Function></Function> */}
+                <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal}/>
+                <GuideButtonGroup/>
 
             </Container>
             <BottomLayout>

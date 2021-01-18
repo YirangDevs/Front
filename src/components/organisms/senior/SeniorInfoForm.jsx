@@ -6,18 +6,7 @@ import TextBox from "../../atoms/TextBox/index"
 import RadioBox from "../../atoms/RadioButton/index"
 import SelectBox from "../../atoms/SelectBox"
 import DateSelector from "../../atoms/DateSelector"
-const FormWrapper = styled.div`
-    border: 1px solid #ccd4e0;
-`
-const Box = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    height: 4rem;
-    background-color: #f5f5f5;
-    //border: 1px solid red;
-`
+
 const genderoptions = ["남성", "여성"];
 const typeoptions = ["노력봉사", "말벗봉사"];
 const priorityoptions = ["우선순위", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
@@ -43,60 +32,94 @@ const SeniorInfoForm = ({
     
     return (
         <>
-        <FormWrapper>
-            <Row>
-                <Col span={4}>
-                    <Box>
+            <Row style={{
+                border: "1px solid #ccd4e0"
+            }}>
+                <Col span={4} justify={"center"} align={"center"} style={{
+                    height:"4rem",
+                    backgroundColor: "#f5f5f5",
+                    borderBottom : "1px solid #ccd4e0"
+                }}>
+
                         <TextBox placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name} border block/>
-                    </Box>
+
                 </Col>
-                <Col span={3} rightborder>
-                    <Box>
+                <Col span={3} rightborder justify={"center"} align={"center"} style={{
+                    height:"4rem",
+                    backgroundColor: "#f5f5f5",
+                    borderBottom : "1px solid #ccd4e0"
+
+                }}>
+
                         <RadioBox ref={genderRef} size="default" name="gender" defaultValue={currentSenior.sex} options={genderoptions} onClick={genderOnChange}/>
-                    </Box>
+
                 </Col>
-                <Col span={5}>
-                    <Box>
+                <Col span={5} justify={"center"} align={"center"} style={{
+                    height:"4rem",
+                    backgroundColor: "#f5f5f5",
+                    borderBottom : "1px solid #ccd4e0"
+                }}>
+
                     <RadioBox size="default" name="type" options={typeoptions} onClick={typeOnChange}/>
-                    </Box>
+
+                </Col>
+                <Col span={2} justify={"center"} align={"center"} style={{
+                    height:"4rem",
+                    backgroundColor: "#f5f5f5",
+                    borderBottom : "1px solid #ccd4e0"
+                }}>
+
+                    <SelectBox options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority} border block/>
+
+                </Col>
+                <Col span={2} justify={"center"} align={"center"} style={{
+                    height:"4rem",
+                    backgroundColor: "#f5f5f5",
+                    borderBottom : "1px solid #ccd4e0"
+                }}>
+
+                    <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} border block/>
+
+                </Col>
+                <Col span={4} justify={"center"} align={"center"} style={{
+                    height:"4rem",
+                    backgroundColor: "#f5f5f5",
+                    borderBottom : "1px solid #ccd4e0"
+                }}>
+
+                    <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} border block/>
+
+                </Col>
+                <Col span={4} justify={"center"} align={"center"} style={{
+                    height:"4rem",
+                    backgroundColor: "#f5f5f5",
+                    borderBottom : "1px solid #ccd4e0"
+                }}>
+
+                    <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border block/>
+
+                </Col>
+                <Col span={2} justify={"center"} align={"center"} style={{
+                    height:"4rem",
+                    borderRight: "1px solid #ccd4e0",
+                    backgroundColor: "#f5f5f5",
+                    borderBottom : "1px solid #ccd4e0"
+                }}>
+
+                    <SelectBox options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region} border block/>
+
+                </Col>
+                <Col span={10} justify={"center"} align={"center"} style={{
+                    height:"4rem",
+                    backgroundColor: "#f5f5f5",
+                    borderBottom : "1px solid #ccd4e0"
+                }}>
+
+                    <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} border block/>
+
                 </Col>
             </Row>
-            <Row border>
-                <Col span={2}>
-                    <Box>
-                        <SelectBox options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority} border block/>
-                    </Box>
-                </Col>
-                <Col span={2}>
-                    <Box>
-                        <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} border block/>
-                    </Box>
-                </Col>
-                <Col span={4}>
-                    <Box>
-                        <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} border block/>
-                    </Box>
-                </Col>
-                <Col span={4}>
-                    <Box>
-                        <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border block/> 
-                    </Box>
-                </Col>
-            </Row>
-            <Row>
-                <Col span={2} rightborder>
-                    <Box>
-                        <SelectBox options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region} border block/>
-                    </Box>
-                </Col>
-                <Col span={10}>
-                    <Box>
-                        <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} border block/> 
-                    </Box>
-                </Col>
-            </Row>
-            </FormWrapper>
-        </>
+            </>
     )
 }
 

@@ -7,6 +7,7 @@ const ColumnLayout = styled.div`
     display :flex;
     flex-basis :  ${props => (100/12) * props.span}%;
     box-sizing : border-box;
+    flex-wrap : wrap;
     ${props=>props.justify ? `justify-content : `+props.justify+`;` : null};
     ${props=>props.align ? `align-items : `+props.align+`;` : null};
     ${props=>props.xs!=undefined ? (props.xs===0) ? `@media(max-width: 576px){ display : none; } `:`@media(max-width: 576px){ flex-basis : `+(100/12) * props.xs+`%; display : flex;}` : null}

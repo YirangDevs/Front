@@ -1,19 +1,37 @@
 import React from "react"
 import Button from "../atoms/Button"
-import {Link} from "react-router-dom"
-const AdminButtonGroup = () => {
+import {useHistory} from "react-router-dom"
+
+const MenuNav = () => {
+    const history = useHistory()
     return (
         <>
-            <Link to="/seniors">
-            <Button value="피봉사자 데이터 업로드" block/></Link>
-            <Link to="/manage">
-            <Button value="봉사 공고글 관리" block/></Link>
-            <Link to="/">
-            <Button value="매칭 결과 확인" block/></Link>
-            <Link to="/userauthority">
-            <Button value="사용자 권한 관리" block/></Link>
+
+            <Button value="피봉사자 데이터 업로드" block onClick={
+                ()=>{
+                    history.push("/seniors")
+                }
+            }/>
+
+
+            <Button value="봉사 공고글 관리" block onClick={
+                ()=> {
+                    history.push("/manage")
+                }
+            }/>
+
+            <Button value="매칭 결과 확인" block onClick={
+                ()=> {
+                    history.push("/")
+                }
+            }/>
+            <Button value="사용자 권한 관리" block onClick={
+                ()=> {
+                    history.push("/userauthority")
+                }
+            }/>
         </>
     )
 }
 
-export default AdminButtonGroup
+export default MenuNav

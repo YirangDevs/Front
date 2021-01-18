@@ -74,15 +74,7 @@ const Content = ({
                         }
                     </Col>
                     <Col span={4}>
-                        <MenuNav
-                            title="메뉴"
-                            firstMenu="메인화면으로 가기"
-                            secondMenu="봉사 공고글 관리"
-                            thirdMenu="봉사자 데이터 업로드"
-                            firstLink="/"
-                            secondLink="/manage"
-                            thirdLink="/Seniors"
-                        ></MenuNav>
+
                         <MenuInfo
                             userName="리덕스"
                             ModeKey="MODE"

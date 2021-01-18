@@ -11,6 +11,7 @@ import TableBox from "../../components/atoms/TableBox/index"
 import EditDeleteButton from "../../components/molecules/editDeleteButton"
 import AdminButtonGroup from "../../components/molecules/AdminButtonGroup"
 import Pagination from "../../components/atoms/Pagination"
+import MenuNav from "../../components/molecules/MenuNav";
 
 const Box = styled.div`
     // background: #0092ff;
@@ -82,9 +83,9 @@ const SeniorContent = ({currentSenior,
             <Row align="start" justify="start" gutter={[10,10]}>
                 {/* 피봉사자 표 출력 파트 */}
                 <Col span={12} xxl={7} xl={6}>
-                    <Box>
+
                         <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior}></TableBox>
-                    </Box>
+
                     <Pagination num={Math.ceil(seniors.length/10)} onClick={paginationOnClick}></Pagination>
 
                 </Col>
@@ -94,30 +95,26 @@ const SeniorContent = ({currentSenior,
                     {/* 그리드로 구현 */}
                     <Row gutter={[5,10]}>
                         <Col span={12}>
-                        <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior} genderRef={genderRef}></SeniorInfoForm>
+                            <SeniorInfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior} genderRef={genderRef}></SeniorInfoForm>
                         </Col>
                         <Col span={12}>
-                    {button?
-                    <Box>
-                        <Button value="확인" onClick={postOnClick} theme="black" round block/>
-                    </Box>:
+                            {button?
+                        <Button value="확인" onClick={postOnClick} types={"primary"} block/>
+                    :
                     <EditDeleteButton editOnClick={editOnClick} deleteOnClick={deleteOnClick}></EditDeleteButton>
                     }
 
                         </Col>
                         <Col span={12}>
-                    <Box>
+
                         <UpdateButtonGroup postSeniorsOnClick={postSeniorsOnClick} uploadFile={uploadFile} uploadOnClick={uploadOnClick} addButton={addButton} editDeleteButton={editDeleteButton} isModalOpen = {isModalOpen} excelData={excelData} closeModal={closeModal}></UpdateButtonGroup>
-                    </Box>
+
                 </Col>
                 <Col span={12}>
-                    <Box>
-                        <AdminButtonGroup />
-                    </Box>
-                </Col>
-                
 
-                    </Row>
+                    <MenuNav/>
+                </Col>
+            </Row>
                     
                 </Col>
             </Row>

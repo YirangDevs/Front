@@ -19,20 +19,18 @@ const VolunteerButtonWrapper = styled.div`
 const UpdateButtonGroup = ({uploadFile, uploadOnClick, addButton, editDeleteButton, isModalOpen, excelData, closeModal, postSeniorsOnClick}) => {
     return(
         <>
-        <VolunteerButtonWrapper>
             <FileBox name="aFile" accept=".xls, .xlsx" onChange={uploadFile}/>
             <Row gutter={[5,3]}>
                 <Col span={4}>
-                    <Button theme="black" value="업로드" onClick={uploadOnClick} round block/>
+                    <Button types={"primary"} value="업로드" onClick={uploadOnClick} block/>
                 </Col>
                 <Col span={4}>
-                    <Button theme="black" value="추가" onClick={addButton} round block/>
+                    <Button types={"primary"} value="추가" onClick={addButton} block/>
                 </Col>
                 <Col span={4}>
-                    <Button theme="black" value="수정/삭제" onClick={editDeleteButton} round block/>
+                    <Button types={"primary"} value="수정/삭제" onClick={editDeleteButton} block/>
                 </Col>
             </Row>
-        </VolunteerButtonWrapper>
         <ExcelPreview isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick}></ExcelPreview>
         </>
     )
