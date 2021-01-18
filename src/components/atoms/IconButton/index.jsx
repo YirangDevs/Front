@@ -9,11 +9,11 @@ const Wrapper = styled.div`
   height : auto;
   justify-content: center;
   align-items: center;
-  font-size : 0.85rem;
 `
 
 const Label = styled.div`
   margin-top: 1rem;
+  font-size : 0.85rem;
   text-align: center;
 `
 
@@ -34,15 +34,13 @@ const ButtonComponent = styled.div`
                 `
     }
 }}
-    border : 1px solid black;
+    border : 2px solid black;
     border-radius: 50%;
     background-color: rgba(255,255,255,0);
-    font-size: 0.9rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    width : 1rem;
 `
 
 const IconButton = ({ href, size, value, onClick, children}) => (
@@ -51,7 +49,8 @@ const IconButton = ({ href, size, value, onClick, children}) => (
             <ButtonComponent href={href} size={size} value={value} onClick={onClick}>
                 {children}
             </ButtonComponent>
-            <Label>{value ? value : null}</Label>
+            {value ? <Label>{value}</Label> : null}
+
         </Wrapper>
 
     </>

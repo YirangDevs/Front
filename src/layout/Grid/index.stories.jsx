@@ -5,13 +5,13 @@ import styled from "styled-components";
 
 const Box = styled.div`
     background: #0092ff;
-    width: auto;
+    width: 100%;
     height : 4rem;
     color : white;
 `
 const Box2 = styled.div`
     background: #0092ff;
-    width: auto;
+    width: 100%;
     height : 2rem;
     color : white;
 `

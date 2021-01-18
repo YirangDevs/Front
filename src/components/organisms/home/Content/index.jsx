@@ -15,25 +15,31 @@ const Content = () => {
             </Image>
             <ContentLayout>
                 <Row justify={"center"} gutter={[10,10]}>
-                    <Col span={1.5}>
-                        <IconButton value={"공고글 바로가기"}>
-                            <MdFormatListBulleted/>
+                    <Col span={1} justify={"center"}>
+                        <IconButton value={"공고글 바로가기"} size={"large"}>
+                            <MdFormatListBulleted size={28}/>
                         </IconButton>
                     </Col>
-                    <Col span={1.5}>
-                        <IconButton value={"피봉사자 데이터 업로드"}>
-                            <MdOpenInBrowser/>
+                    <Col span={1} justify={"center"}>
+                        <IconButton value={"피봉사자 데이터 업로드"} size={"large"}>
+                            <MdOpenInBrowser size={28}/>
                         </IconButton>
                     </Col>
-                    <Col span={1.5}>
-                        <IconButton value={"봉사 공고글 관리"}>
-                            <MdTune/>
+                    <Col span={1} justify={"center"}>
+                        <IconButton value={"봉사 공고글 관리"} size={"large"}>
+                            <MdTune size={28}/>
+                        </IconButton>
+
+                    </Col>
+                    <Col span={1} justify={"center"}>
+                        <IconButton value={"매칭 결과확인"} size={"large"}>
+                            <MdToday size={28}/>
                         </IconButton>
                     </Col>
-                    <Col span={1.5}>
-                        <IconButton value={"매칭 결과확인"}>
-                            <MdToday/>
-                        </IconButton>
+                </Row>
+                <Row>
+                    <Col>
+
                     </Col>
                 </Row>
             </ContentLayout>
