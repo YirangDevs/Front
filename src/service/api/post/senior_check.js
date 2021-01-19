@@ -1,7 +1,7 @@
 /**
  * @description Senior
  * @method POST
- * @request @headers YAT token, Content-Type
+ * @request @headers YAT token, Index-Type
  * @request
  */
 

@@ -1,6 +1,6 @@
 import React from "react"
-import ContentContainer from "../../containers/manage/ContentContainer"
-import TopBar from "../../components/molecules/TopBar";
+import ContentContainer from "../../containers/pages/manage/ContentContainer"
+import Header from "../../containers/redux/components/Header";
 
 
 
@@ -8,7 +8,7 @@ const Manages = () => {
 
     return (
         <>
-            <TopBar />
+            <Header theme={"dark"}/>
             <ContentContainer />
         </>
     )

@@ -32,10 +32,10 @@ const TableButton = ({ headList, bodyList, primaryKey, noticeClick, noticeId }) 
                 <Col span={2}>
                     <Row gutter={[0.5, 5]}>
                         <Col span={12}>
-                            <Button block size="large" value="수정" onClick={idShow}></Button>
+                            <Button block size="large" value="수정" onClick={idShow} types={"primary"}></Button>
                         </Col>
                         <Col span={12}>
-                            <Button block size="large" value="삭제" onClick={idShow}></Button>
+                            <Button block size="large" value="삭제" onClick={idShow} types={"primary"}></Button>
                         </Col>
                     </Row>
                 </Col>

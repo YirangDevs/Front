@@ -4,14 +4,18 @@ import PropTypes from 'prop-types';
 import RowContext from "../Row/RowContext";
 
 const ColumnLayout = styled.div`
+    display :flex;
     flex-basis :  ${props => (100/12) * props.span}%;
     box-sizing : border-box;
-    ${props=>props.xs ? `@media(max-width: 576px){ flex-basis : `+(100/12) * props.xs+`%}` : null}
-    ${props=>props.sm ? `@media(min-width: 576px){ flex-basis : `+(100/12) * props.sm+`%}` : null}
-    ${props=>props.md ? `@media(min-width: 768px){ flex-basis : `+(100/12) * props.md+`%}` : null}
-    ${props=>props.lg ? `@media(min-width: 992px){ flex-basis : `+(100/12) * props.lg+`%}` : null}
-    ${props=>props.xl ? `@media(min-width: 1200px){ flex-basis : `+(100/12) * props.xl+`%}` : null}
-    ${props=>props.xxl ? `@media(min-width: 1600px){ flex-basis : `+(100/12) * props.xxl+`%}` : null}
+    flex-wrap : wrap;
+    ${props=>props.justify ? `justify-content : `+props.justify+`;` : null};
+    ${props=>props.align ? `align-items : `+props.align+`;` : null};
+    ${props=>props.xs!=undefined ? (props.xs===0) ? `@media(max-width: 576px){ display : none; } `:`@media(max-width: 576px){ flex-basis : `+(100/12) * props.xs+`%; display : flex;}` : null}
+    ${props=>props.sm!=undefined ? (props.sm===0) ? `@media(min-width: 576px){ display : none; } `:`@media(min-width: 576px){ flex-basis : `+(100/12) * props.sm+`%; display : flex;}` : null}
+    ${props=>props.md!=undefined ? (props.md===0) ? `@media(min-width: 768px){ display : none; }`:`@media(min-width: 768px){ flex-basis : `+(100/12) * props.md+`%; display : flex;}` : null}
+    ${props=>props.lg!=undefined ? (props.lg===0) ? `@media(min-width: 992px){ display : none; }`:`@media(min-width: 992px){ flex-basis : `+(100/12) * props.lg+`%; display : flex;}` : null}
+    ${props=>props.xl!=undefined ? (props.xl===0) ? `@media(min-width: 1200px){ display : none; }`:`@media(min-width: 1200px){ flex-basis : `+(100/12) * props.xl+`%; display : flex;}` : null}
+    ${props=>props.xxl!=undefined ? (props.xxl===0) ? `@media(min-width: 1600px){ display : none;`:`@media(min-width: 1600px){ flex-basis : `+(100/12) * props.xxl+`%; display : flex;}` : null}
     
     ${props=>props.gutter && typeof props.gutter[0] == "number" && typeof props.gutter[1] == "number" ? 'padding : ' +props.gutter[0] +'px '+props.gutter[1]+'px;': null}
     ${props=>props.gutter[0].xs ? `@media(max-width: 576px){ padding-top : `+ props.gutter[0].xs+`px; padding-bottom : `+ props.gutter[0].xs`+px;}` : null}
@@ -28,14 +32,16 @@ const ColumnLayout = styled.div`
     ${props=>props.gutter[1].xxl ? `@media(min-width: 1600px){ padding-right : `+ props.gutter[1].xxl+`px; padding-left : `+ props.gutter[1].xxl`+px;}` : null}
    
     ${props=>props.rightborder ? `border-right: 1px solid #ccd4e0;` : null }
+    ${props=>props.offset ? 'margin-left : '+((100/12) * props.offset)+'%' : null }
 `
-const Col=({span,rightborder, xs, sm, md, lg, xl, xxl, children})=>{
+const Col=({span,rightborder,style, justify, align, xs, sm, md, lg, xl, xxl, children, offset})=>{
+
     return (
 
     <>
         <RowContext.Consumer>
             {(value)=>(
-                <ColumnLayout span={span} gutter={value} rightborder={rightborder} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xxl}>
+                <ColumnLayout style={style} justify={justify} align={align} span={span} gutter={value} rightborder={rightborder} offset={offset} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xxl}>
                     {children}
                 </ColumnLayout>
             )}
@@ -45,6 +51,9 @@ const Col=({span,rightborder, xs, sm, md, lg, xl, xxl, children})=>{
 )}
 
 Col.propTypes = {
+    style : PropTypes.object,
+    justify : PropTypes.string,
+    align : PropTypes.string,
     span : PropTypes.number,
     xs : PropTypes.number,
     sm : PropTypes.number,

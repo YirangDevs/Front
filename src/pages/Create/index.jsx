@@ -1,11 +1,11 @@
 import React from "react"
-import ContentContainer from "../../containers/create/ContentContainer"
-import TopBar from "../../components/molecules/TopBar/index";
+import ContentContainer from "../../containers/pages/create/ContentContainer"
+import Header from "../../containers/redux/components/Header/";
 
 const Create = () => {
     return (
         <>
-            <TopBar />
+            <Header theme={"dark"} />
             <ContentContainer />
         </>
     )

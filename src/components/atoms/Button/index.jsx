@@ -20,40 +20,47 @@ const ButtonComponent = styled.input.attrs(props => ({ type: "button" }))`
         }
     }}
 ${props => {
-        switch (props.theme) {
-            case "black":
+        switch (props.types) {
+            case "primary":
                 return `
-                background-color: black;
+                background-color: #000000;
+                border: 1px solid #000000;
+                border-radius : 3px;
+                color : #FFFFFF;
+            `
+            case "text":
+                return `
+                background-color: rgba(255,255,255,0);
                 border: none;
-                color: white;
+                outline : 0;
+                color : #000000;
             `
             default:
                 return `
-                background-color: #f5f5f5;
-                border: 1px solid black;
-                color: black;
+                background-color: #FFFFFF;
+                border: 1px solid #000000;
+                border-radius : 3px;
+                color : #000000;
             `
         }
     }}
-    ${props => (props.round) ? `border-radius: 5px;` : null}
     ${props => (props.block) ? `width : 100%;` : null}
     font-size: 0.9rem;
     cursor: pointer;
 `
 
-const Button = ({ href, theme, size, block, round, value, onClick }) => (
+const Button = ({ href, size, types, block, value, onClick }) => (
     <>
-        <ButtonComponent href={href} theme={theme} size={size} block={block} round={round} value={value} onClick={onClick}>
+        <ButtonComponent href={href} size={size} types={types} block={block} value={value} onClick={onClick}>
         </ButtonComponent>
     </>
 )
 
 Button.propTypes = {
     href: PropTypes.string,
-    theme: PropTypes.string,
+    types: PropTypes.string,
     size: PropTypes.string,
     block: PropTypes.bool,
-    radius: PropTypes.bool,
     value: PropTypes.string,
     onClick: PropTypes.func
 }

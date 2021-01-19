@@ -10,7 +10,3 @@ export default {
 const Template = (args) => <Home {...args} />;
 
 export const Default = Template.bind({})
-
-
-
-

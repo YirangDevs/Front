@@ -1,7 +1,7 @@
 /**
  * @description 개별 피봉사자 등록
  * @method POST
- * @request @headers YAT token, Content-Type
+ * @request @headers YAT token, Index-Type
  * @request @body data{title , content , region , nor , dov , tov , dod}
  */
 
