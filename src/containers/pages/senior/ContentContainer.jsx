@@ -1,5 +1,5 @@
 import SeniorContent from "../../../components/organisms/senior/Content/"
-import React, { useState, useEffect, useCallback, forwardRef, createRef} from "react"
+import React, { useState, useEffect, useCallback, useRef} from "react"
 import { useHistory } from "react-router-dom"
 import getAllAreas from "../../../service/api/get/get_all_areas"
 import getArea from "../../../service/api/get/get_area"
@@ -51,8 +51,8 @@ const ContentContainer = () => {
 
    
 
-    //const genderInput = useRef(null);
-    const genderRef = createRef();
+    const genderRef = useRef();
+    //const genderRef = createRef();
     //const genderRef = forwardRef();
 
 
@@ -63,11 +63,13 @@ const ContentContainer = () => {
         getAllAreas().then((data) => {
                 setSeniors(data)
         }).catch(err=>console.log(err))
+        
     }, [])
 
 
     useEffect(() => {
         currentSenior.id ? setButton(false) : setButton(true)
+
     }, [currentSenior])
 
 
@@ -129,8 +131,9 @@ const ContentContainer = () => {
         setBufferSenior(senior)
         setCurrentSenior(senior)
 
-        // genderRadioDisabled(e)
-        console.log(genderRef.current)
+        RadioSelect(e.target, senior)
+
+        console.log(genderRef)
     }
 
     const nameOnChange = (e) => {
@@ -286,6 +289,12 @@ const ContentContainer = () => {
             })
         }
         reader.readAsBinaryString(input.files[0])
+    }
+
+    //피봉사자를 클릭했을 시에 라디오 버튼이 클릭되는 깽판코드....ㅎ
+    const RadioSelect = (e, senior) => {
+        e.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].firstChild.firstChild.firstChild.children[1].firstChild.children[senior.sex=="남성"?0:1].firstChild.checked=true;
+        e.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].firstChild.firstChild.firstChild.children[2].firstChild.children[senior.type=="노력봉사"?0:1].firstChild.checked=true;
     }
 
     const parsingData = (rowObj) => {

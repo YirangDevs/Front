@@ -1,12 +1,12 @@
 import React from "react"
-import Content from "../../layout/Content"
-import Row from "../../layout/Grid/Row/index"
-import Col from "../../layout/Grid/Column/index"
-import SelectBox from "../../components/atoms/SelectBox"
-import TextBox from "../../components/atoms/TextBox"
-import Button from "../../components/atoms/Button"
-import TableBox from "../../components/atoms/TableBox"
-import MenuNav from "../../components/molecules/MenuNav/"
+import Content from "../../../layout/Content"
+import Row from "../../../layout/Grid/Row/index"
+import Col from "../../../layout/Grid/Column/index"
+import SelectBox from "../../atoms/SelectBox"
+import TextBox from "../../atoms/TextBox"
+import Button from "../../atoms/Button"
+import TableBox from "../../atoms/TableBox"
+import MenuNav from "../../molecules/MenuNav"
 
 
 const selectAuthority = ["전체", "관리자", "일반회원"]

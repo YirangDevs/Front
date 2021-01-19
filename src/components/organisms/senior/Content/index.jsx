@@ -22,8 +22,6 @@ const SeniorContent = ({currentSenior,
     selectSenior,
     myRegion,
 
-    genderRef,
-
     excelRegion,
     excelDate,
     needsTotal,
@@ -50,7 +48,7 @@ const SeniorContent = ({currentSenior,
     addButton,
     editDeleteButton,
     isModalOpen,
-    excelData}) => {
+    excelData}, genderRef) => {
         
         //console.log(posts)
         const regionArray = regionoptions.concat(myRegion)
@@ -93,10 +91,10 @@ const SeniorContent = ({currentSenior,
                             :
                                 <Row gutter={[0,3]}>
                                     <Col span={6}>
-                                        <Button theme="black" value="수정" onClick={editOnClick} round block/>
+                                        <Button theme="black" value="수정" onClick={editOnClick} types={"primary"} block/>
                                     </Col>
                                     <Col span={6}>
-                                        <Button theme="black" value="삭제" onClick={deleteOnClick} round block/>
+                                        <Button theme="black" value="삭제" onClick={deleteOnClick} types={"primary"} block/>
                                     </Col>
                                 </Row>
                             }

@@ -12,6 +12,9 @@ const MenuInfo = (props) => {
     window.location.href = "https://kauth.kakao.com/oauth/logout?client_id=" + _.REST_KEY + "&logout_redirect_uri=" + _.LOGOUT_REDIRECT_URL
   }
 
+  //슈퍼 관리자가 어떻게 오는지 체크
+  console.log(props.role)
+
 
   return (
     <>

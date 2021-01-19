@@ -23,11 +23,9 @@ const InfoForm = ({
     phoneOnChange,
     regionOnChange,
     addressOnChange,
-    currentSenior,
+    currentSenior
 
-    genderRef
-
-}) => {
+}, genderRef) => {
     console.log(currentSenior)
     
     return (
