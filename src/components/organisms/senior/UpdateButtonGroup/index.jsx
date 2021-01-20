@@ -4,9 +4,11 @@ import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import Button from "../../../atoms/Button"
 import ExcelPreview from "../../../../pages/ExcelPreview"
+import Modal from "../../../atoms/Modal"
 
 
 const UpdateButtonGroup = ({uploadFile, uploadOnClick, addButton, editDeleteButton, isModalOpen, excelData, closeModal, postSeniorsOnClick}) => {
+
     return(
         <>
             <FileBox name="aFile" accept=".xls, .xlsx" onChange={uploadFile}/>
@@ -21,7 +23,9 @@ const UpdateButtonGroup = ({uploadFile, uploadOnClick, addButton, editDeleteButt
                     <Button types={"primary"} value="수정/삭제" onClick={editDeleteButton} block/>
                 </Col>
             </Row>
-        <ExcelPreview isModalOpen={isModalOpen} excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick}></ExcelPreview>
+        <Modal visible={isModalOpen} onClose={closeModal} size={12}
+            children={<ExcelPreview excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick}/>} 
+            title="업로드 할 엑셀 데이터"/>
         </>
     )
 }
