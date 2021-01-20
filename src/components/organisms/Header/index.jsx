@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Logo from "../../atoms/Logo"
 import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
+import _ from "../../../config/env"
 
 const HeaderStyle = styled.div`
   background-color : rgba(255,255,255,0.4);
@@ -28,18 +29,28 @@ const HeaderStyle = styled.div`
   }
 `
 
-const RegisterLoginBtn = styled.button`
+const RegisterLoginBtn = styled.a`
   width : auto;
   height : 100%;
   background : rgba(255,255,255,0.3);
   padding : 0px 14px;
   border : 0;
   outline : 0;
+  font-family : Montserrat;
+  font-weight: 500;
+  display : flex;
+  align-items: center;
+  justify-content: center;
   color : white;
+  cursor : pointer;
 `
 
 const Label = styled.span`
   font-weight: bold;
+`
+
+const Value = styled.span`
+  margin-left : 0.5rem;
 `
 
 const Header = ({theme, logined, role, position}) => {
@@ -57,21 +68,29 @@ const Header = ({theme, logined, role, position}) => {
 
                     {
                         (logined) ?
-
-                            <Col span={8} xs={2} sm={0} md={6} justify={"center"} style={{
+                        <>
+                            <Col span={2} xs={2} sm={0} md={2} offset={5} justify={"flex-end"} style={{
                                 color : "white"
                             }}>
 
-                                    <Label>SKIN TYPE</Label>| 관리자
+                                <Label>SKIN TYPE</Label><Value>| 일반</Value>
 
                             </Col>
+                            <Col span={2} xs={2} sm={0} md={2   } offset={1} justify={"flex-start"} style={{
+                                color : "white"
+                            }}>
+
+                                <Label>ROLE TYPE</Label><Value>| {role}</Value>
+
+                            </Col>
+                        </>
 
                              :
                             <Col span={2} style={{
                                 height: '100%',
 
                             }} justify={"flex-end"}>
-                                <RegisterLoginBtn>REGISTER/LOGIN</RegisterLoginBtn>
+                                <RegisterLoginBtn href={_.KAKAO_AUTHORIZATION_URL}>REGISTER/LOGIN</RegisterLoginBtn>
                             </Col>
                     }
 
