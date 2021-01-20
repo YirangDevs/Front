@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-01-06 20:58:33
  */
 
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Col from '../../../layout/Grid/Column'
 import Row from '../../../layout/Grid/Row'
@@ -53,13 +53,12 @@ border : 0;
 outline : 0;
 cursor : pointer;
 display :block;
-width : 54px;
-height : 54px;
+width : 50px;
+height : 50px;
 
 `
 
 const ModalHeader = styled.div`
-// antd
 padding: 16px 24px;
 color: rgba(0,0,0,.85);
 background: #fff;
@@ -68,11 +67,9 @@ border-radius: 2px 2px 0 0;
 line-height: 22px;
 font-size: 16px;
 font-weight: 600;
-
-// my
 width : 100%;
 box-sizing : border-box;
-
+min-height : 52px;
 `
 
 
@@ -83,6 +80,10 @@ box-sizing : border-box;
 `
 
 
+const stopBubbling = (e) => {
+    e.stopPropagation()
+}
+
 /**
  * @param title - modal title
  * @param visible true - open Modal / false - close Modal
@@ -91,13 +92,8 @@ box-sizing : border-box;
  * @param onClose - 모달 닫는 함수넣어주기 
  * @param size - 가로 크기 조절 
  * @param children 컴포넌트 테그 사이에 값을 조회
- * @see antD Modal
+ * @see antD Modal (사용법 antD 참조)
  */
-
-const stopBubbling = (e) => {
-    e.stopPropagation()
-}
-
 const Modal = ({ title, visible, closable, maskClosable, onClose, children, size }) => {
 
 

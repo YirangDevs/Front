@@ -6,3 +6,14 @@
  */
 
 import React from "react"
+
+const ReadNotice = () => {
+
+    return (
+        <>
+            <div>dkdkfdkfn</div>
+        </>
+    )
+}
+
+export default ReadNotice

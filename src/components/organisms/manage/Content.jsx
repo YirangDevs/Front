@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-06 21:11:07
+ * @Last Modified time: 2021-01-18 05:52:09
  */
 import React, { useState } from "react"
 import Row from "../../../layout/Grid/Row/index"
@@ -11,11 +11,12 @@ import ContentLayout from "../../../layout/Content/index"
 import TableButton from '../../molecules/TableButton/index'
 import MenuNav from '../../../components/molecules/MenuNav/index'
 import MenuInfo from '../../../components/molecules/MenuInfo/index'
+
 import '../../../css/manage.css'; // 이거 information만들면 지우기
-// 이거 tableButton 다만들면 지우기
 
 
-const NoticeTableHeadLists = [" ", "제목", "봉사날짜", "봉사지역"]
+
+
 
 
 const Content = ({
@@ -36,6 +37,8 @@ const Content = ({
     logoutEvent
 
 }) => {
+    const NoticeTableHeadLists = [" ", "제목", "봉사날짜", "봉사지역"]
+    const noticeLists = lists || [{ id: null, title: "게시글이없습니다.", dov: null, region: null }]
 
 
     return (
@@ -46,31 +49,39 @@ const Content = ({
                 {/*<Col span = {5} > = menu 영역을 감사는 layout (right) */}
                 <Row gutter={[10, 10]}>
                     <Col span={7}>
+                        {/* information */}
                     </Col>
                 </Row>
                 <Row gutter={[10, 10]}>
                     <Col span={8}>
                         {
-                            (lists).map((lists) => {
-                                let data = Object.assign({
-                                    id: lists.id,
-                                    title: lists.title,
-                                    dov: lists.dov,
-                                    region: lists.region
-                                }, {})
-                                return (
-                                    <>
-                                        <TableButton
-                                            headList={NoticeTableHeadLists}
-                                            bodyList={[data]}
-                                            primaryKey={"title"}
-                                            noticeClick={noticeClick}
-                                            noticeId={data.id}
-                                        >
-                                        </TableButton>
-                                    </>
-                                )
-                            })
+                            (noticeLists) ?
+                                (noticeLists).map((lists) => {
+                                    let data = Object.assign({
+                                        id: lists.id,
+                                        title: lists.title,
+                                        dov: lists.dov,
+                                        region: lists.region
+                                    }, {})
+
+                                    return (
+                                        <>
+                                            {console.log(data)}
+                                            <TableButton
+                                                key={lists.id}
+                                                headList={NoticeTableHeadLists}
+                                                bodyList={[data]}
+                                                primaryKey={"title"}
+                                                noticeClick={noticeClick}
+                                                noticeId={data.id}
+                                                updateCLick={updateClick}
+                                                deleteClick={deleteClick}
+                                            >
+                                            </TableButton>
+                                        </>
+                                    )
+                                })
+                                : null
 
                         }
                     </Col>
