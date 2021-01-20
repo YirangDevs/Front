@@ -45,13 +45,14 @@ ${props => {
         }
     }}
     ${props => (props.block) ? `width : 100%;` : null}
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
+    ${props => props.bold ? `font-weight : bold` : null }
 `
 
-const Button = ({ href, size, types, block, value, onClick }) => (
+const Button = ({ href, size, types, block, value, onClick, bold}) => (
     <>
-        <ButtonComponent href={href} size={size} types={types} block={block} value={value} onClick={onClick}>
+        <ButtonComponent href={href} size={size} types={types} block={block} value={value} bold={bold} onClick={onClick}>
         </ButtonComponent>
     </>
 )
@@ -62,6 +63,7 @@ Button.propTypes = {
     size: PropTypes.string,
     block: PropTypes.bool,
     value: PropTypes.string,
+    bold: PropTypes.bool,
     onClick: PropTypes.func
 }
 

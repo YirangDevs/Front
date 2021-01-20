@@ -8,11 +8,18 @@ import Create from "./pages/Create/index"
 import UserAuthority from "./pages/UserAuthority"
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import Seniors from "./pages/Seniors/index"
+import {createGlobalStyle} from "styled-components"
 
+const GlobalStyle = createGlobalStyle`
+  html, body {
+    scroll-behavior: smooth;
+  }
+`
 
 function App() {
   return (
     <>
+    <GlobalStyle/>
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={LoginRedirect}>
