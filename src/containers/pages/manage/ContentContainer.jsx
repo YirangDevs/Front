@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2020-12-21 15:45:15
+ * @Last Modified time: 2021-01-17 23:02:07
  */
 
 import React, { useState, useEffect } from "react"
@@ -16,8 +16,8 @@ import deleteNotice from "../../../service/api/delete/delete_notice";
 
 const ContentContainer = () => {
 
-    const [listTotalNum, setListTotalNum] = useState(0); // 전체 리스트 갯수
-    const [pagingNum, setPagingNum] = useState(0);// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
+    const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
+    const [pagingNum, setPagingNum] = useState("0");// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
     const [selectNotice, setSelectNotice] = useState({});//  read로 열 notice 정보
     const [updateNotice, setUpdateNotice] = useState({  // update할 notice 정보
         id: "",
@@ -36,16 +36,17 @@ const ContentContainer = () => {
         getNoticeNum()
             .then((res) => {
                 setListTotalNum(res.totalNoticeNums);// 전체 리스트 갯수 저장 
-            }).catch(error=>console.log(error))
+            }).catch(error => console.log(error))
     }, [])
 
     // 전체 페이지 갯수가 바뀔 때 마다 선택된 페이지 새로 받아오기 (삭제되었을때 바로 반영이 되로=도록)
     useEffect(() => {
-        getNoticeByPage(pagingNum)
+        getNoticeByPage("0")
             .then((res) => {
+                console.log(res.notices)
                 setLists(res.notices);
-            }).catch(error=>console.log(error))
-    }, [listTotalNum, pagingNum])
+            }).catch(error => console.log(error))
+    }, [pagingNum])
 
 
     /**
@@ -61,13 +62,23 @@ const ContentContainer = () => {
      * @param e - 선택한 notice target하기위한 param
      * @detail 수정할 notice의 id를 통해 UpdateNotice 내용을 set(update Page 에 표시될거)
      */
-    const updateClick = (e) => {
-        const updateId = e.target.id;
+    const updateClick = (noticeId) => {
+        const updateId = noticeId;
+        console.log(updateId)
+        getNotice(294)
+            .then((res) => {
+                console.log(res)
+                // setUpdateNotice(res.notice)
+            })
+            .catch(error => console.log(error))
+
+
         getNotice(updateId)
             .then((res) => {
-                setUpdateNotice(res.notice)
+                console.log(res)
+                // setUpdateNotice(res.notice)
             })
-            .catch(error=>console.log(error))
+            .catch(error => console.log(error))
     }
 
     /**
@@ -82,14 +93,14 @@ const ContentContainer = () => {
             setDeleteId(null);
             alert("💥게시글 삭제 성공!💥")
             setListTotalNum(listTotalNum - 1)
-        }).catch(error=> {
+        }).catch(error => {
             console.log(error)
             if (window.confirm("이 게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
                 deleteActivity(deleteId).then((res) => {
-                        alert("💥게시글 및 활동 삭제 성공!💥");
-                        setDeleteId(null);
-                        setListTotalNum(listTotalNum-1)
-                }).catch(error=>console.log(error))
+                    alert("💥게시글 및 활동 삭제 성공!💥");
+                    setDeleteId(null);
+                    setListTotalNum(listTotalNum - 1)
+                }).catch(error => console.log(error))
             }
         })
     }
