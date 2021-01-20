@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Button from './index';
 
 export default {
@@ -9,7 +8,6 @@ export default {
 };
 
 const Template = (args) => <Button {...args} />;
-
 
 export const Small_Btn = Template.bind({});
 Small_Btn.args = {
@@ -30,10 +28,38 @@ Large_Btn.args = {
     value: 'large button',
 };
 
+export const Primary_Small_Btn = Template.bind({});
+Primary_Small_Btn.args = {
+    size: "small",
+    types: "primary",
+    value: 'small button',
+};
+
+export const Primary_Default_Btn = Template.bind({});
+Primary_Default_Btn.args = {
+    size: "default",
+    types: "primary",
+    value: 'default button',
+};
 
 
-export const Block_Btn = Template.bind({});
-Block_Btn.args = {
+export const Primary_Large_Btn = Template.bind({});
+Primary_Large_Btn.args = {
+    size: "large",
+    types: "primary",
+    value: 'large button',
+};
+
+export const Text_Btn = Template.bind({});
+Text_Btn.args = {
+    size: "default",
+    types: "text",
+    value: 'text button',
+};
+
+export const Primary_Block_Btn = Template.bind({});
+Primary_Block_Btn.args = {
     block: true,
+    types: "primary",
     value: 'block button',
 };

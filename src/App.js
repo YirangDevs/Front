@@ -1,17 +1,25 @@
 import React from 'react';
+import Home from "./pages/Home/index"
 import Container from "./components/home/Container"
-import LoginRedirect from "./containers/home/LoginRedirect"
-import LogoutRedirect from "./containers/home/LogoutRedirect"
+import LoginRedirect from "./containers/pages/home/LoginRedirect"
+import LogoutRedirect from "./containers/pages/home/LogoutRedirect"
 import Manage from "./pages/Manage/index"
 import Create from "./pages/Create/index"
 import UserAuthority from "./pages/UserAuthority"
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import Seniors from "./pages/Seniors/index"
+import {createGlobalStyle} from "styled-components"
 
+const GlobalStyle = createGlobalStyle`
+  html, body {
+    scroll-behavior: smooth;
+  }
+`
 
 function App() {
   return (
     <>
+    <GlobalStyle/>
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={LoginRedirect}>
@@ -28,7 +36,7 @@ function App() {
         <Route path="/userauthority" component={UserAuthority}>
         </Route>
 
-        <Route exact path="/" component={Container}>
+        <Route exact path="/" component={Home}>
         </Route>
       </Switch> 
     </BrowserRouter>

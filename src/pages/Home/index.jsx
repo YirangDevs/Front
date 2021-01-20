@@ -1,16 +1,11 @@
 import React from "react"
-import Header from "../../layout/Header/index"
-import TopBar from "../../components/molecules/TopBar/index";
-import Image from "../../components/atoms/Image/index"
-import MainImagePath from "../../img/main-img.jpg"
+import Header from "../../containers/redux/components/Header/index";
+import ContentContainer from "../../containers/pages/home/ContentContainer";
 
 const Home = () => (
     <>
-
-        <Header>
-            <TopBar absolute></TopBar>
-            <Image src={MainImagePath} width={100}></Image>
-        </Header>
+        <Header position={"absolute"}/>
+        <ContentContainer></ContentContainer>
     </>
 )
 

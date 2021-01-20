@@ -2,7 +2,7 @@ import _ from "../../../config/env"
 /**
  * @description 카카오 토큰 발급
  * @method POST
- * @request @Content-Type : application/x-www-form-urlencoded;charset=utf-8
+ * @request @Index-Type : application/x-www-form-urlencoded;charset=utf-8
  * @request @body authorization_code
  */
 const getTokenFromKakao = (AUTHORIZATION_CODE) => {

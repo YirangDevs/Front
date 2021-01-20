@@ -20,45 +20,50 @@ const ButtonComponent = styled.input.attrs(props => ({ type: "button" }))`
         }
     }}
 ${props => {
-        switch (props.theme) {
-            case "black":
+        switch (props.types) {
+            case "primary":
                 return `
-                background-color: #ccd4e0;
-                border: 1px solid #f1f3f6;
+                background-color: #000000;
+                border: 1px solid #000000;
+                border-radius : 3px;
+                color : #FFFFFF;
             `
-            case "white":
+            case "text":
                 return `
-                background-color: #ffffff;
-                border: 1px solid #ccd4e0;
+                background-color: rgba(255,255,255,0);
+                border: none;
+                outline : 0;
+                color : #000000;
             `
             default:
                 return `
-                background-color: #f1f3f6;
-                border: 1px solid #ccd4e0;
+                background-color: #FFFFFF;
+                border: 1px solid #000000;
+                border-radius : 3px;
+                color : #000000;
             `
         }
     }}
-    ${props => (props.round) ? `border-radius: 5px;` : null}
     ${props => (props.block) ? `width : 100%;` : null}
-    font-size: 0.9rem;
-    color: #707070;
+    font-size: 1rem;
     cursor: pointer;
+    ${props => props.bold ? `font-weight : bold` : null }
 `
 
-const Button = ({ href, theme, size, block, round, value, onClick }) => (
+const Button = ({ href, size, types, block, value, onClick, bold}) => (
     <>
-        <ButtonComponent href={href} theme={theme} size={size} block={block} round={round} value={value} onClick={onClick}>
+        <ButtonComponent href={href} size={size} types={types} block={block} value={value} bold={bold} onClick={onClick}>
         </ButtonComponent>
     </>
 )
 
 Button.propTypes = {
     href: PropTypes.string,
-    theme: PropTypes.string,
+    types: PropTypes.string,
     size: PropTypes.string,
     block: PropTypes.bool,
-    radius: PropTypes.bool,
     value: PropTypes.string,
+    bold: PropTypes.bool,
     onClick: PropTypes.func
 }
 

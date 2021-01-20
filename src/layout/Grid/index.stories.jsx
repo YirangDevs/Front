@@ -5,18 +5,18 @@ import styled from "styled-components";
 
 const Box = styled.div`
     background: #0092ff;
-    width: auto;
+    width: 100%;
     height : 4rem;
     color : white;
 `
 const Box2 = styled.div`
     background: #0092ff;
-    width: auto;
+    width: 100%;
     height : 2rem;
     color : white;
 `
 export default {
-    title: 'Grid2',
+    title: 'Grid',
     component: Row,
     decorators: [(Story) => <div style={{margin: "0 auto", width: "80%"}}><Story/></div>]
 };

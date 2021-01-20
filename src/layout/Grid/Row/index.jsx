@@ -15,16 +15,17 @@ const RowLayout = styled.div`
 
     
 `
+
+
 /**
  * @param {Row} justify - 수평 배열 === justify-content
  * @param {Row} align - 수직 배열  === align-items
  * @param {Row} gutter - 그리드 사이의 간격 [수평 , 수직 ]
  */
-
-const Row = ({ justify, align, border, gutter, children }) => (
+const Row = ({ style, justify, align, border, gutter, children }) => (
     <>
         <RowContext.Provider value={gutter}>
-            <RowLayout justify={justify} border={border} align={align}>
+            <RowLayout style={style} justify={justify} border={border} align={align}>
                 {children}
             </RowLayout>
         </RowContext.Provider>

@@ -3,26 +3,29 @@ import styled from "styled-components"
 import { useHistory } from "react-router-dom"
 
 const LogoStyle = styled.div`
-  width: auto;
-  height: auto;
+  width : 10rem;
+  height: 100%;
   font-family: Montserrat;
-  font-size: 1.313rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: white;
-  opacity: 1;
+  font-weight: bold;
+  font-family: Montserrat;
   cursor: pointer;
+  padding : 10px 20px;
+  box-sizing: border-box;
+  background-color: #595959;
+  display : flex;
+  align-items: center;
+  justify-content: center;
 `
-
-
-
-
 
 const Index = () => {
     const history = useHistory();
     return (
         <>
             <LogoStyle onClick={() => history.push("/")}>
-                YIRANG
+                TEAM:YIRANG
             </LogoStyle>
         </>
     )

@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import TopBar from "../../components/molecules/TopBar/index"
-import ContentContainer from "../../containers/userauthority/ContentContainer"
+import Header from "../../containers/redux/components/Header/";
+import ContentContainer from "../../containers/pages/userauthority/ContentContainer"
 
 const ContentWrapper = styled.div`
     display: flex;
@@ -12,7 +12,7 @@ const ContentWrapper = styled.div`
 const UserAuthority = () => {
     return (
         <>
-            <TopBar />
+            <Header />
             <ContentWrapper>
             <ContentContainer/>
             </ContentWrapper>

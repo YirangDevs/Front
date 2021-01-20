@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import TopBar from "../../components/molecules/TopBar/index";
-import ContentContainer from "../../containers/senior/ContentContainer";
+import Header from "../../containers/redux/components/Header";
+import ContentContainer from "../../containers/pages/senior/ContentContainer";
 const ContentWrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@ const ContentWrapper = styled.div`
 const Content = () => {
     return (
         <>
-            <TopBar />
+            <Header theme={"dark"}/>
             <ContentWrapper>
                 <ContentContainer></ContentContainer>
             </ContentWrapper>

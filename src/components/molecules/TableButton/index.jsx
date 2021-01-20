@@ -2,7 +2,7 @@
  * @author: chaeeun
  * @date 2020-12-11 21:01:17
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-19 01:40:21
+ * @Last Modified time: 2021-01-20 20:41:29
  */
 
 import React, { useState } from 'react'
@@ -63,10 +63,10 @@ const TableButton = ({ headList, bodyList, primaryKey, noticeClick, noticeId, up
                 <Col span={2}>
                     <Row gutter={[0.5, 5]}>
                         <Col span={12}>
-                            <Button block size="large" value="수정" onClick={edit.show} ></Button>
+                            <Button block size="large" value="수정" onClick={idShow} types={"primary"}></Button>
                         </Col>
                         <Col span={12}>
-                            <Button block size="large" value="삭제" onClick={idShow}></Button>
+                            <Button block size="large" value="삭제" onClick={idShow} types={"primary"}></Button>
                         </Col>
                     </Row>
                 </Col>

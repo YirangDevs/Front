@@ -23,39 +23,25 @@ ${props => {
             `
         }
     }}
-${props => {
-        switch (props.theme) {
-            case "white":
-                return `
-                border: none;
-            `
-            default:
-                return `
-            border-radius: 5px;
-            background-color: #f1f3f6;
-            border: 1px solid #ccd4e0;
-        `
-        }
-    }}
+    ${props => (props.border) ? `border-radius: 5px;` : null}
     ${props => (props.block) ? `width : 90%;` : null}
-            ${props => (props.disabled) ? "background-color: rgba(255,255,255,0);" : null}
     font-size: 1rem;
     color: #707070;
+    border: 1px solid #868789;
     @media screen and (max-width: 992px){
         text-align: center;
     }
     
 `
 
-const TextBox = ({ theme, size, block, value, onChange, placeholder, disabled }) => (
+const TextBox = ({ border, size, block, value, onChange, placeholder, disabled }) => (
     <>
-        <Text theme={theme} size={size} block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled}>
+        <Text border={border} size={size} block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled}>
         </Text>
     </>
 )
 
 TextBox.propTypes = {
-    theme: PropTypes.string,
     size: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func
