@@ -35,7 +35,7 @@ const CheckBox = ({size, defaultChecked, options}) => (
     <>
     <CheckBoxGroup>
         {options.map((i)=>
-        <CheckBoxLabel size={size}><Check value={i} checked={(defaultChecked===i)? "checked": null} />{i}</CheckBoxLabel>
+        <CheckBoxLabel size={size}><Check value={i} checked={(defaultChecked.includes(i))? "checked": null} />{i}</CheckBoxLabel>
         )}
         
     </CheckBoxGroup>

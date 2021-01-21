@@ -12,7 +12,7 @@ const ContentWrapper = styled.div`
 const UserAuthority = () => {
     return (
         <>
-            <Header />
+            <Header theme={"dark"}/>
             <ContentWrapper>
             <ContentContainer/>
             </ContentWrapper>

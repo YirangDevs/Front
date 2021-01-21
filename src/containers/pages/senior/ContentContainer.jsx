@@ -1,5 +1,5 @@
 import SeniorContent from "../../../components/organisms/senior/Content/"
-import React, { useState, useEffect, useCallback, forwardRef, createRef} from "react"
+import React, { useState, useEffect, useCallback, useRef} from "react"
 import { useHistory } from "react-router-dom"
 import getAllAreas from "../../../service/api/get/get_all_areas"
 import getArea from "../../../service/api/get/get_area"
@@ -51,23 +51,25 @@ const ContentContainer = () => {
 
    
 
-    //const genderInput = useRef(null);
-    const genderRef = createRef();
+    const genderRef = useRef();
+    //const genderRef = createRef();
     //const genderRef = forwardRef();
 
 
     useEffect(() => {
         getMyRegion().then((data)=>{
             setMyRegion(data.regions)
-        })
+        })                                                                                                                                                       
         getAllAreas().then((data) => {
                 setSeniors(data)
         }).catch(err=>console.log(err))
+        
     }, [])
 
 
     useEffect(() => {
         currentSenior.id ? setButton(false) : setButton(true)
+
     }, [currentSenior])
 
 
@@ -129,8 +131,9 @@ const ContentContainer = () => {
         setBufferSenior(senior)
         setCurrentSenior(senior)
 
-        // genderRadioDisabled(e)
-        console.log(genderRef.current)
+        RadioSelect(e.target, senior)
+
+        console.log(genderRef)
     }
 
     const nameOnChange = (e) => {
@@ -191,7 +194,6 @@ const ContentContainer = () => {
 
     }
     const deleteOnClick = (e) => {
-        //genderRadioAbled(e)
         deleteSenior(bufferSenior.id).then(res => {
             alert("삭제 성공");
             addEditDeleteRender();
@@ -200,15 +202,22 @@ const ContentContainer = () => {
     }
 
     const postOnClick = () => {
-        postSenior(bufferSenior).then(res=>{
-            addEditDeleteRender();
-        }).catch(error=>console.log(error))
+        if(bufferSenior.name&&bufferSenior.sex&&bufferSenior.region&&bufferSenior.phone&&bufferSenior.type&&bufferSenior.date&&bufferSenior.priority&&bufferSenior.numsOfRequiredVolunteers&&bufferSenior.address){
+            postSenior(bufferSenior).then(res=>{
+                alert("추가 성공")
+                addEditDeleteRender();
+            }).catch(error=>console.log(error))
+        }else{
+            alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
+        }
+        
     }
     const addEditDeleteRender = () => {
         setBufferSenior({})
         getArea(region).then((data) => {
             setSeniors(data);
         }).catch(err=>console.log(err))
+        window.location.reload()
     }
 
     const postSeniorsOnClick = (e) => {
@@ -262,9 +271,13 @@ const ContentContainer = () => {
                 let errorNum=Number(err.Errors[i].errorName.substring(1,2))+2
                 errorToast.push("업로드된 엑셀 파일의 "+ errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n")
             }
+            if(errorCode==="119"){
+                errorToast.push("업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다.")
+            }
             
         }
         if(errorToast) alert(errorToast)
+        setModal(false)
         })       
     }
 
@@ -281,6 +294,12 @@ const ContentContainer = () => {
             })
         }
         reader.readAsBinaryString(input.files[0])
+    }
+
+    //피봉사자를 클릭했을 시에 라디오 버튼이 클릭되는 깽판코드....ㅎ
+    const RadioSelect = (e, senior) => {
+        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[1].firstChild.children[senior.sex=="남성"?0:1].firstChild.checked=true;
+        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[2].firstChild.children[senior.type=="노력봉사"?0:1].firstChild.checked=true;
     }
 
     const parsingData = (rowObj) => {

@@ -8,7 +8,7 @@ import UpdateButtonGroup from "../UpdateButtonGroup/"
 import InfoForm from "../InfoForm/"
 import TableBox from "../../../atoms/TableBox"
 import Pagination from "../../../atoms/Pagination"
-import MenuNav from "../../../molecules/MenuNav";
+import MenuNav from "../../../../containers/redux/components/MenuNav";
 
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"];
 const regionoptions = ["지역선택"];
@@ -21,8 +21,6 @@ const SeniorContent = ({currentSenior,
     selectPage,
     selectSenior,
     myRegion,
-
-    genderRef,
 
     excelRegion,
     excelDate,
@@ -50,11 +48,10 @@ const SeniorContent = ({currentSenior,
     addButton,
     editDeleteButton,
     isModalOpen,
-    excelData}) => {
+    excelData}, genderRef) => {
         
         //console.log(posts)
         const regionArray = regionoptions.concat(myRegion)
-        console.log(regionArray)
 
         
     return (
@@ -93,10 +90,10 @@ const SeniorContent = ({currentSenior,
                             :
                                 <Row gutter={[0,3]}>
                                     <Col span={6}>
-                                        <Button theme="black" value="수정" onClick={editOnClick} round block/>
+                                        <Button theme="black" value="수정" onClick={editOnClick} types={"primary"} block/>
                                     </Col>
                                     <Col span={6}>
-                                        <Button theme="black" value="삭제" onClick={deleteOnClick} round block/>
+                                        <Button theme="black" value="삭제" onClick={deleteOnClick} types={"primary"} block/>
                                     </Col>
                                 </Row>
                             }

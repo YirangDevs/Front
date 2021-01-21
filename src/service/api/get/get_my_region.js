@@ -6,7 +6,6 @@ const getMyRegion = () => {
         }
     }).then((res)=>{
         let data = res.json()
-        console.log(data)
         return data
     })
 }

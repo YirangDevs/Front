@@ -55,7 +55,9 @@ const PrimaryKey = styled(TableBody)`
     cursor: pointer;
 `
 
-const Index = ({border, black, back, headList, bodyList, primaryKey, onClick, dataOnClick}) => (
+const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnClick}) => {
+
+    return(
     <>
         <Table>
             <thead>
@@ -68,13 +70,21 @@ const Index = ({border, black, back, headList, bodyList, primaryKey, onClick, da
             <tbody>
                 {
                     bodyList.map((i, index) => {
+
+                        //이미 끝난 봉사에 색 입히기(슈퍼 관리자만 해당)
+                        var certainDate;
+                        if(i.date){
+                            const dateArr = i.date.split("-")
+                            certainDate = new Date(dateArr[0], dateArr[1]-1, dateArr[2])
+                        }
+                        
                         return (
                             <TableRow key={index}>
                                 {Object.keys(i).map((data, index) => {
                                     return (data === primaryKey) ?
                                         <PrimaryKey key={index} onClick={onClick}>{i[data]}</PrimaryKey>
                                         :
-                                        <TableBody back={back} key={index} onClick={dataOnClick}>{i[data]}</TableBody>
+                                        <TableBody back={certainDate<new Date()} key={index} onClick={dataOnClick}>{i[data]}</TableBody>
                                 })}
                             </TableRow>)
                     })
@@ -82,6 +92,7 @@ const Index = ({border, black, back, headList, bodyList, primaryKey, onClick, da
             </tbody>
         </Table>
     </>
-)
+    )
+            }
 
 export default Index

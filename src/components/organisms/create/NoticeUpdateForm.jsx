@@ -37,7 +37,7 @@ const regionoptions = ["지역선택", "수성구", "동구", "서구", "남구"
 
 const NoticeUpdateForm = (props) => {
 
-    console.log(props)
+    console.log(props.dov)
     return (
         <>
             <NoticeUpdateFormWrapper>
@@ -66,7 +66,7 @@ const NoticeUpdateForm = (props) => {
                         <Box title><Text>봉사날짜</Text></Box>
                     </Col>
                     <Col span={12} xl={2} lg={2.5}>
-                        <Box><DateSelector theme="white" defaultValue={props.dov} disabled="disabled" /></Box>
+                        <Box><TextBox theme="white" value={props.dov} disabled="disabled" /></Box>
                     </Col>
                     <Col span={12} xl={1.1} lg={1.5}>
                         <Box title><Text>시작시간</Text></Box>
