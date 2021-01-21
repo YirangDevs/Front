@@ -52,7 +52,6 @@ const SeniorContent = ({currentSenior,
         
         //console.log(posts)
         const regionArray = regionoptions.concat(myRegion)
-        console.log(regionArray)
 
         
     return (

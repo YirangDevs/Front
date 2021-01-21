@@ -56,7 +56,9 @@ const ContentContainer = () => {
             }).then(res=>{
                 const excelData=store.getState().transferSeniorToNotice_reducer.excelData
                 postSeniors(excelData).catch(err=>console.log(err))
-            }).catch(error=>console.log(error))
+            }).then(
+                history.push("/")
+            ).catch(error=>console.log(error))
         }else{
             alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
         }
