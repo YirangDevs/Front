@@ -8,8 +8,9 @@ const Manages = () => {
 
     return (
         <>
-            <Header theme={"dark"}/>
+            <Header theme={"dark"} />
             <ContentContainer />
+
         </>
     )
 }
