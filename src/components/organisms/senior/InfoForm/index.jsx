@@ -36,7 +36,8 @@ const InfoForm = ({
                 <Col span={4} justify={"center"} align={"center"} style={{
                     height:"4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0"
+                    borderBottom : "1px solid #ccd4e0",
+                    padding : "0.5rem"
                 }}>
 
                         <TextBox placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name} border block/>
@@ -82,7 +83,8 @@ const InfoForm = ({
                 <Col span={4} justify={"center"} align={"center"} style={{
                     height:"4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0"
+                    borderBottom : "1px solid #ccd4e0",
+                    padding : "0.5rem"
                 }}>
 
                     <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} border block/>
@@ -91,7 +93,8 @@ const InfoForm = ({
                 <Col span={4} justify={"center"} align={"center"} style={{
                     height:"4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0"
+                    borderBottom : "1px solid #ccd4e0",
+                    padding : "0.5rem"
                 }}>
 
                     <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border block/>
