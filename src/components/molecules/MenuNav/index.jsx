@@ -2,7 +2,7 @@ import React from "react"
 import Button from "../../atoms/Button"
 import {useHistory} from "react-router-dom"
 
-const MenuNav = () => {
+const MenuNav = ({role}) => {
     const history = useHistory()
     return (
         <>
@@ -25,11 +25,14 @@ const MenuNav = () => {
                     history.push("/")
                 }
             }/>
-            <Button value="사용자 권한 관리" block onClick={
-                ()=> {
-                    history.push("/userauthority")
-                }
-            }/>
+            {role==="SUPER_ADMIN"?
+                <Button value="사용자 권한 관리" block onClick={
+                    ()=> {
+                        history.push("/userauthority")
+                    }
+                }/>
+            :null}
+                
         </>
     )
 }

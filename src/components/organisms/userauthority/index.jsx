@@ -6,7 +6,7 @@ import SelectBox from "../../atoms/SelectBox"
 import TextBox from "../../atoms/TextBox"
 import Button from "../../atoms/Button"
 import TableBox from "../../atoms/TableBox"
-import MenuNav from "../../molecules/MenuNav"
+import MenuNav from "../../../containers/redux/components/MenuNav"
 
 
 const selectAuthority = ["전체", "관리자", "일반회원"]

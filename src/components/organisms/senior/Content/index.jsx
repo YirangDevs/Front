@@ -8,7 +8,7 @@ import UpdateButtonGroup from "../UpdateButtonGroup/"
 import InfoForm from "../InfoForm/"
 import TableBox from "../../../atoms/TableBox"
 import Pagination from "../../../atoms/Pagination"
-import MenuNav from "../../../molecules/MenuNav";
+import MenuNav from "../../../../containers/redux/components/MenuNav";
 
 const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"];
 const regionoptions = ["지역선택"];
