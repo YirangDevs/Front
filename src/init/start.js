@@ -8,7 +8,7 @@ export default () =>{
         if(!store.getState().login_reducer.logined){
             YAT.exist()
             .then((YAT)=>{
-                store.dispatch(ACTION.LOADING_ACTION_FUNC())
+                //store.dispatch(ACTION.LOADING_ACTION_FUNC())
                 return renewToken(YAT)
             })
             .then((response)=>response.headers.get('Authorization').split(" ")[1])
@@ -27,7 +27,7 @@ export default () =>{
                 store.dispatch(ACTION.LOGIN_ACTION_FUNC());
             })
             .catch((err)=>{
-                store.dispatch(ACTION.LOADING_OUT_ACTION_FUNC())
+                //store.dispatch(ACTION.LOADING_OUT_ACTION_FUNC())
                 console.log(err)
                 
             })
