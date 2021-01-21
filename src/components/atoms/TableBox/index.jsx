@@ -71,8 +71,8 @@ const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnCl
                 {
                     bodyList.map((i, index) => {
 
-                        //이미 끝난 봉사에 색을 넣는 부분
-                        var certainDate; //const로는 안되네 크흠.... useState 여기다 쓰는건 에바죠?
+                        //이미 끝난 봉사에 색 입히기(슈퍼 관리자만 해당)
+                        var certainDate;
                         if(i.date){
                             const dateArr = i.date.split("-")
                             certainDate = new Date(dateArr[0], dateArr[1]-1, dateArr[2])

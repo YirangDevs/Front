@@ -194,7 +194,6 @@ const ContentContainer = () => {
 
     }
     const deleteOnClick = (e) => {
-        //genderRadioAbled(e)
         deleteSenior(bufferSenior.id).then(res => {
             alert("삭제 성공");
             addEditDeleteRender();
@@ -203,16 +202,22 @@ const ContentContainer = () => {
     }
 
     const postOnClick = () => {
-        postSenior(bufferSenior).then(res=>{
-            alert("추가 성공")
-            addEditDeleteRender();
-        }).catch(error=>console.log(error))
+        if(bufferSenior.name&&bufferSenior.sex&&bufferSenior.region&&bufferSenior.phone&&bufferSenior.type&&bufferSenior.date&&bufferSenior.priority&&bufferSenior.numsOfRequiredVolunteers&&bufferSenior.address){
+            postSenior(bufferSenior).then(res=>{
+                alert("추가 성공")
+                addEditDeleteRender();
+            }).catch(error=>console.log(error))
+        }else{
+            alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
+        }
+        
     }
     const addEditDeleteRender = () => {
         setBufferSenior({})
         getArea(region).then((data) => {
             setSeniors(data);
         }).catch(err=>console.log(err))
+        window.location.reload()
     }
 
     const postSeniorsOnClick = (e) => {
