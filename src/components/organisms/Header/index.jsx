@@ -4,6 +4,8 @@ import Logo from "../../atoms/Logo"
 import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
 import _ from "../../../config/env"
+import LogoutProcess from "../../../service/transaction/logout_process"
+
 
 const HeaderStyle = styled.div`
   background-color : rgba(255,255,255,0.4);
@@ -29,7 +31,7 @@ const HeaderStyle = styled.div`
   }
 `
 
-const RegisterLoginBtn = styled.a`
+const LoginLogoutBtn = styled.a`
   width : auto;
   height : 100%;
   background : rgba(255,255,255,0.3);
@@ -69,19 +71,25 @@ const Header = ({theme, logined, role, position}) => {
                     {
                         (logined) ?
                         <>
-                            <Col span={2} xs={2} sm={0} md={2} offset={5} justify={"flex-end"} style={{
+                            <Col span={2} xs={2} sm={0} md={2} offset={4} justify={"flex-end"} style={{
                                 color : "white"
                             }}>
 
                                 <Label>SKIN TYPE</Label><Value>| 일반</Value>
 
                             </Col>
-                            <Col span={2} xs={2} sm={0} md={2   } offset={1} justify={"flex-start"} style={{
+                            <Col span={2} xs={2} sm={0} md={2} offset={0.5} justify={"flex-start"} style={{
                                 color : "white"
                             }}>
 
                                 <Label>ROLE TYPE</Label><Value>| {role}</Value>
 
+                            </Col>
+                            <Col span={1} style={{
+                                height: '100%',
+
+                            }} justify={"flex-end"}>
+                                <LoginLogoutBtn href={_.KAKAO_LOGOUT_URL} onClick={LogoutProcess}>LOGOUT</LoginLogoutBtn>
                             </Col>
                         </>
 
@@ -90,7 +98,7 @@ const Header = ({theme, logined, role, position}) => {
                                 height: '100%',
 
                             }} justify={"flex-end"}>
-                                <RegisterLoginBtn href={_.KAKAO_AUTHORIZATION_URL}>REGISTER/LOGIN</RegisterLoginBtn>
+                                <LoginLogoutBtn href={_.KAKAO_AUTHORIZATION_URL}>REGISTER/LOGIN</LoginLogoutBtn>
                             </Col>
                     }
 

@@ -26,7 +26,7 @@ const postSeniorToServer = (data) => {
         console.log("Error from post_senior\n"+err.errorCode+"\n"+err.errorName)
         //에러처리
         throw err
-    }).then()
+    })
 }
 
 export default postSeniorToServer

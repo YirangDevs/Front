@@ -34,7 +34,8 @@ const ContentContainer = () => {
     }
 
     const onPaginationClick = (e) => {
-        setCurrentNoticePage(e.target.value)
+
+        setCurrentNoticePage(e.target.innerText-1)
     }
 
 
@@ -55,5 +56,4 @@ const ContentContainer = () => {
         </>
     )
 }
-
 export default ContentContainer

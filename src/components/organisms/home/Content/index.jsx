@@ -69,7 +69,7 @@ const HomeContent = ({
                     </Col>
                 </Row>
                 <Row justify={"center"} style={{
-                    marginTop : "10rem"
+                    marginTop : "8rem"
                 }}>
                     <Col span={6}>
                         <Row gutter={[5,0]}>
