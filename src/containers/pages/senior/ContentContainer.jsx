@@ -206,7 +206,15 @@ const ContentContainer = () => {
             postSenior(bufferSenior).then(res=>{
                 alert("추가 성공")
                 addEditDeleteRender();
-            }).catch(error=>console.log(error))
+            }).catch((error)=>{
+                const errorToast = []
+
+                console.log(error)
+                if(error.errorCode==="044"){
+                    errorToast.push("해당 날짜에 봉사활동이 존재하지 않습니다.");
+                }
+                if(errorToast) alert(errorToast)
+            })
         }else{
             alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
         }
