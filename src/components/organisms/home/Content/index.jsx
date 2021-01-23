@@ -6,7 +6,7 @@ import Row from "../../../../layout/Grid/Row";
 import Col from "../../../../layout/Grid/Column";
 import IconButton from "../../../atoms/IconButton/";
 import TableBox from "../../../atoms/TableBox/"
-import {MdFormatListBulleted, MdOpenInBrowser, MdTune, MdToday} from "react-icons/md"
+import {MdFormatListBulleted, MdOpenInBrowser, MdTune, MdToday, MdPeople} from "react-icons/md"
 import {useHistory} from "react-router-dom"
 import Button from "../../../atoms/Button/"
 import Pagination from "../../../atoms/Pagination/"
@@ -65,6 +65,16 @@ const HomeContent = ({
                             }
                         }>
                             <MdToday size={32}/>
+                        </IconButton>
+                    </Col>
+
+                    <Col span={1} justify={"center"}>
+                        <IconButton value={"사용자 권한관리"} size={"large"} onClick={
+                            ()=>{
+                                history.push("/userauthority")
+                            }
+                        }>
+                            <MdPeople size={32}/>
                         </IconButton>
                     </Col>
                 </Row>
