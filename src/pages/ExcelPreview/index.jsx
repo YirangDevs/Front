@@ -16,7 +16,7 @@ const ModalContent = styled.div`
         flex-direction: column;
 `
 
-const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위", "필요인원"]
+const TableBoxHeadLists = ["이름", "성별", "지역", "전화번호", "봉사종류", "봉사날짜", "우선순위","필요인원"]
 const ExcelPreview = ({excelData, closeModal, postSeniorsOnClick}) => {
     
     const filteredData = excelData.map((i)=>{
@@ -24,11 +24,11 @@ const ExcelPreview = ({excelData, closeModal, postSeniorsOnClick}) => {
             name : i.name,
             sex: i.sex,
             region: i.region,
-            date : i.date,
-            needs : i.needs,
             phone : i.phone,
+            type : i.type,
+            date : i.date,
             priority : i.priority,
-            type : i.type
+            needs : i.needs
         }
     })
 

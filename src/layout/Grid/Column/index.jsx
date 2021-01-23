@@ -30,8 +30,6 @@ const ColumnLayout = styled.div`
     ${props => props.gutter[1].xl ? `@media(min-width: 1200px){ padding-right : ` + props.gutter[1].xl + `px; padding-left : ` + props.gutter[1].xl`+px;}` : null}
     ${props => props.gutter[0].xxl ? `@media(min-width: 1600px){ padding-top : ` + props.gutter[0].xxl + `px; padding-bottom : ` + props.gutter[0].xxl`+px;}` : null}
     ${props => props.gutter[1].xxl ? `@media(min-width: 1600px){ padding-right : ` + props.gutter[1].xxl + `px; padding-left : ` + props.gutter[1].xxl`+px;}` : null}
-   
-    ${props => props.rightborder ? `border-right: 1px solid #ccd4e0;` : null}
     ${props => props.offset ? 'margin-left : ' + ((100 / 12) * props.offset) + '%' : null}
 `
 
@@ -46,14 +44,14 @@ const ColumnLayout = styled.div`
  * @param {Col} xl -screen ≥ 1200px
  * @param {Col} xxl - screen ≥ 1600px
  */
-const Col = ({ span, rightborder, style, justify, align, xs, sm, md, lg, xl, xxl, children, offset }) => {
+const Col = ({ span, style, justify, align, xs, sm, md, lg, xl, xxl, children, offset }) => {
 
     return (
 
         <>
             <RowContext.Consumer>
                 {(value) => (
-                    <ColumnLayout style={style} justify={justify} align={align} span={span} gutter={value} rightborder={rightborder} offset={offset} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xxl}>
+                    <ColumnLayout style={style} justify={justify} align={align} span={span} gutter={value} offset={offset} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xxl}>
                         {children}
                     </ColumnLayout>
                 )}
