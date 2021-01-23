@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-17 23:02:07
+ * @Last Modified time: 2021-01-23 03:37:21
  */
 
 import React, { useState, useEffect } from "react"
@@ -15,6 +15,8 @@ import deleteNotice from "../../../service/api/delete/delete_notice";
 
 
 const ContentContainer = () => {
+
+
 
     const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
     const [pagingNum, setPagingNum] = useState("0");// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
@@ -64,14 +66,6 @@ const ContentContainer = () => {
      */
     const updateClick = (noticeId) => {
         const updateId = noticeId;
-        console.log(updateId)
-        getNotice(294)
-            .then((res) => {
-                console.log(res)
-                // setUpdateNotice(res.notice)
-            })
-            .catch(error => console.log(error))
-
 
         getNotice(updateId)
             .then((res) => {
@@ -174,7 +168,10 @@ const ContentContainer = () => {
 
     }
 
+
+
     return (
+
         <>
             <ManageContent
                 setListTotalNum={setListTotalNum} // set 전제 리스트 갯수 
@@ -196,6 +193,7 @@ const ContentContainer = () => {
                 logoutEvent={logoutEvent} // logout 하는 기능 
             > </ManageContent>
         </>
+
     )
 }
 

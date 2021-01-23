@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-20 20:42:40
+ * @Last Modified time: 2021-01-23 03:40:59
  */
 import React from "react"
 import Row from "../../../../layout/Grid/Row"
@@ -44,7 +44,7 @@ const ManageContent = ({
         <>
             {/*manage Page 의 Content를 감싸는 Container */}
             <ContentLayout style={{
-                marginTop: "4rem"
+                padding: "1rem"
             }}>
                 {/*<Col span = {7} > = notice 영역을 감사는 layout (left) */}
                 {/*<Col span = {5} > = menu 영역을 감사는 layout (right) */}
@@ -56,7 +56,8 @@ const ManageContent = ({
                 <Row gutter={[10, 10]}>
                     <Col span={8}>
                         {
-                            (noticeLists) ?
+                            (noticeLists)
+                                ?
                                 (noticeLists).map((lists) => {
                                     let data = Object.assign({
                                         id: lists.id,
@@ -77,8 +78,12 @@ const ManageContent = ({
                                                 noticeId={data.id}
                                                 updateCLick={updateClick}
                                                 deleteClick={deleteClick}
+
+                                                updateNotice={updateNotice}
+                                                updateFunction={updateFunction}
                                             >
                                             </TableButton>
+
                                         </>
                                     )
                                 })
