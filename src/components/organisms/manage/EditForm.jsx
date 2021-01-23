@@ -7,8 +7,8 @@ import NoticeForm from '../../molecules/NoticeForm/index'
 const EditForm = () => {
 
     const helpMe = {
-
-        titleOnChange: "title 넣어주세요",
+        title: "title ",
+        titleOnChange: "ttle 바꾸는 함수",
         timeOnChange: "12:54:00",
         deadlineOnChange: "2021-02-21",
 
@@ -16,10 +16,10 @@ const EditForm = () => {
         dov: "2021-02-30",
         nor: 24
     }
-    const { titleOnChange, timeOnChange, deadlineOnChange, region, dov, nor } = helpMe
+    const { title, titleOnChange, timeOnChange, deadlineOnChange, region, dov, nor } = helpMe
     return (
         <>
-            <NoticeForm titleOnChange={titleOnChange} timeOnChange={deadlineOnChange} region={region}
+            <NoticeForm title={title} titleOnChange={titleOnChange} timeOnChange={deadlineOnChange} region={region}
                 dov={dov} nor={nor}></NoticeForm>
         </>
     )

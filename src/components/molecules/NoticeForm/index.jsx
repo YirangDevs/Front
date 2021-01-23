@@ -9,7 +9,7 @@ import styled from "styled-components"
 
 
 
-const NoticeUpdateFormWrapper = styled.div`
+const NoticeFormWrapper = styled.div`
     margin-top: 10px;
     border-radius: 5px;
 `
@@ -35,17 +35,17 @@ const Text = styled.div`
 
 
 const NoticeForm = (props) => {
-    const regionoptions = ["지역선택", "수성구", "동구", "서구", "남구", "북구", "중구", "달서구"];
 
     return (
         <>
-            <NoticeUpdateFormWrapper>
+            <NoticeFormWrapper>
                 <Row>
                     <Col span={12} xl={1} lg={1.5}>
                         <Box title><Text>제목</Text></Box>
                     </Col>
                     <Col span={12} xl={7.9} lg={10.5}>
-                        <Box><TextBox theme="white" size={"small"} placeholder="제목을 입력하세요" block /></Box>
+                        <Box><TextBox theme="white" size={"small"} value={props.title}
+                            onChange={props.titleOnChange} placeholder="제목을 입력하세요" block /></Box>
                     </Col>
                     <Col span={12} xl={1.1} lg={1.5}>
                         <Box title><Text>장소</Text></Box>
@@ -80,7 +80,7 @@ const NoticeForm = (props) => {
                         <Box><DateSelector theme="white" size={"small"} /></Box>
                     </Col>
                 </Row>
-            </NoticeUpdateFormWrapper>
+            </NoticeFormWrapper>
         </>
     )
 
