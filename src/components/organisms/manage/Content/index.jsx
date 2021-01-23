@@ -9,8 +9,8 @@ import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import ContentLayout from "../../../../layout/Content"
 import TableButton from '../../../molecules/TableButton'
-import MenuNav from '../../../molecules/MenuNav'
-import '../../../../css/manage.css'; // 이거 information만들면 지우기
+import '../../../../css/manage.css';
+import MenuNav from "../../../../containers/redux/components/MenuNav"; // 이거 information만들면 지우기
 // 이거 tableButton 다만들면 지우기
 
 
@@ -43,9 +43,7 @@ const ManageContent = ({
     return (
         <>
             {/*manage Page 의 Content를 감싸는 Container */}
-            <ContentLayout style={{
-                padding: "1rem"
-            }}>
+            <ContentLayout>
                 {/*<Col span = {7} > = notice 영역을 감사는 layout (left) */}
                 {/*<Col span = {5} > = menu 영역을 감사는 layout (right) */}
                 <Row gutter={[10, 10]}>
