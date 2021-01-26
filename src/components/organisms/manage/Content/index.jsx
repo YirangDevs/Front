@@ -2,17 +2,17 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-24 01:14:42
+ * @Last Modified time: 2021-01-27 05:54:20
  */
 import React, { useState } from "react"
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import ContentLayout from "../../../../layout/Content"
-import TableButton from '../../../molecules/TableButton'
 import MenuNav from '../../../molecules/MenuNav'
 import TableBox from '../../../atoms/TableBox'
 import Button from '../../../atoms/Button'
 import Modal from '../../../atoms/Modal'
+import ReadForm from '../ReadForm'
 import EditForm from '../EditForm'
 // 이거 tableButton 다만들면 지우기
 
@@ -31,12 +31,23 @@ const ManageContent = ({
     setDeleteId,
     lists,
     setLists,
-    getNotice,
-    updateClick,
+
+    setNotice,
+    completeEdit,
     deleteClick,
     pagingClick,
     updateFunction,
-    logoutEvent
+    logoutEvent,
+
+    toReadHandle,
+    toEditHandle,
+
+    isReadVisible,
+    isEditVisible,
+    readModal,
+    editModal,
+
+
 
 }) => {
     // notice header
@@ -44,33 +55,9 @@ const ManageContent = ({
     // list를 못받아올 경우 
     const noticeLists = lists || [{ id: null, title: "게시글이없습니다.", dov: null, region: null }]
 
-    //modal handling
-    const [isReadVisible, setIsReadVisible] = useState(false)
-    const [isEditVisible, setIsEditVisible] = useState(false)
-    const read = {
-        show() {
-            setIsReadVisible(true)
-        },
-        close() {
-            setIsReadVisible(false)
-        }
-    }
-    const edit = {
-        show() {
-            setIsEditVisible(true)
-        },
-        close() {
-            setIsEditVisible(false)
-        }
-    }
-
-
     return (
         <>
-            {/*manage Page 의 Content를 감싸는 Container */}
-            <ContentLayout style={{
-                padding: "1rem"
-            }}>
+            <ContentLayout>
                 {/*<Col span = {7} > = notice 영역을 감사는 layout (left) */}
                 {/*<Col span = {5} > = menu 영역을 감사는 layout (right) */}
                 <Row gutter={[10, 10]}>
@@ -94,26 +81,19 @@ const ManageContent = ({
 
                                     return (
                                         <>
-                                            <Row gutter={[4, 0]} align="center">
+                                            <Row key={lists.id} gutter={[4, 0]} align="center">
                                                 <Col xs={9} sm={10} md={9} lg={10}>
                                                     <TableBox key={lists.id} headList={NoticeTableHeadLists}
-                                                        bodyList={[data]} primaryKey={"title"} onClick={read.show} ></TableBox>
+                                                        bodyList={[data]} primaryKey={"title"} onClick={() => toReadHandle(data.id)} ></TableBox>
+
                                                 </Col>
+
                                                 <Col xs={2} sm={2} md={3} lg={2}>
                                                     <Row gutter={[0.5, 5]}>
                                                         <Col xs={1} span={12}>
-                                                            <Button block size="large" value="수정" types={"primary"} onClick={edit.show}></Button>
+                                                            <Button block size="large" value="수정" types={"primary"} key={data.id} onClick={() => toEditHandle(data.id)}></Button>
                                                         </Col>
-                                                        <Row>
-                                                            <Col span={12} xs={12}>
-                                                                <Modal visible={isEditVisible}
-                                                                    closable={true} maskClosable={false} onClose={edit.close} size={10}>
-                                                                    <EditForm updateNotice={updateNotice} noticeId={data.id} getNotice={getNotice}
-                                                                        setUpdateNotice={setUpdateNotice} updateClick={updateClick} updateFunction={updateFunction} ></EditForm>
-                                                                </Modal>
 
-                                                            </Col>
-                                                        </Row>
                                                         <Col xs={1} span={12}>
                                                             <Button block size="large" value="삭제" types={"primary"} ></Button>
                                                         </Col>
@@ -123,14 +103,20 @@ const ManageContent = ({
                                             <Row>
                                                 <Col span={12} xs={12}>
                                                     <Modal visible={isReadVisible}
-                                                        closable={true} maskClosable={true} onClose={read.close} size={10}>
-                                                        <div > 모오오 닫ㄹ아아알</div>
-                                                        <div > 모오오 닫ㄹ아아알</div>
-                                                        <div > 모오오 닫ㄹ아아알</div>
+                                                        closable={true} maskClosable={true} onClose={readModal.close} size={10}>
+                                                        <ReadForm selectNotice={selectNotice} updateFunction={updateFunction}></ReadForm>
                                                     </Modal>
                                                 </Col>
                                             </Row>
+                                            <Row>
+                                                <Col span={12} xs={12}>
+                                                    <Modal visible={isEditVisible}
+                                                        closable={true} maskClosable={false} onClose={editModal.close} size={10}>
+                                                        <EditForm updateNotice={updateNotice} updateFunction={updateFunction}></EditForm>
+                                                    </Modal>
 
+                                                </Col>
+                                            </Row>
                                         </>
                                     )
                                 })

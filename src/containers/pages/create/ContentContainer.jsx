@@ -69,6 +69,12 @@ const ContentContainer = () => {
     return (
         <>
             <CreateContent
+                title={bufferNotice.title}
+                region={bufferNotice.region}
+                nor={bufferNotice.nor}
+                date={bufferNotice.dov}
+                time={bufferNotice.tov}
+                deadline={bufferNotice.dod}
                 titleOnChange={titleOnChange}
                 timeOnChange={timeOnChange}
                 deadlineOnChange={deadlineOnChange}

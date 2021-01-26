@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-24 23:51:43
+ * @Last Modified time: 2021-01-27 05:51:17
  */
 
 import React, { useState, useEffect } from "react"
@@ -20,11 +20,40 @@ const ContentContainer = () => {
 
     const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
     const [pagingNum, setPagingNum] = useState("0");// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
-    const [selectNotice, setSelectNotice] = useState({});//  read로 열 notice 정보
-    const [updateNotice, setUpdateNotice] = useState(null)  // update할 notice 정보
+
+    const [selectNotice, setSelectNotice] = useState({
+
+    });//  read로 열 notice 정보
+    const [updateNotice, setUpdateNotice] = useState({
+
+    })  // update할 notice 정보
 
     const [deleteId, setDeleteId] = useState(null); // 삭제할 id 
     const [lists, setLists] = useState([]);//fetch 로 받아올 리스트 (6개씩뜨는 notice)
+
+
+    //modal handling
+    const [isReadVisible, setIsReadVisible] = useState(false)
+    const [isEditVisible, setIsEditVisible] = useState(false)
+
+    const readModal = {
+        show() {
+            setIsReadVisible(true)
+        },
+        close() {
+            setIsReadVisible(false)
+        }
+    }
+    const editModal = {
+        show() {
+            setIsEditVisible(true)
+        },
+        close() {
+            setIsEditVisible(false)
+        }
+    }
+
+
 
     useEffect(() => {//전체 페이지 갯수 받아오기 
         getNoticeNum()
@@ -42,17 +71,48 @@ const ContentContainer = () => {
             }).catch(error => console.log(error))
     }, [pagingNum])
 
+    /**
+     * @description - readButton 눌렀을때 일어나는 event 함수
+     * @param e - 선택한 notice Id target하기위한 param
+     */
+    const toReadHandle = (e) => {
+        console.log(e);
+        // getNoticeId(e);
+        setNotice(e);
+        selectNotice.id === e && console.log(selectNotice)
+        readModal.show();
+
+    }
+
+    const toEditHandle = (e) => {
+
+        console.log(e);
+
+        setUpNotice(e);
+        updateNotice.id === e && console.log(updateNotice)
+        editModal.show();
+    }
+
 
     /**
      * @description notice정보를 불러오는 함수 
      * @param e - 선택한 notice target하기위한 param
      */
-    const getNotice = (noticeId) => {
-        getNotice(noticeId)
+    const setNotice = (id) => {
+        getNotice(id)
             .then((res) => {
-                console.log(res)
-                // setUpdateNotice(res.notice)
-                setSelectNotice(res.notices);
+                setSelectNotice(res)
+
+            })
+            .catch(error => console.log(error))
+    }
+
+
+    const setUpNotice = (id) => {
+        getNotice(id)
+            .then((res) => {
+
+                setUpdateNotice(res)
             })
             .catch(error => console.log(error))
     }
@@ -62,7 +122,7 @@ const ContentContainer = () => {
      * @param e - 선택한 notice target하기위한 param
      * @detail 수정할 notice의 id를 통해 UpdateNotice 내용을 set(update Page 에 표시될거)
      */
-    const updateClick = (noticeId) => {
+    const completeEdit = (noticeId) => {
         const updateId = noticeId;
 
         getNotice(updateId)
@@ -122,33 +182,23 @@ const ContentContainer = () => {
       */
     let updateFunction = {
         title: (e) => {
-            const title = e.target.title;
+            console.log(e.target.value)
+            const title = e.target.value;
             return setUpdateNotice((state) => ({ ...state, title: title }))
         },
         content: (e) => {
-            const content = e.target.content;
+            const content = e.target.value;
             return setUpdateNotice((state) => ({ ...state, content: content }))
         },
-        nor: (e) => {
-            const nor = e.target.nor;
-            return setUpdateNotice((state) => ({ ...state, nor: nor }))
-        },
-        dov: (e) => {
-            const dov = e.target.dov;
-            return setUpdateNotice((state) => ({ ...state, dov: dov }))
-        },
         tov: (e) => {
-            const tov = e.target.tov;
+            const tov = e.target.value;
             return setUpdateNotice((state) => ({ ...state, tov: tov }))
         },
         dod: (e) => {
-            const dod = e.target.dod;
+            const dod = e.target.value;
             return setUpdateNotice((state) => ({ ...state, dod: dod }))
         },
-        region: (e) => {
-            const region = e.target.region;
-            return setUpdateNotice((state) => ({ ...state, region: region }))
-        },
+
     }
 
     /**
@@ -183,12 +233,23 @@ const ContentContainer = () => {
                 setLists={setLists} // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
                 /* props.function */
-                getNotice={getNotice} // notice를 클릭 했을떄 notice를 read 하는 모달
-                updateClick={updateClick} // notice를 수정하기 버튼 눌었을떄 
+                setNotice={setNotice} // notice를 클릭 했을떄 notice를 read 하는 모달
+                completeEdit={completeEdit} // notice를 수정하기 버튼 눌었을떄 
                 deleteClick={deleteClick} // notice를 삭제하기 버튼 눌었을떄 
                 pagingClick={pagingClick} // paging 클릭 시  
                 updateFunction={updateFunction} // notice를 수정 하기 위한 함수들 
                 logoutEvent={logoutEvent} // logout 하는 기능 
+
+                toReadHandle={toReadHandle} // readButton 눌렀을때 일어나는 event 함수
+                toEditHandle={toEditHandle} // 수정하기 버튼 (id 받아서 notice 갱신 후 수정 form 채우기)
+                /*modal handling*/
+                isReadVisible={isReadVisible}
+                isEditVisible={isEditVisible}
+                readModal={readModal}
+                editModal={editModal}
+
+
+
             > </ManageContent>
         </>
 

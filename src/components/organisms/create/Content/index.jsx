@@ -5,7 +5,9 @@ import NoticeFormContainer from "../../../../containers/redux/pages/create/Notic
 import Content from "../../../../layout/Content/"
 import Row from "../../../../layout/Grid/Row";
 import Col from "../../../../layout/Grid/Column";
-const CreateContent = ({titleOnChange, timeOnChange, deadlineOnChange, uploadOnClick, contentOnChange}) => {
+import NoticeForm from "../../../molecules/NoticeForm";
+
+const CreateContent = ({title, region, nor, date, time, titleOnChange, timeOnChange, deadlineOnChange, uploadOnClick, contentOnChange}) => {
     return (
         <Content>
             <Row gutter={[5,5]}>
@@ -13,7 +15,7 @@ const CreateContent = ({titleOnChange, timeOnChange, deadlineOnChange, uploadOnC
                     <Button value="게시글 작성 완료" onClick={uploadOnClick} block types={"primary"}/>
                 </Col>
                 <Col span={12}>
-                    <NoticeFormContainer titleOnChange={titleOnChange} timeOnChange={timeOnChange} deadlineOnChange={deadlineOnChange}/>
+                    <NoticeForm title={title} region={region} nor={nor} dov={date} tov={time} titleOnChange={titleOnChange} timeOnChange={timeOnChange} deadlineOnChange={deadlineOnChange}></NoticeForm>
                 </Col>
                 <Col span={12} style={{
                     height : "60vh"
