@@ -2,7 +2,7 @@
  * @author: chaeeun
  * @date 2020-12-11 21:01:17
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-23 19:47:49
+ * @Last Modified time: 2021-01-27 01:34:17
  */
 
 import React, { useState } from 'react'
@@ -13,15 +13,30 @@ import Col from "../../../layout/Grid/Column"
 import Modal from "../../atoms/Modal/index"
 import ReadPage from "../../organisms/manage/ReadNotice"
 import GetNotice from "../../../service/api/get/get_notice"
-import getNotice from '../../../service/api/get/get_notice'
+import getNoticeAPI from '../../../service/api/get/get_notice'
 import EditForm from '../../organisms/manage/EditForm'
+
+
+{/* <TableButton
+                                                key={lists.id}
+                                                headList={NoticeTableHeadLists}
+                                                bodyList={[data]}
+                                                primaryKey={"title"}
+                                                getNotice={getNotice}
+                                                noticeId={data.id}
+                                                updateCLick={updateClick}
+                                                deleteClick={deleteClick}
+
+                                                updateNotice={updateNotice}
+                                                updateFunction={updateFunction}
+                                            ></TableButton> */}
 
 
 /**
  * @params headList - notice headList
  * @params bodyList - notice bodyList
  * @params primaryKey - onClick할 notice 요소
- * @params noticeCLick - notice 클리시 열리는 받아오는 데이터 
+ * @params getNotice - notice 클리시 열리는 받아오는 데이터 
  * @params noticeId - 클릭한 특정 notice의 ID
  * @params updateClick - 수정완료 Click handle
  * @params deleteClick - 삭제 Click handle
@@ -30,7 +45,7 @@ import EditForm from '../../organisms/manage/EditForm'
  */
 
 
-const TableButton = ({ headList, bodyList, primaryKey, noticeClick,
+const TableButton = ({ headList, bodyList, primaryKey, getNotice,
     noticeId, updateCLick, deleteClick, updateNotice, updateFunction }) => {
 
     const [isReadVisible, setIsReadVisible] = useState(false)
@@ -54,13 +69,15 @@ const TableButton = ({ headList, bodyList, primaryKey, noticeClick,
     }
 
     const idShow = () => {
-        updateCLick(noticeId)
         console.log(noticeId)
+        getNotice(noticeId)
     }
+
+
 
     const whyNot = () => { //수정할 notice 받아오기
         console.log(noticeId)
-        getNotice(noticeId)
+        getNoticeAPI(noticeId)
             .then((res) => {
                 console.log(res)
                 // setUpdateNotice(res.notice)
@@ -102,7 +119,7 @@ const TableButton = ({ headList, bodyList, primaryKey, noticeClick,
                 <Col span={12} xs={12}>
                     <Modal visible={isEditVisible}
                         closable={true} maskClosable={false} onClose={edit.close} size={10}>
-                        <EditForm ></EditForm>
+                        <EditForm noticeId={noticeId} updateClick={updateCLick} updateFunction={updateFunction} ></EditForm>
                     </Modal>
 
                 </Col>

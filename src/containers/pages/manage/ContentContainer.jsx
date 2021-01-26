@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-23 03:37:21
+ * @Last Modified time: 2021-01-24 23:51:43
  */
 
 import React, { useState, useEffect } from "react"
@@ -21,16 +21,8 @@ const ContentContainer = () => {
     const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
     const [pagingNum, setPagingNum] = useState("0");// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
     const [selectNotice, setSelectNotice] = useState({});//  read로 열 notice 정보
-    const [updateNotice, setUpdateNotice] = useState({  // update할 notice 정보
-        id: "",
-        title: "",
-        content: "",
-        nor: "",
-        dov: "",
-        tov: "",
-        dod: "",
-        region: ""
-    });
+    const [updateNotice, setUpdateNotice] = useState(null)  // update할 notice 정보
+
     const [deleteId, setDeleteId] = useState(null); // 삭제할 id 
     const [lists, setLists] = useState([]);//fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
@@ -52,15 +44,21 @@ const ContentContainer = () => {
 
 
     /**
-     * @description notice를 클릭 했을때 notice 를 read 하는 모달
+     * @description notice정보를 불러오는 함수 
      * @param e - 선택한 notice target하기위한 param
      */
-    const noticeClick = (noticeId) => {
-        console.log(noticeId)
+    const getNotice = (noticeId) => {
+        getNotice(noticeId)
+            .then((res) => {
+                console.log(res)
+                // setUpdateNotice(res.notice)
+                setSelectNotice(res.notices);
+            })
+            .catch(error => console.log(error))
     }
 
     /**
-     * @description notice를 수정하기 버튼 눌었을떄
+     * @description notice 수정완료 
      * @param e - 선택한 notice target하기위한 param
      * @detail 수정할 notice의 id를 통해 UpdateNotice 내용을 set(update Page 에 표시될거)
      */
@@ -185,7 +183,7 @@ const ContentContainer = () => {
                 setLists={setLists} // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
                 /* props.function */
-                noticeClick={noticeClick} // notice를 클릭 했을떄 notice를 read 하는 모달
+                getNotice={getNotice} // notice를 클릭 했을떄 notice를 read 하는 모달
                 updateClick={updateClick} // notice를 수정하기 버튼 눌었을떄 
                 deleteClick={deleteClick} // notice를 삭제하기 버튼 눌었을떄 
                 pagingClick={pagingClick} // paging 클릭 시  

@@ -1,26 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NoticeForm from '../../molecules/NoticeForm/index'
 
 
 
 
-const EditForm = () => {
+const EditForm = ({ setUpdateNotice, updateNotice, noticeId, getNotice, updateClick, updateFunction }) => {
 
-    const helpMe = {
-        title: "title ",
-        titleOnChange: "ttle 바꾸는 함수",
-        timeOnChange: "12:54:00",
-        deadlineOnChange: "2021-02-21",
+    // useEffect((noticeId) => {
 
-        region: "서구",
-        dov: "2021-02-30",
-        nor: 24
-    }
-    const { title, titleOnChange, timeOnChange, deadlineOnChange, region, dov, nor } = helpMe
+
+    // }, [])
+
+
+
+    (updateNotice) ?
+        console.log("updateNotice exist")
+        :
+        // getNotice(noticeId)
+        //     .then((res) => {
+        //         console.log(res.notices)
+        //         console.log(res)
+        //         setUpdateNotice(res.notices)
+        //     })
+        console.log(noticeId)
+
+
+
     return (
         <>
-            <NoticeForm title={title} titleOnChange={titleOnChange} timeOnChange={deadlineOnChange} region={region}
-                dov={dov} nor={nor}></NoticeForm>
+            <div>dfefd</div>
+            {/* <NoticeForm></NoticeForm> */}
         </>
     )
 }
