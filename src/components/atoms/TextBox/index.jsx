@@ -23,12 +23,13 @@ ${props => {
             `
         }
     }}
-    ${props => (props.border) ? `border : none;` : null}
+    border : none ;
+    ${props => (props.border) ? `border : solid gray 1px;` : null}
     ${props => (props.radius) ? `border-radius: 5px;` : null}
     ${props => (props.block) ? `width : 90%;` : null}
     font-size: 1rem;
     color: #707070;
-    border : none ;
+    
     
     &:focus{
         outline : none;

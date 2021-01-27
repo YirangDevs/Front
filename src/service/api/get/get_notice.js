@@ -1,4 +1,5 @@
 import _ from "../../../config/env";
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 
 /**
  * @description 특정 notice 가져오기
@@ -16,6 +17,11 @@ const getNotice = (noticeID) =>{
         return res.json()
     }).catch(async(error)=>{
         let err =  await error.then()
+        NotificationPool.api.add({
+            title : "Error from get_notice",
+            content : err.errorName + "("+err.errorCode+")",
+            status : "error"
+        })
         console.log("Error from get_notice\n"+err.errorCode+"\n"+err.errorName)
         throw err
     })

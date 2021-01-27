@@ -4,6 +4,7 @@
  * @request @headers YAT token, Index-Type
  * @request id
  */
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 
 const editSenior = async (id, data) => {
 
@@ -13,7 +14,6 @@ const editSenior = async (id, data) => {
     payloadData = payloadData.replace(/노력봉사/g,'work') //노력봉사 영문으로 전환
     payloadData = payloadData.replace(/말벗봉사/g,'talk') //말벗봉사 영문으로 전환
 
-    console.log(payloadData)
 
     return fetch("http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/seniors/"+id, {
         method: 'PUT',
@@ -26,6 +26,11 @@ const editSenior = async (id, data) => {
         if(!res.ok) throw res.json()
     }).catch(async(error)=>{
         let err =  await error.then()
+        NotificationPool.api.add({
+            title : "Error from edit_senior",
+            content : err.errorName + "("+err.errorCode+")",
+            status : "error"
+        })
         console.log("Error from edit_senior\n"+err.errorCode+"\n"+err.errorName)
         throw err
     })

@@ -6,6 +6,7 @@
  * @params /noticeID
  */
 import _ from "../../../config/env";
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 
 const editNotice = (updateID , data) =>{
     return fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(updateID),{
@@ -21,6 +22,11 @@ const editNotice = (updateID , data) =>{
     }).catch(async(error)=>{
         let err =  await error.then()
         console.log("Error from edit_notice\n"+err.errorCode+"\n"+err.errorName)
+        NotificationPool.api.add({
+            title : "Error from edit_notice",
+            content : err.errorName + "("+err.errorCode+")",
+            status : "error"
+        })
         throw err
     })
 }

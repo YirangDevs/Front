@@ -1,6 +1,8 @@
 import React from "react"
+import {useHistory} from "react-router-dom";
 
-const LogoutRedirect =  ({history})=>{
+const LogoutRedirect =  ()=>{
+    const history = useHistory()
     history.push("/")
     return (
         <>

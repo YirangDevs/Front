@@ -1,5 +1,4 @@
 import React from "react"
-import styled from "styled-components"
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import TextBox from "../../../atoms/TextBox"
@@ -40,7 +39,7 @@ const InfoForm = ({
                     padding : "0.5rem"
                 }}>
 
-                        <TextBox placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name} border block/>
+                        <TextBox placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name} border radius block/>
 
                 </Col>
                 <Col span={3} rightborder justify={"center"} align={"center"} style={{
@@ -97,7 +96,7 @@ const InfoForm = ({
                     padding : "0.5rem"
                 }}>
 
-                    <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border block/>
+                    <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border radius block/>
 
                 </Col>
                 <Col span={2} justify={"center"} align={"center"} style={{
@@ -116,7 +115,7 @@ const InfoForm = ({
                     borderBottom : "1px solid #ccd4e0"
                 }}>
 
-                    <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} border block/>
+                    <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} border radius block/>
 
                 </Col>
             </Row>
