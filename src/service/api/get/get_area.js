@@ -1,3 +1,5 @@
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+
 /**
  * @description 개별구역요청
  * @method GET
@@ -7,7 +9,6 @@
  */
 
 const getArea = (region) => {
-    console.log(region)
         return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/seniors/area?region='+region, {
                 method: 'GET',
                 headers: {
@@ -27,6 +28,11 @@ const getArea = (region) => {
             return refactor.seniors
         }).catch(async(error)=>{
             let err =  await error.then()
+            NotificationPool.api.add({
+                title : "Error from get_area",
+                content : err.errorName + "("+err.errorCode+")",
+                status : "error"
+            })
             console.log("Error from get_area\n"+err.errorCode+"\n"+err.errorName)
             //에러처리
             throw err

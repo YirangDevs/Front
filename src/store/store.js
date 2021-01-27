@@ -7,6 +7,7 @@ import notice_reducer from "./reducers/notice_reducer"
 import select_reducer from "./reducers/select_reducer"
 import noticetotalnum_reducer from "./reducers/noticetotalnum_reducer"
 import transferSeniorToNotice_reducer from "./reducers/transferSeniorToNotice_reducer"
+import notification_reducer from "./reducers/notification_reducer";
 
 export default createStore(combineReducers({
     login_reducer,
@@ -17,5 +18,6 @@ export default createStore(combineReducers({
     select_reducer,
     noticetotalnum_reducer,
     transferSeniorToNotice_reducer,
+    notification_reducer
 
 }),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())

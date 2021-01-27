@@ -55,14 +55,11 @@ const TableButton = ({ headList, bodyList, primaryKey, noticeClick,
 
     const idShow = () => {
         updateCLick(noticeId)
-        console.log(noticeId)
     }
 
     const whyNot = () => { //수정할 notice 받아오기
-        console.log(noticeId)
         getNotice(noticeId)
             .then((res) => {
-                console.log(res)
                 // setUpdateNotice(res.notice)
             })
             .catch(error => console.log(error))

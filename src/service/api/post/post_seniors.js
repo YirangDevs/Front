@@ -1,3 +1,5 @@
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+
 /**
  * @description 다수 피봉사자 등록
  * @method POST
@@ -23,6 +25,11 @@ const postSeniors = (data) => {
         if (!res.ok) throw res.json()
     }).catch(async(error)=>{
         let err =  await error.then()
+        NotificationPool.api.add({
+            title : "Error from post_seniors",
+            content : err.errorName + "("+err.errorCode+")",
+            status : "error"
+        })
         console.log("Error from post_seniors\n"+err.errorCode+"\n"+err.errorName)
         //에러처리
         throw err

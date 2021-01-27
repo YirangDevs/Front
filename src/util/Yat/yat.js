@@ -1,4 +1,5 @@
 import jwt_decode from "jwt-decode"
+import NotificationPool from "../../containers/redux/components/NotificationPool/";
 
 
 let obj = {
@@ -19,7 +20,13 @@ let obj = {
                 if(tokenExpired){
                     resolve(ACCESS_TOKEN)
                 }else{
-                    alert("토큰이 만료되었습니다.")
+                    NotificationPool.api.add({
+                        title : "경고",
+                        content : "토큰이 만료되었습니다",
+                        status : "warning",
+                        duration : 5
+
+                    })
                     reject(new Error("Token is expired"))
                 }
             }
