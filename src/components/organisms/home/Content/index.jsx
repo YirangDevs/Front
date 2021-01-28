@@ -4,14 +4,14 @@ import MainImg from "../../../../img/main.png"
 import ContentLayout from "../../../../layout/Content"
 import Row from "../../../../layout/Grid/Row";
 import Col from "../../../../layout/Grid/Column";
-import IconButton from "../../../atoms/IconButton/";
 import TableBox from "../../../atoms/TableBox/"
 import {MdFormatListBulleted, MdOpenInBrowser, MdTune, MdToday, MdPeople} from "react-icons/md"
 import {useHistory} from "react-router-dom"
-import Button from "../../../atoms/Button/"
 import Pagination from "../../../atoms/Pagination/"
+import MenuIconNav from "../../../../containers/redux/components/MenuIconNav/";
 
 const HomeContent = ({
+                         role,
                          noticeList,
                          bodyList,
                          noticeNum,
@@ -28,6 +28,7 @@ const HomeContent = ({
 
             </Image>
             <ContentLayout >
+<<<<<<< HEAD
                 <Row justify={"center"} gutter={[10,10]}>
                     <Col span={1} justify={"center"}>
                         <IconButton value={"공고글 바로가기"} size={"large"} onClick={
@@ -78,6 +79,9 @@ const HomeContent = ({
                         </IconButton>
                     </Col>
                 </Row>
+=======
+                <MenuIconNav></MenuIconNav>
+>>>>>>> stage
                 <Row justify={"center"} style={{
                     marginTop : "8rem"
                 }}>

@@ -1,11 +1,12 @@
 import { connect } from "react-redux"
-import NoticeUpdateForm from "../../../../components/organisms/create/NoticeUpdateForm"
+import NoticeForm from "../../../../components/molecules/NoticeForm";
 
 const mapStateToProps = (state, props) => {
     return {
         titleOnChange: props.titleOnChange,
         timeOnChange: props.timeOnChange,
         deadlineOnChange: props.deadlineOnChange,
+
 
         region: state.transferSeniorToNotice_reducer.region,
         dov: state.transferSeniorToNotice_reducer.dov,
@@ -15,4 +16,4 @@ const mapStateToProps = (state, props) => {
 }
 
 
-export default connect (mapStateToProps, null)(NoticeUpdateForm)
+export default connect (mapStateToProps, null)(NoticeForm)

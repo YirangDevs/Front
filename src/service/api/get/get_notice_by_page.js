@@ -4,6 +4,7 @@
  * @query ?page = pageNum
  */
 import _ from "../../../config/env";
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 
 const getNoticeByPage = (pageNum) => {
     return fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices?page=" + Number(pageNum), {
@@ -14,6 +15,11 @@ const getNoticeByPage = (pageNum) => {
         return res.json()
     }).catch(async(error)=>{
         let err =  await error.then()
+        NotificationPool.api.add({
+            title : "Error from get_notice_by_page",
+            content : err.errorName + "("+err.errorCode+")",
+            status : "error"
+        })
         console.log("Error from get_notice_by_page\n"+err.errorCode+"\n"+err.errorName)
         //에러처리
         throw err

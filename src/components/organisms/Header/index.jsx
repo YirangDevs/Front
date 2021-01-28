@@ -9,7 +9,7 @@ import LogoutProcess from "../../../service/transaction/logout_process"
 
 const HeaderStyle = styled.div`
   background-color : rgba(255,255,255,0.4);
-  ${props => props.theme=="dark" ?
+  ${props => props.theme==="dark" ?
           'background-color : rgba(0,0,0,0.3);' :
           null
   }

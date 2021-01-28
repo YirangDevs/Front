@@ -102,7 +102,6 @@ const ContentContainer = () => {
     }, [currentPage, updatePosts])
 
     const paginationOnClick = (e) => {
-        console.log(e.target.innerText)
         setCurrentPage(e.target.innerText)
     }
 
@@ -233,6 +232,7 @@ const ContentContainer = () => {
             alert("업로드 성공");
             store.dispatch(action.TRANSFER_SENIOR_TO_NOTICE__ACTION_FUNC({
                 data: {
+
                     region: excelData[0].region,
                     dov: excelData[0].date,
                     nor: needsTotal,
@@ -253,8 +253,8 @@ const ContentContainer = () => {
                 errorToast.push("파일의 형식이나 내용을 다시 확인해주세요.\n")
             }
             if(errorCode==="111"){
-                let errorNum = Number(err.Errors[i].errorName.substring(11,12))+2
-                let errorName = err.Errors[i].errorName.substring(14,)
+                let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[")+1,err.Errors[i].errorName.indexOf("]")))+2
+                let errorName = err.Errors[i].errorName.split(".")[1]
                 let columns = {
                     'date': {'col': 'A', 'name': '봉사날짜'},
                     'name': {'col': 'B', 'name': '어르신 성함'},
@@ -276,7 +276,7 @@ const ContentContainer = () => {
                 errorToast.push("업로드한 엑셀 파일에 중복된 피봉사자가 존재합니다.\n")
             }
             if(errorCode==="113"){
-                let errorNum=Number(err.Errors[i].errorName.substring(1,2))+2
+                let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[")+1,err.Errors[i].errorName.indexOf("]")))+2
                 errorToast.push("업로드된 엑셀 파일의 "+ errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n")
             }
             if(errorCode==="119"){

@@ -73,7 +73,7 @@ const SeniorContent = ({currentSenior,
 
                         <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior}></TableBox>
 
-                    <Pagination num={Math.ceil(seniors.length/10)} onClick={paginationOnClick}></Pagination>
+
 
                 </Col>
                 
@@ -106,6 +106,11 @@ const SeniorContent = ({currentSenior,
                             <MenuNav/>
                         </Col>
                     </Row>
+                </Col>
+            </Row>
+            <Row>
+                <Col span={12} xxl={7} xl={6} justify={"center"}>
+                    <Pagination num={Math.ceil(seniors.length/10)} onClick={paginationOnClick}></Pagination>
                 </Col>
             </Row>
        

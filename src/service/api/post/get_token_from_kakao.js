@@ -1,4 +1,5 @@
 import _ from "../../../config/env"
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 /**
  * @description 카카오 토큰 발급
  * @method POST
@@ -18,6 +19,11 @@ const getTokenFromKakao = (AUTHORIZATION_CODE) => {
         return res.json()
     }).catch(async(error)=>{
         let err =  await error.then()
+        NotificationPool.api.add({
+            title : "Error from get_token_from_kakao",
+            content : err.errorName + "("+err.errorCode+")",
+            status : "error"
+        })
         console.log("Error from get_token_from_kakao\n"+err.errorCode+"\n"+err.errorName)
         //에러처리
         throw err
