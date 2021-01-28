@@ -102,7 +102,6 @@ const ContentContainer = () => {
     }, [currentPage, updatePosts])
 
     const paginationOnClick = (e) => {
-        console.log(e.target.innerText)
         setCurrentPage(e.target.innerText)
     }
 
@@ -258,7 +257,6 @@ const ContentContainer = () => {
                     'priority': {'col': 'G', 'name': '어르신 우선순위'},
                     'numsOfRequiredVolunteers': {'col': 'H', 'name': '필요인원'}
                 }
-                console.log(errorNum)
 
                 let col = `${columns[errorName].col}${errorNum} (${columns[errorName].name})`
                 errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n")

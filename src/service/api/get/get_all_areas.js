@@ -1,3 +1,5 @@
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+
 /**
  * @description 할당된 모든 구역 받아오기
  * @method GET
@@ -25,6 +27,11 @@ const getAllAreas = () => {
                 return data
             }).catch(async(error)=>{
                 let err =  await error.then()
+                NotificationPool.api.add({
+                    title : "Error from get_all_areas",
+                    content : err.errorName + "("+err.errorCode+")",
+                    status : "error"
+                })
                 console.log("Error from get_all_areas\n"+err.errorCode+"\n"+err.errorName)
                 //에러처리
                 throw err

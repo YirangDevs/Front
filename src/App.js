@@ -1,14 +1,9 @@
-import React, {useEffect} from 'react';
-import Home from "./pages/Home/index"
-import Login from "./pages/Login/"
-import Logout from "./pages/Logout"
-import Manage from "./pages/Manage/index"
-import Create from "./pages/Create/index"
-import UserAuthority from "./pages/UserAuthority"
-import {BrowserRouter, Switch, Route} from "react-router-dom"
-import Seniors from "./pages/Seniors/index"
+import React, {useEffect, useState} from 'react';
+import NotificationPool from "./containers/redux/components/NotificationPool/";
 import {createGlobalStyle} from "styled-components"
+import YirangRouter from "./router";
 import run from "./init/start"
+
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -16,37 +11,25 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+
 function App() {
+  const [isRenew, setIsRenew] = useState(false) //새로 고침 이후 일시적으로 role이 Guest가 되는 증상 해결을 위한 상태
 //단 한번만 실행
   useEffect(()=>{
-    run()
+    run().then((status)=>{
+      if(status){
+        setIsRenew(true)
+      }
+    })
   }, [])
 
-  return (
+  return (isRenew) ? (
     <>
     <GlobalStyle/>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/login" component={Login}>
-        </Route>
-        <Route path="/logout" component={Logout}>
-        </Route>
-        <Route path="/seniors" component={Seniors}>
-
-        </Route>
-        <Route path ="/manage" component={Manage}>
-        </Route>
-        <Route path ="/create" component={Create}>
-        </Route> 
-        <Route path="/userauthority" component={UserAuthority}>
-        </Route>
-
-        <Route exact path="/" component={Home}>
-        </Route>
-      </Switch> 
-    </BrowserRouter>
+    <NotificationPool/>
+    <YirangRouter/>
     </>
-  );
+  ) : null;
 }
 
 export default App;
