@@ -2,17 +2,18 @@
  * @author: chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-27 05:51:17
+ * @Last Modified time: 2021-01-29 02:22:37
  */
 
 import React, { useState, useEffect } from "react"
 import ManageContent from "../../../components/organisms/manage/Content/"
 import deleteActivity from "../../../service/api/delete/delete_activity";
-import getNotice from "../../../service/api/get/get_notice";
+import get_Notice from "../../../service/api/get/get_notice";
 import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
 import getNoticeNum from "../../../service/api/get/get_notice_num";
 import deleteNotice from "../../../service/api/delete/delete_notice";
-
+import edit_notice from "../../../service/api/put/edit_notice"
+import { keyframes } from "styled-components";
 
 const ContentContainer = () => {
 
@@ -78,6 +79,7 @@ const ContentContainer = () => {
     const toReadHandle = (e) => {
         console.log(e);
         // getNoticeId(e);
+
         setNotice(e);
         selectNotice.id === e && console.log(selectNotice)
         readModal.show();
@@ -88,6 +90,7 @@ const ContentContainer = () => {
 
         console.log(e);
 
+        setNotice(e);
         setUpNotice(e);
         updateNotice.id === e && console.log(updateNotice)
         editModal.show();
@@ -95,42 +98,91 @@ const ContentContainer = () => {
 
 
     /**
-     * @description notice정보를 불러오는 함수 
+     * @description notice정보를 불러오는 함수 for read
      * @param e - 선택한 notice target하기위한 param
      */
     const setNotice = (id) => {
-        getNotice(id)
+        setUpdateNotice((state) => ({ ...state, id: id }))
+
+        get_Notice(id)
             .then((res) => {
                 setSelectNotice(res)
-
-            })
-            .catch(error => console.log(error))
-    }
-
-
-    const setUpNotice = (id) => {
-        getNotice(id)
-            .then((res) => {
-
-                setUpdateNotice(res)
             })
             .catch(error => console.log(error))
     }
 
     /**
-     * @description notice 수정완료 
+     * @description notice정보를 불러오는 함수 for edit
      * @param e - 선택한 notice target하기위한 param
+     */
+    const setUpNotice = (id) => {
+        get_Notice(id)
+            .then((res) => {
+                setUpdateNotice(res)
+            })
+            .catch(error => console.log(error))
+    }
+
+
+
+
+
+    /**
+         * @description 수정완료시 보내는 data
+         * @detail title 과 activityRegisterRequestDto를 나눠서 보내야한다. 
+         * @detail nor parsㄷInt 통해서 보내야한다.
+         */
+    const data = JSON.stringify({
+        "title": updateNotice.title,
+        "activityRegisterRequestDto": {
+            "content": updateNotice.content, "region": updateNotice.region, "nor": parseInt(updateNotice.nor),
+            "dov": updateNotice.dov, "tov": updateNotice.tov, "dod": updateNotice.dod
+        }
+    })
+
+    /**
+     * @description 수정전 게시물과 수정하고픈 data가 다른지 확인하는 function
+     */
+    const isEqualObject = (a, b,) => {
+        const aValues = Object.values(a);
+        const aKeys = Object.keys(a);
+        const bValues = Object.values(b);
+        const diff = []
+        if (aValues.length !== bValues.length) { return false }
+        for (let i = 0; i < aValues.length; i++) {
+            if (aValues[i] !== bValues[i]) {
+                aKeys[i] === "title" && diff.push("제목");
+                aKeys[i] === "content" && diff.push("내용")
+                aKeys[i] === "tov" && diff.push("시작시간")
+                aKeys[i] === "dod" && diff.push("신청마감")
+            }
+        }
+        if (diff) return diff
+        return false;
+
+
+    }
+
+    /**
+     * @description notice 수정완료 
+     * @param noticeId - 선택한 notice id
      * @detail 수정할 notice의 id를 통해 UpdateNotice 내용을 set(update Page 에 표시될거)
      */
     const completeEdit = (noticeId) => {
-        const updateId = noticeId;
+        console.log(isEqualObject(updateNotice, selectNotice))
+        console.log(data)
+        let diff = [];
+        diff = isEqualObject(updateNotice, selectNotice);
+        diff.length || editModal.close() // 수정전 notice와 같으면 modalClose
+        console.log(diff)
 
-        getNotice(updateId)
-            .then((res) => {
-                console.log(res)
-                // setUpdateNotice(res.notice)
-            })
+        edit_notice(noticeId, data, selectNotice.title, diff)
+            .then(
+                editModal.close()
+            )
             .catch(error => console.log(error))
+
+
     }
 
     /**

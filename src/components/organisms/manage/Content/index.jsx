@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-27 05:54:20
+ * @Last Modified time: 2021-01-29 00:24:44
  */
 import React, { useState } from "react"
 import Row from "../../../../layout/Grid/Row"
@@ -112,7 +112,7 @@ const ManageContent = ({
                                                 <Col span={12} xs={12}>
                                                     <Modal visible={isEditVisible}
                                                         closable={true} maskClosable={false} onClose={editModal.close} size={10}>
-                                                        <EditForm updateNotice={updateNotice} updateFunction={updateFunction}></EditForm>
+                                                        <EditForm updateNotice={updateNotice} updateFunction={updateFunction} completeEdit={completeEdit}></EditForm>
                                                     </Modal>
 
                                                 </Col>

@@ -1,17 +1,41 @@
-import { number } from 'prop-types';
+/** 
+ * @author : chaeeun
+ * @Date : 2021-01-28 20:00:02 
+ * @Last Modified by: euncherry
+ * @Last Modified time: 2021-01-29 01:36:03
+ */
+
 import React, { useEffect } from 'react'
 import NoticeForm from '../../molecules/NoticeForm/index'
-
+import Button from "../../atoms/Button"
+import TextAreaBox from "../../atoms/TextAreaBox"
+import Row from "../../../layout/Grid/Row"
+import Col from "../../../layout/Grid/Column"
 
 //{title, region, nor, dov, tov, dod, titleOnChange, timeOnChange, deadlineOnChange}
 
-const EditForm = ({ updateNotice, updateFunction }) => {
-    const { title, region, nor, dov, tov, dod } = updateNotice;
+const EditForm = ({ updateNotice, updateFunction, completeEdit }) => {
+    const { id, title, region, nor, dov, tov, dod, content } = updateNotice;
 
     return (
 
         <>
-            <NoticeForm title={title} region={region} nor={nor} dov={dov} tov={tov} dod={dod} titleOnChange={updateFunction.title} timeOnChange={updateFunction.tov} deadlineOnChange={updateFunction.dod}></NoticeForm>
+            <Row gutter={[0, 0]}>
+                <Col span={12}>
+                    <NoticeForm title={title} region={region} nor={nor} dov={dov} tov={tov} dod={dod}
+                        titleOnChange={updateFunction.title} timeOnChange={updateFunction.tov} deadlineOnChange={updateFunction.dod}></NoticeForm>
+                </Col>
+                <Col span={12} style={{
+                    height: "50vh"
+                }}>
+                    <TextAreaBox placeholder="내용을 입력해주세요" value={content} contentOnChange={updateFunction.content} />
+                </Col>
+                <Row justify={"flex-end"} gutter={[20, 0]}>
+                    <Col span={2}>
+                        <Button value="게시글 수정 완료" block types={"primary"} onClick={() => completeEdit(id)} />
+                    </Col>
+                </Row>
+            </Row>
         </>
     )
 }
