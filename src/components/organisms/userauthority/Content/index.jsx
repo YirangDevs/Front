@@ -6,7 +6,10 @@ import SelectBox from "../../../atoms/SelectBox"
 import TextBox from "../../../atoms/TextBox"
 import Button from "../../../atoms/Button"
 import TableBox from "../../../atoms/TableBox"
+import Modal from "../../../../components/atoms/Modal"
 import MenuNav from "../../../../containers/redux/components/MenuNav"
+import AuthorityAdminModal from "../../../../components/organisms/userauthority/AuthorityAdminModal"
+import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
 
 
 const selectAuthority = ["전체", "관리자", "일반회원"]
@@ -30,7 +33,15 @@ const regionSample = [{region: "수성구,서구"}, {region: "수성구,동구"}
 
 const UserAuthorityContent = ({
     regionOnClick,
-    authorityOnClick
+    authorityOnClick,
+    modalClose,
+    authorityRegionChange,
+    authorityChange,
+
+    regionModal,
+    regionArray,
+    regionOptions,
+    authorityModal
 }) => {
 
     return(
@@ -64,6 +75,8 @@ const UserAuthorityContent = ({
                     </Col>
                 </Row>
             </Content>
+            <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal modalClose={modalClose} authorityOnClick={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
+            <Modal title="권한 할당" visible={authorityModal} size={12} children={<AuthorityAdminModal authorityOnClick={authorityChange} modalClose={modalClose}/>}/>
         </>
     )
 }

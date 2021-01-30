@@ -1,10 +1,7 @@
 import React, {useState} from "react"
 import styled from "styled-components"
-import Modal from "../../../components/atoms/Modal"
 import UserAuthorityContent from "../../../components/organisms/userauthority/Content/index"
 import CheckBox from "../../../components/atoms/CheckBox"
-import AuthorityAdminModal from "../../../components/organisms/userauthority/AuthorityAdminModal"
-import AuthorityRegionModal from "../../../components/organisms/userauthority/AuthorityRegionModal"
 
 const Container = styled.div`
     width: 90%;
@@ -21,7 +18,7 @@ const regionOptions = ["수성구", "중구", "동구", "서구", "남구", "북
 const ContentContainer = () => {
     const [regionArray, setRegionArray] = useState([]);
     const [regionModal, setRegionModal] = useState(false);
-    const [authorityAdminModal, setAuthorityAdminModal] = useState(false);
+    const [authorityModal, setAuthorityModal] = useState(false);
 
     const regionOnClick = (e) => {
         const region = e.target.innerText
@@ -31,7 +28,7 @@ const ContentContainer = () => {
         }
     }
     const authorityOnClick = () => {
-        setAuthorityAdminModal(true)
+        setAuthorityModal(true)
     }
     const authorityChange = () => {
         //need api message to change the user authority
@@ -41,7 +38,7 @@ const ContentContainer = () => {
     }
     const modalClose = () =>{
         setRegionModal(false)
-        setAuthorityAdminModal(false)
+        setAuthorityModal(false)
     }
     return (
         <>
@@ -49,11 +46,19 @@ const ContentContainer = () => {
             <UserAuthorityContent
                 regionOnClick={regionOnClick}
                 authorityOnClick={authorityOnClick}
+                modalClose={modalClose}
+                authorityRegionChange={authorityRegionChange}
+                authorityChange={authorityChange}
+
+
+                regionModal={regionModal}
+                regionArray={regionArray}
+                regionOptions={regionOptions}
+                authorityModal={authorityModal}
             >
             </UserAuthorityContent>
         </Container>
-        <Modal title="지역 할당" visible={regionModal} onClose = {modalClose} size={12} children={<AuthorityRegionModal modalClose={modalClose} authorityOnClick={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
-        <Modal title="권한 할당" visible={authorityAdminModal} size={12} children={<AuthorityAdminModal authorityOnClick={authorityChange} modalClose={modalClose}/>}/>
+        
         </>
     )
 }
