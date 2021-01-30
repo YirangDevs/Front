@@ -19,7 +19,7 @@ const AuthorityRegionModal = ({
             <CheckBox defaultChecked={regionArray} options={regionOptions}/>
             </Col>
         </Row>
-        <Row gutter={[0,5]}>
+        <Row gutter={[20,5]}>
             <Col span={6}><Button value="확인" types="primary" onClick={authorityRegionChange} block></Button></Col>
             <Col span={6}><Button value="취소" types="primary" onClick={modalClose} block></Button></Col>
         </Row>
