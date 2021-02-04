@@ -1,12 +1,15 @@
 import React from "react"
-import Content from "../../../layout/Content"
-import Row from "../../../layout/Grid/Row/index"
-import Col from "../../../layout/Grid/Column/index"
-import SelectBox from "../../atoms/SelectBox"
-import TextBox from "../../atoms/TextBox"
-import Button from "../../atoms/Button"
-import TableBox from "../../atoms/TableBox"
-import MenuNav from "../../../containers/redux/components/MenuNav"
+import Content from "../../../../layout/Content"
+import Row from "../../../../layout/Grid/Row/index"
+import Col from "../../../../layout/Grid/Column/index"
+import SelectBox from "../../../atoms/SelectBox"
+import TextBox from "../../../atoms/TextBox"
+import Button from "../../../atoms/Button"
+import TableBox from "../../../atoms/TableBox"
+import Modal from "../../../../components/atoms/Modal"
+import MenuNav from "../../../../containers/redux/components/MenuNav"
+import AuthorityAdminModal from "../../../../components/organisms/userauthority/AuthorityAdminModal"
+import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
 
 
 const selectAuthority = ["전체", "관리자", "일반회원"]
@@ -29,7 +32,16 @@ const authoritySample = [{authority: "봉사자 변환"},{authority: "봉사자 
 const regionSample = [{region: "수성구,서구"}, {region: "수성구,동구"}, {region: "수성구,북구"}, {region: "달서구,서구"}, {region: "-"},{region: "-"},{region: "-"},{region: "-"},{region: "-"},{region: "-"}]
 
 const UserAuthorityContent = ({
-    regionOnClick
+    regionOnClick,
+    authorityOnClick,
+    modalClose,
+    authorityRegionChange,
+    authorityChange,
+
+    regionModal,
+    regionArray,
+    regionOptions,
+    authorityModal
 }) => {
 
     return(
@@ -52,7 +64,7 @@ const UserAuthorityContent = ({
                     </Col>
                     <Col span={0.2} /> {/* 빈칸 */}
                     <Col span={1}>
-                        <TableBox headList={authorityTable} bodyList={authoritySample} black back/>
+                        <TableBox headList={authorityTable} bodyList={authoritySample} dataOnClick={authorityOnClick} black back/>
                     </Col>
                     <Col span={1}>
                         <TableBox headList={regionTable} bodyList={regionSample} dataOnClick={regionOnClick} black back/>  
@@ -63,6 +75,8 @@ const UserAuthorityContent = ({
                     </Col>
                 </Row>
             </Content>
+            <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal modalClose={modalClose} authorityOnClick={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
+            <Modal title="권한 할당" visible={authorityModal} size={12} children={<AuthorityAdminModal authorityOnClick={authorityChange} modalClose={modalClose}/>}/>
         </>
     )
 }

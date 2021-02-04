@@ -2,7 +2,7 @@
  * @Author : chaeeun
  * @Date : 2020-12-30 18:37:07
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-06 20:58:33
+ * @Last Modified time: 2021-01-24 00:30:07
  */
 
 import React from 'react'
@@ -22,7 +22,7 @@ const ModalWrapper = styled.div`
  position : absolute;
 
  
- background-color: rgba(0, 0, 0, 0.6);
+ background-color: rgba(0, 0, 0,0.12);
 `
 
 

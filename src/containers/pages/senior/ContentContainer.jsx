@@ -12,6 +12,7 @@ import seniorCheck from "../../../service/api/post/senior_check";
 import store from "../../../store/store"
 import action from "../../../store/actions/action"
 import getMyRegion from "../../../service/api/get/get_my_region";
+import NotificationPool from "../../../containers/redux/components/NotificationPool"
 
 const Container = styled.div`
     width: 90%;
@@ -44,6 +45,7 @@ const ContentContainer = () => {
     const [modal, setModal] = useState(false);
     const [excelData, setExcelData] = useState([]);
     const [myRegion, setMyRegion] = useState([]);
+    const [errorToast, setErrorToast] = useState([]);
     const history = useHistory();
     const postsPerPage = 10
 
@@ -205,7 +207,15 @@ const ContentContainer = () => {
             postSenior(bufferSenior).then(res=>{
                 alert("추가 성공")
                 addEditDeleteRender();
-            }).catch(error=>console.log(error))
+            }).catch((error)=>{
+                const errorToast = []
+
+                console.log(error)
+                if(error.errorCode==="044"){
+                    errorToast.push("해당 날짜에 봉사활동이 존재하지 않습니다.");
+                }
+                if(errorToast) alert(errorToast)
+            })
         }else{
             alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
         }
@@ -234,7 +244,8 @@ const ContentContainer = () => {
             history.push("/create")
         }).catch(err=>{
             
-            const errorToast = []
+            //const errorToast = []
+            setErrorToast([])
             console.log(err)
 
             for(let i=0; i<err.Errors.length; i++){
@@ -259,7 +270,7 @@ const ContentContainer = () => {
                 }
 
                 let col = `${columns[errorName].col}${errorNum} (${columns[errorName].name})`
-                errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n")
+                errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n\n")
             }
             if(errorCode==="099"){
                 errorToast.push("업로드한 엑셀 파일에 통일되지 않은 지역 또는 날짜 데이터가 존재합니다.\n")
@@ -276,7 +287,12 @@ const ContentContainer = () => {
             }
             
         }
-        if(errorToast) alert(errorToast)
+        if(errorToast) {
+            NotificationPool.api.add({
+            title : "엑셀 업로드 실패",
+            content : errorToast,
+            status : "error"
+        })}
         setModal(false)
         })       
     }
@@ -348,7 +364,7 @@ const ContentContainer = () => {
                 seniors={seniors}
                 myRegion={myRegion}
 
-                genderRef={genderRef}
+                errorToast={errorToast}
 
                 selectRegion={selectRegion}
                 selectPage={selectPage}
