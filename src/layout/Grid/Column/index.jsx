@@ -10,13 +10,12 @@ const ColumnLayout = styled.div`
     flex-wrap : wrap;
     ${props => props.justify ? `justify-content : ` + props.justify + `;` : null};
     ${props => props.align ? `align-items : ` + props.align + `;` : null};
-    ${props => props.xs != undefined ? (props.xs === 0) ? `@media(max-width: 576px){ display : none; } ` : `@media(max-width: 576px){ flex-basis : ` + (100 / 12) * props.xs + `%; display : flex;}` : null}
-    ${props => props.sm != undefined ? (props.sm === 0) ? `@media(min-width: 576px){ display : none; } ` : `@media(min-width: 576px){ flex-basis : ` + (100 / 12) * props.sm + `%; display : flex;}` : null}
-    ${props => props.md != undefined ? (props.md === 0) ? `@media(min-width: 768px){ display : none; }` : `@media(min-width: 768px){ flex-basis : ` + (100 / 12) * props.md + `%; display : flex;}` : null}
-    ${props => props.lg != undefined ? (props.lg === 0) ? `@media(min-width: 992px){ display : none; }` : `@media(min-width: 992px){ flex-basis : ` + (100 / 12) * props.lg + `%; display : flex;}` : null}
-    ${props => props.xl != undefined ? (props.xl === 0) ? `@media(min-width: 1200px){ display : none; }` : `@media(min-width: 1200px){ flex-basis : ` + (100 / 12) * props.xl + `%; display : flex;}` : null}
-    ${props => props.xxl != undefined ? (props.xxl === 0) ? `@media(min-width: 1600px){ display : none;` : `@media(min-width: 1600px){ flex-basis : ` + (100 / 12) * props.xxl + `%; display : flex;}` : null}
-    
+    ${props => props.xs !== undefined ? (props.xs === 0) ? `@media(max-width: 576px){ display : none; } ` : `@media(max-width: 576px){ flex-basis : ` + (100 / 12) * props.xs + `%; display : flex;}` : null}
+    ${props => props.sm !== undefined ? (props.sm === 0) ? `@media(min-width: 576px){ display : none; } ` : `@media(min-width: 576px){ flex-basis : ` + (100 / 12) * props.sm + `%; display : flex;}` : null}
+    ${props => props.md !== undefined ? (props.md === 0) ? `@media(min-width: 768px){ display : none; }` : `@media(min-width: 768px){ flex-basis : ` + (100 / 12) * props.md + `%; display : flex;}` : null}
+    ${props => props.lg !== undefined ? (props.lg === 0) ? `@media(min-width: 992px){ display : none; }` : `@media(min-width: 992px){ flex-basis : ` + (100 / 12) * props.lg + `%; display : flex;}` : null}
+    ${props => props.xl !== undefined ? (props.xl === 0) ? `@media(min-width: 1200px){ display : none; }` : `@media(min-width: 1200px){ flex-basis : ` + (100 / 12) * props.xl + `%; display : flex;}` : null}
+    ${props => props.xxl !== undefined ? (props.xxl === 0) ? `@media(min-width: 1600px){ display : none;` : `@media(min-width: 1600px){ flex-basis : ` + (100 / 12) * props.xxl + `%; display : flex;}` : null}
     ${props => props.gutter && typeof props.gutter[0] == "number" && typeof props.gutter[1] == "number" ? 'padding : ' + props.gutter[0] + 'px ' + props.gutter[1] + 'px;' : null}
     ${props => props.gutter[0].xs ? `@media(max-width: 576px){ padding-top : ` + props.gutter[0].xs + `px; padding-bottom : ` + props.gutter[0].xs`+px;}` : null}
     ${props => props.gutter[1].xs ? `@media(max-width: 576px){ padding-right : ` + props.gutter[1].xs + `px; padding-left : ` + props.gutter[1].xs`+px;}` : null}

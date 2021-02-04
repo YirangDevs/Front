@@ -1,11 +1,11 @@
-import {Route, useHistory} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import React from "react";
 import Create from "../pages/Create/"
 import NotificationPool from "../containers/redux/components/NotificationPool/";
 
 const CreateRouter = ({security, role}) => {
     const history = useHistory()
-        if(security.indexOf(role)!=-1){
+        if(security.indexOf(role)!==-1){
             return <Create/>
         }
         history.push("/")

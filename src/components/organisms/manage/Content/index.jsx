@@ -4,7 +4,7 @@
  * @Last Modified by: euncherry
  * @Last Modified time: 2021-01-29 00:24:44
  */
-import React, { useState } from "react"
+import React  from "react"
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import ContentLayout from "../../../../layout/Content"
@@ -12,8 +12,8 @@ import MenuNav from '../../../molecules/MenuNav'
 import TableBox from '../../../atoms/TableBox'
 import Button from '../../../atoms/Button'
 import Modal from '../../../atoms/Modal'
-import ReadForm from '../ReadForm'
-import EditForm from '../EditForm'
+import ReadForm from '../ReadForm/'
+import EditForm from '../EditForm/'
 // 이거 tableButton 다만들면 지우기
 
 

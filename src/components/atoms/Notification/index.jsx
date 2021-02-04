@@ -54,6 +54,8 @@ const Wrapper = styled.div`
             return `border-left : solid 6px #f97316;`
         case "info":
             return `border-left : solid 6px #3b82f6;`
+        default : 
+            return;
       }
   }}
 `
@@ -81,7 +83,7 @@ const Notification = ({title, content, uuid, status, duration}) => {
                 NotificationPool.api.delete(uuid)
             },500)
         }, duration * 1000)
-    }, [])
+    }, [duration, uuid])
     return (
     <>
 
