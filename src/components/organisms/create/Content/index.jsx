@@ -1,7 +1,6 @@
 import React from "react"
 import Button from "../../../atoms/Button"
 import TextAreaBox from "../../../atoms/TextAreaBox"
-import NoticeFormContainer from "../../../../containers/redux/pages/create/NoticeFormContainer"
 import Content from "../../../../layout/Content/"
 import Row from "../../../../layout/Grid/Row";
 import Col from "../../../../layout/Grid/Column";

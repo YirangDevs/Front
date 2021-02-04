@@ -6,10 +6,10 @@
  */
 
 import React from "react"
-import NoticeForm from "../../molecules/NoticeForm"
-import TextAreaBox from "../../atoms/TextAreaBox"
-import Row from "../../../layout/Grid/Row"
-import Col from "../../../layout/Grid/Column"
+import NoticeForm from "../../../molecules/NoticeForm"
+import TextAreaBox from "../../../atoms/TextAreaBox"
+import Row from "../../../../layout/Grid/Row"
+import Col from "../../../../layout/Grid/Column"
 
 
 const ReadForm = ({ updateFunction, selectNotice }) => {

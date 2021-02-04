@@ -54,6 +54,8 @@ const Wrapper = styled.div`
             return `border-left : solid 6px #f97316;`
         case "info":
             return `border-left : solid 6px #3b82f6;`
+        default : 
+            return;
       }
   }}
 `
