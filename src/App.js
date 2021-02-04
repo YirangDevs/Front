@@ -1,44 +1,35 @@
-import React from 'react';
-import Container from "./components/home/Container"
-import LoginRedirect from "./containers/home/LoginRedirect"
-import LogoutRedirect from "./containers/home/LogoutRedirect"
-import Manage from "./components/manage/Container"
-import Create from "./components/create/Container"
-import Read from "./components/read/Container"
-import Update from "./components/update/Container"
-import ReadAllNotice from './components/readAllNotice/Container'
-import {BrowserRouter, Switch, Route} from "react-router-dom"
-import Seniors from "./pages/Seniors"
+import React, {useEffect, useState} from 'react';
+import NotificationPool from "./containers/redux/components/NotificationPool/";
+import {createGlobalStyle} from "styled-components"
+import YirangRouter from "./router";
+import run from "./init/start"
+
+
+const GlobalStyle = createGlobalStyle`
+  html, body {
+    scroll-behavior: smooth;
+  }
+`
 
 
 function App() {
-  return (
-    <>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/login" component={LoginRedirect}>
-        </Route>
-        <Route path="/logout" component={LogoutRedirect}>
-        </Route>
-        <Route path="/seniors" component={Seniors}>
+  const [isRenew, setIsRenew] = useState(false) //새로 고침 이후 일시적으로 role이 Guest가 되는 증상 해결을 위한 상태
+//단 한번만 실행
+  useEffect(()=>{
+    run().then((status)=>{
+      if(status){
+        setIsRenew(true)
+      }
+    })
+  }, [])
 
-        </Route>
-        <Route path ="/manage" component={Manage}>
-        </Route>
-        <Route path ="/create" component={Create}>
-        </Route> 
-        <Route path ="/read" component={Read}>
-        </Route> 
-        <Route path ="/update" component={Update}>
-        </Route> 
-        <Route path ="/ReadAllNotice" component={ReadAllNotice}>
-        </Route>
-        <Route exact path="/" component={Container}>
-        </Route>
-      </Switch> 
-    </BrowserRouter>
+  return (isRenew) ? (
+    <>
+    <GlobalStyle/>
+    <NotificationPool/>
+    <YirangRouter/>
     </>
-  );
+  ) : null;
 }
 
 export default App;
