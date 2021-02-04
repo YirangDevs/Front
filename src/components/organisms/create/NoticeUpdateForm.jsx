@@ -15,6 +15,7 @@ const NoticeUpdateFormWrapper = styled.div`
 `
 const Box = styled.div`
     height: 3rem;
+    width: 100%;
     border: 1px solid #ccd4e0;
     border-collapse: seperate;
     display: flex;

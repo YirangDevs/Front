@@ -42,7 +42,6 @@ ${props => {
 `
 
 /**
- * 
  * @param border 테두리 유무
  * @param radius radius 추가 
  * @param size 크기 

@@ -8,7 +8,7 @@
 import _ from "../../../config/env";
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 
-const editNotice = (updateID , data) =>{
+const editNotice = (updateID , data , title ,  diff) =>{
     return fetch(_.SERVER_URL + ":8080/v1/apis/manage/notices/" + Number(updateID),{
         method: 'PUT',
         headers: {
@@ -18,6 +18,13 @@ const editNotice = (updateID , data) =>{
         body: data,
     }).then(res=>{
         if(!res.ok) throw res.json()
+        else{
+            NotificationPool.api.add({
+                title : "수정 완료",
+                content : `"${title}" 게시물의 ${diff} 수정되었습니다.`,
+                status : "success"
+            })
+        }
 
     }).catch(async(error)=>{
         let err =  await error.then()
