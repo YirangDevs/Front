@@ -81,7 +81,7 @@ const Notification = ({title, content, uuid, status, duration}) => {
                 NotificationPool.api.delete(uuid)
             },500)
         }, duration * 1000)
-    }, [])
+    }, [duration, uuid])
     return (
     <>
 

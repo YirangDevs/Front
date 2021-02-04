@@ -9,7 +9,6 @@ import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import ContentLayout from "../../../../layout/Content"
 import TableButton from '../../../molecules/TableButton'
-import '../../../../css/manage.css';
 import MenuNav from "../../../../containers/redux/components/MenuNav"; // 이거 information만들면 지우기
 // 이거 tableButton 다만들면 지우기
 
