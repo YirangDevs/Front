@@ -32,6 +32,7 @@ const ContentContainer = () => {
     useEffect(()=> {
         getAllUsers().then((data)=>{
             setUsers(data.userAuthorities)
+            console.log(data.userAuthorities)
         }).catch(err=>console.log(err))
     }, [])
 
@@ -54,6 +55,7 @@ const ContentContainer = () => {
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
             return{
+                userId : i.userId,
                 authority : i.authority
             }
         })
@@ -103,7 +105,7 @@ const ContentContainer = () => {
         setAuthorityModal(true)
         setAuthorityModalText(myAuth)
         
-        console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].children[0].children[1])
+        
         //..클릭하면 이름 가져오고시퍼염.....ㅠㅠㅠ 세상에 seniors 어케 짠겨...
         if(myAuth=="관리자"){setAuthorityTargetText("봉사자")}
         if(myAuth=="봉사자"){setAuthorityTargetText("관리자")}
