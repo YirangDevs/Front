@@ -12,7 +12,7 @@ export default (state , action)=>{
             return {
                 notification : [...state.notification].filter((notification)=>{
 
-                    if(notification.uuid==action.uuid){ return false }
+                    if(notification.uuid===action.uuid){ return false }
                     else{ return true;}
                 })
             }

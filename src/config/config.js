@@ -1,4 +1,3 @@
-import _ from "./env";
 
 export default {
     DEV_HOST_URL : "http://localhost:3000",

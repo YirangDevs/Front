@@ -5,12 +5,12 @@
  * @Last Modified time: 2021-01-29 01:36:03
  */
 
-import React, { useEffect } from 'react'
-import NoticeForm from '../../molecules/NoticeForm/index'
-import Button from "../../atoms/Button"
-import TextAreaBox from "../../atoms/TextAreaBox"
-import Row from "../../../layout/Grid/Row"
-import Col from "../../../layout/Grid/Column"
+import React  from 'react'
+import NoticeForm from '../../../molecules/NoticeForm'
+import Button from "../../../atoms/Button"
+import TextAreaBox from "../../../atoms/TextAreaBox"
+import Row from "../../../../layout/Grid/Row"
+import Col from "../../../../layout/Grid/Column"
 
 //{title, region, nor, dov, tov, dod, titleOnChange, timeOnChange, deadlineOnChange}
 
