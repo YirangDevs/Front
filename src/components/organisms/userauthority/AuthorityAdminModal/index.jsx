@@ -10,13 +10,18 @@ const Label = styled.span`
 
 const AuthorityAdminModal = ({
     authorityChange,
+    authorityModalText,
+    authorityTargetText,
     modalClose
 }) => {
 
     return (
         <>
         <Row>
-            <Col span={12}><Label>"홍길동"님의 "관리자" 권한을 "봉사자"로 정말 바꾸시겠습니까?</Label></Col>
+            <Col span={12}>{authorityModalText=="관리자"||authorityModalText=="봉사자"?
+                <Label>"홍길동"님의 "{authorityModalText}" 권한을 "{authorityTargetText}"로 정말 바꾸시겠습니까?</Label>
+                :<Label>"홍길동"님의 슈퍼관리자 권한은 수정할 수 없습니다.</Label>
+            }</Col>
         </Row>
         <Row gutter={[20,5]}>
             <Col span={6}><Button value="확인" types="primary" onClick={authorityChange} block></Button></Col>

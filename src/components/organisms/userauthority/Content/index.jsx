@@ -13,7 +13,7 @@ import AuthorityRegionModal from "../../../../components/organisms/userauthority
 
 
 const selectAuthority = ["전체", "관리자", "일반회원"]
-const userTable = ["회원등급", "이름", "성별", "연락처", "이메일"]
+const TableBoxHeadLists = ["회원등급", "이름", "성별", "연락처", "이메일"]
 const authorityTable = ["관리모드"]
 const regionTable = ["지역"]
 
@@ -41,9 +41,15 @@ const UserAuthorityContent = ({
     regionModal,
     regionArray,
     regionOptions,
-    authorityModal
-}) => {
+    authorityModal,
+    authorityModalText,
+    authorityTargetText,
 
+    posts,
+    adminPosts,
+    regionsPosts
+}) => {
+    console.log(regionsPosts)
     return(
         <>
             <Content>
@@ -60,14 +66,14 @@ const UserAuthorityContent = ({
                 </Row>
                 <Row>
                     <Col span={5.8}>
-                        <TableBox headList={userTable} bodyList={userSample}/>
+                        <TableBox headList={TableBoxHeadLists} bodyList={posts}/>
                     </Col>
                     <Col span={0.2} /> {/* 빈칸 */}
                     <Col span={1}>
-                        <TableBox headList={authorityTable} bodyList={authoritySample} dataOnClick={authorityOnClick} black back/>
+                        <TableBox headList={authorityTable} bodyList={adminPosts} dataOnClick={authorityOnClick} black back/>
                     </Col>
                     <Col span={1}>
-                        <TableBox headList={regionTable} bodyList={regionSample} dataOnClick={regionOnClick} black back/>  
+                        <TableBox headList={regionTable} bodyList={regionsPosts} dataOnClick={regionOnClick} black back/>  
                     </Col>
                     <Col span={0.5} /> {/* 빈칸 */}
                     <Col span={3.5}>
@@ -76,7 +82,7 @@ const UserAuthorityContent = ({
                 </Row>
             </Content>
             <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal modalClose={modalClose} authorityOnClick={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
-            <Modal title="권한 할당" visible={authorityModal} size={12} children={<AuthorityAdminModal authorityOnClick={authorityChange} modalClose={modalClose}/>}/>
+            <Modal title="권한 할당" visible={authorityModal} size={12} children={<AuthorityAdminModal authorityModalText={authorityModalText} authorityTargetText={authorityTargetText} authorityOnClick={authorityChange} modalClose={modalClose}/>}/>
         </>
     )
 }
