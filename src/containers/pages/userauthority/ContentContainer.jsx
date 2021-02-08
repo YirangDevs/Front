@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import styled from "styled-components"
 import UserAuthorityContent from "../../../components/organisms/userauthority/Content/index"
-import CheckBox from "../../../components/atoms/CheckBox"
 
 const Container = styled.div`
     width: 90%;
