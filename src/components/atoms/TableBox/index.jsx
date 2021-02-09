@@ -55,7 +55,7 @@ const PrimaryKey = styled(TableBody)`
     cursor: pointer;
 `
 
-const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnClick}) => {
+const Index = (props, {border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data}) => {
 
     return(
     <>
@@ -80,11 +80,13 @@ const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnCl
                         
                         return (
                             <TableRow key={index}>
-                                {Object.keys(i).map((data, index) => {
-                                    return (data === primaryKey) ?
-                                        <PrimaryKey key={index} onClick={onClick}>{i[data]}</PrimaryKey>
+                                {Object.keys(i).map((value, index) => {
+                                    return (value === primaryKey) ?
+                                        <PrimaryKey key={index} onClick={()=>onClick.bind({
+                                            data : props?.data
+                                        })}>{i[value]}</PrimaryKey>
                                         :
-                                        <TableBody back={certainDate<new Date()} key={index} onClick={dataOnClick}>{i[data]}</TableBody>
+                                        <TableBody back={certainDate<new Date()} key={index} onClick={dataOnClick}>{i[value]}</TableBody>
                                 })}
                             </TableRow>)
                     })
