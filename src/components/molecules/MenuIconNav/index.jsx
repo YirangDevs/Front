@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import Col from "../../../layout/Grid/Column";
 import IconButton from "../../atoms/IconButton";
 import {MdFormatListBulleted, MdOpenInBrowser, MdPeople, MdToday, MdTune} from "react-icons/md";
@@ -74,4 +74,4 @@ const MenuIconNav = ({role}) => {
     )
 }
 
-export default MenuIconNav
+export default memo(MenuIconNav)

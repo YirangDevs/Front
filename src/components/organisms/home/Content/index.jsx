@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo, useMemo} from "react"
 import Image from "../../../atoms/Image";
 import MainImg from "../../../../img/main.png"
 import ContentLayout from "../../../../layout/Content"
@@ -16,9 +16,12 @@ const HomeContent = ({
                          currentNoticePage,
 
                          setNoticeNum,
-                         onPaginationClick
+                         onPaginationClick,
+                         onTableClick
 }) => {
-    const table_head = ["제목", "봉사날짜", "봉사지역", "모집인원"]
+
+
+    const table_head = useMemo(()=> ["제목", "봉사날짜", "봉사지역", "모집인원"], [])
     return (
         <>
             <Image src={MainImg} width={"100%"}>
@@ -38,7 +41,7 @@ const HomeContent = ({
 
                             </Col>
                             <Col span={12}>
-                                <TableBox headList={table_head} bodyList={bodyList} border={"bottom"} data></TableBox>
+                                <TableBox headList={table_head} bodyList={bodyList} border={"bottom"} data={noticeList} primaryKey={"title"} onClick={onTableClick}></TableBox>
                             </Col>
                             <Col span={12} justify={"center"}>
                                 <Pagination num={Math.ceil(noticeNum/6)} onClick={onPaginationClick}></Pagination>
@@ -52,4 +55,4 @@ const HomeContent = ({
     )
 }
 
-export default HomeContent
+export default memo(HomeContent)
