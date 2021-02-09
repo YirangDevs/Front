@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import styled from "styled-components"
 import Logo from "../../atoms/Logo"
 import Row from "../../../layout/Grid/Row";
@@ -110,4 +110,4 @@ const Header = ({theme, logined, role, position}) => {
     )
 }
 
-export default Header
+export default memo(Header)

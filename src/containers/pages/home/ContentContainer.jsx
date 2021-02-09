@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {memo, useCallback, useEffect, useState} from "react"
 import HomeContent from "../../../components/organisms/home/Content";
 import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
 import getNoticeNum from "../../../service/api/get/get_notice_num";
@@ -10,33 +10,43 @@ const ContentContainer = () => {
     const [bodyList, setBodyList] = useState([])
     const [noticeNum, setNoticeNum] = useState(0)
 
-    useEffect(()=>{
-        getNoticeNum().then(data=>{setNoticeNum(data.totalNoticeNums)}).catch(err=>console.log(err))
+    const getNoticeNumCallBack = useCallback(()=>getNoticeNum().then(data=>{setNoticeNum(data.totalNoticeNums)}).catch(err=>console.log(err)),[])
+
+    const getNoticeByPageCallBack = useCallback(()=>getNoticeByPage(currentNoticePage).then(data=>{
+        setNoticeList(data.notices)
+        let bodyList = data.notices.map((notice)=>{
+            return {
+                title : notice.title,
+                dov : notice.dov,
+                region : notice.region,
+                nor : notice.nor
+            }
+        })
+        setBodyList(bodyList)
+    }).catch(err=>console.log(err)), [currentNoticePage])
+
+    const setNoticeNumState = useCallback((num) =>{
+        setNoticeNum(num)
     },[])
 
+    const onPaginationClick = useCallback((e) => {
+        setCurrentNoticePage(e.target.innerText - 1)
+    },[])
+
+    const onTableClick = useCallback((e, data)=> console.log(data)
+    ,[])
+
     useEffect(()=>{
-        getNoticeByPage(currentNoticePage).then(data=>{
-            setNoticeList(data.notices)
-            let bodyList = data.notices.map((notice)=>{
-                return {
-                    title : notice.title,
-                    dov : notice.dov,
-                    region : notice.region,
-                    nor : notice.nor
-                }
-            })
-            setBodyList(bodyList)
-        }).catch(err=>console.log(err))
-    }, [currentNoticePage])
+        getNoticeNumCallBack()
+    },[getNoticeNumCallBack])
 
-    const setNoticeNumState = (num) =>{
-        setNoticeNum(num)
-    }
+    useEffect(()=>{
+        getNoticeByPageCallBack()
+    }, [getNoticeByPageCallBack])
 
-    const onPaginationClick = (e) => {
 
-        setCurrentNoticePage(e.target.innerText-1)
-    }
+
+
 
 
 
@@ -49,11 +59,11 @@ const ContentContainer = () => {
                 currentNoticePage={currentNoticePage}
                 setNoticeNum={setNoticeNumState}
                 onPaginationClick={onPaginationClick}
-
+                onTableClick={onTableClick}
             >
 
             </HomeContent>
         </>
     )
 }
-export default ContentContainer
+export default memo(ContentContainer)
