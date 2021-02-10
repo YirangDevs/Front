@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import styled from "styled-components"
 import PropTypes from 'prop-types';
 
@@ -69,4 +69,4 @@ IconButton.defaultProps = {
     onClick: undefined,
 };
 
-export default IconButton
+export default memo(IconButton)

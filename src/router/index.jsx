@@ -15,7 +15,7 @@ const YirangRouter = ({role}) => {
         <BrowserRouter>
             <Switch>
                 <Route path="/create">
-                    <CreateRouter security={["ADMIN"]} role={role}/>
+                    <CreateRouter security={["ADMIN", "SUPER_ADMIN"]} role={role}/>
                 </Route>
                 <Route path="/logout">
                     <LogoutRouter security={["GUEST"]} role={role}/>
