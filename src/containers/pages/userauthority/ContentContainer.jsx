@@ -26,6 +26,7 @@ const ContentContainer = () => {
     const [posts, setPosts] = useState([]);
     const [adminPosts, setAdminPosts] = useState([]);
     const [regionsPosts, setRegionsPosts] = useState([]);
+    const [idArray, setIdArray] = useState([]);
     const postsPerPage = 10
 
 
@@ -50,17 +51,8 @@ const ContentContainer = () => {
         })
         setPosts(data)
     }, [currentPage, users])
-    const updateAdminPosts = useCallback(()=>{
-        let data = users
-        .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
-        .map((i)=>{
-            return{
-                userId : i.userId,
-                authority : i.authority
-            }
-        })
-        setAdminPosts(data)
-    }, [currentPage, users])
+    
+    
     const updateRegionsPosts = useCallback(()=>{
         let data = users
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
@@ -70,7 +62,37 @@ const ContentContainer = () => {
             }
         })
         setRegionsPosts(data)
+        //배열의 요소를 2개만 남도록 filter또는 map으로 자르기
     }, [currentPage, users])
+
+    const updateAdminPosts = useCallback(()=>{
+        let data = users
+        .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+        .map((i)=>{
+            return{
+                authority : i.authority
+            }
+        })
+        setAdminPosts(data)
+    }, [currentPage, users])
+
+    const sendIdArray = useCallback(()=>{
+        let data = users
+        .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+        .map((i)=>{
+            return{
+                userId : i.userId,
+                regions : i.regions
+            }
+        })
+        //console.log("test2", users)
+        setIdArray(data)
+    }, [currentPage, users])
+
+    // useEffect(()=>{
+    //     console.log("idarr 변경됨", idArray)
+    // }, [idArray])
+
     useCallback(() => {
         updatePosts()
     }, [updatePosts])
@@ -80,6 +102,10 @@ const ContentContainer = () => {
     useCallback(() => {
         updateRegionsPosts()
     }, [updateRegionsPosts])
+    useCallback(()=>{
+        sendIdArray()
+    }, [sendIdArray])
+
     useEffect(() => {
         updatePosts()
     }, [users, updatePosts])
@@ -89,22 +115,25 @@ const ContentContainer = () => {
     useEffect(() => {
         updateRegionsPosts()
     }, [users, updateRegionsPosts])
+    useEffect(()=>{
+        sendIdArray()
+    }, [users, sendIdArray])
 
 
 
-    const regionOnClick = (e) => {
-        const region = e.target.innerText
-        console.log(users)
-        if(region!=="-"){
-            setRegionArray(region)
+    const regionOnClick = (e, data) => {
+        console.log(data.regions)
+        if(data.regions!=="-"){
+            setRegionArray(data.regions)
             setRegionModal(true)
         }
     }
-    const authorityOnClick = (e) => {
+    const authorityOnClick = (e, data) => {
         const myAuth = e.target.innerText
         setAuthorityModal(true)
         setAuthorityModalText(myAuth)
         
+        console.log("data : ",data)
         
         //..클릭하면 이름 가져오고시퍼염.....ㅠㅠㅠ 세상에 seniors 어케 짠겨...
         if(myAuth=="관리자"){setAuthorityTargetText("봉사자")}
@@ -144,6 +173,7 @@ const ContentContainer = () => {
                 posts={posts}
                 adminPosts={adminPosts}
                 regionsPosts={regionsPosts}
+                idArray={idArray}
             >
             </UserAuthorityContent>
         </Container>
