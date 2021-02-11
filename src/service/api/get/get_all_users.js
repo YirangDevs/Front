@@ -5,7 +5,6 @@
  */
 
  const getAllUsers = () => {
-     console.log(localStorage.getItem("YAT"))
      return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/admins/user-auths', {
          method : 'GET',
          headers: {

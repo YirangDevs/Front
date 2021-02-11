@@ -42,17 +42,13 @@ const UserAuthorityContent = ({
     regionArray,
     regionOptions,
     authorityModal,
-    authorityModalText,
-    authorityTargetText,
 
     posts,
     adminPosts,
     regionsPosts,
-    idArray
+    idArray,
+    selectedUser
 }) => {
-    //console.log(adminPosts)
-    //console.log(idArray)
-    console.log(regionsPosts)
     return(
         <>
             <Content>
@@ -84,8 +80,8 @@ const UserAuthorityContent = ({
                     </Col>
                 </Row>
             </Content>
+            <Modal title="권한 할당" visible={authorityModal} size={12} children={<AuthorityAdminModal authorityOnClick={authorityChange} modalClose={modalClose} selectedUser={selectedUser}/>}/>
             <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal modalClose={modalClose} authorityOnClick={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
-            <Modal title="권한 할당" visible={authorityModal} size={12} children={<AuthorityAdminModal authorityModalText={authorityModalText} authorityTargetText={authorityTargetText} authorityOnClick={authorityChange} modalClose={modalClose}/>}/>
         </>
     )
 }
