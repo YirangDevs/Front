@@ -57,16 +57,18 @@ const ContentContainer = () => {
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
                 return{
-                    regions : i.regions
+                    regions : i.regions? i.regions.slice(0,2):null
                 }            
         })
+
+        //let what = data.map(i=>i.regions.slice(0,2))
+        
         
         console.log(data)
-        console.log(data[0])
-        //console.log(data[0].regions)
-        //console.log(data[0].length)
-        
+        //console.log(data[0])   
+    
 
+        
         setRegionsPosts(data)
 
     }, [currentPage, users])
