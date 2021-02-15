@@ -2,6 +2,9 @@ import React, {useState, useEffect, useCallback} from "react"
 import styled from "styled-components"
 import getAllUsers from "../../../service/api/get/get_all_users"
 import UserAuthorityContent from "../../../components/organisms/userauthority/Content/index"
+import changeUserToAdmin from "../../../service/api/post/change_user_to_admin"
+import editUserAdminRegion from "../../../service/api/put/edit_user_admin_region"
+import changeAdminToUser from "../../../service/api/delete/change_admin_to_user"
 
 const Container = styled.div`
     width: 90%;
@@ -26,13 +29,14 @@ const ContentContainer = () => {
     const [regionsPosts, setRegionsPosts] = useState([]);
     const [idArray, setIdArray] = useState([]);
     const [selectedUser, setSelectedUser] = useState([]);
+    const [userId, setUserId] = useState();
+    const [userRegions, setUserRegions] = useState([]);
     const postsPerPage = 10
 
 
     useEffect(()=> {
         getAllUsers().then((data)=>{
             setUsers(data.userAuthorities)
-            console.log(data.userAuthorities)
         }).catch(err=>console.log(err))
     }, [])
 
@@ -60,18 +64,9 @@ const ContentContainer = () => {
                     regions : i.regions? i.regions.slice(0,2):null
                 }            
         })
-
-        //let what = data.map(i=>i.regions.slice(0,2))
-        
-        
-        console.log(data)
-        //console.log(data[0])   
-    
-
-        
         setRegionsPosts(data)
-
     }, [currentPage, users])
+
 
     const updateAdminPosts = useCallback(()=>{
         let data = users
@@ -83,6 +78,7 @@ const ContentContainer = () => {
         })
         setAdminPosts(data)
     }, [currentPage, users])
+
 
     const sendIdArray = useCallback(()=>{
         let data = users
@@ -126,26 +122,47 @@ const ContentContainer = () => {
 
 
     const regionOnClick = (e, data) => {
-        console.log(data.regions)
-        if(data.regions!=="-"){
+        if(data.regions!=="-"){ //관할 구역이 존재한다면?
+            setUserId(data.userId)
             setRegionArray(data.regions)
             setRegionModal(true)
+            setUserRegions(data.regions)
         }        
     }
     const authorityOnClick = (e, data) => {
         setAuthorityModal(true)
-        
+        setUserId(data.userId)
         const user = users.filter((i)=>i.userId===data.userId)[0]
         setSelectedUser(user)
 
+        //console.log(selectedUser)
+
     }
+
     const authorityChange = () => {
-        //need api message to change the user authority
+        if(selectedUser.authority=="봉사자"){
+            changeUserToAdmin(userId).then(()=>{
+                //setAuthorityModal(false)
+                window.location.reload()
+            }).catch(error=>console.log(error))
+        }else{
+            changeAdminToUser(userId).then(()=>{
+                //setAuthorityModal(false)
+                window.location.reload()
+            }).catch(error=>console.log(error))
+        }
+        
     }
+
     const authorityRegionChange = () => {
-        //need api message to change the user region authority
+        editUserAdminRegion(userId, userRegions).then(()=>{
+            //setRegionModal(false)
+            window.location.reload()
+        }).catch(error=>console.log(error))
     }
     const modalClose = () =>{
+        setUserId(null);
+        setUserRegions([]);
         setRegionModal(false)
         setAuthorityModal(false)
     }
@@ -165,7 +182,6 @@ const ContentContainer = () => {
                 regionOptions={regionOptions}
                 authorityModal={authorityModal}
 
-                //users={users}
                 posts={posts}
                 adminPosts={adminPosts}
                 regionsPosts={regionsPosts}

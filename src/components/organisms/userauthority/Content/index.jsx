@@ -12,7 +12,7 @@ import AuthorityAdminModal from "../../../../components/organisms/userauthority/
 import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
 
 
-const selectAuthority = ["전체", "관리자", "일반회원"]
+const selectAuthority = ["전체", "슈퍼관리자", "관리자", "봉사자"]
 const TableBoxHeadLists = ["회원등급", "이름", "성별", "연락처", "이메일"]
 const authorityTable = ["관리모드"]
 const regionTable = ["지역"]
@@ -80,8 +80,8 @@ const UserAuthorityContent = ({
                     </Col>
                 </Row>
             </Content>
-            <Modal title="권한 할당" visible={authorityModal} size={12} children={<AuthorityAdminModal authorityOnClick={authorityChange} modalClose={modalClose} selectedUser={selectedUser}/>}/>
-            <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal modalClose={modalClose} authorityOnClick={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
+            <Modal title="권한 할당" visible={authorityModal} size={12} closable={true} onClose={modalClose} children={<AuthorityAdminModal authorityChange={authorityChange} modalClose={modalClose} selectedUser={selectedUser}/>}/>
+            <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal modalClose={modalClose} authorityRegionChange={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
         </>
     )
 }

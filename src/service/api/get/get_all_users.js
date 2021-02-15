@@ -13,9 +13,7 @@
      }).then((res)=>{
          return res.json()
      }).then((data)=>{
-         console.log(data)
          data = JSON.stringify(data)
-         console.log(data)
          data = data.replace(/FEMALE/g, "여성")
          data = data.replace(/MALE/g, "남성")
          data = data.replace(/SUPER_ADMIN/g, "슈퍼관리자")

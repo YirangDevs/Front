@@ -21,10 +21,12 @@ const AuthorityAdminModal = ({
                 :<Label>"{selectedUser.userName}"님의 슈퍼관리자 권한은 수정할 수 없습니다.</Label>
             }</Col>
         </Row>
+        {selectedUser.authority=="관리자"||selectedUser.authority=="봉사자"?
         <Row gutter={[20,5]}>
             <Col span={6}><Button value="확인" types="primary" onClick={authorityChange} block></Button></Col>
             <Col span={6}><Button value="취소" types="primary" onClick={modalClose} block></Button></Col>
         </Row>
+        :null}
             
             
             

@@ -50,9 +50,11 @@ const ContentContainer = () => {
 
 
     useEffect(() => {
+        //selectBox 구성
         getMyRegion().then((data)=>{
             setMyRegion(data.regions)
-        })                                                                                                                                                       
+        })           
+        //피봉사자 표 출력                                                                                                                                            
         getAllAreas().then((data) => {
                 setSeniors(data)
         }).catch(err=>console.log(err))
