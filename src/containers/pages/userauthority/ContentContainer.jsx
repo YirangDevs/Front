@@ -122,7 +122,7 @@ const ContentContainer = () => {
 
 
     const regionOnClick = (e, data) => {
-        if(data.regions!=="-"){ //관할 구역이 존재한다면?
+        if(data.regions){ //관할 구역이 존재한다면?
             setUserId(data.userId)
             setRegionArray(data.regions)
             setRegionModal(true)
@@ -156,10 +156,33 @@ const ContentContainer = () => {
 
     const authorityRegionChange = () => {
         editUserAdminRegion(userId, userRegions).then(()=>{
-            //setRegionModal(false)
             window.location.reload()
         }).catch(error=>console.log(error))
     }
+
+    const getMyAuthority = (e) => {
+        if(e.target.value!="전체"){
+            const certainAuthority = users.filter((i)=>i.authority==e.target.value)
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i)=>{
+                return{
+                    authority : i.authority,
+                    name : i.userName,
+                    sex : i.sex,
+                    phone : i.phone,
+                    email : i.email
+                }
+            })
+            setPosts(certainAuthority)
+        }else{
+            updatePosts()
+        }
+    }
+    const regionOnCheck = (e) => {
+        console.log(e.target.value)
+        regionArray.push(e.target.value)
+    }
+
     const modalClose = () =>{
         setUserId(null);
         setUserRegions([]);
@@ -175,6 +198,8 @@ const ContentContainer = () => {
                 modalClose={modalClose}
                 authorityRegionChange={authorityRegionChange}
                 authorityChange={authorityChange}
+                getMyAuthority={getMyAuthority}
+                regionOnCheck={regionOnCheck}
 
 
                 regionModal={regionModal}

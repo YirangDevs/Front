@@ -37,6 +37,8 @@ const UserAuthorityContent = ({
     modalClose,
     authorityRegionChange,
     authorityChange,
+    getMyAuthority,
+    regionOnCheck,
 
     regionModal,
     regionArray,
@@ -54,7 +56,7 @@ const UserAuthorityContent = ({
             <Content>
                 <Row gutter={[10,10]}>
                     <Col span={2}>
-                            <SelectBox options={selectAuthority} border block></SelectBox>
+                            <SelectBox options={selectAuthority} onChange={getMyAuthority} border block></SelectBox>
                     </Col>
                     <Col span={1.8}>
                             <TextBox placeholder="이름을 검색하십시오" border></TextBox>
@@ -81,7 +83,7 @@ const UserAuthorityContent = ({
                 </Row>
             </Content>
             <Modal title="권한 할당" visible={authorityModal} size={12} closable={true} onClose={modalClose} children={<AuthorityAdminModal authorityChange={authorityChange} modalClose={modalClose} selectedUser={selectedUser}/>}/>
-            <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal modalClose={modalClose} authorityRegionChange={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
+            <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal regionOnCheck={regionOnCheck} modalClose={modalClose} authorityRegionChange={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
         </>
     )
 }
