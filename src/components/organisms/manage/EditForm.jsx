@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-01-28 20:00:02 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-29 01:36:03
+ * @Last Modified time: 2021-01-29 17:55:03
  */
 
 import React, { useEffect } from 'react'
@@ -26,7 +26,7 @@ const EditForm = ({ updateNotice, updateFunction, completeEdit }) => {
                         titleOnChange={updateFunction.title} timeOnChange={updateFunction.tov} deadlineOnChange={updateFunction.dod}></NoticeForm>
                 </Col>
                 <Col span={12} style={{
-                    height: "50vh"
+                    height: "20rem"
                 }}>
                     <TextAreaBox placeholder="내용을 입력해주세요" value={content} contentOnChange={updateFunction.content} />
                 </Col>

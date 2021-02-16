@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-29 02:22:37
+ * @Last Modified time: 2021-02-03 18:44:55
  */
 
 import React, { useState, useEffect } from "react"
@@ -22,20 +22,18 @@ const ContentContainer = () => {
     const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
     const [pagingNum, setPagingNum] = useState("0");// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
 
-    const [selectNotice, setSelectNotice] = useState({
-
-    });//  read로 열 notice 정보
-    const [updateNotice, setUpdateNotice] = useState({
-
-    })  // update할 notice 정보
+    const [selectNotice, setSelectNotice] = useState({});//  read로 열 notice 정보
+    const [updateNotice, setUpdateNotice] = useState({})  // update할 notice 정보
 
     const [deleteId, setDeleteId] = useState(null); // 삭제할 id 
     const [lists, setLists] = useState([]);//fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
+    const [isUrgentIcon, setUrgentIcon] = useState([])
 
     //modal handling
-    const [isReadVisible, setIsReadVisible] = useState(false)
-    const [isEditVisible, setIsEditVisible] = useState(false)
+    const [isReadVisible, setIsReadVisible] = useState(false) //rea d 모달
+    const [isEditVisible, setIsEditVisible] = useState(false) // edit 모달
+    const [isUrgentVisible, setIsUrgentVisible] = useState(false) // urgent 모달
 
     const readModal = {
         show() {
@@ -54,7 +52,22 @@ const ContentContainer = () => {
         }
     }
 
+    const urgentModal = {
+        show() {
+            setIsUrgentVisible(true)
+        },
+        close() {
+            setIsUrgentVisible(false)
+        }
+    }
 
+    const UrgentIcon = {
+        setIcon() {
+            console.log(isUrgentIcon)
+
+            setUrgentIcon(!isUrgentIcon)
+        }
+    }
 
     useEffect(() => {//전체 페이지 갯수 받아오기 
         getNoticeNum()
@@ -136,7 +149,7 @@ const ContentContainer = () => {
         "title": updateNotice.title,
         "activityRegisterRequestDto": {
             "content": updateNotice.content, "region": updateNotice.region, "nor": parseInt(updateNotice.nor),
-            "dov": updateNotice.dov, "tov": updateNotice.tov, "dod": updateNotice.dod
+            "dov": updateNotice.dov, "tov": updateNotice.tov + ":00", "dod": updateNotice.dod
         }
     })
 
@@ -191,8 +204,7 @@ const ContentContainer = () => {
      * @detail 삭제할 notice가 마지막일 경우 force delete
      */
 
-    const deleteClick = (e) => {
-        setDeleteId(e.target.id);
+    const deleteClick = (deleteId) => {
         deleteNotice(deleteId).then(() => {
             setDeleteId(null);
             alert("💥게시글 삭제 성공!💥")
@@ -250,12 +262,32 @@ const ContentContainer = () => {
             const dod = e.target.value;
             return setUpdateNotice((state) => ({ ...state, dod: dod }))
         },
+    }
+
+
+    /**
+     * @description 긴급게시물  클릭 시
+     * @param e 선택한 게시물을 target 하기 위한 param
+     * @detail 긴급게시물 클릭시 modal여는 거 
+     */
+    const toUrgentHandle = (e) => {
+        console.log(e);
+        urgentModal.show();
 
     }
 
+
+    /**
+     *  @description 긴급 아이콘🔥 클릭시
+     */
+    const urgentOnChange = () => {
+        setIsUrgentVisible(true);
+    }
+
+
     /**
      * @description logout 클릭 시
-     * @param e - event.persist 를 위한  param
+     * @param e  event.persist 를 위한  param
      * @detail logout기능 수행
      */
     const logoutEvent = (e) => {
@@ -267,8 +299,6 @@ const ContentContainer = () => {
         // window.location.href = "https://kauth.kakao.com/oauth/logout?client_id=" + _.REST_KEY + "&logout_redirect_uri=" + _.LOGOUT_REDIRECT_URL
 
     }
-
-
 
     return (
 
@@ -300,7 +330,12 @@ const ContentContainer = () => {
                 readModal={readModal}
                 editModal={editModal}
 
-
+                /* 긴급 게시물 올리기  */
+                isUrgentIcon={isUrgentIcon}
+                isUrgentVisible={isUrgentVisible}
+                UrgentModal={urgentModal}
+                urgentOnChange={urgentOnChange}
+                UrgentIcon={UrgentIcon}
 
             > </ManageContent>
         </>
