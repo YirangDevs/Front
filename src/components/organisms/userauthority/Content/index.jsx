@@ -8,6 +8,7 @@ import Button from "../../../atoms/Button"
 import TableBox from "../../../atoms/TableBox"
 import Modal from "../../../../components/atoms/Modal"
 import MenuNav from "../../../../containers/redux/components/MenuNav"
+import Pagination from "../../../atoms/Pagination"
 import AuthorityAdminModal from "../../../../components/organisms/userauthority/AuthorityAdminModal"
 import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
 
@@ -39,12 +40,14 @@ const UserAuthorityContent = ({
     authorityChange,
     getMyAuthority,
     regionOnCheck,
+    paginationOnClick,
 
     regionModal,
     regionArray,
     regionOptions,
     authorityModal,
 
+    users,
     posts,
     adminPosts,
     regionsPosts,
@@ -82,6 +85,11 @@ const UserAuthorityContent = ({
                         <MenuNav />
                     </Col>
                 </Row>
+                <Row>
+                <Col span={12} xxl={7} xl={6} justify={"center"}>
+                    <Pagination num={Math.ceil(users.length/10)} onClick={paginationOnClick}></Pagination>
+                </Col>
+            </Row>
             </Content>
             <Modal title="권한 할당" visible={authorityModal} size={12} closable={true} onClose={modalClose} children={<AuthorityAdminModal authorityChange={authorityChange} modalClose={modalClose} selectedUser={selectedUser}/>}/>
             <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal regionOnCheck={regionOnCheck} modalClose={modalClose} authorityRegionChange={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>

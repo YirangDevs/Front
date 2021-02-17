@@ -149,22 +149,32 @@ const ContentContainer = () => {
     const authorityChange = () => {
         if(selectedUser.authority=="봉사자"){
             changeUserToAdmin(userId).then(()=>{
-                //setAuthorityModal(false)
-                window.location.reload()
+                addDeleteRender()
+                setAuthorityModal(false)
             }).catch(error=>console.log(error))
         }else{
             changeAdminToUser(userId).then(()=>{
-                //setAuthorityModal(false)
-                window.location.reload()
+                addDeleteRender()
+                setAuthorityModal(false)
             }).catch(error=>console.log(error))
         }
         
+    }
+
+    //표를 리렌더링 하는 부분
+    const addDeleteRender = () => {
+        getAllUsers().then((data)=>{
+            setUsers(data.userAuthorities)
+        }).catch(err=>console.log(err))
     }
 
     const authorityRegionChange = () => {
         editUserAdminRegion(userId, userRegions).then(()=>{
             window.location.reload()
         }).catch(error=>console.log(error))
+    }
+    const paginationOnClick = (e) => {
+        setCurrentPage(e.target.innerText)
     }
 
     const getMyAuthority = (e) => {
@@ -207,6 +217,7 @@ const ContentContainer = () => {
                 authorityChange={authorityChange}
                 getMyAuthority={getMyAuthority}
                 regionOnCheck={regionOnCheck}
+                paginationOnClick={paginationOnClick}
 
 
                 regionModal={regionModal}
@@ -214,6 +225,7 @@ const ContentContainer = () => {
                 regionOptions={regionOptions}
                 authorityModal={authorityModal}
 
+                users={users}
                 posts={posts}
                 adminPosts={adminPosts}
                 regionsPosts={regionsPosts}
