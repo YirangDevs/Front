@@ -57,14 +57,16 @@ const ContentContainer = () => {
     
     
     const updateRegionsPosts = useCallback(()=>{
+        console.log(users)
         let data = users
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
                 return{
-                    regions : i.regions? i.regions.slice(0,2):null
+                    regions : i.regions && Object.keys(i.regions).length!=0?  i.regions.slice(0,2) : "-"
                 }            
         })
         setRegionsPosts(data)
+        
     }, [currentPage, users])
 
 
@@ -127,6 +129,13 @@ const ContentContainer = () => {
             setRegionArray(data.regions)
             setRegionModal(true)
             setUserRegions(data.regions)
+        }else{
+            if(data.authority=="관리자"){
+            setUserId(data.userId)
+            setRegionArray(data.regions)
+            setRegionModal(true)
+            setUserRegions(data.regions)
+            }
         }        
     }
     const authorityOnClick = (e, data) => {
@@ -134,8 +143,6 @@ const ContentContainer = () => {
         setUserId(data.userId)
         const user = users.filter((i)=>i.userId===data.userId)[0]
         setSelectedUser(user)
-
-        //console.log(selectedUser)
 
     }
 
