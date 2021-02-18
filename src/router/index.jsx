@@ -30,7 +30,8 @@ const YirangRouter = ({role}) => {
                     <SeniorRouter security={["ADMIN", "SUPER_ADMIN"]} role={role}/>
                 </Route>
                 <Route path="/userauthority">
-                    <UserAuthorityRouter security={["SUPER_ADMIN"]} role={role}/>
+                    <UserAuthorityRouter security={["SUPERADMIN"]} role={role}/>
+
                 </Route>
                 <Route exact path="/" component={Home}/>
             </Switch>

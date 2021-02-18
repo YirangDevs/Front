@@ -62,7 +62,7 @@ const ContentContainer = () => {
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
                 return{
-                    regions : i.regions && Object.keys(i.regions).length!=0?  i.regions.slice(0,2) : "-"
+                    regions : i.regions && Object.keys(i.regions).length!=0?  i.regions.slice(0,1)+" 외 "+ (Object.keys(i.regions).length-1) + "구": "-"
                 }            
         })
         setRegionsPosts(data)
@@ -177,6 +177,7 @@ const ContentContainer = () => {
         setCurrentPage(e.target.innerText)
     }
 
+    //권한에 따라서 나타나는 테이블이 달라집니다.
     const getMyAuthority = (e) => {
         if(e.target.value!="전체"){
             const certainAuthority = users.filter((i)=>i.authority==e.target.value)
@@ -190,9 +191,29 @@ const ContentContainer = () => {
                     email : i.email
                 }
             })
+            //지역 권한 관리
+            const certainRegionsPosts = users.filter((i)=>i.authority==e.target.value)
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i)=>{
+                return{
+                    regions : i.regions && Object.keys(i.regions).length!=0?  i.regions.slice(0,1)+" 외 "+ (Object.keys(i.regions).length-1) + "구": "-"
+                    }            
+            })
+            //유저 권한 관리
+            const certainAdminPosts = users.filter((i)=>i.authority==e.target.value)
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i)=>{
+            return{
+                authority : i.authority
+            }
+        })
+            setAdminPosts(certainAdminPosts)
+            setRegionsPosts(certainRegionsPosts)
             setPosts(certainAuthority)
         }else{
             updatePosts()
+            updateRegionsPosts()
+            updateAdminPosts()
         }
     }
     const regionOnCheck = (e) => {
