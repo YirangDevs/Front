@@ -62,6 +62,10 @@ const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnCl
         onClick(e, data)
     }, [onClick])
 
+    const onTableBodyClick = useCallback((e, data)=> {
+        dataOnClick(e, data)
+    }, [dataOnClick])
+
     return(
     <>
         <Table>
@@ -89,7 +93,7 @@ const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnCl
                                     return (value === primaryKey) ?
                                         <PrimaryKey key={secondIndex} onClick={(e)=>onPrimaryClick(e, data[firstIndex])}>{i[value]}</PrimaryKey>
                                         :
-                                        <TableBody back={certainDate<new Date()} key={secondIndex} onClick={dataOnClick}>{i[value]}</TableBody>
+                                        <TableBody back={certainDate<new Date()} key={secondIndex} onClick={(e)=>onTableBodyClick(e, data[firstIndex])}>{i[value]}</TableBody>
                                 })}
                             </TableRow>)
                     })
