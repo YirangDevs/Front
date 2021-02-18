@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import Modal from "../../../components/atoms/Modal"
 import UserAuthorityContent from "../../../components/organisms/userauthority/index"
@@ -22,23 +22,23 @@ const ContentContainer = () => {
 
     const regionOnClick = (e) => {
         const region = e.target.innerText
-        if(region!=="-"){
+        if (region !== "-") {
             setRegionArray(region.split(","))
             setModal(true)
         }
     }
-    const modalClose = () =>{
+    const modalClose = () => {
         setModal(false)
     }
     return (
         <>
-        <Container>
-            <UserAuthorityContent
-                regionOnClick={regionOnClick}   
-            >
-            </UserAuthorityContent>
-        </Container>
-        <Modal title="지역 할당" visible={modal} onClose = {modalClose}closable={true} size={12} children={<CheckBox defaultChecked={regionArray} options={regionOptions}/>}/>
+            <Container>
+                <UserAuthorityContent
+                    regionOnClick={regionOnClick}
+                >
+                </UserAuthorityContent>
+            </Container>
+            <Modal title="지역 할당" visible={modal} onClose={modalClose} closable={true} size={12} children={<CheckBox defaultChecked={regionArray} options={regionOptions} />} />
         </>
     )
 }
