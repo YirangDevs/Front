@@ -7,8 +7,8 @@ import LogoutRouter from "./LogoutRouter";
 import LoginRouter from "./LoginRouter";
 import ManageRouter from "./ManageRouter";
 import SeniorRouter from "./SeniorRouter";
-//import UserAuthorityRouter from "./UserAuthorityRouter";
-import UserAuthority from "../pages/UserAuthority"
+import UserAuthorityRouter from "./UserAuthorityRouter";
+//import UserAuthority from "../pages/UserAuthority"
 import {connect} from "react-redux";
 
 const YirangRouter = ({role}) => {
@@ -31,8 +31,7 @@ const YirangRouter = ({role}) => {
                     <SeniorRouter security={["ADMIN", "SUPER_ADMIN"]} role={role}/>
                 </Route>
                 <Route path="/userauthority">
-                    {/* <UserAuthorityRouter security={["SUPERADMIN"]} role={role}/> */}
-                    <UserAuthority />
+                    <UserAuthorityRouter security={["SUPERADMIN"]} role={role}/>
 
                 </Route>
                 <Route exact path="/" component={Home}/>
