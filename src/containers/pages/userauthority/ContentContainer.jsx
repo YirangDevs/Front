@@ -227,6 +227,44 @@ const ContentContainer = () => {
         setRegionModal(false)
         setAuthorityModal(false)
     }
+
+    const searchName = (e) => {
+        const name = e.target.parentNode.parentNode.children[1].children[0].value
+        if(name){
+            const certainNamePosts = users.filter((i)=>i.userName.includes(name))
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i)=>{
+                return{
+                    authority : i.authority,
+                    name : i.userName,
+                    sex : i.sex,
+                    phone : i.phone,
+                    email : i.email
+                }
+            })
+            //지역 권한 관리
+            const certainRegionsPosts = users.filter((i)=>i.userName.includes(name))
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i)=>{
+                return{
+                    regions : i.regions && Object.keys(i.regions).length!=0?  i.regions.slice(0,1)+" 외 "+ (Object.keys(i.regions).length-1) + "구": "-"
+                    }            
+            })
+            //유저 권한 관리
+            const certainAdminPosts = users.filter((i)=>i.userName.includes(name))
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i)=>{
+            return{
+                authority : i.authority
+            }
+        })
+            setAdminPosts(certainAdminPosts)
+            setRegionsPosts(certainRegionsPosts)
+            setPosts(certainNamePosts)
+        }
+        
+
+    }
     return (
         <>
         <Container>
@@ -239,7 +277,7 @@ const ContentContainer = () => {
                 getMyAuthority={getMyAuthority}
                 regionOnCheck={regionOnCheck}
                 paginationOnClick={paginationOnClick}
-
+                searchName = {searchName}
 
                 regionModal={regionModal}
                 regionArray={regionArray}

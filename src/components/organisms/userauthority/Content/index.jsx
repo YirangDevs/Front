@@ -27,6 +27,7 @@ const UserAuthorityContent = ({
     getMyAuthority,
     regionOnCheck,
     paginationOnClick,
+    searchName,
 
     regionModal,
     regionArray,
@@ -52,7 +53,7 @@ const UserAuthorityContent = ({
                             <TextBox placeholder="이름을 검색하십시오" border></TextBox>
                     </Col>
                     <Col span={1}>
-                        <Button value="검색" theme="white" round/>
+                        <Button value="검색" theme="white" onClick={searchName} round/>
                     </Col>
                 </Row>
                 <Row>
