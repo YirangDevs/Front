@@ -34,7 +34,7 @@ const UserAuthorityContent = ({
     regionOptions,
     authorityModal,
 
-    users,
+    certainUsers,
     posts,
     adminPosts,
     regionsPosts,
@@ -74,7 +74,7 @@ const UserAuthorityContent = ({
                 </Row>
                 <Row>
                 <Col span={12} xxl={7} xl={6} justify={"center"}>
-                    <Pagination num={Math.ceil(users.length/10)} onClick={paginationOnClick}></Pagination>
+                    <Pagination num={Math.ceil(certainUsers.length/10)} onClick={paginationOnClick}></Pagination>
                 </Col>
             </Row>
             </Content>
