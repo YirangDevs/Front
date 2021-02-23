@@ -23,7 +23,7 @@ const MenuIconNav = ({role}) => {
             </Col>
             {
 
-                (role==="ADMIN" || role === "SUPER_ADMIN") ?
+                //(role==="ADMIN" || role === "SUPER_ADMIN") ?
                             <>
                                 <Col span={1} justify={"center"}>
                                     <IconButton value={"피봉사자 데이터 업로드"} size={"large"} onClick={
@@ -55,7 +55,7 @@ const MenuIconNav = ({role}) => {
                                     </IconButton>
                                 </Col>
 
-                            </> : null
+                            </> //: null
             }
             {
                 //(role==="SUPER_ADMIN") ?

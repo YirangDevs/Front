@@ -59,11 +59,21 @@ const PrimaryKey = styled(TableBody)`
 const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data}) => {
     
     const onPrimaryClick = useCallback((e, data)=>{
-        onClick(e, data)
+        if(data){
+            onClick(e, data)
+        }else{
+            onClick(e)
+        }
+        
     }, [onClick])
 
     const onTableBodyClick = useCallback((e, data)=> {
-        dataOnClick(e, data)
+        if(data){
+            dataOnClick(e, data)
+        }else{
+            dataOnClick(e)
+        }
+        
     }, [dataOnClick])
 
     return(
@@ -91,9 +101,9 @@ const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnCl
                                 {Object.keys(i).map((value, secondIndex) => {
 
                                     return (value === primaryKey) ?
-                                        <PrimaryKey key={secondIndex} onClick={(e)=>onPrimaryClick(e, data[firstIndex])}>{i[value]}</PrimaryKey>
+                                        <PrimaryKey key={secondIndex} onClick={(e)=>{data? onPrimaryClick(e, data[firstIndex]):onPrimaryClick(e)}}>{i[value]}</PrimaryKey>
                                         :
-                                        <TableBody back={certainDate<new Date()} key={secondIndex} onClick={(e)=>onTableBodyClick(e, data[firstIndex])}>{i[value]}</TableBody>
+                                        <TableBody back={certainDate<new Date()} key={secondIndex} onClick={(e)=>{data? onTableBodyClick(e, data[firstIndex]):onTableBodyClick(e)}}>{i[value]}</TableBody>
                                 })}
                             </TableRow>)
                     })
