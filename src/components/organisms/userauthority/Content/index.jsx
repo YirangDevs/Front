@@ -57,18 +57,18 @@ const UserAuthorityContent = ({
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={5.8}>
+                    <Col span={8.8} xxl={5.8}>
                         <TableBox headList={TableBoxHeadLists} bodyList={posts}/>
                     </Col>
                     <Col span={0.2} /> {/* 빈칸 */}
-                    <Col span={1}>
+                    <Col span={1.5} xxl={1}>
                         <TableBox headList={authorityTable} bodyList={adminPosts} dataOnClick={authorityOnClick} data={idArray} black back/>
                     </Col>
-                    <Col span={1}>
+                    <Col span={1.5} xxl={1}>
                     <TableBox headList={regionTable} bodyList={regionsPosts} dataOnClick={regionOnClick} data={idArray} black back/>  
                     </Col>
-                    <Col span={0.5} /> {/* 빈칸 */}
-                    <Col span={3.5}>
+                    <Col xxl={0.5} /> {/* 빈칸 */}
+                    <Col span={0} xxl={3.5}>
                         <MenuNav />
                     </Col>
                 </Row>
