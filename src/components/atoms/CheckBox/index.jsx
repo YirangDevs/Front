@@ -35,7 +35,7 @@ const CheckBox = ({size, defaultChecked, onChange, options}) => (
     <>
     <CheckBoxGroup>
         {options.map((i)=>
-        <CheckBoxLabel size={size}><Check onChange={onChange} value={i} checked={(defaultChecked.includes(i))? "checked": undefined} />{i}</CheckBoxLabel>
+        <CheckBoxLabel size={size}><Check onChange={onChange} value={i} defaultChecked={(defaultChecked.includes(i))? "checked": undefined} />{i}</CheckBoxLabel>
         )}
         
     </CheckBoxGroup>

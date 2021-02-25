@@ -196,6 +196,7 @@ const ContentContainer = () => {
         }
     }
     const regionOnCheck = (e) => {
+        console.log(e.target.value)
         regionArray.push(e.target.value)
     }
 
