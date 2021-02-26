@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-18 12:08:42
+ * @Last Modified time: 2021-02-24 16:59:07
  */
 
 import React from 'react'
@@ -11,18 +11,17 @@ import Col from '../../../../layout/Grid/Column'
 import Row from '../../../../layout/Grid/Row'
 import Typo from '../../../atoms/Typography'
 import UserInfo from '../../../../containers/redux/components/UserInfo'
-import MenuNav from "../../../molecules/MenuNav"
 import TableBox from "../../../atoms/TableBox"
 import Button from '../../../atoms/Button'
-import { MdToday } from "react-icons/md";
 import DateSelector from '../../../atoms/DateSelector'
 import RadioBox from '../../../atoms/RadioButton'
+import MypageNav from "../../../molecules/MypageNav"
 
 const MyPageContent = ({
     //redux user information
     username,
     email,
-
+    role,
 
 
 }) => {
@@ -89,7 +88,7 @@ const MyPageContent = ({
                         </Row>
                         <Row gutter={[15, 0]}>
                             <Col span={12}>
-                                <MenuNav />
+                                <MypageNav role={role} />
                             </Col>
                         </Row>
                         <Row gutter={[15, 0]} style={{ margin: '2.5rem 0 0 0 ' }}>

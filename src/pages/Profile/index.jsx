@@ -1,10 +1,9 @@
-import React from "react"
-import ContentContainer from "../../containers/pages/mypage/ContentContainer"
+import React, { useEffect } from "react"
+import ContentContainer from "../../containers/pages/profile/ContentContainer"
 import Header from "../../containers/redux/components/Header";
 
 
-
-const MyPage = () => {
+const Profile = () => {
 
     return (
         <>
@@ -15,4 +14,4 @@ const MyPage = () => {
     )
 }
 
-export default MyPage
+export default Profile
