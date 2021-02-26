@@ -18,14 +18,13 @@ const editNotice = (updateID , data , title ,  diff) =>{
         body: data,
     }).then(res=>{
         if(!res.ok) throw res.json()
-        else{
+        
             NotificationPool.api.add({
                 title : "수정 완료",
-                content : `"${title}" 게시물의 ${diff} 수정되었습니다.`,
+                content : `"${title}" 게시물의 ${diff}이 수정되었습니다.`,
                 status : "success"
             })
-        }
-
+        
     }).catch(async(error)=>{
         let err =  await error.then()
         console.log("Error from edit_notice\n"+err.errorCode+"\n"+err.errorName)

@@ -2,9 +2,9 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-29 00:24:44
+ * @Last Modified time: 2021-02-24 04:23:09
  */
-import React  from "react"
+import React from "react"
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import ContentLayout from "../../../../layout/Content"
@@ -12,9 +12,9 @@ import MenuNav from '../../../molecules/MenuNav'
 import TableBox from '../../../atoms/TableBox'
 import Button from '../../../atoms/Button'
 import Modal from '../../../atoms/Modal'
-import ReadForm from '../ReadForm/'
-import EditForm from '../EditForm/'
-// 이거 tableButton 다만들면 지우기
+import ReadForm from '../ReadForm'
+import EditForm from '../EditForm'
+import UserInfo from "../../../../containers/redux/components/UserInfo"
 
 
 
@@ -46,7 +46,13 @@ const ManageContent = ({
     isEditVisible,
     readModal,
     editModal,
+    isUrgentVisible,
+    UrgentModal,
 
+    isUrgentIcon,
+    urgentOnChange,
+
+    UrgentIcon,
 
 
 }) => {
@@ -104,7 +110,9 @@ const ManageContent = ({
                                                 <Col span={12} xs={12}>
                                                     <Modal visible={isReadVisible}
                                                         closable={true} maskClosable={true} onClose={readModal.close} size={10}>
-                                                        <ReadForm selectNotice={selectNotice} updateFunction={updateFunction}></ReadForm>
+                                                        <ReadForm UrgentIcon={UrgentIcon} selectNotice={selectNotice} updateFunction={updateFunction}
+                                                            isUrgentVisible={isUrgentVisible} UrgentModal={UrgentModal}
+                                                            isUrgentIcon={isUrgentIcon} urgentOnChange={urgentOnChange}></ReadForm>
                                                     </Modal>
                                                 </Col>
                                             </Row>
@@ -125,7 +133,7 @@ const ManageContent = ({
                         }
                     </Col>
                     <Col xs={0} sm={0} md={1} lg={4} >
-                        <Row gutter={[5, 0]}>
+                        <Row gutter={[10, 0]}>
                             <Col span={12} style={{
                                 fontFamily: "NotoSansCJKKR",
                                 fontSize: "1.125rem",
@@ -135,6 +143,9 @@ const ManageContent = ({
                             </Col>
                             <Col span={12}>
                                 <MenuNav />
+                            </Col>
+                            <Col span={12}>
+                                <UserInfo ></UserInfo>
                             </Col>
                         </Row>
                     </Col>

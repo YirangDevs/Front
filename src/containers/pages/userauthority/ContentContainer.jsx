@@ -151,6 +151,13 @@ const ContentContainer = () => {
 
     }
 
+    //표를 리렌더링 하는 부분
+    const addDeleteRender = () => {
+        getAllUsers().then((data)=>{
+            setUsers(data.userAuthorities)
+        }).catch(err=>console.log(err))
+    }
+
     const authorityChange = () => {
         if(selectedUser.authority=="봉사자"){
             changeUserToAdmin(userId).then(()=>{
@@ -163,15 +170,9 @@ const ContentContainer = () => {
                 setAuthorityModal(false)
             }).catch(error=>console.log(error))
         }
-        
     }
 
-    //표를 리렌더링 하는 부분
-    const addDeleteRender = () => {
-        getAllUsers().then((data)=>{
-            setUsers(data.userAuthorities)
-        }).catch(err=>console.log(err))
-    }
+    
 
     const authorityRegionChange = () => {
         editUserAdminRegion(userId, regionArray).then(()=>{
@@ -202,6 +203,7 @@ const ContentContainer = () => {
         }else{
             setRegionArray(regionArray.filter(region=>region!==e.target.value))
         }
+        console.log(regionArray)
     }
 
     const modalClose = () =>{
@@ -255,9 +257,7 @@ const ContentContainer = () => {
             >
             </UserAuthorityContent>
         </Container>
-        
         </>
-    )
+        )
 }
-
 export default ContentContainer

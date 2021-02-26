@@ -9,6 +9,7 @@ import TableBox from "../../../atoms/TableBox"
 import Modal from "../../../../components/atoms/Modal"
 import MenuNav from "../../../../containers/redux/components/MenuNav"
 import Pagination from "../../../atoms/Pagination"
+import UserInfo from "../../../molecules/UserInfo"
 import AuthorityAdminModal from "../../../../components/organisms/userauthority/AuthorityAdminModal"
 import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
 
@@ -69,7 +70,15 @@ const UserAuthorityContent = ({
                     </Col>
                     <Col xxl={0.5} /> {/* 빈칸 */}
                     <Col span={0} xxl={3.5}>
-                        <MenuNav />
+                        <Row gutter={[10,0]}>
+                            <Col span={12}>
+                                <MenuNav />
+                            </Col>
+                            <Col span={12}>
+                                <UserInfo />
+                            </Col>
+                        </Row>
+                        
                     </Col>
                 </Row>
                 <Row>
