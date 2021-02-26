@@ -41,7 +41,7 @@ const UserAuthorityContent = ({
     idArray,
     selectedUser
 }) => {
-    console.log(regionsPosts)
+    //console.log(regionArray)
     return(
         <>
             <Content>

@@ -174,8 +174,8 @@ const ContentContainer = () => {
     }
 
     const authorityRegionChange = () => {
-        editUserAdminRegion(userId, userRegions).then(()=>{
-            window.location.reload()
+        editUserAdminRegion(userId, regionArray).then(()=>{
+            //window.location.reload()
         }).catch(error=>console.log(error))
     }
     const paginationOnClick = (e) => {
@@ -196,8 +196,12 @@ const ContentContainer = () => {
         }
     }
     const regionOnCheck = (e) => {
-        console.log(e.target.value)
-        regionArray.push(e.target.value)
+        console.log(e.target.checked)
+        if(e.target.checked){
+            regionArray.push(e.target.value)
+        }else{
+            setRegionArray(regionArray.filter(region=>region!==e.target.value))
+        }
     }
 
     const modalClose = () =>{
