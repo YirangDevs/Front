@@ -5,6 +5,9 @@ const Radio = styled.input.attrs((props)=> ({type:"radio"}))`
 
 `
 const RadioGroup = styled.div`
+    width:100%;
+    display: flex;
+    justify-content: space-around;
 `
 const RadioLabel = styled.label`
 ${props=>{
