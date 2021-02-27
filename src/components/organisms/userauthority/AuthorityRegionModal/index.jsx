@@ -9,14 +9,16 @@ const AuthorityRegionModal = ({
     regionArray,
     regionOptions,
     authorityRegionChange,
+    regionOnCheck,
     modalClose
 }) => {
 
+    console.log(regionArray)
     return (
         <>
         <Row>
             <Col span={12}>
-            <CheckBox defaultChecked={regionArray} options={regionOptions}/>
+            <CheckBox defaultChecked={regionArray} onChange={regionOnCheck} options={regionOptions}/>
             </Col>
         </Row>
         <Row gutter={[20,5]}>

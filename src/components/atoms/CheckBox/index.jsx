@@ -29,13 +29,13 @@ ${props=>{
 `
 
 
-const CheckBox = ({size, defaultChecked, options}) => (
+const CheckBox = ({size, defaultChecked, onChange, options}) => (
 
     //options = selectBox 목록 DataType = Array
     <>
     <CheckBoxGroup>
         {options.map((i)=>
-        <CheckBoxLabel size={size}><Check value={i} checked={(defaultChecked.includes(i))? "checked": null} />{i}</CheckBoxLabel>
+        <CheckBoxLabel size={size}><Check onChange={onChange} value={i} checked={(defaultChecked.includes(i))? "checked": undefined} />{i}</CheckBoxLabel>
         )}
         
     </CheckBoxGroup>
