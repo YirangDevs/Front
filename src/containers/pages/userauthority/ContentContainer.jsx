@@ -62,7 +62,7 @@ const ContentContainer = () => {
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
                 return{
-                    regions : i.regions && Object.keys(i.regions).length!=0?  i.regions.slice(0,2) : "-"
+                    regions : i.regions && Object.keys(i.regions).length!==0?  i.regions.slice(0,2) : "-"
                 }            
         })
         setRegionsPosts(data)
@@ -130,7 +130,7 @@ const ContentContainer = () => {
             setRegionModal(true)
             setUserRegions(data.regions)
         }else{
-            if(data.authority=="관리자"){
+            if(data.authority==="관리자"){
             setUserId(data.userId)
             setRegionArray(data.regions)
             setRegionModal(true)
@@ -147,7 +147,7 @@ const ContentContainer = () => {
     }
 
     const authorityChange = () => {
-        if(selectedUser.authority=="봉사자"){
+        if(selectedUser.authority==="봉사자"){
             changeUserToAdmin(userId).then(()=>{
                 addDeleteRender()
                 setAuthorityModal(false)
@@ -178,8 +178,8 @@ const ContentContainer = () => {
     }
 
     const getMyAuthority = (e) => {
-        if(e.target.value!="전체"){
-            const certainAuthority = users.filter((i)=>i.authority==e.target.value)
+        if(e.target.value!=="전체"){
+            const certainAuthority = users.filter((i)=>i.authority===e.target.value)
             .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
             .map((i)=>{
                 return{
