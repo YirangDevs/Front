@@ -1,6 +1,7 @@
 import getTokenFromKakao from "../api/post/get_token_from_kakao"
 import YAT from "../../util/Yat/yat"
 import getYAT from "../api/get/getYAT";
+import getMyRole from "../api/get/get_my_role";
 
 const LoginProcess = (AUTHORIZATION_CODE) => {
     return new Promise(async(resolve, reject)=>{
@@ -19,18 +20,21 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
                 throw {error : "Kakao AccessToken not exist"}
             }
         })
-        .then((YIRANG_ACCESS_TOKEN)=>{
+        .then(async(YIRANG_ACCESS_TOKEN)=>{
             YIRANG_ACCESS_TOKEN = YIRANG_ACCESS_TOKEN.split(" ")[1]
             localStorage.setItem("YAT",YIRANG_ACCESS_TOKEN)
             let payload = YAT.decode(YIRANG_ACCESS_TOKEN)
-            console.log(payload)
+            let roleInfo = await getMyRole()
+            console.log("payload : ", payload)
             resolve({
                 username : payload.username,
                 imgUrl : payload.imgUrl,
                 userId : payload.userId,
-                role : payload.role
+                role : roleInfo.authority
             })
-        }).catch(error=>{
+            return YIRANG_ACCESS_TOKEN
+        })
+            .catch(error=>{
             console.log(error)
         })
     })

@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-28 01:59:28
+ * @Last Modified time: 2021-03-01 21:30:46
  */
 
 
@@ -71,6 +71,8 @@ const ProfileContent = ({
                                 <Typo size={"1.2rem"} weight={"500"} > 봉사 관리</Typo>
                             </Col>
                         </Row>
+
+
                     </Col>
                 </Row>
             </ContentLayout>
