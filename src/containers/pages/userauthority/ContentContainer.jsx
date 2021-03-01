@@ -63,11 +63,7 @@ const ContentContainer = () => {
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
                 return{
-<<<<<<< HEAD
                     regions : i.regions && Object.keys(i.regions).length!=0?  i.regions.slice(0,1)+" 외 "+ (Object.keys(i.regions).length-1) + "구": "-"
-=======
-                    regions : i.regions && Object.keys(i.regions).length!==0?  i.regions.slice(0,2) : "-"
->>>>>>> origin/stage
                 }            
         })
         setRegionsPosts(data)
@@ -189,28 +185,12 @@ const ContentContainer = () => {
 
     //권한에 따라서 나타나는 테이블이 달라집니다.
     const getMyAuthority = (e) => {
-<<<<<<< HEAD
         setCurrentPage(1)
         if(e.target.value!="전체"){
             const certainAuthority = users.filter((i)=>i.authority==e.target.value)
 
             setCertainUsers(certainAuthority)
             setTable()
-=======
-        if(e.target.value!=="전체"){
-            const certainAuthority = users.filter((i)=>i.authority===e.target.value)
-            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
-            .map((i)=>{
-                return{
-                    authority : i.authority,
-                    name : i.userName,
-                    sex : i.sex,
-                    phone : i.phone,
-                    email : i.email
-                }
-            })
-            setPosts(certainAuthority)
->>>>>>> origin/stage
         }else{
             setCertainUsers(users)
             setTable()
@@ -218,6 +198,7 @@ const ContentContainer = () => {
     }
     const regionOnCheck = (e) => {
         console.log(e.target.checked)
+        console.log(e.target.value)
         if(e.target.checked){
             regionArray.push(e.target.value)
         }else{

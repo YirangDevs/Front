@@ -24,12 +24,8 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
             YIRANG_ACCESS_TOKEN = YIRANG_ACCESS_TOKEN.split(" ")[1]
             localStorage.setItem("YAT",YIRANG_ACCESS_TOKEN)
             let payload = YAT.decode(YIRANG_ACCESS_TOKEN)
-<<<<<<< HEAD
-            console.log(payload)
-=======
             let roleInfo = await getMyRole()
             console.log("payload : ", payload)
->>>>>>> origin/stage
             resolve({
                 username : payload.username,
                 imgUrl : payload.imgUrl,

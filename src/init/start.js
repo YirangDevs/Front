@@ -24,12 +24,7 @@ export default () =>{
                             username : claim.username,
                             imgUrl : claim.imgUrl,
                             userId : claim.userId,
-<<<<<<< HEAD
-                           // role : claim.role,
-                           role : 'SUPER_ADMIN' // chaeeun 나중에 지울게 ㅎㅎ
-=======
                             role : roleInfo.authority
->>>>>>> origin/stage
                         }
                     }))
 

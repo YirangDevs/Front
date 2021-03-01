@@ -12,17 +12,6 @@ import NoticeForm from "../../../molecules/NoticeForm";
 import Button from "../../../atoms/Button";
 
 const HomeContent = ({
-<<<<<<< HEAD
-    role,
-    noticeList,
-    bodyList,
-    noticeNum,
-    currentNoticePage,
-
-    setNoticeNum,
-    onPaginationClick,
-    onTableClick
-=======
                          role,
                          noticeList,
                          bodyList,
@@ -35,7 +24,6 @@ const HomeContent = ({
                          onPaginationClick,
                          onTableClick,
                          onApplyBtnClick
->>>>>>> origin/stage
 }) => {
     const table_head = ["제목", "봉사날짜", "봉사지역", "모집인원"]
     const history = useHistory()
@@ -50,22 +38,6 @@ const HomeContent = ({
                 <Row justify={"center"} style={{
                     marginTop: "8rem"
                 }}>
-<<<<<<< HEAD
-                    <Col span={6}>
-                        <Row gutter={[5, 0]}>
-                            <Col span={12} justify={"space-between"}>
-                                <span style={{
-                                    fontSize: "1.2rem"
-                                }}>공고글 리스트</span>
-
-                            </Col>
-                            <Col span={12}>
-                                <TableBox headList={table_head} bodyList={bodyList} border={"bottom"} data={noticeList} primaryKey={"title"} onClick={onTableClick}></TableBox>
-                            </Col>
-                            <Col span={12} justify={"center"}>
-                                <Pagination num={Math.ceil(noticeNum / 6)} onClick={onPaginationClick}></Pagination>
-                            </Col>
-=======
                     <Col span={7}>
                         <Row gutter={[5,0]}>
 
@@ -114,7 +86,6 @@ const HomeContent = ({
                                     </>
                             }
 
->>>>>>> origin/stage
                         </Row>
 
                     </Col>
