@@ -62,7 +62,7 @@ const ContentContainer = () => {
             .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
             .map((i) => {
                 return {
-                    regions: i.regions && Object.keys(i.regions).length != 0 ? i.regions.slice(0, 2) : "-"
+                    regions: i.regions && Object.keys(i.regions).length !== 0 ? i.regions.slice(0, 2) : "-"
                 }
             })
         setRegionsPosts(data)
@@ -130,113 +130,120 @@ const ContentContainer = () => {
             setRegionModal(true)
             setUserRegions(data.regions)
         } else {
-            if (data.authority == "관리자") {
+            if (data.authority === "관리자") {
                 setUserId(data.userId)
                 setRegionArray(data.regions)
                 setRegionModal(true)
                 setUserRegions(data.regions)
+            } else {
+                if (data.authority == "관리자") {
+                    setUserId(data.userId)
+                    setRegionArray(data.regions)
+                    setRegionModal(true)
+                    setUserRegions(data.regions)
+                }
             }
         }
-    }
-    const authorityOnClick = (e, data) => {
-        setAuthorityModal(true)
-        setUserId(data.userId)
-        const user = users.filter((i) => i.userId === data.userId)[0]
-        setSelectedUser(user)
+        const authorityOnClick = (e, data) => {
+            setAuthorityModal(true)
+            setUserId(data.userId)
+            const user = users.filter((i) => i.userId === data.userId)[0]
+            setSelectedUser(user)
 
-    }
-
-    const authorityChange = () => {
-        if (selectedUser.authority == "봉사자") {
-            changeUserToAdmin(userId).then(() => {
-                addDeleteRender()
-                setAuthorityModal(false)
-            }).catch(error => console.log(error))
-        } else {
-            changeAdminToUser(userId).then(() => {
-                addDeleteRender()
-                setAuthorityModal(false)
-            }).catch(error => console.log(error))
         }
 
-    }
+        const authorityChange = () => {
+            if (selectedUser.authority === "봉사자") {
+                changeUserToAdmin(userId).then(() => {
+                    addDeleteRender()
+                    setAuthorityModal(false)
+                }).catch(error => console.log(error))
+            } else {
+                changeAdminToUser(userId).then(() => {
+                    addDeleteRender()
+                    setAuthorityModal(false)
+                }).catch(error => console.log(error))
+            }
 
-    //표를 리렌더링 하는 부분
-    const addDeleteRender = () => {
-        getAllUsers().then((data) => {
-            setUsers(data.userAuthorities)
-        }).catch(err => console.log(err))
-    }
-
-    const authorityRegionChange = () => {
-        editUserAdminRegion(userId, userRegions).then(() => {
-            window.location.reload()
-        }).catch(error => console.log(error))
-    }
-    const paginationOnClick = (e) => {
-        setCurrentPage(e.target.innerText)
-    }
-
-    const getMyAuthority = (e) => {
-        if (e.target.value != "전체") {
-            const certainAuthority = users.filter((i) => i.authority == e.target.value)
-                .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
-                .map((i) => {
-                    return {
-                        authority: i.authority,
-                        name: i.userName,
-                        sex: i.sex,
-                        phone: i.phone,
-                        email: i.email
-                    }
-                })
-            setPosts(certainAuthority)
-        } else {
-            updatePosts()
         }
+
+        //표를 리렌더링 하는 부분
+        const addDeleteRender = () => {
+            getAllUsers().then((data) => {
+                setUsers(data.userAuthorities)
+            }).catch(err => console.log(err))
+        }
+
+        const authorityRegionChange = () => {
+            editUserAdminRegion(userId, userRegions).then(() => {
+                window.location.reload()
+            }).catch(error => console.log(error))
+        }
+        const paginationOnClick = (e) => {
+            setCurrentPage(e.target.innerText)
+        }
+
+        const getMyAuthority = (e) => {
+            if (e.target.value !== "전체") {
+                const certainAuthority = users.filter((i) => i.authority === e.target.value)
+                    .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+                    .map((i) => {
+                        return {
+                            authority: i.authority,
+                            name: i.userName,
+                            sex: i.sex,
+                            phone: i.phone,
+                            email: i.email
+                        }
+                    })
+                setPosts(certainAuthority)
+            } else {
+                updatePosts()
+            }
+        }
+        const regionOnCheck = (e) => {
+            console.log(e.target.value)
+            regionArray.push(e.target.value)
+        }
+
+        const modalClose = () => {
+            setUserId(null);
+            setUserRegions([]);
+            setRegionModal(false)
+            setAuthorityModal(false)
+        }
+        return (
+            <>
+                <Container>
+                    <UserAuthorityContent
+                        regionOnClick={regionOnClick}
+                        authorityOnClick={authorityOnClick}
+                        modalClose={modalClose}
+                        authorityRegionChange={authorityRegionChange}
+                        authorityChange={authorityChange}
+                        getMyAuthority={getMyAuthority}
+                        regionOnCheck={regionOnCheck}
+                        paginationOnClick={paginationOnClick}
+
+
+                        regionModal={regionModal}
+                        regionArray={regionArray}
+                        regionOptions={regionOptions}
+                        authorityModal={authorityModal}
+
+                        users={users}
+                        posts={posts}
+                        adminPosts={adminPosts}
+                        regionsPosts={regionsPosts}
+                        idArray={idArray}
+                        selectedUser={selectedUser}
+                    >
+                    </UserAuthorityContent>
+                </Container>
+
+            </>
+        )
     }
-    const regionOnCheck = (e) => {
-        console.log(e.target.value)
-        regionArray.push(e.target.value)
-    }
-
-    const modalClose = () => {
-        setUserId(null);
-        setUserRegions([]);
-        setRegionModal(false)
-        setAuthorityModal(false)
-    }
-    return (
-        <>
-            <Container>
-                <UserAuthorityContent
-                    regionOnClick={regionOnClick}
-                    authorityOnClick={authorityOnClick}
-                    modalClose={modalClose}
-                    authorityRegionChange={authorityRegionChange}
-                    authorityChange={authorityChange}
-                    getMyAuthority={getMyAuthority}
-                    regionOnCheck={regionOnCheck}
-                    paginationOnClick={paginationOnClick}
-
-
-                    regionModal={regionModal}
-                    regionArray={regionArray}
-                    regionOptions={regionOptions}
-                    authorityModal={authorityModal}
-
-                    users={users}
-                    posts={posts}
-                    adminPosts={adminPosts}
-                    regionsPosts={regionsPosts}
-                    idArray={idArray}
-                    selectedUser={selectedUser}
-                >
-                </UserAuthorityContent>
-            </Container>
-
-        </>
-    )
 }
 
 export default ContentContainer
