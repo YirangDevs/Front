@@ -19,8 +19,7 @@ const ModalWrapper = styled.div`
  right : 0;
  left : 0;
  bottom : 0;
- position : absolute;
-
+ position : fixed;
  
  background-color: rgba(0, 0, 0,0.12);
 `
@@ -32,7 +31,7 @@ const ModalContainer = styled.div`
  flex-direction : column;
  justify-content: center;
  align-items: center;
- width : auto; 
+ width : 100%; 
  height : auto;
  max-height : 60%;
  background-color: white;
@@ -104,7 +103,7 @@ const Modal = ({ title, visible, closable, maskClosable, onClose, children, size
                 visible={visible}
                 onClick={maskClosable ? onClose : null}
             >
-                <Row justify="center" gutter={[10, 10]}>
+                <Row justify="center">
                     <Col span={size}>
 
                         <ModalContainer

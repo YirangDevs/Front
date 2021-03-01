@@ -63,7 +63,11 @@ const ContentContainer = () => {
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
                 return{
+<<<<<<< HEAD
                     regions : i.regions && Object.keys(i.regions).length!=0?  i.regions.slice(0,1)+" 외 "+ (Object.keys(i.regions).length-1) + "구": "-"
+=======
+                    regions : i.regions && Object.keys(i.regions).length!==0?  i.regions.slice(0,2) : "-"
+>>>>>>> origin/stage
                 }            
         })
         setRegionsPosts(data)
@@ -135,7 +139,7 @@ const ContentContainer = () => {
             setRegionModal(true)
             setUserRegions(data.regions)
         }else{
-            if(data.authority=="관리자"){
+            if(data.authority==="관리자"){
             setUserId(data.userId)
             setRegionArray(data.regions)
             setRegionModal(true)
@@ -159,7 +163,7 @@ const ContentContainer = () => {
     }
 
     const authorityChange = () => {
-        if(selectedUser.authority=="봉사자"){
+        if(selectedUser.authority==="봉사자"){
             changeUserToAdmin(userId).then(()=>{
                 addDeleteRender()
                 setAuthorityModal(false)
@@ -185,12 +189,28 @@ const ContentContainer = () => {
 
     //권한에 따라서 나타나는 테이블이 달라집니다.
     const getMyAuthority = (e) => {
+<<<<<<< HEAD
         setCurrentPage(1)
         if(e.target.value!="전체"){
             const certainAuthority = users.filter((i)=>i.authority==e.target.value)
 
             setCertainUsers(certainAuthority)
             setTable()
+=======
+        if(e.target.value!=="전체"){
+            const certainAuthority = users.filter((i)=>i.authority===e.target.value)
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i)=>{
+                return{
+                    authority : i.authority,
+                    name : i.userName,
+                    sex : i.sex,
+                    phone : i.phone,
+                    email : i.email
+                }
+            })
+            setPosts(certainAuthority)
+>>>>>>> origin/stage
         }else{
             setCertainUsers(users)
             setTable()
