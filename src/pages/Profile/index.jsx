@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
-import ContentContainer from "../../containers/pages/profile/ContentContainer"
+import React from "react"
+import ContentContainer from "../../containers/redux/pages/profile/ContentContainer"
 import Header from "../../containers/redux/components/Header";
 
 

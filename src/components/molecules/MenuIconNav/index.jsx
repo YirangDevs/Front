@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import Col from "../../../layout/Grid/Column";
 import IconButton from "../../atoms/IconButton";
 import {MdFormatListBulleted, MdOpenInBrowser, MdPeople, MdToday, MdTune} from "react-icons/md";
@@ -23,7 +23,7 @@ const MenuIconNav = ({role}) => {
             </Col>
             {
 
-                (role=="ADMIN" || role =="SUPER_ADMIN") ?
+                (role==="ADMIN" || role === "SUPER_ADMIN") ?
                             <>
                                 <Col span={1} justify={"center"}>
                                     <IconButton value={"피봉사자 데이터 업로드"} size={"large"} onClick={
@@ -58,7 +58,7 @@ const MenuIconNav = ({role}) => {
                             </> : null
             }
             {
-                (role=="SUPER_ADMIN") ?
+                (role==="SUPER_ADMIN") ?
                     <Col span={1} justify={"center"}>
                         <IconButton value={"사용자 권한관리"} size={"large"} onClick={
                             ()=>{
@@ -74,4 +74,4 @@ const MenuIconNav = ({role}) => {
     )
 }
 
-export default MenuIconNav
+export default memo(MenuIconNav)

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback, useRef} from "react"
 import { useHistory } from "react-router-dom"
 import getAllAreas from "../../../service/api/get/get_all_areas"
 import getArea from "../../../service/api/get/get_area"
-import styled from "styled-components"
 import XLSX from "xlsx";
 import deleteSenior from "../../../service/api/delete/delete_senior";
 import editSenior from "../../../service/api/put/edit_senior";
@@ -12,15 +11,8 @@ import seniorCheck from "../../../service/api/post/senior_check";
 import store from "../../../store/store"
 import action from "../../../store/actions/action"
 import getMyRegion from "../../../service/api/get/get_my_region";
+import NotificationPool from "../../../containers/redux/components/NotificationPool"
 
-const Container = styled.div`
-    width: 90%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-`
 
 const ContentContainer = () => {
     const [currentSenior, setCurrentSenior] = useState({
@@ -44,6 +36,7 @@ const ContentContainer = () => {
     const [modal, setModal] = useState(false);
     const [excelData, setExcelData] = useState([]);
     const [myRegion, setMyRegion] = useState([]);
+    const [errorToast, setErrorToast] = useState([]);
     const history = useHistory();
     const postsPerPage = 10
 
@@ -57,9 +50,11 @@ const ContentContainer = () => {
 
 
     useEffect(() => {
+        //selectBox 구성
         getMyRegion().then((data)=>{
             setMyRegion(data.regions)
-        })                                                                                                                                                       
+        })           
+        //피봉사자 표 출력                                                                                                                                            
         getAllAreas().then((data) => {
                 setSeniors(data)
         }).catch(err=>console.log(err))
@@ -205,7 +200,15 @@ const ContentContainer = () => {
             postSenior(bufferSenior).then(res=>{
                 alert("추가 성공")
                 addEditDeleteRender();
-            }).catch(error=>console.log(error))
+            }).catch((error)=>{
+                const errorToast = []
+
+                console.log(error)
+                if(error.errorCode==="044"){
+                    errorToast.push("해당 날짜에 봉사활동이 존재하지 않습니다.");
+                }
+                if(errorToast) alert(errorToast)
+            })
         }else{
             alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
         }
@@ -234,7 +237,8 @@ const ContentContainer = () => {
             history.push("/create")
         }).catch(err=>{
             
-            const errorToast = []
+            //const errorToast = []
+            setErrorToast([])
             console.log(err)
 
             for(let i=0; i<err.Errors.length; i++){
@@ -259,7 +263,7 @@ const ContentContainer = () => {
                 }
 
                 let col = `${columns[errorName].col}${errorNum} (${columns[errorName].name})`
-                errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n")
+                errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n\n")
             }
             if(errorCode==="099"){
                 errorToast.push("업로드한 엑셀 파일에 통일되지 않은 지역 또는 날짜 데이터가 존재합니다.\n")
@@ -276,7 +280,12 @@ const ContentContainer = () => {
             }
             
         }
-        if(errorToast) alert(errorToast)
+        if(errorToast) {
+            NotificationPool.api.add({
+            title : "엑셀 업로드 실패",
+            content : errorToast,
+            status : "error"
+        })}
         setModal(false)
         })       
     }
@@ -298,10 +307,9 @@ const ContentContainer = () => {
 
     //피봉사자를 클릭했을 시에 라디오 버튼이 클릭되는 깽판코드....ㅎ
     const RadioSelect = (e, senior) => {
-        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[1].firstChild.children[senior.sex=="남성"?0:1].firstChild.checked=true;
-        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[2].firstChild.children[senior.type=="노력봉사"?0:1].firstChild.checked=true;
+        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[1].firstChild.children[senior.sex==="남성"?0:1].firstChild.checked=true;
+        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[2].firstChild.children[senior.type==="노력봉사"?0:1].firstChild.checked=true;
     }
-
     const parsingData = (rowObj) => {
 
 
@@ -348,7 +356,7 @@ const ContentContainer = () => {
                 seniors={seniors}
                 myRegion={myRegion}
 
-                genderRef={genderRef}
+                errorToast={errorToast}
 
                 selectRegion={selectRegion}
                 selectPage={selectPage}

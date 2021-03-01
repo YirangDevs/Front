@@ -22,6 +22,7 @@ const SeniorContent = ({currentSenior,
     selectSenior,
     myRegion,
 
+
     excelRegion,
     excelDate,
     needsTotal,
@@ -48,11 +49,12 @@ const SeniorContent = ({currentSenior,
     addButton,
     editDeleteButton,
     isModalOpen,
-    excelData}, genderRef) => {
+    excelData}) => {
         
         //console.log(posts)
         const regionArray = regionoptions.concat(myRegion)
-
+        
+        
         
     return (
         <>
@@ -82,7 +84,7 @@ const SeniorContent = ({currentSenior,
                     {/* 그리드로 구현 */}
                     <Row gutter={[5,10]}>
                         <Col span={12}>
-                            <InfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior} genderRef={genderRef}></InfoForm>
+                            <InfoForm nameOnChange={nameOnChange} genderOnChange={genderOnChange} typeOnChange={typeOnChange} priorityOnChange={priorityOnChange} needsOnChange={needsOnChange} dateOnChange={dateOnChange} phoneOnChange={phoneOnChange} regionOnChange={regionOnChange} addressOnChange={addressOnChange} currentSenior={currentSenior}></InfoForm>
                         </Col>
                         <Col span={12}>
                             {button?
@@ -113,6 +115,7 @@ const SeniorContent = ({currentSenior,
                     <Pagination num={Math.ceil(seniors.length/10)} onClick={paginationOnClick}></Pagination>
                 </Col>
             </Row>
+       
        
         </Content>
     </>)

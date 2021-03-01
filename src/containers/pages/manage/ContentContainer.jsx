@@ -13,7 +13,6 @@ import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
 import getNoticeNum from "../../../service/api/get/get_notice_num";
 import deleteNotice from "../../../service/api/delete/delete_notice";
 import edit_notice from "../../../service/api/put/edit_notice"
-import { keyframes } from "styled-components";
 
 const ContentContainer = () => {
 

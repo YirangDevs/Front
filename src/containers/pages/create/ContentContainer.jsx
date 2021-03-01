@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react"
-import styled from "styled-components"
 import CreateContent from "../../../components/organisms/create/Content/"
 import {useHistory} from "react-router-dom"
 import store from "../../../store/store"
@@ -42,6 +41,7 @@ const ContentContainer = () => {
     }
 
     const uploadOnClick = (e) => {
+        //채은이가 고칠 코드(create에서 빈칸이 있으면 넘어가지 않도록 하기)
         if(bufferNotice.content!==undefined&&bufferNotice.dod!==undefined&&bufferNotice.tov!==undefined&&bufferNotice.title){
             postNotice({
                 activityRegisterRequestDto:{

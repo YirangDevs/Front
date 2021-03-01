@@ -6,13 +6,13 @@
  */
 
 import React from "react"
-import NoticeForm from "../../molecules/NoticeForm"
-import TextAreaBox from "../../atoms/TextAreaBox"
-import Row from "../../../layout/Grid/Row"
-import Col from "../../../layout/Grid/Column"
-import Button from "../../atoms/Button"
-import Modal from "../../atoms/Modal"
-import UrgentForm from "./UrgentForm"
+import NoticeForm from "../../../molecules/NoticeForm"
+import TextAreaBox from "../../../atoms/TextAreaBox"
+import Row from "../../../../layout/Grid/Row"
+import Col from "../../../../layout/Grid/Column"
+import Button from "../../../atoms/Button"
+import Modal from "../../../atoms/Modal"
+import UrgentForm from "../UrgentForm"
 const ReadForm = ({ UrgentIcon, updateFunction, selectNotice, isUrgentVisible, UrgentModal, isUrgentIcon, urgentOnChange }) => {
     const readNotice = selectNotice || [{ id: null, title: "게시글이없습니다.", dov: null, region: null }];
     const { id, title, region, nor, dov, tov, dod, content } = readNotice;
