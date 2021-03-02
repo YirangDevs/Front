@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-01 21:30:46
+ * @Last Modified time: 2021-03-02 21:40:11
  */
 
 
@@ -15,6 +15,8 @@ import Typo from "../../../atoms/Typography"
 import ContentLayout from "../../../../layout/Content"
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
+import Button from "../../../atoms/Button"
+import TextBox from "../../../atoms/TextBox"
 
 
 const ProfileContent = ({
@@ -66,12 +68,68 @@ const ProfileContent = ({
 
 
                     <Col span={7.5} offset={0.5}>
-                        <Row>
+                        <Row >
                             <Col span={12}>
-                                <Typo size={"1.2rem"} weight={"500"} > 봉사 관리</Typo>
+                                <Typo size={"1.2rem"} weight={"500"} > 프로필 수정</Typo>
                             </Col>
                         </Row>
+                        <Row style={{ marginTop: '15px', borderTop: '3px solid #000000', }} >
+                            <Col span={2} justify={"center"} align={"center"} style={{
+                                backgroundColor: "#f5f5f5",
+                                height: "3rem"
+                            }}>
+                                <Typo weight={500}>이름</Typo>
+                            </Col>
+                            <Col span={8} justify={"start"} align={"center"} style={{
+                                backgroundColor: "#ffffff",
+                                height: "3rem",
+                                paddingLeft: "1.5rem"
+                            }}>
+                                <Typo weight={500}>
+                                    {
+                                        userProfile.realname || userProfile.username
+                                    }
+                                </Typo>
+                            </Col>
+                            <Col span={2} justify={"center"} align={"center"} style={{
+                                backgroundColor: "#ffffff",
+                                height: "3rem"
+                            }}>
+                                <Button block value={'이름변경'}></Button>
+                            </Col>
+                        </Row>
+                        <Row style={{ borderTop: '1.8px solid #000000', }} >
+                            <Col span={2} justify={"center"} align={"center"} style={{
+                                backgroundColor: "#f5f5f5",
+                                height: "3rem"
+                            }}>
+                                <Typo weight={500}>이메일 인증</Typo>
+                            </Col>
+                            <Col span={8} justify={"start"} align={"center"} style={{
+                                backgroundColor: "#ffffff",
+                                height: "3rem",
+                                paddingLeft: "1.5rem"
+                            }}>
+                                {
+                                    (userProfile.checkedEmail) ?
+                                        <TextBox disabled border radius={'22px'} align={'center'} value={userProfile.checkedEmail} />
+                                        :
+                                        <TextBox disabled border radius={'22px'} align={'center'} value={userProfile.email} />
+                                }
+                            </Col>
+                            <Col span={2} justify={"center"} align={"center"} style={{
+                                backgroundColor: "#ffffff",
+                                height: "3rem"
+                            }}>
+                                {
+                                    (userProfile.checkedEmail) ?
+                                        <Button block value={'이메일 변경'}></Button>
+                                        :
+                                        <Button block value={'이메일 인증'}></Button>
+                                }
+                            </Col>
 
+                        </Row>
 
                     </Col>
                 </Row>

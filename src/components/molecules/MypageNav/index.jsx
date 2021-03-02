@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @date : 2021-02-24 15:44:35
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-28 01:57:10
+ * @Last Modified time: 2021-03-01 22:48:57
  */
 
 import React from "react"
@@ -23,20 +23,33 @@ align-items: center;
 cursor : pointer;
 
 
-
+// 마우스올리면 까매지기
 &:hover {
     background-color : #000000;
     color : #f5f5f5;
 }
 
+
 ${props => (props.border) ? 'border-bottom : 1.8px solid black;' : null}
 
+
+// 해당하는 거에서 까매지기
+${props => (props.mypage) ? `
+background-color : #000000;
+color : #f5f5f5; `
+        : null}
+
+${props => (props.profile) ? `
+background-color : #000000;
+color : #f5f5f5; `
+        : null}
+
 `
-const MenuNav = ({ role }) => {
+const MenuNav = ({ role, mypage, profile }) => {
     const history = useHistory()
     return (
         <>
-            <MypageNav block onClick={
+            <MypageNav mypage={mypage} block onClick={
                 () => {
                     history.push("/mypage")
                 }
@@ -55,14 +68,6 @@ const MenuNav = ({ role }) => {
                     <Typo>사용자 권한 관리</Typo>
                     <Typo>{'>'}</Typo>
                 </MypageNav>
-                //    <MypageNav onClick={
-                //     () => {
-                //         history.push("/manage")
-                //     }
-                // } >
-                //     <Typo>봉사 공고글 관리</Typo>
-                //     <Typo>{'>'}</Typo>
-                // </MypageNav>
                 : null}
             {role === "VOLUNTEER" ?
                 <MypageNav block onClick={
@@ -75,7 +80,7 @@ const MenuNav = ({ role }) => {
                 </MypageNav>
                 : null}
 
-            <MypageNav border block onClick={
+            <MypageNav profile={profile} border block onClick={
                 () => {
                     history.push("/profile")
                 }

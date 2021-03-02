@@ -25,12 +25,13 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
             localStorage.setItem("YAT",YIRANG_ACCESS_TOKEN)
             let payload = YAT.decode(YIRANG_ACCESS_TOKEN)
             let roleInfo = await getMyRole()
+
             console.log("payload : ", payload)
             resolve({
                 username : payload.username,
                 imgUrl : payload.imgUrl,
                 userId : payload.userId,
-                role : roleInfo.authority
+                role : 'SUPER_'
             })
             return YIRANG_ACCESS_TOKEN
         })

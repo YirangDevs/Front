@@ -10,7 +10,9 @@ background-color : ${props => (props.backgroundColor)};
 opacity :  ${props => (props.opacity)};
 font-weight : ${props => (props.weight)}
 ${props => (props.radius) ? `border-radius: 5px;` : null};
+border : ${props => (props.border) || null};
 cursor : ${props => (props.cursor) || 'default'};
+
 
 font-family: Noto Sans CJK KR;
 `
@@ -19,12 +21,12 @@ font-family: Noto Sans CJK KR;
 
 
 const Typography = ({ size, color, onClick, radius,
-    backgroundColor, children, opacity, weight, cursor }) => {
+    backgroundColor, children, opacity, weight, cursor, border }) => {
     return (
         <>
             <Typo size={size} color={color} onClick={onClick}
                 radius={radius} backgroundColor={backgroundColor} weight={weight}
-                children={children} opacity={opacity} cursor={cursor}>
+                children={children} opacity={opacity} cursor={cursor} border={border}>
             </Typo>
         </>
     )
