@@ -7,7 +7,7 @@ import Col from "../../../../layout/Grid/Column";
 import TableBox from "../../../atoms/TableBox/"
 import Pagination from "../../../atoms/Pagination/"
 import MenuIconNav from "../../../../containers/redux/components/MenuIconNav/";
-import NoticeForm from "../../../molecules/NoticeForm";
+import ReadNoticeForm from "../../../molecules/ReadNoticeForm";
 import Button from "../../../atoms/Button";
 
 const HomeContent = ({
@@ -33,11 +33,16 @@ const HomeContent = ({
 
             </Image>
             <ContentLayout >
-                <MenuIconNav></MenuIconNav>
-                <Row justify={"center"} style={{
-                    marginTop : "8rem"
-                }}>
-                    <Col span={7}>
+
+                <Row justify={"center"} >
+                    <Col span={12} justify={"center"} style={{
+                        marginTop : "4rem"
+                    }}>
+                        <MenuIconNav></MenuIconNav>
+                    </Col>
+                    <Col xs={11} sm={11} md={10} lg={7} xl={7} xxl={7} style={{
+                        marginTop : "10rem"
+                    }}>
                         <Row gutter={[5,0]}>
 
 
@@ -50,9 +55,9 @@ const HomeContent = ({
                                             </Button>
                                         </Col>
                                         <Col span={12}>
-                                            <NoticeForm title={currentNotice.title} region={currentNotice.region} nor={currentNotice.nor} dov={currentNotice.dov} tov={currentNotice.tov} dod={currentNotice.dod}>
+                                            <ReadNoticeForm title={currentNotice.title} region={currentNotice.region} nor={currentNotice.nor} dov={currentNotice.dov} tov={currentNotice.tov} dod={currentNotice.dod}>
 
-                                            </NoticeForm>
+                                            </ReadNoticeForm>
                                         </Col>
                                         <Col span={12} style={{
                                             padding : "1rem",
@@ -62,7 +67,7 @@ const HomeContent = ({
                                             {currentNotice.content}
                                         </Col>
                                         <Col span={12} justify={"flex-end"} style={{
-                                            backgroundColor : "#EFEFEF4D",
+                                            // backgroundColor : "#EFEFEF4D",
                                             padding : "1rem"
                                         }}>
                                             <Button value={"신청하기"} types={"primary"} onClick={onApplyBtnClick}></Button>

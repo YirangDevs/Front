@@ -93,7 +93,7 @@ const stopBubbling = (e) => {
  * @param children 컴포넌트 테그 사이에 값을 조회
  * @see antD Modal (사용법 antD 참조)
  */
-const Modal = ({ title, visible, closable, maskClosable, onClose, children, size }) => {
+const Modal = ({ title, visible, closable, maskClosable, onClose, children, size, xs, sm, md, lg, xl, xxl}) => {
 
 
 
@@ -104,7 +104,7 @@ const Modal = ({ title, visible, closable, maskClosable, onClose, children, size
                 onClick={maskClosable ? onClose : null}
             >
                 <Row justify="center">
-                    <Col span={size}>
+                    <Col span={size} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xl}>
 
                         <ModalContainer
                             visible={visible}

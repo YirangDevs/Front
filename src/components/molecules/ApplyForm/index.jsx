@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
 import Button from "../../atoms/Button";
@@ -9,10 +9,45 @@ const columnStyle = {
     padding : "0.8rem 1.5rem",
 }
 
+
 const ApplyForm = ({dov, region, nor, phone, name, email}) => {
+
+    const [status, setStatus] = useState({
+        dov : dov,
+        region : region,
+        nor : nor,
+        phone : phone,
+        name : name,
+        email : email,
+        sex : null,
+        type : null
+    })
+
+    const onSexChange = (e) => {
+        const value = e.target.value
+        setStatus(state=>{
+            return {
+                ...state,
+                sex : value
+            }
+
+        })
+    }
+
+    const onTypeChange = (e) => {
+        const value = e.target.value
+        setStatus(state=>{
+            return {
+                ...state,
+                type : value
+            }
+
+        })
+    }
+
     return (
         <>
-            <Row>
+            <Row align={"stretch"}>
                 <Col span={12} justify={"center"} style={{
                     fontWeight : "bold",
                     borderTop : "solid 3px black",
@@ -156,7 +191,7 @@ const ApplyForm = ({dov, region, nor, phone, name, email}) => {
                         <Col span={10} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            <RadioBox name={"sex"} options={["남성", "여성"]}></RadioBox>
+                            <RadioBox name={"sex"} options={["남성", "여성"]} onClick={onSexChange}></RadioBox>
                         </Col>
                     </Row>
                 </Col>
@@ -176,7 +211,7 @@ const ApplyForm = ({dov, region, nor, phone, name, email}) => {
                         <Col span={10} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            <RadioBox name={"work"} options={["노력", "말벗"]}></RadioBox>
+                            <RadioBox name={"work"} options={["노력", "말벗"]} onClick={onTypeChange}></RadioBox>
                         </Col>
                     </Row>
                 </Col>
