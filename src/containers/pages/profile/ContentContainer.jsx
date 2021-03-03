@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-28 00:58:04
+ * @Last Modified time: 2021-03-02 23:07:46
  */
 
 
@@ -102,12 +102,39 @@ const ContentContainer = ({
         },
     }
 
+    //true : 이름 수정(input) 하는 코드  false :  이름변경(block) 코드
+    const [isEditNameForm, setEditNameForm] = useState(false);
+    //true : 이메일 수정(input) 하는 코드 false :  이메일변경 코드
+    const [isEditEmailForm, setEditEmailForm] = useState(false);
+
+    const editNameForm = {
+        show() {
+            setEditNameForm(true)
+        },
+        close() {
+            setEditNameForm(false)
+        }
+    }
+
+    const editEmailForm = {
+        show() {
+            setEditEmailForm(true)
+        },
+        close() {
+            setEditEmailForm(false)
+        }
+    }
+
+
     return (
         <>
             <ProfileContent
                 userProfile={userProfile}
-                editFunction={editProfileFunction}
-
+                editProfileFunction={editProfileFunction}
+                isEditNameForm={isEditNameForm}
+                editNameForm={editNameForm}
+                isEditEmailForm={isEditEmailForm}
+                editEmailForm={editEmailForm}
             ></ProfileContent>
         </>
     )
