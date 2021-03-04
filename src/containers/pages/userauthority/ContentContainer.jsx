@@ -153,8 +153,10 @@ const ContentContainer = () => {
 
     //표를 리렌더링 하는 부분
     const addDeleteRender = () => {
+        console.log("재시작")
         getAllUsers().then((data)=>{
             setUsers(data.userAuthorities)
+            setCertainUsers(data.userAuthorities)
         }).catch(err=>console.log(err))
     }
 
@@ -162,12 +164,13 @@ const ContentContainer = () => {
         if(selectedUser.authority==="봉사자"){
             changeUserToAdmin(userId).then(()=>{
                 addDeleteRender()
-                setAuthorityModal(false)
+            setAuthorityModal(false)
+                
             }).catch(error=>console.log(error))
         }else{
             changeAdminToUser(userId).then(()=>{
                 addDeleteRender()
-                setAuthorityModal(false)
+            setAuthorityModal(false)
             }).catch(error=>console.log(error))
         }
     }
@@ -176,7 +179,8 @@ const ContentContainer = () => {
 
     const authorityRegionChange = () => {
         editUserAdminRegion(userId, regionArray).then(()=>{
-            //window.location.reload()
+            addDeleteRender()
+            setRegionModal(false)
         }).catch(error=>console.log(error))
     }
     const paginationOnClick = (e) => {
