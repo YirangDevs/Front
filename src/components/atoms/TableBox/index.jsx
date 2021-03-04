@@ -17,7 +17,7 @@ const TableRow = styled.tr`
 `
 
 const TableHead = styled.th`
-    padding: 0.8rem 0.3rem;
+    padding: 12px 6px;
     border: none;
     font-size: 1rem;
     font-weight: 500;
@@ -49,8 +49,8 @@ const TableBody = styled.td`
     color: #707070;
     border-bottom: solid #ccd4e0 1px;
     cursor: pointer;
+    padding: 12px 6px;
     ${props=>(props.back)?`background-color: #f5f5f5;`:null}
-
 `
 const PrimaryKey = styled(TableBody)`
     cursor: pointer;
