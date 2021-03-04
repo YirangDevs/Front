@@ -1,18 +1,60 @@
-import React from "react"
+import React, {useState} from "react"
 import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
 import Button from "../../atoms/Button";
 import RadioBox from "../../atoms/RadioButton";
+import postApply from "../../../service/api/post/post_apply";
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+
 
 const columnStyle = {
     backgroundColor : "rgb(245,245,245)",
     padding : "0.8rem 1.5rem",
 }
 
-const ApplyForm = ({dov, region, nor, phone, name, email}) => {
+
+const ApplyForm = ({id, dov, region, nor, phone, name, email, sex}) => {
+
+    const [status, setStatus] = useState({
+        id : id,
+        dov : dov,
+        region : region,
+        nor : nor,
+        phone : phone,
+        name : name,
+        email : email,
+        sex : sex,
+        type : "노력"
+    })
+
+    const onApplyClick = () => {
+        const data = {
+            noticeId : status.id,
+            serviceType : status.type==="노력" ? "WORK" : "TALK"
+        }
+        postApply(data).then(()=>{
+            NotificationPool.api.add({
+                title : "신청완료",
+                content : status.region+"으로의 봉사신청이 완료되었습니다. 자세한 내용은 메일로 발송됩니다.",
+                status : "success"
+            })
+        }).catch(err=>console.log(err))
+    }
+
+    const onTypeChange = (e) => {
+        const value = e.target.value
+        setStatus(state=>{
+            return {
+                ...state,
+                type : value
+            }
+
+        })
+    }
+
     return (
         <>
-            <Row>
+            <Row align={"stretch"}>
                 <Col span={12} justify={"center"} style={{
                     fontWeight : "bold",
                     borderTop : "solid 3px black",
@@ -156,7 +198,7 @@ const ApplyForm = ({dov, region, nor, phone, name, email}) => {
                         <Col span={10} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            <RadioBox name={"sex"} options={["남성", "여성"]}></RadioBox>
+                            <RadioBox name={"sex"} options={["남성", "여성"]} disabled={["남성", "여성"]} checkedValue={status.sex}></RadioBox>
                         </Col>
                     </Row>
                 </Col>
@@ -176,7 +218,7 @@ const ApplyForm = ({dov, region, nor, phone, name, email}) => {
                         <Col span={10} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            <RadioBox name={"work"} options={["노력", "말벗"]}></RadioBox>
+                            <RadioBox name={"work"} options={["노력", "말벗"]} checkedValue={"노력"} onClick={onTypeChange}></RadioBox>
                         </Col>
                     </Row>
                 </Col>
@@ -211,7 +253,7 @@ const ApplyForm = ({dov, region, nor, phone, name, email}) => {
                 <Col span={12} justify={"flex-end"} style={{
                     marginTop : "0.5rem"
                 }}>
-                    <Button types={"primary"} value={"신청완료"} size={"large"}></Button>
+                    <Button types={"primary"} value={"신청완료"} size={"large"} onClick={onApplyClick}></Button>
                 </Col>
 
             </Row>

@@ -32,7 +32,7 @@ const ContentContainer = () => {
     }).catch(err=>console.log(err)), [currentNoticePage])
 
     const openNotice = useCallback((data) => {
-        console.log(data)
+
         setCurrentNotice({
             visible : true,
             applyVisible : false,
@@ -78,18 +78,20 @@ const ContentContainer = () => {
     },[])
 
     const onTableClick = useCallback((e, data)=>{
-        console.log(data)
+
         getNotice(data.id).then((notice)=>{
-            console.log(notice)
             openNotice({
                 ...notice
             })
+
         }).catch(err=>console.log(err))
 
         }
     ,[openNotice])
 
-
+    useEffect(()=>{
+        document.documentElement.scrollTo(0,document.documentElement.scrollHeight)
+    }, [currentNotice])
 
     useEffect(()=>{
         getNoticeNumCallBack()
@@ -124,11 +126,11 @@ const ContentContainer = () => {
             >
 
             </HomeContent>
-            <Modal title={currentNotice.title} size={10} visible={currentNotice.applyVisible} onClose={closeApplyModal} closable>
-                <ApplyForm dov={currentNotice.dov} nor={currentNotice.nor} region={currentNotice.region}>
+                    <Modal title={currentNotice.title} size={12} xxl={8} xl={8} lg={10} md={10} sm={11} xs={11} visible={currentNotice.applyVisible} onClose={closeApplyModal} closable>
+                        <ApplyForm dov={currentNotice.dov} nor={currentNotice.nor} region={currentNotice.region}>
 
-                </ApplyForm>
-            </Modal>
+                        </ApplyForm>
+                    </Modal>
         </>
     )
 }
