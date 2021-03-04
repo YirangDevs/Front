@@ -2,13 +2,14 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-02 23:07:46
+ * @Last Modified time: 2021-03-04 03:43:48
  */
 
 
 import React, { useEffect, useState } from 'react'
 import ProfileContent from "../../../components/organisms/profile/Content/index"
 import getMyInfo from "../../../service/api/get/get_my_info"
+import DefaultImg from "../../../img/ProfileDefaultImg.png"
 
 //username = 닉네임
 //realname = 실명
@@ -30,10 +31,17 @@ const ContentContainer = ({
         checkedEmail: "",
         sex: "",
         imgUrl: "",
-        firstRegion: "",
-        secondRegion: "",
         role: "",
+        firstRegion: "중구",
+        secondRegion: '수성구'
     })
+
+
+
+    const regionOptions = ["수성구", "중구", "동구", "서구", "남구", "북구", "달서구"]
+
+    const firstRegionOptions = regionOptions.filter(regions => regions !== userProfile.secondRegion)
+    const SecondRegionOptions = regionOptions.filter(regions => regions !== userProfile.firstRegion)
 
     useEffect(() => {
 
@@ -58,9 +66,6 @@ const ContentContainer = ({
             role: role,
             checkedEmail: email
         }))
-        // setUserProfile((state) => ({ ...state, imgUrl: imgUrl }))
-        // setUserProfile((state) => ({ ...state, role: role }))
-        // setUserProfile((state) => ({ ...state, unCheckedemail: unCheckedemail }))
     }
 
     //userProfile 수정하기
@@ -75,6 +80,11 @@ const ContentContainer = ({
             const realname = e.target.value;
             return setUserProfile((state) => ({ ...state, realname: realname }))
         },
+        email: (e) => {
+            console.log(e.target.value)
+            const email = e.target.value;
+            return setUserProfile((state) => ({ ...state, email: email }))
+        },
         phone: (e) => {
             console.log(e.target.value)
             const phone = e.target.value;
@@ -87,17 +97,20 @@ const ContentContainer = ({
         },
         imgUrl: (e) => {
             console.log(e.target.value)
-            const imgUrl = e.target.value;
             return setUserProfile((state) => ({ ...state, imgUrl: imgUrl }))
+        },
+        defaultImg: (e) => {
+            console.log(e.target.value)
+            return setUserProfile((state) => ({ ...state, imgUrl: DefaultImg }))
         },
         firstRegion: (e) => {
             console.log(e.target.value)
-            const firstRegion = e.target.value;
+            const firstRegion = e.target.value
             return setUserProfile((state) => ({ ...state, firstRegion: firstRegion }))
         },
         secondRegion: (e) => {
             console.log(e.target.value)
-            const secondRegion = e.target.value;
+            const secondRegion = e.target.value
             return setUserProfile((state) => ({ ...state, secondRegion: secondRegion }))
         },
     }
@@ -130,11 +143,14 @@ const ContentContainer = ({
         <>
             <ProfileContent
                 userProfile={userProfile}
+                regionOptions={regionOptions}
                 editProfileFunction={editProfileFunction}
                 isEditNameForm={isEditNameForm}
                 editNameForm={editNameForm}
                 isEditEmailForm={isEditEmailForm}
                 editEmailForm={editEmailForm}
+                firstRegionOptions={firstRegionOptions}
+                secondRegionOptions={SecondRegionOptions}
             ></ProfileContent>
         </>
     )
