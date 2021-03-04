@@ -3,6 +3,9 @@ import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
 import Button from "../../atoms/Button";
 import RadioBox from "../../atoms/RadioButton";
+import postApply from "../../../service/api/post/post_apply";
+import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+
 
 const columnStyle = {
     backgroundColor : "rgb(245,245,245)",
@@ -10,9 +13,10 @@ const columnStyle = {
 }
 
 
-const ApplyForm = ({dov, region, nor, phone, name, email}) => {
+const ApplyForm = ({id, dov, region, nor, phone, name, email}) => {
 
     const [status, setStatus] = useState({
+        id : id,
         dov : dov,
         region : region,
         nor : nor,
@@ -20,8 +24,22 @@ const ApplyForm = ({dov, region, nor, phone, name, email}) => {
         name : name,
         email : email,
         sex : null,
-        type : null
+        type : "노력"
     })
+
+    const onApplyClick = () => {
+        const data = {
+            noticeId : status.id,
+            serviceType : status.type==="노력" ? "WORK" : "TALK"
+        }
+        postApply(data).then(()=>{
+            NotificationPool.api.add({
+                title : "신청완료",
+                content : status.region+"으로의 봉사신청이 완료되었습니다. 자세한 내용은 메일로 발송됩니다.",
+                status : "success"
+            })
+        }).catch(err=>console.log(err))
+    }
 
     const onSexChange = (e) => {
         const value = e.target.value
@@ -211,7 +229,7 @@ const ApplyForm = ({dov, region, nor, phone, name, email}) => {
                         <Col span={10} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            <RadioBox name={"work"} options={["노력", "말벗"]} onClick={onTypeChange}></RadioBox>
+                            <RadioBox name={"work"} options={["노력", "말벗"]} value={status.type} onClick={onTypeChange}></RadioBox>
                         </Col>
                     </Row>
                 </Col>
@@ -246,7 +264,7 @@ const ApplyForm = ({dov, region, nor, phone, name, email}) => {
                 <Col span={12} justify={"flex-end"} style={{
                     marginTop : "0.5rem"
                 }}>
-                    <Button types={"primary"} value={"신청완료"} size={"large"}></Button>
+                    <Button types={"primary"} value={"신청완료"} size={"large"} onClick={onApplyClick}></Button>
                 </Col>
 
             </Row>
