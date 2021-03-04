@@ -13,7 +13,7 @@ const columnStyle = {
 }
 
 
-const ApplyForm = ({id, dov, region, nor, phone, name, email}) => {
+const ApplyForm = ({id, dov, region, nor, phone, name, email, sex}) => {
 
     const [status, setStatus] = useState({
         id : id,
@@ -23,7 +23,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email}) => {
         phone : phone,
         name : name,
         email : email,
-        sex : null,
+        sex : sex,
         type : "노력"
     })
 
@@ -39,17 +39,6 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email}) => {
                 status : "success"
             })
         }).catch(err=>console.log(err))
-    }
-
-    const onSexChange = (e) => {
-        const value = e.target.value
-        setStatus(state=>{
-            return {
-                ...state,
-                sex : value
-            }
-
-        })
     }
 
     const onTypeChange = (e) => {
@@ -209,7 +198,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email}) => {
                         <Col span={10} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            <RadioBox name={"sex"} options={["남성", "여성"]} onClick={onSexChange}></RadioBox>
+                            <RadioBox name={"sex"} options={["남성", "여성"]} disabled={["남성", "여성"]} checkedValue={status.sex}></RadioBox>
                         </Col>
                     </Row>
                 </Col>
@@ -229,7 +218,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email}) => {
                         <Col span={10} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            <RadioBox name={"work"} options={["노력", "말벗"]} value={status.type} onClick={onTypeChange}></RadioBox>
+                            <RadioBox name={"work"} options={["노력", "말벗"]} checkedValue={"노력"} onClick={onTypeChange}></RadioBox>
                         </Col>
                     </Row>
                 </Col>
