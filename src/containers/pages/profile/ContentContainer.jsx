@@ -21,8 +21,6 @@ const ContentContainer = ({
 }) => {
 
 
-    const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
-
     const [userProfile, setUserProfile] = useState({
         username: "",
         realname: "",
@@ -43,10 +41,13 @@ const ContentContainer = ({
     const firstRegionOptions = regionOptions.filter(regions => regions !== userProfile.secondRegion)
     const SecondRegionOptions = regionOptions.filter(regions => regions !== userProfile.firstRegion)
 
+
+
     useEffect(() => {
 
         getMyInfo()
             .then((res) => {
+                console.log('1')
                 console.log(res)
                 for (let data in res) {
                     setUserProfile((state) => ({ ...state, [data]: res[data] }))
@@ -64,7 +65,7 @@ const ContentContainer = ({
             username: username,
             imgUrl: imgUrl,
             role: role,
-            checkedEmail: email
+            checkedEmail: email,
         }))
     }
 
@@ -115,10 +116,18 @@ const ContentContainer = ({
         },
     }
 
+    //true : 닉네임수정(input) 하는 코드  false :  이름변경(block) 코드
+    const [isEditNameForm, setEditNameForm] = useState(false);
+
     //true : 이름 수정(input) 하는 코드  false :  이름변경(block) 코드
     const [isEditNameForm, setEditNameForm] = useState(false);
     //true : 이메일 수정(input) 하는 코드 false :  이메일변경 코드
     const [isEditEmailForm, setEditEmailForm] = useState(false);
+    //true: 인증번호 임력 (input) 허는 코드 false :인증취소 
+    const [isInputAuthNum, setInputAuthNum] = useState(false);
+    //true : 전화번호 수정 (input) false : 전화번호 변경 코드
+    const [isEditPhoneForm, setEditPhoneForm] = useState(false);
+
 
     const editNameForm = {
         show() {
@@ -138,12 +147,34 @@ const ContentContainer = ({
         }
     }
 
+    const inputAuthNumForm = {
+        show() {
+            setInputAuthNum(true)
+        },
+        close() {
+            setInputAuthNum(false)
+        }
+    }
 
+    const editPhoneForm = {
+        show() {
+            setEditPhoneForm(true)
+        },
+        close() {
+            setEditPhoneForm(false)
+        }
+    }
+
+    const [isAuthNum, setAuthNum] = useState('')
+
+    const editAuthNum = (e) => {
+        const authNum = e.target.value
+        return setAuthNum((state) => ({ ...state, authNum }))
+    }
     return (
         <>
             <ProfileContent
                 userProfile={userProfile}
-                regionOptions={regionOptions}
                 editProfileFunction={editProfileFunction}
                 isEditNameForm={isEditNameForm}
                 editNameForm={editNameForm}
@@ -151,6 +182,12 @@ const ContentContainer = ({
                 editEmailForm={editEmailForm}
                 firstRegionOptions={firstRegionOptions}
                 secondRegionOptions={SecondRegionOptions}
+                isEditPhoneForm={isEditPhoneForm}
+                editPhoneForm={editPhoneForm}
+                isInputAuthNum={isInputAuthNum}
+                inputAuthNumForm={inputAuthNumForm}
+                isAuthNum={isAuthNum}
+                editAuthNum={editAuthNum}
             ></ProfileContent>
         </>
     )
