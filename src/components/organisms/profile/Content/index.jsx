@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-07 05:22:36
+ * @Last Modified time: 2021-03-07 05:36:07
  */
 
 
@@ -39,16 +39,12 @@ const ProfileContent = ({
     inputAuthNumForm,
     isAuthNum,
     editAuthNum,
-    editCompleted
 }) => {
     console.log(userProfile)
 
     const { username, imgUrl, realname, phone, email, checkedEmail, sex,
         firstRegion, secondRegion, role, } = userProfile;
 
-    const nicknameOnclick = () => (
-        editNickNameForm.close
-    )
 
     return (
         <>
