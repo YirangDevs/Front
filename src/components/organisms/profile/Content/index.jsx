@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-04 04:02:15
+ * @Last Modified time: 2021-03-07 05:22:36
  */
 
 
@@ -25,8 +25,10 @@ const ProfileContent = ({
     //contentContainer
     userProfile,
     editProfileFunction,
-    isEditNameForm,
-    editNameForm,
+    isEditNickNameForm,
+    editNickNameForm,
+    isEditRealNameForm,
+    editRealNameForm,
     isEditEmailForm,
     editEmailForm,
     firstRegionOptions,
@@ -37,12 +39,16 @@ const ProfileContent = ({
     inputAuthNumForm,
     isAuthNum,
     editAuthNum,
+    editCompleted
 }) => {
     console.log(userProfile)
 
     const { username, imgUrl, realname, phone, email, checkedEmail, sex,
         firstRegion, secondRegion, role, } = userProfile;
 
+    const nicknameOnclick = () => (
+        editNickNameForm.close
+    )
 
     return (
         <>
@@ -55,7 +61,7 @@ const ProfileContent = ({
                     <Col span={4}>
                         <Row>
                             <Col span={4}>
-                                <Typo size={"2.3rem"} weight={'bold'}>{userProfile.username}</Typo>
+                                <Typo size={"2.3rem"} weight={'bold'}>{username}</Typo>
                             </Col>
                         </Row>
                         <Row gutter={[3, 0]}>
@@ -102,7 +108,7 @@ const ProfileContent = ({
                             </Col>
                             <Col span={10} justify={'space-between'} >
                                 {
-                                    (isEditNameForm) ?
+                                    (isEditNickNameForm) ?
                                         <>
                                             <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
@@ -125,7 +131,7 @@ const ProfileContent = ({
                                                 backgroundColor: "#ffffff",
                                                 height: "3rem"
                                             }}>
-                                                <Button types={"primary"} block value={'이름저장'} onClick={editNameForm.close}></Button>
+                                                <Button types={"primary"} block value={'닉네임저장'} onClick={editNickNameForm.close}></Button>
                                             </Col>
                                         </>
 
@@ -138,7 +144,7 @@ const ProfileContent = ({
                                             }}>
                                                 <Typo weight={"bold"}>
                                                     {
-                                                        userProfile.realname || userProfile.username
+                                                        realname || username
                                                     }
                                                 </Typo>
                                             </Col>
@@ -146,7 +152,7 @@ const ProfileContent = ({
                                                 backgroundColor: "#ffffff",
                                                 height: "3rem"
                                             }}>
-                                                <Button block value={'이름변경'} onClick={editNameForm.show}></Button>
+                                                <Button block value={'닉네임 변경'} onClick={editNickNameForm.show}></Button>
                                             </Col>
 
                                         </>
@@ -156,16 +162,15 @@ const ProfileContent = ({
                         </Row >
 
 
-                        <Row justify={"space-between"} style={{ marginTop: '15px', borderTop: '3px solid #000000', }} >
-                            <Col span={2} justify={"center"} align={"center"} style={{
-                                backgroundColor: "#f5f5f5",
-                                height: "3rem",
-                            }}>
-                                <Typo weight={"bold"}>이름</Typo>
-                            </Col>
+                        <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >                            <Col span={2} justify={"center"} align={"center"} style={{
+                            backgroundColor: "#f5f5f5",
+                            height: "3rem",
+                        }}>
+                            <Typo weight={"bold"}>이름</Typo>
+                        </Col>
                             <Col span={10} justify={'space-between'} >
                                 {
-                                    (isEditNameForm) ?
+                                    (isEditRealNameForm) ?
                                         <>
                                             <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
@@ -176,7 +181,7 @@ const ProfileContent = ({
                                                 <Col span={2} align={'center'} justify={'center'} >
                                                     <TextBox color={"black"} border
                                                         radius={'22px'} align={'center'}
-                                                        onChange={editProfileFunction.username} value={username}></TextBox>
+                                                        onChange={editProfileFunction.realname} value={realname}></TextBox>
                                                 </Col>
                                                 <Col span={5} align={"center"} style={{ paddingLeft: '0.8rem' }}>
                                                     {/* <TextBox size='0.7rem' block value={"초기설정은 카톡닉네임입니다."}></TextBox> */}
@@ -188,7 +193,7 @@ const ProfileContent = ({
                                                 backgroundColor: "#ffffff",
                                                 height: "3rem"
                                             }}>
-                                                <Button types={"primary"} block value={'이름저장'} onClick={editNameForm.close}></Button>
+                                                <Button types={"primary"} block value={'이름저장'} onClick={editRealNameForm.close}></Button>
                                             </Col>
                                         </>
 
@@ -201,7 +206,7 @@ const ProfileContent = ({
                                             }}>
                                                 <Typo weight={"bold"}>
                                                     {
-                                                        userProfile.realname || userProfile.username
+                                                        realname || '실명을 기입해 주새요'
                                                     }
                                                 </Typo>
                                             </Col>
@@ -209,7 +214,7 @@ const ProfileContent = ({
                                                 backgroundColor: "#ffffff",
                                                 height: "3rem"
                                             }}>
-                                                <Button block value={'이름변경'} onClick={editNameForm.show}></Button>
+                                                <Button block value={'이름변경'} onClick={editRealNameForm.show}></Button>
                                             </Col>
 
                                         </>
