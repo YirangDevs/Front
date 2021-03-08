@@ -2,6 +2,7 @@ import getTokenFromKakao from "../api/post/get_token_from_kakao"
 import YAT from "../../util/Yat/yat"
 import getYAT from "../api/get/getYAT";
 import getMyRole from "../api/get/get_my_role";
+import getMyInfo from "../api/get/get_my_info";
 
 const LoginProcess = (AUTHORIZATION_CODE) => {
     return new Promise(async(resolve, reject)=>{
@@ -25,6 +26,8 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
             localStorage.setItem("YAT",YIRANG_ACCESS_TOKEN)
             let payload = YAT.decode(YIRANG_ACCESS_TOKEN)
             let roleInfo = await getMyRole()
+            let userInfo = await getMyInfo()
+            console.log("userInfo : ", userInfo)
             console.log("payload : ", payload)
             resolve({
                 username : payload.username,
