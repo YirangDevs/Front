@@ -3,6 +3,7 @@ import YAT from "../../util/Yat/yat"
 import getYAT from "../api/get/getYAT";
 import getMyRole from "../api/get/get_my_role";
 import getMyInfo from "../api/get/get_my_info";
+import checkEmailValidation from "../api/get/check_email_validation";
 
 const LoginProcess = (AUTHORIZATION_CODE) => {
     return new Promise(async(resolve, reject)=>{
@@ -27,14 +28,20 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
             let payload = YAT.decode(YIRANG_ACCESS_TOKEN)
             let roleInfo = await getMyRole()
             let userInfo = await getMyInfo()
+            let emailValidation = await checkEmailValidation()
             console.log("userInfo : ", userInfo)
             console.log("payload : ", payload)
-            resolve({
-                username : payload.username,
-                imgUrl : payload.imgUrl,
+            let result = {
+                username : userInfo.username,
                 userId : payload.userId,
-                role : roleInfo.authority
-            })
+                role : roleInfo.authority,
+                email : userInfo.email,
+                sex : userInfo.sex,
+                phone : userInfo.phone,
+                emailValidation : emailValidation.validation
+            }
+            console.log("result", result)
+            resolve(result)
             return YIRANG_ACCESS_TOKEN
         })
             .catch(error=>{

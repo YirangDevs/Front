@@ -3,6 +3,8 @@ import ACTION from "../store/actions/action"
 import YAT from "../util/Yat/yat"
 import renewToken from "./renewToken"
 import getMyRole from "../service/api/get/get_my_role";
+import getMyInfo from "../service/api/get/get_my_info";
+import checkEmailValidation from "../service/api/get/check_email_validation";
 
 //만료되고 재로그인할시 토큰만료 노티뜨는거 수정하기
 
@@ -18,13 +20,18 @@ export default () =>{
                 .then((response)=>response.headers.get('Authorization').split(" ")[1])
                 .then(async(token)=>{
                     let roleInfo = await getMyRole()
+                    let userInfo = await getMyInfo()
+                    let emailValidation = await checkEmailValidation()
                     let claim = YAT.decode(token)
                     store.dispatch(ACTION.SET_USER__ACTION_FUNC({
                         user: {
-                            username : claim.username,
-                            imgUrl : claim.imgUrl,
+                            username : userInfo.username,
                             userId : claim.userId,
-                            role : roleInfo.authority
+                            role : roleInfo.authority,
+                            email : userInfo.email,
+                            sex : userInfo.sex,
+                            phone : userInfo.phone,
+                            emailValidation : emailValidation.validation
                         }
                     }))
 

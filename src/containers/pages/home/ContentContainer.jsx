@@ -4,11 +4,11 @@ import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
 import getNoticeNum from "../../../service/api/get/get_notice_num";
 import getNotice from "../../../service/api/get/get_notice";
 import Modal from "../../../components/atoms/Modal";
-import ApplyForm from "../../../components/molecules/ApplyForm";
+import ApplyForm from "../../../containers/redux/components/ApplyForm";
 import getMyInfo from "../../../service/api/get/get_my_info";
 import NotificationPool from "../../redux/components/NotificationPool";
 
-const ContentContainer = () => {
+const ContentContainer = ({logined}) => {
 
     const [currentNoticePage, setCurrentNoticePage] = useState(0)
     const [noticeList, setNoticeList] = useState([])
@@ -41,6 +41,14 @@ const ContentContainer = () => {
     }, [])
 
     const openApplyModal = useCallback(()=>{
+        if(logined===false){
+            NotificationPool.api.add({
+                title : "로그인이 필요합니다.",
+                content : "우측상단에 버튼을 통해 로그인을 해주세요",
+                status : "error"
+            })
+            return
+        }
         getMyInfo().then(data=>{
             
             setCurrentNotice((state)=>({
@@ -48,15 +56,11 @@ const ContentContainer = () => {
                 applyVisible : true
             }))
         }).catch(err=>{
-            NotificationPool.api.add({
-                title : "신청 불가",
-                content : "본인인증을 해주세요",
-                status : "error"
-            })
+            console.log(err)
         })
 
 
-    }, [setCurrentNotice])
+    }, [setCurrentNotice, logined])
 
     const closeApplyModal = useCallback(()=>{
         setCurrentNotice((state)=>({
