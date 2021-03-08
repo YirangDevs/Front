@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
 import Button from "../../atoms/Button";
@@ -13,7 +13,7 @@ const columnStyle = {
 }
 
 
-const ApplyForm = ({id, dov, region, nor, phone, name, email, sex}) => {
+const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidation, logined}) => {
 
     const [status, setStatus] = useState({
         id : id,
@@ -24,10 +24,31 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex}) => {
         name : name,
         email : email,
         sex : sex,
-        type : "노력"
+        type : "노력",
+        emailValidation : emailValidation,
     })
 
+    useEffect(()=>{
+        console.log("status", status)
+    }, [status])
+
     const onApplyClick = () => {
+        if(status.emailValidation==="NO"){
+            NotificationPool.api.add({
+                title : "이메일 인증이 필요합니다.",
+                content : "마이페이지 > 이메일 인증 에서 인증해주십쇼",
+                status : "error"
+            })
+            return
+        }
+        if(status.sex==="UNKNOWN"){
+            NotificationPool.api.add({
+                title : "성별이 필요합니다.",
+                content : "마이페이지 > 성별 에서 수정해주십쇼",
+                status : "error"
+            })
+            return
+        }
         const data = {
             noticeId : status.id,
             serviceType : status.type==="노력" ? "WORK" : "TALK"
@@ -119,7 +140,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex}) => {
                         <Col span={8} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            {phone}
+                            {phone===null ? "없음" : phone}
                         </Col>
                     </Row>
                 </Col>

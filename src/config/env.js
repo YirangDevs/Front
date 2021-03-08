@@ -1,7 +1,11 @@
 import _ from "./config"
 
 //const env = "production"
+<<<<<<< HEAD
 //const env = "development"
+=======
+// const env = "development"
+>>>>>>> yongwon
 const env = "production"
 
 export default (env==="development") ? {
