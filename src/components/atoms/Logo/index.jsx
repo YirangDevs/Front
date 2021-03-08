@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { useHistory } from "react-router-dom"
 
 const LogoStyle = styled.div`
-  width : 10rem;
+  width : 100%;
   height: 100%;
   font-family: Montserrat;
   font-size: 0.9rem;

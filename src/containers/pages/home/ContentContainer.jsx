@@ -4,11 +4,11 @@ import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
 import getNoticeNum from "../../../service/api/get/get_notice_num";
 import getNotice from "../../../service/api/get/get_notice";
 import Modal from "../../../components/atoms/Modal";
-import ApplyForm from "../../../components/molecules/ApplyForm";
+import ApplyForm from "../../../containers/redux/components/ApplyForm";
 import getMyInfo from "../../../service/api/get/get_my_info";
 import NotificationPool from "../../redux/components/NotificationPool";
 
-const ContentContainer = () => {
+const ContentContainer = ({logined}) => {
 
     const [currentNoticePage, setCurrentNoticePage] = useState(0)
     const [noticeList, setNoticeList] = useState([])
@@ -32,7 +32,7 @@ const ContentContainer = () => {
     }).catch(err=>console.log(err)), [currentNoticePage])
 
     const openNotice = useCallback((data) => {
-        console.log(data)
+
         setCurrentNotice({
             visible : true,
             applyVisible : false,
@@ -41,6 +41,14 @@ const ContentContainer = () => {
     }, [])
 
     const openApplyModal = useCallback(()=>{
+        if(logined===false){
+            NotificationPool.api.add({
+                title : "로그인이 필요합니다.",
+                content : "우측상단에 버튼을 통해 로그인을 해주세요",
+                status : "error"
+            })
+            return
+        }
         getMyInfo().then(data=>{
             
             setCurrentNotice((state)=>({
@@ -48,15 +56,11 @@ const ContentContainer = () => {
                 applyVisible : true
             }))
         }).catch(err=>{
-            NotificationPool.api.add({
-                title : "신청 불가",
-                content : "본인인증을 해주세요",
-                status : "error"
-            })
+            console.log(err)
         })
 
 
-    }, [setCurrentNotice])
+    }, [setCurrentNotice, logined])
 
     const closeApplyModal = useCallback(()=>{
         setCurrentNotice((state)=>({
@@ -78,18 +82,20 @@ const ContentContainer = () => {
     },[])
 
     const onTableClick = useCallback((e, data)=>{
-        console.log(data)
+
         getNotice(data.id).then((notice)=>{
-            console.log(notice)
             openNotice({
                 ...notice
             })
+
         }).catch(err=>console.log(err))
 
         }
     ,[openNotice])
 
-
+    useEffect(()=>{
+        document.documentElement.scrollTo(0,document.documentElement.scrollHeight)
+    }, [currentNotice])
 
     useEffect(()=>{
         getNoticeNumCallBack()
@@ -124,11 +130,11 @@ const ContentContainer = () => {
             >
 
             </HomeContent>
-            <Modal title={currentNotice.title} size={10} visible={currentNotice.applyVisible} onClose={closeApplyModal} closable>
-                <ApplyForm dov={currentNotice.dov} nor={currentNotice.nor} region={currentNotice.region}>
+                    <Modal title={currentNotice.title} size={12} xxl={8} xl={8} lg={10} md={10} sm={11} xs={11} visible={currentNotice.applyVisible} onClose={closeApplyModal} closable>
+                        <ApplyForm dov={currentNotice.dov} nor={currentNotice.nor} region={currentNotice.region}>
 
-                </ApplyForm>
-            </Modal>
+                        </ApplyForm>
+                    </Modal>
         </>
     )
 }
