@@ -18,7 +18,7 @@ const MenuIconNav = ({role}) => {
 
                     }
                 }>
-                    <MdFormatListBulleted size={32}/>
+                    <MdFormatListBulleted size={20}/>
                 </IconButton>
             </Col>
             {
@@ -31,7 +31,7 @@ const MenuIconNav = ({role}) => {
                                             history.push("seniors")
                                         }
                                     }>
-                                        <MdOpenInBrowser size={32}/>
+                                        <MdOpenInBrowser size={20}/>
                                     </IconButton>
                                 </Col>
                                 <Col span={1} justify={"center"}>
@@ -40,7 +40,7 @@ const MenuIconNav = ({role}) => {
                                             history.push("manage")
                                         }
                                     }>
-                                        <MdTune size={32}/>
+                                        <MdTune size={20}/>
                                     </IconButton>
 
                                 </Col>
@@ -51,7 +51,7 @@ const MenuIconNav = ({role}) => {
                                             history.push("/")
                                         }
                                     }>
-                                        <MdToday size={32}/>
+                                        <MdToday size={20}/>
                                     </IconButton>
                                 </Col>
 
@@ -65,7 +65,7 @@ const MenuIconNav = ({role}) => {
                                 history.push("/userauthority")
                             }
                         }>
-                            <MdPeople size={32} />
+                            <MdPeople size={20} />
                         </IconButton>
                     </Col> : null
             }

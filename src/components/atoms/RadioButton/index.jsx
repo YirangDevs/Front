@@ -32,17 +32,21 @@ ${props=>{
 `
 
 
-const RadioBox = ({size, name, onClick, options}, ref) => (
+const RadioBox = ({size, name, onClick, options, checkedValue, disabled}) => (
     //options = selectBox 목록 DataType = Array
     <>
     <RadioGroup>
         
         {options.map((i, index)=>
-        <RadioLabel size={size} key={index}><Radio key={index} value={i} onClick={onClick} name={name}/>{i}</RadioLabel>
+        <RadioLabel size={size} key={index}><Radio key={index} value={i} disabled={disabled.indexOf(i)!==-1 ? true : false} defaultChecked={(checkedValue===i) ? true : false} onClick={onClick} name={name}/>{i}</RadioLabel>
         )}
         
     </RadioGroup>
     </>
 )
+
+RadioBox.defaultProps = {
+    disabled: [],
+};
 
 export default RadioBox

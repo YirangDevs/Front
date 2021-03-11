@@ -22,15 +22,15 @@ const ButtonComponent = styled.div`
     switch (props.size) {
         case "small":
             return `
-                    padding : 16px;
+                    padding : 1rem;
                 `
         case "large":
             return `
-                    padding : 32px;
+                    padding : 2rem;
                 `
         default:
             return `
-                    padding : 24px;
+                    padding : 1.5rem;
                 `
     }
 }}

@@ -19,7 +19,7 @@ const HeaderStyle = styled.div`
   display: flex;
   align-items: center;
   @media(max-width: 1200px){
-    height : 72px;
+    height : 64px;
   }
 
   @media(max-width: 768px){
@@ -78,13 +78,17 @@ const Header = ({theme, logined, role, position}) => {
                                 <Label>SKIN TYPE</Label><Value>| 일반</Value>
 
                             </Col>*/}
-                            <Col xs={0} sm={0} md={2} lg={2} xl={2} xxl={2} offset={4} justify={"flex-start"} style={{
+                            <Col span={6}>
+
+                            </Col>
+                            <Col xs={0} sm={0} md={2} lg={2} xl={2} xxl={2} justify={"flex-start"} style={{
                                 color : "white"
                             }}>
 
                                 <Label>ROLE TYPE</Label><Value>| {role}</Value>
 
                             </Col>
+
                             <Col  xxl={1} xl={1} lg={1} md={1} sm={2} xs={2} style={{
                                 height: '100%',
 
