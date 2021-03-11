@@ -1,7 +1,6 @@
 import _ from "../../../config/env"
 
 import YAT from "../../../util/Yat/yat"
-import getYAT from "../../api/get/getYAT";
 import getMyRole from "../../api/get/get_my_role";
 import getMyInfo from "../../api/get/get_my_info";
 import checkEmailValidation from "../../api/get/check_email_validation";

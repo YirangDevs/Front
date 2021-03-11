@@ -1,11 +1,11 @@
-import React, {memo, useMemo} from "react"
+import React, {memo} from "react"
 import Image from "../../../atoms/Image";
 import MainImg from "../../../../img/main.png"
 import ContentLayout from "../../../../layout/Content"
 import Row from "../../../../layout/Grid/Row";
 import Col from "../../../../layout/Grid/Column";
 import TableBox from "../../../atoms/TableBox/"
-import { useHistory } from "react-router-dom"
+//import { useHistory } from "react-router-dom"
 import Pagination from "../../../atoms/Pagination/"
 import MenuIconNav from "../../../../containers/redux/components/MenuIconNav/";
 import ReadNoticeForm from "../../../molecules/ReadNoticeForm";
@@ -27,7 +27,7 @@ const HomeContent = ({
                          onApplyBtnClick
 }) => {
     const table_head = ["제목", "봉사날짜", "봉사지역", "모집인원"]
-    const history = useHistory()
+    //const history = useHistory()
 
     return (
         <>

@@ -5,7 +5,7 @@ import NotificationPool from "../containers/redux/components/NotificationPool/";
 
 const MyPageRouter = ({ security, role }) => {
     const history = useHistory()
-    if (security.indexOf(role) != -1) {
+    if (security.indexOf(role) !== -1) {
         return <MyPage />
     }
     history.push("/")

@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const ContentStyle = styled.div`
 width :auto; // 채은 수정 이거 아니면 빼주셈
-//   width: 100%;
+    width: 100%;
     height : auto;
     display : flex;
     justify-content : center;

@@ -17,7 +17,7 @@ const ContentContainer = ({logined}) => {
     const [noticeNum, setNoticeNum] = useState(0)
     const [currentNotice, setCurrentNotice] = useState(false)
 
-    const [fakeLoginList, setFakeLoginList] = useState({});
+    const fakeLoginList = {};
 
     const getNoticeNumCallBack = useCallback(()=>getNoticeNum().then(data=>{setNoticeNum(data.totalNoticeNums)}).catch(err=>console.log(err)),[])
 

@@ -1,4 +1,4 @@
-import React from "react"
+
 import { connect } from "react-redux"
 import UserInfo from "../../../../components/molecules/UserInfo"
 const mapStateToProps = (state) => {

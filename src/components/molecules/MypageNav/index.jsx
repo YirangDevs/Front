@@ -6,20 +6,19 @@
  */
 
 import React from "react"
-import NavButton from "../../atoms/Button"
 import { useHistory } from "react-router-dom"
 import styled from 'styled-components'
 import Typo from '../../atoms/Typography'
 
-const MyPageNav = styled.input.attrs(props => ({ type: "button" }))`
-background-color : #f5f5f5;
-padding : 8px 16px;
-border-top : 1.8px solid black;
-width : 100%;
-display : flex;
-justify-content : space-evenly;
-align-items: center;
-`
+// const MyPageNav = styled.input.attrs(props => ({ type: "button" }))`
+// background-color : #f5f5f5;
+// padding : 8px 16px;
+// border-top : 1.8px solid black;
+// width : 100%;
+// display : flex;
+// justify-content : space-evenly;
+// align-items: center;
+// `
 
 const MyPageNav2 = styled.div`
 background-color : #f5f5f5;

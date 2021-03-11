@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import ContentContainer from "../../containers/pages/profile/ContentContainer"
 import Header from "../../containers/redux/components/Header";
 
