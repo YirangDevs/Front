@@ -18,6 +18,7 @@ const HomeContent = ({
                          noticeNum,
                          currentNoticePage,
                          currentNotice,
+                         fakeLoginOnClick,
 
                          setNoticeNum,
                          closeNotice,
@@ -33,6 +34,15 @@ const HomeContent = ({
             <Image src={MainImg} width={"100%"}>
 
             </Image>
+            {/* 임시 버튼 */}
+            <Button onClick={fakeLoginOnClick} value="volunteer_1">봉사자1</Button>
+            <Button onClick={fakeLoginOnClick} value="volunteer_2">봉사자2</Button>
+            <Button onClick={fakeLoginOnClick} value="volunteer_3">봉사자3</Button>
+            <Button onClick={fakeLoginOnClick} value="volunteer_4">봉사자4</Button>
+            <Button onClick={fakeLoginOnClick} value="admin_1">관리자1</Button>
+            <Button onClick={fakeLoginOnClick} value="admin_2">관리자2</Button>
+            <Button onClick={fakeLoginOnClick} value="super_admin_1">슈퍼어드민</Button>
+            {/* 임시 버튼 끝 */}
             <ContentLayout >
 
                 <Row justify={"center"} >

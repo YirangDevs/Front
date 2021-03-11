@@ -7,6 +7,7 @@ import Modal from "../../../components/atoms/Modal";
 import ApplyForm from "../../../components/molecules/ApplyForm";
 import getMyInfo from "../../../service/api/get/get_my_info";
 import NotificationPool from "../../redux/components/NotificationPool";
+import fakeLogin from "../../../service/api/post/fake_login"
 
 const ContentContainer = () => {
 
@@ -15,6 +16,8 @@ const ContentContainer = () => {
     const [bodyList, setBodyList] = useState([])
     const [noticeNum, setNoticeNum] = useState(0)
     const [currentNotice, setCurrentNotice] = useState(false)
+
+    const [fakeLoginList, setFakeLoginList] = useState({});
 
     const getNoticeNumCallBack = useCallback(()=>getNoticeNum().then(data=>{setNoticeNum(data.totalNoticeNums)}).catch(err=>console.log(err)),[])
 
@@ -89,6 +92,12 @@ const ContentContainer = () => {
         }
     ,[openNotice])
 
+    const fakeLoginOnClick = (e) => {
+        const role = e.target.value
+        fakeLoginList.fakeAuthority=role
+        fakeLogin(fakeLoginList);
+    }
+
     useEffect(()=>{
         document.documentElement.scrollTo(0,document.documentElement.scrollHeight)
     }, [currentNotice])
@@ -115,6 +124,7 @@ const ContentContainer = () => {
                 noticeNum={noticeNum}
                 currentNotice={currentNotice}
                 currentNoticePage={currentNoticePage}
+                fakeLoginOnClick={fakeLoginOnClick}
 
                 setNoticeNum={setNoticeNumState}
                 closeNotice={closeNotice}
