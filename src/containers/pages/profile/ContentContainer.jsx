@@ -14,7 +14,7 @@ import ProfileContent from "../../redux/components/Profile"
 const ContentContainer = () => {
 
 
-    const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
+    //const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
 
     const [userProfile, setUserProfile] = useState({
         userName: "",

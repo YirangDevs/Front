@@ -160,7 +160,7 @@ const MyPageContent = ({
                                     borderBottom: "1px solid #ccd4e0",
                                     borderRight: " 1.2px solid #000000",
                                     borderTop: " 2px solid #000000",
-                                    borderBottom: " 2px solid #000000",
+                                    //borderBottom: " 2px solid #000000", 이거 왜 두개 있어?
                                 }}>
                                     <Row gutter={[0, 0]}>
                                         <Col span={6}>
@@ -176,7 +176,6 @@ const MyPageContent = ({
                                     backgroundColor: "#f5f5f5",
                                     borderBottom: "1px solid #ccd4e0",
                                     borderTop: " 2px solid #000000",
-                                    borderBottom: " 2px solid #000000",
                                 }}>
 
                                     <RadioBox name="gender" options={typeoptions} />

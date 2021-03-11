@@ -31,7 +31,7 @@ const ContentContainer = () => {
     const [idArray, setIdArray] = useState([]);
     const [selectedUser, setSelectedUser] = useState([]);
     const [userId, setUserId] = useState();
-    const [userRegions, setUserRegions] = useState([]);
+    //const [userRegions, setUserRegions] = useState([]);
     const postsPerPage = 10
 
 
@@ -63,7 +63,7 @@ const ContentContainer = () => {
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
                 return{
-                    regions : i.regions && Object.keys(i.regions).length!=0?  i.regions.slice(0,1)+" 외 "+ (Object.keys(i.regions).length-1) + "구": "-"
+                    regions : i.regions && Object.keys(i.regions).length!==0?  i.regions.slice(0,1)+" 외 "+ (Object.keys(i.regions).length-1) + "구": "-"
                 }            
         })
         setRegionsPosts(data)
@@ -133,13 +133,13 @@ const ContentContainer = () => {
             setUserId(data.userId)
             setRegionArray(data.regions)
             setRegionModal(true)
-            setUserRegions(data.regions)
+            //setUserRegions(data.regions)
         }else{
             if(data.authority==="관리자"){
             setUserId(data.userId)
             setRegionArray(data.regions)
             setRegionModal(true)
-            setUserRegions(data.regions)
+            //setUserRegions(data.regions)
             }
         }        
     }
@@ -190,8 +190,8 @@ const ContentContainer = () => {
     //권한에 따라서 나타나는 테이블이 달라집니다.
     const getMyAuthority = (e) => {
         setCurrentPage(1)
-        if(e.target.value!="전체"){
-            const certainAuthority = users.filter((i)=>i.authority==e.target.value)
+        if(e.target.value!=="전체"){
+            const certainAuthority = users.filter((i)=>i.authority===e.target.value)
 
             setCertainUsers(certainAuthority)
             setTable()
@@ -213,7 +213,7 @@ const ContentContainer = () => {
 
     const modalClose = () =>{
         setUserId(null);
-        setUserRegions([]);
+       // setUserRegions([]);
         setRegionModal(false)
         setAuthorityModal(false)
     }

@@ -5,7 +5,7 @@ import RowContext from "../Row/RowContext";
 
 const ColumnLayout = styled.div`
     display :flex;
-    ${props=>props.span == 0 ? `display : none;` : `flex-basis :`+(100 / 12) * props.span+`%;`}
+    ${props=>props.span === 0 ? `display : none;` : `flex-basis :`+(100 / 12) * props.span+`%;`}
     box-sizing : border-box;
     flex-wrap : wrap;
     ${props => props.justify ? `justify-content : ` + props.justify + `;` : null};

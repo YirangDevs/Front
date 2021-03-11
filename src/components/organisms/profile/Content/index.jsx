@@ -7,7 +7,7 @@
 
 
 import React from "react"
-import MypageNav from "../../../molecules/MypageNav"
+//import MypageNav from "../../../molecules/MypageNav"
 
 
 const ProfileContent = ({

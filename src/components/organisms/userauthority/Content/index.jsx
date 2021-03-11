@@ -42,7 +42,6 @@ const UserAuthorityContent = ({
     idArray,
     selectedUser
 }) => {
-    //console.log(regionArray)
     return(
         <>
             <Content>
@@ -58,7 +57,7 @@ const UserAuthorityContent = ({
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={12} xxl={5.8} xl={8.8}>
+                    <Col span={12} xxl={5.8} xl={8.3}>
                         <TableBox headList={TableBoxHeadLists} bodyList={posts}/>
                     </Col>
                     <Col span={0.2} /> {/* 빈칸 */}
@@ -66,7 +65,7 @@ const UserAuthorityContent = ({
                         <TableBox headList={authorityTable} bodyList={adminPosts} dataOnClick={authorityOnClick} data={idArray} black back/>
                     </Col>
                     <Col span={0} xxl={1} xl={1.5}>
-                    <TableBox headList={regionTable} bodyList={regionsPosts} dataOnClick={regionOnClick} data={idArray} black back/>  
+                        <TableBox headList={regionTable} bodyList={regionsPosts} dataOnClick={regionOnClick} data={idArray} black back/>  
                     </Col>
                     <Col xxl={0.5} /> {/* 빈칸 */}
                     <Col span={0} xxl={3.5}>
