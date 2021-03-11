@@ -1,4 +1,12 @@
 import _ from "../../../config/env"
+
+import YAT from "../../../util/Yat/yat"
+import getYAT from "../../api/get/getYAT";
+import getMyRole from "../../api/get/get_my_role";
+import getMyInfo from "../../api/get/get_my_info";
+import checkEmailValidation from "../../api/get/check_email_validation";
+
+
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 
 const fakeLogin = (role) => {
@@ -22,6 +30,29 @@ const fakeLogin = (role) => {
         })
         console.log("Error from getYAT\n"+err.errorCode+"/n"+err.errorName)
         throw err
+    }).then(async(YIRANG_ACCESS_TOKEN)=>{
+        YIRANG_ACCESS_TOKEN = YIRANG_ACCESS_TOKEN.split(" ")[1]
+        localStorage.setItem("YAT",YIRANG_ACCESS_TOKEN)
+        let payload = YAT.decode(YIRANG_ACCESS_TOKEN)
+        let roleInfo = await getMyRole()
+        let userInfo = await getMyInfo()
+        let emailValidation = await checkEmailValidation()
+        console.log("userInfo : ", userInfo)
+        console.log("payload : ", payload)
+        let result = {
+            username : userInfo.username,
+            userId : payload.userId,
+            role : roleInfo.authority,
+            email : userInfo.email,
+            sex : userInfo.sex,
+            phone : userInfo.phone,
+            emailValidation : emailValidation.validation
+        }
+        console.log("result", result)
+        return YIRANG_ACCESS_TOKEN
+    })
+        .catch(error=>{
+        console.log(error)
     })
 }
 
