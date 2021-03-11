@@ -3,6 +3,22 @@ import styled from "styled-components"
 import PropTypes from "prop-types"
 
 export const Text = styled.input.attrs(props => ({ type: "text" }))`
+
+border : none ;
+
+font-size: 1rem;
+color: #707070;
+
+
+&:focus{
+    outline : none;
+}
+
+@media screen and (max-width: 992px){
+    text-align: center;
+}
+
+
 ${props => {
         switch (props.size) {
             case "small":
@@ -23,22 +39,12 @@ ${props => {
             `
         }
     }}
-    border : none ;
+    
     ${props => (props.border) ? `border : solid gray 1px;` : null}
     ${props => (props.radius) ? `border-radius: 5px;` : null}
     ${props => (props.block) ? `width : 90%;` : null}
-    font-size: 1rem;
-    color: #707070;
-    
-    
-    &:focus{
-        outline : none;
-    }
+    ${props => (props.disabled) ? `background-color: rgba(0,0,0,0);` : null}
 
-    @media screen and (max-width: 992px){
-        text-align: center;
-    }
-    
 `
 
 /**

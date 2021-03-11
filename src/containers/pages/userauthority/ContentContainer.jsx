@@ -21,6 +21,7 @@ const regionOptions = ["수성구", "중구", "동구", "서구", "남구", "북
 const ContentContainer = () => {
     const [regionArray, setRegionArray] = useState([]);
     const [users, setUsers] = useState([]);
+    const [certainUsers, setCertainUsers] = useState([]);
     const [regionModal, setRegionModal] = useState(false);
     const [authorityModal, setAuthorityModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -30,18 +31,19 @@ const ContentContainer = () => {
     const [idArray, setIdArray] = useState([]);
     const [selectedUser, setSelectedUser] = useState([]);
     const [userId, setUserId] = useState();
-    const [userRegions, setUserRegions] = useState([]);
+    //const [userRegions, setUserRegions] = useState([]);
     const postsPerPage = 10
 
 
     useEffect(()=> {
         getAllUsers().then((data)=>{
             setUsers(data.userAuthorities)
+            setCertainUsers(data.userAuthorities)
         }).catch(err=>console.log(err))
     }, [])
 
     const updatePosts = useCallback(()=>{
-        let data = users
+        let data = certainUsers
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
             return{
@@ -53,25 +55,24 @@ const ContentContainer = () => {
             }
         })
         setPosts(data)
-    }, [currentPage, users])
+    }, [currentPage, certainUsers])
     
     
     const updateRegionsPosts = useCallback(()=>{
-        console.log(users)
-        let data = users
+        let data = certainUsers
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
                 return{
-                    regions : i.regions && Object.keys(i.regions).length!==0?  i.regions.slice(0,2) : "-"
+                    regions : i.regions && Object.keys(i.regions).length!==0?  i.regions.slice(0,1)+" 외 "+ (Object.keys(i.regions).length-1) + "구": "-"
                 }            
         })
         setRegionsPosts(data)
         
-    }, [currentPage, users])
+    }, [currentPage, certainUsers])
 
 
     const updateAdminPosts = useCallback(()=>{
-        let data = users
+        let data = certainUsers
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
             return{
@@ -79,11 +80,11 @@ const ContentContainer = () => {
             }
         })
         setAdminPosts(data)
-    }, [currentPage, users])
+    }, [currentPage, certainUsers])
 
 
     const sendIdArray = useCallback(()=>{
-        let data = users
+        let data = certainUsers
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((i)=>{
             return{
@@ -92,7 +93,7 @@ const ContentContainer = () => {
             }
         })
         setIdArray(data)
-    }, [currentPage, users])
+    }, [currentPage, certainUsers])
 
 
     useCallback(() => {
@@ -122,19 +123,23 @@ const ContentContainer = () => {
     }, [users, sendIdArray])
 
 
-
+    const setTable = () =>{
+        updatePosts()
+        updateRegionsPosts()
+        updateAdminPosts()
+    }
     const regionOnClick = (e, data) => {
         if(data.regions){ //관할 구역이 존재한다면?
             setUserId(data.userId)
             setRegionArray(data.regions)
             setRegionModal(true)
-            setUserRegions(data.regions)
+            //setUserRegions(data.regions)
         }else{
             if(data.authority==="관리자"){
             setUserId(data.userId)
             setRegionArray(data.regions)
             setRegionModal(true)
-            setUserRegions(data.regions)
+            //setUserRegions(data.regions)
             }
         }        
     }
@@ -146,65 +151,88 @@ const ContentContainer = () => {
 
     }
 
+    //표를 리렌더링 하는 부분
+    const addDeleteRender = () => {
+        console.log("재시작")
+        getAllUsers().then((data)=>{
+            setUsers(data.userAuthorities)
+            setCertainUsers(data.userAuthorities)
+        }).catch(err=>console.log(err))
+    }
+
     const authorityChange = () => {
         if(selectedUser.authority==="봉사자"){
             changeUserToAdmin(userId).then(()=>{
                 addDeleteRender()
-                setAuthorityModal(false)
+            setAuthorityModal(false)
+                
             }).catch(error=>console.log(error))
         }else{
             changeAdminToUser(userId).then(()=>{
                 addDeleteRender()
-                setAuthorityModal(false)
+            setAuthorityModal(false)
             }).catch(error=>console.log(error))
         }
-        
     }
 
-    //표를 리렌더링 하는 부분
-    const addDeleteRender = () => {
-        getAllUsers().then((data)=>{
-            setUsers(data.userAuthorities)
-        }).catch(err=>console.log(err))
-    }
+    
 
     const authorityRegionChange = () => {
-        editUserAdminRegion(userId, userRegions).then(()=>{
-            window.location.reload()
+        editUserAdminRegion(userId, regionArray).then(()=>{
+            addDeleteRender()
+            setRegionModal(false)
         }).catch(error=>console.log(error))
     }
     const paginationOnClick = (e) => {
         setCurrentPage(e.target.innerText)
     }
 
+    //권한에 따라서 나타나는 테이블이 달라집니다.
     const getMyAuthority = (e) => {
+        setCurrentPage(1)
         if(e.target.value!=="전체"){
             const certainAuthority = users.filter((i)=>i.authority===e.target.value)
-            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
-            .map((i)=>{
-                return{
-                    authority : i.authority,
-                    name : i.userName,
-                    sex : i.sex,
-                    phone : i.phone,
-                    email : i.email
-                }
-            })
-            setPosts(certainAuthority)
+
+            setCertainUsers(certainAuthority)
+            setTable()
         }else{
-            updatePosts()
+            setCertainUsers(users)
+            setTable()
         }
     }
     const regionOnCheck = (e) => {
+        console.log(e.target.checked)
         console.log(e.target.value)
-        regionArray.push(e.target.value)
+        if(e.target.checked){
+            regionArray.push(e.target.value)
+        }else{
+            setRegionArray(regionArray.filter(region=>region!==e.target.value))
+        }
+        console.log(regionArray)
     }
 
     const modalClose = () =>{
         setUserId(null);
-        setUserRegions([]);
+       // setUserRegions([]);
         setRegionModal(false)
         setAuthorityModal(false)
+    }
+
+    const searchName = (e) => {
+        setCurrentPage(1)
+        const name = e.target.parentNode.parentNode.children[1].children[0].value
+        if(name){
+            const certainNamePosts = users.filter((i)=>i.userName.includes(name))
+        
+            setCertainUsers(certainNamePosts)
+            setTable()
+        }
+        else{
+            setCertainUsers(users)
+            setTable()
+        }
+        
+
     }
     return (
         <>
@@ -218,14 +246,14 @@ const ContentContainer = () => {
                 getMyAuthority={getMyAuthority}
                 regionOnCheck={regionOnCheck}
                 paginationOnClick={paginationOnClick}
-
+                searchName = {searchName}
 
                 regionModal={regionModal}
                 regionArray={regionArray}
                 regionOptions={regionOptions}
                 authorityModal={authorityModal}
 
-                users={users}
+                certainUsers={certainUsers}
                 posts={posts}
                 adminPosts={adminPosts}
                 regionsPosts={regionsPosts}
@@ -234,9 +262,7 @@ const ContentContainer = () => {
             >
             </UserAuthorityContent>
         </Container>
-        
         </>
-    )
+        )
 }
-
 export default ContentContainer

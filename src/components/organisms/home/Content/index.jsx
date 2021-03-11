@@ -1,10 +1,11 @@
-import React, {memo, useMemo} from "react"
+import React, {memo} from "react"
 import Image from "../../../atoms/Image";
 import MainImg from "../../../../img/main.png"
 import ContentLayout from "../../../../layout/Content"
 import Row from "../../../../layout/Grid/Row";
 import Col from "../../../../layout/Grid/Column";
 import TableBox from "../../../atoms/TableBox/"
+//import { useHistory } from "react-router-dom"
 import Pagination from "../../../atoms/Pagination/"
 import MenuIconNav from "../../../../containers/redux/components/MenuIconNav/";
 import ReadNoticeForm from "../../../molecules/ReadNoticeForm";
@@ -17,6 +18,7 @@ const HomeContent = ({
                          noticeNum,
                          currentNoticePage,
                          currentNotice,
+                         fakeLoginOnClick,
 
                          setNoticeNum,
                          closeNotice,
@@ -24,14 +26,23 @@ const HomeContent = ({
                          onTableClick,
                          onApplyBtnClick
 }) => {
+    const table_head = ["제목", "봉사날짜", "봉사지역", "모집인원"]
+    //const history = useHistory()
 
-
-    const table_head = useMemo(()=> ["제목", "봉사날짜", "봉사지역", "모집인원"], [])
     return (
         <>
             <Image src={MainImg} width={"100%"}>
 
             </Image>
+            {/* 임시 버튼 */}
+            <Button onClick={fakeLoginOnClick} value="volunteer_1">봉사자1</Button>
+            <Button onClick={fakeLoginOnClick} value="volunteer_2">봉사자2</Button>
+            <Button onClick={fakeLoginOnClick} value="volunteer_3">봉사자3</Button>
+            <Button onClick={fakeLoginOnClick} value="volunteer_4">봉사자4</Button>
+            <Button onClick={fakeLoginOnClick} value="admin_1">관리자1</Button>
+            <Button onClick={fakeLoginOnClick} value="admin_2">관리자2</Button>
+            <Button onClick={fakeLoginOnClick} value="super_admin_1">슈퍼어드민</Button>
+            {/* 임시 버튼 끝 */}
             <ContentLayout >
 
                 <Row justify={"center"} >

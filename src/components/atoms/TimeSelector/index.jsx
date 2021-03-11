@@ -27,6 +27,7 @@ ${props => {
             case "white":
                 return `
                 border: none;
+                background-color: white;
             `
             default:
                 return `
