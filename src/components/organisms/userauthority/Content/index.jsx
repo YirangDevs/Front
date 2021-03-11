@@ -9,6 +9,7 @@ import TableBox from "../../../atoms/TableBox"
 import Modal from "../../../../components/atoms/Modal"
 import MenuNav from "../../../../containers/redux/components/MenuNav"
 import Pagination from "../../../atoms/Pagination"
+import UserInfo from "../../../molecules/UserInfo"
 import AuthorityAdminModal from "../../../../components/organisms/userauthority/AuthorityAdminModal"
 import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
 
@@ -27,20 +28,21 @@ const UserAuthorityContent = ({
     getMyAuthority,
     regionOnCheck,
     paginationOnClick,
+    searchName,
 
     regionModal,
     regionArray,
     regionOptions,
     authorityModal,
 
-    users,
+    certainUsers,
     posts,
     adminPosts,
     regionsPosts,
     idArray,
     selectedUser
 }) => {
-    console.log(regionsPosts)
+    //console.log(regionArray)
     return(
         <>
             <Content>
@@ -52,33 +54,41 @@ const UserAuthorityContent = ({
                             <TextBox placeholder="이름을 검색하십시오" border></TextBox>
                     </Col>
                     <Col span={1}>
-                        <Button value="검색" theme="white" round/>
+                        <Button value="검색" theme="white" onClick={searchName} round/>
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={5.8}>
+                    <Col span={12} xxl={5.8} xl={8.8}>
                         <TableBox headList={TableBoxHeadLists} bodyList={posts}/>
                     </Col>
                     <Col span={0.2} /> {/* 빈칸 */}
-                    <Col span={1}>
+                    <Col span={0} xxl={1} xl={1.5}>
                         <TableBox headList={authorityTable} bodyList={adminPosts} dataOnClick={authorityOnClick} data={idArray} black back/>
                     </Col>
-                    <Col span={1}>
+                    <Col span={0} xxl={1} xl={1.5}>
                     <TableBox headList={regionTable} bodyList={regionsPosts} dataOnClick={regionOnClick} data={idArray} black back/>  
                     </Col>
-                    <Col span={0.5} /> {/* 빈칸 */}
-                    <Col span={3.5}>
-                        <MenuNav />
+                    <Col xxl={0.5} /> {/* 빈칸 */}
+                    <Col span={0} xxl={3.5}>
+                        <Row gutter={[10,0]}>
+                            <Col span={12}>
+                                <MenuNav />
+                            </Col>
+                            <Col span={12}>
+                                <UserInfo />
+                            </Col>
+                        </Row>
+                        
                     </Col>
                 </Row>
                 <Row>
                 <Col span={12} xxl={7} xl={6} justify={"center"}>
-                    <Pagination num={Math.ceil(users.length/10)} onClick={paginationOnClick}></Pagination>
+                    <Pagination num={Math.ceil(certainUsers.length/10)} onClick={paginationOnClick}></Pagination>
                 </Col>
             </Row>
             </Content>
-            <Modal title="권한 할당" visible={authorityModal} size={12} closable={true} onClose={modalClose} children={<AuthorityAdminModal authorityChange={authorityChange} modalClose={modalClose} selectedUser={selectedUser}/>}/>
-            <Modal title="지역 할당" visible={regionModal} size={12} children={<AuthorityRegionModal regionOnCheck={regionOnCheck} modalClose={modalClose} authorityRegionChange={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
+            <Modal title="권한 할당" visible={authorityModal} size={3} closable={true} onClose={modalClose} children={<AuthorityAdminModal authorityChange={authorityChange} modalClose={modalClose} selectedUser={selectedUser}/>}/>
+            <Modal title="지역 할당" visible={regionModal} size={3} children={<AuthorityRegionModal regionOnCheck={regionOnCheck} modalClose={modalClose} authorityRegionChange={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
         </>
     )
 }

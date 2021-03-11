@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-const Radio = styled.input.attrs((props)=> ({type:"radio"}))`
+const Radio = styled.input.attrs((props) => ({ type: "radio" }))`
 
 `
 const RadioGroup = styled.div`
@@ -25,8 +25,8 @@ ${props=>{
                 font-size: 1rem;
                 
             `
-    }
-}}
+        }
+    }}
     
     color: #707070;
 `

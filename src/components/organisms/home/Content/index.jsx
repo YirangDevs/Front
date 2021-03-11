@@ -5,6 +5,7 @@ import ContentLayout from "../../../../layout/Content"
 import Row from "../../../../layout/Grid/Row";
 import Col from "../../../../layout/Grid/Column";
 import TableBox from "../../../atoms/TableBox/"
+import { useHistory } from "react-router-dom"
 import Pagination from "../../../atoms/Pagination/"
 import MenuIconNav from "../../../../containers/redux/components/MenuIconNav/";
 import ReadNoticeForm from "../../../molecules/ReadNoticeForm";
@@ -24,9 +25,9 @@ const HomeContent = ({
                          onTableClick,
                          onApplyBtnClick
 }) => {
+    const table_head = ["제목", "봉사날짜", "봉사지역", "모집인원"]
+    const history = useHistory()
 
-
-    const table_head = useMemo(()=> ["제목", "봉사날짜", "봉사지역", "모집인원"], [])
     return (
         <>
             <Image src={MainImg} width={"100%"}>
