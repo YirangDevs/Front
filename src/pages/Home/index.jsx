@@ -1,6 +1,6 @@
 import React, {memo} from "react"
 import Header from "../../containers/redux/components/Header/index";
-import ContentContainer from "../../containers/pages/home/ContentContainer";
+import ContentContainer from "../../containers/redux/pages/home/ContentContainer";
 
 const Home = () => (
     <>

@@ -47,7 +47,7 @@ const HomeContent = ({
 
                 <Row justify={"center"} >
                     <Col span={12} justify={"center"} style={{
-                        marginTop : "4rem"
+                        marginTop : "2rem"
                     }}>
                         <MenuIconNav></MenuIconNav>
                     </Col>
