@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-07 05:36:07
+ * @Last Modified time: 2021-03-15 06:05:08
  */
 
 
@@ -18,17 +18,30 @@ import Col from "../../../../layout/Grid/Column"
 import Button from "../../../atoms/Button"
 import TextBox from "../../../atoms/TextBox"
 import Img from "../../../atoms/Image"
-import CheckBox from "../../../atoms/CheckBox"
 import SelectBox from "../../../atoms/SelectBox"
+import VerifiedForm from "../../../molecules/VerifiedForm/VerifiedForm"
+
+import RadioBox from "../../../atoms/RadioButton"
+import Modal from "../../../atoms/Modal"
+import SexConfirmModal from "../SexConfirmForm"
+
+import DeleteMyInfoModal from "../DeleteMyInfoForm"
+
+import DefaultImg from "../../../../img/ProfileDefaultImg.png"
 
 const ProfileContent = ({
     //contentContainer
+
+    minutes,
+    seconds,
     userProfile,
     editProfileFunction,
     isEditNickNameForm,
     editNickNameForm,
     isEditRealNameForm,
     editRealNameForm,
+    isEditSexForm,
+    editSexForm,
     isEditEmailForm,
     editEmailForm,
     firstRegionOptions,
@@ -39,12 +52,22 @@ const ProfileContent = ({
     inputAuthNumForm,
     isAuthNum,
     editAuthNum,
+    editCompleted,
+    isSexConfirmVisible,
+    confirmModal,
+    DeleteCompleted,
+    isDeleteConfirmVisible,
+    deleteConfirmModal
 }) => {
-    console.log(userProfile)
 
-    const { username, imgUrl, realname, phone, email, checkedEmail, sex,
-        firstRegion, secondRegion, role, } = userProfile;
+    const { username, imgUrl, realname, phone, email, sex,
+        firstRegion, secondRegion, role, verified } = userProfile;
 
+
+    const settingSex = (sex) => {
+        if (sex === 'FEMALE') return '여성';
+        if (sex === 'MALE') return '남성';
+    }
 
     return (
         <>
@@ -81,10 +104,34 @@ const ProfileContent = ({
                         </Row>
                         <Row gutter={[15, 0]}>
                             <Col span={12}>
-                                <MypageNav role={userProfile.role} />
+                                <MypageNav role={role} />
+                            </Col>
+                        </Row>
+                        {/* 탈퇴하기 바로  */}
+                        {/* <Row align={'center'} style={{ marginTop: '1rem' }}>
+                            <Col span={3} align={'center'} style={{ borderRight: '1px solid black', height: "3rem", }}>
+                                <Typo size={"1.2rem"} weight={"bold"} > 회원탈퇴</Typo>
+                            </Col>
+
+                            <Col span={6} justify={'center'} align={'center'} style={{ height: "3rem", }} >
+                                <Button types={"primary"} value={'회원탈퇴'} onClick={DeleteCompleted} />
+                            </Col>
+                        </Row> */}
+
+                        <Row gutter={[15, 0]} style={{ margin: '2.5rem 0 0 0 ' }}>
+                            <Col span={4}>
+                                <Typo size={"1rem"} color={'#ff4d4f'} weight={"500"} cursor={'pointer'} onClick={deleteConfirmModal.show} >탈퇴하기</Typo>
+                            </Col>
+                            <Col span={8}>
+                                <Typo size={"1rem"} color={'#707070'} weight={"500"} cursor={'pointer'} >업데이트 정보</Typo>
                             </Col>
                         </Row>
                     </Col>
+
+                    <Modal headerClose visible={isDeleteConfirmVisible}
+                        maskClosable={true} onClose={deleteConfirmModal.close} size={4}>
+                        <DeleteMyInfoModal username={username} DeleteCompleted={DeleteCompleted} deleteConfirmModal={deleteConfirmModal}></DeleteMyInfoModal>
+                    </Modal>
 
 
                     <Col span={7.5} offset={0.5}>
@@ -94,8 +141,42 @@ const ProfileContent = ({
                             </Col>
                         </Row>
 
+                        <Row justify={"space-between"} style={{ marginTop: '15px', borderTop: '3px solid #000000', }}>
+                            <Col span={2} justify={"center"} align={"center"} style={{
+                                backgroundColor: "#f5f5f5",
+                                height: "7rem"
+                            }}>
+                                <Typo weight={'bold'}>프로필 사진</Typo>
+                            </Col>
+                            <Col span={10} justify={"space-between"} style={{
+                                backgroundColor: "#ffffff",
+                                height: "7rem",
+                            }} >
+                                <Col span={7} justify={"start"} align={"center"} style={{
+                                    paddingLeft: '1rem'
+                                }}>
+                                    {
+                                        (imgUrl) ?
+                                            <Img src={imgUrl} width={'6rem'} circle></Img>
+                                            :
+                                            <Img src={DefaultImg} width={'6rem'} circle></Img>
+                                    }
+                                    <Img src={imgUrl} width={'6rem'} circle></Img>
+                                </Col>
+                                <Col span={3}>
+                                    <Row justify={'center'} align={'center'}>
+                                        {/* <Col span={12}>
+                                            <Button block value={'기본 이미지로'} onClick={editProfileFunction.defaultImg}></Button>
+                                        </Col>
+                                        <Col span={12} >
+                                            <Button block value={'프로필 사진으로'} onClick={editProfileFunction.imgUrl}></Button>
+                                        </Col> */}
+                                    </Row>
+                                </Col>
+                            </Col>
+                        </Row>
 
-                        <Row justify={"space-between"} style={{ marginTop: '15px', borderTop: '3px solid #000000', }} >
+                        <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }}  >
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
                                 height: "3rem",
@@ -133,14 +214,25 @@ const ProfileContent = ({
 
                                         :
                                         <>
-                                            <Col span={5} justify={"start"} align={"center"} style={{
+                                            <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
                                                 height: "3rem",
                                                 paddingLeft: '1rem'
                                             }}>
                                                 <Typo weight={"bold"}>
                                                     {
-                                                        realname || username
+                                                        (username) ?
+                                                            <Typo weight={"bold"}>
+                                                                {
+                                                                    username
+                                                                }
+                                                            </Typo>
+                                                            :
+                                                            <Typo backColor={'rgb(255, 253, 126)'} weight={"bold"}>
+                                                                {
+                                                                    '닉네임을 기입해 주새요'
+                                                                }
+                                                            </Typo>
                                                     }
                                                 </Typo>
                                             </Col>
@@ -158,12 +250,13 @@ const ProfileContent = ({
                         </Row >
 
 
-                        <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >                            <Col span={2} justify={"center"} align={"center"} style={{
-                            backgroundColor: "#f5f5f5",
-                            height: "3rem",
-                        }}>
-                            <Typo weight={"bold"}>이름</Typo>
-                        </Col>
+                        <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
+                            <Col span={2} justify={"center"} align={"center"} style={{
+                                backgroundColor: "#f5f5f5",
+                                height: "3rem",
+                            }}>
+                                <Typo weight={"bold"}>* 이름</Typo>
+                            </Col>
                             <Col span={10} justify={'space-between'} >
                                 {
                                     (isEditRealNameForm) ?
@@ -174,14 +267,14 @@ const ProfileContent = ({
                                                 paddingLeft: "1rem"
                                             }}>
 
-                                                <Col span={2} align={'center'} justify={'center'} >
+                                                <Col span={4} align={'center'} justify={'start'} >
                                                     <TextBox color={"black"} border
                                                         radius={'22px'} align={'center'}
-                                                        onChange={editProfileFunction.realname} value={realname}></TextBox>
+                                                        onChange={editProfileFunction.realname} value={realname} />
                                                 </Col>
                                                 <Col span={5} align={"center"} style={{ paddingLeft: '0.8rem' }}>
                                                     {/* <TextBox size='0.7rem' block value={"초기설정은 카톡닉네임입니다."}></TextBox> */}
-                                                    <Typo color={'#707070'} size={'0.8rem'}>반드시 실명을 기입해 주세요.</Typo>
+                                                    <Typo size={'0.8rem'}>반드시 실명을 기입해 주세요.</Typo>
                                                 </Col>
 
                                             </Col>
@@ -195,16 +288,27 @@ const ProfileContent = ({
 
                                         :
                                         <>
-                                            <Col span={5} justify={"start"} align={"center"} style={{
+                                            <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
                                                 height: "3rem",
                                                 paddingLeft: '1rem'
                                             }}>
-                                                <Typo weight={"bold"}>
-                                                    {
-                                                        realname || '실명을 기입해 주새요'
-                                                    }
-                                                </Typo>
+
+                                                {
+                                                    (realname) ?
+                                                        <Typo weight={"bold"}>
+                                                            {
+                                                                realname
+                                                            }
+                                                        </Typo>
+                                                        :
+                                                        <Typo backColor={'rgb(255, 253, 126)'} weight={"bold"}>
+                                                            {
+                                                                '실명을 기입해 주새요'
+                                                            }
+                                                        </Typo>
+                                                }
+
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
@@ -226,7 +330,7 @@ const ProfileContent = ({
                                 backgroundColor: "#f5f5f5",
                                 height: "3rem",
                             }}>
-                                <Typo weight={"bold"}>전화번호</Typo>
+                                <Typo weight={"bold"}>* 전화번호</Typo>
                             </Col>
                             <Col span={10} justify={'space-between'} >
                                 {
@@ -258,14 +362,25 @@ const ProfileContent = ({
 
                                         :
                                         <>
-                                            <Col span={5} justify={"start"} align={"center"} style={{
+                                            <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
                                                 height: "3rem",
                                                 paddingLeft: '1rem'
                                             }}>
                                                 <Typo weight={"bold"}>
                                                     {
-                                                        phone || `전화번호를 기입해주세요`
+                                                        (phone) ?
+                                                            <Typo weight={"bold"}>
+                                                                {
+                                                                    phone
+                                                                }
+                                                            </Typo>
+                                                            :
+                                                            <Typo backColor={'rgb(255, 253, 126)'} weight={"bold"}>
+                                                                {
+                                                                    '전화번호를 기입해 주새요'
+                                                                }
+                                                            </Typo>
                                                     }
                                                 </Typo>
                                             </Col>
@@ -282,219 +397,187 @@ const ProfileContent = ({
                             </Col>
                         </Row >
 
-                        {
-                            (isEditEmailForm) ?
-                                (isInputAuthNum) ?
-                                    <>
-
-                                        <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
-                                            <Col span={2} justify={"center"} align={"center"} style={{
-                                                backgroundColor: "#f5f5f5",
-                                                height: "3rem"
-                                            }}>
-                                                <Typo weight={'bold'}>이메일 인증</Typo>
-                                            </Col>
-                                            <Col span={10} justify={"space-between"}>
-                                                <Col span={7} justify={"start"} align={"center"} style={{
-                                                    backgroundColor: "#ffffff",
-                                                    height: "3rem",
-                                                    paddingLeft: '1rem'
-                                                }}>
-                                                    <Typo weight={'bold'}>
-                                                        {
-                                                            email
-                                                        }
-                                                    </Typo>
-                                                </Col>
-                                                <Col span={3} justify={"center"} align={"center"} style={{
-                                                    backgroundColor: "#ffffff",
-                                                    height: "3rem"
-                                                }}>
-                                                    <Button block value={'변경취소'} onClick={editEmailForm.close}></Button>
-                                                </Col>
-                                            </Col>
-                                        </Row>
-
-
-                                        <Row justify={"space-between"}>
-                                            <Col span={2} justify={"center"} align={"center"} style={{
-                                                backgroundColor: "#f5f5f5",
-                                                height: "4rem"
-                                            }}>
-                                                <Typo weight={'bold'}></Typo>
-                                            </Col>
-                                            <Col span={10} justify={"space-between"}>
-                                                <Row justify={"space-between"}>
-                                                    <Col span={12} style={{ paddingLeft: '1rem' }}>
-                                                        <Typo color={'#707070'} size={'0.8rem'}>입력하신({email})로 인증메일이 발송되었습니다.</Typo>
-                                                    </Col>
-                                                    <Col span={3} justify={"start"} align={"center"} style={{
-                                                        backgroundColor: "#ffffff",
-                                                        height: "3rem",
-                                                        paddingLeft: '1rem'
-                                                    }}>
-
-                                                        <TextBox color={"black"} placeholder={"인증번호를 입력해 주세요"}
-                                                            border radius={'22px'} align={'center'}
-                                                            onChange={editProfileFunction.email} value={isAuthNum}></TextBox>
-
-                                                    </Col>
-                                                    <Col span={5} justify={'start'} align={"center"} style={{
-                                                        backgroundColor: "#ffffff",
-                                                        height: "3rem",
-                                                    }}>
-                                                        <Row justify={'center'} align={"center"}>
-
-                                                            <Col span={12}>
-                                                                <Typo color={'#707070'} size={'0.7rem'}>남은 시간 : 03:00</Typo>
-                                                            </Col>
-                                                        </Row>
-
-
-                                                    </Col>
-
-                                                    <Col span={3} justify={"center"} align={"center"} style={{
-                                                        backgroundColor: "#ffffff",
-                                                        height: "3rem"
-                                                    }}>
-                                                        <Row justify={'space-between'}>
-
-                                                            <Col span={5}>
-                                                                <Button types={'primary'} block value={'재발송'} onClick={editEmailForm.show}></Button>
-                                                            </Col>
-                                                            <Col span={5}>
-                                                                <Button types={'primary'} block value={'인증하기'} onClick={editEmailForm.show}></Button>
-                                                            </Col>
-                                                        </Row>
-                                                    </Col>
-
-                                                </Row>
-
-
-                                            </Col>
-                                        </Row>
-                                    </>
-                                    :
-
-                                    <>
-
-                                        <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
-                                            <Col span={2} justify={"center"} align={"center"} style={{
-                                                backgroundColor: "#f5f5f5",
-                                                height: "3rem"
-                                            }}>
-                                                <Typo weight={'bold'}>이메일 인증</Typo>
-                                            </Col>
-                                            <Col span={10} justify={"space-between"}>
-                                                <Col span={7} justify={"start"} align={"center"} style={{
-                                                    backgroundColor: "#ffffff",
-                                                    height: "3rem",
-                                                    paddingLeft: '1rem'
-                                                }}>
-                                                    <Typo weight={'bold'}>
-                                                        {
-                                                            email
-                                                        }
-                                                    </Typo>
-                                                </Col>
-                                                <Col span={3} justify={"center"} align={"center"} style={{
-                                                    backgroundColor: "#ffffff",
-                                                    height: "3rem"
-                                                }}>
-                                                    <Button block value={'변경취소'} onClick={editEmailForm.close}></Button>
-                                                </Col>
-                                            </Col>
-                                        </Row>
-
-                                        <Row justify={"space-between"}>
-                                            <Col span={2} justify={"center"} align={"center"} style={{
-                                                backgroundColor: "#f5f5f5",
-                                                height: "3rem"
-                                            }}>
-                                                <Typo weight={'bold'}></Typo>
-                                            </Col>
-                                            <Col span={10} justify={"space-between"}>
-                                                <Col span={7} justify={"start"} align={"center"} style={{
-                                                    backgroundColor: "#ffffff",
-                                                    height: "3rem",
-                                                    paddingLeft: '1rem'
-                                                }}>
-                                                    <TextBox color={"black"} placeholder={"이메일을 입력해 주세요"}
-                                                        border radius={'22px'} align={'center'}
-                                                        onChange={editProfileFunction.email} value={email}></TextBox>
-
-                                                </Col>
-                                                <Col span={3} justify={"center"} align={"center"} style={{
-                                                    backgroundColor: "#ffffff",
-                                                    height: "3rem"
-                                                }}>
-                                                    <Button types={'primary'} block value={'인증메일 발송'} onClick={inputAuthNumForm.show}></Button>
-                                                </Col>
-                                            </Col>
-                                        </Row>
-                                    </>
-                                :
-                                <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
-                                    <Col span={2} justify={"center"} align={"center"} style={{
-                                        backgroundColor: "#f5f5f5",
-                                        height: "3rem"
-                                    }}>
-                                        <Typo weight={'bold'}>이메일</Typo>
-                                    </Col>
-                                    <Col span={10} justify={"space-between"} >
-                                        <Col span={7} justify={"start"} align={"center"} style={{
-                                            backgroundColor: "#ffffff",
-                                            height: "3rem",
-                                            paddingLeft: '1rem'
-                                        }}>
-                                            <Typo weight={'bold'}>
-                                                {
-                                                    email
-                                                }
-                                            </Typo>
-                                        </Col>
-                                        <Col span={3} justify={"center"} align={"center"} >
-                                            <Button block value={'이메일 변경'} onClick={editEmailForm.show}></Button>
-                                        </Col>
-                                    </Col>
-                                </Row>
-                        }
-
-
                         <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
-                                height: "7rem"
+                                height: "3rem",
                             }}>
-                                <Typo weight={'bold'}>프로필 사진</Typo>
+                                <Typo weight={"bold"}>* 성별</Typo>
                             </Col>
-                            <Col span={10} justify={"space-between"} style={{
-                                backgroundColor: "#ffffff",
-                                height: "7rem",
-                            }} >
-                                <Col span={7} justify={"start"} align={"center"} style={{
-                                    paddingLeft: '1rem'
-                                }}>
-                                    <Img src={imgUrl} width={'6rem'} circle></Img>
-                                </Col>
-                                <Col span={3}>
-                                    <Row justify={'center'} align={'center'}>
-                                        <Col span={12}>
-                                            <Button block value={'기본 이미지로'} onClick={editProfileFunction.defaultImg}></Button>
-                                        </Col>
-                                        <Col span={12} >
-                                            <Button block value={'프로필 사진으로'} onClick={editProfileFunction.imgUrl}></Button>
-                                        </Col>
-                                    </Row>
-                                </Col>
+                            {
+
+                                (isEditSexForm) ?
+                                    <Col span={10} justify={'space-between'} >
+                                        {
+                                            <>
+                                                <Col span={9} justify={"start"} align={"center"} style={{
+                                                    backgroundColor: "#ffffff",
+                                                    height: "3rem",
+                                                    paddingLeft: "1rem"
+                                                }}>
+
+
+                                                    <Col span={4} align={"center"} justify={'start'}>
+                                                        <RadioBox justify={'space-between'} name={"sex"} options={["남성", "여성"]} onClick={editProfileFunction.sex} checkedValue={settingSex(sex)}></RadioBox>
+                                                    </Col>
+                                                </Col>
+                                                <Col span={3} justify={"center"} align={"center"} style={{
+                                                    backgroundColor: "#ffffff",
+                                                    height: "3rem"
+                                                }}>
+                                                    <Button block types={'primary'} value={'성별저장'} onClick={confirmModal.show}></Button>
+                                                </Col>
+                                            </>
+
+                                        }
+                                    </Col>
+                                    :
+                                    <Col span={10} justify={'space-between'} >
+                                        {
+                                            <>
+                                                <Col span={9} justify={"start"} align={"center"} style={{
+                                                    backgroundColor: "#ffffff",
+                                                    height: "3rem",
+                                                    paddingLeft: "1rem"
+                                                }}>
+
+
+                                                    <Col span={7} align={"center"} justify={'start'}>
+                                                        {
+                                                            (sex !== 'UNKNOWN') ?
+                                                                <Typo weight={"bold"}>
+                                                                    {settingSex(sex)}
+                                                                </Typo>
+                                                                :
+                                                                <Typo backColor={'rgb(255, 253, 126)'} weight={"bold"}>
+                                                                    {
+                                                                        '성별을 기입해 주새요'
+                                                                    }
+                                                                </Typo>
+                                                        }
+                                                    </Col>
+                                                </Col>
+                                                <Col span={3} justify={"center"} align={"center"} style={{
+                                                    backgroundColor: "#ffffff",
+                                                    height: "3rem"
+                                                }}>
+                                                    {
+                                                        (sex !== 'UNKNOWN') ?
+                                                            //null
+                                                            <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
+                                                            :
+                                                            <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
+                                                    }
+                                                </Col>
+                                            </>
+                                        }
+                                    </Col>
+                            }
+                        </Row >
+                        <Row>
+                            <Col span={12} xs={12}>
+                                <Modal headerClose visible={isSexConfirmVisible}
+                                    maskClosable={true} onClose={confirmModal.close} size={4}>
+                                    <SexConfirmModal confirmModal={confirmModal} username={username} sex={sex} editSexForm={editSexForm}></SexConfirmModal>
+                                </Modal>
                             </Col>
                         </Row>
+
+
+
+
+
+                        {
+                            (verified === "yes") ?
+                                <>
+                                    {/* //인증된경우 */}
+                                    <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
+                                        <Col span={2} justify={"center"} align={"center"} style={{
+                                            backgroundColor: "#f5f5f5",
+                                            height: "3rem",
+                                        }}>
+                                            <Typo weight={"bold"}>* 이메일</Typo>
+                                        </Col>
+                                        <Col span={10} justify={'space-between'} >
+                                            <Col span={9} justify={"start"} align={"center"} style={{
+                                                backgroundColor: "#ffffff",
+                                                height: "3rem",
+                                                paddingLeft: "1rem"
+                                            }}>
+                                                <TextBox color={"black"} border
+                                                    radius={'22px'} align={'center'}
+                                                    onChange={editProfileFunction.email} value={email} />
+                                            </Col>
+                                            <Col span={3} justify={"center"} align={"center"} style={{
+                                                backgroundColor: "#ffffff",
+                                                height: "3rem"
+                                            }}>
+                                                {
+                                                    <Button block value={'수정하기'} onClick={editSexForm.show}></Button>
+
+                                                }
+                                            </Col>
+                                        </Col>
+                                    </Row >
+                                </>
+                                :
+                                <>
+                                    {/* 인증안된경우 */}
+                                    <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
+                                        <Col span={2} justify={"center"} align={"center"} style={{
+                                            backgroundColor: "#f5f5f5",
+                                            height: "3rem",
+                                        }}>
+                                            <Typo weight={"bold"}>* 이메일</Typo>
+                                        </Col>
+                                        <Col span={10} justify={'space-between'} >
+                                            <Col span={9} justify={"start"} align={"center"} style={{
+                                                backgroundColor: "#ffffff",
+                                                height: "3rem",
+                                                paddingLeft: "1rem"
+                                            }}>
+
+                                                <Typo backColor={'rgb(255, 253, 126)'} weight={"bold"}>
+                                                    이메일인증이 반드시 필요합니다.
+                                                                </Typo>
+                                            </Col>
+                                            <Col span={3} justify={"center"} align={"center"} style={{
+                                                backgroundColor: "#ffffff",
+                                                height: "3rem"
+                                            }}>
+                                                {
+                                                    (isEditEmailForm) ?
+                                                        <Button block value={'인증취소'} onClick={editEmailForm.close}></Button>
+                                                        :
+                                                        <Button block value={'인증하기'} onClick={editEmailForm.show}></Button>
+
+                                                }
+                                            </Col>
+                                        </Col>
+                                    </Row >
+                                    {/* 새로운 ROW */}
+                                    {
+                                        (isEditEmailForm) ?
+                                            <>
+                                                <VerifiedForm minutes={minutes} seconds={seconds} email={email} editProfileFunction={editProfileFunction} isInputAuthNum={isInputAuthNum}
+                                                    editAuthNum={editAuthNum} inputAuthNumForm={inputAuthNumForm} isAuthNum={isAuthNum} editEmailForm={editEmailForm} />
+                                            </>
+                                            :
+                                            <>
+                                            </>
+                                    }
+                                </>
+                        }
+
+
+
+
 
 
                         <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', borderBottom: '3px solid #000000', }} >
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
-                                height: "10rem"
+                                height: "11rem"
                             }}>
                                 <Typo weight={'bold'}>관심지역</Typo>
                             </Col>
@@ -513,16 +596,20 @@ const ProfileContent = ({
                                         <Col span={6} align={'center'} style={{ height: '3rem' }}>
                                             <SelectBox background block border defaultValue={firstRegion} options={firstRegionOptions} onChange={editProfileFunction.firstRegion}></SelectBox>
                                         </Col>
-
+                                        <Col span={1} align={'center'} style={{ height: '3rem' }} >
+                                            <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('1순위')} ></Button>
+                                        </Col>
                                     </Row>
                                     <Row style={{ marginTop: '0.8rem' }}>
-                                        <Col span={2}>
+                                        <Col span={2} align={'center'} style={{ height: '3rem' }}>
                                             <Typo weight={'bold'}>2 순위</Typo>
                                         </Col>
-                                        <Col span={6}>
+                                        <Col span={6} align={'center'} style={{ height: '3rem' }} >
                                             <SelectBox background block border defaultValue={secondRegion} options={secondRegionOptions} onChange={editProfileFunction.secondRegion}></SelectBox>
                                         </Col>
-
+                                        <Col span={1} align={'center'} style={{ height: '3rem' }} >
+                                            <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('2순위')} ></Button>
+                                        </Col>
                                     </Row>
 
                                     <Col span={12} style={{ marginTop: '1.8rem' }}>

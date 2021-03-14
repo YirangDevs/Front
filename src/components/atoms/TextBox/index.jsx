@@ -61,7 +61,7 @@ color : ${props => (props.color) || ` #707070`};
 const TextBox = ({ border, radius, size, block, value, onChange, placeholder, disabled, align, color }) => (
     <>
         <Text border={border} align={align} radius={radius} size={size} color={color}
-            block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled}>
+            block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled} >
         </Text>
     </>
 )

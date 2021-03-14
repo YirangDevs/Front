@@ -2,15 +2,20 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-07 05:27:26
+ * @Last Modified time: 2021-03-15 06:07:29
  */
 
 
 import React, { useEffect, useState } from 'react'
-import ProfileContent from "../../../components/organisms/profile/Content/index"
+import ProfileContent from "../../redux/pages/profile/Content"
 import getMyInfo from "../../../service/api/get/get_my_info"
 import DefaultImg from "../../../img/ProfileDefaultImg.png"
 import editMyInfo from "../../../service/api/put/edit_My_info"
+import getCheckValidatedEmail from "../../../service/api/get/get_check_validated_email"
+import postSendCertificationEmail from "../../../service/api/post/post_certification_email"
+import postVerifyCertificationEmail from "../../../service/api/post/post_verify_certification_email"
+import deleteMyInfo from "../../../service/api/delete/delete_myInfo"
+import NotificationPool from '../../redux/components/NotificationPool'
 
 //username = 닉네임
 //realname = 실명
@@ -27,7 +32,7 @@ const ContentContainer = ({
         realname: "",
         phone: "",
         email: "",
-        checkedEmail: "",
+        verified: "",
         sex: "",
         imgUrl: "",
         role: "",
@@ -35,9 +40,13 @@ const ContentContainer = ({
         secondRegion: ''
     })
 
+    //certificationNumbers 메일인증번호
+    const [isAuthNum, setAuthNum] = useState('')
 
 
     const regionOptions = ["선호지역", "수성구", "중구", "동구", "서구", "남구", "북구", "달서구"]
+
+
 
     const firstRegionOptions = regionOptions.filter(regions => regions !== userProfile.secondRegion)
     const SecondRegionOptions = regionOptions.filter(regions => regions !== userProfile.firstRegion)
@@ -48,7 +57,7 @@ const ContentContainer = ({
 
         getMyInfo()
             .then((res) => {
-                console.log('1')
+                console.log('userInfo')
                 console.log(res)
                 for (let data in res) {
                     setUserProfile((state) => ({ ...state, [data]: res[data] }))
@@ -58,28 +67,47 @@ const ContentContainer = ({
         getProps()
     }, [])
 
+    useEffect(() => {
+        getCheckValidatedEmail()
+            .then((res) => {
+                console.log("vaildatedEmail")
+                console.log(res)
+                setUserProfile((state) => ({ ...state, verified: res.validation }))
+            })
+    }, [])
 
     //userProfile에  정보넣기 
     const getProps = () => {
-        console.log(role)
+        //console.log(role)
         setUserProfile((state) => ({
             ...state,
             username: username,
-            imgUrl: imgUrl,
             role: role,
             checkedEmail: email,
         }))
     }
 
 
+
+    /**
+         * @description updateMyInfo RequestDto
+         *  * @request 
+         * @body editData{email , firstRegion , phone ,
+         *   realname , secondRegion, sex , username}
+         */
     const editData = JSON.stringify({
-        "email": "naver@naver.com",
+        "email": userProfile.email || "",
         "phone": userProfile.phone || "",
-        "username": userProfile.username || ""
+        "username": userProfile.username || "",
+        "firstRegion": userProfile.firstRegion || null,
+        "realname": userProfile.realname || 'UNKNOWN',
+        "secondRegion": userProfile.secondRegion || null,
+        "sex": userProfile.sex || 'UNKNOWN',
 
     })
 
     const editCompleted = (property) => {
+        console.log(userProfile)
         editMyInfo(property, editData)
             .then((res) => {
                 console.log(res)
@@ -88,11 +116,54 @@ const ContentContainer = ({
     }
 
 
+
+    // 인증메일전송
+    const sendAuthEmail = () => {
+        postSendCertificationEmail()
+            .then((res) => {
+                console.log("이메일 전송")
+                console.log(res)
+            })
+            .catch(error => console.log(error))
+    }
+
+
+    //인증번호확인
+    /**
+          * @description verifyCertificationEmail RequestDto
+          *  * @request 
+          * @body authNumData{ certificationNumbers}
+          */
+    const authNumData = JSON.stringify({
+        "certificationNumbers": isAuthNum
+    })
+
+    const VerifyAuthNum = () => {
+        postVerifyCertificationEmail()
+            .then((res) => {
+                console.log(res)
+            })
+            .catch(error => console.log(error))
+    }
+
+
+
+    const settingSex = (sex) => {
+        if (sex === '여성') return 'FEMALE';
+        if (sex === '남성') return 'MALE';
+    }
+
+    const editAuthNum = (e) => {
+        const authNum = e.target.value
+        return setAuthNum(authNum)
+    }
+
+
+
     //userProfile 수정하기
     let editProfileFunction = {
         username: (e) => {
             console.log(e.target.value)
-            const property = '닉네임';
             const username = e.target.value;
             return setUserProfile((state) => ({ ...state, username: username }))
 
@@ -114,8 +185,8 @@ const ContentContainer = ({
         },
         sex: (e) => {
             console.log(e.target.value)
-            const sex = e.target.value;
-            return setUserProfile((state) => ({ ...state, sex: sex }))
+            let sex = e.target.value;
+            return setUserProfile((state) => ({ ...state, sex: settingSex(sex) }))
         },
         imgUrl: (e) => {
             console.log(e.target.value)
@@ -128,7 +199,8 @@ const ContentContainer = ({
         firstRegion: (e) => {
             console.log(e.target.value)
             const firstRegion = e.target.value
-            return setUserProfile((state) => ({ ...state, firstRegion: firstRegion }))
+            return (setUserProfile((state) => ({ ...state, firstRegion: firstRegion }))
+            )
         },
         secondRegion: (e) => {
             console.log(e.target.value)
@@ -136,6 +208,9 @@ const ContentContainer = ({
             return setUserProfile((state) => ({ ...state, secondRegion: secondRegion }))
         },
     }
+
+
+
 
     //true : 닉네임수정(input) 하는 코드  false :  이름변경(block) 코드
     const [isEditNickNameForm, setEditNickNameForm] = useState(false);
@@ -148,7 +223,8 @@ const ContentContainer = ({
     const [isInputAuthNum, setInputAuthNum] = useState(false);
     //true : 전화번호 수정 (input) false : 전화번호 변경 코드
     const [isEditPhoneForm, setEditPhoneForm] = useState(false);
-
+    //true : 성별 수정 (input) false : 성별 변경 코드
+    const [isEditSexForm, setEditSexForm] = useState(false)
 
     const editNickNameForm = {
         show() {
@@ -166,27 +242,9 @@ const ContentContainer = ({
         },
         close() {
             setEditRealNameForm(false)
+            editCompleted('이름')
         }
     }
-
-    const editEmailForm = {
-        show() {
-            setEditEmailForm(true)
-        },
-        close() {
-            setEditEmailForm(false)
-        }
-    }
-
-    const inputAuthNumForm = {
-        show() {
-            setInputAuthNum(true)
-        },
-        close() {
-            setInputAuthNum(false)
-        }
-    }
-
     const editPhoneForm = {
         show() {
             setEditPhoneForm(true)
@@ -196,16 +254,111 @@ const ContentContainer = ({
             editCompleted('전화번호')
         }
     }
-
-    const [isAuthNum, setAuthNum] = useState('')
-
-    const editAuthNum = (e) => {
-        const authNum = e.target.value
-        return setAuthNum((state) => ({ ...state, authNum }))
+    const editSexForm = {
+        show() {
+            setEditSexForm(true)
+        },
+        close() {
+            confirmModal.close()
+            setEditSexForm(false)
+            editCompleted('성별')
+        }
     }
+
+    const editEmailForm = {
+        show() {
+            setEditEmailForm(true)
+        },
+        close() {
+            setEditEmailForm(false)
+            inputAuthNumForm.close()
+        }
+    }
+
+    const inputAuthNumForm = {
+        show() {
+            setMinutes(parseInt(15))
+            setSeconds(parseInt(1))
+            sendAuthEmail()
+            setInputAuthNum(true)
+        },
+        close() {
+            setInputAuthNum(false)
+            setMinutes(parseInt(15))
+            setSeconds(parseInt(1))
+        }
+    }
+
+
+
+
+    //성별 재체크 모달 
+    const [isSexConfirmVisible, setSexConfirmVisible] = useState(false)
+    const confirmModal = {
+        show() {
+            setSexConfirmVisible(true)
+        },
+        close() {
+            setSexConfirmVisible(false)
+        }
+    }
+
+
+
+    const [minutes, setMinutes] = useState(parseInt(15));
+    const [seconds, setSeconds] = useState(parseInt(1));
+
+
+
+    useEffect(() => {
+        const countdown = setInterval(() => {
+            if (parseInt(seconds) > 0) {
+                setSeconds(parseInt(seconds) - 1);
+            }
+            if (parseInt(seconds) === 0) {
+                if (parseInt(minutes) === 0) {
+                    clearInterval(countdown);
+                } else {
+                    setMinutes(parseInt(minutes) - 1);
+                    setSeconds(59);
+                }
+            }
+        }, 1000);
+        return () => clearInterval(countdown);
+    }, [isInputAuthNum && minutes && seconds])
+
+
+    const [isDeleteConfirmVisible, setDeleteConfirmVisible] = useState(false)
+    const deleteConfirmModal = {
+        show() {
+            setDeleteConfirmVisible(true)
+        },
+        close() {
+            setDeleteConfirmVisible(false)
+        }
+    }
+
+    const DeleteCompleted = () => {
+        deleteMyInfo()
+            .then((res) => {
+                console.log(res)
+                NotificationPool.api.add({
+                    title: "탈퇴완료",
+                    content: '성공적으로 탈퇴되었습니다.',
+                    status: "error"
+                })
+            })
+            .catch((err) => console.log(err))
+    }
+
+
+
+
     return (
         <>
             <ProfileContent
+                minutes={minutes}
+                seconds={seconds}
                 userProfile={userProfile}
                 editProfileFunction={editProfileFunction}
                 isEditNickNameForm={isEditNickNameForm}
@@ -214,6 +367,8 @@ const ContentContainer = ({
                 editRealNameForm={editRealNameForm}
                 isEditEmailForm={isEditEmailForm}
                 editEmailForm={editEmailForm}
+                isEditSexForm={isEditSexForm}
+                editSexForm={editSexForm}
                 firstRegionOptions={firstRegionOptions}
                 secondRegionOptions={SecondRegionOptions}
                 isEditPhoneForm={isEditPhoneForm}
@@ -223,6 +378,13 @@ const ContentContainer = ({
                 isAuthNum={isAuthNum}
                 editAuthNum={editAuthNum}
                 editCompleted={editCompleted}
+
+                isSexConfirmVisible={isSexConfirmVisible}
+                confirmModal={confirmModal}
+
+                DeleteCompleted={DeleteCompleted}
+                isDeleteConfirmVisible={isDeleteConfirmVisible}
+                deleteConfirmModal={deleteConfirmModal}
             ></ProfileContent>
         </>
     )

@@ -33,26 +33,17 @@ const HomeContent = ({
 
             </Image>
             <ContentLayout >
-<<<<<<< HEAD
-                <MenuIconNav></MenuIconNav>
-                <Row justify={"center"} style={{
-                    marginTop: "8rem"
-                }}>
-                    <Col span={7}>
-                        <Row gutter={[5, 0]}>
-=======
 
                 <Row justify={"center"} >
                     <Col span={12} justify={"center"} style={{
-                        marginTop : "2rem"
+                        marginTop: "2rem"
                     }}>
                         <MenuIconNav></MenuIconNav>
                     </Col>
                     <Col xs={11} sm={11} md={10} lg={7} xl={7} xxl={7} style={{
-                        marginTop : "10rem"
+                        marginTop: "10rem"
                     }}>
-                        <Row gutter={[5,0]}>
->>>>>>> stage
+                        <Row gutter={[5, 0]}>
 
 
                             {
@@ -76,13 +67,8 @@ const HomeContent = ({
                                             {currentNotice.content}
                                         </Col>
                                         <Col span={12} justify={"flex-end"} style={{
-<<<<<<< HEAD
-                                            backgroundColor: "#EFEFEF4D",
-                                            padding: "1rem"
-=======
                                             // backgroundColor : "#EFEFEF4D",
-                                            padding : "1rem"
->>>>>>> stage
+                                            padding: "1rem"
                                         }}>
                                             <Button value={"신청하기"} types={"primary"} onClick={onApplyBtnClick}></Button>
                                         </Col>

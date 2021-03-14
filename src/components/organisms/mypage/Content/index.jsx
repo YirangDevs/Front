@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-01 22:48:56
+ * @Last Modified time: 2021-03-15 05:33:01
  */
 
 import React from 'react'
@@ -103,10 +103,10 @@ const MyPageContent = ({
                         </Row>
                         <Row gutter={[15, 0]} style={{ margin: '2.5rem 0 0 0 ' }}>
                             <Col span={4}>
-                                <Typo size={"1rem"} opacity={"0.7"} weight={"500"} cursor={'pointer'} >문의하기</Typo>
+                                <Typo size={"1rem"} color={'#707070'} weight={"500"} cursor={'pointer'} >문의하기</Typo>
                             </Col>
                             <Col span={8}>
-                                <Typo size={"1rem"} opacity={"0.7"} weight={"500"} cursor={'pointer'} >업데이트 정보</Typo>
+                                <Typo size={"1rem"} color={'#707070'} weight={"500"} cursor={'pointer'} >업데이트 정보</Typo>
                             </Col>
                         </Row>
                     </Col>
