@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-15 06:07:29
+ * @Last Modified time: 2021-03-15 21:25:33
  */
 
 
@@ -16,6 +16,7 @@ import postSendCertificationEmail from "../../../service/api/post/post_certifica
 import postVerifyCertificationEmail from "../../../service/api/post/post_verify_certification_email"
 import deleteMyInfo from "../../../service/api/delete/delete_myInfo"
 import NotificationPool from '../../redux/components/NotificationPool'
+import LogoutProcess from '../../../service/transaction/logout_process'
 
 //username = 닉네임
 //realname = 실명
@@ -24,6 +25,7 @@ const ContentContainer = ({
     imgUrl,
     role,
     email,
+    SET_USER,
 }) => {
 
 
@@ -52,6 +54,15 @@ const ContentContainer = ({
     const SecondRegionOptions = regionOptions.filter(regions => regions !== userProfile.firstRegion)
 
 
+    useEffect(() => {
+        SET_USER({
+            user: {
+                email: userProfile.email,
+                username: userProfile.username
+            }
+        })
+    }, [userProfile])
+
 
     useEffect(() => {
 
@@ -66,6 +77,8 @@ const ContentContainer = ({
             .catch(error => console.log(error))
         getProps()
     }, [])
+
+
 
     useEffect(() => {
         getCheckValidatedEmail()
@@ -200,6 +213,7 @@ const ContentContainer = ({
             console.log(e.target.value)
             const firstRegion = e.target.value
             return (setUserProfile((state) => ({ ...state, firstRegion: firstRegion }))
+
             )
         },
         secondRegion: (e) => {
@@ -277,14 +291,14 @@ const ContentContainer = ({
 
     const inputAuthNumForm = {
         show() {
-            setMinutes(parseInt(15))
+            setMinutes(parseInt(5))
             setSeconds(parseInt(1))
             sendAuthEmail()
             setInputAuthNum(true)
         },
         close() {
             setInputAuthNum(false)
-            setMinutes(parseInt(15))
+            setMinutes(parseInt(5))
             setSeconds(parseInt(1))
         }
     }
@@ -305,7 +319,7 @@ const ContentContainer = ({
 
 
 
-    const [minutes, setMinutes] = useState(parseInt(15));
+    const [minutes, setMinutes] = useState(parseInt(5));
     const [seconds, setSeconds] = useState(parseInt(1));
 
 
@@ -342,13 +356,18 @@ const ContentContainer = ({
         deleteMyInfo()
             .then((res) => {
                 console.log(res)
+                console.log('탈퇴완료')
                 NotificationPool.api.add({
                     title: "탈퇴완료",
                     content: '성공적으로 탈퇴되었습니다.',
                     status: "error"
                 })
+                LogoutProcess()
+
+
             })
-            .catch((err) => console.log(err))
+
+            .catch((err) => LogoutProcess())
     }
 
 

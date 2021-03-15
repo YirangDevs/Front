@@ -11,12 +11,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        SET_USER: function (payload) {
-            dispatch(ACTION.SET_USER__ACTION_FUNC(payload))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Content)
+export default connect(mapStateToProps, null)(Content)

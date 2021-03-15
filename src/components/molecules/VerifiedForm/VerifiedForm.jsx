@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @Date : 2021-03-08 15:18:31 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-15 05:28:36
+ * @Last Modified time: 2021-03-15 19:20:01
  */
 
 import React from "react"
@@ -19,13 +19,13 @@ const VerifiedForm = ({ minutes, seconds, email, editProfileFunction, isInputAut
         <Row justify={"space-between"} >
             <Col span={2} justify={"center"} align={"center"} style={{
                 backgroundColor: "#f5f5f5",
-                height: "3rem",
+                height: "50px",
             }}>
             </Col>
             <Col span={10} justify={'space-between'} >
-                <Col span={9} justify={"start"} align={"center"} style={{
+                <Col xs={8} sm={9} md={8} lg={8} xl={8} xxl={9} span={9} justify={"start"} align={"center"} style={{
                     backgroundColor: "#ffffff",
-                    height: "3rem",
+                    height: "50px",
                     paddingLeft: "1rem"
                 }}>
                     <Row justify={"start"} align={"center"} >
@@ -34,14 +34,14 @@ const VerifiedForm = ({ minutes, seconds, email, editProfileFunction, isInputAut
                                 radius={'22px'} align={'center'} placeholder={'이메일을 입력해 주세요'}
                                 onChange={editProfileFunction.email} value={email} />
                         </Col>
-                        <Col span={4} justify={"start"} align={"center"} style={{ paddingLeft: '0.8rem' }}>
+                        <Col xs={4} sm={12} md={0} lg={3} xl={4} xxl={4} justify={"start"} align={"center"} style={{ paddingLeft: '0.8rem' }}>
                             <Typo color={'#707070'} size={'0.8rem'}>이메일을 입력해 주세요</Typo>
                         </Col>
                     </Row>
                 </Col>
                 <Col span={3} justify={"center"} align={"center"} style={{
                     backgroundColor: "#ffffff",
-                    height: "3rem"
+                    height: "50px"
                 }}>
                     {
                         (isInputAuthNum) ?
@@ -60,13 +60,13 @@ const VerifiedForm = ({ minutes, seconds, email, editProfileFunction, isInputAut
                 <Row justify={"space-between"} >
                     <Col span={2} justify={"center"} align={"center"} style={{
                         backgroundColor: "#f5f5f5",
-                        height: "3rem",
+                        height: "50px",
                     }}>
                     </Col>
                     <Col span={10} justify={'space-between'} >
-                        <Col span={9} justify={"start"} align={"center"} style={{
+                        <Col xs={8} sm={9} md={8} lg={8} xl={8} xxl={9} justify={"start"} align={"center"} style={{
                             backgroundColor: "#ffffff",
-                            height: "3rem",
+                            height: "50px",
                             paddingLeft: "1rem"
                         }}>
                             <Row justify={"start"} align={"center"} >
@@ -85,7 +85,7 @@ const VerifiedForm = ({ minutes, seconds, email, editProfileFunction, isInputAut
                         </Col>
                         <Col span={3} justify={"center"} align={"center"} style={{
                             backgroundColor: "#ffffff",
-                            height: "3rem"
+                            height: "50px"
                         }}>
                             {
                                 <Button types={'primary'} block value={'인증번호확인'} onClick={inputAuthNumForm.close}></Button>

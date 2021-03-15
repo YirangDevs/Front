@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-15 06:05:08
+ * @Last Modified time: 2021-03-15 19:20:35
  */
 
 
@@ -77,7 +77,7 @@ const ProfileContent = ({
             }}>
 
                 <Row>
-                    <Col span={4}>
+                    <Col xs={0} sm={0} md={4} span={4}>
                         <Row>
                             <Col span={4}>
                                 <Typo size={"2.3rem"} weight={'bold'}>{username}</Typo>
@@ -134,7 +134,7 @@ const ProfileContent = ({
                     </Modal>
 
 
-                    <Col span={7.5} offset={0.5}>
+                    <Col xs={12} sm={12} md={7.5} span={7.5} offset={0.5}>
                         <Row >
                             <Col span={12}>
                                 <Typo size={"1.2rem"} weight={"bold"} > 프로필 수정</Typo>
@@ -176,10 +176,12 @@ const ProfileContent = ({
                             </Col>
                         </Row>
 
+
+
                         <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }}  >
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
-                                height: "3rem",
+                                height: "50px",
                             }}>
                                 <Typo weight={"bold"}>닉네임</Typo>
                             </Col>
@@ -187,26 +189,26 @@ const ProfileContent = ({
                                 {
                                     (isEditNickNameForm) ?
                                         <>
-                                            <Col span={9} justify={"start"} align={"center"} style={{
+                                            <Col xs={9} sm={9} md={9} lg={9} xl={9} xxl={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem",
+                                                height: "50px",
                                                 paddingLeft: "1rem"
                                             }}>
 
-                                                <Col span={2} align={'center'} justify={'center'} >
+                                                <Col xs={2} sm={2} md={2} lg={2} xl={2} xxl={2} align={'center'} justify={'center'} >
                                                     <TextBox color={"black"} border
                                                         radius={'22px'} align={'center'}
                                                         onChange={editProfileFunction.username} value={username}></TextBox>
                                                 </Col>
-                                                <Col span={5} align={"center"} style={{ paddingLeft: '0.8rem' }}>
+                                                <Col xs={5} sm={5} md={0} lg={4} xl={5} xxl={5} align={"center"} style={{ paddingLeft: '0.8rem' }}>
                                                     {/* <TextBox size='0.7rem' block value={"초기설정은 카톡닉네임입니다."}></TextBox> */}
                                                     <Typo color={'#707070'} size={'0.8rem'}>초기설정은 카톡닉네임입니다.</Typo>
                                                 </Col>
 
                                             </Col>
-                                            <Col span={3} justify={"center"} align={"center"} style={{
+                                            <Col xs={3} sm={3} md={3} lg={3} xl={3} xxl={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem"
+                                                height: "50px",
                                             }}>
                                                 <Button types={"primary"} block value={'닉네임저장'} onClick={editNickNameForm.close}></Button>
                                             </Col>
@@ -214,9 +216,9 @@ const ProfileContent = ({
 
                                         :
                                         <>
-                                            <Col span={9} justify={"start"} align={"center"} style={{
+                                            <Col xs={9} sm={9} md={7} lg={9} xl={9} xxl={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem",
+                                                height: "50px",
                                                 paddingLeft: '1rem'
                                             }}>
                                                 <Typo weight={"bold"}>
@@ -238,7 +240,7 @@ const ProfileContent = ({
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem"
+                                                height: "50px",
                                             }}>
                                                 <Button block value={'닉네임 변경'} onClick={editNickNameForm.show}></Button>
                                             </Col>
@@ -253,7 +255,7 @@ const ProfileContent = ({
                         <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
-                                height: "3rem",
+                                height: "50px",
                             }}>
                                 <Typo weight={"bold"}>* 이름</Typo>
                             </Col>
@@ -263,7 +265,7 @@ const ProfileContent = ({
                                         <>
                                             <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem",
+                                                height: "50px",
                                                 paddingLeft: "1rem"
                                             }}>
 
@@ -272,15 +274,15 @@ const ProfileContent = ({
                                                         radius={'22px'} align={'center'}
                                                         onChange={editProfileFunction.realname} value={realname} />
                                                 </Col>
-                                                <Col span={5} align={"center"} style={{ paddingLeft: '0.8rem' }}>
+                                                <Col xs={5} sm={5} md={0} lg={4} xl={5} xxl={5} align={"center"} style={{ paddingLeft: '0.8rem' }}>
                                                     {/* <TextBox size='0.7rem' block value={"초기설정은 카톡닉네임입니다."}></TextBox> */}
-                                                    <Typo size={'0.8rem'}>반드시 실명을 기입해 주세요.</Typo>
+                                                    <Typo size={'0.8rem'} color={'#707070'}>반드시 실명을 기입해 주세요.</Typo>
                                                 </Col>
 
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem"
+                                                height: "50px"
                                             }}>
                                                 <Button types={"primary"} block value={'이름저장'} onClick={editRealNameForm.close}></Button>
                                             </Col>
@@ -290,7 +292,7 @@ const ProfileContent = ({
                                         <>
                                             <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem",
+                                                height: "50px",
                                                 paddingLeft: '1rem'
                                             }}>
 
@@ -312,7 +314,7 @@ const ProfileContent = ({
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem"
+                                                height: "50px"
                                             }}>
                                                 <Button block value={'이름변경'} onClick={editRealNameForm.show}></Button>
                                             </Col>
@@ -328,7 +330,7 @@ const ProfileContent = ({
                         <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
-                                height: "3rem",
+                                height: "50px",
                             }}>
                                 <Typo weight={"bold"}>* 전화번호</Typo>
                             </Col>
@@ -338,7 +340,7 @@ const ProfileContent = ({
                                         <>
                                             <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem",
+                                                height: "50px",
                                                 paddingLeft: "1rem"
                                             }}>
 
@@ -347,14 +349,14 @@ const ProfileContent = ({
                                                         radius={'22px'} align={'center'}
                                                         onChange={editProfileFunction.phone} value={phone}></TextBox>
                                                 </Col>
-                                                <Col span={5} align={"center"} style={{ paddingLeft: '0.8rem' }}>
+                                                <Col xs={5} sm={5} md={0} lg={4} xl={5} xxl={5} align={"center"} style={{ paddingLeft: '0.8rem' }}>
                                                     <Typo color={'#707070'} size={'0.8rem'}>'-'없이 숫자만 입력해 주세요.</Typo>
                                                 </Col>
 
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem"
+                                                height: "50px"
                                             }}>
                                                 <Button types={"primary"} block value={'번호저장'} onClick={editPhoneForm.close}></Button>
                                             </Col>
@@ -364,7 +366,7 @@ const ProfileContent = ({
                                         <>
                                             <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem",
+                                                height: "50px",
                                                 paddingLeft: '1rem'
                                             }}>
                                                 <Typo weight={"bold"}>
@@ -386,7 +388,7 @@ const ProfileContent = ({
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem"
+                                                height: "50px"
                                             }}>
                                                 <Button block value={'번호수정'} onClick={editPhoneForm.show}></Button>
                                             </Col>
@@ -400,7 +402,7 @@ const ProfileContent = ({
                         <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
-                                height: "3rem",
+                                height: "50px",
                             }}>
                                 <Typo weight={"bold"}>* 성별</Typo>
                             </Col>
@@ -412,7 +414,7 @@ const ProfileContent = ({
                                             <>
                                                 <Col span={9} justify={"start"} align={"center"} style={{
                                                     backgroundColor: "#ffffff",
-                                                    height: "3rem",
+                                                    height: "50px",
                                                     paddingLeft: "1rem"
                                                 }}>
 
@@ -423,7 +425,7 @@ const ProfileContent = ({
                                                 </Col>
                                                 <Col span={3} justify={"center"} align={"center"} style={{
                                                     backgroundColor: "#ffffff",
-                                                    height: "3rem"
+                                                    height: "50px"
                                                 }}>
                                                     <Button block types={'primary'} value={'성별저장'} onClick={confirmModal.show}></Button>
                                                 </Col>
@@ -437,7 +439,7 @@ const ProfileContent = ({
                                             <>
                                                 <Col span={9} justify={"start"} align={"center"} style={{
                                                     backgroundColor: "#ffffff",
-                                                    height: "3rem",
+                                                    height: "50px",
                                                     paddingLeft: "1rem"
                                                 }}>
 
@@ -459,7 +461,7 @@ const ProfileContent = ({
                                                 </Col>
                                                 <Col span={3} justify={"center"} align={"center"} style={{
                                                     backgroundColor: "#ffffff",
-                                                    height: "3rem"
+                                                    height: "50px"
                                                 }}>
                                                     {
                                                         (sex !== 'UNKNOWN') ?
@@ -494,14 +496,14 @@ const ProfileContent = ({
                                     <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
                                         <Col span={2} justify={"center"} align={"center"} style={{
                                             backgroundColor: "#f5f5f5",
-                                            height: "3rem",
+                                            height: "50px",
                                         }}>
                                             <Typo weight={"bold"}>* 이메일</Typo>
                                         </Col>
                                         <Col span={10} justify={'space-between'} >
                                             <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem",
+                                                height: "50px",
                                                 paddingLeft: "1rem"
                                             }}>
                                                 <TextBox color={"black"} border
@@ -510,7 +512,7 @@ const ProfileContent = ({
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem"
+                                                height: "50px"
                                             }}>
                                                 {
                                                     <Button block value={'수정하기'} onClick={editSexForm.show}></Button>
@@ -526,14 +528,14 @@ const ProfileContent = ({
                                     <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
                                         <Col span={2} justify={"center"} align={"center"} style={{
                                             backgroundColor: "#f5f5f5",
-                                            height: "3rem",
+                                            height: "50px",
                                         }}>
                                             <Typo weight={"bold"}>* 이메일</Typo>
                                         </Col>
                                         <Col span={10} justify={'space-between'} >
                                             <Col span={9} justify={"start"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem",
+                                                height: "50px",
                                                 paddingLeft: "1rem"
                                             }}>
 
@@ -543,7 +545,7 @@ const ProfileContent = ({
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
-                                                height: "3rem"
+                                                height: "50px"
                                             }}>
                                                 {
                                                     (isEditEmailForm) ?
@@ -570,62 +572,63 @@ const ProfileContent = ({
                         }
 
 
-
+                        {/* xs={ } sm={ } md ={ } lg={ } xl={ } xxl ={ } */}
 
 
 
                         <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', borderBottom: '3px solid #000000', }} >
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
-                                height: "11rem"
+                                height: "150px"
                             }}>
                                 <Typo weight={'bold'}>관심지역</Typo>
                             </Col>
-                            <Col span={10} justify={"space-between"} >
+                            <Col span={10} justify={"space-between"} style={{
+                                backgroundColor: "#ffffff",
+                                height: "150px",
+                                paddingLeft: '1rem',
+                                alignContent: 'center'
+                            }} >
+                                <Row>
+                                    <Col span={12} justify={"center"}>
+                                        <Row style={{ height: '50px' }}>
+                                            <Col xs={2} sm={2} md={2} lg={2} xl={2} xxl={1} align={'center'} style={{ height: '50px' }}>
+                                                <Typo weight={'bold'}>1 순위</Typo>
+                                            </Col>
 
-                                <Col span={7} justify={"center"} style={{
-                                    backgroundColor: "#ffffff",
-                                    height: "10rem",
-                                    paddingLeft: '1rem',
-                                    alignContent: 'center'
-                                }}>
-                                    <Row style={{ height: '3rem' }}>
-                                        <Col span={2} align={'center'} style={{ height: '3rem' }}>
-                                            <Typo weight={'bold'}>1 순위</Typo>
-                                        </Col>
-                                        <Col span={6} align={'center'} style={{ height: '3rem' }}>
-                                            <SelectBox background block border defaultValue={firstRegion} options={firstRegionOptions} onChange={editProfileFunction.firstRegion}></SelectBox>
-                                        </Col>
-                                        <Col span={1} align={'center'} style={{ height: '3rem' }} >
-                                            <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('1순위')} ></Button>
-                                        </Col>
-                                    </Row>
-                                    <Row style={{ marginTop: '0.8rem' }}>
-                                        <Col span={2} align={'center'} style={{ height: '3rem' }}>
-                                            <Typo weight={'bold'}>2 순위</Typo>
-                                        </Col>
-                                        <Col span={6} align={'center'} style={{ height: '3rem' }} >
-                                            <SelectBox background block border defaultValue={secondRegion} options={secondRegionOptions} onChange={editProfileFunction.secondRegion}></SelectBox>
-                                        </Col>
-                                        <Col span={1} align={'center'} style={{ height: '3rem' }} >
-                                            <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('2순위')} ></Button>
-                                        </Col>
-                                    </Row>
+                                            <Col xs={3} sm={3} md={3} lg={3} xl={3} xxl={3} align={'center'} style={{ height: '50px' }}>
+                                                <SelectBox background block border defaultValue={firstRegion} options={firstRegionOptions} onChange={editProfileFunction.firstRegion}></SelectBox>
+                                            </Col>
+                                            <Col xs={1} sm={1} md={1} lg={1} xl={1} xxl={1} align={'center'} style={{ height: '50px' }} >
+                                                <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('1순위')} ></Button>
+                                            </Col>
+                                        </Row>
+                                        <Row style={{ marginTop: '0.5rem' }}>
+                                            <Col xs={2} sm={2} md={2} lg={2} xl={2} xxl={1} align={'center'} style={{ height: '50px' }}>
+                                                <Typo weight={'bold'}>2 순위</Typo>
+                                            </Col>
+                                            <Col xs={3} sm={3} md={3} lg={3} xl={3} xxl={3} align={'center'} style={{ height: '50px' }} >
+                                                <SelectBox background block border defaultValue={secondRegion} options={secondRegionOptions} onChange={editProfileFunction.secondRegion}></SelectBox>
+                                            </Col>
+                                            <Col xs={1} sm={1} md={1} lg={1} xl={1} xxl={1} align={'center'} style={{ height: '50px' }} >
+                                                <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('2순위')} ></Button>
+                                            </Col>
+                                        </Row>
 
-                                    <Col span={12} style={{ marginTop: '1.8rem' }}>
+
+                                    </Col >
+                                    <Col xs={0} span={12} style={{ marginTop: '1.2rem' }}>
                                         <Typo color={'#707070'} size={'0.8rem'}>-관심지역을 선택하시면 맞춤형 봉사활동을 알려드립니다.</Typo>
                                     </Col>
-                                </Col>
-
-
-                            </Col>
-                        </Row>
+                                </Row>
+                            </Col >
+                        </Row >
 
 
 
-                    </Col>
-                </Row>
-            </ContentLayout>
+                    </Col >
+                </Row >
+            </ContentLayout >
         </>
     )
 }
