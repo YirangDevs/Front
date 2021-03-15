@@ -99,7 +99,7 @@ const ContentContainer = ({logined}) => {
     const fakeLoginOnClick = (e) => {
         const role = e.target.value
         fakeLoginList.fakeAuthority=role
-        fakeLogin(fakeLoginList);
+        fakeLogin(fakeLoginList).then();
     }
 
     useEffect(()=>{
