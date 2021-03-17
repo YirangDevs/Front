@@ -23,15 +23,29 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidati
         phone : phone,
         name : name,
         email : email,
-        sex : sex,
+        sex : sex === "MALE" ? "남성" : "여성",
         type : "노력",
         emailValidation : emailValidation,
     })
 
     useEffect(()=>{
-        console.log("status", status)
-    }, [status])
+        setStatus(state=>({
+            id : id,
+            dov : dov,
+            region : region,
+            nor : nor,
+            phone : phone,
+            name : name,
+            email : email,
+            sex : sex === "MALE" ? "남성" : "여성",
+            type : "노력",
+            emailValidation : emailValidation
+        }))
+    }, [id, dov, region, nor, phone, name, email, sex, emailValidation])
 
+    useEffect(()=>{
+        console.log(status)
+    }, [status])
     const onApplyClick = () => {
         if(status.emailValidation==="NO"){
             NotificationPool.api.add({
@@ -56,7 +70,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidati
         postApply(data).then(()=>{
             NotificationPool.api.add({
                 title : "신청완료",
-                content : status.region+"으로의 봉사신청이 완료되었습니다. 자세한 내용은 메일로 발송됩니다.",
+                content : region+"으로의 봉사신청이 완료되었습니다. 자세한 내용은 메일로 발송됩니다.",
                 status : "success"
             })
         }).catch(err=>console.log(err))
@@ -99,7 +113,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidati
                         <Col span={8} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            {dov}
+                            {status.dov}
                         </Col>
                     </Row>
                 </Col>
@@ -121,7 +135,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidati
                         <Col span={8} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            {region} 일대( 상세주소 개별통지 )
+                            {status.region} 일대( 상세주소 개별통지 )
                         </Col>
                     </Row>
                 </Col>
@@ -140,7 +154,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidati
                         <Col span={8} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            {phone===null ? "없음" : phone}
+                            {status.phone===null ? "없음" : status.phone}
                         </Col>
                     </Row>
                 </Col>
@@ -159,7 +173,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidati
                         <Col span={8} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            총 {nor}명
+                            총 {status.nor}명
                         </Col>
                     </Row>
                 </Col>
@@ -180,7 +194,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidati
                         <Col span={8} style={{
                             color : "rgb(147,147,147)"
                         }}>
-                            {name}
+                            {status.name}
                         </Col>
                     </Row>
                 </Col>
