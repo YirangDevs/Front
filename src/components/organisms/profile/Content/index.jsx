@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-17 15:50:05
+ * @Last Modified time: 2021-03-17 16:24:18
  */
 
 
@@ -104,16 +104,7 @@ const ProfileContent = ({
                                 <MypageNav role={role} />
                             </Col>
                         </Row>
-                        {/* 탈퇴하기 바로  */}
-                        {/* <Row align={'center'} style={{ marginTop: '1rem' }}>
-                            <Col span={3} align={'center'} style={{ borderRight: '1px solid black', height: "3rem", }}>
-                                <Typo size={"1.2rem"} weight={"bold"} > 회원탈퇴</Typo>
-                            </Col>
 
-                            <Col span={6} justify={'center'} align={'center'} style={{ height: "3rem", }} >
-                                <Button types={"primary"} value={'회원탈퇴'} onClick={DeleteCompleted} />
-                            </Col>
-                        </Row> */}
 
                         <Row gutter={[15, 0]} style={{ margin: '2.5rem 0 0 0 ' }}>
                             <Col span={4}>
