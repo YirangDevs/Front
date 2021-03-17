@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-24 16:59:07
+ * @Last Modified time: 2021-03-17 15:49:15
  */
 
 import React from 'react'
@@ -16,6 +16,7 @@ import Button from '../../../atoms/Button'
 import DateSelector from '../../../atoms/DateSelector'
 import RadioBox from '../../../atoms/RadioButton'
 import MypageNav from "../../../molecules/MypageNav"
+import { useHistory } from 'react-router-dom'
 
 const MyPageContent = ({
     //redux user information
@@ -27,6 +28,7 @@ const MyPageContent = ({
 }) => {
     console.log(username)
     console.log(email)
+    console.log(role)
     const manage_basic_head = ["봉사 일시", "장소", "매칭상태", "참고"]
     const null_table_head = ["-"]
     //봉사관리 body api에서 받아오면 수정 
@@ -52,14 +54,11 @@ const MyPageContent = ({
     const check_table_head = (check_hard_body) ? check_basic_head : null_table_head
     const check_body_Lists = check_hard_body || [{ date: "조회할 봉사가 없습니다. " }]
 
+    const history = useHistory()
     return (
         <>
 
-            <ContentLayout style={{
-                margin: '3rem 4rem',
-                // border: "1px solid #ccd4e0",
-            }}
-            >
+            <ContentLayout   >
                 <Row>
                     <Col span={4}>
                         <Row>
@@ -69,14 +68,21 @@ const MyPageContent = ({
                         </Row>
                         <Row gutter={[3, 0]}>
                             <Col span={12}>
-                                <Typo size={"1.1rem"} opacity={'0.5'}>
-                                    {
-                                        (email) ? `${email} >` : `email을 인증해 주세요`
-                                    }
-                                </Typo>
+                                {
+                                    (email) ?
+                                        <Typo size={"1.1rem"} opacity={'0.5'}>{`${email}  >`} </Typo>
+                                        :
+                                        <Typo size={"1.1rem"} opacity={'0.5'} cursor={"pointer"} onClick={
+                                            () => {
+                                                history.push("/profile")
+                                            }
+                                        }>
+                                            {`emil을 인정해 주세요  >`}
+                                        </Typo>
+                                }
                             </Col>
                         </Row>
-                        <Row gutter={[15, 0]} style={{ margin: '2rem 0 0 0 ' }}>
+                        <Row gutter={[15, 0]} style={{ marginTop: '2rem' }}>
                             <Col span={12}>
                                 <Typo size={"1.2rem"} weight={"500"}>로그인 된 카카오계정</Typo>
                             </Col>
@@ -93,22 +99,19 @@ const MyPageContent = ({
                         </Row>
                         <Row gutter={[15, 0]} style={{ margin: '2.5rem 0 0 0 ' }}>
                             <Col span={4}>
-                                <Typo size={"1rem"} opacity={"0.7"} weight={"500"} cursor={'pointer'} >문의하기</Typo>
+                                <Typo size={"1rem"} color={'#707070'} weight={"500"} cursor={'pointer'} >문의하기</Typo>
                             </Col>
                             <Col span={8}>
-                                <Typo size={"1rem"} opacity={"0.7"} weight={"500"} cursor={'pointer'} >업데이트 정보</Typo>
+                                <Typo size={"1rem"} color={'#707070'} weight={"500"} cursor={'pointer'} >업데이트 정보</Typo>
                             </Col>
                         </Row>
                     </Col>
 
                     <Col span={7.5} offset={0.5}>
-
                         <Row>
                             <Col span={12}>
                                 <Typo size={"1.2rem"} weight={"500"} > 봉사 관리</Typo>
                             </Col>
-
-
                             <Row gutter={[0, 0]}>
                                 <Col span={12}>
                                     {

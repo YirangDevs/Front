@@ -1,11 +1,14 @@
+
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+import _ from "../../../config/env"
+
 /**
- * @description 본인에게 할당된 지역 리스트로 select box 구성
+ * @description 인증된 이메일 받아오기
  * @method GET
  * @request @headers YAT token
  */
-const getMyInfo = () => {
-    return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/info/myinfo', {
+const get_check_validated_email = () => {
+    return fetch(_.SERVER_URL+':8080/v1/apis/emails', {
         method: 'GET',
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("YAT")
@@ -28,4 +31,4 @@ const getMyInfo = () => {
     })
 }
 
-export default getMyInfo
+export default get_check_validated_email

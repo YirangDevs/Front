@@ -7,7 +7,6 @@ export const Text = styled.input.attrs(props => ({ type: "text" }))`
 border : none ;
 
 font-size: 1rem;
-color: #707070;
 
 
 &:focus{
@@ -39,12 +38,13 @@ ${props => {
             `
         }
     }}
-    
-    ${props => (props.border) ? `border : solid gray 1px;` : null}
-    ${props => (props.radius) ? `border-radius: 5px;` : null}
-    ${props => (props.block) ? `width : 90%;` : null}
-    ${props => (props.disabled) ? `background-color: rgba(0,0,0,0);` : null}
+    text-align : ${props => (props.align) || null};
+    border-radius : ${props => (props.radius) || null};
+${props => (props.border) ? `border : solid gray 1px;` : null};
+${props => (props.block) ? `width : 90%;` : null};
+${props => (props.disabled) ? `background-color: rgba(0,0,0,0);` : null};
 
+color : ${props => (props.color) || ` #707070`};
 `
 
 /**
@@ -56,10 +56,12 @@ ${props => {
  * @param onChange onChange
  * @param placeholder 값입력 전 입력을 돕기위한 힌트
  * @param disabled textbox 비활성화
+ * @param align 텍스트 정렬
  */
-const TextBox = ({ border, radius, size, block, value, onChange, placeholder, disabled }) => (
+const TextBox = ({ border, radius, size, block, value, onChange, placeholder, disabled, align, color }) => (
     <>
-        <Text border={border} radius={radius} size={size} block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled}>
+        <Text border={border} align={align} radius={radius} size={size} color={color}
+            block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled} >
         </Text>
     </>
 )
