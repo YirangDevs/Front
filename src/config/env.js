@@ -1,6 +1,6 @@
 import _ from "./config"
 
-//const env = "production"
+
 const env = "development"
 // const env = "production"
 

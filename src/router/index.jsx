@@ -1,4 +1,4 @@
-import {BrowserRouter, Switch, Route} from "react-router-dom"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 import React from "react"
 import Home from "../pages/Home/";
 
@@ -8,31 +8,39 @@ import LoginRouter from "./LoginRouter";
 import ManageRouter from "./ManageRouter";
 import SeniorRouter from "./SeniorRouter";
 import UserAuthorityRouter from "./UserAuthorityRouter";
-import {connect} from "react-redux";
+import MyPageRouter from './MyPageRouter'
+import ProfileRouter from './ProfileRouter'
+import { connect } from "react-redux";
 
-const YirangRouter = ({role}) => {
+const YirangRouter = ({ role }) => {
     return (
         <BrowserRouter>
             <Switch>
                 <Route path="/create">
-                    <CreateRouter security={["ADMIN", "SUPER_ADMIN"]} role={role}/>
+                    <CreateRouter security={["ADMIN", "SUPER_ADMIN"]} role={role} />
                 </Route>
                 <Route path="/logout">
-                    <LogoutRouter security={["GUEST"]} role={role}/>
+                    <LogoutRouter security={["GUEST"]} role={role} />
                 </Route>
                 <Route path="/login">
-                    <LoginRouter security={["GUEST"]} role={role}/>
+                    <LoginRouter security={["GUEST"]} role={role} />
                 </Route>
                 <Route path="/manage">
-                    <ManageRouter security={["ADMIN", "SUPER_ADMIN"]} role={role}/>
+                    <ManageRouter security={["ADMIN", "SUPER_ADMIN"]} role={role} />
                 </Route>
                 <Route path="/seniors">
-                    <SeniorRouter security={["ADMIN", "SUPER_ADMIN"]} role={role}/>
+                    <SeniorRouter security={["ADMIN", "SUPER_ADMIN"]} role={role} />
                 </Route>
                 <Route path="/userauthority">
-                    <UserAuthorityRouter security={["SUPER_ADMIN"]} role={role}/>
+                    <UserAuthorityRouter security={["SUPER_ADMIN"]} role={role} />
                 </Route>
-                <Route exact path="/" component={Home}/>
+                <Route path="/mypage">
+                    <MyPageRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER"]} role={role} />
+                </Route>
+                <Route path="/profile">
+                    <ProfileRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER"]} role={role} />
+                </Route>
+                <Route exact path="/" component={Home} />
             </Switch>
         </BrowserRouter>
     )
@@ -40,7 +48,7 @@ const YirangRouter = ({role}) => {
 
 const mapStateToProps = (state) => {
     return {
-        role : state.user_reducer?.role
+        role: state.user_reducer?.role
     }
 }
 
