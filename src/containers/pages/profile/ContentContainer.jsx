@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-15 21:25:33
+ * @Last Modified time: 2021-03-17 15:51:13
  */
 
 
@@ -339,7 +339,7 @@ const ContentContainer = ({
             }
         }, 1000);
         return () => clearInterval(countdown);
-    }, [isInputAuthNum && minutes && seconds])
+    }, [isInputAuthNum, minutes, seconds])
 
 
     const [isDeleteConfirmVisible, setDeleteConfirmVisible] = useState(false)
@@ -367,7 +367,7 @@ const ContentContainer = ({
 
             })
 
-            .catch((err) => LogoutProcess())
+            .catch((err) => console.log('err'))
     }
 
 

@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-02-24 16:19:22
  */
 
-import React, { useState } from 'react'
+import React from 'react'
 import MyPageContent from "../../redux/components/Mypage"
 
 

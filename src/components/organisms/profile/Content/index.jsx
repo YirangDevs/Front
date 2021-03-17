@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-15 19:20:35
+ * @Last Modified time: 2021-03-17 15:50:05
  */
 
 
@@ -71,10 +71,7 @@ const ProfileContent = ({
 
     return (
         <>
-            <ContentLayout style={{
-                margin: '3rem 4rem',
-                // border: "1px solid #ccd4e0",
-            }}>
+            <ContentLayout >
 
                 <Row>
                     <Col xs={0} sm={0} md={4} span={4}>

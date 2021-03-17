@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2020-12-21 16:50:25
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-03 03:51:10
+ * @Last Modified time: 2021-03-17 15:40:54
  */
 
 import React from "react"
@@ -15,7 +15,7 @@ import Modal from "../../../atoms/Modal"
 import UrgentForm from "../UrgentForm"
 const ReadForm = ({ UrgentIcon, updateFunction, selectNotice, isUrgentVisible, UrgentModal, isUrgentIcon, urgentOnChange }) => {
     const readNotice = selectNotice || [{ id: null, title: "게시글이없습니다.", dov: null, region: null }];
-    const { id, title, region, nor, dov, tov, dod, content } = readNotice;
+    const { title, region, nor, dov, tov, dod, content } = readNotice; //id 임시로 지웠어
 
     return (
         <>

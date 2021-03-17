@@ -309,7 +309,7 @@ const ContentContainer = () => {
                 setSelectNotice={setSelectNotice} // set read로 열 notice 정보
                 updateNotice={updateNotice} // update 할 notice 정보 (update page에 표시될)
                 setUpdateNotice={setUpdateNotice} // set update 할 notice 정보 (update page에 표시될)
-                setDeleteId={setDeleteId} // set 삭제할 id
+                deleteId={deleteId} // set 삭제할 id
                 lists={lists}
                 setLists={setLists} // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
@@ -335,6 +335,8 @@ const ContentContainer = () => {
                 UrgentModal={urgentModal}
                 urgentOnChange={urgentOnChange}
                 UrgentIcon={UrgentIcon}
+
+                toUrgentHandle={toUrgentHandle} //오류때문에 만들어놓은 거 사용함(지울꺼면 지워)
 
             > </ManageContent>
         </>

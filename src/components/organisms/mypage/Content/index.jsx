@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-15 05:33:01
+ * @Last Modified time: 2021-03-17 15:49:15
  */
 
 import React from 'react'
@@ -58,11 +58,7 @@ const MyPageContent = ({
     return (
         <>
 
-            <ContentLayout style={{
-                margin: '3rem 4rem',
-                // border: "1px solid #ccd4e0",
-            }}
-            >
+            <ContentLayout   >
                 <Row>
                     <Col span={4}>
                         <Row>
@@ -167,7 +163,7 @@ const MyPageContent = ({
                                     borderBottom: "1px solid #ccd4e0",
                                     borderRight: " 1.2px solid #000000",
                                     borderTop: " 2px solid #000000",
-                                    borderBottom: " 2px solid #000000",
+                                    //borderBottom: " 2px solid #000000", 이거 왜 두개 있어?
                                 }}>
                                     <Row gutter={[0, 0]}>
                                         <Col span={6}>
@@ -183,7 +179,6 @@ const MyPageContent = ({
                                     backgroundColor: "#f5f5f5",
                                     borderBottom: "1px solid #ccd4e0",
                                     borderTop: " 2px solid #000000",
-                                    borderBottom: " 2px solid #000000",
                                 }}>
 
                                     <RadioBox name="gender" options={typeoptions} />

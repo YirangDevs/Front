@@ -6,9 +6,7 @@
  */
 
 import React from 'react'
-import Button from "../../atoms/Button"
 import TestBox from "../../atoms/TextBox"
-import CheckBox from "../../atoms/CheckBox"
 import Row from "../../../layout/Grid/Row"
 import Col from "../../../layout/Grid/Column"
 

@@ -2,11 +2,10 @@
  * @author : chaeeun
  * @date : 2021-02-24 15:44:35
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-01 22:48:57
+ * @Last Modified time: 2021-03-17 15:37:43
  */
 
 import React from "react"
-import NavButton from "../../atoms/Button"
 import { useHistory } from "react-router-dom"
 import styled from 'styled-components'
 import Typo from '../../atoms/Typography'
