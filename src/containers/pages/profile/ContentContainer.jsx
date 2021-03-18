@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-18 18:15:16
+ * @Last Modified time: 2021-03-18 18:39:50
  */
 
 
@@ -41,7 +41,6 @@ const ContentContainer = ({
         verified: "",
         sex: "",
         imgUrl: "",
-        role: "",
         firstRegion: "",
         secondRegion: ''
     })
@@ -82,7 +81,7 @@ const ContentContainer = ({
                 }
             })
             .catch(error => console.log(error))
-        getProps()
+
     }, [])
 
 
@@ -96,16 +95,6 @@ const ContentContainer = ({
             })
     }, [])
 
-    //userProfile에  정보넣기 
-    const getProps = () => {
-        //console.log(role)
-        setUserProfile((state) => ({
-            ...state,
-            username: username,
-            role: role,
-            checkedEmail: email,
-        }))
-    }
 
 
     let BodyData = {
@@ -194,6 +183,9 @@ const ContentContainer = ({
 
                 setAuthNum("")
 
+                editProfileFunction.verified('YES');
+
+
                 editEmailForm.close()
                 setInputAuthNum(false)
 
@@ -267,6 +259,11 @@ const ContentContainer = ({
             console.log(e.target.value)
             const secondRegion = e.target.value
             return setUserProfile((state) => ({ ...state, secondRegion: secondRegion }))
+        },
+        verified: (YoN) => {
+
+            const verified = YoN
+            return setUserProfile((state) => ({ ...state, verified: verified }))
         },
     }
 
@@ -345,6 +342,13 @@ const ContentContainer = ({
                     }
                 })
                 .catch(error => console.log(error))
+
+            getCheckValidatedEmail()
+                .then((res) => {
+                    console.log("vaildatedEmail")
+                    console.log(res)
+                    setUserProfile((state) => ({ ...state, verified: res.validation }))
+                })
         }
     }
 
@@ -451,6 +455,7 @@ const ContentContainer = ({
     return (
         <>
             <ProfileContent
+                role={role}
                 minutes={minutes}
                 seconds={seconds}
                 userProfile={userProfile}

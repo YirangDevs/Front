@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-18 18:12:53
+ * @Last Modified time: 2021-03-18 18:33:13
  */
 
 
@@ -31,7 +31,7 @@ import DefaultImg from "../../../../img/ProfileDefaultImg.png"
 
 const ProfileContent = ({
     //contentContainer
-
+    role,
     minutes,
     seconds,
     userProfile,
@@ -64,7 +64,7 @@ const ProfileContent = ({
 }) => {
 
     const { username, imgUrl, realname, phone, email, sex,
-        firstRegion, secondRegion, role, verified } = userProfile;
+        firstRegion, secondRegion, verified } = userProfile;
 
 
     const settingSex = (sex) => {
