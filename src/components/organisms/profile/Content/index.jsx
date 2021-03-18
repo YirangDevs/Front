@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-17 15:50:05
+ * @Last Modified time: 2021-03-18 18:33:13
  */
 
 
@@ -31,7 +31,7 @@ import DefaultImg from "../../../../img/ProfileDefaultImg.png"
 
 const ProfileContent = ({
     //contentContainer
-
+    role,
     minutes,
     seconds,
     userProfile,
@@ -57,11 +57,14 @@ const ProfileContent = ({
     confirmModal,
     DeleteCompleted,
     isDeleteConfirmVisible,
-    deleteConfirmModal
+    deleteConfirmModal,
+
+
+    firstRegionOnclick
 }) => {
 
     const { username, imgUrl, realname, phone, email, sex,
-        firstRegion, secondRegion, role, verified } = userProfile;
+        firstRegion, secondRegion, verified } = userProfile;
 
 
     const settingSex = (sex) => {
@@ -84,7 +87,7 @@ const ProfileContent = ({
                             <Col span={12}>
                                 <Typo size={"1.1rem"} opacity={'0.5'}>
                                     {
-                                        (userProfile.checkedEmail) ? `${userProfile.checkedEmail} >` : `email을 인증해 주세요`
+                                        (verified === "YES") ? `${email} >` : `email을 인증해 주세요`
                                     }
                                 </Typo>
                             </Col>
@@ -104,16 +107,7 @@ const ProfileContent = ({
                                 <MypageNav role={role} />
                             </Col>
                         </Row>
-                        {/* 탈퇴하기 바로  */}
-                        {/* <Row align={'center'} style={{ marginTop: '1rem' }}>
-                            <Col span={3} align={'center'} style={{ borderRight: '1px solid black', height: "3rem", }}>
-                                <Typo size={"1.2rem"} weight={"bold"} > 회원탈퇴</Typo>
-                            </Col>
 
-                            <Col span={6} justify={'center'} align={'center'} style={{ height: "3rem", }} >
-                                <Button types={"primary"} value={'회원탈퇴'} onClick={DeleteCompleted} />
-                            </Col>
-                        </Row> */}
 
                         <Row gutter={[15, 0]} style={{ margin: '2.5rem 0 0 0 ' }}>
                             <Col span={4}>
@@ -131,6 +125,9 @@ const ProfileContent = ({
                     </Modal>
 
 
+
+
+                    {/* 오른쪽 */}
                     <Col xs={12} sm={12} md={7.5} span={7.5} offset={0.5}>
                         <Row >
                             <Col span={12}>
@@ -462,8 +459,8 @@ const ProfileContent = ({
                                                 }}>
                                                     {
                                                         (sex !== 'UNKNOWN') ?
-                                                            //null
-                                                            <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
+                                                            null
+                                                            // <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
                                                             :
                                                             <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
                                                     }
@@ -487,7 +484,7 @@ const ProfileContent = ({
 
 
                         {
-                            (verified === "yes") ?
+                            (verified === "YES") ?
                                 <>
                                     {/* //인증된경우 */}
                                     <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
@@ -503,21 +500,34 @@ const ProfileContent = ({
                                                 height: "50px",
                                                 paddingLeft: "1rem"
                                             }}>
-                                                <TextBox color={"black"} border
-                                                    radius={'22px'} align={'center'}
-                                                    onChange={editProfileFunction.email} value={email} />
+                                                <Typo weight={"bold"}>
+                                                    {email}
+                                                </Typo>
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
                                                 height: "50px"
                                             }}>
                                                 {
-                                                    <Button block value={'수정하기'} onClick={editSexForm.show}></Button>
+                                                    (isEditEmailForm) ?
+                                                        <Button block value={'변경취소'} onClick={editEmailForm.close}></Button>
+                                                        :
+                                                        <Button block value={'이메일변경'} onClick={editEmailForm.show}></Button>
 
                                                 }
                                             </Col>
                                         </Col>
                                     </Row >
+                                    {
+                                        (isEditEmailForm) ?
+                                            <>
+                                                <VerifiedForm minutes={minutes} seconds={seconds} email={email} editProfileFunction={editProfileFunction} isInputAuthNum={isInputAuthNum}
+                                                    editAuthNum={editAuthNum} inputAuthNumForm={inputAuthNumForm} isAuthNum={isAuthNum} editEmailForm={editEmailForm} />
+                                            </>
+                                            :
+                                            <>
+                                            </>
+                                    }
                                 </>
                                 :
                                 <>

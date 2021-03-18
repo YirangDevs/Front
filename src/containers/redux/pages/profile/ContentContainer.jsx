@@ -4,8 +4,15 @@ import ACTION from "../../../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {
+        username: state.user_reducer.username,
         role: state.user_reducer.role,
-        logined: state.login_reducer.logined
+        logined: state.login_reducer.logined,
+        emailValidation: state.user_reducer.emailValidation,
+        firstRegion: state.user_reducer.firstRegion,
+        secondRegion: state.user_reducer.secondRegion,
+        email: state.user_reducer.email,
+        imgUrl: state.user_reducer.imgUrl || null
+
     }
 }
 
