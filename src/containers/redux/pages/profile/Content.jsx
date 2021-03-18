@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import Content from "../../../../components/organisms/profile/Content"
-import ACTION from "../../../../store/actions/action"
 
 const mapStateToProps = (state) => {
     return {

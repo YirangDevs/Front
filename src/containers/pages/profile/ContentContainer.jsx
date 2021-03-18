@@ -6,7 +6,7 @@
  */
 
 
-import React, { useEffect, useState } from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import ProfileContent from "../../redux/pages/profile/Content"
 import getMyInfo from "../../../service/api/get/get_my_info"
 import DefaultImg from "../../../img/ProfileDefaultImg.png"
@@ -53,6 +53,17 @@ const ContentContainer = ({
     const firstRegionOptions = regionOptions.filter(regions => regions !== userProfile.secondRegion)
     const SecondRegionOptions = regionOptions.filter(regions => regions !== userProfile.firstRegion)
 
+    //userProfile에  정보넣기
+    const getProps = useCallback(() => {
+        //console.log(role)
+        setUserProfile((state) => ({
+            ...state,
+            username: username,
+            role: role,
+            checkedEmail: email,
+        }))
+    }, [email, username, role])
+
 
     useEffect(() => {
         SET_USER({
@@ -61,7 +72,7 @@ const ContentContainer = ({
                 username: userProfile.username
             }
         })
-    }, [userProfile])
+    }, [SET_USER, userProfile.email, userProfile.username])
 
 
     useEffect(() => {
@@ -76,7 +87,7 @@ const ContentContainer = ({
             })
             .catch(error => console.log(error))
         getProps()
-    }, [])
+    }, [getProps])
 
 
 
@@ -89,16 +100,7 @@ const ContentContainer = ({
             })
     }, [])
 
-    //userProfile에  정보넣기 
-    const getProps = () => {
-        //console.log(role)
-        setUserProfile((state) => ({
-            ...state,
-            username: username,
-            role: role,
-            checkedEmail: email,
-        }))
-    }
+
 
 
 
