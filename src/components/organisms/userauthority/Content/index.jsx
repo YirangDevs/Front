@@ -12,6 +12,7 @@ import Pagination from "../../../atoms/Pagination"
 import UserInfo from "../../../molecules/UserInfo"
 import AuthorityAdminModal from "../../../../components/organisms/userauthority/AuthorityAdminModal"
 import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
+//import SideNav from "../../../molecules/SideNav"
 
 
 const selectAuthority = ["전체", "슈퍼관리자", "관리자", "봉사자"]
