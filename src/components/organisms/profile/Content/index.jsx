@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-17 16:24:18
+ * @Last Modified time: 2021-03-18 18:12:53
  */
 
 
@@ -57,7 +57,10 @@ const ProfileContent = ({
     confirmModal,
     DeleteCompleted,
     isDeleteConfirmVisible,
-    deleteConfirmModal
+    deleteConfirmModal,
+
+
+    firstRegionOnclick
 }) => {
 
     const { username, imgUrl, realname, phone, email, sex,
@@ -84,7 +87,7 @@ const ProfileContent = ({
                             <Col span={12}>
                                 <Typo size={"1.1rem"} opacity={'0.5'}>
                                     {
-                                        (userProfile.checkedEmail) ? `${userProfile.checkedEmail} >` : `email을 인증해 주세요`
+                                        (verified === "YES") ? `${email} >` : `email을 인증해 주세요`
                                     }
                                 </Typo>
                             </Col>
@@ -122,6 +125,9 @@ const ProfileContent = ({
                     </Modal>
 
 
+
+
+                    {/* 오른쪽 */}
                     <Col xs={12} sm={12} md={7.5} span={7.5} offset={0.5}>
                         <Row >
                             <Col span={12}>
@@ -453,8 +459,8 @@ const ProfileContent = ({
                                                 }}>
                                                     {
                                                         (sex !== 'UNKNOWN') ?
-                                                            //null
-                                                            <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
+                                                            null
+                                                            // <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
                                                             :
                                                             <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
                                                     }
@@ -478,7 +484,7 @@ const ProfileContent = ({
 
 
                         {
-                            (verified === "yes") ?
+                            (verified === "YES") ?
                                 <>
                                     {/* //인증된경우 */}
                                     <Row justify={"space-between"} style={{ borderTop: '1.8px solid #000000', }} >
@@ -494,21 +500,34 @@ const ProfileContent = ({
                                                 height: "50px",
                                                 paddingLeft: "1rem"
                                             }}>
-                                                <TextBox color={"black"} border
-                                                    radius={'22px'} align={'center'}
-                                                    onChange={editProfileFunction.email} value={email} />
+                                                <Typo weight={"bold"}>
+                                                    {email}
+                                                </Typo>
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
                                                 height: "50px"
                                             }}>
                                                 {
-                                                    <Button block value={'수정하기'} onClick={editSexForm.show}></Button>
+                                                    (isEditEmailForm) ?
+                                                        <Button block value={'변경취소'} onClick={editEmailForm.close}></Button>
+                                                        :
+                                                        <Button block value={'이메일변경'} onClick={editEmailForm.show}></Button>
 
                                                 }
                                             </Col>
                                         </Col>
                                     </Row >
+                                    {
+                                        (isEditEmailForm) ?
+                                            <>
+                                                <VerifiedForm minutes={minutes} seconds={seconds} email={email} editProfileFunction={editProfileFunction} isInputAuthNum={isInputAuthNum}
+                                                    editAuthNum={editAuthNum} inputAuthNumForm={inputAuthNumForm} isAuthNum={isAuthNum} editEmailForm={editEmailForm} />
+                                            </>
+                                            :
+                                            <>
+                                            </>
+                                    }
                                 </>
                                 :
                                 <>

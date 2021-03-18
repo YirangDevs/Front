@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-17 15:51:13
+ * @Last Modified time: 2021-03-18 18:15:16
  */
 
 
@@ -17,14 +17,18 @@ import postVerifyCertificationEmail from "../../../service/api/post/post_verify_
 import deleteMyInfo from "../../../service/api/delete/delete_myInfo"
 import NotificationPool from '../../redux/components/NotificationPool'
 import LogoutProcess from '../../../service/transaction/logout_process'
+import editMyEmail from '../../../service/api/put/edit_My_email'
 
 //username = 닉네임
 //realname = 실명
 const ContentContainer = ({
     username,
-    imgUrl,
     role,
     email,
+    emailValidation,
+    firstRegion,
+    secondRegion,
+    imgUrl,
     SET_USER,
 }) => {
 
@@ -57,8 +61,11 @@ const ContentContainer = ({
     useEffect(() => {
         SET_USER({
             user: {
+                username: userProfile.username,
                 email: userProfile.email,
-                username: userProfile.username
+                emailValidation: userProfile.verified,
+                firstRegion: userProfile.firstRegion,
+                secondRegion: userProfile.secondRegion
             }
         })
     }, [userProfile])
@@ -101,27 +108,45 @@ const ContentContainer = ({
     }
 
 
+    let BodyData = {
 
-    /**
-         * @description updateMyInfo RequestDto
-         *  * @request 
-         * @body editData{email , firstRegion , phone ,
-         *   realname , secondRegion, sex , username}
-         */
-    const editData = JSON.stringify({
-        "email": userProfile.email || "",
-        "phone": userProfile.phone || "",
-        "username": userProfile.username || "",
-        "firstRegion": userProfile.firstRegion || null,
-        "realname": userProfile.realname || 'UNKNOWN',
-        "secondRegion": userProfile.secondRegion || null,
-        "sex": userProfile.sex || 'UNKNOWN',
+        /**
+             * @description updateMyInfo RequestDto
+             *  * @request 
+             * @body editData{email , firstRegion , phone ,
+             *   realname , secondRegion, sex , username}
+             */
+        editData: JSON.stringify({
+            "email": userProfile.email || "",
+            "phone": userProfile.phone || "",
+            "username": userProfile.username || "",
+            "firstRegion": firstRegion || null,
+            "realname": userProfile.realname || 'UNKNOWN',
+            "secondRegion": secondRegion || null,
+            "sex": userProfile.sex || 'UNKNOWN',
 
-    })
+        }),
 
+        emailData: JSON.stringify({
+            "email": userProfile.email
+        }),
+
+        //인증번호확인
+        /**
+              * @description verifyCertificationEmail RequestDto
+              *  * @request 
+              * @body authNumData{ certificationNumbers}
+              */
+        authNumData: JSON.stringify({
+            "certificationNumbers": `${isAuthNum}`
+        }),
+    }
+
+
+    // 수정통신
     const editCompleted = (property) => {
         console.log(userProfile)
-        editMyInfo(property, editData)
+        editMyInfo(property, BodyData.editData)
             .then((res) => {
                 console.log(res)
             })
@@ -130,33 +155,55 @@ const ContentContainer = ({
 
 
 
-    // 인증메일전송
+    // 인증메일전송 통신
     const sendAuthEmail = () => {
-        postSendCertificationEmail()
+        editMyEmail(userProfile.email, BodyData.emailData)
             .then((res) => {
-                console.log("이메일 전송")
                 console.log(res)
+                setInputAuthNum(true)
+                console.log(userProfile)
+                postSendCertificationEmail()
+                    .then((res) => {
+                        console.log("이메일 전송")
+                        console.log(res)
+                    })
+                    .catch(error => console.log(error))
+
             })
-            .catch(error => console.log(error))
+            .catch(err => {
+                console.log(err)
+                console.log('인증메일 전송 실패')
+                setMinutes(parseInt(0))
+                setSeconds(parseInt(0))
+            })
+
     }
 
 
-    //인증번호확인
-    /**
-          * @description verifyCertificationEmail RequestDto
-          *  * @request 
-          * @body authNumData{ certificationNumbers}
-          */
-    const authNumData = JSON.stringify({
-        "certificationNumbers": isAuthNum
-    })
-
+    //인증번화확인 통신
     const VerifyAuthNum = () => {
-        postVerifyCertificationEmail()
-            .then((res) => {
-                console.log(res)
+        console.log(isAuthNum)
+        postVerifyCertificationEmail(BodyData.authNumData)
+            .then(() => {
+
+                NotificationPool.api.add({
+                    title: "이메일 인증이 완료되었습니다!",
+                    content: `인증된 이메일 주소는 '${userProfile.email}' 입니다.`,
+                    status: "success"
+                })
+
+                setAuthNum("")
+
+                editEmailForm.close()
+                setInputAuthNum(false)
+
             })
-            .catch(error => console.log(error))
+            .catch((err) => {
+                console.log("인증 번호 에러 ")
+                console.log(err)
+                setAuthNum("")
+
+            })
     }
 
 
@@ -285,7 +332,19 @@ const ContentContainer = ({
         },
         close() {
             setEditEmailForm(false)
-            inputAuthNumForm.close()
+            setInputAuthNum(false)
+            setMinutes(parseInt(0))
+            setSeconds(parseInt(0))
+            //변경 취소시 email 다시받아오기 
+            getMyInfo()
+                .then((res) => {
+                    console.log('userInfo')
+                    console.log(res)
+                    for (let data in res) {
+                        setUserProfile((state) => ({ ...state, [data]: res[data] }))
+                    }
+                })
+                .catch(error => console.log(error))
         }
     }
 
@@ -294,12 +353,12 @@ const ContentContainer = ({
             setMinutes(parseInt(5))
             setSeconds(parseInt(1))
             sendAuthEmail()
-            setInputAuthNum(true)
+
         },
         close() {
-            setInputAuthNum(false)
-            setMinutes(parseInt(5))
-            setSeconds(parseInt(1))
+
+            VerifyAuthNum()
+
         }
     }
 
@@ -319,8 +378,8 @@ const ContentContainer = ({
 
 
 
-    const [minutes, setMinutes] = useState(parseInt(5));
-    const [seconds, setSeconds] = useState(parseInt(1));
+    const [minutes, setMinutes] = useState(parseInt(0));
+    const [seconds, setSeconds] = useState(parseInt(0));
 
 
 
@@ -339,7 +398,10 @@ const ContentContainer = ({
             }
         }, 1000);
         return () => clearInterval(countdown);
-    }, [isInputAuthNum, minutes, seconds])
+    }, [minutes, seconds])
+
+
+
 
 
     const [isDeleteConfirmVisible, setDeleteConfirmVisible] = useState(false)
@@ -367,7 +429,20 @@ const ContentContainer = ({
 
             })
 
-            .catch((err) => console.log('err'))
+            .catch((err) => console.log(err))
+    }
+
+
+    //onChange하면 바로 fetch보내고싶다,, 
+    const firstRegionOnchange = (e) => {
+
+
+        (userProfile.firstRegion === e.target.value) ?
+            console.log('fetch')
+            :
+            editProfileFunction.firstRegion(e)
+
+
     }
 
 
@@ -404,6 +479,10 @@ const ContentContainer = ({
                 DeleteCompleted={DeleteCompleted}
                 isDeleteConfirmVisible={isDeleteConfirmVisible}
                 deleteConfirmModal={deleteConfirmModal}
+
+                firstRegionOnchange={firstRegionOnchange}
+
+
             ></ProfileContent>
         </>
     )

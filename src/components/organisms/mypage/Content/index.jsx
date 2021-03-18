@@ -60,7 +60,7 @@ const MyPageContent = ({
 
             <ContentLayout   >
                 <Row>
-                    <Col span={4}>
+                    <Col xs={0} sm={0} md={4} span={4}>
                         <Row>
                             <Col span={4} >
                                 <Typo size={"2.3rem"} weight={'bold'}>{username}</Typo>
@@ -107,7 +107,11 @@ const MyPageContent = ({
                         </Row>
                     </Col>
 
-                    <Col span={7.5} offset={0.5}>
+
+
+
+                    {/* 오른 쪽 */}
+                    <Col xs={12} sm={12} md={7.5} span={7.5} offset={0.5}>
                         <Row>
                             <Col span={12}>
                                 <Typo size={"1.2rem"} weight={"500"} > 봉사 관리</Typo>
@@ -126,16 +130,17 @@ const MyPageContent = ({
                                             return (
                                                 <>
                                                     <Row gutter={[4, 0]} align="center">
-                                                        <Col span={10}>
+                                                        <Col xs={9} sm={9} md={9} lg={9} span={9}>
                                                             <TableBox headList={manage_table_head} bodyList={[data]} border={"top"}></TableBox>
                                                         </Col>
-                                                        <Col xs={2} sm={2} md={3} lg={2}>
+
+                                                        <Col xs={3} sm={3} md={3} lg={3} span={3}>
                                                             <Row gutter={[0.5, 5]}>
-                                                                <Col xs={1} span={12}>
+                                                                <Col xs={12} span={12}>
                                                                     <Button block size="large" value="공고글 보기" types={"primary"}></Button>
                                                                 </Col>
 
-                                                                <Col xs={1} span={12}>
+                                                                <Col xs={12} span={12}>
                                                                     <Button block size="large" value="신청취소" types={"primary"} ></Button>
                                                                 </Col>
                                                             </Row>
