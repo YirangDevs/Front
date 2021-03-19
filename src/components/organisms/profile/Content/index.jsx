@@ -2,13 +2,13 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-18 18:33:13
+ * @Last Modified time: 2021-03-20 06:49:39
  */
 
 
 import React from "react"
 import MypageNav from "../../../molecules/MypageNav"
-import UserInfo from "../../../../containers/redux/components/UserInfo"
+import UserCard from "../../../../containers/redux/components/UserCard"
 import Typo from "../../../atoms/Typography"
 
 
@@ -28,6 +28,8 @@ import SexConfirmModal from "../SexConfirmForm"
 import DeleteMyInfoModal from "../DeleteMyInfoForm"
 
 import DefaultImg from "../../../../img/ProfileDefaultImg.png"
+
+import FileBox from "../../../atoms/FileBox"
 
 const ProfileContent = ({
     //contentContainer
@@ -60,7 +62,12 @@ const ProfileContent = ({
     deleteConfirmModal,
 
 
-    firstRegionOnclick
+    firstRegionOnclick,
+
+    // 프로필 사진 업로드 
+    selectImageOnclick,
+    uploadImageOnclick,
+    kakaoImageOnclick,
 }) => {
 
     const { username, imgUrl, realname, phone, email, sex,
@@ -99,7 +106,7 @@ const ProfileContent = ({
                         </Row>
                         <Row>
                             <Col span={12}>
-                                <UserInfo></UserInfo>
+                                <UserCard></UserCard>
                             </Col>
                         </Row>
                         <Row gutter={[15, 0]}>
@@ -138,13 +145,13 @@ const ProfileContent = ({
                         <Row justify={"space-between"} style={{ marginTop: '15px', borderTop: '3px solid #000000', }}>
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
-                                height: "7rem"
+                                //height: "7rem"
                             }}>
                                 <Typo weight={'bold'}>프로필 사진</Typo>
                             </Col>
                             <Col span={10} justify={"space-between"} style={{
                                 backgroundColor: "#ffffff",
-                                height: "7rem",
+                                //height: "7rem",
                             }} >
                                 <Col span={7} justify={"start"} align={"center"} style={{
                                     paddingLeft: '1rem'
@@ -155,16 +162,19 @@ const ProfileContent = ({
                                             :
                                             <Img src={DefaultImg} width={'6rem'} circle></Img>
                                     }
-                                    <Img src={imgUrl} width={'6rem'} circle></Img>
+
                                 </Col>
                                 <Col span={3}>
                                     <Row justify={'center'} align={'center'}>
-                                        {/* <Col span={12}>
-                                            <Button block value={'기본 이미지로'} onClick={editProfileFunction.defaultImg}></Button>
+                                        <Col span={12}>
+                                            <FileBox block id={"customImg"} accept="image/*" onChange={selectImageOnclick} >이미지업로드</FileBox>
                                         </Col>
                                         <Col span={12} >
-                                            <Button block value={'프로필 사진으로'} onClick={editProfileFunction.imgUrl}></Button>
-                                        </Col> */}
+                                            <Button block value={'사진 저장'} onClick={uploadImageOnclick}></Button>
+                                        </Col>
+                                        <Col span={12} >
+                                            <Button block value={'프로필 사진으로'} onClick={kakaoImageOnclick}></Button>
+                                        </Col>
                                     </Row>
                                 </Col>
                             </Col>

@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-18 18:39:50
+ * @Last Modified time: 2021-03-20 06:47:08
  */
 
 
@@ -10,15 +10,26 @@ import React, { useEffect, useState } from 'react'
 import ProfileContent from "../../redux/pages/profile/Content"
 import getMyInfo from "../../../service/api/get/get_my_info"
 import DefaultImg from "../../../img/ProfileDefaultImg.png"
-import editMyInfo from "../../../service/api/put/edit_My_info"
+
 import getCheckValidatedEmail from "../../../service/api/get/get_check_validated_email"
 import postSendCertificationEmail from "../../../service/api/post/post_certification_email"
 import postVerifyCertificationEmail from "../../../service/api/post/post_verify_certification_email"
 import deleteMyInfo from "../../../service/api/delete/delete_myInfo"
 import NotificationPool from '../../redux/components/NotificationPool'
 import LogoutProcess from '../../../service/transaction/logout_process'
-import editMyEmail from '../../../service/api/put/edit_My_email'
+import EditMyEmail from '../../../service/api/put/edit_My_email'
+import GetMyImgType from "../../../service/api/get/get_my_img_type"
 
+import editMyInfo from "../../../service/api/put/edit_My_info"
+import editMyInfoUserName from "../../../service/api/put/edit_my_info_username"
+import editMyInfoFirstRegion from "../../../service/api/put/edit_my_info_firstRegion"
+import editMyInfoPhone from "../../../service/api/put/edit_my_info_phone"
+import editMyInfoSecondRegion from "../../../service/api/put/edit_my_info_sex"
+import editMyInfoSex from "../../../service/api/put/edit_my_info_sex"
+import editMyInfoRealName from "../../../service/api/put/edit_my_info_realname"
+
+import editMyImgType from "../../../service/api/put/edit_my_img_type"
+import getMyImg from "../../../service/api/get/get_my_img"
 //username = 닉네임
 //realname = 실명
 const ContentContainer = ({
@@ -42,7 +53,9 @@ const ContentContainer = ({
         sex: "",
         imgUrl: "",
         firstRegion: "",
-        secondRegion: ''
+        secondRegion: '',
+        imgType: "",
+        isReceivingEmail: ""
     })
 
     //certificationNumbers 메일인증번호
@@ -67,7 +80,7 @@ const ContentContainer = ({
                 secondRegion: userProfile.secondRegion
             }
         })
-    }, [userProfile])
+    }, [userProfile.username, userProfile.email, userProfile.verified, userProfile.firstRegion, userProfile.secondRegion])
 
 
     useEffect(() => {
@@ -76,12 +89,18 @@ const ContentContainer = ({
             .then((res) => {
                 console.log('userInfo')
                 console.log(res)
-                for (let data in res) {
-                    setUserProfile((state) => ({ ...state, [data]: res[data] }))
-                }
+
+                setUserProfile((state) => ({ ...state, ...res }))
+
             })
             .catch(error => console.log(error))
 
+        GetMyImgType()
+            .then((res) => {
+                console.log("img_type")
+                console.log(res)
+                setUserProfile((state) => ({ ...state, ...res }))
+            })
     }, [])
 
 
@@ -134,7 +153,9 @@ const ContentContainer = ({
 
     // 수정통신
     const editCompleted = (property) => {
-        console.log(userProfile)
+
+
+
         editMyInfo(property, BodyData.editData)
             .then((res) => {
                 console.log(res)
@@ -143,10 +164,74 @@ const ContentContainer = ({
     }
 
 
+    let editApis = {
+        firstRegion: () => {
+            editMyInfoFirstRegion(JSON.stringify({
+                "firstRegion": userProfile.firstRegion
+            }))
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+        },
+
+        phone: () => {
+            editMyInfoPhone(JSON.stringify({
+                "phone": userProfile.phone
+            }))
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+        },
+
+
+
+        realname: () => {
+            editMyInfoRealName(JSON.stringify({
+                "realname": userProfile.realname
+            }))
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+        },
+        SecondRegion: () => {
+            editMyInfoSecondRegion(JSON.stringify({
+                "secondRegion": userProfile.secondRegion
+            }))
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+        },
+        Sex: () => {
+            editMyInfoSex(JSON.stringify({
+                "sex": userProfile.sex
+            }))
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+        },
+        username: () => {
+            editMyInfoUserName(JSON.stringify({
+                "username": userProfile.username
+            }))
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+        },
+
+    }
+
+
+
 
     // 인증메일전송 통신
     const sendAuthEmail = () => {
-        editMyEmail(userProfile.email, BodyData.emailData)
+        EditMyEmail(userProfile.email, BodyData.emailData)
             .then((res) => {
                 console.log(res)
                 setInputAuthNum(true)
@@ -218,8 +303,8 @@ const ContentContainer = ({
             console.log(e.target.value)
             const username = e.target.value;
             return setUserProfile((state) => ({ ...state, username: username }))
-
         },
+
         realname: (e) => {
             console.log(e.target.value)
             const realname = e.target.value;
@@ -241,8 +326,8 @@ const ContentContainer = ({
             return setUserProfile((state) => ({ ...state, sex: settingSex(sex) }))
         },
         imgUrl: (e) => {
-            console.log(e.target.value)
-            return setUserProfile((state) => ({ ...state, imgUrl: imgUrl }))
+            console.log(e.target.files[0])
+            return setUserProfile((state) => ({ ...state, imgUrl: e.target.files[0] }))
         },
         defaultImg: (e) => {
             console.log(e.target.value)
@@ -260,6 +345,7 @@ const ContentContainer = ({
             const secondRegion = e.target.value
             return setUserProfile((state) => ({ ...state, secondRegion: secondRegion }))
         },
+
         verified: (YoN) => {
 
             const verified = YoN
@@ -290,7 +376,7 @@ const ContentContainer = ({
         },
         close() {
             setEditNickNameForm(false)
-            editCompleted('닉네임')
+            editApis.username()
         }
     }
 
@@ -300,18 +386,20 @@ const ContentContainer = ({
         },
         close() {
             setEditRealNameForm(false)
-            editCompleted('이름')
+            editApis.realname()
         }
     }
+
     const editPhoneForm = {
         show() {
             setEditPhoneForm(true)
         },
         close() {
             setEditPhoneForm(false)
-            editCompleted('전화번호')
+            editApis.phone()
         }
     }
+
     const editSexForm = {
         show() {
             setEditSexForm(true)
@@ -319,7 +407,7 @@ const ContentContainer = ({
         close() {
             confirmModal.close()
             setEditSexForm(false)
-            editCompleted('성별')
+            editApis.sex()
         }
     }
 
@@ -452,6 +540,58 @@ const ContentContainer = ({
 
 
 
+
+    // ///// 이미지 업로드 ////////////////
+
+
+
+    const selectImageOnclick = (e) => {
+
+        let imgFile = e.target.files[0]
+
+        let reader = new FileReader();
+        reader.readAsDataURL(imgFile);
+        reader.onload = () => {
+            setUserProfile((state) => ({ ...state, imgUrl: reader.result }))
+        }
+
+
+
+
+    }
+    const uploadImageOnclick = () => {
+        editMyImgType(JSON.stringify({
+            "imgType": "CUSTOM"
+        }))
+            .then((res) => {
+                console.log(res)
+
+                setUserProfile((state) => ({ ...state, imgType: 'CUSTOM' }))
+            })
+            .catch((err) => {
+                console.log(err)
+
+            })
+
+    }
+    const kakaoImageOnclick = () => {
+        editMyImgType(JSON.stringify({
+            "imgType": "KAKAO"
+        }))
+            .then((res) => {
+                console.log(res)
+                setUserProfile((state) => ({ ...state, imgType: 'KAKAO' }))
+                getMyImg()
+                    .then((res) => {
+                        console.log(res)
+                        setUserProfile((state) => ({ ...state, imgUrl: res.imgUrl }))
+                    })
+            })
+
+            .catch((err) => { console.log(err) })
+    }
+
+
     return (
         <>
             <ProfileContent
@@ -486,6 +626,11 @@ const ContentContainer = ({
                 deleteConfirmModal={deleteConfirmModal}
 
                 firstRegionOnchange={firstRegionOnchange}
+
+
+                selectImageOnclick={selectImageOnclick}
+                uploadImageOnclick={uploadImageOnclick}
+                kakaoImageOnclick={kakaoImageOnclick}
 
 
             ></ProfileContent>

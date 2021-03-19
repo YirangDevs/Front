@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-17 15:49:15
+ * @Last Modified time: 2021-03-18 19:59:04
  */
 
 import React from 'react'
@@ -10,7 +10,7 @@ import ContentLayout from '../../../../layout/Content'
 import Col from '../../../../layout/Grid/Column'
 import Row from '../../../../layout/Grid/Row'
 import Typo from '../../../atoms/Typography'
-import UserInfo from '../../../../containers/redux/components/UserInfo'
+import UserCard from '../../../../containers/redux/components/UserCard'
 import TableBox from "../../../atoms/TableBox"
 import Button from '../../../atoms/Button'
 import DateSelector from '../../../atoms/DateSelector'
@@ -89,7 +89,7 @@ const MyPageContent = ({
                         </Row>
                         <Row>
                             <Col span={12}>
-                                <UserInfo></UserInfo>
+                                <UserCard></UserCard>
                             </Col>
                         </Row>
                         <Row gutter={[15, 0]}>
