@@ -9,10 +9,12 @@ import NotificationPool from "../../../containers/redux/components/NotificationP
  */
 
 const postCustomImg = (imgData)=>{
+    console.log('body')
+    console.log(imgData)
     return fetch(_.SERVER_URL + ":8080/v1/apis/imgs/custom ", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+
             Authorization: "Bearer " + localStorage.getItem("YAT"),
         },
         body:imgData

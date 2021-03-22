@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-20 06:47:08
+ * @Last Modified time: 2021-03-22 18:31:09
  */
 
 
@@ -30,6 +30,7 @@ import editMyInfoRealName from "../../../service/api/put/edit_my_info_realname"
 
 import editMyImgType from "../../../service/api/put/edit_my_img_type"
 import getMyImg from "../../../service/api/get/get_my_img"
+import postCustomImg from "../../../service/api/post/post_custom_img"
 //username = 닉네임
 //realname = 실명
 const ContentContainer = ({
@@ -538,10 +539,30 @@ const ContentContainer = ({
     }
 
 
-
+    const [isImgFile, setImgFile] = useState("")
 
 
     // ///// 이미지 업로드 ////////////////
+
+    let imgApis = {
+        postImg: async () => {
+            const imgDataForm = new FormData();
+            imgDataForm.append('imgFile', isImgFile);
+            console.log('imgDataForm')
+            console.log(imgDataForm.getAll('item'))
+            await postCustomImg(imgDataForm)
+                .then((res) => {
+                    console.log(isImgFile)
+                    console.log(res)
+                    return res
+                })
+                .catch((err) => {
+                    console.log(imgDataForm.getAll('item'))
+                    console.log(err)
+                    return err
+                })
+        }
+    }
 
 
 
@@ -549,28 +570,48 @@ const ContentContainer = ({
 
         let imgFile = e.target.files[0]
 
+        const imgDataForm = new FormData();
+        imgDataForm.append('customImg', imgFile);
+        console.log(imgDataForm.has('customImg'))
+        setImgFile(imgDataForm)
+        console.log(isImgFile)
         let reader = new FileReader();
         reader.readAsDataURL(imgFile);
         reader.onload = () => {
+
             setUserProfile((state) => ({ ...state, imgUrl: reader.result }))
         }
 
 
-
-
     }
     const uploadImageOnclick = () => {
+        console.log(isImgFile)
+        console.log(isImgFile.has('customImg'))
         editMyImgType(JSON.stringify({
             "imgType": "CUSTOM"
         }))
-            .then((res) => {
+            .then(async (res) => {
                 console.log(res)
 
                 setUserProfile((state) => ({ ...state, imgType: 'CUSTOM' }))
-            })
-            .catch((err) => {
-                console.log(err)
 
+                console.log("isImgFile")
+                console.log(isImgFile)
+
+                await postCustomImg(isImgFile)
+                    .then((res) => {
+                        console.log(isImgFile)
+                        console.log(res)
+                    })
+                    .catch((err) => {
+                        console.log(isImgFile);
+                        console.log(err)
+                    })
+
+
+            })
+            .catch(async (err) => {
+                console.log(err)
             })
 
     }
