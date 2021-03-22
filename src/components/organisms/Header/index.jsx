@@ -59,7 +59,7 @@ const Value = styled.span`
 const Header = ({theme, logined, role, position}) => {
     return (
         <>
-        <SideNav></SideNav> 
+        {/* <SideNav></SideNav>  */}
             <HeaderStyle theme={theme} position={position}>
                 <Row align={"center"} justify={"space-between"} style={{
                     height: "inherit"

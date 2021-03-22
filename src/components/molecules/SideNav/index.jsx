@@ -8,8 +8,8 @@ const SideNavStyle = styled.div`
     background-color: white;
     height: 91%;
     width: 300px;
-    margin-top : 72px;
-
+    //margin-top : 72px;
+  /*
     @media(max-width: 1200px){
         margin-top : 64px;
       }
@@ -21,6 +21,7 @@ const SideNavStyle = styled.div`
       @media(max-width: 576px){
         margin-top : 40px;
       }
+      */
 `
 
 const SideNav = () => {
