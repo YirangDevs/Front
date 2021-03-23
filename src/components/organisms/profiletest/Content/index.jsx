@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-23 16:17:17
+ * @Last Modified time: 2021-03-22 19:47:40
  */
 
 
@@ -86,10 +86,16 @@ const ProfileContent = ({
                 <Row>
                     <Col xs={0} sm={0} md={4} span={4}>
                         <Row>
+                            <Col span={12}>
+                                <Typo size={"2.3rem"} weight={'bold'}>TestPage</Typo>
+                            </Col>
+                        </Row>
+                        <Row>
                             <Col span={4}>
                                 <Typo size={"2.3rem"} weight={'bold'}>{username}</Typo>
                             </Col>
                         </Row>
+
                         <Row gutter={[3, 0]}>
                             <Col span={12}>
                                 <Typo size={"1.1rem"} opacity={'0.5'}>
@@ -469,8 +475,8 @@ const ProfileContent = ({
                                                 }}>
                                                     {
                                                         (sex !== 'UNKNOWN') ?
-                                                            //null
-                                                            <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
+                                                            null
+                                                            // <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
                                                             :
                                                             <Button block value={'성별기입'} onClick={editSexForm.show}></Button>
                                                     }
@@ -483,7 +489,7 @@ const ProfileContent = ({
                         <Row>
                             <Col span={12} xs={12}>
                                 <Modal headerClose visible={isSexConfirmVisible}
-                                    maskClosable={true} onClose={confirmModal.close} size={5}>
+                                    maskClosable={true} onClose={confirmModal.close} size={4}>
                                     <SexConfirmModal confirmModal={confirmModal} username={username} sex={sex} editSexForm={editSexForm}></SexConfirmModal>
                                 </Modal>
                             </Col>
@@ -558,7 +564,7 @@ const ProfileContent = ({
 
                                                 <Typo backColor={'rgb(255, 253, 126)'} weight={"bold"}>
                                                     이메일인증이 반드시 필요합니다.
-                                                                </Typo>
+                                                                 </Typo>
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",

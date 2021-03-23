@@ -21,7 +21,11 @@ const postCustomImg = (imgData)=>{
     }).then((res)=> {
         if(res.status===500) throw Promise.resolve({errorCode: 500, errorName: "Server error"})
         if (!res.ok) throw res.json()
-
+        NotificationPool.api.add({
+            title : "프로필 사진 수정 완료",
+            content : '업로드한 사진으로 프로필사진이 변경되었습니다.',
+            status : "success"
+        })
     }).catch(async(error)=>{
         let err =  await error.then()
         NotificationPool.api.add({

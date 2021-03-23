@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-22 18:31:09
+ * @Last Modified time: 2021-03-23 21:13:41
  */
 
 
@@ -197,7 +197,7 @@ const ContentContainer = ({
                 })
                 .catch(err => console.log(err))
         },
-        SecondRegion: () => {
+        secondRegion: () => {
             editMyInfoSecondRegion(JSON.stringify({
                 "secondRegion": userProfile.secondRegion
             }))
@@ -206,9 +206,10 @@ const ContentContainer = ({
                 })
                 .catch(err => console.log(err))
         },
-        Sex: () => {
+        sex: () => {
+            console.log(userProfile.sex)
             editMyInfoSex(JSON.stringify({
-                "sex": userProfile.sex
+                "sex": "FEMALE"
             }))
                 .then((res) => {
                     console.log(res)
@@ -482,12 +483,12 @@ const ContentContainer = ({
                 setSeconds(parseInt(seconds) - 1);
             }
             if (parseInt(seconds) === 0) {
-                if (parseInt(minutes) === 0) {
-                    clearInterval(countdown);
-                } else {
-                    setMinutes(parseInt(minutes) - 1);
-                    setSeconds(59);
-                }
+                if (parseInt(minutes) === 0)
+                    return clearInterval(countdown);
+
+                setMinutes(parseInt(minutes) - 1);
+                setSeconds(59);
+
             }
         }, 1000);
         return () => clearInterval(countdown);
@@ -544,28 +545,6 @@ const ContentContainer = ({
 
     // ///// 이미지 업로드 ////////////////
 
-    let imgApis = {
-        postImg: async () => {
-            const imgDataForm = new FormData();
-            imgDataForm.append('imgFile', isImgFile);
-            console.log('imgDataForm')
-            console.log(imgDataForm.getAll('item'))
-            await postCustomImg(imgDataForm)
-                .then((res) => {
-                    console.log(isImgFile)
-                    console.log(res)
-                    return res
-                })
-                .catch((err) => {
-                    console.log(imgDataForm.getAll('item'))
-                    console.log(err)
-                    return err
-                })
-        }
-    }
-
-
-
     const selectImageOnclick = (e) => {
 
         let imgFile = e.target.files[0]
@@ -578,12 +557,10 @@ const ContentContainer = ({
         let reader = new FileReader();
         reader.readAsDataURL(imgFile);
         reader.onload = () => {
-
             setUserProfile((state) => ({ ...state, imgUrl: reader.result }))
         }
-
-
     }
+
     const uploadImageOnclick = () => {
         console.log(isImgFile)
         console.log(isImgFile.has('customImg'))
@@ -595,20 +572,14 @@ const ContentContainer = ({
 
                 setUserProfile((state) => ({ ...state, imgType: 'CUSTOM' }))
 
-                console.log("isImgFile")
-                console.log(isImgFile)
-
                 await postCustomImg(isImgFile)
                     .then((res) => {
-                        console.log(isImgFile)
+
                         console.log(res)
                     })
                     .catch((err) => {
-                        console.log(isImgFile);
                         console.log(err)
                     })
-
-
             })
             .catch(async (err) => {
                 console.log(err)

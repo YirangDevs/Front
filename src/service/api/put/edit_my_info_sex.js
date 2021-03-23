@@ -8,7 +8,9 @@
  import NotificationPool from "../../../containers/redux/components/NotificationPool"
 
 
- const editMyInfoSex = (  editData)=>{
+ const editMyInfoSex = (editData)=>{
+     console.log('body')
+     console.log(editData)
     return fetch(_.SERVER_URL + ":8080/v1/apis/info/myinfo/sex" ,{
         method: 'PUT',
         headers: {
@@ -21,7 +23,7 @@
         
             NotificationPool.api.add({
                 title : "수정 완료",
-                content : `2순위 선호지역 수정완료.`,
+                content : `성별 수정완료.`,
                 status : "success"
             })
         
