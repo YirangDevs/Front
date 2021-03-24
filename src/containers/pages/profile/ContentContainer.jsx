@@ -6,7 +6,7 @@
  */
 
 
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import ProfileContent from "../../redux/pages/profile/Content"
 import getMyInfo from "../../../service/api/get/get_my_info"
 import DefaultImg from "../../../img/ProfileDefaultImg.png"
@@ -41,8 +41,8 @@ const ContentContainer = ({
         verified: "",
         sex: "",
         imgUrl: "",
-        firstRegion: "",
-        secondRegion: ''
+        firstRegion: firstRegion,
+        secondRegion: secondRegion
     })
 
     //certificationNumbers 메일인증번호
@@ -56,19 +56,8 @@ const ContentContainer = ({
     const firstRegionOptions = regionOptions.filter(regions => regions !== userProfile.secondRegion)
     const SecondRegionOptions = regionOptions.filter(regions => regions !== userProfile.firstRegion)
 
-    //userProfile에  정보넣기
-    const getProps = useCallback(() => {
-        //console.log(role)
-        setUserProfile((state) => ({
-            ...state,
-            username: username,
-            role: role,
-            checkedEmail: email,
-        }))
-    }, [email, username, role])
-
-
     useEffect(() => {
+        console.log(userProfile.email, userProfile.username, userProfile.firstRegion, userProfile.secondRegion, userProfile.verified)
         SET_USER({
             user: {
                 username: userProfile.username,
@@ -78,23 +67,21 @@ const ContentContainer = ({
                 secondRegion: userProfile.secondRegion
             }
         })
-    }, [SET_USER, userProfile.email, userProfile.username])
+    }, [SET_USER, userProfile.email, userProfile.username, userProfile.firstRegion, userProfile.secondRegion, userProfile.verified])
 
 
     useEffect(() => {
 
         getMyInfo()
             .then((res) => {
-                console.log('userInfo')
+                console.log('userInfo1')
                 console.log(res)
-                for (let data in res) {
-                    setUserProfile((state) => ({ ...state, [data]: res[data] }))
-                }
+                setUserProfile((state) => ({ ...state, ...res }))
+                // for (let data in res) {
+                // }
             })
             .catch(error => console.log(error))
-
-        getProps()
-    }, [getProps])
+    }, [])
 
     useEffect(() => {
         getCheckValidatedEmail()
@@ -149,6 +136,14 @@ const ContentContainer = ({
             })
             .catch(error => console.log(error))
     }
+
+    useEffect(()=>{
+        editMyInfo("희망지역", BodyData.editData)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch(error => console.log(error))
+    },[firstRegion, secondRegion] )
 
 
 
@@ -343,11 +338,11 @@ const ContentContainer = ({
             //변경 취소시 email 다시받아오기 
             getMyInfo()
                 .then((res) => {
-                    console.log('userInfo')
+                    console.log('userInfo2')
                     console.log(res)
-                    for (let data in res) {
-                        setUserProfile((state) => ({ ...state, [data]: res[data] }))
-                    }
+                    setUserProfile((state) => ({ ...state,...res }))
+                    // for (let data in res) {
+                    // }
                 })
                 .catch(error => console.log(error))
 

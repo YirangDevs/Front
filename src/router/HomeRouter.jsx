@@ -1,9 +1,9 @@
 import { useHistory} from "react-router-dom";
 import React from "react";
-import Senior from "../pages/Seniors/"
+import Home from "../pages/Home/";
 import NotificationPool from "../containers/redux/components/NotificationPool/";
 
-const SeniorRouter = ({security, userInfo}) => {
+const HomeRouter = ({security, userInfo}) => {
     const history = useHistory()
     if(security.indexOf(userInfo.role)!==-1){
         if(userInfo.sex==="UNKNOWN" || userInfo.phone === null || userInfo.realname===null){
@@ -15,8 +15,10 @@ const SeniorRouter = ({security, userInfo}) => {
             })
             return null
         }
-        return <Senior/>
+        return <Home/>
     }
+
+
     history.push("/")
     NotificationPool.api.add({
         title : "접근 실패",
@@ -26,4 +28,4 @@ const SeniorRouter = ({security, userInfo}) => {
     return null
 }
 
-export default SeniorRouter
+export default HomeRouter

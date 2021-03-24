@@ -607,7 +607,6 @@ const ProfileContent = ({
                                                 <SelectBox background block border defaultValue={firstRegion} options={firstRegionOptions} onChange={editProfileFunction.firstRegion}></SelectBox>
                                             </Col>
                                             <Col xs={1} sm={1} md={1} lg={1} xl={1} xxl={1} align={'center'} style={{ height: '50px' }} >
-                                                <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('1순위')} ></Button>
                                             </Col>
                                         </Row>
                                         <Row style={{ marginTop: '0.5rem' }}>
@@ -618,7 +617,6 @@ const ProfileContent = ({
                                                 <SelectBox background block border defaultValue={secondRegion} options={secondRegionOptions} onChange={editProfileFunction.secondRegion}></SelectBox>
                                             </Col>
                                             <Col xs={1} sm={1} md={1} lg={1} xl={1} xxl={1} align={'center'} style={{ height: '50px' }} >
-                                                <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('2순위')} ></Button>
                                             </Col>
                                         </Row>
 

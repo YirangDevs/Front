@@ -3,9 +3,9 @@ import React from "react";
 import Profile from "../pages/Profile"
 import NotificationPool from "../containers/redux/components/NotificationPool/";
 
-const MyPageRouter = ({ security, role }) => {
+const MyPageRouter = ({ security, userInfo }) => {
     const history = useHistory()
-    if (security.indexOf(role) !== -1) {
+    if (security.indexOf(userInfo.role) !== -1) {
         return <Profile />
     }
     history.push("/")

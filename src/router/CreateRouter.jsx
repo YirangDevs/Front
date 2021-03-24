@@ -3,9 +3,18 @@ import React from "react";
 import Create from "../pages/Create/"
 import NotificationPool from "../containers/redux/components/NotificationPool/";
 
-const CreateRouter = ({security, role}) => {
+const CreateRouter = ({security, userInfo}) => {
     const history = useHistory()
-        if(security.indexOf(role)!==-1){
+        if(security.indexOf(userInfo.role)!==-1){
+            if(userInfo.sex==="UNKNOWN" || userInfo.phone === null || userInfo.realname===null){
+                history.push("profile")
+                NotificationPool.api.add({
+                    title : "필수",
+                    content : "프로필을 설정해주세요",
+                    status : "success"
+                })
+                return null
+            }
             return <Create/>
         }
         history.push("/")
