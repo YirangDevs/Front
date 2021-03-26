@@ -208,16 +208,9 @@ const MyPageContent = ({
 
                             <Row gutter={[0, 0]} align="center" style={{ margin: '0.8rem 0 0 0 ' }}>
                                 <TableBox headList={check_table_head} bodyList={check_body_Lists} border={"top"}></TableBox>
-
                             </Row>
                         </Row>
-
-
-
-
                     </Col>
-
-
                 </Row>
 
 
