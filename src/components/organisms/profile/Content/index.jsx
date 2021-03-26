@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-23 16:17:17
+ * @Last Modified time: 2021-03-24 18:34:12
  */
 
 
@@ -33,7 +33,7 @@ import FileBox from "../../../atoms/FileBox"
 
 const ProfileContent = ({
     //contentContainer
-    role,
+
     minutes,
     seconds,
     userProfile,
@@ -60,7 +60,7 @@ const ProfileContent = ({
     DeleteCompleted,
     isDeleteConfirmVisible,
     deleteConfirmModal,
-
+    firstRegionOnchange,
 
     firstRegionOnclick,
 
@@ -68,15 +68,20 @@ const ProfileContent = ({
     selectImageOnclick,
     uploadImageOnclick,
     kakaoImageOnclick,
+    isReceivingEmailOnclick
 }) => {
 
     const { username, imgUrl, realname, phone, email, sex,
-        firstRegion, secondRegion, verified } = userProfile;
-
+        firstRegion, secondRegion, verified, isReceivingEmail, role } = userProfile;
+    console.log(userProfile)
 
     const settingSex = (sex) => {
         if (sex === 'FEMALE') return '여성';
         if (sex === 'MALE') return '남성';
+    }
+    const settingIsReceivingEmail = (isReceivingEmail) => {
+        if (isReceivingEmail === 'YES') return '수신';
+        if (isReceivingEmail === 'NO') return '';
     }
 
     return (
@@ -424,6 +429,7 @@ const ProfileContent = ({
 
 
                                                     <Col span={4} align={"center"} justify={'start'}>
+
                                                         <RadioBox justify={'space-between'} name={"sex"} options={["남성", "여성"]} onClick={editProfileFunction.sex} checkedValue={settingSex(sex)}></RadioBox>
                                                     </Col>
                                                 </Col>
@@ -614,7 +620,7 @@ const ProfileContent = ({
                                             </Col>
 
                                             <Col xs={3} sm={3} md={3} lg={3} xl={3} xxl={3} align={'center'} style={{ height: '50px' }}>
-                                                <SelectBox background block border defaultValue={firstRegion} options={firstRegionOptions} onChange={editProfileFunction.firstRegion}></SelectBox>
+                                                <SelectBox background block border defaultValue={firstRegion} options={firstRegionOptions} onChange={firstRegionOnchange}></SelectBox>
                                             </Col>
                                             <Col xs={1} sm={1} md={1} lg={1} xl={1} xxl={1} align={'center'} style={{ height: '50px' }} >
                                                 <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('1순위')} ></Button>
@@ -628,7 +634,7 @@ const ProfileContent = ({
                                                 <SelectBox background block border defaultValue={secondRegion} options={secondRegionOptions} onChange={editProfileFunction.secondRegion}></SelectBox>
                                             </Col>
                                             <Col xs={1} sm={1} md={1} lg={1} xl={1} xxl={1} align={'center'} style={{ height: '50px' }} >
-                                                <Button types={'primary'} size={'small'} block value={'저장'} onClick={() => editCompleted('2순위')} ></Button>
+
                                             </Col>
                                         </Row>
 
@@ -637,9 +643,14 @@ const ProfileContent = ({
                                     <Col xs={0} span={12} style={{ marginTop: '1.2rem' }}>
                                         <Typo color={'#707070'} size={'0.8rem'}>-관심지역을 선택하시면 맞춤형 봉사활동을 알려드립니다.</Typo>
                                     </Col>
+
                                 </Row>
                             </Col >
                         </Row >
+                        <Col span={12}>
+                            <RadioBox justify={'space-between'} name={"sex"} options={["수신", "수신안함"]} onClick={isReceivingEmailOnclick} checkedValue={settingIsReceivingEmail(isReceivingEmail)}></RadioBox>
+
+                        </Col>
 
 
 

@@ -112,47 +112,52 @@ const MyPageContent = ({
 
                     {/* 오른 쪽 */}
                     <Col xs={12} sm={12} md={7.5} span={7.5} offset={0.5}>
-                        <Row>
-                            <Col span={12}>
-                                <Typo size={"1.2rem"} weight={"500"} > 봉사 관리</Typo>
+                        <Row gutter={[0, 0]} justify={"space-between"} style={{ margin: "2.5rem 0 0 0 " }} >
+                            <Col span={6}>
+                                <Typo size={"1.2rem"} weight={"500"} > 신청봉사 관리</Typo>
                             </Col>
-                            <Row gutter={[0, 0]}>
-                                <Col span={12}>
-                                    {
-                                        (manage_body_Lists).map((lists) => {
-                                            let data = Object.assign({
-                                                date: lists.date,
-                                                region: lists.region,
-                                                result: lists.result,
-                                                refer: lists.refer
-                                            }, {})
+                            <Col span={6} justify={"flex-end"}>
+                                <Typo size={"1.1rem"} weight={"500"} >  전체 신청 보기 {'>'}</Typo>
+                            </Col>
+                        </Row>
 
-                                            return (
-                                                <>
-                                                    <Row gutter={[4, 0]} align="center">
-                                                        <Col xs={9} sm={9} md={9} lg={9} span={9}>
-                                                            <TableBox headList={manage_table_head} bodyList={[data]} border={"top"}></TableBox>
-                                                        </Col>
+                        <Row gutter={[0, 0]}>
+                            <Col span={12}>
+                                {
+                                    (manage_body_Lists).map((lists) => {
+                                        let data = Object.assign({
+                                            date: lists.date,
+                                            region: lists.region,
+                                            result: lists.result,
+                                            refer: lists.refer
+                                        }, {})
 
-                                                        <Col xs={3} sm={3} md={3} lg={3} span={3}>
-                                                            <Row gutter={[0.5, 5]}>
-                                                                <Col xs={12} span={12}>
-                                                                    <Button block size="large" value="공고글 보기" types={"primary"}></Button>
-                                                                </Col>
+                                        return (
+                                            <>
+                                                <Row gutter={[4, 0]} align="center">
+                                                    <Col xs={9} sm={9} md={9} lg={9} span={9}>
+                                                        <TableBox headList={manage_table_head} bodyList={[data]} border={"top"}></TableBox>
+                                                    </Col>
 
-                                                                <Col xs={12} span={12}>
-                                                                    <Button block size="large" value="신청취소" types={"primary"} ></Button>
-                                                                </Col>
-                                                            </Row>
-                                                        </Col>
-                                                    </Row>
-                                                </>
-                                            )
-                                        })
-                                    }
-                                </Col>
-                            </Row>
-                            <Row gutter={[0, 0]} justify={"space-between"} style={{ margin: '2.5rem 0 0 0 ' }}>
+                                                    <Col xs={3} sm={3} md={3} lg={3} span={3}>
+                                                        <Row gutter={[0.5, 5]}>
+                                                            <Col xs={12} span={12}>
+                                                                <Button block size="large" value="공고글 보기" types={"primary"}></Button>
+                                                            </Col>
+
+                                                            <Col xs={12} span={12}>
+                                                                <Button block size="large" value="신청취소" types={"primary"} ></Button>
+                                                            </Col>
+                                                        </Row>
+                                                    </Col>
+                                                </Row>
+                                            </>
+                                        )
+                                    })
+                                }
+                            </Col>
+
+                            <Row gutter={[6, 0]} justify={"space-between"} style={{ margin: '2.5rem 0 0 0 ' }}>
                                 <Col span={6}>
                                     <Typo size={"1.2rem"} weight={"500"} > 봉사 기록 조회</Typo>
                                 </Col>
@@ -162,26 +167,28 @@ const MyPageContent = ({
                             </Row>
 
                             <Row gutter={[4, 5]} align="center" >
-                                <Col span={5} justify={"space-between"} align={"center"} style={{
-                                    height: "3.2rem",
+                                <Col xs={8} sm={8} md={8} lg={7} xl={6} xxl={5} justify={"space-between"} align={"center"} style={{
+                                    height: "3.4rem",
                                     backgroundColor: "#f5f5f5",
                                     borderBottom: "1px solid #ccd4e0",
-                                    borderRight: " 1.2px solid #000000",
+
                                     borderTop: " 2px solid #000000",
-                                    //borderBottom: " 2px solid #000000", 이거 왜 두개 있어?
                                 }}>
-                                    <Row gutter={[0, 0]}>
-                                        <Col span={6}>
-                                            <DateSelector size={"small"} border />
+                                    <Row gutter={[0, 0]} justify={"space-around"} style={{
+                                        fontSize: "0.8rem",
+                                    }}>
+                                        <Col span={4}>
+                                            <DateSelector block size={"small"} border />
                                         </Col>
-                                        <Col span={6}>
-                                            <DateSelector size={"small"} border />
+                                        <Col span={4}>
+                                            <DateSelector block size={"small"} border />
                                         </Col>
                                     </Row>
                                 </Col>
-                                <Col span={5} justify={"center"} align={"center"} style={{
-                                    height: "3.2rem",
+                                <Col xs={4} sm={4} md={4} lg={5} xl={4} xxl={5} span={5} justify={"center"} align={"center"} style={{
+                                    height: "3.4rem",
                                     backgroundColor: "#f5f5f5",
+                                    borderLeft: " 1.2px solid #000000",
                                     borderBottom: "1px solid #ccd4e0",
                                     borderTop: " 2px solid #000000",
                                 }}>
@@ -189,8 +196,13 @@ const MyPageContent = ({
                                     <RadioBox name="gender" options={typeoptions} />
 
                                 </Col>
-                                <Col xs={2} sm={2} md={3} lg={2}>
+                                <Col xs={0} sm={0} md={0} lg={12} xl={2} xxl={2} span={2} >
                                     <Button block size="large" value="조회하기" types={"primary"}></Button>
+                                </Col>
+                                <Col xs={12} sm={12} md={12} lg={0} xl={0} xxl={0} span={0} style={{
+                                    marginTop: "0.5rem",
+                                }} >
+                                    <Button block size="default" value="조회하기" types={"primary"}></Button>
                                 </Col>
                             </Row>
 

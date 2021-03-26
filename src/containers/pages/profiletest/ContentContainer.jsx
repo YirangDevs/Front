@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-23 20:17:27
+ * @Last Modified time: 2021-03-24 05:26:15
  */
 
 
@@ -14,6 +14,7 @@ import NotificationPool from '../../redux/components/NotificationPool'
 import getMyInfo from "../../../service/api/get/get_my_info"
 import deleteMyInfo from "../../../service/api/delete/delete_myInfo"
 import LogoutProcess from '../../../service/transaction/logout_process'
+
 
 //프로필 사진
 import DefaultImg from "../../../img/ProfileDefaultImg.png"
@@ -46,21 +47,14 @@ import { MdPhoneBluetoothSpeaker } from 'react-icons/md'
 //username = 닉네임
 //realname = 실명
 
-const ContentContainer = ({
-    username,
-    role,
-    email,
-    emailValidation,
-    firstRegion,
-    secondRegion,
-    imgUrl,
-    SET_USER,
-}) => {
+const ContentContainer = (
+    props
+) => {
 
-    //userValue 
-    const [userValue, setUserValue] = useState({
+    //userProfile 
+    const [userProfile, setUserProfile] = useState({
         //redux 값
-        role: { role },
+        role: props.role,
         //GET userInfo
         email: "",
         firstRegion: "",
@@ -78,7 +72,7 @@ const ContentContainer = ({
 
     })
     const { role, email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
-        sex, username, validation, imgType, } = userValue;
+        sex, username, validation, imgType, } = userProfile;
 
 
     /**
@@ -88,7 +82,7 @@ const ContentContainer = ({
             .then((res) => {
                 console.log('userInfo')
                 console.log(res)
-                setUserValue((state) => ({ ...state, ...res }))
+                setUserProfile((state) => ({ ...state, ...res }))
             })
             .catch(error => console.log(error))
 
@@ -96,21 +90,21 @@ const ContentContainer = ({
             .then((res) => {
                 console.log("img_type")
                 console.log(res)
-                setUserValue((state) => ({ ...state, ...res }))
+                setUserProfile((state) => ({ ...state, ...res }))
             })
 
         getEmailValidation()
             .then((res) => {
                 console.log("vaildatedEmail")
                 console.log(res)
-                setUserValue((state) => ({ ...state, ...res }))
+                setUserProfile((state) => ({ ...state, ...res }))
             })
     }, [])
 
     /**
      * @description redux 유저 정보 세팅   */
     useEffect(() => {
-        SET_USER({
+        props.SET_USER({
             user: {
                 username: username,
                 email: email,
@@ -121,7 +115,19 @@ const ContentContainer = ({
         })
     }, [username, email, validation, firstRegion, secondRegion])
 
-
+    /**
+   * @description sex value Setting  */
+    const settingSex = (sexData) => {
+        if (sexData === "여성") return "FEMALE"
+        if (sexData === "남성") return "MALE"
+        return sexData
+    }
+    /**
+* @description IsReceivingEmail value Setting  */
+    const settingIsReceivingEmail = (YoNData) => {
+        if (YoNData === "수신") return "YES"
+        if (YoNData === "수신안함") return "NO"
+    }
 
 
     /**
@@ -132,7 +138,6 @@ const ContentContainer = ({
             const username = e.target.value;
             return setUserProfile((state) => ({ ...state, username: username }))
         },
-
         realname: (e) => {
             console.log(e.target.value)
             const realname = e.target.value;
@@ -157,15 +162,10 @@ const ContentContainer = ({
             console.log(e.target.files[0])
             return setUserProfile((state) => ({ ...state, imgUrl: e.target.files[0] }))
         },
-        defaultImg: (e) => {
-            console.log(e.target.value)
-            return setUserProfile((state) => ({ ...state, imgUrl: DefaultImg }))
-        },
         firstRegion: (e) => {
             console.log(e.target.value)
             const firstRegion = e.target.value
             return (setUserProfile((state) => ({ ...state, firstRegion: firstRegion }))
-
             )
         },
         secondRegion: (e) => {
@@ -173,22 +173,27 @@ const ContentContainer = ({
             const secondRegion = e.target.value
             return setUserProfile((state) => ({ ...state, secondRegion: secondRegion }))
         },
-        verified: (YoN) => {
-            const verified = YoN
-            return setUserProfile((state) => ({ ...state, verified: verified }))
+        validation: (YoN) => {
+            const validation = YoN
+            return setUserProfile((state) => ({ ...state, validation: validation }))
         },
+        isReceivingEmail: (e) => {
+            console.log(e.target.value)
+            let isReceivingEmail = e.target.value
+            return setUserProfile((state) => ({ ...state, isReceivingEmail: settingIsReceivingEmail(isReceivingEmail) }))
+        }
     }
 
 
 
     /**
     @description 프로필 수정 관련 apis
-    @function editApis
+    @method PUT
     @detail  put apis  */
     let editApis = {
-        firstRegion: () => {
+        firstRegion: (firstRegionData) => {
             editMyInfoFirstRegion(JSON.stringify({
-                "firstRegion": userProfile.firstRegion
+                "firstRegion": firstRegionData
             }))
                 .then((res) => {
                     console.log(res)
@@ -213,9 +218,9 @@ const ContentContainer = ({
                 })
                 .catch(err => console.log(err))
         },
-        secondRegion: () => {
+        secondRegion: (secondRegionData) => {
             editMyInfoSecondRegion(JSON.stringify({
-                "secondRegion": userProfile.secondRegion
+                "secondRegion": secondRegionData
             }))
                 .then((res) => {
                     console.log(res)
@@ -241,36 +246,91 @@ const ContentContainer = ({
                 })
                 .catch(err => console.log(err))
         },
-
+        isReceivingEmail: (isReceivingEmailData) => {
+            // /*통신 api */(JSON.stringify({
+            //     "isReceivingEmail": isReceivingEmailData
+            // }))
+            //     .then((res) => {
+            //         console.log(res)
+            //     })
+            //     .catch(err => console.log(err))
+        },
+        //////////////////////////////작성 필요//////////////////////////////////////////////////////////////////////////////////
     }
 
+
+    //////////////////////////////////////////////////////////////////////////////////
+    /**
+     * @description 탈퇴하기  CODE  */
+
+    //true : 성별변경 확인 modal false : 성별 변경  modal  닫기
+    const [isDeleteConfirmVisible, setDeleteConfirmVisible] = useState(false)
+
+    const confirmDeleteModal = {
+        show: () => setDeleteConfirmVisible(true),
+        close: () => setDeleteConfirmVisible(false)
+    }
+
+    /**
+    @description 탈퇴하기  모달 show
+    @function buttonOnclick
+    @btnValue  탈퇴하기
+    @detail  탈퇴하기 confirmModal show*/
+    const deleteOnClick = (e) => confirmDeleteModal.show()
+
+
+
+    /**
+    @description  탈퇴하기재확인모달 확인
+    @function buttonOnclick
+    @btnValue 확인
+    @method DELETE
+    @detail  탈퇴하기[DELETE] -> 로그아웃*/
+    const okDeleteConfirmOnclick = () => {
+        deleteMyInfo()
+            .then((res) => {
+                console.log(res)
+                console.log('탈퇴완료')
+                NotificationPool.api.add({
+                    title: "탈퇴완료",
+                    content: '성공적으로 탈퇴되었습니다.',
+                    status: "error"
+                })
+                confirmDeleteModal.close()
+                LogoutProcess()
+            })
+            .catch((err) => console.log(err))
+    }
+
+    /**
+    @description  탈퇴하기재확인모달 취소
+    @function buttonOnclick
+    @btnValue 취소 
+    @detail  delete modal 닫기 */
+    const cancelDeleteConfirmOnclick = () => confirmDeleteModal.close()
 
 
 
     //////////////////////////////////////////////////////////////////////////////////
     /**
- * @description 프로필사진 관련  CODE  */
-
+    * @description 프로필사진 관련  CODE  */
 
     const [formDataValue, setFormDataValue] = useState("")
-
 
     /**
     @description 로컬에서 선택한 이미지를 업로드하기 
     @function buttonOnclick
     @btnValue 이미지 업로드
     @detail  업로드할 사진 선택 -> set formData  -> 미리보기 보여주기  */
-
     const uploadImgOnclick = (e) => {
         const imgFile = e.target.files[0]
         const imgFormData = new FormData();
         imgFormData.append('customImg', imgFile);
         console.log(imgFormData.has('customImg'));
         setFormDataValue(imgFormData)
-
         let reader = new FileReader();
         reader.onload = () => {
-            setUserValue((state) => ({ ...state, imgUrl: reader.result }))
+            setUserProfile((state) => ({ ...state, imgUrl: reader.result }))
         }
     }
 
@@ -279,17 +339,14 @@ const ContentContainer = ({
     @function buttonOnclick
     @btnValue 사진 저장
     @detail  type custom 으로 변경[PUT] ->  img [POST] 하기  */
-
     const postImgOnclick = () => {
         console.log(formDataValue.has('customImg'))
-
         editMyImgType(JSON.stringify({
             "imgType": "CUSTOM"
         }))
             .then(async (res) => {
                 console.log(res)
-                setUserValue((state) => ({ ...state, imgType: 'CUSTOM' }))
-
+                setUserProfile((state) => ({ ...state, imgType: 'CUSTOM' }))
                 await postCustomImg(formDataValue)
                     .then((res) => {
                         console.log(res)
@@ -309,24 +366,20 @@ const ContentContainer = ({
     @function buttonOnclick
     @btnValue 카카오톡 사진으로
     @detail  type kakao 으로 변경 [PUT]->  img [GET] 하기(바로 카카오톡 사진으로 업뎃해주기 위해서)  */
-
     const kakaoImgOnclick = () => {
-
         editMyImgType(JSON.stringify({
             "imgType": "KAKAO"
         }))
             .then((res) => {
                 console.log(res)
-                setUserValue((state) => ({ ...state, imgType: 'KAKAO' }))
+                setUserProfile((state) => ({ ...state, imgType: 'KAKAO' }))
                 getMyImg()
                     .then((res) => {
                         console.log(res)
-                        setUserValue((state) => ({ ...state, imgUrl: res.imgUrl }))
+                        setUserProfile((state) => ({ ...state, imgUrl: res.imgUrl }))
                     })
             })
-
             .catch((err) => { console.log(err) })
-
     }
 
     //////////////////////////////////////////////////////////////////////////////////
@@ -465,7 +518,7 @@ const ContentContainer = ({
     @function buttonOnclick
     @btnValue 확인
     @detail  성별  [POST] 하기 -> sex modal 닫기 -> sex form 닫기*/
-    const OkSexConfirmOnclick = () => {
+    const okSexConfirmOnclick = () => {
         editApis.sex()
         confirmSexModal.close()
         editSexForm.close()
@@ -476,7 +529,7 @@ const ContentContainer = ({
     @function buttonOnclick
     @btnValue 취소 
     @detail  sex modal 닫기 */
-    const CancelSexConfirmOnclick = () => {
+    const cancelSexConfirmOnclick = () => {
         confirmSexModal.close()
     }
 
@@ -489,6 +542,29 @@ const ContentContainer = ({
     const [isEditEmailForm, setEditEmailForm] = useState(false);
     //true : 인증번호 입력하는 form  열기  false :  인증번호 입력하는 form 닫기 
     const [isInputAuthNumForm, setInputAuthNumForm] = useState(false);
+    //인증번호 
+    const [authNum, setAuthNum] = useState("")
+
+    // 인증 시간 세팅 
+    const [minutes, setMinutes] = useState(parseInt(0));
+    const [seconds, setSeconds] = useState(parseInt(0));
+
+    //인증 시간 countdown
+    useEffect(() => {
+        const countdown = setInterval(() => {
+            if (parseInt(seconds) > 0) {
+                setSeconds(parseInt(seconds) - 1);
+            }
+            if (parseInt(seconds) === 0) {
+                if (parseInt(minutes) === 0)
+                    return clearInterval(countdown);
+                setMinutes(parseInt(minutes) - 1);
+                setSeconds(59);
+            }
+        }, 1000);
+        return () => clearInterval(countdown);
+    }, [minutes, seconds])
+
 
     //이메일 수정 form handler
     const editEmailForm = {
@@ -506,57 +582,153 @@ const ContentContainer = ({
     @description FORM{이메일 수정 하는 input + 인증번호 발송}
     @function buttonOnclick
     @btnValue  인증하기
-     @detail  이메일 변경 form 열기 */
-    const editEmailOnclick = () => editEmailForm.show()
+     @detail  이메일 수정 form 열기 */
+    const authEmailOnclick = () => editEmailForm.show()
 
     /**
     @description  이메일  관련 FORM 닫기
     @function buttonOnclick
     @btnValue 인증 취소
-    @detail   이메일 변경 form 닫기 -> 이메일 인증 form 닫기 -> 시간초기화  */
-    const postSexOnclick = () => {
-        confirmSexModal.show()
+    @detail   이메일 수정 form 닫기 -> 이메일 인증 form 닫기 -> 인증제한시간 (0분) 
+                    -> [GET] 내정보 받아와서 email 받아오기 (email 재세팅) -> 인증됨 NO로 setUserProfile  */
+    const authEmailCancelOnclick = () => {
+        editEmailForm.close()
+        inputAuthNumForm.close()
+        setMinutes(parseInt(0))
+        setSeconds(parseInt(0))
+        getMyInfo()
+            .then((res) => {
+                console.log(res)
+                setUserProfile((state) => ({ ...state, email: email }))
+            })
+        editProfileFunction.validation("NO")
+    }
+
+
+    //이메일 수정 & 인증 번호 전송 통신
+    /**
+    @description  이메일 수정통신 &인증 번호 전송 통신 
+    @method POST 
+    @resOK  ok :  이메일 인증 Form 열기 -> 이메일 전송 [POST]
+    @resERR err :  인증시간 초기화(0분) */
+    const postAuthNum = () => {
+        EditMyEmail(email, JSON.stringify({
+            "email": email
+        }))
+            .then((res) => {
+                inputAuthNumForm.show()
+                postSendCertificationEmail()
+                    .then((res) => {
+                        console.log("이메일전송")
+                        console.log(res)
+                    })
+                    .catch((err) => console.log(err))
+            })
+            .catch((err) => {
+                console.log(err)
+                console.log("인증메일 전송 실패")
+                setMinutes(parseInt(0))
+                setSeconds(parseInt(0))
+            })
+
+
+    }
+
+
+    /**
+    @description  이메일 수정완료 후 인증번호 발송 / 인증번호 재발송 
+    @function buttonOnclick
+    @btnValue 인증번호발송 / 재발송
+    @detail  인증시간설정(5분) -> 메일 수정 [POST](성공시 인증번호입력 form 열기)-> 인증메일 전송 [POST] */
+    const postAuthNumOnclick = () => {
+        setMinutes(parseInt(5))
+        postAuthNum()
     }
 
     /**
-    @description  성별 선택후 저장
-    @function buttonOnclick
-    @btnValue 인증번호발송
-    @detail  시간초기화 -> 인증메일 전송 api  */
-    const OkSexConfirmOnclick = () => {
-        editApis.sex()
-        confirmSexModal.close()
-        editSexForm.close()
+    @description  인증 번호 확인하는 통신
+    @method POST
+    @resOK  ok :  인증완료 ->인증됨 YES -> 인증번호 초기화
+    @resERR err :  인증번호 초기화 */
+    const postCheckAuthNum = () => {
+        console.log(authNum)
+        postVerifyCertificationEmail(JSON.stringify({
+            "certificationNumbers": authNum
+        }))
+            .then((res) => {
+
+                NotificationPool.api.add({
+                    title: "이메일 인증이 완료되었습니다!",
+                    content: `인증된 이메일 주소는 '${userProfile.email}' 입니다.`,
+                    status: "success"
+                })
+                editProfileFunction.validation("YES");
+                setAuthNum("");
+                editEmailForm.close();
+                inputAuthNumForm.close();
+                setMinutes(parseInt(0))
+                setSeconds(parseInt(0))
+
+            })
+            .catch((err) => {
+                console.log("인증번호 에러")
+                console.log(err)
+                setAuthNum("")
+            })
+
     }
 
     /**
-    @description  성별 저장할지 한번더 묻는 modal Show
+    @description  인증번호 맞는지 확인
     @function buttonOnclick
-    @btnValue 취소 
-    @detail  sex modal 닫기 */
-    const CancelSexConfirmOnclick = () => {
-        confirmSexModal.close()
+    @btnValue 인증번호확인
+    @detail   인증번호확인 [POST] -> 인증됨 YES로 setUserProfile -> 인증번호 입력 form 닫기
+                    -> 이메일 수정 form 닫기 ->이메일 인증번호 set false */
+    const checkAuthNumOnclick = () => {
+        postCheckAuthNum()
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    /**
+     * @description 관심지역 관련  CODE  */
+
+    /**
+    @description  1순위 관심지역 설정 & 수정
+    @function onChange
+      @detail  초기값 설정 : firstRegion -> [PUT] 1순위 관심지역 수정  */
+    const firstRegionOnchange = (e) => {
+        editProfileFunction.firstRegion(e)
+        editApis.firstRegion(e.target.value)
     }
 
 
 
+    /**
+    @description  2순위 관심지역 설정 & 수정
+    @function onChange
+      @detail  초기값 설정 : secondRegion -> [PUT] 2순위 관심지역 수정  */
+    const secondRegionOnchange = (e) => {
+        editProfileFunction.secondRegion(e)
+        editApis.secondRegion(e.target.value)
+    }
 
 
 
+    //////////////////////////////////////////////////////////////////////////////////
+    /**
+     * @description 홍보성이메일 수신 동의 여부 관련  CODE  */
 
 
+    /**
+    @description 수신여부 선택후 저장
+    @function radioBoxOnClick
+    @detail  수신여부 수정 후 -> 수신여부 [PUT]*/
+    const isReceivingEmailOnclick = (e) => {
+        editProfileFunction.isReceivingEmail(e)
+        // editApis.isReceivingEmail(e.target.value)
 
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 
@@ -564,6 +736,13 @@ const ContentContainer = ({
     return (
         <>
             <ProfileContent
+                userProfile={userProfile} // 유저정보
+
+                isDeleteConfirmVisible={isDeleteConfirmVisible} // 탈퇴하기 modal 
+                confirmDeleteModal={confirmDeleteModal} // 탈퇴하기 modal handler
+                deleteOnClick={deleteOnClick}// 탈퇴하기  모달 show
+                okDeleteConfirmOnclick={okDeleteConfirmOnclick} //  탈퇴하기재확인모달 확인
+                cancelDeleteConfirmOnclick={cancelDeleteConfirmOnclick} //탈퇴하기재확인모달 확인
 
             ></ProfileContent>
         </>

@@ -11,7 +11,7 @@ import Col from "../../../../layout/Grid/Column"
 import Typo from "../../../atoms/Typography"
 import { MdErrorOutline } from "react-icons/md";
 import Button from "../../../atoms/Button"
-const SexConfirmModal = ({ username, DeleteCompleted, deleteConfirmModal }) => {
+const SexConfirmModal = ({ username, okDeleteConfirmOnclick, cancelDeleteConfirmOnclick }) => {
 
 
     return (
@@ -37,10 +37,10 @@ const SexConfirmModal = ({ username, DeleteCompleted, deleteConfirmModal }) => {
             </Row>
             <Row justify={"space-evenly"}>
                 <Col span={3} justify={'center'}>
-                    <Button block types={"primary"} onClick={deleteConfirmModal.close} value={'취소'} />
+                    <Button block types={"primary"} onClick={cancelDeleteConfirmOnclick} value={'취소'} />
                 </Col>
                 <Col span={3} justify={'center'}>
-                    <Button block types={"primary"} onClick={DeleteCompleted} value={'확인'} />
+                    <Button block types={"primary"} onClick={okDeleteConfirmOnclick} value={'확인'} />
                 </Col>
             </Row>
         </>

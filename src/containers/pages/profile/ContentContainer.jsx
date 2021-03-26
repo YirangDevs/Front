@@ -2,12 +2,12 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-23 21:13:41
+ * @Last Modified time: 2021-03-24 18:34:45
  */
 
 
 import React, { useEffect, useState } from 'react'
-import ProfileContent from "../../redux/pages/profile/Content"
+import ProfileContent from "../../../components/organisms/profile/Content"
 import getMyInfo from "../../../service/api/get/get_my_info"
 import DefaultImg from "../../../img/ProfileDefaultImg.png"
 
@@ -46,6 +46,7 @@ const ContentContainer = ({
 
 
     const [userProfile, setUserProfile] = useState({
+        role: role,
         username: "",
         realname: "",
         phone: "",
@@ -53,8 +54,8 @@ const ContentContainer = ({
         verified: "",
         sex: "",
         imgUrl: "",
-        firstRegion: "",
-        secondRegion: '',
+        firstRegion: "선호지역",
+        secondRegion: '선호지역',
         imgType: "",
         isReceivingEmail: ""
     })
@@ -74,7 +75,7 @@ const ContentContainer = ({
     useEffect(() => {
         SET_USER({
             user: {
-                username: userProfile.username,
+                username: userProfile.realname,
                 email: userProfile.email,
                 emailValidation: userProfile.verified,
                 firstRegion: userProfile.firstRegion,
@@ -82,6 +83,8 @@ const ContentContainer = ({
             }
         })
     }, [userProfile.username, userProfile.email, userProfile.verified, userProfile.firstRegion, userProfile.secondRegion])
+
+
 
 
     useEffect(() => {
@@ -92,6 +95,7 @@ const ContentContainer = ({
                 console.log(res)
 
                 setUserProfile((state) => ({ ...state, ...res }))
+
 
             })
             .catch(error => console.log(error))
@@ -166,9 +170,9 @@ const ContentContainer = ({
 
 
     let editApis = {
-        firstRegion: () => {
+        firstRegion: (firstRegionData) => {
             editMyInfoFirstRegion(JSON.stringify({
-                "firstRegion": userProfile.firstRegion
+                "firstRegion": firstRegionData
             }))
                 .then((res) => {
                     console.log(res)
@@ -297,6 +301,10 @@ const ContentContainer = ({
         return setAuthNum(authNum)
     }
 
+    const settingIsReceivingEmail = (YoNData) => {
+        if (YoNData === "수신") return "YES"
+        if (YoNData === "수신안함") return "NO"
+    }
 
 
     //userProfile 수정하기
@@ -353,6 +361,12 @@ const ContentContainer = ({
             const verified = YoN
             return setUserProfile((state) => ({ ...state, verified: verified }))
         },
+        isReceivingEmail: (e) => {
+            console.log(e.target.value)
+            let isReceivingEmail = e.target.value
+            return setUserProfile((state) => ({ ...state, isReceivingEmail: settingIsReceivingEmail(isReceivingEmail) }))
+
+        }
     }
 
 
@@ -485,7 +499,6 @@ const ContentContainer = ({
             if (parseInt(seconds) === 0) {
                 if (parseInt(minutes) === 0)
                     return clearInterval(countdown);
-
                 setMinutes(parseInt(minutes) - 1);
                 setSeconds(59);
 
@@ -529,15 +542,11 @@ const ContentContainer = ({
 
     //onChange하면 바로 fetch보내고싶다,, 
     const firstRegionOnchange = (e) => {
-
-
-        (userProfile.firstRegion === e.target.value) ?
-            console.log('fetch')
-            :
-            editProfileFunction.firstRegion(e)
-
-
+        editProfileFunction.firstRegion(e)
+        // setUserProfile((state) => ({ ...state, firstRegion: e.target.value }))
+        editApis.firstRegion(e.target.value)
     }
+
 
 
     const [isImgFile, setImgFile] = useState("")
@@ -603,7 +612,12 @@ const ContentContainer = ({
             .catch((err) => { console.log(err) })
     }
 
+    /////////////////이메일 수신 .///////////////////////
+    const isReceivingEmailOnclick = (e) => {
+        editProfileFunction.isReceivingEmail(e)
+        // editApis.isReceivingEmail(e.target.value)
 
+    }
     return (
         <>
             <ProfileContent
@@ -644,7 +658,7 @@ const ContentContainer = ({
                 uploadImageOnclick={uploadImageOnclick}
                 kakaoImageOnclick={kakaoImageOnclick}
 
-
+                isReceivingEmailOnclick={isReceivingEmailOnclick}
             ></ProfileContent>
         </>
     )
