@@ -18,7 +18,7 @@
         body : imgTypeData
     }).then(res=>{
         if(!res.ok) throw res.json()
-        
+      
         
     }).catch(async(error)=>{
         let err =  await error.then()

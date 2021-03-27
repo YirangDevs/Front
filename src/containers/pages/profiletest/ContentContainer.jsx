@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-24 05:26:15
+ * @Last Modified time: 2021-03-27 19:36:13
  */
 
 
@@ -55,21 +55,17 @@ const ContentContainer = (
     const [userProfile, setUserProfile] = useState({
         //redux 값
         role: props.role,
-        //GET userInfo
-        email: "",
-        firstRegion: "",
-        imgUrl: "",
+        email: props.email,
+        firstRegion: props.firstRegion,
+        imgUrl: props.imgUrl,
         isReceivingEmail: "",
-        phone: "",
-        realname: "",
-        secondRegion: '',
-        sex: "",
-        username: "",
-        //GET EmailValidation
-        validation: "",
-        // GET MyImgType
+        phone: props.phone,
+        realname: props.realname,
+        secondRegion: props.secondRegion,
+        sex: props.sex,
+        username: props.username,
+        validation: props.emailValidation,
         imgType: "",
-
     })
     const { role, email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
         sex, username, validation, imgType, } = userProfile;
@@ -110,10 +106,11 @@ const ContentContainer = (
                 email: email,
                 emailValidation: validation,
                 firstRegion: firstRegion,
-                secondRegion: secondRegion
+                secondRegion: secondRegion,
+                imgUrl: imgUrl
             }
         })
-    }, [username, email, validation, firstRegion, secondRegion])
+    }, [username, email, validation, firstRegion, secondRegion, imgUrl])
 
     /**
    * @description sex value Setting  */
@@ -247,6 +244,8 @@ const ContentContainer = (
                 .catch(err => console.log(err))
         },
         isReceivingEmail: (isReceivingEmailData) => {
+            //TODO  isReceivingEmail 통신 구현    
+
             // /*통신 api */(JSON.stringify({
             //     "isReceivingEmail": isReceivingEmailData
             // }))
@@ -255,7 +254,7 @@ const ContentContainer = (
             //     })
             //     .catch(err => console.log(err))
         },
-        //////////////////////////////작성 필요//////////////////////////////////////////////////////////////////////////////////
+
     }
 
 
@@ -314,12 +313,19 @@ const ContentContainer = (
     //////////////////////////////////////////////////////////////////////////////////
     /**
     * @description 프로필사진 관련  CODE  */
+    //true : 커스텀이미지 저장하기 + 이미지 올리기  form 열기   false :  커스텀이미지 저장하기 + 이미지 올리기 form 닫기 
+    const [isCustomImgPostForm, setCustomImgPostForm] = useState(false);
 
     const [formDataValue, setFormDataValue] = useState("")
 
+    const customImgPostForm = {
+        show: () => setCustomImgPostForm(true),
+        close: () => setCustomImgPostForm(false)
+    }
+
     /**
     @description 로컬에서 선택한 이미지를 업로드하기 
-    @function buttonOnclick
+    @function FileBoxOnclick
     @btnValue 이미지 업로드
     @detail  업로드할 사진 선택 -> set formData  -> 미리보기 보여주기  */
     const uploadImgOnclick = (e) => {
@@ -329,8 +335,14 @@ const ContentContainer = (
         console.log(imgFormData.has('customImg'));
         setFormDataValue(imgFormData)
         let reader = new FileReader();
+        reader.readAsDataURL(imgFile);
         reader.onload = () => {
             setUserProfile((state) => ({ ...state, imgUrl: reader.result }))
+            console.log(imgUrl)
+
+            if (isCustomImgPostForm === false)
+                return customImgPostForm.show()
+
         }
     }
 
@@ -350,6 +362,8 @@ const ContentContainer = (
                 await postCustomImg(formDataValue)
                     .then((res) => {
                         console.log(res)
+                        if (isCustomImgPostForm === true)
+                            return customImgPostForm.close()
                     })
                     .catch((err) => {
                         console.log(err)
@@ -357,6 +371,8 @@ const ContentContainer = (
             })
             .catch(async (err) => {
                 console.log(err)
+                if (isCustomImgPostForm === true)
+                    return customImgPostForm.close()
             })
     }
 
@@ -377,6 +393,12 @@ const ContentContainer = (
                     .then((res) => {
                         console.log(res)
                         setUserProfile((state) => ({ ...state, imgUrl: res.imgUrl }))
+                        NotificationPool.api.add({
+                            title: "프로필 사진 수정 완료.",
+                            content: '카카오톡 사진으로 프로필사진이 변경되었습니다.',
+                            status: "success"
+                        })
+                        customImgPostForm.close()
                     })
             })
             .catch((err) => { console.log(err) })
@@ -737,12 +759,26 @@ const ContentContainer = (
         <>
             <ProfileContent
                 userProfile={userProfile} // 유저정보
+                editProfileFunction={editProfileFunction} // userProfile 수정함수들
 
                 isDeleteConfirmVisible={isDeleteConfirmVisible} // 탈퇴하기 modal 
                 confirmDeleteModal={confirmDeleteModal} // 탈퇴하기 modal handler
                 deleteOnClick={deleteOnClick}// 탈퇴하기  모달 show
                 okDeleteConfirmOnclick={okDeleteConfirmOnclick} //  탈퇴하기재확인모달 확인
                 cancelDeleteConfirmOnclick={cancelDeleteConfirmOnclick} //탈퇴하기재확인모달 확인
+
+                isCustomImgPostForm={isCustomImgPostForm} //  //true : 커스텀이미지 저장하기 + 이미지 올리기  form 열기   false :  커스텀이미지 저장하기 + 이미지 올리기 form 닫기 
+                uploadImgOnclick={uploadImgOnclick} // 로컬에서 선택한 이미지를 업로드하기 
+                postImgOnclick={postImgOnclick} //업로드한 이미지를 저장하기
+                kakaoImgOnclick={kakaoImgOnclick} //카카오톡 프로필 사진으로  프로필 사진 변경
+
+                isEditNickNameForm={isEditNickNameForm}//true : 닉네임 변경하는 form   false :  닉네임 변경하는 form 닫기
+                editNicknameOnclick={editNicknameOnclick} // 닉네임을 변경하는 form open 
+                postNicknameOnclick={postNicknameOnclick} //닉네임 변경후 저장하기
+
+                isEditRealNameForm={isEditRealNameForm} //true : 이름 변경하는 form   false :  이름 변경하는 form 닫기 
+                editRealNameOnclick={editRealNameOnclick} //이름 변경하는 form open 
+                postRealNameOnclick={postRealNameOnclick} //이름 변경후 저장하기
 
             ></ProfileContent>
         </>

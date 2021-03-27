@@ -105,7 +105,7 @@ const Modal = ({ headerClose, title, visible, closable, maskClosable, onClose, c
                 onClick={maskClosable ? onClose : null}
             >
                 <Row justify="center">
-                    <Col span={size} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xl}>
+                    <Col span={size} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xxl}>
 
                         <ModalContainer
                             visible={visible}

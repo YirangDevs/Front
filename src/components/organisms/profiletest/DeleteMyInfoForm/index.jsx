@@ -16,7 +16,7 @@ const SexConfirmModal = ({ username, okDeleteConfirmOnclick, cancelDeleteConfirm
 
     return (
         <>
-            <Row gutter={[5, 0]}>
+            <Row gutter={[7, 0]}>
 
                 <Col justify={'center'} span={12}>
                     <MdErrorOutline color={'#ff4d4f'} size={40} />
@@ -24,10 +24,10 @@ const SexConfirmModal = ({ username, okDeleteConfirmOnclick, cancelDeleteConfirm
                 <Col justify={'center'} span={12}>
                     <Typo weight={'bold'} size={"1.4rem"}>{username}님 탈퇴하시겠습니까?</Typo>
                 </Col>
-                <Col justify={'center'} span={12}>
+                <Col span={12} justify={'center'} >
                     <Typo weight={'bold'} color={'#ff4d4f'}>탈퇴 시 정보  및 봉사신청이 모두 삭제되며 복구되지 않습니다.</Typo>
-
                 </Col>
+
                 <Col justify={'center'} span={12}>
                     <Typo>탈퇴를 원하시면 확인을 눌러주세요.</Typo>
                 </Col>
@@ -35,7 +35,7 @@ const SexConfirmModal = ({ username, okDeleteConfirmOnclick, cancelDeleteConfirm
 
                 </Col>
             </Row>
-            <Row justify={"space-evenly"}>
+            <Row justify={"space-evenly"} gutter={[10, 0]}>
                 <Col span={3} justify={'center'}>
                     <Button block types={"primary"} onClick={cancelDeleteConfirmOnclick} value={'취소'} />
                 </Col>

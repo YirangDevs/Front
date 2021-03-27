@@ -39,7 +39,7 @@ const SexConfirmModal = ({ username, sex, editSexForm, confirmModal }) => {
 
                 </Col>
             </Row>
-            <Row justify={"space-evenly"}>
+            <Row justify={"space-evenly"} gutter={[7, 0]}>
                 <Col span={3} justify={'center'}>
                     <Button block types={"primary"} onClick={confirmModal.close} value={'취소'} />
                 </Col>

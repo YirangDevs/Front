@@ -11,7 +11,8 @@ const get_my_img = () => {
     return fetch(_.SERVER_URL+':8080/v1/apis/imgs', {
         method: 'GET',
         headers: {
-            'Authorization': "Bearer " + localStorage.getItem("YAT")
+            'Authorization': "Bearer " + localStorage.getItem("YAT"),
+            'Cache-control': 'no-store'
         }
     }).then((res)=>{
         if(res.status===500) throw Promise.resolve({errorCode: 500, errorName: "Server error"})

@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-24 18:34:12
+ * @Last Modified time: 2021-03-27 11:52:46
  */
 
 
@@ -89,7 +89,10 @@ const ProfileContent = ({
             <ContentLayout >
 
                 <Row>
-                    <Col xs={0} sm={0} md={4} span={4}>
+                    <Col xs={0} sm={0} md={4} span={4} style={{
+                        border: "1px black solid",
+                        marginRight: '4.1%'
+                    }}>
                         <Row>
                             <Col span={4}>
                                 <Typo size={"2.3rem"} weight={'bold'}>{username}</Typo>
@@ -140,25 +143,33 @@ const ProfileContent = ({
 
 
                     {/* 오른쪽 */}
-                    <Col xs={12} sm={12} md={7.5} span={7.5} offset={0.5}>
+                    <Col xs={12} sm={12} md={7.5} span={7.5} >
+
                         <Row >
                             <Col span={12}>
                                 <Typo size={"1.2rem"} weight={"bold"} > 프로필 수정</Typo>
                             </Col>
                         </Row>
 
-                        <Row justify={"space-between"} style={{ marginTop: '15px', borderTop: '3px solid #000000', }}>
+                        <Row justify={"space-between"} align={'center'} style={{ height: "110px", marginTop: '15px', borderTop: '3px solid #000000', }}>
+                            {/* title */}
                             <Col span={2} justify={"center"} align={"center"} style={{
                                 backgroundColor: "#f5f5f5",
+                                height: "inherit"
                                 //height: "7rem"
                             }}>
                                 <Typo weight={'bold'}>프로필 사진</Typo>
                             </Col>
+                            {/* title */}
+
+                            {/* Content + btn */}
+
                             <Col span={10} justify={"space-between"} style={{
                                 backgroundColor: "#ffffff",
                                 //height: "7rem",
                             }} >
-                                <Col span={7} justify={"start"} align={"center"} style={{
+                                {/* Content */}
+                                <Col span={9} justify={"start"} align={"center"} style={{
                                     paddingLeft: '1rem'
                                 }}>
                                     {
@@ -167,10 +178,11 @@ const ProfileContent = ({
                                             :
                                             <Img src={DefaultImg} width={'6rem'} circle></Img>
                                     }
-
                                 </Col>
+                                {/* Content */}
+
                                 <Col span={3}>
-                                    <Row justify={'center'} align={'center'}>
+                                    <Row justify={'center'} align={'center'} style={{ alignContent: ' space-evenly' }} >
                                         <Col span={12}>
                                             <FileBox block id={"customImg"} accept="image/*" onChange={selectImageOnclick} >이미지업로드</FileBox>
                                         </Col>
@@ -183,6 +195,7 @@ const ProfileContent = ({
                                     </Row>
                                 </Col>
                             </Col>
+                            {/* Content + btn */}
                         </Row>
 
 
@@ -230,22 +243,21 @@ const ProfileContent = ({
                                                 height: "50px",
                                                 paddingLeft: '1rem'
                                             }}>
-                                                <Typo weight={"bold"}>
-                                                    {
-                                                        (username) ?
-                                                            <Typo weight={"bold"}>
-                                                                {
-                                                                    username
-                                                                }
-                                                            </Typo>
-                                                            :
-                                                            <Typo backColor={'rgb(255, 253, 126)'} weight={"bold"}>
-                                                                {
-                                                                    '닉네임을 기입해 주새요'
-                                                                }
-                                                            </Typo>
-                                                    }
-                                                </Typo>
+
+                                                {
+                                                    (username) ?
+                                                        <Typo weight={"bold"}>
+                                                            {
+                                                                username
+                                                            }
+                                                        </Typo>
+                                                        :
+                                                        <Typo backColor={'rgb(255, 253, 126)'} weight={"bold"}>
+                                                            {
+                                                                '닉네임을 기입해 주새요'
+                                                            }
+                                                        </Typo>
+                                                }
                                             </Col>
                                             <Col span={3} justify={"center"} align={"center"} style={{
                                                 backgroundColor: "#ffffff",
@@ -489,7 +501,7 @@ const ProfileContent = ({
                         <Row>
                             <Col span={12} xs={12}>
                                 <Modal headerClose visible={isSexConfirmVisible}
-                                    maskClosable={true} onClose={confirmModal.close} size={5}>
+                                    maskClosable={true} onClose={confirmModal.close} size={4} xs={7} sm={7} md={6} lg={6} xl={5} xxl={5} >
                                     <SexConfirmModal confirmModal={confirmModal} username={username} sex={sex} editSexForm={editSexForm}></SexConfirmModal>
                                 </Modal>
                             </Col>

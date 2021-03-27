@@ -16,7 +16,7 @@ const SexConfirmModal = ({ username, DeleteCompleted, deleteConfirmModal }) => {
 
     return (
         <>
-            <Row gutter={[5, 0]}>
+            <Row gutter={[7, 0]}>
 
                 <Col justify={'center'} span={12}>
                     <MdErrorOutline color={'#ff4d4f'} size={40} />
@@ -35,7 +35,7 @@ const SexConfirmModal = ({ username, DeleteCompleted, deleteConfirmModal }) => {
 
                 </Col>
             </Row>
-            <Row justify={"space-evenly"}>
+            <Row justify={"space-evenly"} gutter={[10, 0]}>
                 <Col span={3} justify={'center'}>
                     <Button block types={"primary"} onClick={deleteConfirmModal.close} value={'취소'} />
                 </Col>

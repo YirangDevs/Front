@@ -31,7 +31,7 @@ export default () =>{
                             email : userInfo.email,
                             sex : userInfo.sex,
                             phone : userInfo.phone,
-                            emailValidation : emailValidation.validation
+                            emailValidation : emailValidation.validation,
                         }
                     }))
 
