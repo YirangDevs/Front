@@ -2,7 +2,7 @@
  * @author :  chaeeun
  * @date : 2021-03-14 02:40:15
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-14 04:02:28
+ * @Last Modified time: 2021-03-27 22:59:34
  */
 
 import React from 'react'
@@ -11,7 +11,7 @@ import Col from "../../../../layout/Grid/Column"
 import Typo from "../../../atoms/Typography"
 import { MdErrorOutline } from "react-icons/md";
 import Button from "../../../atoms/Button"
-const SexConfirmModal = ({ username, sex, editSexForm, confirmModal }) => {
+const SexConfirmModal = ({ username, sex, okSexConfirmOnclick, cancelSexConfirmOnclick }) => {
     const settingSex = (sex) => {
         if (sex === 'FEMALE') return '여성';
         if (sex === 'MALE') return '남성';
@@ -19,7 +19,7 @@ const SexConfirmModal = ({ username, sex, editSexForm, confirmModal }) => {
 
     return (
         <>
-            <Row gutter={[5, 0]}>
+            <Row gutter={[7, 0]}>
 
                 <Col justify={'center'} span={12}>
                     <MdErrorOutline color={'#ff4d4f'} size={40} />
@@ -39,12 +39,12 @@ const SexConfirmModal = ({ username, sex, editSexForm, confirmModal }) => {
 
                 </Col>
             </Row>
-            <Row justify={"space-evenly"} gutter={[7, 0]}>
+            <Row justify={"space-evenly"}>
                 <Col span={3} justify={'center'}>
-                    <Button block types={"primary"} onClick={confirmModal.close} value={'취소'} />
+                    <Button block types={"primary"} onClick={cancelSexConfirmOnclick} value={'취소'} />
                 </Col>
                 <Col span={3} justify={'center'}>
-                    <Button block types={"primary"} onClick={editSexForm.close} value={'확인'} />
+                    <Button block types={"primary"} onClick={okSexConfirmOnclick} value={'확인'} />
                 </Col>
             </Row>
         </>

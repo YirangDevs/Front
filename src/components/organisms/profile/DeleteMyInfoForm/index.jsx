@@ -11,7 +11,7 @@ import Col from "../../../../layout/Grid/Column"
 import Typo from "../../../atoms/Typography"
 import { MdErrorOutline } from "react-icons/md";
 import Button from "../../../atoms/Button"
-const SexConfirmModal = ({ username, DeleteCompleted, deleteConfirmModal }) => {
+const SexConfirmModal = ({ username, okDeleteConfirmOnclick, cancelDeleteConfirmOnclick }) => {
 
 
     return (
@@ -24,10 +24,10 @@ const SexConfirmModal = ({ username, DeleteCompleted, deleteConfirmModal }) => {
                 <Col justify={'center'} span={12}>
                     <Typo weight={'bold'} size={"1.4rem"}>{username}님 탈퇴하시겠습니까?</Typo>
                 </Col>
-                <Col justify={'center'} span={12}>
+                <Col span={12} justify={'center'} >
                     <Typo weight={'bold'} color={'#ff4d4f'}>탈퇴 시 정보  및 봉사신청이 모두 삭제되며 복구되지 않습니다.</Typo>
-
                 </Col>
+
                 <Col justify={'center'} span={12}>
                     <Typo>탈퇴를 원하시면 확인을 눌러주세요.</Typo>
                 </Col>
@@ -37,10 +37,10 @@ const SexConfirmModal = ({ username, DeleteCompleted, deleteConfirmModal }) => {
             </Row>
             <Row justify={"space-evenly"} gutter={[10, 0]}>
                 <Col span={3} justify={'center'}>
-                    <Button block types={"primary"} onClick={deleteConfirmModal.close} value={'취소'} />
+                    <Button block types={"primary"} onClick={cancelDeleteConfirmOnclick} value={'취소'} />
                 </Col>
                 <Col span={3} justify={'center'}>
-                    <Button block types={"primary"} onClick={DeleteCompleted} value={'확인'} />
+                    <Button block types={"primary"} onClick={okDeleteConfirmOnclick} value={'확인'} />
                 </Col>
             </Row>
         </>

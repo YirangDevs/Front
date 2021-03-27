@@ -10,7 +10,6 @@ import SeniorRouter from "./SeniorRouter";
 import UserAuthorityRouter from "./UserAuthorityRouter";
 import MyPageRouter from './MyPageRouter'
 import ProfileRouter from './ProfileRouter'
-import ProfileTestRouter from "./ProfileTestRouter"
 import { connect } from "react-redux";
 
 const YirangRouter = ({ role }) => {
@@ -40,10 +39,6 @@ const YirangRouter = ({ role }) => {
                 </Route>
                 <Route path="/profile">
                     <ProfileRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER"]} role={role} />
-                </Route>
-
-                <Route path="/profiletest">
-                    <ProfileTestRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER"]} role={role} />
                 </Route>
                 <Route exact path="/" component={Home} />
             </Switch>
