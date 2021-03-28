@@ -9,7 +9,7 @@ import TableBox from "../../../atoms/TableBox"
 import Modal from "../../../../components/atoms/Modal"
 import MenuNav from "../../../../containers/redux/components/MenuNav"
 import Pagination from "../../../atoms/Pagination"
-import UserInfo from "../../../molecules/UserInfo"
+import UserCard from "../../../../containers/redux/components/UserCard"
 import AuthorityAdminModal from "../../../../components/organisms/userauthority/AuthorityAdminModal"
 import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
 
@@ -42,52 +42,52 @@ const UserAuthorityContent = ({
     idArray,
     selectedUser
 }) => {
-    return(
+    return (
         <>
             <Content>
-                <Row gutter={[10,10]}>
+                <Row gutter={[10, 10]}>
                     <Col span={2}>
-                            <SelectBox options={selectAuthority} onChange={getMyAuthority} border block></SelectBox>
+                        <SelectBox options={selectAuthority} onChange={getMyAuthority} border block></SelectBox>
                     </Col>
                     <Col span={1.8}>
-                            <TextBox placeholder="이름을 검색하십시오" border></TextBox>
+                        <TextBox placeholder="이름을 검색하십시오" border></TextBox>
                     </Col>
                     <Col span={1}>
-                        <Button value="검색" theme="white" onClick={searchName} round/>
+                        <Button value="검색" theme="white" onClick={searchName} round />
                     </Col>
                 </Row>
                 <Row>
                     <Col span={12} xxl={5.8} xl={8.3}>
-                        <TableBox headList={TableBoxHeadLists} bodyList={posts}/>
+                        <TableBox headList={TableBoxHeadLists} bodyList={posts} />
                     </Col>
                     <Col span={0.2} /> {/* 빈칸 */}
                     <Col span={0} xxl={1} xl={1.5}>
-                        <TableBox headList={authorityTable} bodyList={adminPosts} dataOnClick={authorityOnClick} data={idArray} black back/>
+                        <TableBox headList={authorityTable} bodyList={adminPosts} dataOnClick={authorityOnClick} data={idArray} black back />
                     </Col>
                     <Col span={0} xxl={1} xl={1.5}>
-                        <TableBox headList={regionTable} bodyList={regionsPosts} dataOnClick={regionOnClick} data={idArray} black back/>  
+                        <TableBox headList={regionTable} bodyList={regionsPosts} dataOnClick={regionOnClick} data={idArray} black back />
                     </Col>
                     <Col xxl={0.5} /> {/* 빈칸 */}
                     <Col span={0} xxl={3.5}>
-                        <Row gutter={[10,0]}>
+                        <Row gutter={[10, 0]}>
                             <Col span={12}>
                                 <MenuNav />
                             </Col>
                             <Col span={12}>
-                                <UserInfo />
+                                <UserCard />
                             </Col>
                         </Row>
-                        
+
                     </Col>
                 </Row>
                 <Row>
-                <Col span={12} xxl={7} xl={6} justify={"center"}>
-                    <Pagination num={Math.ceil(certainUsers.length/10)} onClick={paginationOnClick}></Pagination>
-                </Col>
-            </Row>
+                    <Col span={12} xxl={7} xl={6} justify={"center"}>
+                        <Pagination num={Math.ceil(certainUsers.length / 10)} onClick={paginationOnClick}></Pagination>
+                    </Col>
+                </Row>
             </Content>
-            <Modal title="권한 할당" visible={authorityModal} size={3} closable={true} onClose={modalClose} children={<AuthorityAdminModal authorityChange={authorityChange} modalClose={modalClose} selectedUser={selectedUser}/>}/>
-            <Modal title="지역 할당" visible={regionModal} size={3} children={<AuthorityRegionModal regionOnCheck={regionOnCheck} modalClose={modalClose} authorityRegionChange={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions}/>}/>
+            <Modal title="권한 할당" visible={authorityModal} size={3} closable={true} onClose={modalClose} children={<AuthorityAdminModal authorityChange={authorityChange} modalClose={modalClose} selectedUser={selectedUser} />} />
+            <Modal title="지역 할당" visible={regionModal} size={3} children={<AuthorityRegionModal regionOnCheck={regionOnCheck} modalClose={modalClose} authorityRegionChange={authorityRegionChange} regionArray={regionArray} regionOptions={regionOptions} />} />
         </>
     )
 }

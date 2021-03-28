@@ -1,9 +1,10 @@
 import { useHistory } from "react-router-dom";
 import React from "react";
 import Profile from "../pages/Profile"
-import NotificationPool from "../containers/redux/components/NotificationPool/";
+import NotificationPool from "../containers/redux/components/NotificationPool";
 
 const MyPageRouter = ({ security, userInfo }) => {
+
     const history = useHistory()
     if (security.indexOf(userInfo.role) !== -1) {
         return <Profile />
@@ -17,4 +18,4 @@ const MyPageRouter = ({ security, userInfo }) => {
     return null
 }
 
-export default MyPageRouter
+export default ProfileRouter

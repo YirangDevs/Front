@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @Date : 2021-03-08 15:18:31 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-15 19:20:01
+ * @Last Modified time: 2021-03-28 02:33:08
  */
 
 import React from "react"
@@ -13,85 +13,73 @@ import TextBox from "../../atoms/TextBox"
 import Typo from "../../atoms/Typography"
 import { MdAlarmOn } from "react-icons/md"
 
-const VerifiedForm = ({ minutes, seconds, email, editProfileFunction, isInputAuthNum, inputAuthNumForm, isAuthNum, editAuthNum, editEmailForm }) => (
+const VerifiedForm = ({ minutes, seconds, email, editProfileFunction, isInputAuthNumForm,
+    postAuthNumOnclick, authNum, editAuthNum, checkAuthNumOnclick }) => (
     <>
         {/* 이메일 입력 FORM */}
-        <Row justify={"space-between"} >
-            <Col span={2} justify={"center"} align={"center"} style={{
-                backgroundColor: "#f5f5f5",
-                height: "50px",
-            }}>
+        <Row justify={"space-between"} style={{ height: "50px" }} >
+            <Col span={2} justify={"center"} align={"center"} style={{ backgroundColor: "#f5f5f5", height: "inherit" }}>
             </Col>
-            <Col span={10} justify={'space-between'} >
-                <Col xs={8} sm={9} md={8} lg={8} xl={8} xxl={9} span={9} justify={"start"} align={"center"} style={{
-                    backgroundColor: "#ffffff",
-                    height: "50px",
-                    paddingLeft: "1rem"
-                }}>
-                    <Row justify={"start"} align={"center"} >
-                        <Col span={4}>
-                            <TextBox color={"black"} border
-                                radius={'22px'} align={'center'} placeholder={'이메일을 입력해 주세요'}
-                                onChange={editProfileFunction.email} value={email} />
-                        </Col>
-                        <Col xs={4} sm={12} md={0} lg={3} xl={4} xxl={4} justify={"start"} align={"center"} style={{ paddingLeft: '0.8rem' }}>
-                            <Typo color={'#707070'} size={'0.8rem'}>이메일을 입력해 주세요</Typo>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col span={3} justify={"center"} align={"center"} style={{
-                    backgroundColor: "#ffffff",
-                    height: "50px"
-                }}>
-                    {
-                        (isInputAuthNum) ?
-                            <Button types={'primary'} block value={'재발송'} onClick={inputAuthNumForm.show}></Button>
-                            :
-                            <Button types={'primary'} block value={'인증번호발송'} onClick={inputAuthNumForm.show}></Button>
 
-                    }
-                </Col>
+            <Col span={10} align={'center'} style={{ backgroundColor: "#ffffff ", height: "inherit" }}>
+                <Row align={'initial'} justify={"space-between"}>
+                    <Col offset={0.25} xs={6} sm={7} md={8} lg={8} xl={8} xxl={9} span={9} justify={"start"} align={"center"} >
+                        <Row align={"center"} >
+                            <Col span={4}>
+                                <TextBox color={"black"} border
+                                    radius={'22px'} align={'center'} placeholder={'이메일을 입력해 주세요'}
+                                    onChange={editProfileFunction.email} value={email} />
+                            </Col>
+                            <Col xs={4} sm={12} md={0} lg={3} xl={4} xxl={4} justify={"start"} align={"center"} style={{ paddingLeft: '0.8rem' }}>
+                                <Typo color={'#707070'} size={'0.8rem'}>이메일을 입력해 주세요</Typo>
+                            </Col>
+                        </Row>
+                    </Col>
+
+
+                    <Col span={3} justify={"center"} align={"center"}>
+                        {
+                            (isInputAuthNumForm) ?
+                                <Button types={'primary'} block value={'재발송'} onClick={postAuthNumOnclick}></Button>
+                                :
+                                <Button types={'primary'} block value={'인증번호발송'} onClick={postAuthNumOnclick}></Button>
+                        }
+                    </Col>
+                </Row>
             </Col>
         </Row >
 
-        {/* 인증번호 입력 FORM */}
+        {/* NOTE 인증번호 입력 FORM */}
         {
-            (isInputAuthNum) ?
-                <Row justify={"space-between"} >
+            (isInputAuthNumForm) ?
+                <Row justify={"space-between"} style={{ height: "50px" }} >
                     <Col span={2} justify={"center"} align={"center"} style={{
-                        backgroundColor: "#f5f5f5",
-                        height: "50px",
+                        backgroundColor: "#f5f5f5", height: "inherit"
                     }}>
                     </Col>
-                    <Col span={10} justify={'space-between'} >
-                        <Col xs={8} sm={9} md={8} lg={8} xl={8} xxl={9} justify={"start"} align={"center"} style={{
-                            backgroundColor: "#ffffff",
-                            height: "50px",
-                            paddingLeft: "1rem"
-                        }}>
-                            <Row justify={"start"} align={"center"} >
-                                <Col span={4}>
-                                    <TextBox color={"black"} border
-                                        radius={'22px'} align={'center'} placeholder={'인증번호를 입력해 주세요'}
-                                        onChange={editAuthNum} value={isAuthNum} />
-                                </Col>
-                                <Col span={4} justify={"start"} align={"center"} style={{ paddingLeft: '0.8rem' }}>
-                                    <MdAlarmOn color={'#707070'} size={'0.8rem'} />
-                                    <Typo color={'#707070'} size={'0.8rem'}>
-                                        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                                    </Typo>
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col span={3} justify={"center"} align={"center"} style={{
-                            backgroundColor: "#ffffff",
-                            height: "50px"
-                        }}>
-                            {
-                                <Button types={'primary'} block value={'인증번호확인'} onClick={inputAuthNumForm.close}></Button>
 
-                            }
-                        </Col>
+
+                    <Col span={10} align={'center'} style={{ backgroundColor: "#ffffff ", height: "inherit" }}>
+                        <Row align={'initial'} justify={"space-between"}>
+                            <Col offset={0.25} xs={6} sm={7} md={8} lg={8} xl={8} xxl={9} justify={"start"} align={"center"}>
+                                <Row align={"center"} >
+                                    <Col span={4}>
+                                        <TextBox color={"black"} border
+                                            radius={'22px'} align={'center'} placeholder={'인증번호를 입력해 주세요'}
+                                            onChange={editAuthNum} value={authNum} />
+                                    </Col>
+                                    <Col offset={0.2} span={4} justify={"start"} align={"center"} >
+                                        <MdAlarmOn color={'#707070'} size={'0.8rem'} />
+                                        <Typo color={'#707070'} size={'0.8rem'}>
+                                            {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                                        </Typo>
+                                    </Col>
+                                </Row>
+                            </Col>
+                            <Col span={3} justify={"center"} align={"center"} >
+                                <Button types={'primary'} block value={'인증번호확인'} onClick={checkAuthNumOnclick}></Button>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row >
                 :
