@@ -1,7 +1,7 @@
 import React, {memo} from "react"
 import Col from "../../../layout/Grid/Column";
 import IconButton from "../../atoms/IconButton";
-import {MdFormatListBulleted, MdOpenInBrowser, MdPeople, MdToday, MdTune} from "react-icons/md";
+import {MdFormatListBulleted, MdOpenInBrowser, MdPeople, MdToday, MdTune, MdPerson} from "react-icons/md";
 import Row from "../../../layout/Grid/Row";
 import {useHistory} from "react-router-dom";
 
@@ -48,7 +48,7 @@ const MenuIconNav = ({role}) => {
                                     <IconButton value={"매칭 결과확인"} size={"large"} onClick={
                                         ()=>{
 
-                                            history.push("/")
+                                            history.push("match")
                                         }
                                     }>
                                         <MdToday size={20}/>
@@ -69,6 +69,16 @@ const MenuIconNav = ({role}) => {
                         </IconButton>
                     </Col> : null
             }
+            <Col span={1} justify={"center"}>
+                <IconButton value={"마이페이지"} size={"large"} onClick={
+                    ()=>{
+
+                        history.push("mypage")
+                    }
+                }>
+                    <MdPerson size={20}/>
+                </IconButton>
+            </Col>
 
         </Row>
     )

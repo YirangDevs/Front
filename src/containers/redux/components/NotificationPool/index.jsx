@@ -20,7 +20,7 @@ class NotificationPool extends React.Component {
         return (<Container>
                 {this.props.notification.map((instance)=>{
                     console.log("instance" ,instance)
-                    return <Notification title={instance.title} key={instance.uuid} uuid={instance.uuid} content={instance.content} status={instance.status} duration={instance.duration}></Notification>
+                    return <Notification title={instance?.title} key={instance.uuid} uuid={instance.uuid} content={instance?.content} status={instance?.status} duration={instance?.duration} button={instance?.button} buttonOnClick={instance?.buttonOnClick}></Notification>
                 })}
             </Container>)
 

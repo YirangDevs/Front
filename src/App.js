@@ -2,8 +2,7 @@ import React, {useEffect, useState} from 'react';
 import NotificationPool from "./containers/redux/components/NotificationPool/";
 import {createGlobalStyle} from "styled-components"
 import YirangRouter from "./router";
-import run from "./init/start"
-
+import run from "./init/start";
 
 const GlobalStyle = createGlobalStyle`
   html, body {

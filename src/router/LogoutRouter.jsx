@@ -3,9 +3,9 @@ import React from "react";
 import Logout from "../pages/Logout/"
 import NotificationPool from "../containers/redux/components/NotificationPool/";
 
-const LogoutRouter = ({security, role}) => {
+const LogoutRouter = ({security, userInfo}) => {
     const history = useHistory()
-    if(security.indexOf(role)!==-1){
+    if(security.indexOf(userInfo.role)!==-1){
         return <Logout/>
     }
     history.push("/")

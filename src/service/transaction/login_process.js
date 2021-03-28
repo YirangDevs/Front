@@ -32,6 +32,7 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
             console.log("userInfo : ", userInfo)
             console.log("payload : ", payload)
             let result = {
+                realname : userInfo.realname,
                 username : userInfo.username,
                 userId : payload.userId,
                 role : roleInfo.authority,

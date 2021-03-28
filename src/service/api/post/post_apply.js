@@ -11,6 +11,7 @@ import NotificationPool from "../../../containers/redux/components/NotificationP
    }
  */
 const postApply = (data)=>{
+    console.log(data)
     return fetch(_.SERVER_URL + ":8080/v1/apis/apply/notices", {
         method: 'POST',
         headers: {
@@ -29,6 +30,7 @@ const postApply = (data)=>{
             content : err.errorName + "("+err.errorCode+")",
             status : "error"
         })
+        console.log(err)
         console.log("Error from post_apply\n"+err.errorCode+"\n"+err.errorName)
         //에러처리
         throw err
