@@ -24,7 +24,7 @@ const LoginRedirect =  ()=>{
                 store.dispatch(ACTION.LOGIN_ACTION_FUNC())
                 }
             )
-            .then(()=>history.push("/")).catch((err)=>{console.log(err)})
+            .then().catch((err)=>{console.log(err)})
     }
     return (
         <>
