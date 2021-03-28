@@ -48,6 +48,7 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidati
         console.log(status)
     }, [status])
     const onApplyClick = () => {
+        console.log(status)
         if(status.sex==="UNKNOWN"||status.phone===null||status.name===undefined){
             NotificationPool.api.add({
                 title : "프로필 설정이 필요합니다.",
