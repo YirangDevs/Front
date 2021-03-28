@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @Date :  2021-02-08 00:37:21 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-24 04:23:49
+ * @Last Modified time: 2021-03-18 20:05:06
  */
 
 import React from "react"
@@ -12,7 +12,7 @@ import Row from "../../../layout/Grid/Row"
 import Icon from "../../../img/KakaoIcon.png"
 import { useHistory } from "react-router-dom"
 
-const UserInfoWrapper = styled.div`
+const UserCardWrapper = styled.div`
 height : 138px;
 // height : 9rem;
 width : 100%;
@@ -65,13 +65,13 @@ opacity: 0.5;
 `
 
 
-const UserInfo = (props) => {
+const UserCard = (props) => {
     const handleClick = () => {
         console.log(props)
     }
     const history = useHistory()
     return (
-        <UserInfoWrapper onClick={handleClick}>
+        <UserCardWrapper onClick={handleClick}>
             <Row gutter={[19, 0]}>
                 <Col span={12}>
                     <Row gutter={[0, 17]} justify={"space-between"}>
@@ -107,14 +107,14 @@ const UserInfo = (props) => {
                     <Col span={12}>
                         <UserEmail>
                             {
-                                (props.email) ? `${props.email} >` : `email을 인증해 주세요`
+                                (props.emailValidation === 'YES') ? `${props.email} >` : `email을 인증해 주세요`
                             }
                         </UserEmail>
                     </Col>
                 </Row>
             </Row>
-        </UserInfoWrapper>
+        </UserCardWrapper>
     )
 }
 
-export default UserInfo;
+export default UserCard;
