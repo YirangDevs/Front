@@ -69,16 +69,19 @@ const MenuIconNav = ({role}) => {
                         </IconButton>
                     </Col> : null
             }
-            <Col span={1} justify={"center"}>
-                <IconButton value={"마이페이지"} size={"large"} onClick={
-                    ()=>{
+            {
+                (role!=="GUEST") ?
+                    <Col span={1} justify={"center"}>
+                        <IconButton value={"마이페이지"} size={"large"} onClick={
+                            ()=>{
 
-                        history.push("mypage")
-                    }
-                }>
-                    <MdPerson size={20}/>
-                </IconButton>
-            </Col>
+                                history.push("mypage")
+                            }
+                        }>
+                            <MdPerson size={20}/>
+                        </IconButton>
+                    </Col> : null
+            }
 
         </Row>
     )

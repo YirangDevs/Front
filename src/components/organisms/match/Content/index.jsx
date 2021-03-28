@@ -5,7 +5,7 @@ import TableBox from "../../../atoms/TableBox";
 import Content from "../../../../layout/Content";
 import SelectBox from "../../../atoms/SelectBox";
 import MenuNav from "../../../../containers/redux/components/MenuNav";
-import UserInfo from "../../../../containers/redux/components/UserInfo";
+import UserCard from "../../../../containers/redux/components/UserCard";
 
 const MatchContent = () => {
 
@@ -56,7 +56,7 @@ const MatchContent = () => {
                                 <MenuNav></MenuNav>
                             </Col>
                             <Col xxl={12}>
-                                <UserInfo></UserInfo>
+                                <UserCard></UserCard>
                             </Col>
                         </Row>
 

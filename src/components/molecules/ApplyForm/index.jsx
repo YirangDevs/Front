@@ -48,10 +48,22 @@ const ApplyForm = ({id, dov, region, nor, phone, name, email, sex, emailValidati
         console.log(status)
     }, [status])
     const onApplyClick = () => {
+        if(status.sex==="UNKNOWN"||status.phone===null||status.name===undefined){
+            NotificationPool.api.add({
+                title : "프로필 설정이 필요합니다.",
+                content : "마이페이지에서 설정해주세요",
+                status : "error",
+                button : "이동",
+                buttonOnClick : ()=>{
+                    history.push("profile")
+                }
+            })
+            return
+        }
         if(status.emailValidation==="NO"){
             NotificationPool.api.add({
                 title : "이메일 인증이 필요합니다.",
-                content : "마이페이지 > 이메일 인증 에서 인증해주십쇼",
+                content : "마이페이지 > 이메일 인증 에서 인증해주세요",
                 status : "error",
                 button : "이동",
                 buttonOnClick : ()=>{

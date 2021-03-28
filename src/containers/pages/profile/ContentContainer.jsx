@@ -6,40 +6,16 @@
  */
 
 
-<<<<<<< HEAD
-import React, {useEffect, useState} from 'react'
-import ProfileContent from "../../redux/pages/profile/Content"
-=======
+
 import React, { useEffect, useState } from 'react'
 import ProfileContent from "../../../components/organisms/profile/Content"
 import NotificationPool from '../../redux/components/NotificationPool'
 
-//유저관련
->>>>>>> stage
 import getMyInfo from "../../../service/api/get/get_my_info"
 import deleteMyInfo from "../../../service/api/delete/delete_myInfo"
 import LogoutProcess from '../../../service/transaction/logout_process'
 
-
-<<<<<<< HEAD
-    const [userProfile, setUserProfile] = useState({
-        username: "",
-        realname: "",
-        phone: "",
-        email: "",
-        verified: "",
-        sex: "",
-        imgUrl: "",
-        firstRegion: firstRegion,
-        secondRegion: secondRegion
-    })
-
-    //certificationNumbers 메일인증번호
-    const [isAuthNum, setAuthNum] = useState('')
-
-=======
 //프로필 사진
-import DefaultImg from "../../../img/ProfileDefaultImg.png"
 import getMyImg from "../../../service/api/get/get_my_img"
 import getMyImgType from "../../../service/api/get/get_my_img_type"
 import editMyImgType from "../../../service/api/put/edit_my_img_type"
@@ -57,56 +33,49 @@ import getEmailValidation from "../../../service/api/get/get_check_validated_ema
 import postSendCertificationEmail from "../../../service/api/post/post_certification_email"
 import postVerifyCertificationEmail from "../../../service/api/post/post_verify_certification_email"
 import EditMyEmail from '../../../service/api/put/edit_My_email'
->>>>>>> stage
 
 //관심지역
-import editMyInfo from "../../../service/api/put/edit_My_info"
 import editMyInfoFirstRegion from "../../../service/api/put/edit_my_info_firstRegion"
-import editMyInfoSecondRegion from "../../../service/api/put/edit_my_info_sex"
-import { MdPhoneBluetoothSpeaker } from 'react-icons/md'
+import editMyInfoSecondRegion from "../../../service/api/put/edit_my_info_secondRegion"
 
 
 
 //username = 닉네임
 //realname = 실명
 
-<<<<<<< HEAD
-    useEffect(() => {
-        console.log(userProfile.email, userProfile.username, userProfile.firstRegion, userProfile.secondRegion, userProfile.verified)
-        SET_USER({
-            user: {
-                username: userProfile.username,
-                email: userProfile.email,
-                emailValidation: userProfile.verified,
-                firstRegion: userProfile.firstRegion,
-                secondRegion: userProfile.secondRegion
-            }
-        })
-    }, [SET_USER, userProfile.email, userProfile.username, userProfile.firstRegion, userProfile.secondRegion, userProfile.verified])
-=======
-const ContentContainer = (
-    props
-) => {
+
+const ContentContainer = ({
+    role,
+    email,
+    firstRegion,
+    imgUrl,
+    phone,
+    realname,
+    secondRegion,
+    sex,
+    username,
+    emailValidation,
+    SET_USER
+}) => {
 
     //userProfile 
     const [userProfile, setUserProfile] = useState({
         //redux 값
-        role: props.role,
-        email: props.email,
-        firstRegion: props.firstRegion,
-        imgUrl: props.imgUrl,
+        role: role,
+        email: email,
+        firstRegion: firstRegion,
+        imgUrl: imgUrl,
         isReceivingEmail: "",
-        phone: props.phone,
-        realname: props.realname,
-        secondRegion: props.secondRegion,
-        sex: props.sex,
-        username: props.username,
-        validation: props.emailValidation,
+        phone: phone,
+        realname: realname,
+        secondRegion: secondRegion,
+        sex: sex,
+        username: username,
+        emailValidation: emailValidation,
         imgType: "",
     })
-    const { role, email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
-        sex, username, validation, imgType, } = userProfile;
->>>>>>> stage
+
+
 
 
     /**
@@ -116,63 +85,7 @@ const ContentContainer = (
             .then((res) => {
                 console.log('userInfo1')
                 console.log(res)
-<<<<<<< HEAD
-                setUserProfile((state) => ({ ...state, ...res }))
-                // for (let data in res) {
-                // }
-            })
-            .catch(error => console.log(error))
-    }, [])
 
-    useEffect(() => {
-        getCheckValidatedEmail()
-            .then((res) => {
-                console.log("vaildatedEmail")
-                console.log(res)
-                setUserProfile((state) => ({ ...state, verified: res.validation }))
-            })
-    }, [])
-
-    let BodyData = {
-
-        /**
-             * @description updateMyInfo RequestDto
-             *  * @request 
-             * @body editData{email , firstRegion , phone ,
-             *   realname , secondRegion, sex , username}
-             */
-        editData: JSON.stringify({
-            "email": userProfile.email || "",
-            "phone": userProfile.phone || "",
-            "username": userProfile.username || "",
-            "firstRegion": firstRegion || null,
-            "realname": userProfile.realname || 'UNKNOWN',
-            "secondRegion": secondRegion || null,
-            "sex": userProfile.sex || 'UNKNOWN',
-
-        }),
-
-        emailData: JSON.stringify({
-            "email": userProfile.email
-        }),
-
-        //인증번호확인
-        /**
-              * @description verifyCertificationEmail RequestDto
-              *  * @request 
-              * @body authNumData{ certificationNumbers}
-              */
-        authNumData: JSON.stringify({
-            "certificationNumbers": `${isAuthNum}`
-        }),
-    }
-
-
-    // 수정통신
-    const editCompleted = (property) => {
-        console.log(userProfile)
-        editMyInfo(property, BodyData.editData)
-=======
                 setUserProfile((state) => ({
                     ...state,
                     ...res,
@@ -183,27 +96,12 @@ const ContentContainer = (
             .catch(error => console.log(error))
 
         getMyImgType()
->>>>>>> stage
             .then((res) => {
                 console.log("img_type")
                 console.log(res)
                 setUserProfile((state) => ({ ...state, ...res }))
             })
-<<<<<<< HEAD
-            .catch(error => console.log(error))
-    }
 
-    useEffect(()=>{
-        editMyInfo("희망지역", BodyData.editData)
-            .then((res) => {
-                console.log(res)
-            })
-            .catch(error => console.log(error))
-    },[firstRegion, secondRegion] )
-
-
-=======
->>>>>>> stage
 
         getEmailValidation()
             .then((res) => {
@@ -213,24 +111,20 @@ const ContentContainer = (
             })
     }, [])
 
-    useEffect(() => {
-        console.log("ㅗ", userProfile)
-    }, [userProfile])
-
     /**
      * @description redux 유저 정보 세팅   */
     useEffect(() => {
-        props.SET_USER({
+        SET_USER({
             user: {
-                username: username,
-                email: email,
-                emailValidation: validation,
-                firstRegion: firstRegion,
-                secondRegion: secondRegion,
-                imgUrl: imgUrl
+                username: userProfile.username,
+                email: userProfile.email,
+                emailValidation: userProfile.emailValidation,
+                firstRegion: userProfile.firstRegion,
+                secondRegion: userProfile.secondRegion,
+                imgUrl: userProfile.imgUrl
             }
         })
-    }, [username, email, validation, firstRegion, secondRegion, imgUrl])
+    }, [userProfile.username, userProfile.email, userProfile.emailValidation, userProfile.firstRegion, userProfile.secondRegion, userProfile.imgUrl, SET_USER])
 
     /**
    * @description sex value Setting  */
@@ -243,7 +137,7 @@ const ContentContainer = (
 * @description IsReceivingEmail value Setting  */
     const settingIsReceivingEmail = (YoNData) => {
         if (YoNData === "수신") return "YES"
-        if (YoNData === "수신안함") return "NO"
+        if (YoNData === "비수신") return "NO"
     }
 
 
@@ -496,28 +390,7 @@ const ContentContainer = (
             })
     }
 
-<<<<<<< HEAD
-    const editEmailForm = {
-        show() {
-            setEditEmailForm(true)
-        },
-        close() {
-            setEditEmailForm(false)
-            setInputAuthNum(false)
-            setMinutes(parseInt(0))
-            setSeconds(parseInt(0))
-            //변경 취소시 email 다시받아오기 
-            getMyInfo()
-                .then((res) => {
-                    console.log('userInfo2')
-                    console.log(res)
-                    setUserProfile((state) => ({ ...state,...res }))
-                    // for (let data in res) {
-                    // }
-                })
-                .catch(error => console.log(error))
-=======
->>>>>>> stage
+
 
     /**
     @description 카카오톡 프로필 사진으로  프로필 사진 변경
