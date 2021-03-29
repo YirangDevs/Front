@@ -68,12 +68,13 @@ const TableBox = ({border, black, headList, bodyList, primaryKey, onClick, dataO
     }, [onClick])
 
     const onTableBodyClick = useCallback((e, data)=> {
-        if(data){
-            dataOnClick(e, data)
-        }else{
-            dataOnClick(e)
+        if(dataOnClick){
+            if(data){
+                dataOnClick(e, data)
+            }else{
+                dataOnClick(e)
+            }
         }
-        
     }, [dataOnClick])
 
     return(
