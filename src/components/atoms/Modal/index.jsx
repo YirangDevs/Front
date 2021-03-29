@@ -2,7 +2,7 @@
  * @Author : chaeeun
  * @Date : 2020-12-30 18:37:07
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-24 00:30:07
+ * @Last Modified time: 2021-03-14 03:27:09
  */
 
 import React from 'react'
@@ -58,6 +58,7 @@ height : 50px;
 `
 
 const ModalHeader = styled.div`
+display : ${props => (props.headerClose) ? `none` : `flex`};
 padding: 16px 24px;
 color: rgba(0,0,0,.85);
 background: #fff;
@@ -93,7 +94,7 @@ const stopBubbling = (e) => {
  * @param children 컴포넌트 테그 사이에 값을 조회
  * @see antD Modal (사용법 antD 참조)
  */
-const Modal = ({ title, visible, closable, maskClosable, onClose, children, size, xs, sm, md, lg, xl, xxl}) => {
+const Modal = ({ headerClose, title, visible, closable, maskClosable, onClose, children, size, xs, sm, md, lg, xl, xxl }) => {
 
 
 
@@ -104,7 +105,7 @@ const Modal = ({ title, visible, closable, maskClosable, onClose, children, size
                 onClick={maskClosable ? onClose : null}
             >
                 <Row justify="center">
-                    <Col span={size} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xl}>
+                    <Col span={size} xs={xs} sm={sm} md={md} lg={lg} xl={xl} xxl={xxl}>
 
                         <ModalContainer
                             visible={visible}
@@ -112,7 +113,7 @@ const Modal = ({ title, visible, closable, maskClosable, onClose, children, size
                         >
                             {closable && <CloseButton onClick={onClose}>< i className="fas fa-times" /></CloseButton>}
 
-                            <ModalHeader>
+                            <ModalHeader headerClose={headerClose}>
                                 {title}
                             </ModalHeader>
 

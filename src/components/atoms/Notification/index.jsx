@@ -40,7 +40,9 @@ const Wrapper = styled.div`
   animation: ${intro} 0.5s forwards;
   ${props=>{
       if(props.destroy) {
-        return css`animation: ${outro} 0.5s forwards;`
+        return css`
+          animation: ${outro} 0.5s forwards;
+        `
       }
   }}
   border-radius: 5px;
@@ -72,24 +74,73 @@ const Title = styled.div`
   
 `
 
-const Notification = ({title, content, uuid, status, duration}) => {
+const ButtonWrapper = styled.div`
+  width : 100%;
+  margin-top : 0.8rem;
+  display : flex;
+  justify-content: flex-end;
+`
+
+const Button = styled.button`
+  border : 0;
+  outline : 0;
+  cursor : pointer;
+  border-radius: 2px;
+  color : white;
+  padding : 4px 12px;
+  background-color : transparent;
+  font-weight: bold;
+  font-family : Montserrat;
+  ${props =>{
+    switch(props.status){
+      case "success":
+        return `color : #22c55e;`
+      case "error":
+        return `color : #ef4444;`
+      case "warning":
+        return `color : #f97316;`
+      case "info":
+        return `color : #3b82f6;`
+      default :
+        return;
+    }
+  }}
+`
+
+const Notification = ({title, content, uuid, status, duration, button, buttonOnClick}) => {
 
     const [isDestroy, setIsDestroy] = useState(false)
+    const [instanceDuration, setInstanceDuration] = useState(duration)
+
 
     useEffect(()=>{
-        setTimeout(()=>{
+        let time = setTimeout(()=>{
             setIsDestroy(true)
-            setTimeout(()=>{
+            setTimeout(() => {
                 NotificationPool.api.delete(uuid)
-            },500)
-        }, duration * 1000)
-    }, [duration, uuid])
+
+            }, 500)
+        }, instanceDuration * 1000)
+        return ()=>{
+            console.log("닫음")
+            clearTimeout(time)
+        }
+    }
+
+    , [instanceDuration, uuid])
     return (
     <>
 
         <Wrapper status={status} destroy={isDestroy}>
             <Title>{title}</Title>
             {content}
+            {
+                button ? <ButtonWrapper><Button status={status} value={button} onClick={()=>{
+                    buttonOnClick()
+                    setInstanceDuration(0)
+                }
+                }>{button}</Button></ButtonWrapper> : null
+            }
         </Wrapper>
     </>
     )
@@ -99,7 +150,8 @@ Notification.defaultProps = {
     title : "",
     content : "",
     status : "info",
-    duration : 5
+    duration : 5,
+    buttonOnClick : ()=>{}
 };
 
 export default memo(Notification)

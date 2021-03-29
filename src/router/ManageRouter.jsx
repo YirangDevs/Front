@@ -3,9 +3,10 @@ import React from "react";
 import Manage from "../pages/Manage/"
 import NotificationPool from "../containers/redux/components/NotificationPool/";
 
-const ManageRouter = ({security, role}) => {
+const ManageRouter = ({security, userInfo}) => {
     const history = useHistory()
-    if(security.indexOf(role)!==-1){
+    if(security.indexOf(userInfo.role)!==-1){
+
         return <Manage/>
     }
     history.push("/")

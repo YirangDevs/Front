@@ -56,7 +56,7 @@ const PrimaryKey = styled(TableBody)`
     cursor: pointer;
 `
 
-const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data}) => {
+const TableBox = ({border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data}) => {
     
     const onPrimaryClick = useCallback((e, data)=>{
         if(data){
@@ -68,12 +68,13 @@ const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnCl
     }, [onClick])
 
     const onTableBodyClick = useCallback((e, data)=> {
-        if(data){
-            dataOnClick(e, data)
-        }else{
-            dataOnClick(e)
+        if(dataOnClick){
+            if(data){
+                dataOnClick(e, data)
+            }else{
+                dataOnClick(e)
+            }
         }
-        
     }, [dataOnClick])
 
     return(
@@ -114,4 +115,4 @@ const Index = ({border, black, headList, bodyList, primaryKey, onClick, dataOnCl
     )
             }
 
-export default memo(Index)
+export default memo(TableBox)

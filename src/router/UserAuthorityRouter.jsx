@@ -3,9 +3,10 @@ import React from "react";
 import UserAuthority from "../pages/UserAuthority/"
 import NotificationPool from "../containers/redux/components/NotificationPool/";
 
-const UserAuthorityRouter = ({security, role}) => {
+const UserAuthorityRouter = ({security, userInfo}) => {
     const history = useHistory()
-    if(security.indexOf(role)!==-1){
+    if(security.indexOf(userInfo.role)!==-1){
+
         return <UserAuthority/>
     }
     history.push("/")

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import styled from "styled-components"
 import getAllUsers from "../../../service/api/get/get_all_users"
 import UserAuthorityContent from "../../../components/organisms/userauthority/Content/index"
@@ -35,63 +35,63 @@ const ContentContainer = () => {
     const postsPerPage = 10
 
 
-    useEffect(()=> {
-        getAllUsers().then((data)=>{
+    useEffect(() => {
+        getAllUsers().then((data) => {
             setUsers(data.userAuthorities)
             setCertainUsers(data.userAuthorities)
-        }).catch(err=>console.log(err))
+        }).catch(err => console.log(err))
     }, [])
 
-    const updatePosts = useCallback(()=>{
+    const updatePosts = useCallback(() => {
         let data = certainUsers
-        .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
-        .map((i)=>{
-            return{
-                authority : i.authority,
-                name : i.userName,
-                sex : i.sex,
-                phone : i.phone,
-                email : i.email
-            }
-        })
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i) => {
+                return {
+                    authority: i.authority,
+                    name: i.userName,
+                    sex: i.sex,
+                    phone: i.phone,
+                    email: i.email
+                }
+            })
         setPosts(data)
     }, [currentPage, certainUsers])
-    
-    
-    const updateRegionsPosts = useCallback(()=>{
+
+
+    const updateRegionsPosts = useCallback(() => {
         let data = certainUsers
-        .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
-        .map((i)=>{
-                return{
-                    regions : i.regions && Object.keys(i.regions).length!==0?  i.regions.slice(0,1)+" 외 "+ (Object.keys(i.regions).length-1) + "구": "-"
-                }            
-        })
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i) => {
+                return {
+                    regions: i.regions && Object.keys(i.regions).length !== 0 ? i.regions.slice(0, 1) + " 외 " + (Object.keys(i.regions).length - 1) + "구" : "-"
+                }
+            })
         setRegionsPosts(data)
-        
+
     }, [currentPage, certainUsers])
 
 
-    const updateAdminPosts = useCallback(()=>{
+    const updateAdminPosts = useCallback(() => {
         let data = certainUsers
-        .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
-        .map((i)=>{
-            return{
-                authority : i.authority
-            }
-        })
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i) => {
+                return {
+                    authority: i.authority
+                }
+            })
         setAdminPosts(data)
     }, [currentPage, certainUsers])
 
 
-    const sendIdArray = useCallback(()=>{
+    const sendIdArray = useCallback(() => {
         let data = certainUsers
-        .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
-        .map((i)=>{
-            return{
-                userId : i.userId,
-                regions : i.regions
-            }
-        })
+            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+            .map((i) => {
+                return {
+                    userId: i.userId,
+                    regions: i.regions
+                }
+            })
         setIdArray(data)
     }, [currentPage, certainUsers])
 
@@ -99,54 +99,54 @@ const ContentContainer = () => {
     useCallback(() => {
         updatePosts()
     }, [updatePosts])
-    useCallback(()=>{
+    useCallback(() => {
         updateAdminPosts()
     }, [updateAdminPosts])
     useCallback(() => {
         updateRegionsPosts()
     }, [updateRegionsPosts])
-    useCallback(()=>{
+    useCallback(() => {
         sendIdArray()
     }, [sendIdArray])
 
     useEffect(() => {
         updatePosts()
     }, [users, updatePosts])
-    useEffect(()=>{
+    useEffect(() => {
         updateAdminPosts()
     }, [users, updateAdminPosts])
     useEffect(() => {
         updateRegionsPosts()
     }, [users, updateRegionsPosts])
-    useEffect(()=>{
+    useEffect(() => {
         sendIdArray()
     }, [users, sendIdArray])
 
 
-    const setTable = () =>{
+    const setTable = () => {
         updatePosts()
         updateRegionsPosts()
         updateAdminPosts()
     }
     const regionOnClick = (e, data) => {
-        if(data.regions){ //관할 구역이 존재한다면?
+        if (data.regions) { //관할 구역이 존재한다면?
             setUserId(data.userId)
             setRegionArray(data.regions)
             setRegionModal(true)
             //setUserRegions(data.regions)
-        }else{
-            if(data.authority==="관리자"){
-            setUserId(data.userId)
-            setRegionArray(data.regions)
-            setRegionModal(true)
-            //setUserRegions(data.regions)
+        } else {
+            if (data.authority === "관리자") {
+                setUserId(data.userId)
+                setRegionArray(data.regions)
+                setRegionModal(true)
+                //setUserRegions(data.regions)
             }
-        }        
+        }
     }
     const authorityOnClick = (e, data) => {
         setAuthorityModal(true)
         setUserId(data.userId)
-        const user = users.filter((i)=>i.userId===data.userId)[0]
+        const user = users.filter((i) => i.userId === data.userId)[0]
         setSelectedUser(user)
 
     }
@@ -154,34 +154,34 @@ const ContentContainer = () => {
     //표를 리렌더링 하는 부분
     const addDeleteRender = () => {
         console.log("재시작")
-        getAllUsers().then((data)=>{
+        getAllUsers().then((data) => {
             setUsers(data.userAuthorities)
             setCertainUsers(data.userAuthorities)
-        }).catch(err=>console.log(err))
+        }).catch(err => console.log(err))
     }
 
     const authorityChange = () => {
-        if(selectedUser.authority==="봉사자"){
-            changeUserToAdmin(userId).then(()=>{
+        if (selectedUser.authority === "봉사자") {
+            changeUserToAdmin(userId).then(() => {
                 addDeleteRender()
-            setAuthorityModal(false)
-                
-            }).catch(error=>console.log(error))
-        }else{
-            changeAdminToUser(userId).then(()=>{
+                setAuthorityModal(false)
+
+            }).catch(error => console.log(error))
+        } else {
+            changeAdminToUser(userId).then(() => {
                 addDeleteRender()
-            setAuthorityModal(false)
-            }).catch(error=>console.log(error))
+                setAuthorityModal(false)
+            }).catch(error => console.log(error))
         }
     }
 
-    
+
 
     const authorityRegionChange = () => {
-        editUserAdminRegion(userId, regionArray).then(()=>{
+        editUserAdminRegion(userId, regionArray).then(() => {
             addDeleteRender()
             setRegionModal(false)
-        }).catch(error=>console.log(error))
+        }).catch(error => console.log(error))
     }
     const paginationOnClick = (e) => {
         setCurrentPage(e.target.innerText)
@@ -190,12 +190,12 @@ const ContentContainer = () => {
     //권한에 따라서 나타나는 테이블이 달라집니다.
     const getMyAuthority = (e) => {
         setCurrentPage(1)
-        if(e.target.value!=="전체"){
-            const certainAuthority = users.filter((i)=>i.authority===e.target.value)
+        if (e.target.value !== "전체") {
+            const certainAuthority = users.filter((i) => i.authority === e.target.value)
 
             setCertainUsers(certainAuthority)
             setTable()
-        }else{
+        } else {
             setCertainUsers(users)
             setTable()
         }
@@ -203,17 +203,17 @@ const ContentContainer = () => {
     const regionOnCheck = (e) => {
         console.log(e.target.checked)
         console.log(e.target.value)
-        if(e.target.checked){
+        if (e.target.checked) {
             regionArray.push(e.target.value)
-        }else{
-            setRegionArray(regionArray.filter(region=>region!==e.target.value))
+        } else {
+            setRegionArray(regionArray.filter(region => region !== e.target.value))
         }
         console.log(regionArray)
     }
 
-    const modalClose = () =>{
+    const modalClose = () => {
         setUserId(null);
-       // setUserRegions([]);
+        // setUserRegions([]);
         setRegionModal(false)
         setAuthorityModal(false)
     }
@@ -221,48 +221,48 @@ const ContentContainer = () => {
     const searchName = (e) => {
         setCurrentPage(1)
         const name = e.target.parentNode.parentNode.children[1].children[0].value
-        if(name){
-            const certainNamePosts = users.filter((i)=>i.userName.includes(name))
-        
+        if (name) {
+            const certainNamePosts = users.filter((i) => i.userName.includes(name))
+
             setCertainUsers(certainNamePosts)
             setTable()
         }
-        else{
+        else {
             setCertainUsers(users)
             setTable()
         }
-        
+
 
     }
     return (
         <>
-        <Container>
-            <UserAuthorityContent
-                regionOnClick={regionOnClick}
-                authorityOnClick={authorityOnClick}
-                modalClose={modalClose}
-                authorityRegionChange={authorityRegionChange}
-                authorityChange={authorityChange}
-                getMyAuthority={getMyAuthority}
-                regionOnCheck={regionOnCheck}
-                paginationOnClick={paginationOnClick}
-                searchName = {searchName}
+            <Container>
+                <UserAuthorityContent
+                    regionOnClick={regionOnClick}
+                    authorityOnClick={authorityOnClick}
+                    modalClose={modalClose}
+                    authorityRegionChange={authorityRegionChange}
+                    authorityChange={authorityChange}
+                    getMyAuthority={getMyAuthority}
+                    regionOnCheck={regionOnCheck}
+                    paginationOnClick={paginationOnClick}
+                    searchName={searchName}
 
-                regionModal={regionModal}
-                regionArray={regionArray}
-                regionOptions={regionOptions}
-                authorityModal={authorityModal}
+                    regionModal={regionModal}
+                    regionArray={regionArray}
+                    regionOptions={regionOptions}
+                    authorityModal={authorityModal}
 
-                certainUsers={certainUsers}
-                posts={posts}
-                adminPosts={adminPosts}
-                regionsPosts={regionsPosts}
-                idArray={idArray}
-                selectedUser={selectedUser}
-            >
-            </UserAuthorityContent>
-        </Container>
+                    certainUsers={certainUsers}
+                    posts={posts}
+                    adminPosts={adminPosts}
+                    regionsPosts={regionsPosts}
+                    idArray={idArray}
+                    selectedUser={selectedUser}
+                >
+                </UserAuthorityContent>
+            </Container>
         </>
-        )
+    )
 }
 export default ContentContainer

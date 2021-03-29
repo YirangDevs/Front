@@ -11,8 +11,8 @@ const getYAT =  (KAKAO_TOKEN_DATA) => {
     }).then(res => {
         if(res.status===500) throw Promise.resolve({errorCode: 500, errorName: "Server error"})
         if(!res.ok) throw res.json()
-        return res.headers
-    }).then(header => header.get("Authorization")).catch(async(error)=>{
+        return [res.json(), res.headers]
+    }).catch(async(error)=>{
         let err =  await error.then()
         NotificationPool.api.add({
             title : "Error from getYAT",

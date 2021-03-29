@@ -26,100 +26,100 @@ const InfoForm = ({
 
 }, genderRef) => {
     console.log(currentSenior)
-    
+
     return (
         <>
             <Row style={{
                 border: "1px solid #ccd4e0"
             }}>
                 <Col span={4} justify={"center"} align={"center"} style={{
-                    height:"4rem",
+                    height: "4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0",
-                    padding : "0.5rem"
+                    borderBottom: "1px solid #ccd4e0",
+                    padding: "0.5rem"
                 }}>
 
-                        <TextBox placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name} border radius block/>
+                    <TextBox placeholder="이름 입력" onChange={nameOnChange} value={currentSenior.name} border radius={'5px'} block />
 
                 </Col>
                 <Col span={3} rightborder justify={"center"} align={"center"} style={{
-                    height:"4rem",
+                    height: "4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0"
+                    borderBottom: "1px solid #ccd4e0"
 
                 }}>
 
-                        <RadioBox ref={genderRef} size="default" name="gender" defaultValue={currentSenior.sex} options={genderoptions} onClick={genderOnChange}/>
+                    <RadioBox ref={genderRef} size="default" name="gender" defaultValue={currentSenior.sex} options={genderoptions} onClick={genderOnChange} />
 
                 </Col>
                 <Col span={5} justify={"center"} align={"center"} style={{
-                    height:"4rem",
+                    height: "4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0"
+                    borderBottom: "1px solid #ccd4e0"
                 }}>
 
-                    <RadioBox size="default" name="type" options={typeoptions} onClick={typeOnChange}/>
+                    <RadioBox size="default" name="type" options={typeoptions} onClick={typeOnChange} />
 
                 </Col>
                 <Col span={2} justify={"center"} align={"center"} style={{
-                    height:"4rem",
+                    height: "4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0"
+                    borderBottom: "1px solid #ccd4e0"
                 }}>
 
-                    <SelectBox options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority} border block/>
+                    <SelectBox options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority} border block />
 
                 </Col>
                 <Col span={2} justify={"center"} align={"center"} style={{
-                    height:"4rem",
+                    height: "4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0"
+                    borderBottom: "1px solid #ccd4e0"
                 }}>
 
-                    <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} border block/>
+                    <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} border block />
 
                 </Col>
                 <Col span={4} justify={"center"} align={"center"} style={{
-                    height:"4rem",
+                    height: "4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0",
-                    padding : "0.5rem"
+                    borderBottom: "1px solid #ccd4e0",
+                    padding: "0.5rem"
                 }}>
 
-                    <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} border block/>
+                    <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} border block />
 
                 </Col>
                 <Col span={4} justify={"center"} align={"center"} style={{
-                    height:"4rem",
+                    height: "4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0",
-                    padding : "0.5rem"
+                    borderBottom: "1px solid #ccd4e0",
+                    padding: "0.5rem"
                 }}>
 
-                    <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border radius block/>
+                    <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border radius={'5px'} block />
 
                 </Col>
                 <Col span={2} justify={"center"} align={"center"} style={{
-                    height:"4rem",
+                    height: "4rem",
                     borderRight: "1px solid #ccd4e0",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0"
+                    borderBottom: "1px solid #ccd4e0"
                 }}>
 
-                    <SelectBox options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region} border block/>
+                    <SelectBox options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region} border block />
 
                 </Col>
                 <Col span={10} justify={"center"} align={"center"} style={{
-                    height:"4rem",
+                    height: "4rem",
                     backgroundColor: "#f5f5f5",
-                    borderBottom : "1px solid #ccd4e0"
+                    borderBottom: "1px solid #ccd4e0"
                 }}>
 
-                    <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} border radius block/>
+                    <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} border radius={'5px'} block />
 
                 </Col>
             </Row>
-            </>
+        </>
     )
 }
 
