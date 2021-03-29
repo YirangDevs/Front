@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-28 03:11:09
+ * @Last Modified time: 2021-03-28 18:42:48
  */
 
 
@@ -106,9 +106,10 @@ const ProfileContent = ({
     {/* xs={ } sm={ } md ={ } lg={ } xl={ } xxl ={ } */ }
     return (
         <>
+            {/* SECTION Left */}
             <ContentLayout >
                 <Row>
-                    {/* SECTION Left */}
+
                     <Col xs={0} sm={0} md={4} lg={4} xl={4} xxl={4} style={{
                         marginRight: '4.1%'
                     }}>
