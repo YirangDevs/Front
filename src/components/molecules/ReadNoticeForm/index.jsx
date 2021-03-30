@@ -3,18 +3,18 @@ import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
 
 const columnStyle = {
-    backgroundColor : "rgb(245,245,245)",
-    padding : "0.8rem 1.5rem",
+    backgroundColor: "rgb(245,245,245)",
+    padding: "0.8rem 1.5rem",
 }
 
-const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
+const ReadNoticeForm = ({ title, nor, region, dov, tov, dod }) => {
     return (
         <>
             <Row align={"stretch"}>
                 <Col span={12} justify={"center"} style={{
-                    fontWeight : "bold",
-                    borderTop : "solid 3px black",
-                    borderBottom : "solid 2px black",
+                    fontWeight: "bold",
+                    borderTop: "solid 3px black",
+                    borderBottom: "solid 2px black",
                     ...columnStyle
                 }}>
                     {title}
@@ -23,7 +23,7 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                 <Col span={4} style={{
 
                     ...columnStyle,
-                    borderBottom : "solid 1px black"
+                    borderBottom: "solid 1px black"
                 }}>
                     <Row align={"stretch"}>
                         <Col span={4} style={{
@@ -32,7 +32,7 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                             필요인원
                         </Col>
                         <Col span={8} style={{
-                            color : "rgb(147,147,147)"
+                            color: "rgb(147,147,147)"
                         }}>
                             {nor}명
                         </Col>
@@ -42,9 +42,9 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                 {/*-----2-----*/}
                 <Col span={4} style={{
                     ...columnStyle,
-                    borderLeft : "solid 1px black",
-                    borderRight : "solid 1px black",
-                    borderBottom : "solid 1px black"
+                    borderLeft: "solid 1px black",
+                    borderRight: "solid 1px black",
+                    borderBottom: "solid 1px black"
 
                 }}>
                     <Row>
@@ -54,7 +54,7 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                             장소
                         </Col>
                         <Col span={8} style={{
-                            color : "rgb(147,147,147)"
+                            color: "rgb(147,147,147)"
                         }}>
                             {region} 일대
                         </Col>
@@ -64,7 +64,7 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                 {/*-----3-----*/}
                 <Col span={4} style={{
                     ...columnStyle,
-                    borderBottom : "solid 1px black"
+                    borderBottom: "solid 1px black"
                 }}>
                     <Row>
                         <Col span={4} style={{
@@ -73,7 +73,7 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                             봉사날짜
                         </Col>
                         <Col span={8} style={{
-                            color : "rgb(147,147,147)"
+                            color: "rgb(147,147,147)"
                         }}>
                             {dov}
                         </Col>
@@ -83,7 +83,7 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                 {/*-----4-----*/}
                 <Col span={6} style={{
                     ...columnStyle,
-                    borderBottom : "solid 1px black"
+                    borderBottom: "solid 1px black"
                 }}>
                     <Row>
                         <Col span={4} style={{
@@ -92,7 +92,7 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                             신청마감
                         </Col>
                         <Col span={8} style={{
-                            color : "rgb(147,147,147)"
+                            color: "rgb(147,147,147)"
                         }}>
                             {dod}
                         </Col>
@@ -102,8 +102,8 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                 {/*-----5-----*/}
                 <Col span={6} style={{
                     ...columnStyle,
-                    borderLeft : "solid 1px black",
-                    borderBottom : "solid 1px black"
+                    borderLeft: "solid 1px black",
+                    borderBottom: "solid 1px black"
                 }}>
                     <Row>
                         <Col span={4} style={{
@@ -112,7 +112,7 @@ const ReadNoticeForm = ({title, nor, region, dov, tov, dod}) => {
                             시작시간
                         </Col>
                         <Col span={8} style={{
-                            color : "rgb(147,147,147)"
+                            color: "rgb(147,147,147)"
                         }}>
                             {tov}
                         </Col>
