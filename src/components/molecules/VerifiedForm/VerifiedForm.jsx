@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @Date : 2021-03-08 15:18:31 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-28 02:33:08
+ * @Last Modified time: 2021-03-30 16:51:18
  */
 
 import React from "react"
@@ -23,14 +23,14 @@ const VerifiedForm = ({ minutes, seconds, email, editProfileFunction, isInputAut
 
             <Col span={10} align={'center'} style={{ backgroundColor: "#ffffff ", height: "inherit" }}>
                 <Row align={'initial'} justify={"space-between"}>
-                    <Col offset={0.25} xs={6} sm={7} md={8} lg={8} xl={8} xxl={9} span={9} justify={"start"} align={"center"} >
+                    <Col offset={0.25} xs={8} sm={8} md={8} lg={8} xl={8} xxl={9} span={9} justify={"start"} align={"center"} >
                         <Row align={"center"} >
                             <Col span={4}>
                                 <TextBox color={"black"} border
                                     radius={'22px'} align={'center'} placeholder={'이메일을 입력해 주세요'}
                                     onChange={editProfileFunction.email} value={email} />
                             </Col>
-                            <Col xs={4} sm={12} md={0} lg={3} xl={4} xxl={4} justify={"start"} align={"center"} style={{ paddingLeft: '0.8rem' }}>
+                            <Col xs={0} sm={6} md={5} lg={5} xl={5} xxl={5} justify={"start"} align={"center"} style={{ paddingLeft: '0.8rem' }}>
                                 <Typo color={'#707070'} size={'0.8rem'}>이메일을 입력해 주세요</Typo>
                             </Col>
                         </Row>
