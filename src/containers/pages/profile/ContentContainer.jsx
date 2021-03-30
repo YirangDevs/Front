@@ -6,18 +6,16 @@
  */
 
 
+
 import React, { useEffect, useState } from 'react'
 import ProfileContent from "../../../components/organisms/profile/Content"
 import NotificationPool from '../../redux/components/NotificationPool'
 
-//유저관련
 import getMyInfo from "../../../service/api/get/get_my_info"
 import deleteMyInfo from "../../../service/api/delete/delete_myInfo"
 import LogoutProcess from '../../../service/transaction/logout_process'
 
-
 //프로필 사진
-import DefaultImg from "../../../img/ProfileDefaultImg.png"
 import getMyImg from "../../../service/api/get/get_my_img"
 import getMyImgType from "../../../service/api/get/get_my_img_type"
 import editMyImgType from "../../../service/api/put/edit_my_img_type"
@@ -37,38 +35,47 @@ import postVerifyCertificationEmail from "../../../service/api/post/post_verify_
 import EditMyEmail from '../../../service/api/put/edit_My_email'
 
 //관심지역
-import editMyInfo from "../../../service/api/put/edit_My_info"
 import editMyInfoFirstRegion from "../../../service/api/put/edit_my_info_firstRegion"
-import editMyInfoSecondRegion from "../../../service/api/put/edit_my_info_sex"
-import { MdPhoneBluetoothSpeaker } from 'react-icons/md'
+import editMyInfoSecondRegion from "../../../service/api/put/edit_my_info_secondRegion"
 
 
 
 //username = 닉네임
 //realname = 실명
 
-const ContentContainer = (
-    props
-) => {
+
+const ContentContainer = ({
+    role,
+    email,
+    firstRegion,
+    imgUrl,
+    phone,
+    realname,
+    secondRegion,
+    sex,
+    username,
+    emailValidation,
+    SET_USER
+}) => {
 
     //userProfile 
     const [userProfile, setUserProfile] = useState({
         //redux 값
-        role: props.role,
-        email: props.email,
-        firstRegion: props.firstRegion,
-        imgUrl: props.imgUrl,
+        role: role,
+        email: email,
+        firstRegion: firstRegion,
+        imgUrl: imgUrl,
         isReceivingEmail: "",
-        phone: props.phone,
-        realname: props.realname,
-        secondRegion: props.secondRegion,
-        sex: props.sex,
-        username: props.username,
-        validation: props.emailValidation,
+        phone: phone,
+        realname: realname,
+        secondRegion: secondRegion,
+        sex: sex,
+        username: username,
+        emailValidation: emailValidation,
         imgType: "",
     })
-    const { role, email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
-        sex, username, validation, imgType, } = userProfile;
+
+
 
 
     /**
@@ -76,8 +83,9 @@ const ContentContainer = (
     useEffect(() => {
         getMyInfo()
             .then((res) => {
-                console.log('userInfo')
+                console.log('userInfo1')
                 console.log(res)
+
                 setUserProfile((state) => ({
                     ...state,
                     ...res,
@@ -94,6 +102,7 @@ const ContentContainer = (
                 setUserProfile((state) => ({ ...state, ...res }))
             })
 
+
         getEmailValidation()
             .then((res) => {
                 console.log("vaildatedEmail")
@@ -102,24 +111,20 @@ const ContentContainer = (
             })
     }, [])
 
-    useEffect(() => {
-        console.log("ㅗ", userProfile)
-    }, [userProfile])
-
     /**
      * @description redux 유저 정보 세팅   */
     useEffect(() => {
-        props.SET_USER({
+        SET_USER({
             user: {
-                username: username,
-                email: email,
-                emailValidation: validation,
-                firstRegion: firstRegion,
-                secondRegion: secondRegion,
-                imgUrl: imgUrl
+                username: userProfile.username,
+                email: userProfile.email,
+                emailValidation: userProfile.emailValidation,
+                firstRegion: userProfile.firstRegion,
+                secondRegion: userProfile.secondRegion,
+                imgUrl: userProfile.imgUrl
             }
         })
-    }, [username, email, validation, firstRegion, secondRegion, imgUrl])
+    }, [userProfile.username, userProfile.email, userProfile.emailValidation, userProfile.firstRegion, userProfile.secondRegion, userProfile.imgUrl, SET_USER])
 
     /**
    * @description sex value Setting  */
@@ -132,7 +137,7 @@ const ContentContainer = (
 * @description IsReceivingEmail value Setting  */
     const settingIsReceivingEmail = (YoNData) => {
         if (YoNData === "수신") return "YES"
-        if (YoNData === "수신안함") return "NO"
+        if (YoNData === "비수신") return "NO"
     }
 
 
@@ -384,6 +389,7 @@ const ContentContainer = (
                     return customImgPostForm.close()
             })
     }
+
 
 
     /**

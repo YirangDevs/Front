@@ -10,7 +10,7 @@ const mapStateToProps = (state, props) => {
         phone: state.user_reducer.phone,
         sex: state.user_reducer.sex,
         email: state.user_reducer.email,
-        name: state.user_reducer.username,
+        name: state.user_reducer.realname,
         emailValidation: state.user_reducer.emailValidation,
         logined: state.login_reducer.logined,
     }

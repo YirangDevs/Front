@@ -6,7 +6,7 @@
  */
 
 
-import React, { version } from "react"
+import React from "react"
 import MypageNav from "../../../molecules/MypageNav"
 import UserCard from "../../../../containers/redux/components/UserCard"
 import Typo from "../../../atoms/Typography"
@@ -88,22 +88,22 @@ const ProfileContent = ({
 }) => {
     console.log(userProfile)
     const { role, email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
-        sex, username, validation, imgType, } = userProfile;
+        sex, username, emailValidation, } = userProfile;
 
     const settingSex = (sex) => {
         if (sex === 'FEMALE') return '여성';
         if (sex === 'MALE') return '남성';
     }
     const settingIsReceivingEmail = (isReceivingEmail) => {
-        if (isReceivingEmail == 'YES') return '수신';
-        if (isReceivingEmail == 'NO') return '비수신';
+        if (isReceivingEmail === 'YES') return '수신';
+        if (isReceivingEmail === 'NO') return '비수신';
     }
     // const settingIsReceivingEmail = (isReceivingEmail) => {
 
     //     if (isReceivingEmail === 'YES') return '수신';
     //     if (isReceivingEmail === 'NO') return '수신안함';
     // }
-    {/* xs={ } sm={ } md ={ } lg={ } xl={ } xxl ={ } */ }
+    /* xs={ } sm={ } md ={ } lg={ } xl={ } xxl ={ } */
     return (
         <>
             {/* SECTION Left */}
@@ -124,7 +124,7 @@ const ProfileContent = ({
                             <Col span={12}>
                                 <Typo size={"1.1rem"} opacity={'0.5'}>
                                     {
-                                        (validation === "YES") ? `${email} >` : `email을 인증해 주세요`
+                                        (emailValidation === "YES") ? `${email} >` : `email을 인증해 주세요`
                                     }
                                 </Typo>
                             </Col>
@@ -436,7 +436,7 @@ const ProfileContent = ({
                         {/* PIN 이메일 */}
                         <Divider color={'#000000'} marginTop={'0px'} marginBottom={'0px'} borderWidth={'1.8px'} ></Divider>
                         {
-                            (validation === "NO") ?
+                            (emailValidation === "NO") ?
                                 <>
                                     {/* NOTE  인증안댄경우*/}
                                     <Row justify={"space-between"} style={{ height: "50px" }}>

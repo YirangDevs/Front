@@ -1,4 +1,3 @@
-
 import { connect } from "react-redux"
 import UserCard from "../../../../components/molecules/UserCard"
 const mapStateToProps = (state) => {

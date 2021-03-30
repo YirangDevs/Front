@@ -3,9 +3,10 @@ import React from "react";
 import Senior from "../pages/Seniors/"
 import NotificationPool from "../containers/redux/components/NotificationPool/";
 
-const SeniorRouter = ({security, role}) => {
+const SeniorRouter = ({security, userInfo}) => {
     const history = useHistory()
-    if(security.indexOf(role)!==-1){
+    if(security.indexOf(userInfo.role)!==-1){
+
         return <Senior/>
     }
     history.push("/")
