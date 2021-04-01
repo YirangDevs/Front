@@ -2,20 +2,27 @@
  * @author :  chaeeun
  * @date : 2021-03-14 02:40:15
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-30 20:59:16
+ * @Last Modified time: 2021-04-02 01:20:03
  */
 
-import React from 'react'
+import React, { memo } from 'react'
+
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import Button from "../../../atoms/Button"
 import TableBox from '../../../atoms/TableBox'
+
 const DeleteCanCelApplyForm = ({ manage_body_Lists, viewNoticeOnclick, cancelApplyOnclick }) => {
 
 
     return (
         <>
-            <Row gutter={[7, 0]}>
+            <Row gutter={[7, 0]} style={{
+                maxHeight: '600px',
+                overflow: 'scroll',
+
+            }}>
+
                 <Col span={12}>
                     {
                         (manage_body_Lists).map((lists) => {
@@ -34,7 +41,6 @@ const DeleteCanCelApplyForm = ({ manage_body_Lists, viewNoticeOnclick, cancelApp
                                         <Col xs={9} sm={9} md={9} lg={9} span={9}>
                                             <TableBox headList={["봉사 일시", "장소", "매칭상태", "신청 날짜"]} bodyList={[data]} border={"top"}></TableBox>
                                         </Col>
-
                                         <Col xs={3} sm={3} md={3} lg={3} span={3}>
                                             <Row gutter={[0.5, 5]}>
                                                 <Col xs={12} span={12}>
@@ -53,7 +59,6 @@ const DeleteCanCelApplyForm = ({ manage_body_Lists, viewNoticeOnclick, cancelApp
                     }
                 </Col>
             </Row>
-
         </>
     )
 }

@@ -2,7 +2,7 @@
  * @Author : chaeeun
  * @Date : 2020-12-30 18:37:07
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-30 21:04:25
+ * @Last Modified time: 2021-04-02 01:15:50
  */
 
 import React from 'react'
@@ -77,6 +77,7 @@ const ModalContent = styled.div`
 padding: 24px;
 width : inherit;
 box-sizing : border-box;
+
 `
 
 

@@ -15,6 +15,11 @@
      }).then(res=>{
          if(res.status===500) throw Promise.resolve({errorCode: 500, errorName: "Server error"})
          if(!res.ok) throw res.json()
+         NotificationPool.api.add({
+            title : "봉사 신청취소가 완료되었습니다.",
+            content : "봉사 신청 내역을 다시 확인해 주세요",
+            status : "error"
+        })
      }).catch(async(error)=>{
          let err =  await error.then()
          NotificationPool.api.add({

@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 17:03:55
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-30 20:57:24
+ * @Last Modified time: 2021-04-01 23:53:31
  */
 
 import React, { useEffect, useState } from 'react'
@@ -13,9 +13,10 @@ import deleteCancelApply from "../../../service/api/delete/delete_cancel_apply"
 
 const ContentContainer = () => {
 
-    const [myApplicants, setMyApplicants] = useState([])
-    const [numMyApplicants, setNumMyApplicants] = useState()
     const [selectedNotice, setSelectedNotice] = useState({})
+
+    const [currentApplicants, setCurrentApplicant] = useState([])
+    const [pastApplicants, setPastApplicant] = useState([])
 
     /**
      * @description 신청 봉사 세팅  */
@@ -27,28 +28,41 @@ const ContentContainer = () => {
                 console.log(res.Applicants.length)
                 res.Applicants.forEach((lists) => {
                     console.log(lists)
-                    setMyApplicants((state) => ([
-                        ...state,
+                    let certainDate;
+                    const dateArr = settingDate(lists.dtov).split("-")
+                    certainDate = new Date(dateArr[0], dateArr[1] - 1, dateArr[2])
+                    if (certainDate < new Date()) {
+                        setCurrentApplicant((state) => ([...state,
                         {
-                            date: settingDate(lists.dtoa),
+                            date: settingDate(lists.dtov),
                             region: lists.region,
                             result: lists.matchingState,
-                            applyDate: settingDate(lists.dtov),
+                            applyDate: settingDate(lists.dtoa),
                             applyId: lists.applyId
-                        }
-                    ]))
+                        }]))
+                        //console.log(i.date)
+                        console.log("cer<Today")
+                    }
+                    if (certainDate > new Date()) {
+                        setPastApplicant((state) => ([...state, {
+                            date: settingDate(lists.dtov),
+                            region: lists.region,
+                            // type: lists.type,
+                            type: "말벗봉사",
+                            applyDate: settingDate(lists.dtoa),
+                        }]))
+
+                        console.log("cer<Today")
+                    }
+
                 })
-                setNumMyApplicants(res.Applicants.length)
+
+
             })
             .catch((err) => { console.log(err) })
     }, [])
 
 
-    useEffect(() => {
-
-        console.log("신청내역")
-        console.log(myApplicants)
-    }, [myApplicants])
 
 
 
@@ -118,7 +132,8 @@ const ContentContainer = () => {
    @btnValue 신청취소
    @detail  확인 한번 더하기 
    */
-    const cancelApplyOnclick = () => {
+    const cancelApplyOnclick = (applyId) => {
+        setSelectedNotice((state) => ({ ...state, applyId: applyId }))
         confirmApplyCancelModal.show()
     }
 
@@ -128,17 +143,36 @@ const ContentContainer = () => {
        @btnValue 확인
        @detail  신청  [DELETE] 하기 -> applyCancel modal 닫기 */
     const okCancelConfirmOnclick = () => {
-        deleteCancelApply(selectedNotice.id)
+        deleteCancelApply(selectedNotice.applyId)
             .then((res) => {
                 console.log(res);
                 getMyApplicants()
                     .then((res) => {
                         console.log(res)
                         console.log(res.Applicants)
-                        setMyApplicants((state) => ({
-                            ...state,
-                            ...res.Applicants
-                        }))
+                        console.log(res.Applicants.length)
+
+                        // TODO 주석처리
+                        setCurrentApplicant([])
+
+                        res.Applicants.forEach((lists) => {
+                            console.log(lists)
+                            let certainDate;
+                            const dateArr = settingDate(lists.dtov).split("-")
+                            certainDate = new Date(dateArr[0], dateArr[1] - 1, dateArr[2])
+                            if (certainDate < new Date()) {
+                                setCurrentApplicant((state) => ([...state,
+                                {
+                                    date: settingDate(lists.dtov),
+                                    region: lists.region,
+                                    result: lists.matchingState,
+                                    applyDate: settingDate(lists.dtoa),
+                                    applyId: lists.applyId
+                                }]))
+                                //console.log(i.date)
+                                console.log("cer<Today")
+                            }
+                        })
                     })
                     .catch((err) => { console.log(err) })
 
@@ -182,12 +216,12 @@ const ContentContainer = () => {
     return (
         <>
             <MyPageContent
-                myApplicants={myApplicants}
+
+                currentApplicants={currentApplicants}
+                pastApplicants={pastApplicants}
                 selectedNotice={selectedNotice}
                 settingDate={settingDate}
                 settingTime={settingTime}
-
-                numMyApplicants={numMyApplicants}
 
                 isSelectedNoticeVisible={isSelectedNoticeVisible}
                 selectedNoticeModal={selectedNoticeModal}

@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-30 21:13:08
+ * @Last Modified time: 2021-04-01 21:34:53
  */
 
 import React from 'react'
@@ -29,7 +29,9 @@ const MyPageContent = ({
     role,
 
 
-    myApplicants,
+    currentApplicants,
+    pastApplicants,
+
     selectedNotice,
     settingDate,
     settingTime,
@@ -54,19 +56,16 @@ const MyPageContent = ({
     viewAllApplyOnclick,
 }) => {
 
-    console.log(myApplicants)
 
-    const manage_body_Lists = myApplicants
-
-
-
-    const check_hard_body = [
-        { date: '2021-07-01', region: '달서구', tpye: '재가봉사', refer: "참고사항" },
-        { date: '2021-07-03', region: '서구', tpye: '재가봉사', refer: "-" }
-    ]
+    const manage_body_Lists = currentApplicants.slice(0, 2)
+    console.log(manage_body_Lists.length)
 
 
-    const check_body_Lists = check_hard_body
+    const past_hard_body = pastApplicants
+    console.log('pastApplicants')
+    console.log(pastApplicants)
+
+    const past_body_Lists = past_hard_body
 
 
 
@@ -130,11 +129,19 @@ const MyPageContent = ({
                     <Col xs={12} sm={12} md={7.5} span={7.5} offset={0.5}>
                         <Row gutter={[0, 0]} justify={"space-between"} style={{ margin: "2.5rem 0 0 0 " }} >
                             <Col span={6}>
-                                <Typo size={"1.2rem"} weight={"500"} > 신청봉사 관리</Typo>
+                                <Typo size={"1.2rem"} weight={"500"} > 신청봉사내역</Typo>
                             </Col>
-                            <Col span={6} justify={"flex-end"}>
-                                <Typo cursor={'pointer'} size={"1.1rem"} weight={"500"} onClick={viewAllApplyOnclick}>  전체 신청 보기 {'>'}</Typo>
-                            </Col>
+                            {
+                                (currentApplicants.length > 2) ?
+                                    <Col span={6} justify={"flex-end"} style={{
+                                        paddingRight: ' 5px'
+                                    }}>
+                                        <Typo cursor={'pointer'} size={"1.1rem"} weight={"500"} onClick={viewAllApplyOnclick}>  전체 신청 보기 {'>'}</Typo>
+                                    </Col>
+                                    :
+                                    null
+                            }
+
                         </Row>
 
                         <Row gutter={[0, 0]}>
@@ -143,6 +150,7 @@ const MyPageContent = ({
                                     (manage_body_Lists).map((lists) => {
                                         // const noticeId = lists.noticeId
                                         const noticeId = 546
+                                        const applyId = lists.applyId
                                         let data = Object.assign({
                                             serviceDate: lists.date,
                                             region: lists.region,
@@ -154,7 +162,7 @@ const MyPageContent = ({
                                             <>
                                                 <Row gutter={[4, 0]} align="center">
                                                     <Col xs={9} sm={9} md={9} lg={9} span={9}>
-                                                        <TableBox headList={["봉사 일시", "장소", "매칭상태", "신청 날짜"]} bodyList={[data]} border={"top"}></TableBox>
+                                                        <TableBox headList={["봉사일시", "장소", "매칭상태", "신청날짜"]} bodyList={[data]} border={"top"}></TableBox>
                                                     </Col>
 
                                                     <Col xs={3} sm={3} md={3} lg={3} span={3}>
@@ -164,7 +172,7 @@ const MyPageContent = ({
                                                             </Col>
 
                                                             <Col xs={12} span={12}>
-                                                                <Button block size="large" value="신청취소" types={"primary"} onClick={cancelApplyOnclick} ></Button>
+                                                                <Button block size="large" value="신청취소" types={"primary"} onClick={() => cancelApplyOnclick(applyId)} ></Button>
                                                             </Col>
                                                         </Row>
                                                     </Col>
@@ -177,8 +185,8 @@ const MyPageContent = ({
 
 
                             {/* NOTE modal */}
-                            <Modal headerClose title={"ddmddk"} closable={true} headerClose visible={isSelectedNoticeVisible}
-                                maskClosable={true} onClose={selectedNoticeModal.close} size={9} xs={9} sm={8} md={7} lg={7} xl={7} xxl={8}>
+                            <Modal visible={isSelectedNoticeVisible} title={"공고글 보기"}
+                                closable={true} maskClosable={true} onClose={selectedNoticeModal.close} size={10}>
                                 <NoticeModal selectedNotice={selectedNotice} />
                             </Modal>
 
@@ -187,9 +195,9 @@ const MyPageContent = ({
                                 <DeleteCanCelApplyForm username={username} okCanCelConfirmOnclick={okCancelConfirmOnclick} cancelCanCelConfirmOnclick={cancelCancelConfirmOnclick} />
                             </Modal>
 
-                            <Modal headerClose visible={isApplyViewAllVisible}
-                                maskClosable={true} onClose={confirmApplyViewAllModal.close} size={8} xs={9} sm={9} md={9} lg={9} xl={9} xxl={9}>
-                                <AllApplicableModal manage_body_Lists={manage_body_Lists} viewNoticeOnclick={viewNoticeOnclick} cancelApplyOnclick={cancelApplyOnclick} />
+                            <Modal visible={isApplyViewAllVisible}
+                                maskClosable={true} closable={true} title={"신청봉사 전체보기"} onClose={confirmApplyViewAllModal.close} size={8} xs={9} sm={9} md={9} lg={9} xl={9} xxl={9}>
+                                <AllApplicableModal manage_body_Lists={currentApplicants} viewNoticeOnclick={viewNoticeOnclick} cancelApplyOnclick={cancelApplyOnclick} />
                             </Modal>
 
 
@@ -197,17 +205,23 @@ const MyPageContent = ({
                                 <Col span={6}>
                                     <Typo size={"1.2rem"} weight={"500"} > 봉사 기록 조회</Typo>
                                 </Col>
-                                <Col span={6} justify={"flex-end"}>
-                                    <Typo size={"1.1rem"} weight={"500"} > 전체 기록 보기 {'>'}</Typo>
-                                </Col>
+                                {
+                                    (past_body_Lists.length > 2) ?
+                                        <Col span={6} justify={"flex-end"}>
+                                            <Typo size={"1.1rem"} weight={"500"} > 전체 기록 보기 {'> '}</Typo>
+                                        </Col>
+                                        :
+                                        null
+                                }
                             </Row>
 
-                            <Row gutter={[4, 5]} align="center" >
+                            <Row gutter={[4, 5]} align="center" style={{
+
+                            }} >
                                 <Col xs={8} sm={8} md={8} lg={7} xl={6} xxl={5} justify={"space-between"} align={"center"} style={{
-                                    height: "3.4rem",
+                                    height: "43px",
                                     backgroundColor: "#f5f5f5",
                                     borderBottom: "1px solid #ccd4e0",
-
                                     borderTop: " 2px solid #000000",
                                 }}>
                                     <Row gutter={[0, 0]} justify={"space-around"} style={{
@@ -221,8 +235,9 @@ const MyPageContent = ({
                                         </Col>
                                     </Row>
                                 </Col>
+
                                 <Col xs={4} sm={4} md={4} lg={5} xl={4} xxl={5} span={5} justify={"center"} align={"center"} style={{
-                                    height: "3.4rem",
+                                    height: "43px",
                                     backgroundColor: "#f5f5f5",
                                     borderLeft: " 1.2px solid #000000",
                                     borderBottom: "1px solid #ccd4e0",
@@ -243,7 +258,7 @@ const MyPageContent = ({
                             </Row>
 
                             <Row gutter={[0, 0]} align="center" style={{ margin: '0.8rem 0 0 0 ' }}>
-                                <TableBox headList={["봉사일시", "장소", "봉사분야", "기타"]} bodyList={check_body_Lists} border={"top"}></TableBox>
+                                <TableBox headList={["봉사일시", "장소", "봉사분야", "신청날짜"]} bodyList={past_body_Lists} border={"top"}></TableBox>
                             </Row>
                         </Row>
                     </Col>
