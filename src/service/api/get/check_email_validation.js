@@ -3,7 +3,7 @@
  * Email: yongwon0824@naver.com
  */
 
-import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+import NotificationPool from "../../../containers/redux/components/NotificationPool";
 
 /**
  * @description 할당된 모든 구역 받아오기

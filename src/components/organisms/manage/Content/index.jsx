@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-24 04:23:09
+ * @Last Modified time: 2021-03-18 19:57:05
  */
 import React from "react"
 import Row from "../../../../layout/Grid/Row"
@@ -14,7 +14,7 @@ import Button from '../../../atoms/Button'
 import Modal from '../../../atoms/Modal'
 import ReadForm from '../ReadForm'
 import EditForm from '../EditForm'
-import UserInfo from "../../../../containers/redux/components/UserInfo"
+import UserCard from "../../../../containers/redux/components/UserCard"
 
 
 
@@ -145,7 +145,7 @@ const ManageContent = ({
                                 <MenuNav />
                             </Col>
                             <Col span={12}>
-                                <UserInfo ></UserInfo>
+                                <UserCard ></UserCard>
                             </Col>
                         </Row>
                     </Col>

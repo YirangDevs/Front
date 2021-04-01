@@ -1,6 +1,6 @@
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 /**
- * @description 본인에게 할당된 지역 리스트로 select box 구성
+ * @description 내정보 받아오기
  * @method GET
  * @request @headers YAT token
  */

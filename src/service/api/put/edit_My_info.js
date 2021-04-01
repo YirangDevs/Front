@@ -38,3 +38,5 @@
  }
  
  export default editMyInfo
+
+ //수정 다하면 지우기 

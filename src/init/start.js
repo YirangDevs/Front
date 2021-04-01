@@ -25,13 +25,14 @@ export default () =>{
                     let claim = YAT.decode(token)
                     store.dispatch(ACTION.SET_USER__ACTION_FUNC({
                         user: {
+                            realname : userInfo.realname,
                             username : userInfo.username,
                             userId : claim.userId,
                             role : roleInfo.authority,
                             email : userInfo.email,
                             sex : userInfo.sex,
                             phone : userInfo.phone,
-                            emailValidation : emailValidation.validation
+                            emailValidation : emailValidation.validation,
                         }
                     }))
 

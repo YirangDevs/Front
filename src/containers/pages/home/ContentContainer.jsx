@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useEffect, useState} from "react"
+import React, {memo, useCallback, useEffect, useRef, useState} from "react"
 import HomeContent from "../../../components/organisms/home/Content";
 import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
 import getNoticeNum from "../../../service/api/get/get_notice_num";
@@ -16,6 +16,7 @@ const ContentContainer = ({logined}) => {
     const [bodyList, setBodyList] = useState([])
     const [noticeNum, setNoticeNum] = useState(0)
     const [currentNotice, setCurrentNotice] = useState(false)
+    const isInitialMount = useRef(true);
 
     const fakeLoginList = {};
 
@@ -103,7 +104,14 @@ const ContentContainer = ({logined}) => {
     }
 
     useEffect(()=>{
-        document.documentElement.scrollTo(0,document.documentElement.scrollHeight)
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+        }else{
+            document.documentElement.scrollTo(0,document.documentElement.scrollHeight)
+            console.log("currentNotice",currentNotice)
+        }
+
+
     }, [currentNotice])
 
     useEffect(()=>{
@@ -141,7 +149,7 @@ const ContentContainer = ({logined}) => {
 
             </HomeContent>
                     <Modal title={currentNotice.title} size={12} xxl={8} xl={8} lg={10} md={10} sm={11} xs={11} visible={currentNotice.applyVisible} onClose={closeApplyModal} closable>
-                        <ApplyForm dov={currentNotice.dov} nor={currentNotice.nor} region={currentNotice.region}>
+                        <ApplyForm id={currentNotice.id} dov={currentNotice.dov} nor={currentNotice.nor} region={currentNotice.region}>
 
                         </ApplyForm>
                     </Modal>

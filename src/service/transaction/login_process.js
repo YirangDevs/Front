@@ -22,27 +22,27 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
                 throw {error : "Kakao AccessToken not exist"}
             }
         })
-        .then(async(YIRANG_ACCESS_TOKEN)=>{
-            YIRANG_ACCESS_TOKEN = YIRANG_ACCESS_TOKEN.split(" ")[1]
+        .then(async(res)=>{
+            let data = await res[0].then()
+            let header = res[1].get("Authorization")
+            let YIRANG_ACCESS_TOKEN = header.split(" ")[1]
             localStorage.setItem("YAT",YIRANG_ACCESS_TOKEN)
             let payload = YAT.decode(YIRANG_ACCESS_TOKEN)
             let roleInfo = await getMyRole()
             let userInfo = await getMyInfo()
             let emailValidation = await checkEmailValidation()
-            console.log("userInfo : ", userInfo)
-            console.log("payload : ", payload)
             let result = {
+                realname : userInfo.realname,
                 username : userInfo.username,
                 userId : payload.userId,
                 role : roleInfo.authority,
                 email : userInfo.email,
                 sex : userInfo.sex,
                 phone : userInfo.phone,
-                emailValidation : emailValidation.validation
+                emailValidation : emailValidation.validation,
+                ...data
             }
-            console.log("result", result)
             resolve(result)
-            return YIRANG_ACCESS_TOKEN
         })
             .catch(error=>{
             console.log(error)

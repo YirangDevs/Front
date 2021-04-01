@@ -1,14 +1,11 @@
 import { connect } from "react-redux"
-import Content from "../../../../components/organisms/profile/Content"
-import ACTION from "../../../../store/actions/action"
-
+import UserCard from "../../../../components/molecules/UserCard"
 const mapStateToProps = (state) => {
     return {
         username: state.user_reducer.username,
         email: state.user_reducer.email,
-
-
+        emailValidation: state.user_reducer.emailValidation,
     }
 }
 
-export default connect(mapStateToProps, null)(Content)
+export default connect(mapStateToProps, null)(UserCard)
