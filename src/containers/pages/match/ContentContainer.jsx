@@ -15,7 +15,7 @@ const ContentContainer = () => {
 
     useEffect(()=>{
         getActivityByPage(0).then((data)=>{
-            let activities = {...data}
+            let {activities} = {...data}
             activities = activities.map((activity)=>(
                 {
                     region : activity.region,
@@ -31,7 +31,7 @@ const ContentContainer = () => {
 
     useEffect(()=>{
         getActivityNum().then((data)=>{
-            const {totalActivityNums} = data
+            const {totalActivityNums} = {...data}
             setPageNum(totalActivityNums)
         }).catch(err=>console.log(err))
 
