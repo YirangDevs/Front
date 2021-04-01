@@ -13,6 +13,9 @@ import NotificationPool from "../../../containers/redux/components/NotificationP
 const getActivityNum = ()=>{
     return fetch(_.SERVER_URL + ":8080/v1/apis/manage/activities/nums", {
         method: 'GET',
+        headers: {
+            'Authorization': "Bearer " + localStorage.getItem("YAT")
+        }
     }).then(res=>{
         if(res.status===500) throw Promise.resolve({errorCode: 500, errorName: "Server error"})
         if(!res.ok) throw res.json()
