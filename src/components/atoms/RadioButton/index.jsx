@@ -10,6 +10,7 @@ const RadioGroup = styled.div`
     justify-content : ${props => (props.justify) || 'space-around'};
 `
 const RadioLabel = styled.label`
+
 ${props => {
         switch (props.size) {
             case "small":
@@ -27,7 +28,6 @@ ${props => {
             `
         }
     }}
-    
     color: #707070;
 `
 

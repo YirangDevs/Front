@@ -46,10 +46,10 @@ ${props => {
  * @param radius radius 추가 
  * @param disabled DateSelector 비활성화
  */
-const DateSelector = ({ block, size, defaultValue, onChange, border, radius, disabled }) => (
+const DateSelector = ({ min, max, block, size, defaultValue, onChange, border, radius, disabled }) => (
 
     <>
-        <DateForm block={block} size={size} border={border} radius={radius} onChange={onChange} defaultValue={defaultValue} disabled={disabled}></DateForm>
+        <DateForm min={min} max={max} block={block} size={size} border={border} radius={radius} onChange={onChange} defaultValue={defaultValue} disabled={disabled}></DateForm>
     </>
 )
 

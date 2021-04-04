@@ -18,7 +18,7 @@
          NotificationPool.api.add({
             title : "봉사 신청취소가 완료되었습니다.",
             content : "봉사 신청 내역을 다시 확인해 주세요",
-            status : "error"
+            status : "success"
         })
      }).catch(async(error)=>{
          let err =  await error.then()

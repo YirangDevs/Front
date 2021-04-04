@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 17:03:55
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-01 23:53:31
+ * @Last Modified time: 2021-04-03 13:09:05
  */
 
 import React, { useEffect, useState } from 'react'
@@ -10,12 +10,15 @@ import MyPageContent from "../../redux/components/Mypage"
 import getMyApplicants from "../../../service/api/get/get_my_applicants"
 import getNotice from "../../../service/api/get/get_notice"
 import deleteCancelApply from "../../../service/api/delete/delete_cancel_apply"
+import NotificationPool from "../../../containers/redux/components/NotificationPool"
 
 const ContentContainer = () => {
 
+    //봉사 선택한거 보여주는거 
     const [selectedNotice, setSelectedNotice] = useState({})
-
+    //신청봉사 
     const [currentApplicants, setCurrentApplicant] = useState([])
+    //과거봉사
     const [pastApplicants, setPastApplicant] = useState([])
 
     /**
@@ -26,42 +29,32 @@ const ContentContainer = () => {
                 console.log(res)
                 console.log(res.Applicants)
                 console.log(res.Applicants.length)
+
+                // FIXME 봉사 받아오는거 2개로 나뉜다
                 res.Applicants.forEach((lists) => {
                     console.log(lists)
-                    let certainDate;
-                    const dateArr = settingDate(lists.dtov).split("-")
-                    certainDate = new Date(dateArr[0], dateArr[1] - 1, dateArr[2])
-                    if (certainDate < new Date()) {
-                        setCurrentApplicant((state) => ([...state,
-                        {
-                            date: settingDate(lists.dtov),
-                            region: lists.region,
-                            result: lists.matchingState,
-                            applyDate: settingDate(lists.dtoa),
-                            applyId: lists.applyId
-                        }]))
-                        //console.log(i.date)
-                        console.log("cer<Today")
-                    }
-                    if (certainDate > new Date()) {
-                        setPastApplicant((state) => ([...state, {
-                            date: settingDate(lists.dtov),
-                            region: lists.region,
-                            // type: lists.type,
-                            type: "말벗봉사",
-                            applyDate: settingDate(lists.dtoa),
-                        }]))
 
-                        console.log("cer<Today")
-                    }
+                    setCurrentApplicant((state) => ([...state,
+                    {
+                        date: settingDate(lists.dtov),
+                        region: lists.region,
+                        result: lists.matchingState,
+                        applyDate: settingDate(lists.dtoa),
+                        applyId: lists.applyId
+                    }]))
+
+                    setPastApplicant((state) => ([...state, {
+                        serviceDate: settingDate(lists.dtov),
+                        region: lists.region,
+                        // type: lists.type,
+                        type: "말벗봉사",
+                        applyDate: settingDate(lists.dtoa),
+                    }]))
 
                 })
-
-
             })
             .catch((err) => { console.log(err) })
     }, [])
-
 
 
 
@@ -90,7 +83,7 @@ const ContentContainer = () => {
 
 
 
-    // SECTION  manage Applicants
+    // SECTION  신청봉사 내역
 
     //true : 선택 게시물  modal 열기 false : 선택 게시물  모달   modal  닫기
     const [isSelectedNoticeVisible, setSelectedNoticeVisible] = useState(false)
@@ -157,21 +150,15 @@ const ContentContainer = () => {
 
                         res.Applicants.forEach((lists) => {
                             console.log(lists)
-                            let certainDate;
-                            const dateArr = settingDate(lists.dtov).split("-")
-                            certainDate = new Date(dateArr[0], dateArr[1] - 1, dateArr[2])
-                            if (certainDate < new Date()) {
-                                setCurrentApplicant((state) => ([...state,
-                                {
-                                    date: settingDate(lists.dtov),
-                                    region: lists.region,
-                                    result: lists.matchingState,
-                                    applyDate: settingDate(lists.dtoa),
-                                    applyId: lists.applyId
-                                }]))
-                                //console.log(i.date)
-                                console.log("cer<Today")
-                            }
+                            setCurrentApplicant((state) => ([...state,
+                            {
+                                date: settingDate(lists.dtov),
+                                region: lists.region,
+                                result: lists.matchingState,
+                                applyDate: settingDate(lists.dtoa),
+                                applyId: lists.applyId
+                            }]))
+                            console.log("cer<Today")
                         })
                     })
                     .catch((err) => { console.log(err) })
@@ -209,6 +196,157 @@ const ContentContainer = () => {
     const viewAllApplyOnclick = () => {
         confirmApplyViewAllModal.show()
     }
+    // !SECTION  신청봉사 내역
+
+
+
+
+    // SECTION  봉사 기록 조회
+
+    //필터로걸러진 봉사
+    const [filterApplicants, setFilterApplicants] = useState([])
+
+    //true : 전체 기록 보기 modal false : 전체 기록 보기  modal  닫기
+
+    //TODO 이거 form짜고 false 로  
+    const [isPastViewAllVisible, setPastViewAllVisible] = useState(false)
+
+    const PastViewAllModal = {
+        show: () => setPastViewAllVisible(true),
+        close: () => setPastViewAllVisible(false)
+    }
+
+    /**
+    @description 전체 기록 보기 btn
+    @function buttonOnclick
+    @btnValue 전체 기록 보기
+    @detail  전체 기록 보여주는 modal 열기
+    */
+    const viewAllPastOnclick = () => {
+        PastViewAllModal.show()
+    }
+
+
+    // SECTION  필터
+    const [isPastViewFilterVisible, setPastViewFilterVisible] = useState(false)
+
+    const PastViewFilterModal = {
+        show: () => setPastViewFilterVisible(true),
+        close: () => setPastViewFilterVisible(false)
+    }
+
+    const [filterDate, setFilterDate] = useState({
+        firstDate: null,
+        secondDate: null
+    })
+
+    /**
+            @description First Date onChange
+            @function FirstDateSelector
+            @detail  첫번째 날짜 
+            */
+    const filterFirstDateOnchange = (e) => {
+        console.log("1")
+
+        console.log(e.target.value)
+        const date = e.target.value
+        setFilterDate((state) => ({ ...state, firstDate: date }))
+        console.log(filterDate)
+    }
+
+    /**
+    @description Second Date onChange
+    @function SecondDateSelector
+    @detail  두번쨰 날짜 
+    */
+    const filterSecondDateOnchange = (e) => {
+        console.log("2")
+
+        console.log(e.target.value)
+        const date = e.target.value
+        setFilterDate((state) => ({ ...state, secondDate: date }))
+        console.log(filterDate)
+    }
+
+
+
+
+
+    //type filter 봉사 종류  필터
+    const [filterType, setFilterType] = useState([])
+
+    /**
+        @description type onChange
+        @function checkBoxType
+        @checkBoxOption 노력봉사 , 말벗봉사
+        @detail  checkbox 통해서 filterType 채우기
+        */
+    const FilterTypeOnchange = (e) => {
+        console.log(e.target.checked)
+        console.log(e.target.value)
+        const checkedType = e.target.value
+        if (e.target.checked) {
+            return setFilterType((state) => ([...state, checkedType]))
+        }
+        if (!e.target.checked) {
+            console.log("나가리")
+            return setFilterType(filterType.filter(types => types !== checkedType))
+            // return setFilterType([])
+        }
+    }
+
+
+
+    /**
+    @description 필터로 조회하기
+    @function buttonOnclick
+    @btnValue 조회하기
+    @detail  필터값다 있는지 확인 -> 필터 로 추출 */
+    const viewPassFilterOnclick = () => {
+        console.log(filterDate)
+        console.log(filterType)
+
+        if (filterDate.firstDate && filterDate.secondDate && (filterType.length !== 0)) {
+            console.log(filterType)
+
+            setFilterApplicants(
+                pastApplicants.filter(past =>
+                    filterDate.firstDate <= past.serviceDate && past.serviceDate <= filterDate.secondDate)
+            )
+            if (filterType.length === 1) {
+                console.log("1개")
+                setFilterApplicants(
+                    filterApplicants.filter(past =>
+                        past.type === filterType[0])
+                )
+                console.log(filterApplicants)
+            }
+
+
+            return PastViewFilterModal.show()
+
+
+        }
+        console.log('no')
+        console.log(filterType)
+
+        NotificationPool.api.add({
+            title: "필터가 다 채워져있지 않습니다.",
+            content: `필터를 다시 확인해주세요`,
+            status: "error"
+        })
+    }
+
+
+    // !SECTION  필터
+
+
+
+
+
+    // !SECTION  봉사 기록 조회
+
+
 
 
 
@@ -237,6 +375,26 @@ const ContentContainer = () => {
                 isApplyViewAllVisible={isApplyViewAllVisible}
                 confirmApplyViewAllModal={confirmApplyViewAllModal}
                 viewAllApplyOnclick={viewAllApplyOnclick}
+
+                isPastViewFilterVisible={isPastViewFilterVisible}
+                PastViewFilterModal={PastViewFilterModal}
+                filterApplicants={filterApplicants}
+                isPastViewAllVisible={isPastViewAllVisible}
+                PastViewAllModal={PastViewAllModal}
+                viewAllPastOnclick={viewAllPastOnclick}
+
+                filterDate={filterDate}
+                filterFirstDateOnchange={filterFirstDateOnchange}
+                filterSecondDateOnchange={filterSecondDateOnchange}
+                filterType={filterType}
+                FilterTypeOnchange={FilterTypeOnchange}
+
+                viewPassFilterOnclick={viewPassFilterOnclick}
+
+
+
+
+
             >
             </MyPageContent>
         </>
