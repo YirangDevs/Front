@@ -23,7 +23,7 @@ const UpdateButtonGroup = ({ uploadFile, uploadOnClick, addButton, editDeleteBut
                     <Button types={"primary"} value="수정/삭제" onClick={editDeleteButton} block />
                 </Col>
             </Row>
-            <Modal visible={isModalOpen} onClose={closeModal} size={12}
+            <Modal visible={isModalOpen} onClose={closeModal} size={5}
                 children={<ExcelPreview excelData={excelData} closeModal={closeModal} postSeniorsOnClick={postSeniorsOnClick} />}
                 title="업로드 할 엑셀 데이터" />
         </>

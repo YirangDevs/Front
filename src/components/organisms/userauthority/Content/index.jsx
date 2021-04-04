@@ -82,7 +82,7 @@ const UserAuthorityContent = ({
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={12} xxl={7} xl={6} justify={"center"}>
+                    <Col span={12} xxl={7} xl={9} justify={"center"}>
                         <Pagination num={Math.ceil(certainUsers.length / 10)} onClick={paginationOnClick}></Pagination>
                     </Col>
                 </Row>

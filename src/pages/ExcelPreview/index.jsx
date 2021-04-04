@@ -35,7 +35,7 @@ const ExcelPreview = ({excelData, closeModal, postSeniorsOnClick}) => {
     return (
         <>
             <ModalContent>
-                <TableScrollbar rows={10}>
+                <TableScrollbar rows={20}>
                     <TableBox headList={TableBoxHeadLists} bodyList={filteredData}>
 
                     </TableBox>
@@ -48,7 +48,6 @@ const ExcelPreview = ({excelData, closeModal, postSeniorsOnClick}) => {
                         <Button value="취소" onClick={closeModal} block/>
                     </Col>
                 </Row>
-
             </ModalContent>
         </>
     )

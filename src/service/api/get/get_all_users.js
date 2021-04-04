@@ -19,7 +19,7 @@
          data = data.replace(/SUPER_ADMIN/g, "슈퍼관리자")
          data = data.replace(/ADMIN/g, "관리자")
          data = data.replace(/VOLUNTEER/g, "봉사자")
-         data = data.replace(/UNKNOWN/g, "-")
+         data = data.replace(/UNKNOWN/g, "없음")
          data = JSON.parse(data)
          return data
      })
