@@ -2,7 +2,7 @@
  * @author :  chaeeun
  * @date : 2021-03-14 02:40:15
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-03 13:32:51
+ * @Last Modified time: 2021-04-05 05:23:02
  */
 
 import React from 'react'
@@ -45,19 +45,16 @@ const FilterPastApplicants = ({ filterApplicants, filterType,
                                         <Col span={4}>
                                             <DateSelector min={`${filterDate.firstDate}` || null} defaultValue={filterDate.secondDate}
                                                 onChange={filterSecondDateOnchange} radius={'true'} block size={"small"} border />
-
                                         </Col>
                                     </Row>
                                 </Col>
                                 <Col xs={12} sm={12} md={4} lg={4} xl={6} xxl={6} span={6}>
-                                    <CheckBox justify={'space-around'} defaultChecked={filterType} onChange={FilterTypeOnchange} options={['노력봉사', '말벗봉사']} />
                                     <CheckBox justify={'space-around'} defaultChecked={filterType} onChange={FilterTypeOnchange} options={['노력봉사', '말벗봉사']} />
                                 </Col>
                             </Row>
                         </Col>
                         <Col xs={12} sm={2} md={2} lg={2} xl={1.7} xxl={1.7} span={1.7} >
                             <Button block value="조회하기" size={"default"} types={"primary"} onClick={viewPassFilterOnclick}></Button>
-
                         </Col>
                     </Row>
                 </Col>

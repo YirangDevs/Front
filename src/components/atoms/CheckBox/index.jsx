@@ -47,7 +47,8 @@ const CheckBox = ({ justify, size, defaultChecked, onChange, options }) => (
     <>
         <CheckBoxGroup justify={justify}>
             {options.map((i, index) =>
-                <CheckBoxLabel key={index} size={size}><Check onChange={onChange} value={i} key={index} defaultChecked={(defaultChecked.includes(i)) ? "checked" : undefined} />{i}</CheckBoxLabel>
+                <CheckBoxLabel key={index} size={size}><Check onChange={onChange} value={i} key={index}
+                    checked={(defaultChecked.includes(i)) ? true : false} />{i}</CheckBoxLabel>
             )}
 
         </CheckBoxGroup>

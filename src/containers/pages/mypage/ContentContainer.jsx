@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 17:03:55
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-03 13:09:05
+ * @Last Modified time: 2021-04-05 05:42:11
  */
 
 import React, { useEffect, useState } from 'react'
@@ -342,8 +342,6 @@ const ContentContainer = () => {
 
 
 
-
-
     // !SECTION  봉사 기록 조회
 
 
@@ -390,9 +388,6 @@ const ContentContainer = () => {
                 FilterTypeOnchange={FilterTypeOnchange}
 
                 viewPassFilterOnclick={viewPassFilterOnclick}
-
-
-
 
 
             >

@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-03 13:34:40
+ * @Last Modified time: 2021-04-05 05:21:09
  */
 
 import React from 'react'
@@ -71,7 +71,6 @@ const MyPageContent = ({
     filterType,
     FilterTypeOnchange,
     viewPassFilterOnclick,
-
 
 
 }) => {

@@ -2,7 +2,7 @@
  * @author :  chaeeun
  * @date : 2021-03-14 02:40:15
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-03 13:37:08
+ * @Last Modified time: 2021-04-05 03:44:50
  */
 
 import React, { memo } from 'react'
@@ -19,7 +19,7 @@ const DeleteCanCelApplyForm = ({ manage_body_Lists, viewNoticeOnclick, cancelApp
         <>
             <Row gutter={[7, 0]} style={{
                 maxHeight: '600px',
-                overflow: 'scroll',
+                overflow: 'auto',
 
             }}>
 

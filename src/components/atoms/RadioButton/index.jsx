@@ -38,7 +38,8 @@ const RadioBox = ({ justify, size, name, onClick, options, checkedValue, disable
         <RadioGroup justify={justify}>
 
             {options.map((i, index) =>
-                <RadioLabel size={size} key={index}><Radio key={index} value={i} disabled={disabled.indexOf(i) !== -1 ? true : false} defaultChecked={(checkedValue === i) ? true : false} onClick={onClick} name={name} />{i}</RadioLabel>
+                <RadioLabel size={size} key={index}><Radio key={index} value={i} disabled={disabled.indexOf(i) !== -1 ? true : false}
+                    defaultChecked={(checkedValue === i) ? true : false} onClick={onClick} name={name} />{i}</RadioLabel>
             )}
 
         </RadioGroup>
