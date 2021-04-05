@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @Date :  2021-02-08 00:37:21 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-18 20:05:06
+ * @Last Modified time: 2021-04-01 21:49:01
  */
 
 import React from "react"
@@ -107,7 +107,7 @@ const UserCard = (props) => {
                     <Col span={12}>
                         <UserEmail>
                             {
-                                (props.emailValidation === 'YES') ? `${props.email} >` : `email을 인증해 주세요`
+                                (props.emailValidation === 'YES') ? `${props.email} ` : `email을 인증해 주세요`
                             }
                         </UserEmail>
                     </Col>
