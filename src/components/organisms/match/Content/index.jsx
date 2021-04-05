@@ -12,9 +12,12 @@ const MatchContent = ({
     activityTableBody,
     activityOnClick,
     activityNum,
+    activityPageData,
+    currentRegion,
+
     activityPaginationOnClick,
-    activityPageData
-                      }) => {
+    regionOnChange
+  }) => {
 
     //const [activityList, setActivityList] = useState([])
     //const [currentPage, setCurrentPage] = useState(1)
@@ -67,7 +70,7 @@ const MatchContent = ({
         {name : "유정민"},
     ]
 
-    const regionOption = ["수성구", "중구", "서구", "남구", "북구", "동구", "달서구", "달성군"]
+    const regionOption = ["전체","수성구", "중구", "서구", "남구", "북구", "동구", "달서구", "달성군"]
 
     useEffect(()=>{
 
@@ -80,7 +83,7 @@ const MatchContent = ({
             }}>
                 <Row justify={"center"} gutter={[10,20]}>
                     <Col span={11}>
-                        <SelectBox options={regionOption} border></SelectBox>
+                        <SelectBox options={regionOption} value={currentRegion} onChange={regionOnChange} border></SelectBox>
                     </Col>
                     <Col span={5}>
                         <Row justify={"center"}>

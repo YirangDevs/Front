@@ -1,15 +1,14 @@
 import React, { memo } from "react"
-import Image from "../../../atoms/Image";
-import MainImg from "../../../../img/main.png"
+import MainVideo from "../../../../mp4/main.mp4"
 import ContentLayout from "../../../../layout/Content"
 import Row from "../../../../layout/Grid/Row";
 import Col from "../../../../layout/Grid/Column";
 import TableBox from "../../../atoms/TableBox/"
-//import { useHistory } from "react-router-dom"
 import Pagination from "../../../atoms/Pagination/"
 import MenuIconNav from "../../../../containers/redux/components/MenuIconNav/";
 import ReadNoticeForm from "../../../molecules/ReadNoticeForm";
 import Button from "../../../atoms/Button";
+import Video from "../../../atoms/Video";
 
 const HomeContent = ({
     role,
@@ -31,9 +30,10 @@ const HomeContent = ({
 
     return (
         <>
-            <Image src={MainImg} width={"100%"}>
+            {/*<Image src={MainImg} width={"100%"}>*/}
 
-            </Image>
+            {/*</Image>*/}
+            <Video src={MainVideo} width={"100%"} height={"auto"}></Video>
             {/* 임시 버튼 */}
             <Button onClick={fakeLoginOnClick} value="volunteer_1">봉사자1</Button>
             <Button onClick={fakeLoginOnClick} value="volunteer_2">봉사자2</Button>

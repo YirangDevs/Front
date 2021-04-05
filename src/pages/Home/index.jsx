@@ -4,7 +4,7 @@ import ContentContainer from "../../containers/redux/pages/home/ContentContainer
 
 const Home = () => (
     <>
-        <Header position={"absolute"}/>
+        <Header position={"absolute"} theme={"dark"}/>
         <ContentContainer></ContentContainer>
     </>
 )
