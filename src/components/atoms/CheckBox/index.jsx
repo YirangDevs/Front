@@ -1,5 +1,4 @@
 import React from "react"
-import { MdSignalCellularNull } from "react-icons/md"
 import styled from "styled-components"
 
 const Check = styled.input.attrs((props) => ({ type: "checkbox" }))`

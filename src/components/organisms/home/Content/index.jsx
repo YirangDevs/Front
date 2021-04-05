@@ -46,9 +46,7 @@ const HomeContent = ({
             <ContentLayout >
 
                 <Row justify={"center"} >
-                    <Col span={12} justify={"center"} style={{
-                        marginTop: "2rem"
-                    }}>
+                    <Col span={12} justify={"center"}>
                         <MenuIconNav></MenuIconNav>
                     </Col>
                     <Col xs={11} sm={11} md={10} lg={7} xl={7} xxl={7} style={{

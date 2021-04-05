@@ -6,11 +6,7 @@
  */
 
 import React from 'react'
-import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
-import Typo from "../../../atoms/Typography"
-import { MdErrorOutline } from "react-icons/md";
-import Button from "../../../atoms/Button"
 import ReadNoticeForm from '../../../molecules/ReadNoticeForm';
 
 
