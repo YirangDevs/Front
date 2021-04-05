@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-28 18:42:48
+ * @Last Modified time: 2021-03-30 16:59:02
  */
 
 
@@ -117,7 +117,7 @@ const ProfileContent = ({
                         <Row>
                             <Col span={4}>
                                 {/* <Typo size={"2.3rem"} weight={'bold'}>{username} </Typo> */}
-                                <Typo size={"2.3rem"} weight={'bold'}>Test </Typo>
+                                <Typo size={"2.3rem"} weight={'bold'}>{username} </Typo>
                             </Col>
                         </Row>
                         <Row gutter={[3, 0]}>
