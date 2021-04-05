@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-04-05 03:44:50
  */
 
-import React, { memo } from 'react'
+import React from 'react'
 
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"

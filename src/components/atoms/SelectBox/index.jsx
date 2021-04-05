@@ -29,11 +29,11 @@ ${props => {
     
 `
 
-const SelectBox = ({ background, block, border, size, defaultValue, onChange, onLoad, options, disabled }) => (
+const SelectBox = ({ background, block, border, size, defaultValue, onChange, onLoad, options, disabled, value}) => (
     //options = selectBox 목록 DataType = Array
 
     <>
-        <Select background={background} block={block} border={border} size={size} value={defaultValue} onChange={onChange} disabled={disabled}>
+        <Select background={background} block={block} border={border} size={size} defaultValue={defaultValue} value={value} onChange={onChange} disabled={disabled}>
             {options.map((i, index) => <option key={index} defaultValue="" value={i}>{i}</option>)}
         </Select>
     </>

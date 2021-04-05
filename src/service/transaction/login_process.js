@@ -32,14 +32,10 @@ const LoginProcess = (AUTHORIZATION_CODE) => {
             let userInfo = await getMyInfo()
             let emailValidation = await checkEmailValidation()
             let result = {
-                realname : userInfo.realname,
-                username : userInfo.username,
                 userId : payload.userId,
                 role : roleInfo.authority,
-                email : userInfo.email,
-                sex : userInfo.sex,
-                phone : userInfo.phone,
                 emailValidation : emailValidation.validation,
+                ...userInfo,
                 ...data
             }
             resolve(result)
