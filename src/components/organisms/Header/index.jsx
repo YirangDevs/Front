@@ -4,7 +4,6 @@ import Logo from "../../atoms/Logo"
 import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
 import _ from "../../../config/env"
-import SideNav from "../../molecules/SideNav"
 import LogoutProcess from "../../../service/transaction/logout_process"
 
 
@@ -19,6 +18,7 @@ const HeaderStyle = styled.div`
   height : 72px;
   display: flex;
   align-items: center;
+  overflow-x: hidden;
   @media(max-width: 1200px){
     height : 64px;
   }
@@ -59,7 +59,6 @@ const Value = styled.span`
 const Header = ({theme, logined, role, position}) => {
     return (
         <>
-        {/* <SideNav></SideNav>  */}
             <HeaderStyle theme={theme} position={position}>
                 <Row align={"center"} justify={"space-between"} style={{
                     height: "inherit"

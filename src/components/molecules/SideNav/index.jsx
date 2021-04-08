@@ -1,14 +1,11 @@
 import React from "react"
 import styled from "styled-components"
+import Img from "../../atoms/Image"
 
 const SideNavStyle = styled.div`
-    border: 1px gray solid;
-    position: absolute;
-    float: left;
-    background-color: white;
-    height: 91%;
-    width: 300px;
-    //margin-top : 72px;
+    background-color: #f7f7f7;
+    height: 100vh;
+    width: 518px;
   /*
     @media(max-width: 1200px){
         margin-top : 64px;
@@ -23,13 +20,28 @@ const SideNavStyle = styled.div`
       }
       */
 `
+const NavHeader = styled.div`
+      height: 72px;
+      background-color: #00a804;
+`
+const NavContent = styled.div`
+      border: 1px solid red;
+      height: 100%;
+`
 
-const SideNav = () => {
-    
+const SideNav = ({
+  imgUrl
+}) => {
+    console.log(imgUrl)
     return (
         <>
             <SideNavStyle>
-                hi
+                <NavHeader></NavHeader>
+                <NavContent>
+                  {(imgUrl)?
+                  <Img src={imgUrl} width={'100px'} circle></Img>: null}
+                  {/* <Img src={DefaultImg} width={'100px'} circle></Img> */}
+                </NavContent>
             </SideNavStyle>
         </>
     )

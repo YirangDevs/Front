@@ -63,7 +63,7 @@ const ContentContainer = () => {
             .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
             .map((i) => {
                 return {
-                    regions: i.regions && Object.keys(i.regions).length !== 0 ? i.regions.slice(0, 1) + " 외 " + (Object.keys(i.regions).length - 1) + "구" : "없음"
+                    regions: i.regions && Object.keys(i.regions).length !== 0 ? i.regions.slice(0, 1) + " 외 " + (Object.keys(i.regions).length - 1) + "구" : "-"
                 }
             })
         setRegionsPosts(data)
