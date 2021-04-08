@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-03 18:44:55
+ * @Last Modified time: 2021-04-08 19:43:09
  */
 
 import React, { useState, useEffect } from "react"
@@ -13,13 +13,14 @@ import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
 import getNoticeNum from "../../../service/api/get/get_notice_num";
 import deleteNotice from "../../../service/api/delete/delete_notice";
 import edit_notice from "../../../service/api/put/edit_notice"
-
+import postUrgentNotice from "../../../service/api/post/post_urgent_notice"
+import NotificationPool from "../../redux/components/NotificationPool";
 const ContentContainer = () => {
 
 
 
     const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
-    const [pagingNum, setPagingNum] = useState("0");// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
+    const [pagingNum, setPagingNum] = useState(0);// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
 
     const [selectNotice, setSelectNotice] = useState({});//  read로 열 notice 정보
     const [updateNotice, setUpdateNotice] = useState({})  // update할 notice 정보
@@ -27,7 +28,7 @@ const ContentContainer = () => {
     const [deleteId, setDeleteId] = useState(null); // 삭제할 id 
     const [lists, setLists] = useState([]);//fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
-    const [isUrgentIcon, setUrgentIcon] = useState([])
+
 
     //modal handling
     const [isReadVisible, setIsReadVisible] = useState(false) //rea d 모달
@@ -60,13 +61,6 @@ const ContentContainer = () => {
         }
     }
 
-    const UrgentIcon = {
-        setIcon() {
-            console.log(isUrgentIcon)
-
-            setUrgentIcon(!isUrgentIcon)
-        }
-    }
 
     useEffect(() => {//전체 페이지 갯수 받아오기 
         getNoticeNum()
@@ -77,12 +71,13 @@ const ContentContainer = () => {
 
     // 전체 페이지 갯수가 바뀔 때 마다 선택된 페이지 새로 받아오기 (삭제되었을때 바로 반영이 되로=도록)
     useEffect(() => {
-        getNoticeByPage("0")
+        getNoticeByPage(pagingNum)
             .then((res) => {
                 console.log(res.notices)
                 setLists(res.notices);
             }).catch(error => console.log(error))
-    }, [pagingNum])
+    }, [pagingNum, listTotalNum])
+
 
     /**
      * @description - readButton 눌렀을때 일어나는 event 함수
@@ -227,8 +222,8 @@ const ContentContainer = () => {
      */
 
     const pagingClick = (e) => {
-        const pagingId = e.target.id;
-        console.log(pagingId - 1)
+        const pagingId = e.target.innerText;
+        console.log(pagingId)
         setPagingNum(pagingId - 1)
     }
 
@@ -264,6 +259,13 @@ const ContentContainer = () => {
     }
 
 
+
+
+    // SECTION urgent
+
+
+
+
     /**
      * @description 긴급게시물  클릭 시
      * @param e 선택한 게시물을 target 하기 위한 param
@@ -276,12 +278,92 @@ const ContentContainer = () => {
     }
 
 
-    /**
-     *  @description 긴급 아이콘🔥 클릭시
-     */
-    const urgentOnChange = () => {
-        setIsUrgentVisible(true);
+    const [isUrgentIcon, setUrgentIcon] = useState([])
+
+    const [isOriginal, setIsOriginal] = useState([])
+    const [urgentTitle, setUrgentTitle] = useState("")
+
+
+
+
+
+    const urgentIconOnchange = (e) => {
+        console.log(e.target.checked)
+        console.log(e.target.value)
+        if (e.target.checked) {
+            return setUrgentIcon(["🚨"])
+        }
+        if (!e.target.checked) {
+            console.log("나가리")
+            return setUrgentIcon([])
+        }
     }
+
+    const getOriginalTitleOnchange = (e) => {
+        console.log(e.target.checked)
+        console.log(e.target.value)
+        if (e.target.checked) {
+            setUrgentTitle(selectNotice.title)
+            return setIsOriginal([e.target.value])
+        }
+        if (!e.target.checked) {
+            console.log("나가리")
+            setUrgentTitle("")
+            return setIsOriginal([])
+        }
+
+    }
+
+    // ANCHOR 수정 
+    /**
+     *  @description 긴급 게시물 제목 변경 
+     */
+    const updateUrgentTitle = (e) => {
+        return setUrgentTitle(e.target.value);
+    }
+
+
+    /**
+       *  @description 긴급 게시물 post
+       */
+    const okUrgentOnclick = () => {
+        console.log(selectNotice.title === urgentTitle)
+        console.log(isUrgentIcon.length === 0)
+        if (selectNotice.title === urgentTitle && isUrgentIcon.length === 0) {
+            console.log('둘다같ㅇ다')
+            return NotificationPool.api.add({
+                title: "게시물과 같은 제목은 사용할 수 없습니다",
+                content: "응급아이콘을 추가학거나 , 제목을 수정해 주세요.",
+                status: "error"
+            })
+        }
+
+        const data = (isUrgentIcon.length !== 0) ?
+            JSON.stringify({
+                "title": "🚨" + urgentTitle
+            })
+            :
+            JSON.stringify({
+                "title": urgentTitle
+            });
+
+        postUrgentNotice(selectNotice.id, data)
+            .then((res) => {
+                console.log(res)
+                setListTotalNum((...state) => (state + 1))
+                readModal.close();
+                urgentModal.close();
+            })
+            .catch((err) => { console.log(err) })
+    }
+
+
+
+
+    //  !SECTION urgent
+
+
+
 
 
     /**
@@ -299,10 +381,20 @@ const ContentContainer = () => {
 
     }
 
+
+
+
+
+
+
+
+
+
     return (
 
         <>
             <ManageContent
+                listTotalNum={listTotalNum}
                 setListTotalNum={setListTotalNum} // set 전제 리스트 갯수 
                 setPagingNum={setPagingNum} // set 선택한 리스트 페이지 번호
                 selectNotice={selectNotice} // read 로 열 notice 정보 
@@ -333,11 +425,16 @@ const ContentContainer = () => {
                 isUrgentIcon={isUrgentIcon}
                 isUrgentVisible={isUrgentVisible}
                 UrgentModal={urgentModal}
-                urgentOnChange={urgentOnChange}
-                UrgentIcon={UrgentIcon}
 
                 toUrgentHandle={toUrgentHandle} //오류때문에 만들어놓은 거 사용함(지울꺼면 지워)
 
+                urgentIconOnchange={urgentIconOnchange}
+                updateUrgentTitle={updateUrgentTitle}
+
+                urgentTitle={urgentTitle}
+                getOriginalTitleOnchange={getOriginalTitleOnchange}
+                isOriginal={isOriginal}
+                okUrgentOnclick={okUrgentOnclick}
             > </ManageContent>
         </>
 

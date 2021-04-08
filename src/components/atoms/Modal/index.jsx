@@ -2,7 +2,7 @@
  * @Author : chaeeun
  * @Date : 2020-12-30 18:37:07
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-02 01:15:50
+ * @Last Modified time: 2021-04-05 18:38:27
  */
 
 import React from 'react'
@@ -22,6 +22,7 @@ const ModalWrapper = styled.div`
  position : fixed;
  
  background-color: rgba(0, 0, 0,0.12);
+ z-index : ${props => (props.zIndex) - 1 || null};
 `
 
 
@@ -39,7 +40,7 @@ const ModalContainer = styled.div`
 // antd
  position : relative;
  margin : auto auto;
-
+z-index : ${props => (props.zIndex) || null};
 `
 const CloseButton = styled.button`
 position : absolute;
@@ -95,13 +96,14 @@ const stopBubbling = (e) => {
  * @param children 컴포넌트 테그 사이에 값을 조회
  * @see antD Modal (사용법 antD 참조)
  */
-const Modal = ({ headerClose, title, visible, closable, maskClosable, onClose, children, size, xs, sm, md, lg, xl, xxl }) => {
+const Modal = ({ zIndex, headerClose, title, visible, closable, maskClosable, onClose, children, size, xs, sm, md, lg, xl, xxl }) => {
 
 
 
     return (
         <>
             <ModalWrapper
+                zIndex={zIndex}
                 visible={visible}
                 onClick={maskClosable ? onClose : null}
             >

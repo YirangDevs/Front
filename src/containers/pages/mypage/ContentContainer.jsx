@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 17:03:55
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-05 05:42:11
+ * @Last Modified time: 2021-04-05 21:00:52
  */
 
 import React, { useEffect, useState } from 'react'
@@ -30,6 +30,7 @@ const ContentContainer = () => {
                 console.log(res.Applicants)
                 console.log(res.Applicants.length)
 
+                // setCurrentApplicant((state) => ([...state, res.Applicants]))
                 // FIXME 봉사 받아오는거 2개로 나뉜다
                 res.Applicants.forEach((lists) => {
                     console.log(lists)
@@ -40,14 +41,14 @@ const ContentContainer = () => {
                         region: lists.region,
                         result: lists.matchingState,
                         applyDate: settingDate(lists.dtoa),
+                        type: lists.serviceType,
                         applyId: lists.applyId
                     }]))
 
                     setPastApplicant((state) => ([...state, {
                         serviceDate: settingDate(lists.dtov),
                         region: lists.region,
-                        // type: lists.type,
-                        type: "말벗봉사",
+                        type: lists.serviceType,
                         applyDate: settingDate(lists.dtoa),
                     }]))
 

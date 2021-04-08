@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-05 05:21:09
+ * @Last Modified time: 2021-04-05 21:00:15
  */
 
 import React from 'react'
@@ -169,21 +169,22 @@ const MyPageContent = ({
                         <Col span={12}>
                             {
                                 (manage_body_Lists).map((lists) => {
-                                    // const noticeId = lists.noticeId
+                                    // const noticeId = lists.noticeIdS
                                     const noticeId = 546
                                     const applyId = lists.applyId
                                     let data = Object.assign({
                                         serviceDate: lists.date,
                                         region: lists.region,
                                         result: lists.result,
-                                        applyDate: lists.applyDate
+                                        type: lists.type,
+                                        applyDate: lists.applyDate,
                                     }, {})
 
                                     return (
                                         <>
                                             <Row gutter={[0, 1]} align="flex-start" justify={"space-between"} style={{ marginTop: "10px" }}>
                                                 <Col xs={9} sm={10} md={9} lg={9} xl={10} xxl={10} span={10}>
-                                                    <TableBox primaryKey={"result"} headList={["봉사일시", "장소", "매칭상태", "신청날짜"]} bodyList={[data]} onClick={() => viewNoticeOnclick(noticeId)} border={"top"}></TableBox>
+                                                    <TableBox primaryKey={"result"} headList={["봉사일시", "장소", "매칭상태", "봉사분야", "신청날짜"]} bodyList={[data]} onClick={() => viewNoticeOnclick(noticeId)} border={"top"}></TableBox>
                                                 </Col>
 
                                                 <Col xs={3} sm={2} md={3} lg={3} xl={2} xxl={2} span={2}>
@@ -202,7 +203,7 @@ const MyPageContent = ({
                             <NoticeModal selectedNotice={selectedNotice} />
                         </Modal>
 
-                        <Modal headerClose visible={isApplyCancelConfirmVisible}
+                        <Modal zIndex={1000} headerClose visible={isApplyCancelConfirmVisible}
                             maskClosable={true} onClose={confirmApplyCancelModal.close} size={4} xs={7} sm={7} md={6} lg={6} xl={5} xxl={4}>
                             <DeleteCanCelApplyForm username={username} okCanCelConfirmOnclick={okCancelConfirmOnclick} cancelCanCelConfirmOnclick={cancelCancelConfirmOnclick} />
                         </Modal>

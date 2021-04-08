@@ -11,7 +11,7 @@ import Col from "../../../layout/Grid/Column"
 import Row from "../../../layout/Grid/Row"
 import Icon from "../../../img/KakaoIcon.png"
 import { useHistory } from "react-router-dom"
-
+import Typo from "../../atoms/Typography"
 const UserCardWrapper = styled.div`
 height : 138px;
 // height : 9rem;
@@ -57,13 +57,6 @@ const KakaoIcon = styled.img.attrs((props) => ({
     padding-left : 5px;
     
 `
-const UserEmail = styled.div`
-//font-size : 12px;
-font-size : 0.75rem;
-color: #000000;
-opacity: 0.5;
-`
-
 
 const UserCard = (props) => {
     const handleClick = () => {
@@ -76,9 +69,9 @@ const UserCard = (props) => {
                 <Col span={12}>
                     <Row gutter={[0, 17]} justify={"space-between"}>
                         <Col xs={12} sm={12} md={12} lg={7} xl={8} xxl={7} align={"flex-start"}>
-                            <Title>
+                            <Typo size={"0.93rem"}>
                                 Profile of kakao talk
-                            </Title>
+                                </Typo>
                         </Col>
 
                         <Col xs={12} sm={12} md={12} lg={5} xl={4} xxl={5} justify={"flex-end"}>
@@ -105,11 +98,11 @@ const UserCard = (props) => {
                         </Row>
                     </Col>
                     <Col span={12}>
-                        <UserEmail>
+                        <Typo color={"rgba(0,0,0,0.5)"} size={"0.75rem"} >
                             {
                                 (props.emailValidation === 'YES') ? `${props.email} ` : `email을 인증해 주세요`
                             }
-                        </UserEmail>
+                        </Typo>
                     </Col>
                 </Row>
             </Row>
