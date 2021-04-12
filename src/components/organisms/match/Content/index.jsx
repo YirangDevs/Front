@@ -55,6 +55,15 @@ const MatchContent = ({
 
     ]
 
+    const tooltip = {
+        data : {
+            a : matchingResultTableBody.map((value)=>{
+                return value.a +" 입니다\n나이 : 28"
+            })
+        },
+        position : "right"
+    }
+
     const notMatchedVolunteerHead = ["제외된 봉사자"]
     const notMatchedSeniorHead = ["제외된 피봉사자"]
     const notMatchedVolunteerBody = [
@@ -103,7 +112,7 @@ const MatchContent = ({
                     <Col span={3}>
                         <Row justify={"space-between"}>
                             <Col span={12}>
-                                <TableBox headList={matchingResultTableHead} bodyList={matchingResultTableBody} border={"top"}></TableBox>
+                                <TableBox headList={matchingResultTableHead} bodyList={matchingResultTableBody} border={"top"} tooltip={tooltip}></TableBox>
                             </Col>
                             <Col span={5.5} style={{
                                 marginTop : "2.4rem"

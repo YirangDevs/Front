@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from "react"
 import styled from "styled-components"
+import ToolTip from "../Tooltip";
 
 
 
@@ -55,9 +56,16 @@ const TableBody = styled.td`
 const PrimaryKey = styled(TableBody)`
     cursor: pointer;
 `
+/*
+{
+    data : {
 
+    },
+    position
+}
+ */
 
-const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data }) => {
+const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data, tooltip}) => {
 
     const onPrimaryClick = useCallback((e, data) => {
         if (data) {
@@ -103,10 +111,21 @@ const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, data
                                 <TableRow key={firstIndex}>
                                     {Object.keys(i).map((value, secondIndex) => {
 
-                                        return (value === primaryKey) ?
-                                            <PrimaryKey key={secondIndex} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>{i[value]}</PrimaryKey>
+                                        return (tooltip&&Object.keys(tooltip.data).includes(value)) ?
+
+                                            (value === primaryKey) ?
+                                                <PrimaryKey key={secondIndex} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>
+                                                    <ToolTip content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
+                                                </PrimaryKey>
+                                                :
+                                                <TableBody back={certainDate < new Date()} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>
+                                                    <ToolTip content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
+                                                </TableBody>
                                             :
-                                            <TableBody back={certainDate < new Date()} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>{i[value]}</TableBody>
+                                            (value === primaryKey) ?
+                                                <PrimaryKey key={secondIndex} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>{i[value]}</PrimaryKey>
+                                                :
+                                                <TableBody back={certainDate < new Date()} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>{i[value]}</TableBody>
                                     })}
                                 </TableRow>)
                         })
