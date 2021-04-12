@@ -2,7 +2,7 @@
  * @author :  chaeeun
  * @date : 2021-03-14 02:40:15
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-15 05:55:47
+ * @Last Modified time: 2021-03-30 20:31:06
  */
 
 import React from 'react'
@@ -11,7 +11,8 @@ import Col from "../../../../layout/Grid/Column"
 import Typo from "../../../atoms/Typography"
 import { MdErrorOutline } from "react-icons/md";
 import Button from "../../../atoms/Button"
-const SexConfirmModal = ({ username, okDeleteConfirmOnclick, cancelDeleteConfirmOnclick }) => {
+
+const DeleteMyInfoForm = ({ username, okDeleteConfirmOnclick, cancelDeleteConfirmOnclick }) => {
 
 
     return (
@@ -47,4 +48,4 @@ const SexConfirmModal = ({ username, okDeleteConfirmOnclick, cancelDeleteConfirm
     )
 }
 
-export default SexConfirmModal
+export default DeleteMyInfoForm

@@ -57,7 +57,7 @@ const MenuNav = ({ role, mypage, profile }) => {
                 <Typo>{'>'}</Typo>
             </MypageNav>
 
-            {role === "SUPER_ADMIN" || "ADMIN" ?
+            {role === "SUPER_ADMIN" ?
 
                 <MypageNav value="사용자 권한 관리" block onClick={
                     () => {
@@ -67,7 +67,8 @@ const MenuNav = ({ role, mypage, profile }) => {
                     <Typo>사용자 권한 관리</Typo>
                     <Typo>{'>'}</Typo>
                 </MypageNav>
-                : null}
+                : null
+            }
             {role === "VOLUNTEER" ?
                 <MypageNav block onClick={
                     () => {

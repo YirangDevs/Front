@@ -5,6 +5,8 @@ import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
 import _ from "../../../config/env"
 import LogoutProcess from "../../../service/transaction/logout_process"
+import ProfileButton from "../../../containers/redux/components/ProfileButton";
+import {useHistory} from "react-router-dom";
 
 
 const HeaderStyle = styled.div`
@@ -17,6 +19,7 @@ const HeaderStyle = styled.div`
   width: 100%;
   height : 72px;
   display: flex;
+  z-index: 1;
   align-items: center;
   overflow-x: hidden;
   @media(max-width: 1200px){
@@ -57,6 +60,8 @@ const Value = styled.span`
 `
 
 const Header = ({theme, logined, role, position}) => {
+
+    const history = useHistory();
     return (
         <>
             <HeaderStyle theme={theme} position={position}>
@@ -79,7 +84,14 @@ const Header = ({theme, logined, role, position}) => {
                                 <Label>SKIN TYPE</Label><Value>| 일반</Value>
 
                             </Col>*/}
-                            <Col span={6}>
+
+                            <Col span={4}>
+
+                            </Col>
+                            <Col span={2} justify={"flex-end"}>
+                                <ProfileButton onClick={()=>{
+                                    history.push("mypage");
+                                }}/>
 
                             </Col>
                             <Col xs={0} sm={0} md={2} lg={2} xl={2} xxl={2} justify={"flex-start"} style={{

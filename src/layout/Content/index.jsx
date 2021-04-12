@@ -2,16 +2,23 @@ import React from "react"
 import styled from "styled-components"
 
 const ContentStyle = styled.div`
-width :auto; // 채은 수정 이거 아니면 빼주셈
     width: 100%;
     height : auto;
     display : flex;
     justify-content : center;
     margin : 0 auto;
     flex-wrap : wrap;
-    padding : 2rem;
+    padding : 5.2vh 5.2vw;
     flex-direction: column;
     box-sizing: border-box;
+
+  @media screen and (max-width: 1024px){
+    padding : 2.6vh 2.6vw;
+  }
+  @media screen and (max-width: 768px){
+    padding : 0;
+  }
+
 `
 
 const Content = ({ children, style }) => {

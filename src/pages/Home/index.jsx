@@ -4,7 +4,11 @@ import Header from "../../containers/redux/components/Header/index";
 import ContentContainer from "../../containers/redux/pages/home/ContentContainer";
 // import SideNav from "../../containers/pages/sidenav/ContentContainer"
 import SideNav from "../../containers/redux/components/SideNav"
+import Button from "../../components/atoms/Button";
 
+const SideHide = styled.div`
+    
+`
 const WholeWrapper = styled.div`
     width : 100%;
     overflow-x: hidden;
@@ -19,7 +23,7 @@ const ContentWrapper = styled.div`
 const Home = () => (
     <>
     <WholeWrapper>
-        <SideNav></SideNav>
+            <SideNav></SideNav>
         <ContentWrapper>
             <Header position={"absolute"}/>
             <ContentContainer></ContentContainer>

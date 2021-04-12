@@ -107,7 +107,7 @@ const ContentContainer = ({
             .then((res) => {
                 console.log("vaildatedEmail")
                 console.log(res)
-                setUserProfile((state) => ({ ...state, ...res }))
+                setUserProfile((state) => ({ ...state, emailValidation: res.validation }))
             })
     }, [])
 
@@ -186,7 +186,7 @@ const ContentContainer = ({
         },
         validation: (YoN) => {
             const validation = YoN
-            return setUserProfile((state) => ({ ...state, validation: validation }))
+            return setUserProfile((state) => ({ ...state, emailValidation: validation }))
         },
         isReceivingEmail: (e) => {
             console.log(e.target.value)
@@ -706,6 +706,7 @@ const ContentContainer = ({
                     status: "success"
                 })
                 editProfileFunction.validation("YES");
+
                 setAuthNum("");
                 editEmailForm.close();
                 inputAuthNumForm.close();
@@ -730,6 +731,7 @@ const ContentContainer = ({
     const checkAuthNumOnclick = () => {
         postCheckAuthNum()
         setAuthNum("")
+
     }
 
 
