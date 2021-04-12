@@ -2,6 +2,7 @@ import React, {useEffect, memo, useState} from "react"
 
 import styled, {keyframes, css} from "styled-components"
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+import {MdClose} from "react-icons/md";
 
 const intro = keyframes`
   0% {
@@ -25,7 +26,20 @@ const outro = keyframes`
   }
 `;
 
+const CloseBtn = styled.div`
+  position : absolute;
+  right : 4%;
+  top : 15%;
+  width : auto;
+  height : auto;
+  outline : none;
+  border : 0;
+  background-color : transparent;
+  cursor : pointer;
+`
+
 const Wrapper = styled.div`
+  position: relative;
   background-color: #ffffff;
   padding : 16px 24px;
   font-size : 14px;
@@ -39,7 +53,7 @@ const Wrapper = styled.div`
   border : solid 1px rgba(0,0,0,0);
   animation: ${intro} 0.5s forwards;
   ${props=>{
-      if(props.destroy) {
+      if(props.eliminate) {
         return css`
           animation: ${outro} 0.5s forwards;
         `
@@ -111,27 +125,44 @@ const Notification = ({title, content, uuid, status, duration, button, buttonOnC
 
     const [isDestroy, setIsDestroy] = useState(false)
     const [instanceDuration, setInstanceDuration] = useState(duration)
-
+    const [isHover, setIsHover] = useState(false)
+    const [isEliminate, setIsEliminate] = useState(false)
 
     useEffect(()=>{
-        let time = setTimeout(()=>{
-            setIsDestroy(true)
+        if(isHover===false && isDestroy===true){
+            setIsEliminate(true)
             setTimeout(() => {
                 NotificationPool.api.delete(uuid)
 
             }, 500)
+        }
+    }, [uuid, isDestroy, isHover])
+
+    useEffect(()=>{
+        let time = setTimeout(()=>{
+            setIsDestroy(true)
+
         }, instanceDuration * 1000)
         return ()=>{
-            console.log("닫음")
             clearTimeout(time)
         }
     }
 
-    , [instanceDuration, uuid])
+    , [instanceDuration])
     return (
     <>
 
-        <Wrapper status={status} destroy={isDestroy}>
+        <Wrapper status={status} eliminate={isEliminate} onMouseEnter={()=>{
+            setIsHover(true)
+        }}
+         onMouseLeave={()=>{
+             setIsHover(false)
+        }}>
+            <CloseBtn onClick={()=>{
+                setInstanceDuration(0)
+                setIsHover(false)
+            }
+            }><MdClose size={16}/></CloseBtn>
             <Title>{title}</Title>
             {content}
             {

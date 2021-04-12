@@ -14,14 +14,12 @@ import UserCard from '../../../../containers/redux/components/UserCard'
 import TableBox from "../../../atoms/TableBox"
 import Button from '../../../atoms/Button'
 import DateSelector from '../../../atoms/DateSelector'
-import RadioBox from '../../../atoms/RadioButton'
 import MypageNav from "../../../molecules/MypageNav"
 import { useHistory } from 'react-router-dom'
 import DeleteCanCelApplyForm from '../DeleteCancelApplyForm'
 import Modal from '../../../atoms/Modal'
 import NoticeModal from '../NoticeModal'
 import AllApplicableModal from "../AllApplicableModal"
-import FilterApplicableModal from "../FilterPastApplicants"
 import CheckBox from '../../../atoms/CheckBox'
 import AllPastApplicableModal from '../AllFilterApplicableModal'
 import FilterPastApplicants from "../FilterPastApplicants"

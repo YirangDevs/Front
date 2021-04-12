@@ -29,8 +29,7 @@ const LoginRedirect =  ()=>{
                         }
                     )
                     .then((isNewbie)=>{
-                        console.log(isNewbie)
-                        if(!isNewbie) {
+                        if(isNewbie) {
                             NotificationPool.api.add({
                                 title: "환영합니다!",
                                 content: "프로필을 설정해주세요",
