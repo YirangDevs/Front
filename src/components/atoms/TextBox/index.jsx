@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef, useEffect } from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
@@ -58,13 +58,24 @@ color : ${props => (props.color) || ` #707070`};
  * @param disabled textbox 비활성화
  * @param align 텍스트 정렬
  */
-const TextBox = ({ border, radius, size, block, value, onChange, placeholder, disabled, align, color }) => (
-    <>
-        <Text border={border} align={align} radius={radius} size={size} color={color}
-            block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled} >
-        </Text>
-    </>
-)
+const TextBox = ({ autofocus, border, radius, size, block, value, onChange, placeholder, disabled, align, color }) => {
+    const ref = useRef()
+
+    useEffect(() => {
+        if (autofocus) {
+            console.log(ref)
+            ref.current.focus()
+        }
+    }, [autofocus])
+
+    return (
+        <>
+            <Text ref={ref} border={border} align={align} radius={radius} size={size} color={color}
+                block={block} value={value} onChange={onChange} placeholder={placeholder} disabled={disabled} >
+            </Text>
+        </>
+    )
+}
 
 TextBox.propTypes = {
     size: PropTypes.string,

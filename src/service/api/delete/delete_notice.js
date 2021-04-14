@@ -17,11 +17,11 @@ const deleteNotice = (deleteID) =>{
         if(!res.ok) throw res.json()
     }).catch(async(error)=>{
         let err =  await error.then()
-        NotificationPool.api.add({
-                    title : "Error from delete_notice",
-                    content : err.errorName + "("+err.errorCode+")",
-                    status : "error"
-                })
+        // NotificationPool.api.add({
+        //             title : "Error from delete_notice",
+        //             content : err.errorName + "("+err.errorCode+")",
+        //             status : "error"
+        //         })
         console.log("Error from delete_notice\n"+err.errorCode+"\n"+err.errorName)
         //에러처리
         throw err
