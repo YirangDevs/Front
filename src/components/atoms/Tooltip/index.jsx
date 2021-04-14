@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useState} from "react";
+import React, {createRef, memo, useEffect, useState} from "react";
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -63,12 +63,12 @@ const Line = styled.div`
 `
 
 const ToolTip = ({children, position, content}) => {
+  console.log(content)
 
   const parentRef = createRef();
   const childRef = createRef();
   const [offset, setOffset] = useState({})
   const margin = 5;
-  console.log(content)
 
   const lines = content.split("\n")
   const length = Math.max.apply(null,lines.map((i)=>{
@@ -82,18 +82,15 @@ const ToolTip = ({children, position, content}) => {
       width : parentRef.current.clientWidth/2 - childRef.current.clientWidth/2,
       height : parentRef.current.clientHeight/2 - childRef.current.clientHeight/2
     })
-  }, [childRef, parentRef])
-
-  useEffect(()=>{
-    console.log(offset)
-  },[offset])
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <>
       <Wrapper ref={parentRef}>
         <ToolTipComponent ref={childRef} offset={offset} position={position} margin={margin} width={length}>{
-          lines.map((line)=>{
-            return <Line>{line}</Line>
+          lines.map((line, index)=>{
+            return <Line key={index}>{line}</Line>
           })
         }</ToolTipComponent>
         {children}
@@ -108,4 +105,4 @@ ToolTip.defaultProps = {
   content : "",
 };
 
-export default ToolTip;
+export default memo(ToolTip)

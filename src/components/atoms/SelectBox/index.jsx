@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import styled from "styled-components"
 
 export const Select = styled.select`
@@ -39,4 +39,4 @@ const SelectBox = ({ background, block, border, size, defaultValue, onChange, on
     </>
 )
 
-export default SelectBox
+export default memo(SelectBox)

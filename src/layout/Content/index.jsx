@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo, useEffect} from "react"
 import styled from "styled-components"
 
 const ContentStyle = styled.div`
@@ -22,6 +22,10 @@ const ContentStyle = styled.div`
 `
 
 const Content = ({ children, style }) => {
+
+    useEffect(()=>{
+        console.log("Content 재렌더링")
+    })
     return (
         <>
             <ContentStyle style={style}>
@@ -31,4 +35,4 @@ const Content = ({ children, style }) => {
     )
 }
 
-export default Content
+export default memo(Content)

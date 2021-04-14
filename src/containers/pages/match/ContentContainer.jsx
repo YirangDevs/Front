@@ -1,7 +1,10 @@
-import React, {useCallback, useEffect, useState} from "react"
+import React, {memo, useCallback, useEffect, useState} from "react"
 import MatchContent from "../../../components/organisms/match/Content"
 import getActivityByPage from "../../../service/api/get/get_activity_by_page";
 import getActivityNum from "../../../service/api/get/get_activity_num";
+import getMatchedRecord from "../../../service/api/get/get_matched_record";
+import getUnmatchedRecord from "../../../service/api/get/get_unmatched_record";
+
 
 const ContentContainer = () => {
 
@@ -9,6 +12,33 @@ const ContentContainer = () => {
     const [currentActivityPageTableBody, setCurrentActivityPageTableBody] = useState([])
     const [pageNum, setPageNum] = useState(0)
     const [currentRegion, setCurrentRegion] = useState("전체")
+    const [matchedSenior, setMatchedSenior] = useState([])
+    const [matchedVolunteer, setMatchedVolunteer] = useState([])
+    const [unmatchedSenior, setUnmatchedSenior] = useState([])
+    const [unmatchedVolunteer, setUnmatchedVolunteer] = useState([])
+
+    const activityOnClick = useCallback((e, data)=>{
+        console.log(data)
+        const activityId = data.activityId
+        getMatchedRecord(activityId).then(data=>{
+            console.log(data)
+            const matchingData = data.matchingContentDtos
+            matchingData.forEach((arr)=>{
+
+            })
+        }).catch(e=>console.log(e))
+        getUnmatchedRecord(activityId).then(data=>{
+            console.log(data)
+            const unMatchedSeniors = data.unMatchedSeniors
+            const unMatchedVolunteers = data.unMatchedVolunteers
+            unMatchedSeniors.forEach((arr)=>{
+
+            })
+            unMatchedVolunteers.forEach((arr)=>{
+
+            })
+        }).catch(e=>console.log(e))
+    }, [])
 
     const activityPaginationOnClick = useCallback((e) => {
         setPageNum(e.target.innerText - 1)
@@ -72,6 +102,7 @@ const ContentContainer = () => {
                 activityPageData={currentActivityPage}
                 currentRegion={currentRegion}
 
+                activityOnClick={activityOnClick}
                 activityPaginationOnClick={activityPaginationOnClick}
                 regionOnChange={regionOnChange}
             ></MatchContent>
@@ -79,4 +110,4 @@ const ContentContainer = () => {
     )
 }
 
-export default ContentContainer
+export default memo(ContentContainer)
