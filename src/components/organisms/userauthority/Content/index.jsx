@@ -12,6 +12,7 @@ import Pagination from "../../../atoms/Pagination"
 import UserCard from "../../../../containers/redux/components/UserCard"
 import AuthorityAdminModal from "../../../../components/organisms/userauthority/AuthorityAdminModal"
 import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
+import PageMenuNav from "../../../../containers/redux/components/PageNav";
 
 
 const selectAuthority = ["전체", "슈퍼관리자", "관리자", "봉사자"]
@@ -71,7 +72,7 @@ const UserAuthorityContent = ({
                     <Col span={0} xxl={3.5}>
                         <Row gutter={[10, 0]}>
                             <Col span={12}>
-                                <MenuNav />
+                                <PageMenuNav />
                             </Col>
                             <Col span={12}>
                                 <UserCard />
