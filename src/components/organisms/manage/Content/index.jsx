@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 23:25:49
+ * @Last Modified time: 2021-04-15 03:31:23
  */
 import React from "react"
 import Row from "../../../../layout/Grid/Row"
@@ -33,7 +33,7 @@ const ManageContent = ({
     setSelectNotice,
     updateNotice,
     setUpdateNotice,
-    setDeleteId,
+
     lists,
     setLists,
 

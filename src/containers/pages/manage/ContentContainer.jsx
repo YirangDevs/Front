@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 00:47:36
+ * @Last Modified time: 2021-04-15 03:57:41
  */
 
 import React, { useState, useEffect } from "react"
@@ -22,7 +22,6 @@ const ContentContainer = () => {
     const [selectNotice, setSelectNotice] = useState({});//  read로 열 notice 정보
     const [updateNotice, setUpdateNotice] = useState({})  // update할 notice 정보
 
-    const [deleteId, setDeleteId] = useState(null); // 삭제할 id 
     const [lists, setLists] = useState([]);//fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
 
@@ -178,25 +177,28 @@ const ContentContainer = () => {
         console.log(isEqualObject(updateNotice, selectNotice))
         console.log(data)
         let diff = [];
+        let test = listTotalNum
         diff = isEqualObject(updateNotice, selectNotice);
         if (diff.length === 0) return editModal.close() // 수정전 notice와 같으면 modalClose
         edit_notice(noticeId, data, selectNotice.title, diff)
-            .then(
-                (diff.includes("제목")) ?
-                    //TODO 밑에 코드 더 좋게 수정`
-                    setListTotalNum((...state) => (state))
-                    : null
-                ,
+            .then((res) => {
+                console.log(res)
+                if (diff.includes("제목")) {
+                    getNoticeByPage(pagingNum)
+                        .then((res) => {
+                            console.log("제목이 바껴서 새로 받아오기")
+                            console.log(res.notices)
+                            setLists(res.notices);
+                        }).catch(error => console.log(error))
+                }
+
+                // console.log(listTotalNum)
                 editModal.close()
-            )
+            })
             .catch(error => {
                 console.log(data)
                 console.log(error)
-
-
             })
-
-
     }
 
 
@@ -344,7 +346,7 @@ const ContentContainer = () => {
         postUrgentNotice(selectNotice.id, data)
             .then((res) => {
                 console.log(res)
-                setListTotalNum((...state) => (state + 1))
+                setListTotalNum((state) => (state + 1))
                 readModal.close();
                 urgentModal.close();
             })
@@ -392,7 +394,7 @@ const ContentContainer = () => {
                     content: `${deleteInfo.deleteTitle}을 삭제하였습니다.`,
                     status: "success"
                 })
-                setListTotalNum((...state) => (state - 1))
+                setListTotalNum((state) => (state - 1))
             })
             .catch((err) => {
                 console.log(err)
@@ -412,7 +414,7 @@ const ContentContainer = () => {
                     status: "success"
                 })
                 activityDeleteModal.close();
-                setListTotalNum((...state) => (state - 1))
+                setListTotalNum((state) => (state - 1))
             })
             .catch((err) => {
                 console.log(err)
@@ -440,7 +442,6 @@ const ContentContainer = () => {
                 setSelectNotice={setSelectNotice} // set read로 열 notice 정보
                 updateNotice={updateNotice} // update 할 notice 정보 (update page에 표시될)
                 setUpdateNotice={setUpdateNotice} // set update 할 notice 정보 (update page에 표시될)
-                deleteId={deleteId} // set 삭제할 id
                 lists={lists}
                 setLists={setLists} // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
