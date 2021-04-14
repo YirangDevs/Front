@@ -50,7 +50,7 @@ const UserAuthorityContent = ({
                         <SelectBox options={selectAuthority} onChange={getMyAuthority} border block></SelectBox>
                     </Col>
                     <Col span={1.8}>
-                        <TextBox placeholder="이름을 검색하십시오" border></TextBox>
+                        <TextBox placeholder="이름을 검색하십시오" border ></TextBox>
                     </Col>
                     <Col span={1}>
                         <Button value="검색" theme="white" onClick={searchName} round />
@@ -58,7 +58,7 @@ const UserAuthorityContent = ({
                 </Row>
                 <Row>
                     <Col span={12} xxl={5.8} xl={8.3}>
-                        <TableBox headList={TableBoxHeadLists} bodyList={posts} />
+                        <TableBox headList={TableBoxHeadLists} bodyList={posts} colgroup={[15,15,15,25,30]}/>
                     </Col>
                     <Col span={0.2} /> {/* 빈칸 */}
                     <Col span={0} xxl={1} xl={1.5}>

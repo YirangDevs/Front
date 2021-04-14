@@ -25,7 +25,7 @@ display : flex;
 justify-content : space-between;
 align-items: center;
 cursor : pointer;
-&: hover {
+&:hover {
     background-color : #000000;
     color: #f5f5f5;
 }
@@ -38,6 +38,7 @@ const PageMenuNav = ({ role }) => {
     const history = useHistory()
 
     const path = location.pathname
+
     return (
         <>
             <Row>

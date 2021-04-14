@@ -1,13 +1,12 @@
-import React, {memo, useCallback, useMemo} from "react"
+import React, {memo, useMemo} from "react"
 import Row from "../../../../layout/Grid/Row";
 import Col from "../../../../layout/Grid/Column";
 import TableBox from "../../../atoms/TableBox";
 import Content from "../../../../layout/Content";
 import SelectBox from "../../../atoms/SelectBox";
-import MenuNav from "../../../../containers/redux/components/MenuNav";
 import UserCard from "../../../../containers/redux/components/UserCard";
 import Pagination from "../../../atoms/Pagination";
-import TableScrollbar from "react-table-scrollbar";
+import PageMenuNav from "../../../../containers/redux/components/PageNav";
 
 const MatchContent = ({
     activityTableBody,
@@ -142,11 +141,13 @@ const MatchContent = ({
 
                     </Col>
                     <Col span={3}>
-                        <Row gutter={[20,0]}>
+                        <Row>
                             <Col span={12}>
-                                <MenuNav></MenuNav>
+                                <PageMenuNav></PageMenuNav>
                             </Col>
-                            <Col span={12}>
+                            <Col span={12} style={{
+                                marginTop : "1.5rem"
+                            }}>
                                 <UserCard></UserCard>
                             </Col>
                         </Row>

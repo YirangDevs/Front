@@ -7,7 +7,7 @@
 
 
 import React from "react"
-import PageNav from "../../../molecules/PageNav"
+import PageNav from "../../../../containers/redux/components/PageNav"
 import UserCard from "../../../../containers/redux/components/UserCard"
 import Typo from "../../../atoms/Typography"
 
@@ -87,7 +87,7 @@ const ProfileContent = ({
 
 }) => {
     console.log(userProfile)
-    const { role, email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
+    const {email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
         sex, username, emailValidation, } = userProfile;
 
     const settingSex = (sex) => {
@@ -143,7 +143,7 @@ const ProfileContent = ({
                         </Row>
                         <Row gutter={[15, 0]}>
                             <Col span={12}>
-                                <PageNav role={role} />
+                                <PageNav/>
                             </Col>
                         </Row>
 

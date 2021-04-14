@@ -91,7 +91,7 @@ const HomeContent = ({
 
                                         </Col>
                                         <Col span={12}>
-                                            <TableBox headList={table_head} bodyList={bodyList} border={"bottom"} data={noticeList} primaryKey={"title"} onClick={onTableClick}></TableBox>
+                                            <TableBox headList={table_head} bodyList={bodyList} border={"bottom"} data={noticeList} primaryKey={"title"} onClick={onTableClick} colgroup={[50,20,15,15]}></TableBox>
                                         </Col>
                                         <Col span={12} justify={"center"}>
                                             <Pagination num={Math.ceil(noticeNum / 6)} onClick={onPaginationClick}></Pagination>
