@@ -366,24 +366,6 @@ const ContentContainer = () => {
 
 
 
-    /**
-     * @description logout 클릭 시
-     * @param e  event.persist 를 위한  param
-     * @detail logout기능 수행
-     */
-    const logoutEvent = (e) => {
-        console.log("Logout,,,,");
-
-        // e.persist();
-        // //props.LOGOUT() // redux에서 로그아웃 상태로 바꿔줌
-        // localStorage.removeItem("YAT")
-        // window.location.href = "https://kauth.kakao.com/oauth/logout?client_id=" + _.REST_KEY + "&logout_redirect_uri=" + _.LOGOUT_REDIRECT_URL
-
-    }
-
-
-
-
 
 
 
@@ -411,7 +393,7 @@ const ContentContainer = () => {
                 deleteClick={deleteClick} // notice를 삭제하기 버튼 눌었을떄 
                 pagingClick={pagingClick} // paging 클릭 시  
                 updateFunction={updateFunction} // notice를 수정 하기 위한 함수들 
-                logoutEvent={logoutEvent} // logout 하는 기능 
+
 
                 toReadHandle={toReadHandle} // readButton 눌렀을때 일어나는 event 함수
                 toEditHandle={toEditHandle} // 수정하기 버튼 (id 받아서 notice 갱신 후 수정 form 채우기)

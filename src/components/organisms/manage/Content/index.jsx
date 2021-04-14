@@ -2,13 +2,14 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-08 19:02:27
+ * @Last Modified time: 2021-04-14 02:18:44
  */
 import React from "react"
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import ContentLayout from "../../../../layout/Content"
 import MenuNav from '../../../molecules/MenuNav'
+import MypageNav from "../../../molecules/MypageNav"
 import TableBox from '../../../atoms/TableBox'
 import Button from '../../../atoms/Button'
 import Modal from '../../../atoms/Modal'
@@ -39,7 +40,7 @@ const ManageContent = ({
     deleteClick,
     pagingClick,
     updateFunction,
-    logoutEvent,
+
 
     toReadHandle,
     toEditHandle,
@@ -119,7 +120,7 @@ const ManageContent = ({
                                                         <Col span={12} xs={12}>
                                                             <Modal visible={isReadVisible}
                                                                 closable={true} maskClosable={true} onClose={readModal.close} size={10}>
-                                                                <ReadForm isOriginal={isOriginal} updateUrgentTitle={updateUrgentTitle} urgentIconOnchange={urgentIconOnchange} selectNotice={selectNotice}
+                                                                <ReadForm title={'게시물 조회 및 긴급 게시물 작성'} isOriginal={isOriginal} updateUrgentTitle={updateUrgentTitle} urgentIconOnchange={urgentIconOnchange} selectNotice={selectNotice}
                                                                     isUrgentVisible={isUrgentVisible} UrgentModal={UrgentModal} urgentTitle={urgentTitle}
                                                                     getOriginalTitleOnchange={getOriginalTitleOnchange}
                                                                     isUrgentIcon={isUrgentIcon} okUrgentOnclick={okUrgentOnclick}></ReadForm>
@@ -142,7 +143,7 @@ const ManageContent = ({
 
                                 }
                             </Col>
-                            <Col span={12}>
+                            <Col span={12} justify={'center'}>
                                 <Pagination num={Math.ceil(listTotalNum / 6)} onClick={pagingClick}></Pagination>
                             </Col>
                         </Row>
@@ -154,16 +155,19 @@ const ManageContent = ({
 
 
                     <Col xs={0} sm={0} md={3.5} lg={3.5} xl={3.5}>
-                        <Row gutter={[10, 0]}>
-                            <Col span={12} >
+                        <Row gutter={[0, 0]}>
+                            <Col span={12}  >
                                 <Typo weight={"bold"} size={"1.125rem"} color={"#707070"}>메뉴</Typo>
                             </Col>
-                            <Col span={12}>
-                                <MenuNav />
-                            </Col>
-                            <Col span={12}>
-                                <UserCard ></UserCard>
-                            </Col>
+                            <Row gutter={[10, 0]}>
+                                <Col span={12}>
+                                    <MypageNav role={'ADMIN'} />
+                                </Col>
+
+                                <Col span={12}>
+                                    <UserCard ></UserCard>
+                                </Col>
+                            </Row>
                         </Row>
                     </Col>
 

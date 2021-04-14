@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-30 16:59:02
+ * @Last Modified time: 2021-04-14 02:11:00
  */
 
 
@@ -30,7 +30,7 @@ import DeleteMyInfoModal from "../DeleteMyInfoForm"
 import DefaultImg from "../../../../img/ProfileDefaultImg.png"
 
 import FileBox from "../../../atoms/FileBox"
-import Divider from "../../../atoms/Diviver"
+import Divider from "../../../atoms/Divider"
 
 const ProfileContent = ({
     userProfile, // 우저정보
