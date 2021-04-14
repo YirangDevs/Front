@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-02-03 18:44:55
+ * @Last Modified time: 2021-04-15 05:54:27
  */
 
 import React, { useState, useEffect } from "react"
@@ -13,26 +13,23 @@ import getNoticeByPage from "../../../service/api/get/get_notice_by_page";
 import getNoticeNum from "../../../service/api/get/get_notice_num";
 import deleteNotice from "../../../service/api/delete/delete_notice";
 import edit_notice from "../../../service/api/put/edit_notice"
-
+import postUrgentNotice from "../../../service/api/post/post_urgent_notice"
+import NotificationPool from "../../redux/components/NotificationPool";
 const ContentContainer = () => {
-
-
-
     const [listTotalNum, setListTotalNum] = useState("0"); // 전체 리스트 갯수
-    const [pagingNum, setPagingNum] = useState("0");// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
+    const [pagingNum, setPagingNum] = useState(0);// 선택한 리스트 페이지 번호 ( 1페이지 , 2페이지)
 
     const [selectNotice, setSelectNotice] = useState({});//  read로 열 notice 정보
     const [updateNotice, setUpdateNotice] = useState({})  // update할 notice 정보
 
-    const [deleteId, setDeleteId] = useState(null); // 삭제할 id 
     const [lists, setLists] = useState([]);//fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
-    const [isUrgentIcon, setUrgentIcon] = useState([])
+
 
     //modal handling
     const [isReadVisible, setIsReadVisible] = useState(false) //rea d 모달
     const [isEditVisible, setIsEditVisible] = useState(false) // edit 모달
-    const [isUrgentVisible, setIsUrgentVisible] = useState(false) // urgent 모달
+
 
     const readModal = {
         show() {
@@ -51,22 +48,8 @@ const ContentContainer = () => {
         }
     }
 
-    const urgentModal = {
-        show() {
-            setIsUrgentVisible(true)
-        },
-        close() {
-            setIsUrgentVisible(false)
-        }
-    }
 
-    const UrgentIcon = {
-        setIcon() {
-            console.log(isUrgentIcon)
 
-            setUrgentIcon(!isUrgentIcon)
-        }
-    }
 
     useEffect(() => {//전체 페이지 갯수 받아오기 
         getNoticeNum()
@@ -77,12 +60,13 @@ const ContentContainer = () => {
 
     // 전체 페이지 갯수가 바뀔 때 마다 선택된 페이지 새로 받아오기 (삭제되었을때 바로 반영이 되로=도록)
     useEffect(() => {
-        getNoticeByPage("0")
+        getNoticeByPage(pagingNum)
             .then((res) => {
                 console.log(res.notices)
                 setLists(res.notices);
             }).catch(error => console.log(error))
-    }, [pagingNum])
+    }, [pagingNum, listTotalNum])
+
 
     /**
      * @description - readButton 눌렀을때 일어나는 event 함수
@@ -135,27 +119,32 @@ const ContentContainer = () => {
             .catch(error => console.log(error))
     }
 
-
-
-
-
     /**
          * @description 수정완료시 보내는 data
          * @detail title 과 activityRegisterRequestDto를 나눠서 보내야한다. 
          * @detail nor parsㄷInt 통해서 보내야한다.
          */
     const data = JSON.stringify({
-        "title": updateNotice.title,
+        // "title": updateNotice.title,
+        // "activityRegisterRequestDto": {
+        //     "content": updateNotice.content, "region": updateNotice.region, "nor": parseInt(updateNotice.nor),
+        //     "dov": updateNotice.dov, "tov": updateNotice.tov + ":00", "dod": updateNotice.dod
+        // }
         "activityRegisterRequestDto": {
-            "content": updateNotice.content, "region": updateNotice.region, "nor": parseInt(updateNotice.nor),
-            "dov": updateNotice.dov, "tov": updateNotice.tov + ":00", "dod": updateNotice.dod
-        }
+            "content": updateNotice.content,
+            "dod": updateNotice.dod,
+            "dov": updateNotice.dov,
+            "nor": parseInt(updateNotice.nor),
+            "region": updateNotice.region,
+            "tov": (String(updateNotice.tov).length === 8) ? updateNotice.tov : updateNotice.tov + ":00"
+        },
+        "title": updateNotice.title
     })
 
     /**
      * @description 수정전 게시물과 수정하고픈 data가 다른지 확인하는 function
      */
-    const isEqualObject = (a, b,) => {
+    const isEqualObject = (a, b) => {
         const aValues = Object.values(a);
         const aKeys = Object.keys(a);
         const bValues = Object.values(b);
@@ -184,41 +173,31 @@ const ContentContainer = () => {
         console.log(isEqualObject(updateNotice, selectNotice))
         console.log(data)
         let diff = [];
+        let test = listTotalNum
         diff = isEqualObject(updateNotice, selectNotice);
-        diff.length || editModal.close() // 수정전 notice와 같으면 modalClose
-        console.log(diff)
-
+        if (diff.length === 0) return editModal.close() // 수정전 notice와 같으면 modalClose
         edit_notice(noticeId, data, selectNotice.title, diff)
-            .then(
+            .then((res) => {
+                console.log(res)
+                if (diff.includes("제목")) {
+                    getNoticeByPage(pagingNum)
+                        .then((res) => {
+                            console.log("제목이 바껴서 새로 받아오기")
+                            console.log(res.notices)
+                            setLists(res.notices);
+                        }).catch(error => console.log(error))
+                }
+
+                // console.log(listTotalNum)
                 editModal.close()
-            )
-            .catch(error => console.log(error))
-
-
+            })
+            .catch(error => {
+                console.log(data)
+                console.log(error)
+            })
     }
 
-    /**
-     * @description notice를 삭제하기 버튼 눌었을떄
-     * @param e - 선택한 notice target하기위한 param
-     * @detail 삭제할 notice가 마지막일 경우 force delete
-     */
 
-    const deleteClick = (deleteId) => {
-        deleteNotice(deleteId).then(() => {
-            setDeleteId(null);
-            alert("💥게시글 삭제 성공!💥")
-            setListTotalNum(listTotalNum - 1)
-        }).catch(error => {
-            console.log(error)
-            if (window.confirm("이 게시물을 삭제하면 게시물과 관련된 모든 활동이 삭제됩니다. 삭제하시겠습니까?")) {
-                deleteActivity(deleteId).then((res) => {
-                    alert("💥게시글 및 활동 삭제 성공!💥");
-                    setDeleteId(null);
-                    setListTotalNum(listTotalNum - 1)
-                }).catch(error => console.log(error))
-            }
-        })
-    }
 
     /**
      * @description paging 클릭 시
@@ -227,8 +206,8 @@ const ContentContainer = () => {
      */
 
     const pagingClick = (e) => {
-        const pagingId = e.target.id;
-        console.log(pagingId - 1)
+        const pagingId = e.target.innerText;
+        console.log(pagingId)
         setPagingNum(pagingId - 1)
     }
 
@@ -264,6 +243,25 @@ const ContentContainer = () => {
     }
 
 
+
+
+    // SECTION urgent
+
+    const [isUrgentIcon, setUrgentIcon] = useState([])
+    const [isOriginal, setIsOriginal] = useState([])
+    const [urgentTitle, setUrgentTitle] = useState("")
+
+    const [isUrgentVisible, setIsUrgentVisible] = useState(false) // urgent 모달
+
+    const urgentModal = {
+        show: () => { setIsUrgentVisible(true) },
+        close() {
+            setUrgentIcon([])
+            setIsOriginal([])
+            setUrgentTitle("")
+            setIsUrgentVisible(false)
+        }
+    }
     /**
      * @description 긴급게시물  클릭 시
      * @param e 선택한 게시물을 target 하기 위한 param
@@ -272,54 +270,184 @@ const ContentContainer = () => {
     const toUrgentHandle = (e) => {
         console.log(e);
         urgentModal.show();
+    }
 
+
+    const urgentIconOnchange = (e) => {
+        console.log(e.target.checked)
+        console.log(e.target.value)
+        if (e.target.checked) {
+            return setUrgentIcon(["🚨"])
+        }
+        if (!e.target.checked) {
+            console.log("나가리")
+            return setUrgentIcon([])
+        }
+    }
+
+    const getOriginalTitleOnchange = (e) => {
+        console.log(e.target.checked)
+        console.log(e.target.value)
+        if (e.target.checked) {
+            setUrgentTitle(selectNotice.title)
+            return setIsOriginal([e.target.value])
+        }
+        if (!e.target.checked) {
+            console.log("나가리")
+            setUrgentTitle("")
+            return setIsOriginal([])
+        }
     }
 
 
     /**
-     *  @description 긴급 아이콘🔥 클릭시
+     *  @description 긴급 게시물 제목 변경 
      */
-    const urgentOnChange = () => {
-        setIsUrgentVisible(true);
+    const updateUrgentTitle = (e) => {
+        return setUrgentTitle(e.target.value);
     }
 
 
     /**
-     * @description logout 클릭 시
-     * @param e  event.persist 를 위한  param
-     * @detail logout기능 수행
-     */
-    const logoutEvent = (e) => {
-        console.log("Logout,,,,");
+       *  @description 긴급 게시물 post
+       */
+    const okUrgentOnclick = () => {
+        console.log(selectNotice.title === urgentTitle)
+        console.log(isUrgentIcon.length === 0)
+        if (selectNotice.title === urgentTitle && isUrgentIcon.length === 0) {
+            console.log('둘다같ㅇ다')
+            return NotificationPool.api.add({
+                title: "같은 제목의 게시물은 게시할 수 없습니다.",
+                content: "응급아이콘을 추가하거나 , 제목을 수정해 주세요.",
+                status: "error"
+            })
+        }
+        if (!urgentTitle) {
+            console.log('제목입력 안함')
+            return NotificationPool.api.add({
+                title: "응급아이콘만 게시할 수 없습니다.",
+                content: "게시물의 제목을 입력해주세요.",
+                status: "error"
+            })
+        }
+        const data = (isUrgentIcon.length !== 0) ?
+            JSON.stringify({
+                "title": "🚨" + urgentTitle
+            })
+            :
+            JSON.stringify({
+                "title": urgentTitle
+            });
 
-        // e.persist();
-        // //props.LOGOUT() // redux에서 로그아웃 상태로 바꿔줌
-        // localStorage.removeItem("YAT")
-        // window.location.href = "https://kauth.kakao.com/oauth/logout?client_id=" + _.REST_KEY + "&logout_redirect_uri=" + _.LOGOUT_REDIRECT_URL
-
+        postUrgentNotice(selectNotice.id, data)
+            .then((res) => {
+                console.log(res)
+                setListTotalNum((state) => (state + 1))
+                readModal.close();
+                urgentModal.close();
+            })
+            .catch((err) => {
+                (err.errorCode === "099") ?
+                    NotificationPool.api.add({
+                        title: "같은 제목의 게시물은 게시할 수 없습니다.",
+                        content: "응급아이콘을 추가하거나 , 제목을 수정해 주세요.",
+                        status: "error"
+                    })
+                    :
+                    NotificationPool.api.add({
+                        title: "Error from post_notice",
+                        content: err.errorName + "(" + err.errorCode + ")",
+                        status: "error"
+                    })
+            })
     }
+    //  !SECTION urgent
+
+    // SECTION delete
+
+    const [isActivityDeleteVisible, setActivityDeleteVisible] = useState(false)
+    const [deleteInfo, setDeleteInfo] = useState({
+        deleteId: "",
+        deleteTitle: ""
+    })
+    const activityDeleteModal = {
+        show: () => setActivityDeleteVisible(true),
+        close: () => setActivityDeleteVisible(false)
+    }
+
+    /**
+     * @description notice를 삭제하기 버튼 눌었을떄
+     * @param e - 선택한 notice target하기위한 param
+     * @detail 삭제할 notice가 마지막일 경우 force delete
+     */
+    const deleteOnclick = (id, title) => {
+        setDeleteInfo({ deleteId: id, deleteTitle: title })
+        deleteNotice(id)
+            .then((res) => {
+                console.log(res);
+                NotificationPool.api.add({
+                    title: "게시물 삭제 성공",
+                    content: `${title}을 삭제하였습니다.`,
+                    status: "success"
+                })
+                setListTotalNum((state) => (state - 1))
+            })
+            .catch((err) => {
+                console.log(err)
+                console.log("activityNotice")
+
+                activityDeleteModal.show();
+            })
+    }
+
+    const activityDeleteOKOnclick = () => {
+        deleteActivity(deleteInfo.deleteId)
+            .then((res) => {
+                console.log(res)
+                NotificationPool.api.add({
+                    title: "게시물 삭제 성공",
+                    content: "게시물 및 관련된 활동을 삭제하였습니다.",
+                    status: "success"
+                })
+                activityDeleteModal.close();
+                setListTotalNum((state) => (state - 1))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+
+
+    // !SECTION delete
+
+
+
+
+
+
 
     return (
 
         <>
             <ManageContent
+                listTotalNum={listTotalNum}
                 setListTotalNum={setListTotalNum} // set 전제 리스트 갯수 
                 setPagingNum={setPagingNum} // set 선택한 리스트 페이지 번호
                 selectNotice={selectNotice} // read 로 열 notice 정보 
                 setSelectNotice={setSelectNotice} // set read로 열 notice 정보
                 updateNotice={updateNotice} // update 할 notice 정보 (update page에 표시될)
                 setUpdateNotice={setUpdateNotice} // set update 할 notice 정보 (update page에 표시될)
-                deleteId={deleteId} // set 삭제할 id
                 lists={lists}
                 setLists={setLists} // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
 
                 /* props.function */
                 setNotice={setNotice} // notice를 클릭 했을떄 notice를 read 하는 모달
                 completeEdit={completeEdit} // notice를 수정하기 버튼 눌었을떄 
-                deleteClick={deleteClick} // notice를 삭제하기 버튼 눌었을떄 
+
                 pagingClick={pagingClick} // paging 클릭 시  
                 updateFunction={updateFunction} // notice를 수정 하기 위한 함수들 
-                logoutEvent={logoutEvent} // logout 하는 기능 
+
 
                 toReadHandle={toReadHandle} // readButton 눌렀을때 일어나는 event 함수
                 toEditHandle={toEditHandle} // 수정하기 버튼 (id 받아서 notice 갱신 후 수정 form 채우기)
@@ -333,11 +461,24 @@ const ContentContainer = () => {
                 isUrgentIcon={isUrgentIcon}
                 isUrgentVisible={isUrgentVisible}
                 UrgentModal={urgentModal}
-                urgentOnChange={urgentOnChange}
-                UrgentIcon={UrgentIcon}
 
                 toUrgentHandle={toUrgentHandle} //오류때문에 만들어놓은 거 사용함(지울꺼면 지워)
 
+                urgentIconOnchange={urgentIconOnchange}
+                updateUrgentTitle={updateUrgentTitle}
+
+                urgentTitle={urgentTitle}
+                getOriginalTitleOnchange={getOriginalTitleOnchange}
+                isOriginal={isOriginal}
+                okUrgentOnclick={okUrgentOnclick}
+
+
+                //게시물 삭제
+                isActivityDeleteVisible={isActivityDeleteVisible}
+                activityDeleteModal={activityDeleteModal}
+                deleteOnclick={deleteOnclick}
+                activityDeleteOKOnclick={activityDeleteOKOnclick}
+                deleteInfo={deleteInfo}
             > </ManageContent>
         </>
 
