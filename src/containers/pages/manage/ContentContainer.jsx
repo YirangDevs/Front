@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 03:57:41
+ * @Last Modified time: 2021-04-15 05:54:27
  */
 
 import React, { useState, useEffect } from "react"
@@ -119,10 +119,6 @@ const ContentContainer = () => {
             .catch(error => console.log(error))
     }
 
-
-
-
-
     /**
          * @description 수정완료시 보내는 data
          * @detail title 과 activityRegisterRequestDto를 나눠서 보내야한다. 
@@ -140,7 +136,7 @@ const ContentContainer = () => {
             "dov": updateNotice.dov,
             "nor": parseInt(updateNotice.nor),
             "region": updateNotice.region,
-            "tov": updateNotice.tov
+            "tov": (String(updateNotice.tov).length === 8) ? updateNotice.tov : updateNotice.tov + ":00"
         },
         "title": updateNotice.title
     })
@@ -391,7 +387,7 @@ const ContentContainer = () => {
                 console.log(res);
                 NotificationPool.api.add({
                     title: "게시물 삭제 성공",
-                    content: `${deleteInfo.deleteTitle}을 삭제하였습니다.`,
+                    content: `${title}을 삭제하였습니다.`,
                     status: "success"
                 })
                 setListTotalNum((state) => (state - 1))

@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-01-28 20:00:02 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 23:25:38
+ * @Last Modified time: 2021-04-15 06:40:28
  */
 
 import React from 'react'
@@ -14,14 +14,13 @@ import Col from "../../../../layout/Grid/Column"
 
 //{title, region, nor, dov, tov, dod, titleOnChange, timeOnChange, deadlineOnChange}
 
-const EditForm = ({ updateNotice, updateFunction, completeEdit }) => {
+const EditForm = ({ updateNotice, updateFunction, completeEdit, isShow }) => {
     const { id, title, region, nor, dov, tov, dod, content } = updateNotice;
     return (
-
         <>
             <Row gutter={[0, 0]}>
                 <Col span={12}>
-                    <NoticeForm title={title} region={region} nor={nor} dov={dov} tov={tov} dod={dod}
+                    <NoticeForm isShow={isShow} title={title} region={region} nor={nor} dov={dov} tov={tov} dod={dod}
                         titleOnChange={updateFunction.title} timeOnChange={updateFunction.tov} deadlineOnChange={updateFunction.dod}></NoticeForm>
                 </Col>
                 <Col span={12} style={{

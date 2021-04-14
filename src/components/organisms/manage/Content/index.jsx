@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 03:31:23
+ * @Last Modified time: 2021-04-15 06:41:02
  */
 import React from "react"
 import Row from "../../../../layout/Grid/Row"
@@ -138,7 +138,7 @@ const ManageContent = ({
                                                         <Col span={12} xs={12}>
                                                             <Modal visible={isEditVisible}
                                                                 closable={true} maskClosable={false} onClose={editModal.close} size={10}>
-                                                                <EditForm updateNotice={updateNotice} updateFunction={updateFunction} completeEdit={completeEdit}></EditForm>
+                                                                <EditForm isShow={isEditVisible} updateNotice={updateNotice} updateFunction={updateFunction} completeEdit={completeEdit}></EditForm>
                                                             </Modal>
                                                         </Col>
                                                     </Row>
@@ -173,7 +173,7 @@ const ManageContent = ({
                             <Col span={12}  >
                                 <Typo weight={"bold"} size={"1.125rem"} color={"#707070"}>메뉴</Typo>
                             </Col>
-                            <Row gutter={[10, 0]}>
+                            <Row gutter={[15, 0]}>
                                 <Col span={12}>
                                     <PageNav role={'ADMIN'} />
                                 </Col>

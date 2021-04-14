@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 19:25:33
+ * @Last Modified time: 2021-04-15 06:01:58
  */
 
 
@@ -255,7 +255,7 @@ const ProfileContent = ({
                                                 <Col offset={0.25} span={8} justify={"center"} align={"center"} >
                                                     <Row align={'center'}>
                                                         <Col xs={5} sm={6} md={5} lg={6} xl={6} xxl={6} align={'center'} justify={'center'} >
-                                                            <TextBox color={"black"} border block
+                                                            <TextBox color={"black"} border block autofocus
                                                                 radius={'22px'} align={'center'}
                                                                 onChange={editProfileFunction.username} value={username}></TextBox>
                                                         </Col>

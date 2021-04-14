@@ -10,11 +10,15 @@ import { MdModeEdit } from "react-icons/md";
 const Text = styled.div`
 
     color: #707070;
-    
+     
 `
 
 
-const NoticeForm = ({ title, region, nor, dov, tov, dod, titleOnChange, timeOnChange, deadlineOnChange }) => {
+const NoticeForm = ({ title, region, nor, dov, tov, dod, titleOnChange, timeOnChange, deadlineOnChange, isShow }) => {
+
+    const setTov = (tov.length === 8) ? tov.slice(0, 5) : tov
+
+
 
     return (
         <>
@@ -31,7 +35,7 @@ const NoticeForm = ({ title, region, nor, dov, tov, dod, titleOnChange, timeOnCh
                     border: "1px solid #ccd4e0",
                     borderCollapse: "collapse",
                 }}>
-                    <TextBox theme="white" size={"small"} value={title}
+                    <TextBox autofocus={isShow} theme="white" size={"small"} value={title}
                         onChange={titleOnChange} placeholder="제목을 입력하세요" block />
                     <MdModeEdit ></MdModeEdit>
 
@@ -92,7 +96,7 @@ const NoticeForm = ({ title, region, nor, dov, tov, dod, titleOnChange, timeOnCh
                     border: "1px solid #ccd4e0",
                     borderCollapse: "collapse",
                 }}>
-                    <TimeSelector theme="white" defaultValue={tov} size={"small"} onChange={timeOnChange} />
+                    <TimeSelector theme="white" defaultValue={setTov} size={"small"} onChange={timeOnChange} />
                 </Col>
                 <Col xl={1.5} lg={1.5} md={4} sm={4} xs={4} span={1} justify={"center"} align={"center"} style={{
                     height: "3rem",
