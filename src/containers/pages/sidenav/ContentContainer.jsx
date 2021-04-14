@@ -5,23 +5,22 @@
  * @Last Modified time: 2021-04-08 16:19:22
  */
 
- import React, {useState} from 'react'
+ import React from 'react'
  import SideNav from "../../../components/molecules/SideNav"
+ import useSideNav from "../../../hook/useSideNav"
+ import Header from "../../redux/components/Header/index"
 
  const ContentContainer = ({
-     imgUrl
+     imgUrl,
+     children
  }) => {
-     const [navOpen, setNavOpen] = useState(false);
-     const onOpen = () => {
-        setNavOpen(true);
-     }
-    const onClose = () => {
-        setNavOpen(false);
-    }
+    
+    const [navState, setNavState] = useSideNav(false);
+
 
      return (
          <>
-            <SideNav imgUrl={imgUrl} navOpen={navOpen} onOpen={onOpen} onClose={onClose}>
+            <SideNav children={children} imgUrl={imgUrl} navOnOpen={onOpen} navState={navState}>
 
             </SideNav>
          </>

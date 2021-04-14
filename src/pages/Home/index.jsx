@@ -4,11 +4,9 @@ import Header from "../../containers/redux/components/Header/index";
 import ContentContainer from "../../containers/redux/pages/home/ContentContainer";
 // import SideNav from "../../containers/pages/sidenav/ContentContainer"
 import SideNav from "../../containers/redux/components/SideNav"
-import Button from "../../components/atoms/Button";
+import useSideNav from "../../hook/useSideNav";
 
-const SideHide = styled.div`
-    
-`
+
 const WholeWrapper = styled.div`
     width : 100%;
     overflow-x: hidden;
@@ -20,18 +18,24 @@ const ContentWrapper = styled.div`
     position : relative;
 `
 
-const Home = () => (
-    <>
-    <WholeWrapper>
-            <SideNav></SideNav>
-        <ContentWrapper>
-            <Header position={"absolute"}/>
-            <ContentContainer></ContentContainer>
-        </ContentWrapper>
-    </WholeWrapper>
-    
+const Home = () =>{
+
+    const [navOpen, setNavState] = useSideNav(false);
+
+    return (
+        <>
+        <WholeWrapper>
+                <SideNav navOpen={navOpen} setNavState={setNavState}>
+                    <ContentWrapper>
+                        <Header position={"absolute"} setNavState={setNavState}/>
+                        <ContentContainer></ContentContainer>
+                    </ContentWrapper>
+                </SideNav>
+        </WholeWrapper>
         
-    </>
-)
+            
+        </>
+    )
+}
 
 export default memo(Home)

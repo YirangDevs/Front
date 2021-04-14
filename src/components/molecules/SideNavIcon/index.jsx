@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import {MdFormatListBulleted, MdOpenInBrowser, MdPeople, MdToday, MdTune, MdPerson} from "react-icons/md";
+import {MdFormatListBulleted, MdOpenInBrowser, MdToday, MdTune} from "react-icons/md";
 
 const ContentWrapper = styled.div`
       display: flex;

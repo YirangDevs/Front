@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import SideNav from "../../../pages/sidenav/ContentContainer"
+import SideNav from "../../../../components/molecules/SideNav/index"
 
 const mapStateToProps = (state) => {
     return {

@@ -137,6 +137,7 @@ const ContentContainer = ({logined}) => {
                 currentNoticePage={currentNoticePage}
                 fakeLoginOnClick={fakeLoginOnClick}
 
+
                 setNoticeNum={setNoticeNumState}
                 closeNotice={closeNotice}
                 onPaginationClick={onPaginationClick}
