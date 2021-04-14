@@ -2,23 +2,23 @@
  * @author : chaeeun
  * @date : 2021-02-01 18:30:38
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 00:01:47
+ * @Last Modified time: 2021-04-14 21:55:26
  */
 
 import React from 'react'
-import TextBox from "../../atoms/TextBox"
-import Row from "../../../layout/Grid/Row"
-import Col from "../../../layout/Grid/Column"
-import Button from '../../atoms/Button'
-import CheckBox from '../../atoms/CheckBox'
-import Divider from '../../atoms/Divider'
-import Typo from '../../atoms/Typography'
+import TextBox from "../../../atoms/TextBox"
+import Row from "../../../../layout/Grid/Row"
+import Col from "../../../../layout/Grid/Column"
+import Button from '../../../atoms/Button'
+import CheckBox from '../../../atoms/CheckBox'
+import Divider from '../../../atoms/Divider'
+import Typo from '../../../atoms/Typography'
 
 
 
-const Urgentform = ({ okUrgentOnclick, isOriginal, urgentTitle, getOriginalTitleOnchange, updateUrgentTitle, isUrgentIcon, urgentIconOnchange }) => {
+const UrgentForm = ({ okUrgentOnclick, isOriginal, urgentTitle, getOriginalTitleOnchange, updateUrgentTitle, isUrgentIcon, urgentIconOnchange }) => {
 
-    console.log(isUrgentIcon)
+
 
     return (
         <>
@@ -72,4 +72,4 @@ const Urgentform = ({ okUrgentOnclick, isOriginal, urgentTitle, getOriginalTitle
 
 }
 
-export default Urgentform;
+export default UrgentForm;

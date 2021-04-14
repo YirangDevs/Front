@@ -2,12 +2,12 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 02:11:00
+ * @Last Modified time: 2021-04-14 19:25:33
  */
 
 
 import React from "react"
-import MypageNav from "../../../molecules/MypageNav"
+import PageNav from "../../../molecules/PageNav"
 import UserCard from "../../../../containers/redux/components/UserCard"
 import Typo from "../../../atoms/Typography"
 
@@ -130,7 +130,7 @@ const ProfileContent = ({
                             </Col>
                         </Row >
 
-                        {/* [Left]  myPageNav */}
+                        {/* [Left]  PageNav */}
                         <Row gutter={[15, 0]} style={{ marginTop: '2rem' }}>
                             <Col span={12}>
                                 <Typo size={"1.2rem"} weight={"bold"}>로그인 된 카카오계정</Typo>
@@ -143,7 +143,7 @@ const ProfileContent = ({
                         </Row>
                         <Row gutter={[15, 0]}>
                             <Col span={12}>
-                                <MypageNav role={role} />
+                                <PageNav role={role} />
                             </Col>
                         </Row>
 

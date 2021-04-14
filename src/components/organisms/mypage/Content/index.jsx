@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-05 21:00:15
+ * @Last Modified time: 2021-04-14 19:25:17
  */
 
 import React from 'react'
@@ -14,7 +14,7 @@ import UserCard from '../../../../containers/redux/components/UserCard'
 import TableBox from "../../../atoms/TableBox"
 import Button from '../../../atoms/Button'
 import DateSelector from '../../../atoms/DateSelector'
-import MypageNav from "../../../molecules/MypageNav"
+import PageNav from "../../../molecules/PageNav"
 import { useHistory } from 'react-router-dom'
 import DeleteCanCelApplyForm from '../DeleteCancelApplyForm'
 import Modal from '../../../atoms/Modal'
@@ -128,7 +128,7 @@ const MyPageContent = ({
                         </Row>
                         <Row gutter={[15, 0]}>
                             <Col span={12}>
-                                <MypageNav role={role} />
+                                <PageNav role={role} />
                             </Col>
                         </Row>
                         <Row gutter={[15, 0]} style={{ margin: '2.5rem 0 0 0 ' }}>

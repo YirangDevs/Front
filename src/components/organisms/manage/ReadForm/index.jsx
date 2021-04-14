@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2020-12-21 16:50:25
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-08 19:02:40
+ * @Last Modified time: 2021-04-14 21:55:04
  */
 
 import React from "react"
@@ -11,12 +11,11 @@ import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import Button from "../../../atoms/Button"
 import Modal from "../../../atoms/Modal"
-import UrgentForm from "../UrgentForm"
+import UrgentForm from "../UrgentForm/UrgentForm"
 import ReadNoticeForm from "../../../molecules/ReadNoticeForm"
 const ReadForm = ({ okUrgentOnclick, getOriginalTitleOnchange, urgentTitle, updateUrgentTitle, urgentIconOnchange, selectNotice, isUrgentVisible, UrgentModal, isUrgentIcon, isOriginal }) => {
     const readNotice = selectNotice || [{ id: null, title: "게시글이없습니다.", dov: null, region: null }];
     const { title, region, nor, dov, tov, dod, content } = readNotice; //id 임시로 지웠어
-
     return (
         <>
             <Row gutter={[0, 0]}>

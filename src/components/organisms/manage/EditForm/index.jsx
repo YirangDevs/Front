@@ -2,10 +2,10 @@
  * @author : chaeeun
  * @Date : 2021-01-28 20:00:02 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-01-29 17:55:03
+ * @Last Modified time: 2021-04-14 23:25:38
  */
 
-import React  from 'react'
+import React from 'react'
 import NoticeForm from '../../../molecules/NoticeForm'
 import Button from "../../../atoms/Button"
 import TextAreaBox from "../../../atoms/TextAreaBox"
@@ -16,7 +16,6 @@ import Col from "../../../../layout/Grid/Column"
 
 const EditForm = ({ updateNotice, updateFunction, completeEdit }) => {
     const { id, title, region, nor, dov, tov, dod, content } = updateNotice;
-
     return (
 
         <>

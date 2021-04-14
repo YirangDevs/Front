@@ -2,14 +2,14 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 02:18:44
+ * @Last Modified time: 2021-04-14 23:25:49
  */
 import React from "react"
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import ContentLayout from "../../../../layout/Content"
 import MenuNav from '../../../molecules/MenuNav'
-import MypageNav from "../../../molecules/MypageNav"
+import PageNav from "../../../molecules/PageNav"
 import TableBox from '../../../atoms/TableBox'
 import Button from '../../../atoms/Button'
 import Modal from '../../../atoms/Modal'
@@ -18,6 +18,8 @@ import EditForm from '../EditForm'
 import UserCard from "../../../../containers/redux/components/UserCard"
 import Pagination from "../../../atoms/Pagination"
 import Typo from "../../../atoms/Typography"
+import DeleteActivityForm from "../DeleteActivityForm"
+import { isValidElement } from "react"
 
 
 
@@ -37,7 +39,7 @@ const ManageContent = ({
 
     setNotice,
     completeEdit,
-    deleteClick,
+
     pagingClick,
     updateFunction,
 
@@ -61,7 +63,14 @@ const ManageContent = ({
     getOriginalTitleOnchange,
     isOriginal,
     okUrgentOnclick,
+
+    isActivityDeleteVisible,
+    activityDeleteModal,
+    deleteOnclick,
+    activityDeleteOKOnclick,
+    deleteInfo,
 }) => {
+    console.log(selectNotice)
     // notice header
     const NoticeTableHeadLists = [" ", "제목", "봉사날짜", "봉사지역"]
     // list를 못받아올 경우 
@@ -70,15 +79,11 @@ const ManageContent = ({
     return (
         <>
             <ContentLayout>
-                {/*<Col span = {7} > = notice 영역을 감사는 layout (left) */}
-                {/*<Col span = {5} > = menu 영역을 감사는 layout (right) */}
-                <Row gutter={[10, 10]}>
-                    <Col xs={12} sm={12} md={8} lg={8} xl={8}>
-                        {/* information */}
-                    </Col>
-                </Row>
+                {/* SECTION 전체 영역(테이블 + NAV) */}
                 <Row gutter={[10, 10]} justify={"space-between"}>
-                    <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+
+                    {/* SECTION 테이블 */}
+                    <Col xs={12} sm={12} md={8} lg={8} xl={7}>
                         <Row>
                             <Col span={12}>
                                 {
@@ -93,7 +98,7 @@ const ManageContent = ({
                                             }, {})
                                             return (
                                                 <>
-                                                    <Row key={lists.id} gutter={[4, 0]} align="center">
+                                                    <Row key={lists.id} gutter={[2, 0]} align="center">
                                                         <Col xs={10} sm={10} md={9} lg={10} xl={10}>
                                                             <TableBox key={lists.id} headList={NoticeTableHeadLists}
                                                                 bodyList={[data]} primaryKey={"title"} onClick={() => toReadHandle(data.id)} >
@@ -107,7 +112,8 @@ const ManageContent = ({
                                                                 </Col>
 
                                                                 <Col xs={12} span={12}>
-                                                                    <Button block size="large" value="삭제" types={"primary"} ></Button>
+                                                                    <Button block size="large" value="삭제" types={"primary"} onClick={() => deleteOnclick(data.id, data.title)}></Button>
+
                                                                 </Col>
                                                             </Row>
                                                         </Col>
@@ -136,6 +142,14 @@ const ManageContent = ({
                                                             </Modal>
                                                         </Col>
                                                     </Row>
+                                                    <Row>
+                                                        <Col span={12} xs={12}>
+                                                            <Modal headerClose visible={isActivityDeleteVisible}
+                                                                closable={true} maskClosable={false} onClose={activityDeleteModal.close} size={4} xs={7} sm={7} md={6} lg={6} xl={5} xxl={4}>
+                                                                <DeleteActivityForm noticeId={deleteInfo.deleteId} noticeTitle={deleteInfo.deleteTitle} activityDeleteOKOnclick={activityDeleteOKOnclick} activityDeleteModal={activityDeleteModal}></DeleteActivityForm>
+                                                            </Modal>
+                                                        </Col>
+                                                    </Row>
                                                 </>
                                             )
                                         })
@@ -148,20 +162,20 @@ const ManageContent = ({
                             </Col>
                         </Row>
                     </Col>
+                    {/* !SECTION 테이블 */}
 
 
 
 
-
-
-                    <Col xs={0} sm={0} md={3.5} lg={3.5} xl={3.5}>
+                    {/* SECTION NAV */}
+                    <Col xs={0} sm={0} md={4} lg={4} xl={4}>
                         <Row gutter={[0, 0]}>
                             <Col span={12}  >
                                 <Typo weight={"bold"} size={"1.125rem"} color={"#707070"}>메뉴</Typo>
                             </Col>
                             <Row gutter={[10, 0]}>
                                 <Col span={12}>
-                                    <MypageNav role={'ADMIN'} />
+                                    <PageNav role={'ADMIN'} />
                                 </Col>
 
                                 <Col span={12}>
@@ -170,10 +184,10 @@ const ManageContent = ({
                             </Row>
                         </Row>
                     </Col>
-
+                    {/* !SECTION NAV */}
 
                 </Row>
-
+                {/*  !SECTION 전체 영역(테이블 + NAV) */}
 
             </ContentLayout>
         </>

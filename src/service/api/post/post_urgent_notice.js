@@ -25,11 +25,8 @@ const postNotice = (noticeId , data)=>{
             })
         }).catch(async(error)=>{
             let err =  await error.then()
-            NotificationPool.api.add({
-                title : "Error from post_notice",
-                content : err.errorName + "("+err.errorCode+")",
-                status : "error"
-            })
+          
+            
             console.log("Error from post_notice\n"+err.errorCode+"\n"+err.errorName)
             //에러처리
             throw err
