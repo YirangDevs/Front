@@ -65,6 +65,7 @@ const Td = styled.td`
     cursor: pointer;
     padding: 12px 6px;
     ${props => (props.back) ? `background-color: #f5f5f5;` : null}
+    word-break : keep-all;
 `
 const PrimaryKey = styled(Td)`
     cursor: pointer;

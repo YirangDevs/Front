@@ -36,19 +36,22 @@ const fakeLogin = (role) => {
         let roleInfo = await getMyRole()
         let userInfo = await getMyInfo()
         let emailValidation = await checkEmailValidation()
-        console.log("userInfo : ", userInfo)
-        console.log("payload : ", payload)
+        console.log("fakeLogin : ",YIRANG_ACCESS_TOKEN)
+        // let result = {
+        //     userId : payload.userId,
+        //     role : roleInfo.authority,
+        //     emailValidation : emailValidation.validation,
+        //     ...userInfo,
+        //     ...data
+        // }
         let result = {
-            username : userInfo.username,
             userId : payload.userId,
             role : roleInfo.authority,
-            email : userInfo.email,
-            sex : userInfo.sex,
-            phone : userInfo.phone,
-            emailValidation : emailValidation.validation
+            emailValidation : emailValidation.validation,
+            ...userInfo,
         }
-        console.log("result", result)
-        return YIRANG_ACCESS_TOKEN
+        console.log("fakeLogin result", result)
+        return result
     })
         .catch(error=>{
         console.log(error)

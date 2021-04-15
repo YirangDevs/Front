@@ -9,12 +9,21 @@ const Wrapper = styled.div`
   height : auto;
   justify-content: center;
   align-items: center;
+  padding : 1rem;
+  box-sizing: border-box;
+  border-radius : 5px;
+  
+  &:hover {
+    background : #ECECEC;
+  }
 `
 
 const Label = styled.div`
-  margin-top: 1rem;
+  font-family: NotoSansCJKKR sans-serif;
   font-size : 0.85rem;
+  font-weight : 600;
   text-align: center;
+  word-break: keep-all;
 `
 
 const ButtonComponent = styled.div`
@@ -34,8 +43,8 @@ const ButtonComponent = styled.div`
                 `
     }
 }}
-    border : 2px solid black;
-    border-radius: 50%;
+    //border : 2px solid black;
+    //border-radius: 50%;
     background-color: rgba(255,255,255,0);
     cursor: pointer;
     display: flex;

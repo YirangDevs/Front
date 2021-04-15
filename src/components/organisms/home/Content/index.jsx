@@ -9,6 +9,7 @@ import MenuIconNav from "../../../../containers/redux/components/MenuIconNav/";
 import ReadNoticeForm from "../../../molecules/ReadNoticeForm";
 import Button from "../../../atoms/Button";
 import Video from "../../../atoms/Video";
+import SelectBox from "../../../atoms/SelectBox";
 
 const HomeContent = ({
     role,
@@ -17,7 +18,7 @@ const HomeContent = ({
     noticeNum,
     currentNoticePage,
     currentNotice,
-    fakeLoginOnClick,
+    fakeLoginOnChange,
 
     setNoticeNum,
     closeNotice,
@@ -35,13 +36,12 @@ const HomeContent = ({
             {/*</Image>*/}
             <Video src={MainVideo} width={"100%"} height={"auto"}></Video>
             {/* 임시 버튼 */}
-            <Button onClick={fakeLoginOnClick} value="volunteer_1">봉사자1</Button>
-            <Button onClick={fakeLoginOnClick} value="volunteer_2">봉사자2</Button>
-            <Button onClick={fakeLoginOnClick} value="volunteer_3">봉사자3</Button>
-            <Button onClick={fakeLoginOnClick} value="volunteer_4">봉사자4</Button>
-            <Button onClick={fakeLoginOnClick} value="admin_1">관리자1</Button>
-            <Button onClick={fakeLoginOnClick} value="admin_2">관리자2</Button>
-            <Button onClick={fakeLoginOnClick} value="super_admin_1">슈퍼어드민</Button>
+            <Row gutter={[20,20]}>
+                <Col>
+                    <SelectBox onChange={fakeLoginOnChange} options={["권한 설정","volunteer_1","volunteer_2","volunteer_3","volunteer_4","admin_1","admin_2","super_admin_1"]}/>
+                </Col>
+            </Row>
+
             {/* 임시 버튼 끝 */}
             <ContentLayout >
 
