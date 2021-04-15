@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 08:45:15
+ * @Last Modified time: 2021-04-16 01:07:34
  */
 
 
@@ -87,7 +87,7 @@ const ProfileContent = ({
 
 }) => {
     console.log(userProfile)
-    const {email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
+    const { email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
         sex, username, emailValidation, } = userProfile;
 
     const settingSex = (sex) => {
@@ -143,7 +143,7 @@ const ProfileContent = ({
                         </Row>
                         <Row gutter={[15, 0]}>
                             <Col span={12}>
-                                <PageNav/>
+                                <PageNav />
                             </Col>
                         </Row>
 
@@ -522,7 +522,7 @@ const ProfileContent = ({
                                                 <Typo weight={'bold'}>1순위</Typo>
                                             </Col>
                                             <Col span={2.5}>
-                                                <SelectBox background block border defaultValue={firstRegion} options={firstRegionOptions} onChange={firstRegionOnchange}></SelectBox>
+                                                <SelectBox background block border value={firstRegion} options={firstRegionOptions} onChange={firstRegionOnchange}></SelectBox>
                                             </Col>
                                         </Row>
                                     </Col>
@@ -532,7 +532,7 @@ const ProfileContent = ({
                                                 <Typo weight={'bold'}>2순위</Typo>
                                             </Col>
                                             <Col span={2.5}>
-                                                <SelectBox background block border defaultValue={secondRegion} options={SecondRegionOptions} onChange={secondRegionOnchange}></SelectBox>
+                                                <SelectBox background block border value={secondRegion} options={SecondRegionOptions} onChange={secondRegionOnchange}></SelectBox>
                                             </Col>
                                         </Row>
 

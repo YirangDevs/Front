@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 08:40:21
+ * @Last Modified time: 2021-04-16 01:06:06
  */
 
 
@@ -764,6 +764,7 @@ const ContentContainer = ({
     @function onChange
       @detail  초기값 설정 : secondRegion -> [PUT] 2순위 관심지역 수정  */
     const secondRegionOnchange = (e) => {
+        console.log(e.target.value)
         editProfileFunction.secondRegion(e)
         editApis.secondRegion(e.target.value)
     }
@@ -782,7 +783,7 @@ const ContentContainer = ({
     const isReceivingEmailOnclick = (e) => {
         editProfileFunction.isReceivingEmail(e)
         editApis.isReceivingEmail()
-
+        console.log(userProfile)
     }
 
 
