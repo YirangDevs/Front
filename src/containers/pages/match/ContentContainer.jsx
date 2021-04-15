@@ -12,8 +12,7 @@ const ContentContainer = () => {
     const [currentActivityPageTableBody, setCurrentActivityPageTableBody] = useState([])
     const [pageNum, setPageNum] = useState(0)
     const [currentRegion, setCurrentRegion] = useState("전체")
-    const [matchedSenior, setMatchedSenior] = useState([])
-    const [matchedVolunteer, setMatchedVolunteer] = useState([])
+    const [matchedData, setMatchedData] = useState([])
     const [unmatchedSenior, setUnmatchedSenior] = useState([])
     const [unmatchedVolunteer, setUnmatchedVolunteer] = useState([])
 
@@ -23,19 +22,44 @@ const ContentContainer = () => {
         getMatchedRecord(activityId).then(data=>{
             console.log(data)
             const matchingData = data.matchingContentDtos
-            matchingData.forEach((arr)=>{
 
+            matchingData.forEach((arr)=>{
+                setMatchedData((state)=>{
+                    /*
+                    데이터 가공
+                    {
+                        seniorId : [seniorId, seniorName, volunteerId, volunteerName]
+                    }
+                     */
+
+                    const currentData = {...state}
+
+                    if(currentData[arr.seniorId]){
+                        currentData[arr.seniorId] = [...arr]
+                    }else{
+                        currentData[arr.seniorId] = [...currentData[arr.seniorId], ...arr]
+                    }
+
+                    return currentData
+                })
             })
         }).catch(e=>console.log(e))
+
         getUnmatchedRecord(activityId).then(data=>{
             console.log(data)
             const unMatchedSeniors = data.unMatchedSeniors
             const unMatchedVolunteers = data.unMatchedVolunteers
-            unMatchedSeniors.forEach((arr)=>{
-
+            setUnmatchedSenior((state)=>{
+                return [
+                    ...state,
+                    ...unMatchedSeniors
+                ]
             })
-            unMatchedVolunteers.forEach((arr)=>{
-
+            setUnmatchedVolunteer((state)=>{
+                return [
+                    ...state,
+                    ...unMatchedVolunteers
+                ]
             })
         }).catch(e=>console.log(e))
     }, [])
@@ -101,6 +125,9 @@ const ContentContainer = () => {
                 activityTableBody={currentActivityPageTableBody}
                 activityPageData={currentActivityPage}
                 currentRegion={currentRegion}
+                matchedData={matchedData}
+                unmatchedSenior={unmatchedSenior}
+                unmatchedVolunteer={unmatchedVolunteer}
 
                 activityOnClick={activityOnClick}
                 activityPaginationOnClick={activityPaginationOnClick}

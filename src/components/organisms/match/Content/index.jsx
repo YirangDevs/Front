@@ -14,13 +14,16 @@ const MatchContent = ({
     activityNum,
     activityPageData,
     currentRegion,
-
+    matchedData,
+    unmatchedSenior,
+    unmatchedVolunteer,
     activityPaginationOnClick,
     regionOnChange
   }) => {
 
     //const [activityList, setActivityList] = useState([])
     //const [currentPage, setCurrentPage] = useState(1)
+
 
     const activityTableHead = useMemo(()=>["지역", "날짜", "인원", "일시"],[]);
     // const noticeTableBody = [
@@ -43,56 +46,40 @@ const MatchContent = ({
     //
     // ]
     const matchingResultTableHead = useMemo(()=>["피봉사자", "봉사자"],[])
-    const matchingResultTableBody = useMemo(()=>[
-        {a : "유정민", b : "최용원, 이채은"},
-        {a : "유정민", b : "최용원, 이채은"},
-        {a : "유정민", b : "최용원, 이채은"},
-        {a : "유정민", b : "최용원"},
-        {a : "유정민", b : "최용원, 이채은"},
-        {a : "유정민", b : "최용원"},
-        {a : "유정민", b : "최용원"},
-        {a : "유정민", b : "최용원"},
-        {a : "유정민", b : "최용원, 이채은"},
-        {a : "유정민", b : "최용원, 이채은"},
-        {a : "유정민", b : "최용원, 이채은"},
-        {a : "유정민", b : "최용원"},
-        {a : "유정민", b : "최용원, 이채은"},
-        {a : "유정민", b : "최용원"},
-        {a : "유정민", b : "최용원"},
-        {a : "유정민", b : "최용원"},
+    const notMatchedVolunteerHead = useMemo(()=>["제외된 봉사자"],[]);
+    const notMatchedSeniorHead = useMemo(()=>["제외된 피봉사자"],[])
 
+
+
+    const matchingResultTableBody = useMemo(()=>[
+        Object.keys(matchedData).map((i)=>{
+            return {
+                senior : matchedData[i].seniorName,
+                volunteers : matchedData[i].map((i)=>{
+                    return i.volunteerName
+                }).join()
+            }
+        })
     ],[]);
 
-    const tooltip = useMemo(()=>({
+    const matchedInfoToolTip = useMemo(()=>({
         data : {
-            a : matchingResultTableBody.map((value)=>{
-                return value.a +" 입니다\n나이 : 28"
+            senior : Object.keys(matchedData).map((value)=>{
+                return "성명 : "+matchedData[value].map((i)=>i.volunteerName).join()+"\n"+"ID : "+matchedData[value].map((i)=>i.volunteerId)
+            }),
+            volunteers : Object.keys(matchedData).map((value)=>{
+                return "성명 : "+matchedData[value].seniorName+"\n"+"ID : "+matchedData[value].seniorId
             })
         },
         position : "right"
     }),[matchingResultTableBody])
 
-    const notMatchedVolunteerHead = useMemo(()=>["제외된 봉사자"],[]);
-    const notMatchedSeniorHead = useMemo(()=>["제외된 피봉사자"],[])
+
     const notMatchedVolunteerBody = useMemo(()=>[
-        {name : "최용원"},
-        {name : "최용원"},
-        {name : "최용원"},
-        {name : "최용원"},
-        {name : "최용원"},
-        {name : "최용원"},
-        {name : "최용원"},
-        {name : "최용원"},
+        unmatchedVolunteer.map(i=>i.name)
     ],[])
     const notMatchedSeniorBody = useMemo(()=>[
-        {name : "유정민"},
-        {name : "유정민"},
-        {name : "유정민"},
-        {name : "유정민"},
-        {name : "최용원"},
-        {name : "최용원"},
-        {name : "최용원"},
-        {name : "최용원"},
+        unmatchedSenior.map(i=>i.name)
     ],[])
 
     const regionOption = useMemo(()=>["전체","수성구", "중구", "서구", "남구", "북구", "동구", "달서구", "달성군"],[])
@@ -125,7 +112,7 @@ const MatchContent = ({
                     <Col span={3}>
                         <Row justify={"space-between"}>
                             <Col span={12}>
-                                <TableBox headList={matchingResultTableHead} bodyList={matchingResultTableBody} border={"top"} tooltip={tooltip} row={8} colgroup={[50,50]}></TableBox>
+                                <TableBox headList={matchingResultTableHead} bodyList={matchingResultTableBody} border={"top"} tooltip={matchedInfoToolTip} row={8} colgroup={[50,50]}></TableBox>
                             </Col>
                             <Col span={5.5} style={{
                                 marginTop : "2.4rem"

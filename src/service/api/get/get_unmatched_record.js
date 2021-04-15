@@ -8,6 +8,11 @@ import NotificationPool from "../../../containers/redux/components/NotificationP
 import _ from "../../../config/env"
 
 const getUnmatchedRecord = (activityId) => {
+
+    const errcodeParser = {
+        "044" : ["Unmatched_record 찾을수 없음","해당 액티비티에 대한 현재 진행중인 매칭이 없습니다."]
+    }
+
     return fetch(_.SERVER_URL+':8080/v1/apis/matchings/unmatched/activities/'+Number(activityId), {
         method: 'GET',
         headers: {
@@ -21,8 +26,8 @@ const getUnmatchedRecord = (activityId) => {
     }).catch(async(error)=>{
         let err =  await error.then()
         NotificationPool.api.add({
-            title : "Error from get_unmatched_record",
-            content : err.errorName + "("+err.errorCode+")",
+            title : errcodeParser[err.errorCode][0],
+            content : errcodeParser[err.errorCode][1],
             status : "error"
         })
         console.log("Error from get_unmatched_record\n"+err.errorCode+"\n"+err.errorName)

@@ -119,6 +119,12 @@ const Button = styled.button`
         return;
     }
   }}
+  
+`
+
+const Line = styled.div`
+  text-align: start;
+  word-break: keep-all;
 `
 
 const Notification = ({title, content, uuid, status, duration, button, buttonOnClick}) => {
@@ -127,6 +133,7 @@ const Notification = ({title, content, uuid, status, duration, button, buttonOnC
     const [instanceDuration, setInstanceDuration] = useState(duration)
     const [isHover, setIsHover] = useState(false)
     const [isEliminate, setIsEliminate] = useState(false)
+    const lines = content.split("\n")
 
     useEffect(()=>{
         if(isHover===false && isDestroy===true){
@@ -164,7 +171,12 @@ const Notification = ({title, content, uuid, status, duration, button, buttonOnC
             }
             }><MdClose size={16}/></CloseBtn>
             <Title>{title}</Title>
-            {content}
+
+            {
+                lines.map((line, index)=>{
+                    return <Line key={index}>{line}</Line>
+                })
+            }
             {
                 button ? <ButtonWrapper><Button status={status} value={button} onClick={()=>{
                     buttonOnClick()
