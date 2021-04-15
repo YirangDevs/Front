@@ -36,7 +36,7 @@ const ExcelPreview = ({excelData, closeModal, postSeniorsOnClick}) => {
         <>
             <ModalContent>
                 <TableScrollbar rows={10}>
-                    <TableBox headList={TableBoxHeadLists} bodyList={filteredData}>
+                    <TableBox headList={TableBoxHeadLists} bodyList={filteredData} colgroup={[10,10,10,20,10,20,10,10]}>
 
                     </TableBox>
                 </TableScrollbar>

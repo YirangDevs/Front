@@ -1,22 +1,24 @@
-import React, { memo, useCallback } from "react"
+import React, {memo, useCallback} from "react"
 import styled from "styled-components"
+import ToolTip from "../Tooltip";
 
 
 
 const Table = styled.table`
-    width:100%;
-    text-align:center;
-    border-spacing:0;
+  width:100%;
+  position : relative;
+  text-align:center;
+  border-spacing:0;
+    
+`
+
+const Tr = styled.tr`
     
     
 `
 
-const TableRow = styled.tr`
-    
-    
-`
+const Th = styled.th`
 
-const TableHead = styled.th`
     padding: 12px 6px;
     border: none;
     font-size: 1rem;
@@ -42,7 +44,19 @@ const TableHead = styled.th`
     
 `
 
-const TableBody = styled.td`
+const TBody = styled.tbody`
+`
+
+const THead = styled.thead`
+`
+
+const Wrapper = styled.div`
+  width : 100%;
+  height : ${props=>props.row ? `calc(1.313rem * `+(props.row)+` + 24px * `+(props.row)+`);` : `auto;`}
+  overflow-y : auto;
+`
+
+const Td = styled.td`
     font-size: 0.9rem;
     font-weight: normal;
     font-stretch: normal;
@@ -51,13 +65,21 @@ const TableBody = styled.td`
     cursor: pointer;
     padding: 12px 6px;
     ${props => (props.back) ? `background-color: #f5f5f5;` : null}
+    word-break : keep-all;
 `
-const PrimaryKey = styled(TableBody)`
+const PrimaryKey = styled(Td)`
     cursor: pointer;
 `
+/*
+{
+    data : {
 
+    },
+    position
+}
+ */
 
-const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data }) => {
+const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data, tooltip, row, colgroup}) => {
 
     const onPrimaryClick = useCallback((e, data) => {
         if (data) {
@@ -80,42 +102,96 @@ const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, data
 
     return (
         <>
-            <Table>
-                <thead>
-                    <TableRow>
-                        {
-                            headList.map((i, index) => <TableHead border={border} black={black} key={index}>{i}</TableHead>)
-                        }
-                    </TableRow>
-                </thead>
 
-                <tbody>
-                    {
-                        bodyList.map((i, firstIndex) => {
+                <Table>
 
-                            //이미 끝난 봉사에 색 입히기(슈퍼 관리자만 해당)
-                            var certainDate;
-                            if (i.date) {
-                                const dateArr = i.date.split("-")
-                                certainDate = new Date(dateArr[0], dateArr[1] - 1, dateArr[2])
-                            }
-                            return (
-                                <TableRow key={firstIndex}>
-                                    {Object.keys(i).map((value, secondIndex) => {
-
-                                        return (value === primaryKey) ?
-                                            <PrimaryKey key={secondIndex} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>{i[value]}</PrimaryKey>
+                    <THead>
+                        <Tr>
+                            <td>
+                                <Table>
+                                    {
+                                        (colgroup) ?
+                                            <colgroup>
+                                                {
+                                                    colgroup.map((i, index) => {
+                                                        return <col key={index} width={i+"%"}/>
+                                                    })
+                                                }
+                                            </colgroup>
                                             :
-                                            <TableBody back={certainDate < new Date()} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>{i[value]}</TableBody>
-                                    })}
-                                </TableRow>)
-                        })
-                    }
-                </tbody>
+                                            null
+                                    }
+                                    <THead>
+                                        <Tr>
+                                            {
+                                                headList.map((i, index) => <Th border={border} black={black} key={index}>{i}</Th>)
+                                            }
+                                        </Tr>
+                                    </THead>
+                                </Table>
+                            </td>
+                        </Tr>
+                    </THead>
+                    <TBody>
+                        <Tr>
+                            <td>
+                                <Wrapper row={row}>
+                                    <Table>
+                                        {
+                                            (colgroup) ?
+                                                <colgroup>
+                                                    {
+                                                        colgroup.map((i, index) => {
+                                                            return <col key={index} width={i+"%"}/>
+                                                        })
+                                                    }
+                                                </colgroup>
+                                                :
+                                                null
+                                        }
+                                        <TBody >
+                                            {
+                                                bodyList.map((i, firstIndex) => {
 
-            </Table>
+                                                    //이미 끝난 봉사에 색 입히기(슈퍼 관리자만 해당)
+                                                    var certainDate;
+                                                    if (i.date) {
+                                                        const dateArr = i.date.split("-")
+                                                        certainDate = new Date(dateArr[0], dateArr[1] - 1, dateArr[2])
+                                                    }
+                                                    return (
+                                                        <Tr key={firstIndex}>
+                                                            {Object.keys(i).map((value, secondIndex) => {
+
+                                                                return (tooltip&&Object.keys(tooltip.data).includes(value)) ?
+
+                                                                    (value === primaryKey) ?
+                                                                        <PrimaryKey key={secondIndex} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>
+                                                                            <ToolTip key={secondIndex} content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
+                                                                        </PrimaryKey>
+                                                                        :
+                                                                        <Td back={certainDate < new Date()} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>
+                                                                            <ToolTip key={secondIndex} content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
+                                                                        </Td>
+                                                                    :
+                                                                    (value === primaryKey) ?
+                                                                        <PrimaryKey key={secondIndex} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>{i[value]}</PrimaryKey>
+                                                                        :
+                                                                        <Td back={certainDate < new Date()} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>{i[value]}</Td>
+                                                            })}
+                                                        </Tr>)
+                                                })
+                                            }
+                                        </TBody>
+                                    </Table>
+                                </Wrapper>
+                            </td>
+                        </Tr>
+                    </TBody>
+                </Table>
+
         </>
     )
 }
-
+// border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data, tooltip
 export default memo(TableBox)

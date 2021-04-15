@@ -1,10 +1,10 @@
-import React from "react"
+import React, {memo} from "react"
 import ContentContainer from "../../containers/pages/match/ContentContainer"
 import Header from "../../containers/redux/components/Header";
 
 
 
-const Manages = () => {
+const Match = () => {
 
     return (
         <>
@@ -15,4 +15,4 @@ const Manages = () => {
     )
 }
 
-export default Manages
+export default memo(Match)

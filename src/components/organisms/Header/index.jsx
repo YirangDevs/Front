@@ -89,7 +89,8 @@ const Header = ({theme, logined, role, position}) => {
                             </Col>
                             <Col span={2} justify={"flex-end"}>
                                 <ProfileButton onClick={()=>{
-                                    history.push("mypage");
+                                    if(role==="SUPER_ADMIN"||role==="ADMIN") history.push("profile")
+                                    else {history.push("mypage");}
                                 }}/>
 
                             </Col>

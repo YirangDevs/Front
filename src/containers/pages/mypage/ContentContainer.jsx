@@ -2,17 +2,18 @@
  * @author : chaeeun
  * @Date : 2021-02-16 17:03:55
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-05 05:42:11
+ * @Last Modified time: 2021-04-15 04:50:40
  */
 
 import React, { useEffect, useState } from 'react'
-import MyPageContent from "../../redux/components/Mypage"
+import MyPageContent from "../../redux/pages/mypage/Content"
 import getMyApplicants from "../../../service/api/get/get_my_applicants"
 import getNotice from "../../../service/api/get/get_notice"
 import deleteCancelApply from "../../../service/api/delete/delete_cancel_apply"
 import NotificationPool from "../../../containers/redux/components/NotificationPool"
+import getMyMatchingRecords from '../../../service/api/get/get_my_matching_records'
 
-const ContentContainer = () => {
+const ContentContainer = ({ userId }) => {
 
     //봉사 선택한거 보여주는거 
     const [selectedNotice, setSelectedNotice] = useState({})
@@ -30,6 +31,7 @@ const ContentContainer = () => {
                 console.log(res.Applicants)
                 console.log(res.Applicants.length)
 
+                // setCurrentApplicant((state) => ([...state, res.Applicants]))
                 // FIXME 봉사 받아오는거 2개로 나뉜다
                 res.Applicants.forEach((lists) => {
                     console.log(lists)
@@ -40,21 +42,28 @@ const ContentContainer = () => {
                         region: lists.region,
                         result: lists.matchingState,
                         applyDate: settingDate(lists.dtoa),
+                        type: (lists.serviceType === "WORK" ? "노력봉사" : "말벗봉사"),
                         applyId: lists.applyId
                     }]))
 
                     setPastApplicant((state) => ([...state, {
                         serviceDate: settingDate(lists.dtov),
                         region: lists.region,
-                        // type: lists.type,
-                        type: "말벗봉사",
+                        type: (lists.serviceType === "WORK" ? "노력봉사" : "말벗봉사"),
                         applyDate: settingDate(lists.dtoa),
                     }]))
 
                 })
             })
             .catch((err) => { console.log(err) })
-    }, [])
+
+
+        getMyMatchingRecords(userId)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => console.log(err))
+    }, [userId])
 
 
 
