@@ -12,15 +12,17 @@ const ContentContainer = () => {
     const [currentActivityPageTableBody, setCurrentActivityPageTableBody] = useState([])
     const [pageNum, setPageNum] = useState(0)
     const [currentRegion, setCurrentRegion] = useState("전체")
-    const [matchedData, setMatchedData] = useState([])
+    const [matchedData, setMatchedData] = useState({})
     const [unmatchedSenior, setUnmatchedSenior] = useState([])
     const [unmatchedVolunteer, setUnmatchedVolunteer] = useState([])
 
+    useEffect(()=>{
+
+    }, [matchedData, unmatchedSenior, unmatchedVolunteer])
+
     const activityOnClick = useCallback((e, data)=>{
-        console.log(data)
         const activityId = data.activityId
         getMatchedRecord(activityId).then(data=>{
-            console.log(data)
             const matchingData = data.matchingContentDtos
 
             matchingData.forEach((arr)=>{
@@ -31,36 +33,38 @@ const ContentContainer = () => {
                         seniorId : [seniorId, seniorName, volunteerId, volunteerName]
                     }
                      */
-
                     const currentData = {...state}
 
-                    if(currentData[arr.seniorId]){
-                        currentData[arr.seniorId] = [...arr]
+                    if(!currentData[arr.seniorId]){
+                        currentData[arr.seniorId] = [{...arr}]
                     }else{
-                        currentData[arr.seniorId] = [...currentData[arr.seniorId], ...arr]
+                        currentData[arr.seniorId] = [...currentData[arr.seniorId], {...arr}]
                     }
-
                     return currentData
                 })
             })
         }).catch(e=>console.log(e))
 
         getUnmatchedRecord(activityId).then(data=>{
-            console.log(data)
             const unMatchedSeniors = data.unMatchedSeniors
             const unMatchedVolunteers = data.unMatchedVolunteers
-            setUnmatchedSenior((state)=>{
-                return [
-                    ...state,
-                    ...unMatchedSeniors
-                ]
-            })
-            setUnmatchedVolunteer((state)=>{
-                return [
-                    ...state,
-                    ...unMatchedVolunteers
-                ]
-            })
+            if(unMatchedSeniors!==null){
+                setUnmatchedSenior((state)=>{
+                    return [
+                        ...state,
+                        ...unMatchedSeniors
+                    ]
+                })
+            }
+            if(unMatchedVolunteers!==null){
+                setUnmatchedVolunteer((state)=>{
+                    return [
+                        ...state,
+                        ...unMatchedVolunteers
+                    ]
+                })
+            }
+
         }).catch(e=>console.log(e))
     }, [])
 
