@@ -9,6 +9,7 @@ import MenuIconNav from "../../../../containers/redux/components/MenuIconNav/";
 import ReadNoticeForm from "../../../molecules/ReadNoticeForm";
 import Button from "../../../atoms/Button";
 import Video from "../../../atoms/Video";
+import SelectBox from "../../../atoms/SelectBox";
 
 const HomeContent = ({
     role,
@@ -17,7 +18,7 @@ const HomeContent = ({
     noticeNum,
     currentNoticePage,
     currentNotice,
-    fakeLoginOnClick,
+    fakeLoginOnChange,
 
     setNoticeNum,
     closeNotice,
@@ -35,15 +36,23 @@ const HomeContent = ({
             {/*</Image>*/}
             <Video src={MainVideo} width={"100%"} height={"auto"}></Video>
             {/* 임시 버튼 */}
-            <Button onClick={fakeLoginOnClick} value="volunteer_1">봉사자1</Button>
-            <Button onClick={fakeLoginOnClick} value="volunteer_2">봉사자2</Button>
-            <Button onClick={fakeLoginOnClick} value="volunteer_3">봉사자3</Button>
-            <Button onClick={fakeLoginOnClick} value="volunteer_4">봉사자4</Button>
-            <Button onClick={fakeLoginOnClick} value="admin_1">관리자1</Button>
-            <Button onClick={fakeLoginOnClick} value="admin_2">관리자2</Button>
-            <Button onClick={fakeLoginOnClick} value="super_admin_1">슈퍼어드민</Button>
+
+            <SelectBox style={{
+                position: "absolute",
+                top : "1.75%",
+                left : "50%",
+                zIndex : 100,
+                background : "transparent",
+                color : "white",
+                border : "none",
+                outline : "none"
+            }} border onChange={fakeLoginOnChange} options={["권한 설정","volunteer_1","volunteer_2","volunteer_3","volunteer_4","admin_1","admin_2","super_admin_1"]}/>
+
+
             {/* 임시 버튼 끝 */}
-            <ContentLayout >
+            <ContentLayout style={{
+                padding : "0vh 5.2vw"
+            }}>
 
                 <Row justify={"center"} >
                     <Col span={12} justify={"center"}>
@@ -52,7 +61,7 @@ const HomeContent = ({
                     <Col xs={11} sm={11} md={10} lg={7} xl={7} xxl={7} style={{
                         marginTop: "10rem"
                     }}>
-                        <Row gutter={[5, 0]}>
+                        <Row gutter={[0, 0]}>
 
 
                             {
@@ -63,7 +72,9 @@ const HomeContent = ({
 
                                             </Button>
                                         </Col>
-                                        <Col span={12}>
+                                        <Col span={12} style={{
+                                            marginTop : "5px"
+                                        }}>
                                             <ReadNoticeForm title={currentNotice.title} region={currentNotice.region} nor={currentNotice.nor} dov={currentNotice.dov} tov={currentNotice.tov} dod={currentNotice.dod}>
 
                                             </ReadNoticeForm>
@@ -84,14 +95,16 @@ const HomeContent = ({
                                     </>
                                     :
                                     <>
-                                        <Col span={12}>
+                                        <Col span={12} >
                                             <span style={{
                                                 fontSize: "1.2rem"
                                             }}>공고글 리스트</span>
 
                                         </Col>
-                                        <Col span={12}>
-                                            <TableBox headList={table_head} bodyList={bodyList} border={"bottom"} data={noticeList} primaryKey={"title"} onClick={onTableClick}></TableBox>
+                                        <Col span={12} style={{
+                                            marginTop : "5px"
+                                        }}>
+                                            <TableBox headList={table_head} bodyList={bodyList} border={"bottom"} data={noticeList} primaryKey={"title"} onClick={onTableClick} colgroup={[50,20,15,15]}></TableBox>
                                         </Col>
                                         <Col span={12} justify={"center"}>
                                             <Pagination num={Math.ceil(noticeNum / 6)} onClick={onPaginationClick}></Pagination>

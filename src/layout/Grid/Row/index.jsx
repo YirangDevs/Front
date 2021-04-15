@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import styled from "styled-components"
 import PropTypes from 'prop-types';
 import RowContext from "./RowContext";
@@ -46,4 +46,4 @@ Row.defaultProps = {
     gutter: [0, 0],
 };
 
-export default Row
+export default memo(Row)
