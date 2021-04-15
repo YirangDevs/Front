@@ -6,6 +6,7 @@ const ContentWrapper = styled.div`
       display: flex;
       margin-top: 40px;
       margin-left: 20%;
+      
 `
 
 const Text = styled.span`

@@ -8,14 +8,14 @@ import useSideNav from "../../hook/useSideNav";
 
 
 const WholeWrapper = styled.div`
-    width : 100%;
+    width : 100wv;;
+    display: fixed;
     overflow-x: hidden;
-
-    display: flex;
 `
 const ContentWrapper = styled.div`
-    height : 100%;
+    height : 100vh;
     position : relative;
+    
 `
 
 const Home = () =>{

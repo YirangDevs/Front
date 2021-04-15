@@ -69,7 +69,9 @@ const Header = ({theme, logined, role, position, setNavState}) => {
                 <Row align={"center"} justify={"space-between"} style={{
                     height: "inherit"
                 }}>
-                    <Col xxl={1}>
+                    <Col xxl={0} sm={0.3} style={{
+                        cursor: "pointer"
+                    }}>
                         <MdDehaze onClick={setNavState} size={25}/> 
                     </Col>
                     <Col xxl={1} xl={1} lg={1} md={2} sm={2} xs={2} style={{

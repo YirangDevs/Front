@@ -13,7 +13,7 @@ const SideNavStyle = styled.div`
     transition : width 0.75s ease;
     
     ${props=>props.navOpen?`
-      width: 518px;
+      width: 280px;
 
     `:
     `
