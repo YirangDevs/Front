@@ -50,7 +50,6 @@ const MatchContent = ({
     const notMatchedSeniorHead = useMemo(()=>["제외된 피봉사자"],[])
 
 
-
     const matchingResultTableBody = useMemo(()=>[
         Object.keys(matchedData).map((i)=>{
             return {
@@ -60,27 +59,27 @@ const MatchContent = ({
                 }).join()
             }
         })
-    ],[]);
+    ],[matchedData]);
 
     const matchedInfoToolTip = useMemo(()=>({
         data : {
             senior : Object.keys(matchedData).map((value)=>{
-                return "성명 : "+matchedData[value].map((i)=>i.volunteerName).join()+"\n"+"ID : "+matchedData[value].map((i)=>i.volunteerId)
+                return "성명 : "+matchedData[value].map((i)=>i.volunteerName).join()+"\nID : "+matchedData[value].map((i)=>i.volunteerId)
             }),
             volunteers : Object.keys(matchedData).map((value)=>{
-                return "성명 : "+matchedData[value].seniorName+"\n"+"ID : "+matchedData[value].seniorId
+                return "성명 : "+matchedData[value].seniorName+"\nID : "+matchedData[value].seniorId
             })
         },
         position : "right"
-    }),[matchingResultTableBody])
+    }),[matchedData])
 
 
     const notMatchedVolunteerBody = useMemo(()=>[
         unmatchedVolunteer.map(i=>i.name)
-    ],[])
+    ],[unmatchedVolunteer])
     const notMatchedSeniorBody = useMemo(()=>[
         unmatchedSenior.map(i=>i.name)
-    ],[])
+    ],[unmatchedSenior])
 
     const regionOption = useMemo(()=>["전체","수성구", "중구", "서구", "남구", "북구", "동구", "달서구", "달성군"],[])
 

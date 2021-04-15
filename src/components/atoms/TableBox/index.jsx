@@ -113,8 +113,8 @@ const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, data
                                         (colgroup) ?
                                             <colgroup>
                                                 {
-                                                    colgroup.map((i) => {
-                                                        return <col width={i+"%"}/>
+                                                    colgroup.map((i, index) => {
+                                                        return <col key={index} width={i+"%"}/>
                                                     })
                                                 }
                                             </colgroup>
@@ -141,8 +141,8 @@ const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, data
                                             (colgroup) ?
                                                 <colgroup>
                                                     {
-                                                        colgroup.map((i) => {
-                                                            return <col width={i+"%"}/>
+                                                        colgroup.map((i, index) => {
+                                                            return <col key={index} width={i+"%"}/>
                                                         })
                                                     }
                                                 </colgroup>
@@ -167,11 +167,11 @@ const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, data
 
                                                                     (value === primaryKey) ?
                                                                         <PrimaryKey key={secondIndex} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>
-                                                                            <ToolTip content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
+                                                                            <ToolTip key={secondIndex} content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
                                                                         </PrimaryKey>
                                                                         :
                                                                         <Td back={certainDate < new Date()} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>
-                                                                            <ToolTip content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
+                                                                            <ToolTip key={secondIndex} content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
                                                                         </Td>
                                                                     :
                                                                     (value === primaryKey) ?

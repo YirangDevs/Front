@@ -36,7 +36,6 @@ const fakeLogin = (role) => {
         let roleInfo = await getMyRole()
         let userInfo = await getMyInfo()
         let emailValidation = await checkEmailValidation()
-        console.log("fakeLogin : ",YIRANG_ACCESS_TOKEN)
         // let result = {
         //     userId : payload.userId,
         //     role : roleInfo.authority,

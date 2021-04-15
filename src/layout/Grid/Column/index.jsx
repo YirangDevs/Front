@@ -1,4 +1,4 @@
-import React, {memo, useEffect} from "react"
+import React, {memo} from "react"
 import styled from "styled-components"
 import PropTypes from 'prop-types';
 import RowContext from "../Row/RowContext";
@@ -44,10 +44,6 @@ const ColumnLayout = styled.div`
  * @param {Col} xxl - screen ≥ 1600px
  */
 const Col = ({ span, style, justify, align, xs, sm, md, lg, xl, xxl, children, offset }) => {
-    
-    useEffect(()=>{
-        console.log("Col 재렌더링")
-    })
 
     return (
 
