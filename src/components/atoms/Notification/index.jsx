@@ -41,8 +41,7 @@ const CloseBtn = styled.div`
 const Wrapper = styled.div`
   position: relative;
   background-color: #ffffff;
-  padding : 16px 24px;
-  font-size : 14px;
+  padding : 1rem 1.5rem;
   margin : 1rem;
   box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);
   display: flex;
@@ -52,6 +51,10 @@ const Wrapper = styled.div`
   height : auto;
   border : solid 1px rgba(0,0,0,0);
   animation: ${intro} 0.5s forwards;
+  @media screen and (max-width: 768px){
+    width : 40vw;
+    padding : 1.5rem 2rem;
+  }
   ${props=>{
       if(props.eliminate) {
         return css`
@@ -74,6 +77,7 @@ const Wrapper = styled.div`
             return;
       }
   }}
+
 `
 
 const Title = styled.div`
@@ -83,7 +87,7 @@ const Title = styled.div`
   align-items: center;
   height : 1rem;
   width : 100%;
-  margin-bottom : 0.8rem;
+  margin-bottom : 1rem;
   font-weight: 500;
   
 `
@@ -125,6 +129,8 @@ const Button = styled.button`
 const Line = styled.div`
   text-align: start;
   word-break: keep-all;
+  font-size : 1rem;
+  color : gray;
 `
 
 const Notification = ({title, content, uuid, status, duration, button, buttonOnClick}) => {
