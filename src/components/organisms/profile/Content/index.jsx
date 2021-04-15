@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2021-02-24 16:20:36 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 06:01:58
+ * @Last Modified time: 2021-04-15 08:45:15
  */
 
 
@@ -162,7 +162,7 @@ const ProfileContent = ({
                         maskClosable={true} onClose={confirmDeleteModal.close} size={4} xs={7} sm={7} md={6} lg={6} xl={5} xxl={4}>
                         <DeleteMyInfoModal username={username} okDeleteConfirmOnclick={okDeleteConfirmOnclick} cancelDeleteConfirmOnclick={cancelDeleteConfirmOnclick}></DeleteMyInfoModal>
                     </Modal>
-
+                    {/* !SECTION Left */}
 
                     {/* SECTION Right */}
                     <Col xs={12} sm={12} md={7.5} span={7.5}>
@@ -552,7 +552,7 @@ const ProfileContent = ({
                         <Row justify={"space-between"} style={{ height: "50px" }}>
 
                             <Col span={2} justify={"center"} align={"center"} style={{ backgroundColor: "#f5f5f5", height: "inherit" }}>
-                                <Typo weight={'bold'}>이메일 수신동의 여부</Typo>
+                                <Typo weight={'bold'}>이메일 수신동의</Typo>
                             </Col>
                             <Col span={10} align={'center'} style={{ backgroundColor: "#ffffff ", height: "inherit" }}>
                                 <Col offset={0.25} span={4}>
@@ -569,6 +569,7 @@ const ProfileContent = ({
                         <Divider color={'#000000'} marginTop={'0px'} marginBottom={'0px'} borderWidth={'3px'} ></Divider>
                     </Col>
                 </Row>
+                {/* !SECTION Right */}
             </ContentLayout>
         </>
     )

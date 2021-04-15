@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-28 03:12:49
+ * @Last Modified time: 2021-04-15 08:40:21
  */
 
 
@@ -38,6 +38,8 @@ import EditMyEmail from '../../../service/api/put/edit_My_email'
 import editMyInfoFirstRegion from "../../../service/api/put/edit_my_info_firstRegion"
 import editMyInfoSecondRegion from "../../../service/api/put/edit_my_info_secondRegion"
 
+//이메일수신동의여부
+import editMyInfoNotification from "../../../service/api/put/edit_my_info_notification"
 
 
 //username = 닉네임
@@ -257,16 +259,16 @@ const ContentContainer = ({
                 })
                 .catch(err => console.log(err))
         },
-        isReceivingEmail: (isReceivingEmailData) => {
+        isReceivingEmail: () => {
             //TODO  isReceivingEmail 통신 구현    
 
-            // /*통신 api */(JSON.stringify({
-            //     "isReceivingEmail": isReceivingEmailData
-            // }))
-            //     .then((res) => {
-            //         console.log(res)
-            //     })
-            //     .catch(err => console.log(err))
+            editMyInfoNotification(JSON.stringify({
+                "notifiable": userProfile.isReceivingEmail
+            }))
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
         },
 
     }
@@ -779,7 +781,7 @@ const ContentContainer = ({
     @detail  수신여부 수정 후 -> 수신여부 [PUT]*/
     const isReceivingEmailOnclick = (e) => {
         editProfileFunction.isReceivingEmail(e)
-        // editApis.isReceivingEmail(e.target.value)
+        editApis.isReceivingEmail()
 
     }
 
