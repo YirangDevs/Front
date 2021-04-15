@@ -1,4 +1,4 @@
-import React, {memo} from "react"
+import React, {memo, useRef} from "react"
 import Col from "../../../layout/Grid/Column";
 import IconButton from "../../atoms/IconButton";
 import {MdFormatListBulleted, MdOpenInBrowser, MdPeople, MdToday, MdTune, MdPerson} from "react-icons/md";
@@ -8,6 +8,7 @@ import {useHistory} from "react-router-dom";
 const MenuIconNav = ({role}) => {
 
     const history = useHistory()
+    const {current : size} = useRef(40)
 
     return (
         <Row justify={"center"} gutter={[10,10]}>
@@ -15,10 +16,9 @@ const MenuIconNav = ({role}) => {
                 <IconButton value={"공고글 바로가기"} size={"large"} onClick={
                     ()=>{
                         document.documentElement.scrollTo(0,document.documentElement.scrollHeight)
-
                     }
                 }>
-                    <MdFormatListBulleted size={20}/>
+                    <MdFormatListBulleted size={size}/>
                 </IconButton>
             </Col>
             {
@@ -31,7 +31,7 @@ const MenuIconNav = ({role}) => {
                                             history.push("seniors")
                                         }
                                     }>
-                                        <MdOpenInBrowser size={20}/>
+                                        <MdOpenInBrowser size={size}/>
                                     </IconButton>
                                 </Col>
                                 <Col span={1} justify={"center"}>
@@ -40,7 +40,7 @@ const MenuIconNav = ({role}) => {
                                             history.push("manage")
                                         }
                                     }>
-                                        <MdTune size={20}/>
+                                        <MdTune size={size}/>
                                     </IconButton>
 
                                 </Col>
@@ -51,7 +51,7 @@ const MenuIconNav = ({role}) => {
                                             history.push("match")
                                         }
                                     }>
-                                        <MdToday size={20}/>
+                                        <MdToday size={size}/>
                                     </IconButton>
                                 </Col>
 
@@ -65,7 +65,7 @@ const MenuIconNav = ({role}) => {
                                 history.push("/userauthority")
                             }
                         }>
-                            <MdPeople size={20} />
+                            <MdPeople size={size} />
                         </IconButton>
                     </Col> : null
             }
@@ -78,7 +78,7 @@ const MenuIconNav = ({role}) => {
                                 history.push("mypage")
                             }
                         }>
-                            <MdPerson size={20}/>
+                            <MdPerson size={size}/>
                         </IconButton>
                     </Col> : null
             }

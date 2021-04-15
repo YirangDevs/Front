@@ -25,7 +25,7 @@ display : flex;
 justify-content : space-between;
 align-items: center;
 cursor : pointer;
-&: hover {
+&:hover {
     background-color : #000000;
     color: #f5f5f5;
 }
@@ -38,13 +38,26 @@ const PageMenuNav = ({ role }) => {
     const history = useHistory()
 
     const path = location.pathname
+
     return (
         <>
             <Row>
                 <Col span={12} >
                     <Divider marginTop={'0px'} marginBottom={'0px'} color={"#000000"} borderWidth={'3.3px'} />
                 </Col>
-
+                {
+                    (path !== '/mypage') ?
+                    <Col span={12}>
+                        <PageNav path={path} block onClick={
+                            () => {
+                                history.push("/mypage")
+                            }
+                        }>
+                            <Typo>마이 페이지</Typo>
+                            <Typo>{'>'}</Typo>
+                        </PageNav>
+                    </Col> : null
+                }
                 {(path !== '/profile') ?
                     <Col span={12}>
 
@@ -76,18 +89,8 @@ const PageMenuNav = ({ role }) => {
                     : null
                 }
 
-                {(role === "VOLUNTEER" && path !== "/mypage") ?
-                    <Col span={12}>
-                        <PageNav path={path} block onClick={
-                            () => {
-                                history.push("/mypage")
-                            }
-                        } >
-                            <Typo>마이 페이지</Typo>
-                            <Typo>{'>'}</Typo>
-                        </PageNav>
-                    </Col>
-                    :
+                {(role === "ADMIN" || role ==="SUPER_ADMIN") ?
+
                     <>
                         {(path !== "/seniors") ?
                             <Col span={12}>
@@ -131,7 +134,7 @@ const PageMenuNav = ({ role }) => {
                                 </Col>
                                 : null
                         }
-                    </>
+                    </> : null
                 }
 
 

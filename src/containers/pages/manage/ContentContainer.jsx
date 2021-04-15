@@ -173,7 +173,6 @@ const ContentContainer = () => {
         console.log(isEqualObject(updateNotice, selectNotice))
         console.log(data)
         let diff = [];
-        let test = listTotalNum
         diff = isEqualObject(updateNotice, selectNotice);
         if (diff.length === 0) return editModal.close() // 수정전 notice와 같으면 modalClose
         edit_notice(noticeId, data, selectNotice.title, diff)

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import styled from "styled-components"
 import PropTypes from 'prop-types';
 import RowContext from "../Row/RowContext";
@@ -77,4 +77,4 @@ Col.defaultProps = {
     span: 1,
 };
 
-export default Col
+export default memo(Col)

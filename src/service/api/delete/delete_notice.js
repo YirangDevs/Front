@@ -3,7 +3,7 @@
  * Email: yongwon0824@naver.com
  */
 import _ from "../../../config/env"
-import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+// import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 
 
 const deleteNotice = (deleteID) =>{

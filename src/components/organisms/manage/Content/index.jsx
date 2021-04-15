@@ -8,8 +8,7 @@ import React from "react"
 import Row from "../../../../layout/Grid/Row"
 import Col from "../../../../layout/Grid/Column"
 import ContentLayout from "../../../../layout/Content"
-import MenuNav from '../../../molecules/MenuNav'
-import PageNav from "../../../molecules/PageNav"
+import PageNav from "../../../../containers/redux/components/PageNav"
 import TableBox from '../../../atoms/TableBox'
 import Button from '../../../atoms/Button'
 import Modal from '../../../atoms/Modal'
@@ -19,7 +18,6 @@ import UserCard from "../../../../containers/redux/components/UserCard"
 import Pagination from "../../../atoms/Pagination"
 import Typo from "../../../atoms/Typography"
 import DeleteActivityForm from "../DeleteActivityForm"
-import { isValidElement } from "react"
 
 
 
@@ -101,7 +99,7 @@ const ManageContent = ({
                                                     <Row key={lists.id} gutter={[2, 0]} align="center">
                                                         <Col xs={10} sm={10} md={9} lg={10} xl={10}>
                                                             <TableBox key={lists.id} headList={NoticeTableHeadLists}
-                                                                bodyList={[data]} primaryKey={"title"} onClick={() => toReadHandle(data.id)} >
+                                                                bodyList={[data]} primaryKey={"title"} onClick={() => toReadHandle(data.id)} colgroup={[10,50,20,20]}>
                                                             </TableBox>
                                                         </Col>
 
@@ -175,7 +173,7 @@ const ManageContent = ({
                             </Col>
                             <Row gutter={[15, 0]}>
                                 <Col span={12}>
-                                    <PageNav role={'ADMIN'} />
+                                    <PageNav/>
                                 </Col>
 
                                 <Col span={12}>
