@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 17:03:55
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 04:50:40
+ * @Last Modified time: 2021-04-16 01:28:09
  */
 
 import React, { useEffect, useState } from 'react'
@@ -13,7 +13,7 @@ import deleteCancelApply from "../../../service/api/delete/delete_cancel_apply"
 import NotificationPool from "../../../containers/redux/components/NotificationPool"
 import getMyMatchingRecords from '../../../service/api/get/get_my_matching_records'
 
-const ContentContainer = ({ userId }) => {
+const ContentContainer = () => {
 
     //봉사 선택한거 보여주는거 
     const [selectedNotice, setSelectedNotice] = useState({})
@@ -58,12 +58,12 @@ const ContentContainer = ({ userId }) => {
             .catch((err) => { console.log(err) })
 
 
-        getMyMatchingRecords(userId)
+        getMyMatchingRecords()
             .then((res) => {
                 console.log(res)
             })
             .catch((err) => console.log(err))
-    }, [userId])
+    }, [])
 
 
 

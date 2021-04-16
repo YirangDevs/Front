@@ -5,8 +5,8 @@ import _ from "../../../config/env"
  * @method GET
  * @request @headers YAT token
  */
-const getMyMatchingRecords = (userId) => {
-    return fetch(_.SERVER_URL + ':8080/v1/apis/matchings/users/'+userId, {
+const getMyMatchingRecords = () => {
+    return fetch(_.SERVER_URL + ':8080/v1/apis/matchings/mymatching', {
         method: 'GET',
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("YAT")

@@ -1,5 +1,5 @@
 import React from "react"
-import ContentContainer from "../../containers/redux/pages/mypage/ContentContainer"
+import ContentContainer from "../../containers/pages/mypage/ContentContainer"
 import Header from "../../containers/redux/components/Header";
 
 
