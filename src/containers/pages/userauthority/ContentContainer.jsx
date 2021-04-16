@@ -201,14 +201,12 @@ const ContentContainer = () => {
         }
     }
     const regionOnCheck = (e) => {
-        console.log(e.target.checked)
-        console.log(e.target.value)
+        const checkedRegion = e.target.value
         if (e.target.checked) {
-            regionArray.push(e.target.value)
+            setRegionArray(state=>[...state, checkedRegion])
         } else {
-            setRegionArray(regionArray.filter(region => region !== e.target.value))
+            setRegionArray(regionArray.filter(region => region !== checkedRegion))
         }
-        console.log(regionArray)
     }
 
     const modalClose = () => {
