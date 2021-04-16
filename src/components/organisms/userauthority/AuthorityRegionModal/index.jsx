@@ -12,12 +12,7 @@ const AuthorityRegionModal = ({
     regionOnCheck,
     modalClose
 }) => {
-    console.log('regionArray')
-    console.log(regionArray)
-    console.log('regionOnCheck')
-    console.log(regionOnCheck)
-    console.log('regionOptions')
-    console.log(regionOptions)
+
     return (
         <>
             <Row>

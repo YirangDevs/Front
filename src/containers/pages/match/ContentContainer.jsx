@@ -10,11 +10,13 @@ const ContentContainer = () => {
 
     const [currentActivityPage, setCurrentActivityPage] = useState([])
     const [currentActivityPageTableBody, setCurrentActivityPageTableBody] = useState([])
+    const [currentActivityPageData, setCurrentActivityPageData] = useState([])
     const [pageNum, setPageNum] = useState(0)
     const [currentRegion, setCurrentRegion] = useState("전체")
     const [matchedData, setMatchedData] = useState({})
     const [unmatchedSenior, setUnmatchedSenior] = useState([])
     const [unmatchedVolunteer, setUnmatchedVolunteer] = useState([])
+    const [currentActivityId, setCurrentActivityId] = useState(0)
 
     useEffect(()=>{
 
@@ -22,7 +24,12 @@ const ContentContainer = () => {
 
     const activityOnClick = useCallback((e, data)=>{
         const activityId = data.activityId
-        getMatchedRecord(activityId).then(data=>{
+        if(currentActivityId===activityId) return //같은거 누를시 반환
+            setMatchedData([])
+            setUnmatchedSenior([])
+            setUnmatchedVolunteer([])
+            setCurrentActivityId(activityId)
+            getMatchedRecord(activityId).then(data=>{
             const matchingData = data.matchingContentDtos
 
             matchingData.forEach((arr)=>{
@@ -66,7 +73,7 @@ const ContentContainer = () => {
             }
 
         }).catch(e=>console.log(e))
-    }, [])
+    }, [currentActivityId])
 
     const activityPaginationOnClick = useCallback((e) => {
         setPageNum(e.target.innerText - 1)
@@ -91,6 +98,11 @@ const ContentContainer = () => {
                 }
             ))
         })
+        setCurrentActivityPageData(state=>{
+            return currentActivityPage.filter((i)=>{
+                return i.region === currentRegion || currentRegion === "전체"
+            })
+        })
     }, [currentRegion, currentActivityPage])
 
     useEffect(()=>{
@@ -108,6 +120,7 @@ const ContentContainer = () => {
                 }
             ))
             setCurrentActivityPage(data.activities)
+            setCurrentActivityPageData(data.activities)
             setCurrentActivityPageTableBody(activities)
         }).catch(err=>console.log(err))
     }, [pageNum])
@@ -127,7 +140,7 @@ const ContentContainer = () => {
             <MatchContent
                 activityNum={pageNum}
                 activityTableBody={currentActivityPageTableBody}
-                activityPageData={currentActivityPage}
+                activityPageData={currentActivityPageData}
                 currentRegion={currentRegion}
                 matchedData={matchedData}
                 unmatchedSenior={unmatchedSenior}
