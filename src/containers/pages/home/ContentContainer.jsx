@@ -8,6 +8,8 @@ import ApplyForm from "../../../containers/redux/components/ApplyForm";
 import getMyInfo from "../../../service/api/get/get_my_info";
 import NotificationPool from "../../redux/components/NotificationPool";
 import fakeLogin from "../../../service/api/post/fake_login"
+import store from "../../../store/store";
+import ACTION from "../../../store/actions/action";
 
 const ContentContainer = ({logined}) => {
 
@@ -17,8 +19,6 @@ const ContentContainer = ({logined}) => {
     const [noticeNum, setNoticeNum] = useState(0)
     const [currentNotice, setCurrentNotice] = useState(false)
     const isInitialMount = useRef(true);
-
-    const fakeLoginList = {};
 
     const getNoticeNumCallBack = useCallback(()=>getNoticeNum().then(data=>{setNoticeNum(data.totalNoticeNums)}).catch(err=>console.log(err)),[])
 
@@ -97,10 +97,17 @@ const ContentContainer = ({logined}) => {
         }
     ,[openNotice])
 
-    const fakeLoginOnClick = (e) => {
+    const fakeLoginOnChange = (e) => {
         const role = e.target.value
-        fakeLoginList.fakeAuthority=role
-        fakeLogin(fakeLoginList).then();
+        if(role==="권한 설정") return
+        fakeLogin({
+            fakeAuthority : role
+        }).then((payload)=>{
+                store.dispatch(ACTION.SET_USER__ACTION_FUNC({user : {...payload}}))
+                store.dispatch(ACTION.LOGIN_ACTION_FUNC())
+            }
+        )
+
     }
 
     useEffect(()=>{
@@ -135,7 +142,7 @@ const ContentContainer = ({logined}) => {
                 noticeNum={noticeNum}
                 currentNotice={currentNotice}
                 currentNoticePage={currentNoticePage}
-                fakeLoginOnClick={fakeLoginOnClick}
+                fakeLoginOnChange={fakeLoginOnChange}
 
 
                 setNoticeNum={setNoticeNumState}

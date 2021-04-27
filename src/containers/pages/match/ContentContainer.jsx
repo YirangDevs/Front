@@ -1,14 +1,79 @@
-import React, {useCallback, useEffect, useState} from "react"
+import React, {memo, useCallback, useEffect, useState} from "react"
 import MatchContent from "../../../components/organisms/match/Content"
 import getActivityByPage from "../../../service/api/get/get_activity_by_page";
 import getActivityNum from "../../../service/api/get/get_activity_num";
+import getMatchedRecord from "../../../service/api/get/get_matched_record";
+import getUnmatchedRecord from "../../../service/api/get/get_unmatched_record";
+
 
 const ContentContainer = () => {
 
     const [currentActivityPage, setCurrentActivityPage] = useState([])
     const [currentActivityPageTableBody, setCurrentActivityPageTableBody] = useState([])
+    const [currentActivityPageData, setCurrentActivityPageData] = useState([])
     const [pageNum, setPageNum] = useState(0)
     const [currentRegion, setCurrentRegion] = useState("전체")
+    const [matchedData, setMatchedData] = useState({})
+    const [unmatchedSenior, setUnmatchedSenior] = useState([])
+    const [unmatchedVolunteer, setUnmatchedVolunteer] = useState([])
+    const [currentActivityId, setCurrentActivityId] = useState(0)
+
+    useEffect(()=>{
+
+    }, [matchedData, unmatchedSenior, unmatchedVolunteer])
+
+    const activityOnClick = useCallback((e, data)=>{
+        const activityId = data.activityId
+        if(currentActivityId===activityId) return //같은거 누를시 반환
+            setMatchedData([])
+            setUnmatchedSenior([])
+            setUnmatchedVolunteer([])
+            setCurrentActivityId(activityId)
+            getMatchedRecord(activityId).then(data=>{
+            const matchingData = data.matchingContentDtos
+
+            matchingData.forEach((arr)=>{
+                setMatchedData((state)=>{
+                    /*
+                    데이터 가공
+                    {
+                        seniorId : [seniorId, seniorName, volunteerId, volunteerName]
+                    }
+                     */
+                    const currentData = {...state}
+
+                    if(!currentData[arr.seniorId]){
+                        currentData[arr.seniorId] = [{...arr}]
+                    }else{
+                        currentData[arr.seniorId] = [...currentData[arr.seniorId], {...arr}]
+                    }
+                    return currentData
+                })
+            })
+        }).catch(e=>console.log(e))
+
+        getUnmatchedRecord(activityId).then(data=>{
+            const unMatchedSeniors = data.unMatchedSeniors
+            const unMatchedVolunteers = data.unMatchedVolunteers
+            if(unMatchedSeniors!==null){
+                setUnmatchedSenior((state)=>{
+                    return [
+                        ...state,
+                        ...unMatchedSeniors
+                    ]
+                })
+            }
+            if(unMatchedVolunteers!==null){
+                setUnmatchedVolunteer((state)=>{
+                    return [
+                        ...state,
+                        ...unMatchedVolunteers
+                    ]
+                })
+            }
+
+        }).catch(e=>console.log(e))
+    }, [currentActivityId])
 
     const activityPaginationOnClick = useCallback((e) => {
         setPageNum(e.target.innerText - 1)
@@ -33,6 +98,11 @@ const ContentContainer = () => {
                 }
             ))
         })
+        setCurrentActivityPageData(state=>{
+            return currentActivityPage.filter((i)=>{
+                return i.region === currentRegion || currentRegion === "전체"
+            })
+        })
     }, [currentRegion, currentActivityPage])
 
     useEffect(()=>{
@@ -50,6 +120,7 @@ const ContentContainer = () => {
                 }
             ))
             setCurrentActivityPage(data.activities)
+            setCurrentActivityPageData(data.activities)
             setCurrentActivityPageTableBody(activities)
         }).catch(err=>console.log(err))
     }, [pageNum])
@@ -69,9 +140,13 @@ const ContentContainer = () => {
             <MatchContent
                 activityNum={pageNum}
                 activityTableBody={currentActivityPageTableBody}
-                activityPageData={currentActivityPage}
+                activityPageData={currentActivityPageData}
                 currentRegion={currentRegion}
+                matchedData={matchedData}
+                unmatchedSenior={unmatchedSenior}
+                unmatchedVolunteer={unmatchedVolunteer}
 
+                activityOnClick={activityOnClick}
                 activityPaginationOnClick={activityPaginationOnClick}
                 regionOnChange={regionOnChange}
             ></MatchContent>
@@ -79,4 +154,4 @@ const ContentContainer = () => {
     )
 }
 
-export default ContentContainer
+export default memo(ContentContainer)

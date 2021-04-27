@@ -8,17 +8,21 @@ const ProfileButtonComponent = styled.input.attrs(props => ({ type: "button" }))
     switch (props.size) {
         case "small":
             return `
-                    padding : 2px 8px;
+                    width : 1.5rem;
+                    height :  1.5rem;
                 `
         case "large":
             return `
-                    padding : 12px 20px;
+                    width : 2.5rem;
+                    height :  2.5rem;
                 `
         default:
             return `
-                    padding : 8px 16px;
+                    width : 2rem;
+                    height : 2rem;
                 `
     }
+    
 }}
 
     ${props => (props.block) ? `width : 100%;` : null}
@@ -29,9 +33,12 @@ const ProfileButtonComponent = styled.input.attrs(props => ({ type: "button" }))
     cursor: pointer;
     outline: 0;
     border : none;
-    border-radius: 50%;
-    
-    
+    border-radius: 100%;
+    padding : 0;
+  
+  @media screen and (max-width: 768px){
+    display : none;
+  }
 `
 
 const ProfileButton = ({size, url,  onClick}) => (

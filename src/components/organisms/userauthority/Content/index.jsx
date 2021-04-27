@@ -7,12 +7,11 @@ import TextBox from "../../../atoms/TextBox"
 import Button from "../../../atoms/Button"
 import TableBox from "../../../atoms/TableBox"
 import Modal from "../../../../components/atoms/Modal"
-import MenuNav from "../../../../containers/redux/components/MenuNav"
 import Pagination from "../../../atoms/Pagination"
 import UserCard from "../../../../containers/redux/components/UserCard"
 import AuthorityAdminModal from "../../../../components/organisms/userauthority/AuthorityAdminModal"
 import AuthorityRegionModal from "../../../../components/organisms/userauthority/AuthorityRegionModal"
-//import SideNav from "../../../molecules/SideNav"
+import PageMenuNav from "../../../../containers/redux/components/PageNav";
 
 
 const selectAuthority = ["전체", "슈퍼관리자", "관리자", "봉사자"]
@@ -51,7 +50,7 @@ const UserAuthorityContent = ({
                         <SelectBox options={selectAuthority} onChange={getMyAuthority} border block></SelectBox>
                     </Col>
                     <Col span={1.8}>
-                        <TextBox placeholder="이름을 검색하십시오" border></TextBox>
+                        <TextBox placeholder="이름을 검색하십시오" border ></TextBox>
                     </Col>
                     <Col span={1}>
                         <Button value="검색" theme="white" onClick={searchName} round />
@@ -59,7 +58,7 @@ const UserAuthorityContent = ({
                 </Row>
                 <Row>
                     <Col span={12} xxl={5.8} xl={8.3}>
-                        <TableBox headList={TableBoxHeadLists} bodyList={posts} />
+                        <TableBox headList={TableBoxHeadLists} bodyList={posts} colgroup={[15,15,15,25,30]}/>
                     </Col>
                     <Col span={0.2} /> {/* 빈칸 */}
                     <Col span={0} xxl={1} xl={1.5}>
@@ -72,7 +71,7 @@ const UserAuthorityContent = ({
                     <Col span={0} xxl={3.5}>
                         <Row gutter={[10, 0]}>
                             <Col span={12}>
-                                <MenuNav />
+                                <PageMenuNav />
                             </Col>
                             <Col span={12}>
                                 <UserCard />

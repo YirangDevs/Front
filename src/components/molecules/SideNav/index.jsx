@@ -65,12 +65,14 @@ const SideNav = ({
   imgUrl,
   children,
 
+  logined,
+
   navOpen,
   setNavState
 }) => {
 
     useEffect(()=>console.log("dfs",navOpen),[navOpen])
-
+    
     return (
         <>
             <SideNavStyle navOpen={navOpen}>
@@ -79,7 +81,7 @@ const SideNav = ({
                 </NavHeader>
                 <NavContent>
                   <NavContentWrapper>
-                    {(imgUrl)?
+                    {(logined)?
                     <Img src={imgUrl} width={'100px'} circle></Img>: null}
                     {/* <Img src={DefaultImg} width={'100px'} circle></Img> */}
                   </NavContentWrapper>
@@ -88,7 +90,7 @@ const SideNav = ({
                     <Button value="프로필 수정" />
                   </NavContentWrapper>
 
-                  <SideNavIcon/>
+                  <SideNavIcon logined={logined}/>
 
                 </NavContent>
                 
