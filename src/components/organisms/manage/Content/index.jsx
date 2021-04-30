@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @Date 2020-12-09 01:08:49 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 08:34:08
+ * @Last Modified time: 2021-04-29 15:23:19
  */
 import React from "react"
 import Row from "../../../../layout/Grid/Row"
@@ -31,7 +31,7 @@ const ManageContent = ({
     setSelectNotice,
     updateNotice,
     setUpdateNotice,
-
+    pagingNum,
     lists,
     setLists,
 
@@ -99,7 +99,7 @@ const ManageContent = ({
                                                     <Row key={lists.id} gutter={[2, 0]} align="center">
                                                         <Col xs={10} sm={10} md={9} lg={10} xl={10}>
                                                             <TableBox key={lists.id} headList={NoticeTableHeadLists}
-                                                                bodyList={[data]} primaryKey={"title"} onClick={() => toReadHandle(data.id)} colgroup={[10,50,20,20]}>
+                                                                bodyList={[data]} primaryKey={"title"} onClick={() => toReadHandle(data.id)} colgroup={[10, 50, 20, 20]}>
                                                             </TableBox>
                                                         </Col>
 
@@ -156,7 +156,7 @@ const ManageContent = ({
                                 }
                             </Col>
                             <Col span={12} justify={'center'}>
-                                <Pagination num={Math.ceil(listTotalNum / 6)} onClick={pagingClick}></Pagination>
+                                <Pagination num={Math.ceil(listTotalNum / 6)} onClick={pagingClick} setPageNum={pagingNum}></Pagination>
                             </Col>
                         </Row>
                     </Col>
@@ -173,7 +173,7 @@ const ManageContent = ({
                             </Col>
                             <Row gutter={[15, 0]}>
                                 <Col span={12}>
-                                    <PageNav/>
+                                    <PageNav />
                                 </Col>
 
                                 <Col span={12}>

@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 04:29:23
+ * @Last Modified time: 2021-04-29 14:16:07
  */
 
 import React from 'react'
@@ -96,7 +96,7 @@ const MyPageContent = ({
                 <Row>
                     <Col xs={0} sm={0} md={4} span={4}>
                         <Row>
-                            <Col span={4} >
+                            <Col span={12} >
                                 <Typo size={"2.3rem"} weight={'bold'}>{username}</Typo>
                             </Col>
                         </Row>
@@ -128,7 +128,7 @@ const MyPageContent = ({
                         </Row>
                         <Row gutter={[15, 0]}>
                             <Col span={12}>
-                                <PageNav/>
+                                <PageNav />
                             </Col>
                         </Row>
                         <Row gutter={[15, 0]} style={{ margin: '2.5rem 0 0 0 ' }}>
@@ -182,7 +182,7 @@ const MyPageContent = ({
                                         <>
                                             <Row gutter={[0, 1]} align="flex-start" justify={"space-between"} style={{ marginTop: "10px" }}>
                                                 <Col xs={9} sm={10} md={9} lg={9} xl={10} xxl={10} span={10}>
-                                                    <TableBox primaryKey={"result"} headList={["봉사일시", "장소", "매칭상태", "봉사분야", "신청날짜"]} bodyList={[data]} onClick={() => viewNoticeOnclick(noticeId)} border={"top"} colgroup={[20,20,20,20,20]}></TableBox>
+                                                    <TableBox primaryKey={"result"} headList={["봉사일시", "장소", "매칭상태", "봉사분야", "신청날짜"]} bodyList={[data]} onClick={() => viewNoticeOnclick(noticeId)} border={"top"} colgroup={[20, 20, 20, 20, 20]}></TableBox>
                                                 </Col>
 
                                                 <Col xs={3} sm={2} md={3} lg={3} xl={2} xxl={2} span={2}>
@@ -280,7 +280,7 @@ const MyPageContent = ({
 
 
                         <Row gutter={[0, 0]} align="center" style={{ margin: '0.8rem 0 0 0 ' }}>
-                            <TableBox headList={["봉사일시", "장소", "봉사분야", "신청날짜"]} bodyList={past_body_Lists} border={"top"} colgroup={[25,25,25,25]}></TableBox>
+                            <TableBox headList={["봉사일시", "장소", "봉사분야", "신청날짜"]} bodyList={past_body_Lists} border={"top"} colgroup={[25, 25, 25, 25]}></TableBox>
                         </Row>
 
                         {/* !SECTION 봉사기록조회 */}

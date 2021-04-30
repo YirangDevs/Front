@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 05:54:27
+ * @Last Modified time: 2021-04-29 15:19:57
  */
 
 import React, { useState, useEffect } from "react"
@@ -344,6 +344,7 @@ const ContentContainer = () => {
                 setListTotalNum((state) => (state + 1))
                 readModal.close();
                 urgentModal.close();
+                setPagingNum(0);
             })
             .catch((err) => {
                 (err.errorCode === "099") ?
@@ -439,6 +440,8 @@ const ContentContainer = () => {
                 setUpdateNotice={setUpdateNotice} // set update 할 notice 정보 (update page에 표시될)
                 lists={lists}
                 setLists={setLists} // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
+
+                pagingNum={pagingNum}
 
                 /* props.function */
                 setNotice={setNotice} // notice를 클릭 했을떄 notice를 read 하는 모달
