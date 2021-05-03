@@ -20,6 +20,8 @@ const get_my_applicants = () => {
         return data
     }).catch(async(error)=>{
         let err =  await error.then()
+        (err.errorCode =="044")?
+        null :
         NotificationPool.api.add({
             title : "Error from get_my_applicants",
             content : err.errorName + "("+err.errorCode+")",

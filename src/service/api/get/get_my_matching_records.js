@@ -18,6 +18,8 @@ const getMyMatchingRecords = () => {
         return data
     }).catch(async(error)=>{
         let err =  await error.then()
+        (err.errorCode == "044") ?
+        null :
         NotificationPool.api.add({
             title : "Error from get My Matching Records",
             content : err.errorName + "("+err.errorCode+")",

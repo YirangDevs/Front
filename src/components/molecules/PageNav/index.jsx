@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @date : 2021-02-24 15:44:35
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 21:56:40
+ * @Last Modified time: 2021-05-03 12:29:49
  */
 
 import React from "react"
@@ -45,8 +45,7 @@ const PageMenuNav = ({ role }) => {
                 <Col span={12} >
                     <Divider marginTop={'0px'} marginBottom={'0px'} color={"#000000"} borderWidth={'3.3px'} />
                 </Col>
-                {
-                    (path !== '/mypage') ?
+                {(role === "VOLUNTEER" && path !== "/mypage") ?
                     <Col span={12}>
                         <PageNav path={path} block onClick={
                             () => {
@@ -58,6 +57,7 @@ const PageMenuNav = ({ role }) => {
                         </PageNav>
                     </Col> : null
                 }
+
                 {(path !== '/profile') ?
                     <Col span={12}>
 
@@ -89,7 +89,7 @@ const PageMenuNav = ({ role }) => {
                     : null
                 }
 
-                {(role === "ADMIN" || role ==="SUPER_ADMIN") ?
+                {(role === "ADMIN" || role === "SUPER_ADMIN") ?
 
                     <>
                         {(path !== "/seniors") ?

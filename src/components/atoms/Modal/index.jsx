@@ -2,7 +2,7 @@
  * @Author : chaeeun
  * @Date : 2020-12-30 18:37:07
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-05 18:38:27
+ * @Last Modified time: 2021-05-03 12:54:40
  */
 
 import React from 'react'
@@ -22,7 +22,7 @@ const ModalWrapper = styled.div`
  position : fixed;
  
  background-color: rgba(0, 0, 0,0.12);
- z-index : ${props => (props.zIndex) - 1 || null};
+ z-index : ${props => (props.zIndex) - 1 || 100};
 `
 
 

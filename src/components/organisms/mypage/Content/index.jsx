@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-29 14:16:07
+ * @Last Modified time: 2021-05-03 17:53:02
  */
 
 import React from 'react'
@@ -72,28 +72,20 @@ const MyPageContent = ({
 
 
 }) => {
-    console.log('filterType')
-    console.log(filterType)
 
 
     const manage_body_Lists = currentApplicants.slice(0, 2)
 
 
-    console.log('pastApplicants')
-    console.log(pastApplicants)
-    console.log(filterApplicants)
-
-    const past_body_Lists = pastApplicants.slice(0, 2)
-
+    const pastBodyList = (pastApplicants.length == 0) ? [{ nullContent: "조회된 봉사기록이 없습니다." }] : pastApplicants.slice(0, 2)
 
 
     const history = useHistory()
     return (
         <>
-
             <ContentLayout   >
                 {/* SECTION   LEFT */}
-                <Row>
+                <Row justify={"space-between"}>
                     <Col xs={0} sm={0} md={4} span={4}>
                         <Row>
                             <Col span={12} >
@@ -146,7 +138,7 @@ const MyPageContent = ({
 
                     {/* SECTION RIGHT */}
 
-                    <Col xs={12} sm={12} md={7.5} span={7.5} offset={0.5}>
+                    <Col xs={12} sm={12} md={7.5} span={7.5} >
                         {/* SECTION 신청봉사내역 */}
                         <Row gutter={[0, 0]} justify={"space-between"} style={{ margin: "2.5rem 0 0 0 " }} >
                             <Col span={6}>
@@ -160,38 +152,54 @@ const MyPageContent = ({
                                         <Typo cursor={'pointer'} size={"1.1rem"} weight={"500"} onClick={viewAllApplyOnclick}>  전체 신청 보기 {'>'}</Typo>
                                     </Col>
                                     :
-                                    null
+                                    (currentApplicants.length == 0) ?
+                                        <Col span={6} justify={"flex-end"} style={{
+                                            paddingRight: ' 5px'
+                                        }}>
+                                            <Typo cursor={'pointer'} size={"1.1rem"} weight={"500"} onClick={() => { history.push("/") }}> 봉사 신청 가기 {'>'}</Typo>
+                                        </Col>
+                                        : null
                             }
                         </Row>
 
                         <Col span={12}>
                             {
-                                (manage_body_Lists).map((lists) => {
-                                    // const noticeId = lists.noticeIdS
-                                    const noticeId = 546
-                                    const applyId = lists.applyId
-                                    let data = Object.assign({
-                                        serviceDate: lists.date,
-                                        region: lists.region,
-                                        result: lists.result,
-                                        type: lists.type,
-                                        applyDate: lists.applyDate,
-                                    }, {})
+                                (currentApplicants.length == 0) ?
+                                    <Row gutter={[0, 1]} style={{ marginTop: "10px" }} justify={"center"} align={"center"}>
+                                        <Col span={12} justify={"center"} align={"center"}>
+                                            <Typo color={"#707070"} > 신청한 봉사가 없습니다.</Typo>
+                                        </Col>
+                                    </Row>
+                                    :
+                                    (manage_body_Lists).map((lists) => {
+                                        // const noticeId = lists.noticeIdS
+                                        const activityId = lists.activityId
+                                        const applyId = lists.applyId
+                                        let data = Object.assign({
+                                            serviceDate: lists.date,
+                                            region: lists.region,
+                                            result: lists.result,
+                                            type: lists.type,
+                                            applyDate: lists.applyDate,
+                                            activityId: lists.activityId
+                                        }, {})
 
-                                    return (
-                                        <>
-                                            <Row gutter={[0, 1]} align="flex-start" justify={"space-between"} style={{ marginTop: "10px" }}>
-                                                <Col xs={9} sm={10} md={9} lg={9} xl={10} xxl={10} span={10}>
-                                                    <TableBox primaryKey={"result"} headList={["봉사일시", "장소", "매칭상태", "봉사분야", "신청날짜"]} bodyList={[data]} onClick={() => viewNoticeOnclick(noticeId)} border={"top"} colgroup={[20, 20, 20, 20, 20]}></TableBox>
-                                                </Col>
+                                        return (
+                                            <>
+                                                <Row gutter={[0, 1]} align="flex-start" justify={"space-between"} style={{ marginTop: "10px" }}>
+                                                    <Col xs={9} sm={10} md={9} lg={9} xl={10} xxl={10} span={10}>
+                                                        <TableBox primaryKey={"result"} headList={["봉사일시", "장소", "매칭상태", "봉사분야", "신청날짜"]} bodyList={[data]} onClick={() => viewNoticeOnclick(activityId)} border={"top"} colgroup={[20, 20, 20, 20, 20]}></TableBox>
+                                                    </Col>
 
-                                                <Col xs={3} sm={2} md={3} lg={3} xl={2} xxl={2} span={2}>
-                                                    <Button block size="large" value="신청취소" types={"primary"} onClick={() => cancelApplyOnclick(applyId)} ></Button>
-                                                </Col>
-                                            </Row>
-                                        </>
-                                    )
-                                })
+                                                    <Col xs={3} sm={2} md={3} lg={3} xl={2} xxl={2} span={2}>
+                                                        <Button block size="large" value="신청취소" types={"primary"} onClick={() => cancelApplyOnclick(applyId)} ></Button>
+                                                    </Col>
+                                                </Row>
+
+
+                                            </>
+                                        )
+                                    })
                             }
                         </Col>
                         {/* !SECTION 신청봉사내역 */}
@@ -278,9 +286,8 @@ const MyPageContent = ({
                             </Col>
                         </Row>
 
-
                         <Row gutter={[0, 0]} align="center" style={{ margin: '0.8rem 0 0 0 ' }}>
-                            <TableBox headList={["봉사일시", "장소", "봉사분야", "신청날짜"]} bodyList={past_body_Lists} border={"top"} colgroup={[25, 25, 25, 25]}></TableBox>
+                            <TableBox headList={["봉사일시", "장소", "봉사분야", "매칭날짜"]} bodyList={pastBodyList} border={"top"} colgroup={[25, 25, 25, 25]}></TableBox>
                         </Row>
 
                         {/* !SECTION 봉사기록조회 */}

@@ -2,13 +2,13 @@
  * @author : chaeeun
  * @Date : 2021-02-16 17:03:55
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-16 01:28:09
+ * @Last Modified time: 2021-05-03 17:45:36
  */
 
 import React, { useEffect, useState } from 'react'
 import MyPageContent from "../../redux/pages/mypage/Content"
 import getMyApplicants from "../../../service/api/get/get_my_applicants"
-import getNotice from "../../../service/api/get/get_notice"
+import getNotice from "../../../service/api/get/get_activity"
 import deleteCancelApply from "../../../service/api/delete/delete_cancel_apply"
 import NotificationPool from "../../../containers/redux/components/NotificationPool"
 import getMyMatchingRecords from '../../../service/api/get/get_my_matching_records'
@@ -43,15 +43,11 @@ const ContentContainer = () => {
                         result: lists.matchingState,
                         applyDate: settingDate(lists.dtoa),
                         type: (lists.serviceType === "WORK" ? "노력봉사" : "말벗봉사"),
-                        applyId: lists.applyId
+                        applyId: lists.applyId,
+                        activityId: lists.activityId
                     }]))
 
-                    setPastApplicant((state) => ([...state, {
-                        serviceDate: settingDate(lists.dtov),
-                        region: lists.region,
-                        type: (lists.serviceType === "WORK" ? "노력봉사" : "말벗봉사"),
-                        applyDate: settingDate(lists.dtoa),
-                    }]))
+
 
                 })
             })
@@ -60,7 +56,17 @@ const ContentContainer = () => {
 
         getMyMatchingRecords()
             .then((res) => {
+                console.log("과거기록")
                 console.log(res)
+                res.matchingRecordDtoList.forEach((lists) => {
+                    setPastApplicant((state) => ([...state, {
+                        serviceDate: settingDate(lists.dtov),
+                        region: lists.region,
+                        type: (lists.serviceType === "WORK" ? "노력봉사" : "말벗봉사"),
+                        matchingDate: settingMatchingDate(lists.dtom),
+                    }]))
+
+                })
             })
             .catch((err) => console.log(err))
     }, [])
@@ -86,7 +92,14 @@ const ContentContainer = () => {
         const Time = DoaToa[1];
         return Time;
     }
-
+    /**
+      * @description Dtom -> Date value Setting  */
+    const settingMatchingDate = (getData) => {
+        const DateTime = getData
+        const DomTom = DateTime.split(" ")
+        const Date = DomTom[0];
+        return Date;
+    }
 
 
 
