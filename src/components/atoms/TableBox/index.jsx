@@ -1,4 +1,4 @@
-import React, {memo, useCallback} from "react"
+import React, {memo, useCallback, useEffect, useState} from "react"
 import styled from "styled-components"
 import ToolTip from "../Tooltip";
 
@@ -66,10 +66,12 @@ const Td = styled.td`
     cursor: pointer;
     padding: 12px 6px;
     ${props => (props.back) ? `background-color: #f5f5f5;` : null}
+    ${props => (props.checked) ? `background-color: #eeeeee;` : null}
     word-break : keep-all;
 `
 const PrimaryKey = styled(Td)`
     cursor: pointer;
+    ${props => (props.checked) ? `background-color: #eeeeee;` : null}
 `
 /*
 {
@@ -80,26 +82,41 @@ const PrimaryKey = styled(Td)`
 }
  */
 
-const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data, tooltip, row, colgroup}) => {
+const TableBox = ({checked, border, black, headList, bodyList, primaryKey, onClick, dataOnClick, data, tooltip, row, colgroup}) => {
+
+
+    const [checkedId, setCheckedId] = useState(0)
+
+
+    useEffect(()=>{
+        console.log("CHECKED",checkedId)
+    }, [checkedId])
 
     const onPrimaryClick = useCallback((e, data) => {
+
         if (data) {
+            if(checked){
+                setCheckedId(data.id)
+            }
             onClick(e, data)
         } else {
             onClick(e)
         }
 
-    }, [onClick])
+    }, [onClick, checked])
 
     const onTableBodyClick = useCallback((e, data) => {
         if (dataOnClick) {
             if (data) {
+                if(checked){
+                    setCheckedId(data.id)
+                }
                 dataOnClick(e, data)
             } else {
                 dataOnClick(e)
             }
         }
-    }, [dataOnClick])
+    }, [dataOnClick, checked])
 
     return (
         <>
@@ -167,18 +184,18 @@ const TableBox = ({ border, black, headList, bodyList, primaryKey, onClick, data
                                                                 return (tooltip&&Object.keys(tooltip.data).includes(value)) ?
 
                                                                     (value === primaryKey) ?
-                                                                        <PrimaryKey key={secondIndex} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>
+                                                                        <PrimaryKey key={secondIndex} checked={data ? data[firstIndex]?.id===checkedId : false} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>
                                                                             <ToolTip key={secondIndex} content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
                                                                         </PrimaryKey>
                                                                         :
-                                                                        <Td back={certainDate < new Date()} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>
+                                                                        <Td back={certainDate < new Date()} checked={data ? data[firstIndex]?.id===checkedId : false} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>
                                                                             <ToolTip key={secondIndex} content={tooltip.data[value][firstIndex]} position={tooltip.position}>{i[value]}</ToolTip>
                                                                         </Td>
                                                                     :
                                                                     (value === primaryKey) ?
-                                                                        <PrimaryKey key={secondIndex} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>{i[value]}</PrimaryKey>
+                                                                        <PrimaryKey key={secondIndex} checked={data ? data[firstIndex]?.id===checkedId : false} onClick={(e) => { data ? onPrimaryClick(e, data[firstIndex]) : onPrimaryClick(e) }}>{i[value]}</PrimaryKey>
                                                                         :
-                                                                        <Td back={certainDate < new Date()} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>{i[value]}</Td>
+                                                                        <Td back={certainDate < new Date()} checked={data ? data[firstIndex]?.id===checkedId : false} key={secondIndex} onClick={(e) => { data ? onTableBodyClick(e, data[firstIndex]) : onTableBodyClick(e) }}>{i[value]}</Td>
                                                             })}
                                                         </Tr>)
                                                 })

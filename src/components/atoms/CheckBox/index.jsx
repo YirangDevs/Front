@@ -40,13 +40,13 @@ color: #707070;
 `
 
 
-const CheckBox = ({ justify, size, defaultChecked, onChange, options }) => (
+const CheckBox = ({name, justify, size, defaultChecked, onChange, options }) => (
 
     //options = selectBox 목록 DataType = Array
     <>
         <CheckBoxGroup justify={justify}>
             {options.map((i, index) =>
-                <CheckBoxLabel key={index} size={size}><Check onChange={onChange} value={i} key={index}
+                <CheckBoxLabel name={name} key={index} size={size}><Check onChange={onChange} value={i} key={index}
                     checked={(defaultChecked.includes(i)) ? true : false} />{i}</CheckBoxLabel>
             )}
 
