@@ -10,17 +10,26 @@ const ContentContainer = () => {
 
     const [currentActivityPage, setCurrentActivityPage] = useState([])
     const [currentActivityPageTableBody, setCurrentActivityPageTableBody] = useState([])
+    const [currentActivityPageData, setCurrentActivityPageData] = useState([])
     const [pageNum, setPageNum] = useState(0)
     const [currentRegion, setCurrentRegion] = useState("전체")
-    const [matchedData, setMatchedData] = useState([])
+    const [matchedData, setMatchedData] = useState({})
     const [unmatchedSenior, setUnmatchedSenior] = useState([])
     const [unmatchedVolunteer, setUnmatchedVolunteer] = useState([])
+    const [currentActivityId, setCurrentActivityId] = useState(0)
+
+    useEffect(()=>{
+
+    }, [matchedData, unmatchedSenior, unmatchedVolunteer])
 
     const activityOnClick = useCallback((e, data)=>{
-        console.log(data)
         const activityId = data.activityId
-        getMatchedRecord(activityId).then(data=>{
-            console.log(data)
+        if(currentActivityId===activityId) return //같은거 누를시 반환
+            setMatchedData([])
+            setUnmatchedSenior([])
+            setUnmatchedVolunteer([])
+            setCurrentActivityId(activityId)
+            getMatchedRecord(activityId).then(data=>{
             const matchingData = data.matchingContentDtos
 
             matchingData.forEach((arr)=>{
@@ -31,38 +40,40 @@ const ContentContainer = () => {
                         seniorId : [seniorId, seniorName, volunteerId, volunteerName]
                     }
                      */
-
                     const currentData = {...state}
 
-                    if(currentData[arr.seniorId]){
-                        currentData[arr.seniorId] = [...arr]
+                    if(!currentData[arr.seniorId]){
+                        currentData[arr.seniorId] = [{...arr}]
                     }else{
-                        currentData[arr.seniorId] = [...currentData[arr.seniorId], ...arr]
+                        currentData[arr.seniorId] = [...currentData[arr.seniorId], {...arr}]
                     }
-
                     return currentData
                 })
             })
         }).catch(e=>console.log(e))
 
         getUnmatchedRecord(activityId).then(data=>{
-            console.log(data)
             const unMatchedSeniors = data.unMatchedSeniors
             const unMatchedVolunteers = data.unMatchedVolunteers
-            setUnmatchedSenior((state)=>{
-                return [
-                    ...state,
-                    ...unMatchedSeniors
-                ]
-            })
-            setUnmatchedVolunteer((state)=>{
-                return [
-                    ...state,
-                    ...unMatchedVolunteers
-                ]
-            })
+            if(unMatchedSeniors!==null){
+                setUnmatchedSenior((state)=>{
+                    return [
+                        ...state,
+                        ...unMatchedSeniors
+                    ]
+                })
+            }
+            if(unMatchedVolunteers!==null){
+                setUnmatchedVolunteer((state)=>{
+                    return [
+                        ...state,
+                        ...unMatchedVolunteers
+                    ]
+                })
+            }
+
         }).catch(e=>console.log(e))
-    }, [])
+    }, [currentActivityId])
 
     const activityPaginationOnClick = useCallback((e) => {
         setPageNum(e.target.innerText - 1)
@@ -87,6 +98,11 @@ const ContentContainer = () => {
                 }
             ))
         })
+        setCurrentActivityPageData(state=>{
+            return currentActivityPage.filter((i)=>{
+                return i.region === currentRegion || currentRegion === "전체"
+            })
+        })
     }, [currentRegion, currentActivityPage])
 
     useEffect(()=>{
@@ -104,6 +120,7 @@ const ContentContainer = () => {
                 }
             ))
             setCurrentActivityPage(data.activities)
+            setCurrentActivityPageData(data.activities)
             setCurrentActivityPageTableBody(activities)
         }).catch(err=>console.log(err))
     }, [pageNum])
@@ -123,7 +140,7 @@ const ContentContainer = () => {
             <MatchContent
                 activityNum={pageNum}
                 activityTableBody={currentActivityPageTableBody}
-                activityPageData={currentActivityPage}
+                activityPageData={currentActivityPageData}
                 currentRegion={currentRegion}
                 matchedData={matchedData}
                 unmatchedSenior={unmatchedSenior}

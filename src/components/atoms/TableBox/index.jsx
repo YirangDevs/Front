@@ -54,6 +54,7 @@ const Wrapper = styled.div`
   width : 100%;
   height : ${props=>props.row ? `calc(1.313rem * `+(props.row)+` + 24px * `+(props.row)+`);` : `auto;`}
   overflow-y : auto;
+  overflow-x : hidden;
 `
 
 const Td = styled.td`
