@@ -12,7 +12,7 @@ import ProfileRouter from './ProfileRouter'
 import { connect } from "react-redux";
 import MatchRouter from "./MatchRouter";
 import HomeRouter from "./HomeRouter";
-
+import IntroRouter from "./IntroRouter"
 const YirangRouter = ({ role, realname, sex, phone, emailValidation }) => {
 
     const userInfo = {
@@ -53,6 +53,9 @@ const YirangRouter = ({ role, realname, sex, phone, emailValidation }) => {
                     </Route>
                     <Route path="/match">
                         <MatchRouter security={["SUPER_ADMIN", "ADMIN"]} userInfo={userInfo} />
+                    </Route>
+                    <Route exact path="/Intro">
+                        <IntroRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER", "GUEST"]} userInfo={userInfo} emailValidation={emailValidation}></IntroRouter>
                     </Route>
                     <Route exact path="/">
                         <HomeRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER", "GUEST"]} userInfo={userInfo} emailValidation={emailValidation}></HomeRouter>

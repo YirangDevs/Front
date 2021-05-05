@@ -6,13 +6,13 @@ const ImageStyle = styled.img.attrs((props) => ({
 }))`
     width : ${props => props.width};
     ${(props) => (props.circle) ? ` border-radius : 50%; ` : null}
-    height :  ${props => props.width};
+    height :  ${props => props.height || props.width} ;
   
 `
 
-const Image = ({ src, width, circle }) => (
+const Image = ({ src, width, circle, height }) => (
     <>
-        <ImageStyle src={src} width={width} circle={circle}></ImageStyle>
+        <ImageStyle src={src} width={width} height={height} circle={circle}></ImageStyle>
     </>
 )
 
