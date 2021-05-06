@@ -68,7 +68,6 @@ const ManageContent = ({
     activityDeleteOKOnclick,
     deleteInfo,
 }) => {
-    console.log(selectNotice)
     // notice header
     const NoticeTableHeadLists = [" ", "제목", "봉사날짜", "봉사지역"]
     // list를 못받아올 경우 

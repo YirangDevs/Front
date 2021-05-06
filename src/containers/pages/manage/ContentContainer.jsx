@@ -73,22 +73,18 @@ const ContentContainer = () => {
      * @param e - 선택한 notice Id target하기위한 param
      */
     const toReadHandle = (e) => {
-        console.log(e);
         // getNoticeId(e);
 
         setNotice(e);
-        selectNotice.id === e && console.log(selectNotice)
         readModal.show();
 
     }
 
     const toEditHandle = (e) => {
 
-        console.log(e);
 
         setNotice(e);
         setUpNotice(e);
-        updateNotice.id === e && console.log(updateNotice)
         editModal.show();
     }
 

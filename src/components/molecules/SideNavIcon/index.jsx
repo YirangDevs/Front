@@ -7,17 +7,20 @@ import _ from "../../../config/env"
 
 const ContentWrapper = styled.div`
       display: flex;
-      margin-top: 40px;
-      margin-left: 23%;
-      width: 200px;
-      
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
 `
-const IconByRole = styled.div`
+
+const MenuWrapper = styled.div`
+  display : flex;
+  align-items: center;
+  width : 80%;
+  margin : 2rem 0;
 `
 
 const Text = styled.span`
-      margin-top: 8px;
-      margin-left: 30px;
+      margin-left : 1rem;
       font-weight: bold;
       font-size: 1rem;
       cursor: pointer;
@@ -30,12 +33,10 @@ const Text = styled.span`
 `
 
 const Loginlogout = styled.a`
-        margin-top: 8px;
         font-weight: bold;
         font-size: 1rem;
         cursor: pointer;
         color: #707070;
-        margin-left: 50px;
 `
 
 const SideNavIcon = ({logined, role}) => {
@@ -43,90 +44,94 @@ const SideNavIcon = ({logined, role}) => {
     return (
         <>
         {(role==="SUPER_ADMIN")?
-        <IconByRole>
-            <ContentWrapper>
+        <ContentWrapper>
+            <MenuWrapper>
                 <MdFormatListBulleted size={25}/>
                 <Text onClick={()=>history.push("home")}>공고글 바로가기</Text>
-            </ContentWrapper>
+            </MenuWrapper>
 
-            <ContentWrapper>
+            <MenuWrapper>
                 <MdOpenInBrowser size={25}/>
                 <Text onClick={()=>history.push("seniors")}>피봉사자 관리</Text>
-             </ContentWrapper>
+             </MenuWrapper>
 
-             <ContentWrapper>
+             <MenuWrapper>
                 <MdTune size={25}/>
                 <Text onClick={()=>history.push("manage")}>봉사 공고글 관리</Text>
-            </ContentWrapper>
+            </MenuWrapper>
 
             
 
-            <ContentWrapper>
+            <MenuWrapper>
                 <MdToday size={25}/>
                 <Text onClick={()=>history.push("match")}>매칭결과 확인</Text>
-            </ContentWrapper>
-            <ContentWrapper>
+            </MenuWrapper>
+            <MenuWrapper>
                  <MdPeople size={25}/>
                 <Text onClick={()=>history.push("userauthority")}>사용자 권한관리</Text>
-            </ContentWrapper>
-        </IconByRole>
+            </MenuWrapper>
+        </ContentWrapper>
     :
     (role==="ADMIN")?
-        <IconByRole>
-            <ContentWrapper>
+        <ContentWrapper>
+            <MenuWrapper>
                 <MdFormatListBulleted size={25}/>
                 <Text onClick={()=>history.push("home")}>공고글 바로가기</Text>
-            </ContentWrapper>
-            <ContentWrapper>
+            </MenuWrapper>
+            <MenuWrapper>
                 <MdOpenInBrowser size={25}/>
                 <Text onClick={()=>history.push("seniors")}>피봉사자 관리</Text>
-             </ContentWrapper>
-            <ContentWrapper>
+             </MenuWrapper>
+            <MenuWrapper>
                 <MdTune size={25}/>
                 <Text onClick={()=>history.push("manage")}>봉사 공고글 관리</Text>
-            </ContentWrapper>
+            </MenuWrapper>
 
             
 
-             <ContentWrapper>
+             <MenuWrapper>
                 <MdToday size={25}/>
                 <Text onClick={()=>history.push("match")}>매칭결과 확인</Text>
-            </ContentWrapper>
-            <ContentWrapper>
+            </MenuWrapper>
+            <MenuWrapper>
                 <MdPerson size={25}/>
                 <Text onClick={()=>history.push("mypage")}>마이페이지</Text>
-            </ContentWrapper>
-        </IconByRole>
+            </MenuWrapper>
+        </ContentWrapper>
     :
     (role==="VOLUNTEER")?
-        <IconByRole>
-            <ContentWrapper>
+        <ContentWrapper>
+            <MenuWrapper>
                 <MdFormatListBulleted size={25}/>
                 <Text onClick={()=>history.push("home")}>공고글 바로가기</Text>
-            </ContentWrapper>
-            <ContentWrapper>
+            </MenuWrapper>
+            <MenuWrapper>
                 <MdPerson size={25}/>
                 <Text onClick={()=>history.push("mypage")}>마이페이지</Text>
-            </ContentWrapper>
-        </IconByRole>
+            </MenuWrapper>
+        </ContentWrapper>
     :
-        <IconByRole>
-            <ContentWrapper>
+        <ContentWrapper>
+            <MenuWrapper>
                 <MdFormatListBulleted size={25}/>
                 <Text onClick={()=>history.push("home")}>공고글 바로가기</Text>
-            </ContentWrapper>
-        </IconByRole>
+            </MenuWrapper>
+        </ContentWrapper>
     }
                 
 
                 {
                     (logined)?
-                    <ContentWrapper onClick={LogoutProcess}>
-                        <Text guide>로그아웃</Text>
+                    <ContentWrapper onClick={LogoutProcess} style={{
+                        justifyContent : "center"
+                    }}>
+                        <Loginlogout href={_.KAKAO_LOGOUT_URL}>로그아웃</Loginlogout>
                     </ContentWrapper>
                     :
-                    <ContentWrapper>
-                        <Loginlogout href={_.KAKAO_AUTHORIZATION_URL} guide>로그인</Loginlogout>
+                    <ContentWrapper style={{
+                        justifyContent : "center"
+                    }}>
+                        <Loginlogout href={_.KAKAO_AUTHORIZATION_URL}>로그인</Loginlogout>
                     </ContentWrapper>
                 }
                 

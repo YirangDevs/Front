@@ -63,7 +63,6 @@ const TextBox = ({ autofocus, border, radius, size, block, value, onChange, plac
 
     useEffect(() => {
         if (autofocus) {
-            console.log(ref)
             ref.current.focus()
         }
     }, [autofocus])

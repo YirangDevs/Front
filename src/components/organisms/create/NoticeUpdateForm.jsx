@@ -38,7 +38,6 @@ const regionoptions = ["지역선택", "수성구", "동구", "서구", "남구"
 
 const NoticeUpdateForm = (props) => {
 
-    console.log(props.dov)
     return (
         <>
             <NoticeUpdateFormWrapper>

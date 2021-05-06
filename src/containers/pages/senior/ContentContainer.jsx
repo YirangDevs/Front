@@ -1,5 +1,5 @@
 import SeniorContent from "../../../components/organisms/senior/Content/"
-import React, { useState, useEffect, useCallback, useRef} from "react"
+import React, { useState, useEffect, useCallback} from "react"
 import { useHistory } from "react-router-dom"
 import getAllAreas from "../../../service/api/get/get_all_areas"
 import getArea from "../../../service/api/get/get_area"
@@ -44,7 +44,6 @@ const ContentContainer = () => {
 
    
 
-    const genderRef = useRef();
     //const genderRef = createRef();
     //const genderRef = forwardRef();
 
@@ -120,16 +119,13 @@ const ContentContainer = () => {
     };
 
     const selectSenior = (e) => {
-        console.log(e)
         const primaryKey = e.target.parentNode.children[3].innerText //phoneNum
-        console.log(primaryKey)
         const senior = seniors.filter((i) => i.phone === primaryKey)[0]
         setBufferSenior(senior)
         setCurrentSenior(senior)
 
         RadioSelect(e.target, senior)
 
-        console.log(genderRef)
     }
 
     const nameOnChange = (e) => {

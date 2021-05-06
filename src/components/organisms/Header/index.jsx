@@ -6,8 +6,8 @@ import _ from "../../../config/env"
 import LogoutProcess from "../../../service/transaction/logout_process"
 import ProfileButton from "../../../containers/redux/components/ProfileButton";
 import {useHistory} from "react-router-dom";
-import logo from "../../../img/logo.png"
 import {MdDehaze} from "react-icons/md"
+import Logo from "../../atoms/Logo/index"
 
 
 const HeaderStyle = styled.div`
@@ -22,7 +22,8 @@ const HeaderStyle = styled.div`
   display: flex;
   z-index: 1;
   align-items: center;
-  overflow-x: hidden;
+  padding-left : 1rem;
+  box-sizing: border-box;
   @media(max-width: 1200px){
     height : 64px;
   }
@@ -69,19 +70,25 @@ const Header = ({theme, logined, role, position, setNavState}) => {
                 <Row align={"center"} justify={"space-between"} style={{
                     height: "inherit"
                 }}>
-                    <Col xxl={0} sm={0.3} style={{
-                        cursor: "pointer"
+                    <Col span={2} xxl={2} xl={2} lg={2} md={2} sm={4} xs={6} style={{
+                        height: "inherit"
                     }}>
-                        <MdDehaze onClick={setNavState} size={25}/> 
-                    </Col>
-                    <Col xxl={1} xl={1} lg={1} md={2} sm={2} xs={2} style={{
-                        height : "100%"
-                    }}>
-                        
-                        <img src={logo} alt="" style={{
-                            height : "100%",
-                            width : "auto"
-                        }}/>
+                        <Row style={{
+                            height: "inherit"
+                        }}>
+                            <Col xxl={0} xl={0} lg={0} md={0} sm={0} xs={2}   style={{
+                                cursor: "pointer",
+                                height : "100%"
+                            }}  align={"center"} justify={"center"}>
+                                <MdDehaze onClick={setNavState} size={25}/>
+                            </Col>
+                            <Col span={8} style={{
+                                height : "100%"
+                            }}>
+                                <Logo></Logo>
+                            </Col>
+                        </Row>
+
                     </Col>
 
                     {
@@ -95,17 +102,17 @@ const Header = ({theme, logined, role, position, setNavState}) => {
 
                             </Col>*/}
 
-                            <Col span={4}>
+                            <Col span={5} xxl={5} xl={5} lg={5} md={4} sm={2} xs={0}>
 
                             </Col>
-                            <Col span={2} justify={"flex-end"}>
+                            <Col span={1} xxl={1} xl={1} lg={1} md={1} sm={1} xs={1} justify={"center"}>
                                 <ProfileButton onClick={()=>{
                                     if(role==="SUPER_ADMIN"||role==="ADMIN") history.push("profile")
                                     else {history.push("mypage");}
                                 }}/>
 
                             </Col>
-                            <Col xs={0} sm={0} md={2} lg={2} xl={2} xxl={2} justify={"flex-start"} style={{
+                            <Col span={3} xxl={3} xl={3} lg={3} md={3} sm={0} xs={0} justify={"flex-start"} style={{
                                 color : "white"
                             }}>
 

@@ -17,13 +17,17 @@ const ContentContainer = () => {
     const [unmatchedSenior, setUnmatchedSenior] = useState([])
     const [unmatchedVolunteer, setUnmatchedVolunteer] = useState([])
     const [currentActivityId, setCurrentActivityId] = useState(0)
+    const [volunteerModal, setVolunteerModal] = useState(false)
 
-    useEffect(()=>{
+    const toggleModal = useCallback(()=> {
+        setVolunteerModal(state=>!state)
+    }, [])
 
-    }, [matchedData, unmatchedSenior, unmatchedVolunteer])
+
+
 
     const activityOnClick = useCallback((e, data)=>{
-        const activityId = data.activityId
+        const activityId = data.id
         if(currentActivityId===activityId) return //같은거 누를시 반환
             setMatchedData([])
             setUnmatchedSenior([])
@@ -51,6 +55,8 @@ const ContentContainer = () => {
                 })
             })
         }).catch(e=>console.log(e))
+
+
 
         getUnmatchedRecord(activityId).then(data=>{
             const unMatchedSeniors = data.unMatchedSeniors
@@ -101,6 +107,8 @@ const ContentContainer = () => {
         setCurrentActivityPageData(state=>{
             return currentActivityPage.filter((i)=>{
                 return i.region === currentRegion || currentRegion === "전체"
+            }).map(data=>{
+                return {...data, id : data.activityId}
             })
         })
     }, [currentRegion, currentActivityPage])
@@ -145,10 +153,13 @@ const ContentContainer = () => {
                 matchedData={matchedData}
                 unmatchedSenior={unmatchedSenior}
                 unmatchedVolunteer={unmatchedVolunteer}
+                volunteerModal={volunteerModal}
+                currentActivityId={currentActivityId}
 
                 activityOnClick={activityOnClick}
                 activityPaginationOnClick={activityPaginationOnClick}
                 regionOnChange={regionOnChange}
+                toggleModal={toggleModal}
             ></MatchContent>
         </>
     )

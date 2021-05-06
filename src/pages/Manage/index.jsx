@@ -6,13 +6,14 @@ import SideNav from "../../containers/redux/components/SideNav";
 import useSideNav from "../../hook/useSideNav";
 
 const WholeWrapper = styled.div`
-    width : 100wv;;
-    display: fixed;
+    width : 100vw;
+    display : -webkit-box;
+    display : -moz-box;
     overflow-x: hidden;
 `
 const ContentWrapper = styled.div`
-    position : relative;
-    
+    width : 100%;
+
 `
 
 const Manages = () => {
