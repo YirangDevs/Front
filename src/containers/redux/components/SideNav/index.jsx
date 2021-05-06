@@ -5,6 +5,7 @@ const mapStateToProps = (state) => {
     return {
         imgUrl: state.user_reducer.imgUrl,
         logined : state.login_reducer.logined,
+        role : state.user_reducer.role
     }
 }
 

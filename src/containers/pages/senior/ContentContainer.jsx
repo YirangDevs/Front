@@ -350,6 +350,8 @@ const ContentContainer = () => {
         setModal(false)
     }
 
+    
+
     return (
             <SeniorContent
                 currentSenior={bufferSenior}
@@ -387,6 +389,7 @@ const ContentContainer = () => {
                 button={button}
                 isModalOpen={modal}
                 excelData={excelData}
+
             >
             </SeniorContent>
     )

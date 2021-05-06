@@ -8,21 +8,20 @@
  import React from 'react'
  import SideNav from "../../../components/molecules/SideNav"
  import useSideNav from "../../../hook/useSideNav"
- import {useHistory} from "react-router-dom"
 
  const ContentContainer = ({
      imgUrl,
      children,
 
-     logined
+     logined,
+     role
  }) => {
-    const history = useHistory()
     const [navState, setNavState] = useSideNav(false);
-
+    
 
      return (
          <>
-            <SideNav logined={logined} children={children} imgUrl={imgUrl} navOnOpen={onOpen} navState={navState}>
+            <SideNav role={role} logined={logined} children={children} imgUrl={imgUrl} navOnOpen={onOpen} navState={navState} mapModal={mapModal} viewMap={viewMap}>
 
             </SideNav>
          </>

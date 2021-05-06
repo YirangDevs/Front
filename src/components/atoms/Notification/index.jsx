@@ -2,7 +2,7 @@ import React, {useEffect, memo, useState} from "react"
 
 import styled, {keyframes, css} from "styled-components"
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
-import {MdClose} from "react-icons/md";
+// import MdClose from "react-icons/md";
 
 const intro = keyframes`
   0% {
@@ -175,7 +175,9 @@ const Notification = ({title, content, uuid, status, duration, button, buttonOnC
                 setInstanceDuration(0)
                 setIsHover(false)
             }
-            }><MdClose size={16}/></CloseBtn>
+            }>
+              {/* <MdClose size={16}/> */}
+              </CloseBtn>
             <Title>{title}</Title>
 
             {

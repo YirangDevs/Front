@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Img from "../../atoms/Image"
 import Button from "../../atoms/Button"
 import SideNavIcon from "../SideNavIcon"
+import { useHistory } from "react-router-dom"
 
 
 
@@ -21,23 +22,23 @@ const SideNavStyle = styled.div`
     overflow : hidden;
     `
     }
-  /*
-    @media(max-width: 1200px){
-        margin-top : 64px;
-      }
-    
-      @media(max-width: 768px){
-        margin-top : 56px;
-      }
-    
-      @media(max-width: 576px){
-        margin-top : 40px;
-      }
-      */
+  
 `
 const NavHeader = styled.div`
       height: 72px;
-      background-color: #00a804;
+      //background-color: #00a804;
+      background-color: white;
+      @media(max-width: 1200px){
+        height : 64px;
+      }
+    
+      @media(max-width: 768px){
+        height : 56px;
+      }
+    
+      @media(max-width: 576px){
+        height : 40px;
+      }
 `
 const NavContent = styled.div`
       height: 100%;
@@ -52,7 +53,7 @@ const NavContentWrapper = styled.div`
 `
 
 const Text = styled.span`
-      color: white;
+      color: black;
       float: right;
       font-weight: bold;
       font-size: 30px;
@@ -66,11 +67,14 @@ const SideNav = ({
   children,
 
   logined,
+  role,
 
   navOpen,
-  setNavState
-}) => {
+  setNavState,
 
+  viewMap
+}) => {
+    const history=useHistory()
     useEffect(()=>console.log("dfs",navOpen),[navOpen])
     
     return (
@@ -87,17 +91,21 @@ const SideNav = ({
                   </NavContentWrapper>
 
                   <NavContentWrapper>
-                    <Button value="프로필 수정" />
+                  {(logined)?
+                    <Button onClick={()=>history.push("profile")} value="프로필 수정" />: null}
                   </NavContentWrapper>
 
-                  <SideNavIcon logined={logined}/>
-
+                  <SideNavIcon role={role} logined={logined}/>
+                  
                 </NavContent>
                 
             </SideNavStyle>
+            
+            
 
             
             {children}
+
             
         </>
     )
