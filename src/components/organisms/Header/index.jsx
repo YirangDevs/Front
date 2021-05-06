@@ -1,12 +1,13 @@
 import React, {memo} from "react"
 import styled from "styled-components"
-import Logo from "../../atoms/Logo"
 import Row from "../../../layout/Grid/Row";
 import Col from "../../../layout/Grid/Column";
 import _ from "../../../config/env"
 import LogoutProcess from "../../../service/transaction/logout_process"
 import ProfileButton from "../../../containers/redux/components/ProfileButton";
 import {useHistory} from "react-router-dom";
+import logo from "../../../img/logo.png"
+import {MdDehaze} from "react-icons/md"
 
 
 const HeaderStyle = styled.div`
@@ -21,6 +22,7 @@ const HeaderStyle = styled.div`
   display: flex;
   z-index: 1;
   align-items: center;
+  overflow-x: hidden;
   @media(max-width: 1200px){
     height : 64px;
   }
@@ -58,7 +60,7 @@ const Value = styled.span`
   margin-left : 0.5rem;
 `
 
-const Header = ({theme, logined, role, position}) => {
+const Header = ({theme, logined, role, position, setNavState}) => {
 
     const history = useHistory();
     return (
@@ -67,10 +69,19 @@ const Header = ({theme, logined, role, position}) => {
                 <Row align={"center"} justify={"space-between"} style={{
                     height: "inherit"
                 }}>
+                    <Col xxl={0} sm={0.3} style={{
+                        cursor: "pointer"
+                    }}>
+                        <MdDehaze onClick={setNavState} size={25}/> 
+                    </Col>
                     <Col xxl={1} xl={1} lg={1} md={2} sm={2} xs={2} style={{
                         height : "100%"
                     }}>
-                        <Logo></Logo>
+                        
+                        <img src={logo} alt="" style={{
+                            height : "100%",
+                            width : "auto"
+                        }}/>
                     </Col>
 
                     {
