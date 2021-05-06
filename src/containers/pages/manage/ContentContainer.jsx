@@ -77,18 +77,15 @@ const ContentContainer = () => {
         // getNoticeId(e);
 
         setNotice(e);
-        selectNotice.id === e && console.log(selectNotice)
         readModal.show();
 
     }
 
     const toEditHandle = (e) => {
 
-        console.log(e);
 
         setNotice(e);
         setUpNotice(e);
-        updateNotice.id === e && console.log(updateNotice)
         editModal.show();
     }
 

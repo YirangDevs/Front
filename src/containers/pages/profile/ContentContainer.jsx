@@ -85,8 +85,6 @@ const ContentContainer = ({
     useEffect(() => {
         getMyInfo()
             .then((res) => {
-                console.log('userInfo1')
-                console.log(res)
 
                 setUserProfile((state) => ({
                     ...state,

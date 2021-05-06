@@ -31,9 +31,6 @@ const MatchContent = ({
     //const [activityList, setActivityList] = useState([])
     //const [currentPage, setCurrentPage] = useState(1)
 
-    useEffect(()=>console.log("DATA",activityPageData),[activityPageData])
-
-
     const activityTableHead = useMemo(()=>["지역", "날짜", "인원", "일시"],[]);
     // const noticeTableBody = [
     //     {title : "동구", date : "2021-04-21", nor : 20, tod : "10:40"},

@@ -25,7 +25,6 @@ const InfoForm = ({
     currentSenior
 
 }, genderRef) => {
-    console.log(currentSenior)
 
     return (
         <>

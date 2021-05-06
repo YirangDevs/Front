@@ -88,10 +88,6 @@ const TableBox = ({checked, border, black, headList, bodyList, primaryKey, onCli
     const [checkedId, setCheckedId] = useState(0)
 
 
-    useEffect(()=>{
-        console.log("CHECKED",checkedId)
-    }, [checkedId])
-
     const onPrimaryClick = useCallback((e, data) => {
 
         if (data) {

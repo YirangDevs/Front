@@ -19,6 +19,7 @@ const HomeContent = ({
     currentNoticePage,
     currentNotice,
     fakeLoginOnChange,
+    didApply,
 
     setNoticeNum,
     closeNotice,
@@ -90,7 +91,10 @@ const HomeContent = ({
                                             // backgroundColor : "#EFEFEF4D",
                                             padding: "1rem"
                                         }}>
-                                            <Button value={"신청하기"} types={"primary"} onClick={onApplyBtnClick}></Button>
+                                            {
+                                                didApply ? <div style={{color : "gray"}}>신청완료</div> : <Button value={"신청하기"} types={"primary"} onClick={onApplyBtnClick}></Button>
+                                            }
+
                                         </Col>
                                     </>
                                     :

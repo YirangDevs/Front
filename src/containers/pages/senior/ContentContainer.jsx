@@ -120,16 +120,13 @@ const ContentContainer = () => {
     };
 
     const selectSenior = (e) => {
-        console.log(e)
         const primaryKey = e.target.parentNode.children[3].innerText //phoneNum
-        console.log(primaryKey)
         const senior = seniors.filter((i) => i.phone === primaryKey)[0]
         setBufferSenior(senior)
         setCurrentSenior(senior)
 
         RadioSelect(e.target, senior)
 
-        console.log(genderRef)
     }
 
     const nameOnChange = (e) => {

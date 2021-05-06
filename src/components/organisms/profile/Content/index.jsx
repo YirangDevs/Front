@@ -86,7 +86,6 @@ const ProfileContent = ({
     isReceivingEmailOnclick,
 
 }) => {
-    console.log(userProfile)
     const { email, firstRegion, imgUrl, isReceivingEmail, phone, realname, secondRegion,
         sex, username, emailValidation, } = userProfile;
 
