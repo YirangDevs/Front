@@ -12,14 +12,13 @@ const SideNavStyle = styled.div`
     height: 100vh;
     // width: 518px;
     transition : width 0.75s ease;
-    
+    overflow : hidden;
     ${props=>props.navOpen?`
       width: 280px;
-
     `:
     `
     width : 0;
-    overflow : hidden;
+    
     `
     }
   
@@ -28,7 +27,9 @@ const NavHeader = styled.div`
       height: 72px;
       //background-color: #00a804;
       background-color: white;
-      @media(max-width: 1200px){
+      min-width : 150px;
+
+  @media(max-width: 1200px){
         height : 64px;
       }
     
@@ -44,12 +45,13 @@ const NavContent = styled.div`
       height: 100%;
       display: flex;
       flex-direction : column;
-      margin-top: 30px;
+      min-width : 150px;
+
 `
 const NavContentWrapper = styled.div`
       justify-content: center;
       display: flex;
-      margin-top: 40px;
+      margin-top: 2rem;
 `
 
 const Text = styled.span`
