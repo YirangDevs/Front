@@ -48,7 +48,6 @@ const ExcelPreview = ({excelData, closeModal, postSeniorsOnClick}) => {
                         <Button value="취소" onClick={closeModal} block/>
                     </Col>
                 </Row>
-
             </ModalContent>
         </>
     )

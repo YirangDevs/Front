@@ -134,7 +134,6 @@ const ContentContainer = ({logined}) => {
 
 
 
-
     return (
         <>
             <HomeContent
@@ -144,6 +143,7 @@ const ContentContainer = ({logined}) => {
                 currentNotice={currentNotice}
                 currentNoticePage={currentNoticePage}
                 fakeLoginOnChange={fakeLoginOnChange}
+
 
                 setNoticeNum={setNoticeNumState}
                 closeNotice={closeNotice}
