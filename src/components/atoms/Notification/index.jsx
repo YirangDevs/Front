@@ -175,7 +175,9 @@ const Notification = ({title, content, uuid, status, duration, button, buttonOnC
                 setInstanceDuration(0)
                 setIsHover(false)
             }
-            }><MdClose size={16}/></CloseBtn>
+            }>
+               <MdClose size={16}/>
+              </CloseBtn>
             <Title>{title}</Title>
 
             {

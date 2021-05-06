@@ -4,8 +4,8 @@ import styled from "styled-components"
 const ImageStyle = styled.img.attrs((props) => ({
     src: props.src
 }))`
-    width : ${props => props.width};
-    ${(props) => (props.circle) ? ` border-radius : 50%; ` : null}
+    min-width : ${props => props.width};
+    ${(props) => (props.circle) ? ` border-radius : 100%; ` : null}
     height :  ${props => props.width};
   
 `

@@ -49,7 +49,8 @@ const SeniorContent = ({currentSenior,
     addButton,
     editDeleteButton,
     isModalOpen,
-    excelData}) => {
+    excelData
+}) => {
         
         //console.log(posts)
         const regionArray = regionoptions.concat(myRegion)

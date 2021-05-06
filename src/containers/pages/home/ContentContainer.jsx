@@ -10,6 +10,7 @@ import NotificationPool from "../../redux/components/NotificationPool";
 import fakeLogin from "../../../service/api/post/fake_login"
 import store from "../../../store/store";
 import ACTION from "../../../store/actions/action";
+import checkDidApply from "../../../service/api/get/check_did_apply";
 
 const ContentContainer = ({logined}) => {
 
@@ -18,6 +19,7 @@ const ContentContainer = ({logined}) => {
     const [bodyList, setBodyList] = useState([])
     const [noticeNum, setNoticeNum] = useState(0)
     const [currentNotice, setCurrentNotice] = useState(false)
+    const [didApply, setDidApply] = useState(false)
     const isInitialMount = useRef(true);
 
     const getNoticeNumCallBack = useCallback(()=>getNoticeNum().then(data=>{setNoticeNum(data.totalNoticeNums)}).catch(err=>console.log(err)),[])
@@ -86,7 +88,7 @@ const ContentContainer = ({logined}) => {
     },[])
 
     const onTableClick = useCallback((e, data)=>{
-
+        checkDidApply(data.id).then(data=>setDidApply(data.Applicable)).catch(e=>setDidApply(true))
         getNotice(data.id).then((notice)=>{
             openNotice({
                 ...notice
@@ -115,7 +117,6 @@ const ContentContainer = ({logined}) => {
             isInitialMount.current = false;
         }else{
             document.documentElement.scrollTo(0,document.documentElement.scrollHeight)
-            console.log("currentNotice",currentNotice)
         }
 
 
@@ -134,7 +135,6 @@ const ContentContainer = ({logined}) => {
 
 
 
-
     return (
         <>
             <HomeContent
@@ -144,6 +144,7 @@ const ContentContainer = ({logined}) => {
                 currentNotice={currentNotice}
                 currentNoticePage={currentNoticePage}
                 fakeLoginOnChange={fakeLoginOnChange}
+                didApply={didApply}
 
                 setNoticeNum={setNoticeNumState}
                 closeNotice={closeNotice}

@@ -11,7 +11,6 @@ import NotificationPool from "../../../containers/redux/components/NotificationP
    }
  */
 const postApply = (data)=>{
-    console.log(data)
     return fetch(_.SERVER_URL + ":8080/v1/apis/apply/notices", {
         method: 'POST',
         headers: {
