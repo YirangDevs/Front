@@ -10,7 +10,7 @@
         headers : {
             'Authorization' : "Bearer "+ localStorage.getItem("YAT")
         }
-    }).then(res=>console.log(res))
+    }).then()
  }
 
  export default changeAdminToUser

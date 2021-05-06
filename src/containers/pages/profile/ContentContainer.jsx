@@ -97,16 +97,12 @@ const ContentContainer = ({
 
         getMyImgType()
             .then((res) => {
-                console.log("img_type")
-                console.log(res)
                 setUserProfile((state) => ({ ...state, ...res }))
             })
 
 
         getEmailValidation()
             .then((res) => {
-                console.log("vaildatedEmail")
-                console.log(res)
                 setUserProfile((state) => ({ ...state, emailValidation: res.validation }))
             })
     }, [])
@@ -145,42 +141,34 @@ const ContentContainer = ({
      * @description 프로필수정   FUNCTION  */
     let editProfileFunction = {
         username: (e) => {
-            console.log(e.target.value)
             const username = e.target.value;
             return setUserProfile((state) => ({ ...state, username: username }))
         },
         realname: (e) => {
-            console.log(e.target.value)
             const realname = e.target.value;
             return setUserProfile((state) => ({ ...state, realname: realname }))
         },
         email: (e) => {
-            console.log(e.target.value)
             const email = e.target.value;
             return setUserProfile((state) => ({ ...state, email: email }))
         },
         phone: (e) => {
-            console.log(e.target.value)
             const phone = e.target.value;
             return setUserProfile((state) => ({ ...state, phone: phone }))
         },
         sex: (e) => {
-            console.log(e.target.value)
             let sex = e.target.value;
             return setUserProfile((state) => ({ ...state, sex: settingSex(sex) }))
         },
         imgUrl: (e) => {
-            console.log(e.target.files[0])
             return setUserProfile((state) => ({ ...state, imgUrl: e.target.files[0] }))
         },
         firstRegion: (e) => {
-            console.log(e.target.value)
             const firstRegion = e.target.value
             return (setUserProfile((state) => ({ ...state, firstRegion: firstRegion }))
             )
         },
         secondRegion: (e) => {
-            console.log(e.target.value)
             const secondRegion = e.target.value
             return setUserProfile((state) => ({ ...state, secondRegion: secondRegion }))
         },
@@ -189,7 +177,6 @@ const ContentContainer = ({
             return setUserProfile((state) => ({ ...state, emailValidation: validation }))
         },
         isReceivingEmail: (e) => {
-            console.log(e.target.value)
             let isReceivingEmail = e.target.value
             return setUserProfile((state) => ({ ...state, isReceivingEmail: settingIsReceivingEmail(isReceivingEmail) }))
         }
@@ -207,7 +194,6 @@ const ContentContainer = ({
                 "firstRegion": firstRegionData
             }))
                 .then((res) => {
-                    console.log(res)
                 })
                 .catch(err => console.log(err))
         },
@@ -216,7 +202,6 @@ const ContentContainer = ({
                 "phone": userProfile.phone
             }))
                 .then((res) => {
-                    console.log(res)
                 })
                 .catch(err => console.log(err))
         },
@@ -225,7 +210,6 @@ const ContentContainer = ({
                 "realname": userProfile.realname
             }))
                 .then((res) => {
-                    console.log(res)
                 })
                 .catch(err => console.log(err))
         },
@@ -234,17 +218,14 @@ const ContentContainer = ({
                 "secondRegion": secondRegionData
             }))
                 .then((res) => {
-                    console.log(res)
                 })
                 .catch(err => console.log(err))
         },
         sex: () => {
-            console.log(userProfile.sex)
             editMyInfoSex(JSON.stringify({
                 "sex": userProfile.sex
             }))
                 .then((res) => {
-                    console.log(res)
                 })
                 .catch(err => console.log(err))
         },
@@ -253,7 +234,6 @@ const ContentContainer = ({
                 "username": userProfile.username
             }))
                 .then((res) => {
-                    console.log(res)
                 })
                 .catch(err => console.log(err))
         },
@@ -264,7 +244,6 @@ const ContentContainer = ({
                 "notifiable": userProfile.isReceivingEmail
             }))
                 .then((res) => {
-                    console.log(res)
                 })
                 .catch(err => console.log(err))
         },

@@ -73,7 +73,6 @@ const ContentContainer = () => {
      * @param e - 선택한 notice Id target하기위한 param
      */
     const toReadHandle = (e) => {
-        console.log(e);
         // getNoticeId(e);
 
         setNotice(e);

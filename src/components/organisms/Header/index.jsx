@@ -22,7 +22,6 @@ const HeaderStyle = styled.div`
   display: flex;
   z-index: 1;
   align-items: center;
-  overflow-x: hidden;
   padding-left : 1rem;
   box-sizing: border-box;
   @media(max-width: 1200px){
@@ -71,7 +70,7 @@ const Header = ({theme, logined, role, position, setNavState}) => {
                 <Row align={"center"} justify={"space-between"} style={{
                     height: "inherit"
                 }}>
-                    <Col span={2} xxl={2} xl={2} lg={2} md={2} sm={4} xs={4} style={{
+                    <Col span={2} xxl={2} xl={2} lg={2} md={2} sm={4} xs={6} style={{
                         height: "inherit"
                     }}>
                         <Row style={{

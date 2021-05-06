@@ -1,18 +1,16 @@
-import React, { useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
 import Img from "../../atoms/Image"
 import Button from "../../atoms/Button"
 import SideNavIcon from "../SideNavIcon"
 import { useHistory } from "react-router-dom"
 
-
-
 const SideNavStyle = styled.div`
     background-color: #f7f7f7;
     height: 100vh;
     // width: 518px;
     transition : width 0.75s ease;
-    overflow : hidden;
+    overflow-x : hidden;
     ${props=>props.navOpen?`
       width: 280px;
     `:
@@ -77,8 +75,7 @@ const SideNav = ({
   viewMap
 }) => {
     const history=useHistory()
-    useEffect(()=>console.log("dfs",navOpen),[navOpen])
-    
+
     return (
         <>
             <SideNavStyle navOpen={navOpen}>
@@ -98,14 +95,14 @@ const SideNav = ({
                   </NavContentWrapper>
 
                   <SideNavIcon role={role} logined={logined}/>
-                  
-                </NavContent>
-                
-            </SideNavStyle>
-            
-            
 
-            
+                </NavContent>
+
+            </SideNavStyle>
+
+
+
+
             {children}
 
             

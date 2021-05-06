@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useEffect, useState} from "react"
+import React, {memo, useCallback, useState} from "react"
 import styled from "styled-components"
 import ToolTip from "../Tooltip";
 
