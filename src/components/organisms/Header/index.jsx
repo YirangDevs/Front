@@ -103,7 +103,7 @@ const Header = ({theme, logined, role, position, setNavState}) => {
 
                             </Col>*/}
 
-                            <Col span={6} xxl={6} xl={6} lg={6} md={4} sm={2} xs={0}>
+                            <Col span={5} xxl={5} xl={5} lg={5} md={4} sm={2} xs={0}>
 
                             </Col>
                             <Col span={1} xxl={1} xl={1} lg={1} md={1} sm={1} xs={1} justify={"center"}>
@@ -113,7 +113,7 @@ const Header = ({theme, logined, role, position, setNavState}) => {
                                 }}/>
 
                             </Col>
-                            <Col span={2} xxl={2} xl={2} lg={2} md={2} sm={0} xs={0} justify={"flex-start"} style={{
+                            <Col span={3} xxl={3} xl={3} lg={3} md={3} sm={0} xs={0} justify={"flex-start"} style={{
                                 color : "white"
                             }}>
 

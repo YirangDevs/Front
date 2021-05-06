@@ -1,7 +1,7 @@
 import React, {memo, useRef} from "react"
 import Col from "../../../layout/Grid/Column";
 import IconButton from "../../atoms/IconButton";
-import {MdFormatListBulleted, MdOpenInBrowser, MdPeople, MdToday, MdTune, MdPerson} from "react-icons/md";
+import {MdFormatListBulleted, MdOpenInBrowser, MdPeople, MdToday, MdTune, MdPerson, MdBookmarkBorder} from "react-icons/md";
 import Row from "../../../layout/Grid/Row";
 import {useHistory} from "react-router-dom";
 
@@ -71,16 +71,31 @@ const MenuIconNav = ({role}) => {
             }
             {
                 (role!=="GUEST") ?
-                    <Col span={1} justify={"center"}>
-                        <IconButton value={"마이페이지"} size={"large"} onClick={
-                            ()=>{
+                    <>
+                        {(role !== "ADMIN" && role !== "SUPER_ADMIN") ?
+                            <Col span={1} justify={"center"}>
+                                <IconButton value={"봉사 조회"} size={"large"} onClick={
+                                    () => {
 
-                                history.push("mypage")
-                            }
-                        }>
-                            <MdPerson size={size}/>
-                        </IconButton>
-                    </Col> : null
+                                        history.push("mypage")
+                                    }
+                                }>
+                                    <MdBookmarkBorder size={size}/>
+                                </IconButton>
+                            </Col> : null
+                        }
+                        <Col span={1} justify={"center"}>
+                            <IconButton value={"내 정보"} size={"large"} onClick={
+                                ()=>{
+
+                                    history.push("profile")
+                                }
+                            }>
+                                <MdPerson size={size}/>
+                            </IconButton>
+                        </Col>
+                    </>
+                : null
             }
 
         </Row>
