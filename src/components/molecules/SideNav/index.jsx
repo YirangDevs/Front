@@ -9,7 +9,7 @@ const SideNavStyle = styled.div`
     background-color: #f7f7f7;
     height: 100vh;
     // width: 518px;
-    transition : width 0.75s ease;
+    transition : width 0.3s ease;
     box-sizing: border-box;
     overflow: hidden;
     ${props=>props.navOpen?`
