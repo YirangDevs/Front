@@ -76,7 +76,7 @@ const Header = ({theme, logined, role, position, setNavState}) => {
                         <Row style={{
                             height: "inherit"
                         }}>
-                            <Col xxl={0} xl={0} lg={0} md={0} sm={0} xs={2}   style={{
+                            <Col xxl={0} xl={0} lg={0} md={0} sm={2} xs={2}   style={{
                                 cursor: "pointer",
                                 height : "100%"
                             }}  align={"center"} justify={"center"}>
