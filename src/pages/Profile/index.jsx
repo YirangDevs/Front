@@ -13,7 +13,8 @@ import useSideNav from "../../hook/useSideNav"
 
 
 const WholeWrapper = styled.div`
-    width : 100vw;
+    width : 100%;
+    position : relative;
     display : -webkit-box;
     display : -moz-box;
     overflow-x: hidden;

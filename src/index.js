@@ -8,9 +8,8 @@ import {createGlobalStyle} from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     html, body {
-        padding : 0;
-        margin : 0;
-
+      padding : 0;
+      margin : 0;
       @media (max-width: 1200px) {
         font-size: 14px
       }
