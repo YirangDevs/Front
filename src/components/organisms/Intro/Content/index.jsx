@@ -18,8 +18,12 @@ import OneselfIcon from "../../../../img/OneselfIcon.svg"
 import ContinuousIcon from "../../../../img/ContinuousIcon.svg"
 import PublicIcon from "../../../../img/PublicIcon.svg"
 import Typo from '../../../atoms/Typography';
-
-const IntroContent = ({ role }) => {
+import MenuIconNav from "../../../../containers/redux/components/MenuIconNav"
+import jeungminVideo from "../../../../mp4/jeungmin.mp4"
+import yeonhooVideo from "../../../../mp4/yeonhoo.mp4"
+const IntroContent = ({ role,
+    isTeamYirang,
+    teamYirangOnclick }) => {
 
     return (
         <>
@@ -126,37 +130,51 @@ const IntroContent = ({ role }) => {
                 {/* SECTION  ABOUT TEAM YIRANG*/}
                 <Col span={12} justify={"flex-end"} align={'center'} style={{ height: "26rem", backgroundImage: `url("${HandImage}" )`, backgroundColor: " #00b700 ", backgroundBlendMode: 'darken', backgroundSize: 'cover' }}>
                     <Row justify={"center"} align={'center'} style={{ width: "50%", height: "15rem" }}>
-                        <Col span={12} justify={"center"} align={'center'}>
-                            <Typo color={"#ffffff"} weight={'bold'} size={'1.5rem'} fontFamily={"Helvetica"} > ABOUT TEAM YIRANG</Typo>
-                        </Col>
-                        <Col span={12} justify={"center"} align={'center'}>
-                            <Typo color={"#ffffff"} >TeamYirang은<Typo color={"#ffffff"} weight={'bold'}>기획, 프론트앤드, 백앤드, 디자인 팀</Typo>으로 </Typo>
-                            <Typo color={"#ffffff"} >구성하여 만들어 졌으며 언제든지 소통과 컨택의 문이 열려있습니다. </Typo>
-                        </Col>
-                        <Col span={12} justify={"center"} align={'center'}>
-                            <Typo weight={'bold'} size={'1.7rem'} border={'3px black solid'} cursor={'pointer'}> TEAM YIRANG</Typo>
+                        <Col span={10} style={{ height: "14rem" }}>
+                            <Row justify={"center"} align={'center'} >
+                                <Col span={12} justify={"center"} align={'center'}>
+                                    <Typo color={"#ffffff"} weight={'bold'} size={'1.4rem'} fontFamily={"Helvetica"} > ABOUT TEAM YIRANG</Typo>
+                                </Col>
+                                <Col span={12} justify={"center"} align={'center'}>
+                                    <Typo fontFamily={'NanumSquareOTF_ac'} color={"#ffffff"} >TeamYirang은<Typo fontFamily={'NanumSquareOTF_ac'} color={"#ffffff"} weight={'bold'}>기획,프론트앤드,백앤드,디자인 팀</Typo>으로 </Typo>
+                                    <Typo fontFamily={'NanumSquareOTF_ac'} color={"#ffffff"} >구성하여 만들어졌으며 언제든지 소통과 컨택의 문이 열려있습니다. </Typo>
+                                </Col>
+                                <Col span={4.5} justify={"center"} align={'center'} style={{ border: "3.1px solid black", height: "4rem", marginTop: "2rem" }} >
+                                    <Typo fontFamily={"Helvetica"} size={'1.4rem'} weight={'bold'} cursor={'pointer'} onClick={teamYirangOnclick}>TEAM : YIRANG</Typo>
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                 </Col>
                 {/* !SECTION  ABOUT TEAM YIRANG */}
 
+                {/* SECTION  TeamYirang Show*/}
+                {
+                    (isTeamYirang) ?
+                        <Col span={12} justify={"flex-end"} align={'center'} style={{ height: "26rem" }}>
+                            <Video src={yeonhooVideo} width={'auto'} height={'auto'}></Video>
+                            <Video src={jeungminVideo} width={'auto'} height={'auto'}></Video>
+                        </Col>
+                        : null
+                }
+                {/* !SECTION  TeamYirang Show */}
 
                 {/* SECTION  Icon BTN*/}
-                <Col span={12} justify={"flex-end"} align={'center'} style={{ height: "26rem", backgroundImage: `url("${HandImage}" )`, backgroundSize: 'cover' }}>
-                    <Row justify={"center"} align={'center'} style={{ width: "50%", height: "100%", backgroundColor: " rgba(0,183,0,0.81) " }}>
-                        <Col span={12} justify={"center"} align={'center'}>
-                            <Typo color={"#ffffff"} weight={'bold'} size={'1.5rem'} fontFamily={"Helvetica"} > ABOUT TEAM YIRANG</Typo>
-                        </Col>
-                        <Col span={12} justify={"center"} align={'center'}>
-                            <Typo color={"#ffffff"} >TeamYirang은<Typo color={"#ffffff"} weight={'bold'}>기획, 프론트앤드, 백앤드, 디자인 팀</Typo>으로 </Typo>
-                            <Typo color={"#ffffff"} >구성하여 만들어 졌으며 언제든지 소통과 컨택의 문이 열려있습니다. </Typo>
-                        </Col>
-                        <Col span={12} justify={"center"} align={'center'}>
-                            <Typo weight={'bold'} size={'1.7rem'} border={'3px black solid'} cursor={'pointer'}> TEAM YIRANG</Typo>
-                        </Col>
-                    </Row>
+                <Col span={12} justify={"flex-end"} align={'center'} style={{ height: "24rem" }}>
+                    <MenuIconNav></MenuIconNav>
                 </Col>
                 {/* !SECTION  Icon BTN */}
+                {/* SECTION Footer*/}
+                <Col span={12} justify={"flex-start"} align={'center'} style={{ height: "4.5rem", backgroundColor: "rgba(0,0,0,0.03) " }}>
+                    <Row>
+                        <Col span={4} justify={'space-around'} align={'center'} >
+                            <Typo weight={'bold'} size={'1.1rem'}>Copyright 2020</Typo>
+                            <Typo size={'1rem'} color={"#000000"}>TEAM : YIRANG. all right reserved</Typo>
+                        </Col>
+                    </Row>
+
+                </Col>
+                {/* !SECTION Footer*/}
 
             </Row>
         </>
