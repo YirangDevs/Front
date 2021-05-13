@@ -26,8 +26,8 @@ const SideNavStyle = styled.div`
 `
 const NavHeader = styled.div`
       height: 72px;
-      //background-color: #00a804;
-      background-color: white;
+      padding-top: 5px;
+      background-color: #f7f7f7;
       @media(max-width: 1200px){
         height : 64px;
       }
