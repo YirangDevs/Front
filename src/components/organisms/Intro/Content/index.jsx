@@ -19,8 +19,10 @@ import ContinuousIcon from "../../../../img/ContinuousIcon.svg"
 import PublicIcon from "../../../../img/PublicIcon.svg"
 import Typo from '../../../atoms/Typography';
 import MenuIconNav from "../../../../containers/redux/components/MenuIconNav"
-import jeungminVideo from "../../../../mp4/jeungmin.mp4"
-import yeonhooVideo from "../../../../mp4/yeonhoo.mp4"
+
+import YirangZepeto from "../../../../img/yirang_zepeto.jpg"
+
+
 const IntroContent = ({ role,
     isTeamYirang,
     teamYirangOnclick }) => {
@@ -151,9 +153,9 @@ const IntroContent = ({ role,
                 {/* SECTION  TeamYirang Show*/}
                 {
                     (isTeamYirang) ?
-                        <Col span={12} justify={"flex-end"} align={'center'} style={{ height: "26rem" }}>
-                            <Video src={yeonhooVideo} width={'auto'} height={'auto'}></Video>
-                            <Video src={jeungminVideo} width={'auto'} height={'auto'}></Video>
+                        <Col span={12} justify={"flex-start"} align={'center'} style={{ height: "26rem" }}>
+                            <Image src={YirangZepeto} height={"100%"} width={"50%"} position={"relative"} ></Image>
+                            <aria-label shape="rect" coords="227,176,551,748"></aria-label>
                         </Col>
                         : null
                 }

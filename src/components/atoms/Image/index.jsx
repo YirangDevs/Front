@@ -7,12 +7,13 @@ const ImageStyle = styled.img.attrs((props) => ({
     width : ${props => props.width};
     ${(props) => (props.circle) ? ` border-radius : 50%; ` : null}
     height :  ${props => props.height || props.width} ;
-  
+    ${(props) => (props.cursor) ? ` cursor : ${props.cursor}` : null}
 `
 
-const Image = ({ src, width, circle, height }) => (
+const Image = ({ src, width, circle, height, cursor }) => (
     <>
-        <ImageStyle src={src} width={width} height={height} circle={circle}></ImageStyle>
+        <ImageStyle src={src} width={width} cursor={cursor}
+            height={height} circle={circle} ></ImageStyle>
     </>
 )
 
