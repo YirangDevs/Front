@@ -60,7 +60,7 @@ const InfoForm = ({
                     <RadioBox size="default" name="type" options={typeoptions} onClick={typeOnChange} />
 
                 </Col>
-                <Col span={2} justify={"center"} align={"center"} style={{
+                <Col span={2.5} justify={"center"} align={"center"} style={{
                     height: "4rem",
                     backgroundColor: "#f5f5f5",
                     borderBottom: "1px solid #ccd4e0"
@@ -69,7 +69,7 @@ const InfoForm = ({
                     <SelectBox options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority} border block />
 
                 </Col>
-                <Col span={2} justify={"center"} align={"center"} style={{
+                <Col span={2.5} justify={"center"} align={"center"} style={{
                     height: "4rem",
                     backgroundColor: "#f5f5f5",
                     borderBottom: "1px solid #ccd4e0"
@@ -78,21 +78,23 @@ const InfoForm = ({
                     <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} border block />
 
                 </Col>
-                <Col span={4} justify={"center"} align={"center"} style={{
+                <Col span={7} justify={"center"} align={"center"} style={{
                     height: "4rem",
                     backgroundColor: "#f5f5f5",
                     borderBottom: "1px solid #ccd4e0",
-                    padding: "0.5rem"
+                    padding: "0.5rem",
+                    boxSizing : "border-box"
                 }}>
 
                     <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} border block />
 
                 </Col>
-                <Col span={4} justify={"center"} align={"center"} style={{
+                <Col span={3} justify={"center"} align={"center"} style={{
                     height: "4rem",
                     backgroundColor: "#f5f5f5",
                     borderBottom: "1px solid #ccd4e0",
-                    padding: "0.5rem"
+                    padding: "0.5rem",
+                    boxSizing : "border-box"
                 }}>
 
                     <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border radius={'5px'} block />
@@ -108,7 +110,7 @@ const InfoForm = ({
                     <SelectBox options={regionoptions} onChange={regionOnChange} defaultValue={currentSenior.region} border block />
 
                 </Col>
-                <Col span={10} justify={"center"} align={"center"} style={{
+                <Col span={7} justify={"center"} align={"center"} style={{
                     height: "4rem",
                     backgroundColor: "#f5f5f5",
                     borderBottom: "1px solid #ccd4e0"

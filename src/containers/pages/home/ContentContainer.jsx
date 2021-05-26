@@ -88,7 +88,7 @@ const ContentContainer = ({logined}) => {
     },[])
 
     const onTableClick = useCallback((e, data)=>{
-        checkDidApply(data.id).then(data=>setDidApply(data.Applicable)).catch(e=>setDidApply(true))
+        checkDidApply(data.id).then(data=>setDidApply(data.Applicable)).catch(e=>console.log(e))
         getNotice(data.id).then((notice)=>{
             openNotice({
                 ...notice

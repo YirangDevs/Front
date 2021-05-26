@@ -32,7 +32,8 @@ ${props => {
     }}
     ${props => (props.border) ? 'border: 1px solid #868789;' : null}
     ${props => (props.radius) ? `border-radius: 5px;` : null}
-    ${props => (props.block) ? `width : 90%;` : null}
+    ${props => (props.block) ? `width : 100%;` : null}
+    box-sizing : border-box;
 
 
     

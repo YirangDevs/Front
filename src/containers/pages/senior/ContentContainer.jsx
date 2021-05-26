@@ -39,8 +39,8 @@ const ContentContainer = () => {
     const [errorToast, setErrorToast] = useState([]);
     const history = useHistory();
     const postsPerPage = 10
-
     const [needsTotal, setNeedsTotal] = useState(0)
+    const [checkExcel, setCheckExcel] = useState(false)
 
    
 
@@ -94,6 +94,19 @@ const ContentContainer = () => {
     useEffect(() => {
         updatePosts()
     }, [currentPage, updatePosts])
+
+    useEffect(()=>{
+        if(checkExcel && errorToast.length > 0) {
+            NotificationPool.api.add({
+                title: "엑셀 업로드 실패",
+                content: errorToast.join(""),
+                status: "error"
+            })
+            setModal(false)
+            setErrorToast([])
+            setCheckExcel(false)
+        }
+    },[checkExcel, errorToast])
 
     const paginationOnClick = (e) => {
         setCurrentPage(e.target.innerText)
@@ -233,59 +246,82 @@ const ContentContainer = () => {
                 }
             }))
             history.push("/create")
-        }).catch(err=>{
-            
+        }).catch(err => {
+
             //const errorToast = []
             setErrorToast([])
             console.log(err)
 
-            for(let i=0; i<err.Errors.length; i++){
-            
-                console.log("seniors check error" + err.Errors[i].errorCode + "/" + err.Errors[i].errorName)
-            const errorCode = err.Errors[i].errorCode
-            if(errorCode==="100"){
-                errorToast.push("파일의 형식이나 내용을 다시 확인해주세요.\n")
-            }
-            if(errorCode==="111"){
-                let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[")+1,err.Errors[i].errorName.indexOf("]")))+2
-                let errorName = err.Errors[i].errorName.split(".")[1]
-                let columns = {
-                    'date': {'col': 'A', 'name': '봉사날짜'},
-                    'name': {'col': 'B', 'name': '어르신 성함'},
-                    'sex': {'col': 'C', 'name': '성별'},
-                    'address': {'col': 'D', 'name': '주소'},
-                    'phone': {'col': 'E', 'name': '전화번호'},
-                    'type': {'col': 'F', 'name': '봉사유형'},
-                    'priority': {'col': 'G', 'name': '어르신 우선순위'},
-                    'numsOfRequiredVolunteers': {'col': 'H', 'name': '필요인원'}
-                }
+            for (let i = 0; i < err.Errors.length; i++) {
 
-                let col = `${columns[errorName].col}${errorNum} (${columns[errorName].name})`
-                errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n\n")
+                console.log("seniors check error" + err.Errors[i].errorCode + "/" + err.Errors[i].errorName)
+                const errorCode = err.Errors[i].errorCode
+                if (errorCode === "100") {
+                    errorToast.push("파일의 형식이나 내용을 다시 확인해주세요.\n") //이부분 notification으로 올리는거// 에러코드 처리가 안됨
+                }
+                if (errorCode === "111") {
+                    let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[") + 1, err.Errors[i].errorName.indexOf("]"))) + 2
+                    let errorName = err.Errors[i].errorName.split(".")[1]
+                    let columns = {
+                        'date': {'col': 'A', 'name': '봉사날짜'},
+                        'name': {'col': 'B', 'name': '어르신 성함'},
+                        'sex': {'col': 'C', 'name': '성별'},
+                        'address': {'col': 'D', 'name': '주소'},
+                        'phone': {'col': 'E', 'name': '전화번호'},
+                        'type': {'col': 'F', 'name': '봉사유형'},
+                        'priority': {'col': 'G', 'name': '어르신 우선순위'},
+                        'numsOfRequiredVolunteers': {'col': 'H', 'name': '필요인원'}
+                    }
+
+                    let col = `${columns[errorName].col}${errorNum} (${columns[errorName].name})`
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n\n"
+                        ]
+                    })
+                    //errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n\n")
+                }
+                if (errorCode === "099") {
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드한 엑셀 파일에 통일되지 않은 지역 또는 날짜 데이터가 존재합니다.\n"
+                        ]
+                    })
+                    //errorToast.push("업로드한 엑셀 파일에 통일되지 않은 지역 또는 날짜 데이터가 존재합니다.\n")
+                }
+                if (errorCode === "112") {
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드한 엑셀 파일에 중복된 피봉사자가 존재합니다.\n"
+                        ]
+                    })
+                    //errorToast.push("업로드한 엑셀 파일에 중복된 피봉사자가 존재합니다.\n")
+                }
+                if (errorCode === "113") {
+                    let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[") + 1, err.Errors[i].errorName.indexOf("]"))) + 2
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드된 엑셀 파일의 " + errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n"
+                        ]
+                    })
+                    //errorToast.push("업로드된 엑셀 파일의 "+ errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n")
+                }
+                if (errorCode === "119") {
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다."
+                        ]
+                    })
+                    //errorToast.push("업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다.")
+                }
+                setCheckExcel(true)
             }
-            if(errorCode==="099"){
-                errorToast.push("업로드한 엑셀 파일에 통일되지 않은 지역 또는 날짜 데이터가 존재합니다.\n")
-            }
-            if(errorCode==="112"){
-                errorToast.push("업로드한 엑셀 파일에 중복된 피봉사자가 존재합니다.\n")
-            }
-            if(errorCode==="113"){
-                let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[")+1,err.Errors[i].errorName.indexOf("]")))+2
-                errorToast.push("업로드된 엑셀 파일의 "+ errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n")
-            }
-            if(errorCode==="119"){
-                errorToast.push("업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다.")
-            }
-            
-        }
-        if(errorToast) {
-            NotificationPool.api.add({
-            title : "엑셀 업로드 실패",
-            content : errorToast,
-            status : "error"
-        })}
-        setModal(false)
-        })       
+        })
     }
 
     const openModal = async (event) => {
