@@ -111,7 +111,7 @@ const HomeContent = ({
                                             <TableBox headList={table_head} bodyList={bodyList} border={"bottom"} data={noticeList} primaryKey={"title"} onClick={onTableClick} colgroup={[50,20,15,15]}></TableBox>
                                         </Col>
                                         <Col span={12} justify={"center"}>
-                                            <Pagination num={Math.ceil(noticeNum / 6)} onClick={onPaginationClick}></Pagination>
+                                            <Pagination num={Math.ceil(noticeNum / 6)} onClick={onPaginationClick} defaultPage={currentNoticePage+1}></Pagination>
                                         </Col>
                                     </>
                             }

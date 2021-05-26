@@ -10,6 +10,7 @@ import PageMenuNav from "../../../../containers/redux/components/PageNav";
 import Button from "../../../atoms/Button";
 import Modal from "../../../atoms/Modal";
 import VolunteerModalContent from "../VolunteerModalContent";
+import Typography from "../../../atoms/Typography";
 
 const MatchContent = ({
     activityTableBody,
@@ -22,6 +23,7 @@ const MatchContent = ({
     unmatchedVolunteer,
     volunteerModal,
     currentActivityId,
+    appliersCount,
 
     activityPaginationOnClick,
     regionOnChange,
@@ -118,10 +120,22 @@ const MatchContent = ({
                 marginTop : "2rem"
             }}>
                 <Row gutter={[10,0]} >
-                    <Col span={5} justify={"space-between"}>
-                        <SelectBox options={regionOption} value={currentRegion} onChange={regionOnChange} border></SelectBox>
-                        <Button types={"primary"} value={"신청자 확인하기"} onClick={toggleModal}></Button>
+                    <Col span={5}>
+                        <Row justify={"space-between"}>
+                            <Col span={4}>
+                                <SelectBox options={regionOption} value={currentRegion} onChange={regionOnChange} border></SelectBox>
+                            </Col>
+                            <Col span={4} justify={"center"} align={"center"} style={{
+                                height:"100%"
+                            }}>
+                                <Typography>신청자 : {appliersCount}명</Typography>
+                            </Col>
+                            <Col span={4} justify={"flex-end"}>
+                                <Button types={"primary"} value={"신청자 확인하기"} onClick={toggleModal}></Button>
+                            </Col>
+                        </Row>
                     </Col>
+
                     <Row justify={"space-between"}>
 
                         <Col span={5}>

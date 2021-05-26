@@ -31,9 +31,9 @@ const PaginationItem = styled.li`
     }
 `
 
-const Pagination = ({num, onClick}) => {
+const Pagination = ({num, onClick, defaultPage}) => {
 
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(defaultPage)
 
     const pageOnClick = (e) => {
         onClick(e)
@@ -56,5 +56,9 @@ const Pagination = ({num, onClick}) => {
         </>
     )
 }
+
+Pagination.defaultProps = {
+    defaultPage : 1
+};
 
 export default Pagination
