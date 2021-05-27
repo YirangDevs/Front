@@ -2,7 +2,7 @@
  * @Author : chaeeun
  * @Date : 2020-12-30 18:37:07
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-05-03 12:54:40
+ * @Last Modified time: 2021-05-24 08:26:33
  */
 
 import React from 'react'
@@ -96,7 +96,8 @@ const stopBubbling = (e) => {
  * @param children 컴포넌트 테그 사이에 값을 조회
  * @see antD Modal (사용법 antD 참조)
  */
-const Modal = ({ zIndex, headerClose, title, visible, closable, maskClosable, onClose, children, size, xs, sm, md, lg, xl, xxl }) => {
+const Modal = ({ zIndex, headerClose, title, visible, closable, maskClosable,
+    onClose, children, size, xs, sm, md, lg, xl, xxl }) => {
 
 
 

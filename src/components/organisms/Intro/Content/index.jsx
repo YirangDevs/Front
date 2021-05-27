@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @Date : 2021-05-04 17:25:02 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-05-06 21:14:22
+ * @Last Modified time: 2021-05-20 22:43:20
  */
 
 import React from 'react'
@@ -162,7 +162,7 @@ const IntroContent = ({ role,
                 {/* !SECTION  TeamYirang Show */}
 
                 {/* SECTION  Icon BTN*/}
-                <Col span={12} justify={"flex-end"} align={'center'} style={{ height: "24rem" }}>
+                <Col span={12} justify={"center"} align={'center'} style={{ height: "24rem" }}>
                     <MenuIconNav></MenuIconNav>
                 </Col>
                 {/* !SECTION  Icon BTN */}

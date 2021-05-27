@@ -9,7 +9,6 @@ import checkEmailValidation from "../../api/get/check_email_validation";
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 
 const fakeLogin = (role) => {
-    console.log(role)
     return fetch(_.SERVER_URL + ":8080/v1/apis/auth/fake/signin", {
         method: 'POST',
         headers: {
@@ -49,7 +48,6 @@ const fakeLogin = (role) => {
             emailValidation : emailValidation.validation,
             ...userInfo,
         }
-        console.log("fakeLogin result", result)
         return result
     })
         .catch(error=>{

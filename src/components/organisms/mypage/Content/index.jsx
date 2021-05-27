@@ -77,7 +77,7 @@ const MyPageContent = ({
     const manage_body_Lists = currentApplicants.slice(0, 2)
 
 
-    const pastBodyList = (pastApplicants.length == 0) ? [{ nullContent: "조회된 봉사기록이 없습니다." }] : pastApplicants.slice(0, 2)
+    const pastBodyList = (pastApplicants.length === 0) ? [{ nullContent: "조회된 봉사기록이 없습니다." }] : pastApplicants.slice(0, 2)
 
 
     const history = useHistory()
@@ -152,7 +152,7 @@ const MyPageContent = ({
                                         <Typo cursor={'pointer'} size={"1.1rem"} weight={"500"} onClick={viewAllApplyOnclick}>  전체 신청 보기 {'>'}</Typo>
                                     </Col>
                                     :
-                                    (currentApplicants.length == 0) ?
+                                    (currentApplicants.length === 0) ?
                                         <Col span={6} justify={"flex-end"} style={{
                                             paddingRight: ' 5px'
                                         }}>
@@ -164,7 +164,7 @@ const MyPageContent = ({
 
                         <Col span={12}>
                             {
-                                (currentApplicants.length == 0) ?
+                                (currentApplicants.length === 0) ?
                                     <Row gutter={[0, 1]} style={{ marginTop: "10px" }} justify={"center"} align={"center"}>
                                         <Col span={12} justify={"center"} align={"center"}>
                                             <Typo color={"#707070"} > 신청한 봉사가 없습니다.</Typo>

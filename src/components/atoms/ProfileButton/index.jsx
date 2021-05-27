@@ -29,6 +29,7 @@ const ProfileButtonComponent = styled.input.attrs(props => ({ type: "button" }))
     ${props => (props.url) ? `background-image : url(`+ props.url+`);` : `background-image : url(`+DefaultImg+`);`}
     background-size : cover;
     background-repeat: no-repeat;
+    background-position : center;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
     outline: 0;

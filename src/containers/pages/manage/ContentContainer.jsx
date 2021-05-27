@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-29 15:19:57
+ * @Last Modified time: 2021-05-25 19:29:25
  */
 
 import React, { useState, useEffect } from "react"
@@ -73,22 +73,18 @@ const ContentContainer = () => {
      * @param e - 선택한 notice Id target하기위한 param
      */
     const toReadHandle = (e) => {
-        console.log(e);
         // getNoticeId(e);
 
         setNotice(e);
-        selectNotice.id === e && console.log(selectNotice)
         readModal.show();
 
     }
 
     const toEditHandle = (e) => {
 
-        console.log(e);
 
         setNotice(e);
         setUpNotice(e);
-        updateNotice.id === e && console.log(updateNotice)
         editModal.show();
     }
 
@@ -311,24 +307,22 @@ const ContentContainer = () => {
        *  @description 긴급 게시물 post
        */
     const okUrgentOnclick = () => {
-        console.log(selectNotice.title === urgentTitle)
-        console.log(isUrgentIcon.length === 0)
-        if (selectNotice.title === urgentTitle && isUrgentIcon.length === 0) {
-            console.log('둘다같ㅇ다')
-            return NotificationPool.api.add({
-                title: "같은 제목의 게시물은 게시할 수 없습니다.",
-                content: "응급아이콘을 추가하거나 , 제목을 수정해 주세요.",
-                status: "error"
-            })
-        }
-        if (!urgentTitle) {
-            console.log('제목입력 안함')
-            return NotificationPool.api.add({
-                title: "응급아이콘만 게시할 수 없습니다.",
-                content: "게시물의 제목을 입력해주세요.",
-                status: "error"
-            })
-        }
+        // if (selectNotice.title === urgentTitle && isUrgentIcon.length === 0) {
+        //     console.log('둘다같ㅇ다')
+        //     return NotificationPool.api.add({
+        //         title: "같은 제목의 게시물은 게시할 수 없습니다.",
+        //         content: "응급아이콘을 추가하거나 , 제목을 수정해 주세요.",
+        //         status: "error"
+        //     })
+        // }
+        // if (!urgentTitle) {
+        //     console.log('제목입력 안함')
+        //     return NotificationPool.api.add({
+        //         title: "응급아이콘만 게시할 수 없습니다.",
+        //         content: "게시물의 제목을 입력해주세요.",
+        //         status: "error"
+        //     })
+        // }
         const data = (isUrgentIcon.length !== 0) ?
             JSON.stringify({
                 "title": "🚨" + urgentTitle
@@ -340,7 +334,7 @@ const ContentContainer = () => {
 
         postUrgentNotice(selectNotice.id, data)
             .then((res) => {
-                console.log(res)
+                // console.log(res)
                 setListTotalNum((state) => (state + 1))
                 readModal.close();
                 urgentModal.close();

@@ -18,13 +18,14 @@ const getMyMatchingRecords = () => {
         return data
     }).catch(async(error)=>{
         let err =  await error.then()
-        (err.errorCode == "044") ?
-        null :
-        NotificationPool.api.add({
-            title : "Error from get My Matching Records",
-            content : err.errorName + "("+err.errorCode+")",
-            status : "error"
-        })
+
+        if(err.errorCode !== "044"){
+            NotificationPool.api.add({
+                title : "Error from get My Matching Records",
+                content : err.errorName + "("+err.errorCode+")",
+                status : "error"
+            })
+        }
         console.log("Error from  get My Matching Records\n"+err.errorCode+"\n"+err.errorName)
         //에러처리
         throw err

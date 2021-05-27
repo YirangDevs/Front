@@ -25,7 +25,6 @@ const InfoForm = ({
     currentSenior
 
 }, genderRef) => {
-    console.log(currentSenior)
 
     return (
         <>
@@ -116,9 +115,11 @@ const InfoForm = ({
                 }}>
 
                     <TextBox placeholder="ㅇㅇ구를 제외한 상세주소 입력" onChange={addressOnChange} value={currentSenior.address} border radius={'5px'} block />
-
+                    
                 </Col>
             </Row>
+
+            
         </>
     )
 }

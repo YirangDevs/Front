@@ -37,9 +37,6 @@ const Pagination = ({ num, onClick, setPageNum }) => {
     useEffect(() => {
         setCurrentPage(setPageNum + 1)
     }, [setPageNum])
-    console.log(setPageNum)
-    console.log(currentPage)
-    console.log(num)
     const pageOnClick = (e) => {
         onClick(e)
         setCurrentPage(e.target.innerText)

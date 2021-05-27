@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @date : 2021-02-01 18:30:38
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 21:55:26
+ * @Last Modified time: 2021-05-25 22:44:25
  */
 
 import React from 'react'
@@ -17,8 +17,6 @@ import Typo from '../../../atoms/Typography'
 
 
 const UrgentForm = ({ okUrgentOnclick, isOriginal, urgentTitle, getOriginalTitleOnchange, updateUrgentTitle, isUrgentIcon, urgentIconOnchange }) => {
-
-
 
     return (
         <>

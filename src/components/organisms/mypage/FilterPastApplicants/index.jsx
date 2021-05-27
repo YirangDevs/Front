@@ -2,7 +2,7 @@
  * @author :  chaeeun
  * @date : 2021-03-14 02:40:15
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-05-03 17:49:35
+ * @Last Modified time: 2021-05-25 23:00:07
  */
 
 import React from 'react'
@@ -18,8 +18,15 @@ import CheckBox from '../../../atoms/CheckBox'
 const FilterPastApplicants = ({ filterApplicants, filterType,
     FilterTypeOnchange, filterDate, filterFirstDateOnchange, filterSecondDateOnchange, viewPassFilterOnclick }) => {
 
-    const filterBody = (filterApplicants.length == 0) ? [{ nullContent: "조회된 봉사기록이 없습니다." }] : filterApplicants
+    const filterBody = (filterApplicants.length === 0) ? [{ nullContent: "조회된 봉사기록이 없습니다." }] : filterApplicants
+    const getToday = () => {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = ("0" + (1 + date.getMonth())).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
 
+        return year + "-" + month + "-" + day;
+    }
     return (
         <>
             <Row gutter={[7, 0]} justify={'center'} style={{
@@ -43,7 +50,7 @@ const FilterPastApplicants = ({ filterApplicants, filterType,
                                                 onChange={filterFirstDateOnchange} radius={'true'} block size={"small"} border />
                                         </Col>
                                         <Col span={4}>
-                                            <DateSelector min={`${filterDate.firstDate}` || null} defaultValue={filterDate.secondDate}
+                                            <DateSelector min={`${filterDate.firstDate}` || null} max={getToday()} defaultValue={filterDate.secondDate}
                                                 onChange={filterSecondDateOnchange} radius={'true'} block size={"small"} border />
                                         </Col>
                                     </Row>
