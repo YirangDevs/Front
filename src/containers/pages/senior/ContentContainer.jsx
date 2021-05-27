@@ -309,8 +309,8 @@ const ContentContainer = () => {
 
     //피봉사자를 클릭했을 시에 라디오 버튼이 클릭되는 깽판코드....ㅎ
     const RadioSelect = (e, senior) => {
-        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[1].firstChild.children[senior.sex==="남성"?0:1].firstChild.checked=true;
-        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[2].firstChild.children[senior.type==="노력봉사"?0:1].firstChild.checked=true;
+        e.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[1].firstChild.children[senior.sex==="남성"?0:1].firstChild.checked=true;
+        e.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[2].firstChild.children[senior.type==="노력봉사"?0:1].firstChild.checked=true;
     }
     const parsingData = (rowObj) => {
 

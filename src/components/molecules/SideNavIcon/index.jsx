@@ -46,7 +46,7 @@ const SideNavIcon = ({logined, role}) => {
         <IconByRole>
             <ContentWrapper>
                 <MdFormatListBulleted size={25}/>
-                <Text onClick={()=>history.push("home")}>공고글 바로가기</Text>
+                <Text onClick={()=>history.push("/")}>공고글 바로가기</Text>
             </ContentWrapper>
 
             <ContentWrapper>

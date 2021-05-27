@@ -79,21 +79,21 @@ const InfoForm = ({
                     <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} border block />
 
                 </Col>
-                <Col span={4} justify={"center"} align={"center"} style={{
+                <Col span={3.8} xl={4} l={4} justify={"center"} align={"center"} style={{
                     height: "4rem",
                     backgroundColor: "#f5f5f5",
                     borderBottom: "1px solid #ccd4e0",
-                    padding: "0.5rem"
+                    padding: "0.2rem",
                 }}>
 
                     <DateSelector onChange={dateOnChange} defaultValue={currentSenior.date} border block />
 
                 </Col>
-                <Col span={4} justify={"center"} align={"center"} style={{
+                <Col span={3.8} xl={4} l={4} justify={"center"} align={"center"} style={{
                     height: "4rem",
                     backgroundColor: "#f5f5f5",
                     borderBottom: "1px solid #ccd4e0",
-                    padding: "0.5rem"
+                    padding: "0.2rem"
                 }}>
 
                     <TextBox size="default" placeholder="-를 제외하고 입력" onChange={phoneOnChange} value={currentSenior.phone} border radius={'5px'} block />
