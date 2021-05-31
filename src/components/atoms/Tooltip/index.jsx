@@ -63,7 +63,6 @@ const Line = styled.div`
 `
 
 const ToolTip = ({children, position, content}) => {
-  console.log(content)
 
   const parentRef = createRef();
   const childRef = createRef();

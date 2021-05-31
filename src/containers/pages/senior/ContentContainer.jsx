@@ -1,5 +1,5 @@
 import SeniorContent from "../../../components/organisms/senior/Content/"
-import React, { useState, useEffect, useCallback, useRef} from "react"
+import React, { useState, useEffect, useCallback} from "react"
 import { useHistory } from "react-router-dom"
 import getAllAreas from "../../../service/api/get/get_all_areas"
 import getArea from "../../../service/api/get/get_area"
@@ -39,12 +39,11 @@ const ContentContainer = () => {
     const [errorToast, setErrorToast] = useState([]);
     const history = useHistory();
     const postsPerPage = 10
-
     const [needsTotal, setNeedsTotal] = useState(0)
+    const [checkExcel, setCheckExcel] = useState(false)
 
    
 
-    const genderRef = useRef();
     //const genderRef = createRef();
     //const genderRef = forwardRef();
 
@@ -96,6 +95,19 @@ const ContentContainer = () => {
         updatePosts()
     }, [currentPage, updatePosts])
 
+    useEffect(()=>{
+        if(checkExcel && errorToast.length > 0) {
+            NotificationPool.api.add({
+                title: "엑셀 업로드 실패",
+                content: errorToast.join(""),
+                status: "error"
+            })
+            setModal(false)
+            setErrorToast([])
+            setCheckExcel(false)
+        }
+    },[checkExcel, errorToast])
+
     const paginationOnClick = (e) => {
         setCurrentPage(e.target.innerText)
     }
@@ -120,16 +132,13 @@ const ContentContainer = () => {
     };
 
     const selectSenior = (e) => {
-        console.log(e)
         const primaryKey = e.target.parentNode.children[3].innerText //phoneNum
-        console.log(primaryKey)
         const senior = seniors.filter((i) => i.phone === primaryKey)[0]
         setBufferSenior(senior)
         setCurrentSenior(senior)
 
         RadioSelect(e.target, senior)
 
-        console.log(genderRef)
     }
 
     const nameOnChange = (e) => {
@@ -171,6 +180,14 @@ const ContentContainer = () => {
     }
     const addButton = () => {
         if (!bufferSenior.id) { setButton(true) }
+        else{
+            setErrorToast((state) => {
+                return [
+                    ...state,
+                    "수정 또는 삭제 작업을 완료한 후에 클릭해주세요.\n\n"
+                ]
+            })
+        }
 
     }
     const editDeleteButton = () => {
@@ -207,26 +224,46 @@ const ContentContainer = () => {
 
                 console.log(error)
                 if(error.errorCode==="044"){
-                    errorToast.push("해당 날짜에 봉사활동이 존재하지 않습니다.");
+                    //errorToast.push("해당 날짜에 봉사활동이 존재하지 않습니다.");
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "해당 날짜에 봉사활동이 존재하지 않습니다.\n\n"
+                        ]
+                    })
                 }
                 if(errorToast) alert(errorToast)
             })
         }else{
-            alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
+            //alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
+            setErrorToast((state) => {
+                return [
+                    ...state,
+                    "채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.\n\n"
+                ]
+            })
         }
         
     }
     const addEditDeleteRender = () => {
         setBufferSenior({})
         getArea(region).then((data) => {
+            console.log(data)
             setSeniors(data);
-        }).catch(err=>console.log(err))
+        }).catch(err=>
+            {
+                //console.log(err)
+                if(err.errorCode==="044"){
+                    console.log(err)
+                    setSeniors([{id: null, name: "해당 지역의 피봉사자가 존재하지 않습니다.",address: null, date: null, numsOfRequiredVolunteers: null, phone: null, priority: null, region: null, sex: null, type: null }]);
+                }
+                
+            })
         window.location.reload()
     }
 
     const postSeniorsOnClick = (e) => {
         seniorCheck(excelData).then(res => {
-            alert("업로드 성공");
             store.dispatch(action.TRANSFER_SENIOR_TO_NOTICE__ACTION_FUNC({
                 data: {
 
@@ -237,59 +274,82 @@ const ContentContainer = () => {
                 }
             }))
             history.push("/create")
-        }).catch(err=>{
-            
+        }).catch(err => {
+
             //const errorToast = []
             setErrorToast([])
             console.log(err)
 
-            for(let i=0; i<err.Errors.length; i++){
-            
-                console.log("seniors check error" + err.Errors[i].errorCode + "/" + err.Errors[i].errorName)
-            const errorCode = err.Errors[i].errorCode
-            if(errorCode==="100"){
-                errorToast.push("파일의 형식이나 내용을 다시 확인해주세요.\n")
-            }
-            if(errorCode==="111"){
-                let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[")+1,err.Errors[i].errorName.indexOf("]")))+2
-                let errorName = err.Errors[i].errorName.split(".")[1]
-                let columns = {
-                    'date': {'col': 'A', 'name': '봉사날짜'},
-                    'name': {'col': 'B', 'name': '어르신 성함'},
-                    'sex': {'col': 'C', 'name': '성별'},
-                    'address': {'col': 'D', 'name': '주소'},
-                    'phone': {'col': 'E', 'name': '전화번호'},
-                    'type': {'col': 'F', 'name': '봉사유형'},
-                    'priority': {'col': 'G', 'name': '어르신 우선순위'},
-                    'numsOfRequiredVolunteers': {'col': 'H', 'name': '필요인원'}
-                }
+            for (let i = 0; i < err.Errors.length; i++) {
 
-                let col = `${columns[errorName].col}${errorNum} (${columns[errorName].name})`
-                errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n\n")
+                console.log("seniors check error" + err.Errors[i].errorCode + "/" + err.Errors[i].errorName)
+                const errorCode = err.Errors[i].errorCode
+                if (errorCode === "100") {
+                    errorToast.push("파일의 형식이나 내용을 다시 확인해주세요.\n") //이부분 notification으로 올리는거// 에러코드 처리가 안됨
+                }
+                if (errorCode === "111") {
+                    let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[") + 1, err.Errors[i].errorName.indexOf("]"))) + 2
+                    let errorName = err.Errors[i].errorName.split(".")[1]
+                    let columns = {
+                        'date': {'col': 'A', 'name': '봉사날짜'},
+                        'name': {'col': 'B', 'name': '어르신 성함'},
+                        'sex': {'col': 'C', 'name': '성별'},
+                        'address': {'col': 'D', 'name': '주소'},
+                        'phone': {'col': 'E', 'name': '전화번호'},
+                        'type': {'col': 'F', 'name': '봉사유형'},
+                        'priority': {'col': 'G', 'name': '어르신 우선순위'},
+                        'numsOfRequiredVolunteers': {'col': 'H', 'name': '필요인원'}
+                    }
+
+                    let col = `${columns[errorName].col}${errorNum} (${columns[errorName].name})`
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n\n"
+                        ]
+                    })
+                    //errorToast.push("업로드 된 엑셀 파일의 " + col + "에 형식상의 오류가 존재합니다\n\n")
+                }
+                if (errorCode === "099") {
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드한 엑셀 파일에 통일되지 않은 지역 또는 날짜 데이터가 존재합니다.\n"
+                        ]
+                    })
+                    //errorToast.push("업로드한 엑셀 파일에 통일되지 않은 지역 또는 날짜 데이터가 존재합니다.\n")
+                }
+                if (errorCode === "112") {
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드한 엑셀 파일에 중복된 피봉사자가 존재합니다.\n"
+                        ]
+                    })
+                    //errorToast.push("업로드한 엑셀 파일에 중복된 피봉사자가 존재합니다.\n")
+                }
+                if (errorCode === "113") {
+                    let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[") + 1, err.Errors[i].errorName.indexOf("]"))) + 2
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드된 엑셀 파일의 " + errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n"
+                        ]
+                    })
+                    //errorToast.push("업로드된 엑셀 파일의 "+ errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n")
+                }
+                if (errorCode === "119") {
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다."
+                        ]
+                    })
+                    //errorToast.push("업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다.")
+                }
+                setCheckExcel(true)
             }
-            if(errorCode==="099"){
-                errorToast.push("업로드한 엑셀 파일에 통일되지 않은 지역 또는 날짜 데이터가 존재합니다.\n")
-            }
-            if(errorCode==="112"){
-                errorToast.push("업로드한 엑셀 파일에 중복된 피봉사자가 존재합니다.\n")
-            }
-            if(errorCode==="113"){
-                let errorNum = Number(err.Errors[i].errorName.substring(err.Errors[i].errorName.indexOf("[")+1,err.Errors[i].errorName.indexOf("]")))+2
-                errorToast.push("업로드된 엑셀 파일의 "+ errorNum + "행 데이터가 기존의 피봉사자와 중복됩니다.\n")
-            }
-            if(errorCode==="119"){
-                errorToast.push("업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다.")
-            }
-            
-        }
-        if(errorToast) {
-            NotificationPool.api.add({
-            title : "엑셀 업로드 실패",
-            content : errorToast,
-            status : "error"
-        })}
-        setModal(false)
-        })       
+        })
     }
 
     const openModal = async (event) => {

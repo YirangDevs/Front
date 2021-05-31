@@ -72,20 +72,9 @@ const MyPageContent = ({
 
 
 }) => {
-    console.log('filterType')
-    console.log(filterType)
-
 
     const manage_body_Lists = currentApplicants.slice(0, 2)
-
-
-    console.log('pastApplicants')
-    console.log(pastApplicants)
-    console.log(filterApplicants)
-
     const past_body_Lists = pastApplicants.slice(0, 2)
-
-
 
     const history = useHistory()
     return (

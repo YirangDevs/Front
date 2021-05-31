@@ -7,7 +7,7 @@ const VideoStyle = styled.video`
   `
 const Video = ({ src, width, height }) => (
     <>
-        <VideoStyle src={src} width={width} height={height} autoPlay muted loop>
+        <VideoStyle src={src} width={width} height={height} autoPlay playsInline loop muted>
             <source src={src} type='video/mp4' />
         </VideoStyle>
     </>

@@ -4,6 +4,7 @@ import getActivityByPage from "../../../service/api/get/get_activity_by_page";
 import getActivityNum from "../../../service/api/get/get_activity_num";
 import getMatchedRecord from "../../../service/api/get/get_matched_record";
 import getUnmatchedRecord from "../../../service/api/get/get_unmatched_record";
+import getAppliers from "../../../service/api/get/get_appliers";
 
 
 const ContentContainer = () => {
@@ -17,13 +18,18 @@ const ContentContainer = () => {
     const [unmatchedSenior, setUnmatchedSenior] = useState([])
     const [unmatchedVolunteer, setUnmatchedVolunteer] = useState([])
     const [currentActivityId, setCurrentActivityId] = useState(0)
+    const [volunteerModal, setVolunteerModal] = useState(false)
+    const [appliersCount, setAppliersCount] = useState(0)
 
-    useEffect(()=>{
+    const toggleModal = useCallback(()=> {
+        setVolunteerModal(state=>!state)
+    }, [])
 
-    }, [matchedData, unmatchedSenior, unmatchedVolunteer])
+
+
 
     const activityOnClick = useCallback((e, data)=>{
-        const activityId = data.activityId
+        const activityId = data.id
         if(currentActivityId===activityId) return //같은거 누를시 반환
             setMatchedData([])
             setUnmatchedSenior([])
@@ -52,6 +58,8 @@ const ContentContainer = () => {
             })
         }).catch(e=>console.log(e))
 
+
+
         getUnmatchedRecord(activityId).then(data=>{
             const unMatchedSeniors = data.unMatchedSeniors
             const unMatchedVolunteers = data.unMatchedVolunteers
@@ -73,6 +81,11 @@ const ContentContainer = () => {
             }
 
         }).catch(e=>console.log(e))
+
+        getAppliers(activityId).then((data)=>{
+            setAppliersCount(data.appliers.length)
+        }).catch((e)=>{console.log(e); setAppliersCount(0)})
+
     }, [currentActivityId])
 
     const activityPaginationOnClick = useCallback((e) => {
@@ -101,6 +114,8 @@ const ContentContainer = () => {
         setCurrentActivityPageData(state=>{
             return currentActivityPage.filter((i)=>{
                 return i.region === currentRegion || currentRegion === "전체"
+            }).map(data=>{
+                return {...data, id : data.activityId}
             })
         })
     }, [currentRegion, currentActivityPage])
@@ -145,10 +160,14 @@ const ContentContainer = () => {
                 matchedData={matchedData}
                 unmatchedSenior={unmatchedSenior}
                 unmatchedVolunteer={unmatchedVolunteer}
+                volunteerModal={volunteerModal}
+                currentActivityId={currentActivityId}
+                appliersCount={appliersCount}
 
                 activityOnClick={activityOnClick}
                 activityPaginationOnClick={activityPaginationOnClick}
                 regionOnChange={regionOnChange}
+                toggleModal={toggleModal}
             ></MatchContent>
         </>
     )

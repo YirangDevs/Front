@@ -12,8 +12,6 @@ font-weight : ${props => (props.weight)}
 ${props => (props.radius) ? `border-radius: 5px;` : null};
 border : ${props => (props.border) || null};
 cursor : ${props => (props.cursor) || 'default'};
-
-
 font-family: Noto Sans CJK KR;
 `
 

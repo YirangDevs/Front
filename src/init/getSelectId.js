@@ -7,7 +7,6 @@ export default () =>{
     
     if(!store.getState().select_reducer.selectId)
     {
-        console.log("localStorge에서 id받는중,,,")
         if(localStorage.getItem("SELECT_ID")){
             store.dispatch(ACTION.SELECT_CONFIG__ACTION_FUNC({
                 select : {
@@ -20,6 +19,5 @@ export default () =>{
         }
         
     }else{
-        console.log("redux에서 id받는중,,,,")
     }
 }

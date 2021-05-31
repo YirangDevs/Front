@@ -7,14 +7,17 @@ import useSideNav from "../../hook/useSideNav";
 
 
 const WholeWrapper = styled.div`
-    width : 100wv;;
-    display: fixed;
+    width : 100%;
+    display : -webkit-box;
+    display : -moz-box;
     overflow-x: hidden;
+    position : relative;
+
 `
 const ContentWrapper = styled.div`
-    height : 100vh;
-    position : relative;
-    
+    height : 100%;
+    width : 100%;
+
 `
 
 const Home = () =>{

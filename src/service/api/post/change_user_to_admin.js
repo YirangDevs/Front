@@ -11,7 +11,6 @@
             'Authorization' : "Bearer "+ localStorage.getItem("YAT")
          }
      }).then(res=>{
-         console.log(res)
          if(!res.ok) throw res.json()
      }).catch(async(error)=>{
         let err =  await error.then()

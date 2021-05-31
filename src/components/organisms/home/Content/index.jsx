@@ -19,6 +19,7 @@ const HomeContent = ({
     currentNoticePage,
     currentNotice,
     fakeLoginOnChange,
+    didApply,
 
     setNoticeNum,
     closeNotice,
@@ -90,7 +91,10 @@ const HomeContent = ({
                                             // backgroundColor : "#EFEFEF4D",
                                             padding: "1rem"
                                         }}>
-                                            <Button value={"신청하기"} types={"primary"} onClick={onApplyBtnClick}></Button>
+                                            {
+                                                didApply ? <div style={{color : "gray"}}>신청완료</div> : <Button value={"신청하기"} types={"primary"} onClick={onApplyBtnClick}></Button>
+                                            }
+
                                         </Col>
                                     </>
                                     :
@@ -107,7 +111,7 @@ const HomeContent = ({
                                             <TableBox headList={table_head} bodyList={bodyList} border={"bottom"} data={noticeList} primaryKey={"title"} onClick={onTableClick} colgroup={[50,20,15,15]}></TableBox>
                                         </Col>
                                         <Col span={12} justify={"center"}>
-                                            <Pagination num={Math.ceil(noticeNum / 6)} onClick={onPaginationClick}></Pagination>
+                                            <Pagination num={Math.ceil(noticeNum / 6)} onClick={onPaginationClick} defaultPage={currentNoticePage+1}></Pagination>
                                         </Col>
                                     </>
                             }
