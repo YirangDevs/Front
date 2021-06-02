@@ -347,6 +347,15 @@ const ContentContainer = () => {
                     })
                     //errorToast.push("업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다.")
                 }
+
+                if(errorCode === "117"){
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드된 데이터의 날짜가 현재 날짜 이전입니다.\n\n"
+                        ]
+                    })
+                }
                 setCheckExcel(true)
             }
         })
