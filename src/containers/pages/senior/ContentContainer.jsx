@@ -121,7 +121,10 @@ const ContentContainer = () => {
             let region = e.target.value;
             getArea(region).then((data) => {
                 setSeniors(data);
-            }).catch(err=>console.log(err))
+            }).catch(err=>{
+                console.log(err)
+                setSeniors([]);
+            }) 
         }
         setRegion(e.target.value);
         setCurrentPage(1)
@@ -252,10 +255,12 @@ const ContentContainer = () => {
             setSeniors(data);
         }).catch(err=>
             {
-                //console.log(err)
+                //console.log(err) 
+                //이렇게 하다가 실패했엉
                 if(err.errorCode==="044"){
                     console.log(err)
-                    setSeniors([{id: null, name: "해당 지역의 피봉사자가 존재하지 않습니다.",address: null, date: null, numsOfRequiredVolunteers: null, phone: null, priority: null, region: null, sex: null, type: null }]);
+                    
+                    setSeniors([{id: null, name: null,address: null, date: null, numsOfRequiredVolunteers: null, phone: null, priority: null, region: null, sex: null, type: null }]);
                 }
                 
             })
