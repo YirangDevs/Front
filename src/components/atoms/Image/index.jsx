@@ -10,9 +10,9 @@ const ImageStyle = styled.img.attrs((props) => ({
   
 `
 
-const Image = ({ src, width, circle }) => (
+const Image = ({ src, width, circle, onClick, style}) => (
     <>
-        <ImageStyle src={src} width={width} circle={circle}></ImageStyle>
+        <ImageStyle src={src} width={width} circle={circle} onClick={onClick} style={style}></ImageStyle>
     </>
 )
 

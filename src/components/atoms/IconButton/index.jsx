@@ -5,14 +5,12 @@ import PropTypes from 'prop-types';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width : auto;
+  width : 100%;
   height : auto;
   justify-content: center;
   align-items: center;
   padding : 1rem;
-  box-sizing: border-box;
   border-radius : 5px;
-  
   &:hover {
     background : #ECECEC;
   }
@@ -24,6 +22,7 @@ const Label = styled.div`
   font-weight : 600;
   text-align: center;
   word-break: keep-all;
+  cursor: pointer;
 `
 
 const ButtonComponent = styled.div`
@@ -54,10 +53,14 @@ const ButtonComponent = styled.div`
 
 const IconButton = ({ href, size, value, onClick, children}) => (
     <>
-        <Wrapper>
+        <Wrapper onClick={onClick}>
             <ButtonComponent href={href} size={size} value={value} onClick={onClick}>
-                {children}
+
+                    {children}
+
             </ButtonComponent>
+
+
             {value ? <Label>{value}</Label> : null}
 
         </Wrapper>
