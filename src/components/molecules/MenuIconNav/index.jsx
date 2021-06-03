@@ -1,8 +1,8 @@
-import React, { memo, useRef } from "react"
+import React, { memo } from "react"
 import Col from "../../../layout/Grid/Column";
 import IconButton from "../../atoms/IconButton";
 import Row from "../../../layout/Grid/Row";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components"
 import Image from "../../atoms/Image";
 import icon_notice from "../../../img/그룹 1.png"
@@ -22,8 +22,6 @@ const Wrapper = styled.div`
 const MenuIconNav = ({ role }) => {
 
     const history = useHistory()
-    const location = useLocation()
-    const path = location.pathname
 
     return (
         <Wrapper>
