@@ -49,7 +49,7 @@ const LoginLogoutBtn = styled.a`
   display : flex;
   align-items: center;
   justify-content: center;
-  color : white;
+  color : black;
   cursor : pointer;
 `
 
@@ -113,7 +113,7 @@ const Header = ({theme, logined, role, position, setNavState}) => {
 
                             </Col>
                             <Col span={3} xxl={3} xl={3} lg={3} md={3} sm={0} xs={0} justify={"flex-start"} style={{
-                                color : "white"
+                                color : "black"
                             }}>
 
                                 <Label>ROLE TYPE</Label><Value>| {role}</Value>

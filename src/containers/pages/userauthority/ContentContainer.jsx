@@ -217,7 +217,7 @@ const ContentContainer = () => {
 
     const searchName = (e) => {
         setCurrentPage(1)
-        const name = e.target.parentNode.parentNode.children[1].children[0].value
+        const name = e.target.value
         if (name) {
             const certainNamePosts = users.filter((i) => i.userName.includes(name))
 
