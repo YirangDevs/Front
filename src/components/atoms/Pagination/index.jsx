@@ -20,15 +20,15 @@ const PaginationItem = styled.li`
     border : solid rgba(255,255,255,0) 1px;
     border-radius: 5px;
     ${props=>{
-        return `
+    return `
             &:nth-child(`+props.num+`){
                 background-color : #000000;
                 color : #ffffff;
             }
         `
-        
-    }
-    }
+
+}
+}
 `
 
 const Pagination = ({num, onClick, defaultPage}) => {

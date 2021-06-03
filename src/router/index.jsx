@@ -12,8 +12,8 @@ import ProfileRouter from './ProfileRouter'
 import { connect } from "react-redux";
 import MatchRouter from "./MatchRouter";
 import HomeRouter from "./HomeRouter";
-
-const YirangRouter = ({ role, realname, sex, phone, emailValidation}) => {
+import IntroRouter from "./IntroRouter"
+const YirangRouter = ({ role, realname, sex, phone, emailValidation }) => {
 
     const userInfo = {
         role,
@@ -46,13 +46,16 @@ const YirangRouter = ({ role, realname, sex, phone, emailValidation}) => {
                         <UserAuthorityRouter security={["SUPER_ADMIN"]} userInfo={userInfo} />
                     </Route>
                     <Route path="/mypage">
-                        <MyPageRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER"]} userInfo={userInfo} />
+                        <MyPageRouter security={["VOLUNTEER"]} userInfo={userInfo} />
                     </Route>
                     <Route path="/profile">
                         <ProfileRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER"]} userInfo={userInfo} />
                     </Route>
                     <Route path="/match">
                         <MatchRouter security={["SUPER_ADMIN", "ADMIN"]} userInfo={userInfo} />
+                    </Route>
+                    <Route exact path="/Intro">
+                        <IntroRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER", "GUEST"]} userInfo={userInfo} emailValidation={emailValidation}></IntroRouter>
                     </Route>
                     <Route exact path="/">
                         <HomeRouter security={["SUPER_ADMIN", "ADMIN", "VOLUNTEER", "GUEST"]} userInfo={userInfo} emailValidation={emailValidation}></HomeRouter>
@@ -66,9 +69,9 @@ const YirangRouter = ({ role, realname, sex, phone, emailValidation}) => {
 const mapStateToProps = (state) => {
     return {
         role: state.user_reducer?.role,
-        sex : state.user_reducer?.sex,
-        phone : state.user_reducer?.phone,
-        realname : state.user_reducer?.realname,
+        sex: state.user_reducer?.sex,
+        phone: state.user_reducer?.phone,
+        realname: state.user_reducer?.realname,
         emailValidation: state.user_reducer?.emailValidation
     }
 }
