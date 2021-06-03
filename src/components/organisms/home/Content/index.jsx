@@ -44,7 +44,7 @@ const HomeContent = ({
                 left : "50%",
                 zIndex : 100,
                 background : "transparent",
-                color : "white",
+                color : "black",
                 border : "none",
                 outline : "none"
             }} border onChange={fakeLoginOnChange} options={["권한 설정","volunteer_1","volunteer_2","volunteer_3","volunteer_4","admin_1","admin_2","super_admin_1"]}/>
