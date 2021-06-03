@@ -14,7 +14,7 @@ const WholeWrapper = styled.div`
 `
 const ContentWrapper = styled.div`
     width : 100%;
-
+    position : relative;
 `
 
 const Manages = () => {

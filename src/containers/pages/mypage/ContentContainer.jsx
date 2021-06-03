@@ -27,9 +27,6 @@ const ContentContainer = () => {
     useEffect(() => {
         getMyApplicants()
             .then((res) => {
-                console.log(res)
-                console.log(res.Applicants)
-                console.log(res.Applicants.length)
 
                 res.Applicants.forEach((lists) => {
                     console.log(lists)

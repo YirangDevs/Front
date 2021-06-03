@@ -4,6 +4,7 @@ import getActivityByPage from "../../../service/api/get/get_activity_by_page";
 import getActivityNum from "../../../service/api/get/get_activity_num";
 import getMatchedRecord from "../../../service/api/get/get_matched_record";
 import getUnmatchedRecord from "../../../service/api/get/get_unmatched_record";
+import getAppliers from "../../../service/api/get/get_appliers";
 
 
 const ContentContainer = () => {
@@ -18,6 +19,7 @@ const ContentContainer = () => {
     const [unmatchedVolunteer, setUnmatchedVolunteer] = useState([])
     const [currentActivityId, setCurrentActivityId] = useState(0)
     const [volunteerModal, setVolunteerModal] = useState(false)
+    const [appliersCount, setAppliersCount] = useState(0)
 
     const toggleModal = useCallback(()=> {
         setVolunteerModal(state=>!state)
@@ -79,6 +81,11 @@ const ContentContainer = () => {
             }
 
         }).catch(e=>console.log(e))
+
+        getAppliers(activityId).then((data)=>{
+            setAppliersCount(data.appliers.length)
+        }).catch((e)=>{console.log(e); setAppliersCount(0)})
+
     }, [currentActivityId])
 
     const activityPaginationOnClick = useCallback((e) => {
@@ -155,6 +162,7 @@ const ContentContainer = () => {
                 unmatchedVolunteer={unmatchedVolunteer}
                 volunteerModal={volunteerModal}
                 currentActivityId={currentActivityId}
+                appliersCount={appliersCount}
 
                 activityOnClick={activityOnClick}
                 activityPaginationOnClick={activityPaginationOnClick}
