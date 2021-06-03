@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @date : 2021-02-24 15:44:35
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-05-25 22:45:50
+ * @Last Modified time: 2021-05-27 16:35:38
  */
 
 import React from "react"
@@ -52,7 +52,7 @@ const PageMenuNav = ({ role }) => {
                                 history.push("/mypage")
                             }
                         }>
-                            <Typo cursor={"pointer"}>마이 페이지</Typo>
+                            <Typo cursor={'pointer'}>마이 페이지</Typo>
                             <Typo cursor={"pointer"}>{'>'}</Typo>
                         </PageNav>
                     </Col> : null

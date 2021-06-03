@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 23:47:36
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-05-03 17:53:02
+ * @Last Modified time: 2021-05-27 17:32:10
  */
 
 import React from 'react'
@@ -72,7 +72,14 @@ const MyPageContent = ({
 
 
 }) => {
+    const getToday = () => {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = ("0" + (1 + date.getMonth())).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
 
+        return year + "-" + month + "-" + day;
+    }
 
     const manage_body_Lists = currentApplicants.slice(0, 2)
 
@@ -260,7 +267,7 @@ const MyPageContent = ({
                                         <DateSelector max={`${filterDate.secondDate}` || null} defaultValue={filterDate.firstDate} onChange={filterFirstDateOnchange} radius={'true'} block size={"small"} border />
                                     </Col>
                                     <Col span={4}>
-                                        <DateSelector min={`${filterDate.firstDate}` || null} defaultValue={filterDate.secondDate} onChange={filterSecondDateOnchange} radius={'true'} block size={"small"} border />
+                                        <DateSelector min={`${filterDate.firstDate}` || null} max={getToday()} defaultValue={filterDate.secondDate} onChange={filterSecondDateOnchange} radius={'true'} block size={"small"} border />
                                     </Col>
                                 </Row>
                             </Col>

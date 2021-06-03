@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-16 17:03:55
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-05-03 17:45:36
+ * @Last Modified time: 2021-05-27 18:38:37
  */
 
 import React, { useEffect, useState } from 'react'
@@ -31,8 +31,6 @@ const ContentContainer = () => {
                 console.log(res.Applicants)
                 console.log(res.Applicants.length)
 
-                // setCurrentApplicant((state) => ([...state, res.Applicants]))
-                // FIXME 봉사 받아오는거 2개로 나뉜다
                 res.Applicants.forEach((lists) => {
                     console.log(lists)
 
@@ -325,32 +323,20 @@ const ContentContainer = () => {
     @btnValue 조회하기
     @detail  필터값다 있는지 확인 -> 필터 로 추출 */
     const viewPassFilterOnclick = () => {
-        console.log(filterDate)
-        console.log(filterType)
-
         if (filterDate.firstDate && filterDate.secondDate && (filterType.length !== 0)) {
-            console.log(filterType)
-
-            setFilterApplicants(
-                pastApplicants.filter(past =>
-                    filterDate.firstDate <= past.serviceDate && past.serviceDate <= filterDate.secondDate)
-            )
-            if (filterType.length === 1) {
-                console.log("1개")
-                setFilterApplicants(
-                    filterApplicants.filter(past =>
-                        past.type === filterType[0])
+            (filterType.length === 1) ?
+                setFilterApplicants(pastApplicants.filter(past =>
+                    filterDate.firstDate <= past.serviceDate &&
+                    past.serviceDate <= filterDate.secondDate &&
+                    past.type === filterType[0])
                 )
-                console.log(filterApplicants)
-            }
-
-
+                :
+                setFilterApplicants(
+                    pastApplicants.filter(past =>
+                        filterDate.firstDate <= past.serviceDate && past.serviceDate <= filterDate.secondDate)
+                )
             return PastViewFilterModal.show()
-
-
         }
-        console.log('no')
-        console.log(filterType)
 
         NotificationPool.api.add({
             title: "필터가 다 채워져있지 않습니다.",

@@ -2,7 +2,7 @@
  * @author :  chaeeun
  * @date : 2021-03-14 02:40:15
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-05-25 23:00:07
+ * @Last Modified time: 2021-05-27 18:21:07
  */
 
 import React from 'react'
@@ -18,6 +18,8 @@ import CheckBox from '../../../atoms/CheckBox'
 const FilterPastApplicants = ({ filterApplicants, filterType,
     FilterTypeOnchange, filterDate, filterFirstDateOnchange, filterSecondDateOnchange, viewPassFilterOnclick }) => {
 
+
+    console.log(filterApplicants)
     const filterBody = (filterApplicants.length === 0) ? [{ nullContent: "조회된 봉사기록이 없습니다." }] : filterApplicants
     const getToday = () => {
         let date = new Date();
@@ -27,6 +29,7 @@ const FilterPastApplicants = ({ filterApplicants, filterType,
 
         return year + "-" + month + "-" + day;
     }
+
     return (
         <>
             <Row gutter={[7, 0]} justify={'center'} style={{

@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-03-17 15:43:10 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-22 19:45:53
+ * @Last Modified time: 2021-05-27 19:39:53
  */
 import React from "react"
 import styled from "styled-components"
@@ -31,15 +31,15 @@ const Profile = () => {
 
     return (
         <>
-        <WholeWrapper>
-            <SideNav navOpen={navOpen} setNavState={setNavState}>
-                <ContentWrapper>
-                    <Header theme={"dark"} position={"static"} setNavState={setNavState}/>
-                    <ContentContainer />
-                </ContentWrapper>
-            </SideNav>
-        </WholeWrapper>
-            
+            <WholeWrapper>
+                <SideNav navOpen={navOpen} setNavState={setNavState}>
+                    <ContentWrapper>
+                        <Header theme={"dark"} position={"static"} setNavState={setNavState} />
+                        <ContentContainer />
+                    </ContentWrapper>
+                </SideNav>
+            </WholeWrapper>
+
 
         </>
     )

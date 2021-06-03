@@ -2,7 +2,7 @@
  * @Author : chaeeun 
  * @Date : 2021-03-27 09:41:18 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 00:00:41
+ * @Last Modified time: 2021-06-03 14:37:43
  */
 
 import React from "react";
@@ -15,13 +15,14 @@ border-top-width : ${(props) => (props.borderWidth) || ` 1px`};
 margin-top : ${(props) => (props.marginTop) || ` 24px`};
 margin-bottom :${(props) => (props.marginBottom) || ` 24px`};
 width : ${(props) => (props.width) || ` 100%`};
+border-radius : ${(props) => (props.radius) || null};
 `
 
 
 
-const Divider = ({ color, style, borderWidth, width, marginTop, marginBottom }) => (
+const Divider = ({ color, style, borderWidth, width, marginTop, marginBottom, radius }) => (
     <>
-        <DividerStyle color={color} borderWidth={borderWidth} style={style} width={width} marginTop={marginTop} marginBottom={marginBottom} />
+        <DividerStyle color={color} borderWidth={borderWidth} style={style} radius={radius} width={width} marginTop={marginTop} marginBottom={marginBottom} />
     </>
 )
 
