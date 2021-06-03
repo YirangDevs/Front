@@ -121,7 +121,10 @@ const ContentContainer = () => {
             let region = e.target.value;
             getArea(region).then((data) => {
                 setSeniors(data);
-            }).catch(err=>console.log(err))
+            }).catch(err=>{
+                console.log(err)
+                setSeniors([]);
+            }) 
         }
         setRegion(e.target.value);
         setCurrentPage(1)
@@ -180,6 +183,14 @@ const ContentContainer = () => {
     }
     const addButton = () => {
         if (!bufferSenior.id) { setButton(true) }
+        else{
+            setErrorToast((state) => {
+                return [
+                    ...state,
+                    "수정 또는 삭제 작업을 완료한 후에 클릭해주세요.\n\n"
+                ]
+            })
+        }
 
     }
     const editDeleteButton = () => {
@@ -216,26 +227,48 @@ const ContentContainer = () => {
 
                 console.log(error)
                 if(error.errorCode==="044"){
-                    errorToast.push("해당 날짜에 봉사활동이 존재하지 않습니다.");
+                    //errorToast.push("해당 날짜에 봉사활동이 존재하지 않습니다.");
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "해당 날짜에 봉사활동이 존재하지 않습니다.\n\n"
+                        ]
+                    })
                 }
                 if(errorToast) alert(errorToast)
             })
         }else{
-            alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
+            //alert("채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.")
+            setErrorToast((state) => {
+                return [
+                    ...state,
+                    "채워지지 않은 칸이 존재합니다. 모든 칸을 채워주세요.\n\n"
+                ]
+            })
         }
         
     }
     const addEditDeleteRender = () => {
         setBufferSenior({})
         getArea(region).then((data) => {
+            console.log(data)
             setSeniors(data);
-        }).catch(err=>console.log(err))
+        }).catch(err=>
+            {
+                //console.log(err) 
+                //이렇게 하다가 실패했엉
+                if(err.errorCode==="044"){
+                    console.log(err)
+                    
+                    setSeniors([{id: null, name: null,address: null, date: null, numsOfRequiredVolunteers: null, phone: null, priority: null, region: null, sex: null, type: null }]);
+                }
+                
+            })
         window.location.reload()
     }
 
     const postSeniorsOnClick = (e) => {
         seniorCheck(excelData).then(res => {
-            alert("업로드 성공");
             store.dispatch(action.TRANSFER_SENIOR_TO_NOTICE__ACTION_FUNC({
                 data: {
 
@@ -319,6 +352,15 @@ const ContentContainer = () => {
                     })
                     //errorToast.push("업로드 된 데이터의 지역이 본인의 관할구역에 속하지 않습니다.\n 본인의 관할 구역은 " + myRegion + "입니다.")
                 }
+
+                if(errorCode === "117"){
+                    setErrorToast((state) => {
+                        return [
+                            ...state,
+                            "업로드된 데이터의 날짜가 현재 날짜 이전입니다.\n\n"
+                        ]
+                    })
+                }
                 setCheckExcel(true)
             }
         })
@@ -341,8 +383,8 @@ const ContentContainer = () => {
 
     //피봉사자를 클릭했을 시에 라디오 버튼이 클릭되는 깽판코드....ㅎ
     const RadioSelect = (e, senior) => {
-        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[1].firstChild.children[senior.sex==="남성"?0:1].firstChild.checked=true;
-        e.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[2].firstChild.children[senior.type==="노력봉사"?0:1].firstChild.checked=true;
+        e.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[1].firstChild.children[senior.sex==="남성"?0:1].firstChild.checked=true;
+        e.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.children[2].firstChild.children[senior.type==="노력봉사"?0:1].firstChild.checked=true;
     }
     const parsingData = (rowObj) => {
 

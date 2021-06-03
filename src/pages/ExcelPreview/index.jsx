@@ -7,7 +7,7 @@ import Button from "../../components/atoms/Button";
 import Row from "../../layout/Grid/Row";
 
 const ModalContent = styled.div`
-        margin: 0 auto;
+        margin: 0;
         width: 100%;
         position: relative;
         box-sizing: border-box;
@@ -35,7 +35,7 @@ const ExcelPreview = ({excelData, closeModal, postSeniorsOnClick}) => {
     return (
         <>
             <ModalContent>
-                <TableScrollbar rows={10}>
+                <TableScrollbar rows={18}>
                     <TableBox headList={TableBoxHeadLists} bodyList={filteredData} colgroup={[10,10,10,20,10,20,10,10]}>
 
                     </TableBox>
