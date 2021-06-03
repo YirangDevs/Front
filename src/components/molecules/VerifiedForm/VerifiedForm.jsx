@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @Date : 2021-03-08 15:18:31 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-03-30 16:51:18
+ * @Last Modified time: 2021-05-25 19:32:41
  */
 
 import React from "react"
@@ -23,7 +23,7 @@ const VerifiedForm = ({ minutes, seconds, email, editProfileFunction, isInputAut
 
             <Col span={10} align={'center'} style={{ backgroundColor: "#ffffff ", height: "inherit" }}>
                 <Row align={'initial'} justify={"space-between"}>
-                    <Col offset={0.25} xs={8} sm={8} md={8} lg={8} xl={8} xxl={9} span={9} justify={"start"} align={"center"} >
+                    <Col offset={0.25} xs={8} sm={8} md={8} lg={8} xl={8} xxl={8} justify={"start"} align={"center"} >
                         <Row align={"center"} >
                             <Col span={4}>
                                 <TextBox color={"black"} border
@@ -61,7 +61,7 @@ const VerifiedForm = ({ minutes, seconds, email, editProfileFunction, isInputAut
 
                     <Col span={10} align={'center'} style={{ backgroundColor: "#ffffff ", height: "inherit" }}>
                         <Row align={'initial'} justify={"space-between"}>
-                            <Col offset={0.25} xs={6} sm={7} md={8} lg={8} xl={8} xxl={9} justify={"start"} align={"center"}>
+                            <Col offset={0.25} xs={6} sm={7} md={8} lg={8} xl={8} xxl={8} justify={"start"} align={"center"}>
                                 <Row align={"center"} >
                                     <Col span={4}>
                                         <TextBox color={"black"} border

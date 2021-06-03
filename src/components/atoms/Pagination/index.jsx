@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 
 const PaginationWrapper = styled.ul`
@@ -19,20 +19,63 @@ const PaginationItem = styled.li`
     align-items: center;
     border : solid rgba(255,255,255,0) 1px;
     border-radius: 5px;
-    ${props=>{
+    ${props => {
         return `
-            &:nth-child(`+props.num+`){
+            &:nth-child(`+ props.num + `){
                 background-color : #000000;
                 color : #ffffff;
             }
         `
-        
+
     }
     }
 `
 
-const Pagination = ({num, onClick, defaultPage}) => {
+// const Pagination = ({ num, onClick, setPageNum }) => {
 
+//     const [currentPage, setCurrentPage] = useState(1)
+//     useEffect(() => {
+//         setCurrentPage(setPageNum + 1)
+//     }, [setPageNum])
+//     const Pagination = ({ num, onClick, defaultPage }) => {
+
+//         const [currentPage, setCurrentPage] = useState(defaultPage)
+
+//         const pageOnClick = (e) => {
+//             onClick(e)
+//             setCurrentPage(e.target.innerText)
+//         }
+
+//         const pageNum = []
+//         for (let i = 0; i < num; i++) {
+//             pageNum.push(i + 1)
+//         }
+//         return (
+//             <>
+//                 <PaginationWrapper>
+//                     {
+//                         pageNum.map((i, index) => {
+//                             return <PaginationItem key={index} num={currentPage} onClick={pageOnClick}>{pageNum[index]}</PaginationItem>
+//                         })
+//                     }
+//                 </PaginationWrapper>
+//             </>
+//         )
+//     }
+// }
+// Pagination.defaultProps = {
+//     defaultPage: 1
+// };
+
+// export default Pagination
+
+
+
+
+const Pagination = ({ num, onClick, defaultPage, setPageNum }) => {
+    useEffect(() => {
+        setCurrentPage(setPageNum + 1)
+    }, [setPageNum])
     const [currentPage, setCurrentPage] = useState(defaultPage)
 
     const pageOnClick = (e) => {
@@ -41,14 +84,14 @@ const Pagination = ({num, onClick, defaultPage}) => {
     }
 
     const pageNum = []
-    for(let i=0;i<num;i++){
-        pageNum.push(i+1)
+    for (let i = 0; i < num; i++) {
+        pageNum.push(i + 1)
     }
     return (
         <>
             <PaginationWrapper>
                 {
-                    pageNum.map((i, index)=>{
+                    pageNum.map((i, index) => {
                         return <PaginationItem key={index} num={currentPage} onClick={pageOnClick}>{pageNum[index]}</PaginationItem>
                     })
                 }
@@ -58,7 +101,7 @@ const Pagination = ({num, onClick, defaultPage}) => {
 }
 
 Pagination.defaultProps = {
-    defaultPage : 1
+    defaultPage: 1
 };
 
 export default Pagination

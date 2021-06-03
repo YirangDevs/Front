@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import ContentContainer from "../../containers/redux/pages/mypage/ContentContainer"
+import ContentContainer from "../../containers/pages/mypage/ContentContainer"
 import Header from "../../containers/redux/components/Header";
 import SideNav from "../../containers/redux/components/SideNav";
 import useSideNav from "../../hook/useSideNav"
@@ -24,15 +24,15 @@ const MyPage = () => {
 
     return (
         <>
-        <WholeWrapper>
-            <SideNav navOpen={navOpen} setNavState={setNavState}>
-                <ContentWrapper>
-                    <Header theme={"dark"} position={"static"} setNavState={setNavState}/>
-                    <ContentContainer />
-                </ContentWrapper>
-            </SideNav>
-        </WholeWrapper>
-            
+            <WholeWrapper>
+                <SideNav navOpen={navOpen} setNavState={setNavState}>
+                    <ContentWrapper>
+                        <Header theme={"dark"} position={"static"} setNavState={setNavState} />
+                        <ContentContainer />
+                    </ContentWrapper>
+                </SideNav>
+            </WholeWrapper>
+
 
         </>
     )

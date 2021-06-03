@@ -2,18 +2,18 @@
  * @author : chaeeun
  * @Date : 2021-02-16 17:03:55
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 04:50:40
+ * @Last Modified time: 2021-05-27 18:38:37
  */
 
 import React, { useEffect, useState } from 'react'
 import MyPageContent from "../../redux/pages/mypage/Content"
 import getMyApplicants from "../../../service/api/get/get_my_applicants"
-import getNotice from "../../../service/api/get/get_notice"
+import getNotice from "../../../service/api/get/get_activity"
 import deleteCancelApply from "../../../service/api/delete/delete_cancel_apply"
 import NotificationPool from "../../../containers/redux/components/NotificationPool"
 import getMyMatchingRecords from '../../../service/api/get/get_my_matching_records'
 
-const ContentContainer = ({ userId }) => {
+const ContentContainer = () => {
 
     //봉사 선택한거 보여주는거 
     const [selectedNotice, setSelectedNotice] = useState({})
@@ -27,12 +27,7 @@ const ContentContainer = ({ userId }) => {
     useEffect(() => {
         getMyApplicants()
             .then((res) => {
-                console.log(res)
-                console.log(res.Applicants)
-                console.log(res.Applicants.length)
 
-                // setCurrentApplicant((state) => ([...state, res.Applicants]))
-                // FIXME 봉사 받아오는거 2개로 나뉜다
                 res.Applicants.forEach((lists) => {
                     console.log(lists)
 
@@ -43,27 +38,33 @@ const ContentContainer = ({ userId }) => {
                         result: lists.matchingState,
                         applyDate: settingDate(lists.dtoa),
                         type: (lists.serviceType === "WORK" ? "노력봉사" : "말벗봉사"),
-                        applyId: lists.applyId
+                        applyId: lists.applyId,
+                        activityId: lists.activityId
                     }]))
 
-                    setPastApplicant((state) => ([...state, {
-                        serviceDate: settingDate(lists.dtov),
-                        region: lists.region,
-                        type: (lists.serviceType === "WORK" ? "노력봉사" : "말벗봉사"),
-                        applyDate: settingDate(lists.dtoa),
-                    }]))
+
 
                 })
             })
             .catch((err) => { console.log(err) })
 
 
-        getMyMatchingRecords(userId)
+        getMyMatchingRecords()
             .then((res) => {
+                console.log("과거기록")
                 console.log(res)
+                res.matchingRecordDtoList.forEach((lists) => {
+                    setPastApplicant((state) => ([...state, {
+                        serviceDate: settingDate(lists.dtov),
+                        region: lists.region,
+                        type: (lists.serviceType === "WORK" ? "노력봉사" : "말벗봉사"),
+                        matchingDate: settingMatchingDate(lists.dtom),
+                    }]))
+
+                })
             })
             .catch((err) => console.log(err))
-    }, [userId])
+    }, [])
 
 
 
@@ -86,7 +87,14 @@ const ContentContainer = ({ userId }) => {
         const Time = DoaToa[1];
         return Time;
     }
-
+    /**
+      * @description Dtom -> Date value Setting  */
+    const settingMatchingDate = (getData) => {
+        const DateTime = getData
+        const DomTom = DateTime.split(" ")
+        const Date = DomTom[0];
+        return Date;
+    }
 
 
 
@@ -312,32 +320,20 @@ const ContentContainer = ({ userId }) => {
     @btnValue 조회하기
     @detail  필터값다 있는지 확인 -> 필터 로 추출 */
     const viewPassFilterOnclick = () => {
-        console.log(filterDate)
-        console.log(filterType)
-
         if (filterDate.firstDate && filterDate.secondDate && (filterType.length !== 0)) {
-            console.log(filterType)
-
-            setFilterApplicants(
-                pastApplicants.filter(past =>
-                    filterDate.firstDate <= past.serviceDate && past.serviceDate <= filterDate.secondDate)
-            )
-            if (filterType.length === 1) {
-                console.log("1개")
-                setFilterApplicants(
-                    filterApplicants.filter(past =>
-                        past.type === filterType[0])
+            (filterType.length === 1) ?
+                setFilterApplicants(pastApplicants.filter(past =>
+                    filterDate.firstDate <= past.serviceDate &&
+                    past.serviceDate <= filterDate.secondDate &&
+                    past.type === filterType[0])
                 )
-                console.log(filterApplicants)
-            }
-
-
+                :
+                setFilterApplicants(
+                    pastApplicants.filter(past =>
+                        filterDate.firstDate <= past.serviceDate && past.serviceDate <= filterDate.secondDate)
+                )
             return PastViewFilterModal.show()
-
-
         }
-        console.log('no')
-        console.log(filterType)
 
         NotificationPool.api.add({
             title: "필터가 다 채워져있지 않습니다.",

@@ -2,7 +2,7 @@
  * @author :  chaeeun
  * @date : 2021-03-14 02:40:15
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-05 05:23:02
+ * @Last Modified time: 2021-05-27 18:21:07
  */
 
 import React from 'react'
@@ -18,6 +18,17 @@ import CheckBox from '../../../atoms/CheckBox'
 const FilterPastApplicants = ({ filterApplicants, filterType,
     FilterTypeOnchange, filterDate, filterFirstDateOnchange, filterSecondDateOnchange, viewPassFilterOnclick }) => {
 
+
+    console.log(filterApplicants)
+    const filterBody = (filterApplicants.length === 0) ? [{ nullContent: "조회된 봉사기록이 없습니다." }] : filterApplicants
+    const getToday = () => {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = ("0" + (1 + date.getMonth())).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
+
+        return year + "-" + month + "-" + day;
+    }
 
     return (
         <>
@@ -42,7 +53,7 @@ const FilterPastApplicants = ({ filterApplicants, filterType,
                                                 onChange={filterFirstDateOnchange} radius={'true'} block size={"small"} border />
                                         </Col>
                                         <Col span={4}>
-                                            <DateSelector min={`${filterDate.firstDate}` || null} defaultValue={filterDate.secondDate}
+                                            <DateSelector min={`${filterDate.firstDate}` || null} max={getToday()} defaultValue={filterDate.secondDate}
                                                 onChange={filterSecondDateOnchange} radius={'true'} block size={"small"} border />
                                         </Col>
                                     </Row>
@@ -64,7 +75,7 @@ const FilterPastApplicants = ({ filterApplicants, filterType,
                             maxHeight: '300px',
                             overflow: 'auto',
                         }}>
-                            <TableBox headList={["봉사 일시", "장소", "봉사분야", "신청 날짜"]} bodyList={filterApplicants} border={"top"} primaryKey={"result"}></TableBox>
+                            <TableBox headList={["봉사 일시", "장소", "봉사분야", "신청 날짜"]} bodyList={filterBody} border={"top"} primaryKey={"result"}></TableBox>
                         </Col>
                     </Row>
                 </Col>

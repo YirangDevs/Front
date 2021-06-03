@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @date : 2021-02-24 15:44:35
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-14 21:56:40
+ * @Last Modified time: 2021-05-27 16:35:38
  */
 
 import React from "react"
@@ -45,19 +45,19 @@ const PageMenuNav = ({ role }) => {
                 <Col span={12} >
                     <Divider marginTop={'0px'} marginBottom={'0px'} color={"#000000"} borderWidth={'3.3px'} />
                 </Col>
-                {
-                    (path !== '/mypage') ?
+                {(role === "VOLUNTEER" && path !== "/mypage") ?
                     <Col span={12}>
                         <PageNav path={path} block onClick={
                             () => {
                                 history.push("/mypage")
                             }
                         }>
-                            <Typo>마이 페이지</Typo>
-                            <Typo>{'>'}</Typo>
+                            <Typo cursor={'pointer'}>마이 페이지</Typo>
+                            <Typo cursor={"pointer"}>{'>'}</Typo>
                         </PageNav>
                     </Col> : null
                 }
+
                 {(path !== '/profile') ?
                     <Col span={12}>
 
@@ -66,8 +66,8 @@ const PageMenuNav = ({ role }) => {
                                 history.push("/profile")
                             }
                         } >
-                            <Typo>프로필 수정</Typo>
-                            <Typo>{'>'}</Typo>
+                            <Typo cursor={"pointer"}>프로필 수정</Typo>
+                            <Typo cursor={"pointer"}>{'>'}</Typo>
 
                         </PageNav>
                     </Col>
@@ -82,14 +82,14 @@ const PageMenuNav = ({ role }) => {
                                 history.push("/userauthority")
                             }
                         } >
-                            <Typo>사용자 권한 관리</Typo>
-                            <Typo>{'>'}</Typo>
+                            <Typo cursor={"pointer"}>사용자 권한 관리</Typo>
+                            <Typo cursor={"pointer"}>{'>'}</Typo>
                         </PageNav>
                     </Col>
                     : null
                 }
 
-                {(role === "ADMIN" || role ==="SUPER_ADMIN") ?
+                {(role === "ADMIN" || role === "SUPER_ADMIN") ?
 
                     <>
                         {(path !== "/seniors") ?
@@ -99,8 +99,8 @@ const PageMenuNav = ({ role }) => {
                                         history.push("/seniors")
                                     }
                                 } >
-                                    <Typo>피봉사자 데이터 업로드</Typo>
-                                    <Typo>{'>'}</Typo>
+                                    <Typo cursor={"pointer"}>피봉사자 데이터 업로드</Typo>
+                                    <Typo cursor={"pointer"}>{'>'}</Typo>
                                 </PageNav>
                             </Col> : null
                         }
@@ -113,8 +113,8 @@ const PageMenuNav = ({ role }) => {
                                         history.push("/match")
                                     }
                                 } >
-                                    <Typo>매칭결과확인</Typo>
-                                    <Typo>{'>'}</Typo>
+                                    <Typo cursor={"pointer"}>매칭결과확인</Typo>
+                                    <Typo cursor={"pointer"}>{'>'}</Typo>
                                 </PageNav>
                             </Col>
                             : null
@@ -128,8 +128,8 @@ const PageMenuNav = ({ role }) => {
                                             history.push("/manage")
                                         }
                                     } >
-                                        <Typo>공고글 관리</Typo>
-                                        <Typo>{'>'}</Typo>
+                                        <Typo cursor={"pointer"}>공고글 관리</Typo>
+                                        <Typo cursor={"pointer"}>{'>'}</Typo>
                                     </PageNav>
                                 </Col>
                                 : null

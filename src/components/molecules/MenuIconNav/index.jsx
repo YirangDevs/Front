@@ -1,8 +1,8 @@
-import React, {memo} from "react"
+import React, { memo, useRef } from "react"
 import Col from "../../../layout/Grid/Column";
 import IconButton from "../../atoms/IconButton";
 import Row from "../../../layout/Grid/Row";
-import {useHistory} from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components"
 import Image from "../../atoms/Image";
 import icon_notice from "../../../img/그룹 1.png"
@@ -19,18 +19,20 @@ const Wrapper = styled.div`
   }
 `
 
-const MenuIconNav = ({role}) => {
+const MenuIconNav = ({ role }) => {
 
     const history = useHistory()
+    const location = useLocation()
+    const path = location.pathname
 
     return (
         <Wrapper>
-            <Row justify={"center"} gutter={[10,10]}>
+            <Row justify={"center"} gutter={[10, 10]}>
                 <Col span={1} justify={"center"}>
 
                     <IconButton value={"공고글 바로가기"} size={"large"} onClick={
-                        ()=>{
-                            document.documentElement.scrollTo(0,document.documentElement.scrollHeight)
+                        () => {
+                            document.documentElement.scrollTo(0, document.documentElement.scrollHeight)
                         }
                     }>
                         <Image src={icon_notice} width={"3rem"}></Image>
@@ -38,11 +40,11 @@ const MenuIconNav = ({role}) => {
                 </Col>
                 {
 
-                    (role==="ADMIN" || role === "SUPER_ADMIN") ?
+                    (role === "ADMIN" || role === "SUPER_ADMIN") ?
                         <>
                             <Col span={1} justify={"center"}>
                                 <IconButton value={"피봉사자 데이터 업로드"} size={"large"} onClick={
-                                    ()=>{
+                                    () => {
                                         history.push("seniors")
                                     }
                                 }>
@@ -51,7 +53,7 @@ const MenuIconNav = ({role}) => {
                             </Col>
                             <Col span={1} justify={"center"}>
                                 <IconButton value={"봉사 공고글 관리"} size={"large"} onClick={
-                                    ()=>{
+                                    () => {
                                         history.push("manage")
                                     }
                                 }>
@@ -61,7 +63,7 @@ const MenuIconNav = ({role}) => {
                             </Col>
                             <Col span={1} justify={"center"}>
                                 <IconButton value={"매칭 결과확인"} size={"large"} onClick={
-                                    ()=>{
+                                    () => {
 
                                         history.push("match")
                                     }
@@ -73,10 +75,10 @@ const MenuIconNav = ({role}) => {
                         </> : null
                 }
                 {
-                    (role==="SUPER_ADMIN") ?
+                    (role === "SUPER_ADMIN") ?
                         <Col span={1} justify={"center"}>
                             <IconButton value={"사용자 권한관리"} size={"large"} onClick={
-                                ()=>{
+                                () => {
                                     history.push("/userauthority")
                                 }
                             }>
@@ -85,7 +87,7 @@ const MenuIconNav = ({role}) => {
                         </Col> : null
                 }
                 {
-                    (role!=="GUEST") ?
+                    (role !== "GUEST") ?
                         <>
                             {(role !== "ADMIN" && role !== "SUPER_ADMIN") ?
                                 <Col span={1} justify={"center"}>
@@ -101,7 +103,7 @@ const MenuIconNav = ({role}) => {
                             }
                             <Col span={1} justify={"center"}>
                                 <IconButton value={"내 정보"} size={"large"} onClick={
-                                    ()=>{
+                                    () => {
 
                                         history.push("profile")
                                     }

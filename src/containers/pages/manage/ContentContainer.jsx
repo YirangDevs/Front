@@ -2,7 +2,7 @@
  * @author : chaeeun 
  * @date : 2020-11-27 20:56:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-15 05:54:27
+ * @Last Modified time: 2021-05-25 19:29:25
  */
 
 import React, { useState, useEffect } from "react"
@@ -307,24 +307,22 @@ const ContentContainer = () => {
        *  @description 긴급 게시물 post
        */
     const okUrgentOnclick = () => {
-        console.log(selectNotice.title === urgentTitle)
-        console.log(isUrgentIcon.length === 0)
-        if (selectNotice.title === urgentTitle && isUrgentIcon.length === 0) {
-            console.log('둘다같ㅇ다')
-            return NotificationPool.api.add({
-                title: "같은 제목의 게시물은 게시할 수 없습니다.",
-                content: "응급아이콘을 추가하거나 , 제목을 수정해 주세요.",
-                status: "error"
-            })
-        }
-        if (!urgentTitle) {
-            console.log('제목입력 안함')
-            return NotificationPool.api.add({
-                title: "응급아이콘만 게시할 수 없습니다.",
-                content: "게시물의 제목을 입력해주세요.",
-                status: "error"
-            })
-        }
+        // if (selectNotice.title === urgentTitle && isUrgentIcon.length === 0) {
+        //     console.log('둘다같ㅇ다')
+        //     return NotificationPool.api.add({
+        //         title: "같은 제목의 게시물은 게시할 수 없습니다.",
+        //         content: "응급아이콘을 추가하거나 , 제목을 수정해 주세요.",
+        //         status: "error"
+        //     })
+        // }
+        // if (!urgentTitle) {
+        //     console.log('제목입력 안함')
+        //     return NotificationPool.api.add({
+        //         title: "응급아이콘만 게시할 수 없습니다.",
+        //         content: "게시물의 제목을 입력해주세요.",
+        //         status: "error"
+        //     })
+        // }
         const data = (isUrgentIcon.length !== 0) ?
             JSON.stringify({
                 "title": "🚨" + urgentTitle
@@ -336,10 +334,11 @@ const ContentContainer = () => {
 
         postUrgentNotice(selectNotice.id, data)
             .then((res) => {
-                console.log(res)
+                // console.log(res)
                 setListTotalNum((state) => (state + 1))
                 readModal.close();
                 urgentModal.close();
+                setPagingNum(0);
             })
             .catch((err) => {
                 (err.errorCode === "099") ?
@@ -435,6 +434,8 @@ const ContentContainer = () => {
                 setUpdateNotice={setUpdateNotice} // set update 할 notice 정보 (update page에 표시될)
                 lists={lists}
                 setLists={setLists} // set fetch 로 받아올 리스트 (6개씩뜨는 notice)
+
+                pagingNum={pagingNum}
 
                 /* props.function */
                 setNotice={setNotice} // notice를 클릭 했을떄 notice를 read 하는 모달

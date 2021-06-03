@@ -2,7 +2,7 @@
  * @author : chaeeun
  * @Date : 2021-02-23 19:59:22 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-04-16 01:06:06
+ * @Last Modified time: 2021-05-03 22:28:29
  */
 
 
@@ -251,9 +251,8 @@ const ContentContainer = ({
     }
 
 
-    //////////////////////////////////////////////////////////////////////////////////
-    /**
-     * @description 탈퇴하기  CODE  */
+
+    //SECTION 탈퇴하기  CODE  
 
     //true : 성별변경 확인 modal false : 성별 변경  modal  닫기
     const [isDeleteConfirmVisible, setDeleteConfirmVisible] = useState(false)
@@ -302,10 +301,10 @@ const ContentContainer = ({
     const cancelDeleteConfirmOnclick = () => confirmDeleteModal.close()
 
 
+    //!SECTION
 
-    //////////////////////////////////////////////////////////////////////////////////
-    /**
-    * @description 프로필사진 관련  CODE  */
+
+    //SECTION 프로필사진 관련  CODE  
     //true : 커스텀이미지 저장하기 + 이미지 올리기  form 열기   false :  커스텀이미지 저장하기 + 이미지 올리기 form 닫기 
     const [isCustomImgPostForm, setCustomImgPostForm] = useState(false);
 
@@ -397,11 +396,11 @@ const ContentContainer = ({
             })
             .catch((err) => { console.log(err) })
     }
+    //!SECTION
 
-    //////////////////////////////////////////////////////////////////////////////////
-    /**
-    @description 닉네임 관련  CODE  */
 
+
+    //SECTION 닉네임 관련  CODE
     //true : 닉네임 변경하는 form   false :  닉네임 변경하는 form 닫기 
     const [isEditNickNameForm, setEditNickNameForm] = useState(false);
 
@@ -428,12 +427,10 @@ const ContentContainer = ({
         editApis.username()
         editNickNameForm.close()
     }
+    //!SECTION
 
 
-    //////////////////////////////////////////////////////////////////////////////////
-    /**
-     * @description 이름 관련  CODE  */
-
+    //SECTION 이름 관련  CODE
     //true : 이름 변경하는 form   false :  이름 변경하는 form 닫기 
     const [isEditRealNameForm, setEditRealNameForm] = useState(false);
 
@@ -460,12 +457,10 @@ const ContentContainer = ({
         editApis.realname()
         editRealNameForm.close()
     }
+    //!SECTION
 
 
-    //////////////////////////////////////////////////////////////////////////////////
-    /**
-     * @description 전화번호 관련  CODE  */
-
+    //SECTION 전화번호 관련  CODE
     //true : 전화번호 변경하는 form   false :  전화번호 변경하는 form 닫기 
     const [isEditPhoneForm, setEditPhoneForm] = useState(false);
 
@@ -492,11 +487,10 @@ const ContentContainer = ({
         editApis.phone()
         editPhoneForm.close()
     }
+    //!SECTION
 
 
-    //////////////////////////////////////////////////////////////////////////////////
-    /**
-     * @description 성별 관련  CODE  */
+    //SECTION  성별 관련  CODE  
 
     //true : 성별 변경하는 form   false :  성별 변경하는 form 닫기 
     const [isEditSexForm, setEditSexForm] = useState(false);
@@ -549,11 +543,9 @@ const ContentContainer = ({
         confirmSexModal.close()
     }
 
+    //!SECTION
 
-    //////////////////////////////////////////////////////////////////////////////////
-    /**
-     * @description 이메일 관련  CODE  */
-
+    //SECTION 이메일 관련  CODE 
     //true : 이메일 변경하는 form  열기  false :  이메일 변경하는 form 닫기 
     const [isEditEmailForm, setEditEmailForm] = useState(false);
     //true : 인증번호 입력하는 form  열기  false :  인증번호 입력하는 form 닫기 
@@ -713,10 +705,10 @@ const ContentContainer = ({
 
     }
 
+    //!SECTION
 
-    //////////////////////////////////////////////////////////////////////////////////
-    /**
-     * @description 관심지역 관련  CODE  */
+
+    //SECTION 관심지역 관련  CODE  
 
     const regionOptions = ["선호지역", "수성구", "중구", "동구", "서구", "남구", "북구", "달서구"]
 
@@ -747,10 +739,9 @@ const ContentContainer = ({
     }
 
 
+    //!SECTION
 
-    //////////////////////////////////////////////////////////////////////////////////
-    /**
-     * @description 홍보성이메일 수신 동의 여부 관련  CODE  */
+    //SECTION 홍보성이메일 수신 동의 여부 관련  CODE
 
 
     /**
@@ -763,7 +754,7 @@ const ContentContainer = ({
         console.log(userProfile)
     }
 
-
+    //!SECTION
 
 
     return (

@@ -97,12 +97,7 @@ const ProfileContent = ({
         if (isReceivingEmail === 'YES') return '수신';
         if (isReceivingEmail === 'NO') return '비수신';
     }
-    // const settingIsReceivingEmail = (isReceivingEmail) => {
 
-    //     if (isReceivingEmail === 'YES') return '수신';
-    //     if (isReceivingEmail === 'NO') return '수신안함';
-    // }
-    /* xs={ } sm={ } md ={ } lg={ } xl={ } xxl ={ } */
     return (
         <>
             {/* SECTION Left */}
@@ -114,7 +109,7 @@ const ProfileContent = ({
                     }}>
                         {/* [Left]  Name Title */}
                         <Row>
-                            <Col span={4}>
+                            <Col span={12}>
                                 {/* <Typo size={"2.3rem"} weight={'bold'}>{username} </Typo> */}
                                 <Typo size={"2.3rem"} weight={'bold'}>{username} </Typo>
                             </Col>
