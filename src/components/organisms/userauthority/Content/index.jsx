@@ -4,7 +4,6 @@ import Row from "../../../../layout/Grid/Row/index"
 import Col from "../../../../layout/Grid/Column/index"
 import SelectBox from "../../../atoms/SelectBox"
 import TextBox from "../../../atoms/TextBox"
-import Button from "../../../atoms/Button"
 import TableBox from "../../../atoms/TableBox"
 import Modal from "../../../../components/atoms/Modal"
 import Pagination from "../../../atoms/Pagination"
@@ -50,11 +49,9 @@ const UserAuthorityContent = ({
                         <SelectBox options={selectAuthority} onChange={getMyAuthority} border block></SelectBox>
                     </Col>
                     <Col span={1.8}>
-                        <TextBox placeholder="이름을 검색하십시오" border ></TextBox>
+                        <TextBox placeholder="이름을 검색하십시오" border onChange={searchName}></TextBox>
                     </Col>
-                    <Col span={1}>
-                        <Button value="검색" theme="white" onClick={searchName} round />
-                    </Col>
+
                 </Row>
                 <Row>
                     <Col span={12} xxl={5.8} xl={8.3}>
