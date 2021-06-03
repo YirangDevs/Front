@@ -31,45 +31,6 @@ const PaginationItem = styled.li`
     }
 `
 
-// const Pagination = ({ num, onClick, setPageNum }) => {
-
-//     const [currentPage, setCurrentPage] = useState(1)
-//     useEffect(() => {
-//         setCurrentPage(setPageNum + 1)
-//     }, [setPageNum])
-//     const Pagination = ({ num, onClick, defaultPage }) => {
-
-//         const [currentPage, setCurrentPage] = useState(defaultPage)
-
-//         const pageOnClick = (e) => {
-//             onClick(e)
-//             setCurrentPage(e.target.innerText)
-//         }
-
-//         const pageNum = []
-//         for (let i = 0; i < num; i++) {
-//             pageNum.push(i + 1)
-//         }
-//         return (
-//             <>
-//                 <PaginationWrapper>
-//                     {
-//                         pageNum.map((i, index) => {
-//                             return <PaginationItem key={index} num={currentPage} onClick={pageOnClick}>{pageNum[index]}</PaginationItem>
-//                         })
-//                     }
-//                 </PaginationWrapper>
-//             </>
-//         )
-//     }
-// }
-// Pagination.defaultProps = {
-//     defaultPage: 1
-// };
-
-// export default Pagination
-
-
 
 
 const Pagination = ({ num, onClick, defaultPage, setPageNum }) => {

@@ -2,7 +2,7 @@
  * @author: chaeeun 
  * @Date : 2021-05-04 17:25:02 
  * @Last Modified by: euncherry
- * @Last Modified time: 2021-06-03 14:56:04
+ * @Last Modified time: 2021-06-03 23:24:12
  */
 
 import React from 'react'
@@ -145,7 +145,7 @@ const IntroContent = ({
                 {/* SECTION  ABOUT TEAM YIRANG*/}
                 <Col span={12} justify={"flex-end"} align={'center'} style={{ height: "26rem", backgroundImage: `url("${HandImage}" )`, backgroundSize: 'cover' }}>
 
-                    <Col xs={12} sm={12} md={5} lg={6} xl={12} xxl={6} span={6} style={{ height: "14rem" }}>
+                    <Col xs={12} sm={12} md={5} lg={6} xl={6} xxl={6} span={6} style={{ height: "14rem" }}>
                         <Row justify={"center"} align={'center'} >
                             <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12} span={12} justify={"center"} align={'center'}>
                                 <Typo color={"#ffffff"} weight={'bold'} size={'1.5rem'} fontFamily={"Helvetica"} > ABOUT TEAM YIRANG</Typo>
