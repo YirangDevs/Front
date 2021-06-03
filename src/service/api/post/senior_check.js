@@ -1,4 +1,4 @@
-import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+//import NotificationPool from "../../../containers/redux/components/NotificationPool/";
 
 /**
  * @description Senior
@@ -28,11 +28,12 @@ const SeniorCheck = async (data) => {
         
     }).catch(async(error)=>{
         let err =  await error.then()
-        NotificationPool.api.add({
-            title : "Error from senior_check",
-            content : err.errorName + "("+err.errorCode+")",
-            status : "error"
-        })
+        console.log(err.errorName + "("+err.errorCode+")")
+        // NotificationPool.api.add({
+        //     title : "Error from senior_check",
+        //     content : err.errorName + "("+err.errorCode+")",
+        //     status : "error"
+        // })
 
         //에러처리
         throw err

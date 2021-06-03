@@ -25,6 +25,7 @@ const InfoForm = ({
     currentSenior
 
 }, genderRef) => {
+    console.log(currentSenior)
 
     return (
         <>
@@ -66,7 +67,7 @@ const InfoForm = ({
                     borderBottom: "1px solid #ccd4e0"
                 }}>
 
-                    <SelectBox options={priorityoptions} onChange={priorityOnChange} defaultValue={currentSenior.priority} border block />
+                    <SelectBox options={priorityoptions} onChange={priorityOnChange} value={currentSenior.priority} border block />
 
                 </Col>
                 <Col span={2.5} justify={"center"} align={"center"} style={{
@@ -75,7 +76,7 @@ const InfoForm = ({
                     borderBottom: "1px solid #ccd4e0"
                 }}>
 
-                    <SelectBox options={needsoptions} onChange={needsOnChange} defaultValue={currentSenior.numsOfRequiredVolunteers} border block />
+                    <SelectBox options={needsoptions} onChange={needsOnChange} value={currentSenior.numsOfRequiredVolunteers} border block />
 
                 </Col>
                 <Col span={7} justify={"center"} align={"center"} style={{

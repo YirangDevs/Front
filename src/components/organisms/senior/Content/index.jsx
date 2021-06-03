@@ -72,13 +72,14 @@ const SeniorContent = ({currentSenior,
             
             <Row align="start" justify="start" gutter={[10,10]}>
                 {/* 피봉사자 표 출력 파트 */}
-                <Col span={12} xxl={7} xl={6}>
+                <Col span={12} xxl={7} xl={6} justify={"center"}>
 
-                        <TableBox headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior} colgroup={[10,10,10,20,10,20,10,10]}></TableBox>
-
-
+                        <TableBox row={10} headList={TableBoxHeadLists} bodyList={posts} primaryKey={"name"} onClick={selectSenior} colgroup={[10,10,10,20,10,20,10,10]}></TableBox>
+                        <Pagination num={Math.ceil(seniors.length/10)} onClick={paginationOnClick}></Pagination>
+                        
 
                 </Col>
+               
                 
                 {/* 피봉사자 정보 입력 폼 파트 */}
                 <Col span={12} xxl={5} xl={6}>
@@ -111,11 +112,7 @@ const SeniorContent = ({currentSenior,
                     </Row>
                 </Col>
             </Row>
-            <Row>
-                <Col span={12} xxl={7} xl={6} justify={"center"}>
-                    <Pagination num={Math.ceil(seniors.length/10)} onClick={paginationOnClick}></Pagination>
-                </Col>
-            </Row>
+            
        
        
         </Content>
