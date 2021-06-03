@@ -1,10 +1,17 @@
-import React, {memo, useRef} from "react"
+import React, {memo} from "react"
 import Col from "../../../layout/Grid/Column";
 import IconButton from "../../atoms/IconButton";
-import {MdFormatListBulleted, MdOpenInBrowser, MdPeople, MdToday, MdTune, MdPerson, MdBookmarkBorder} from "react-icons/md";
 import Row from "../../../layout/Grid/Row";
 import {useHistory} from "react-router-dom";
 import styled from "styled-components"
+import Image from "../../atoms/Image";
+import icon_notice from "../../../img/그룹 1.png"
+import icon_senior from "../../../img/그룹 12.png"
+import icon_manage from "../../../img/그룹 6.png"
+import icon_match from "../../../img/그룹 11.png"
+import icon_authority from "../../../img/그룹 380.png"
+import icon_profile from "../../../img/그룹 9.png"
+import icon_mypage from "../../../img/그룹 8.png"
 
 const Wrapper = styled.div`
   @media (max-width: 768px) {
@@ -15,18 +22,18 @@ const Wrapper = styled.div`
 const MenuIconNav = ({role}) => {
 
     const history = useHistory()
-    const {current : size} = useRef(40)
 
     return (
         <Wrapper>
             <Row justify={"center"} gutter={[10,10]}>
                 <Col span={1} justify={"center"}>
+
                     <IconButton value={"공고글 바로가기"} size={"large"} onClick={
                         ()=>{
                             document.documentElement.scrollTo(0,document.documentElement.scrollHeight)
                         }
                     }>
-                        <MdFormatListBulleted size={size}/>
+                        <Image src={icon_notice} width={"3rem"}></Image>
                     </IconButton>
                 </Col>
                 {
@@ -39,7 +46,7 @@ const MenuIconNav = ({role}) => {
                                         history.push("seniors")
                                     }
                                 }>
-                                    <MdOpenInBrowser size={size}/>
+                                    <Image src={icon_senior} width={"3rem"}></Image>
                                 </IconButton>
                             </Col>
                             <Col span={1} justify={"center"}>
@@ -48,7 +55,7 @@ const MenuIconNav = ({role}) => {
                                         history.push("manage")
                                     }
                                 }>
-                                    <MdTune size={size}/>
+                                    <Image src={icon_manage} width={"3rem"}></Image>
                                 </IconButton>
 
                             </Col>
@@ -59,7 +66,7 @@ const MenuIconNav = ({role}) => {
                                         history.push("match")
                                     }
                                 }>
-                                    <MdToday size={size}/>
+                                    <Image src={icon_match} width={"3rem"}></Image>
                                 </IconButton>
                             </Col>
 
@@ -73,7 +80,7 @@ const MenuIconNav = ({role}) => {
                                     history.push("/userauthority")
                                 }
                             }>
-                                <MdPeople size={size} />
+                                <Image src={icon_authority} width={"3rem"}></Image>
                             </IconButton>
                         </Col> : null
                 }
@@ -88,7 +95,7 @@ const MenuIconNav = ({role}) => {
                                             history.push("mypage")
                                         }
                                     }>
-                                        <MdBookmarkBorder size={size}/>
+                                        <Image src={icon_mypage} width={"3rem"}></Image>
                                     </IconButton>
                                 </Col> : null
                             }
@@ -99,7 +106,7 @@ const MenuIconNav = ({role}) => {
                                         history.push("profile")
                                     }
                                 }>
-                                    <MdPerson size={size}/>
+                                    <Image src={icon_profile} width={"3rem"}></Image>
                                 </IconButton>
                             </Col>
                         </>
