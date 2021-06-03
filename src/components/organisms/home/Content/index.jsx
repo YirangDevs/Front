@@ -47,7 +47,7 @@ const HomeContent = ({
                 color : "black",
                 border : "none",
                 outline : "none"
-            }} border onChange={fakeLoginOnChange} options={["권한 설정","volunteer_male_1","volunteer_male_2","volunteer_male_3","volunteer_male_4","volunteer_male_5","volunteer_male_6","volunteer_female_1","volunteer_female_3","volunteer_female_4","volunteer_female_5","volunteer_female_6","volunteer_1","volunteer_2","volunteer_3","volunteer_4","admin_1","admin_2","super_admin_1"]}/>
+            }} border onChange={fakeLoginOnChange} options={["권한 설정","volunteer_male_1","volunteer_male_2","volunteer_male_3","volunteer_male_4","volunteer_male_5","volunteer_male_6","volunteer_female_1","volunteer_female_2","volunteer_female_3","volunteer_female_4","volunteer_female_5","volunteer_female_6","volunteer_1","volunteer_3","volunteer_4","admin_1","admin_2","super_admin_1"]}/>
 
 
             {/* 임시 버튼 끝 */}
