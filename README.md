@@ -6,7 +6,7 @@
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
 </p>
 
-## :computer: [HomePage](http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com/)
+## :computer: [HomePage](https://master.dt2p9zjubkzbo.amplifyapp.com/)
 
 ## Introduce
 Yirang 재가봉사 매칭 서비스는 피봉사자와 봉사자를 자동으로 매칭시켜주는 웹 서비스 입니다.
