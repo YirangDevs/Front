@@ -1,7 +1,6 @@
 <h1>재가봉사 매칭 웹 서비스</h1>
 
 <p>
-    <img alt="travis" src="https://travis-ci.com/YirangDevs/Front.svg?branch=master"/>
     <img alt="Storybook" src="https://github.com/storybookjs/brand/raw/master/badge/badge-storybook.svg?sanitize=true"/>
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
 </p>
