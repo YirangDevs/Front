@@ -9,7 +9,7 @@ import MenuIconNav from "../../../../containers/redux/components/MenuIconNav/";
 import ReadNoticeForm from "../../../molecules/ReadNoticeForm";
 import Button from "../../../atoms/Button";
 import Video from "../../../atoms/Video";
-import SelectBox from "../../../atoms/SelectBox";
+// import SelectBox from "../../../atoms/SelectBox";
 
 const HomeContent = ({
   role,
@@ -44,7 +44,7 @@ const HomeContent = ({
       ></Video>
       {/* 임시 버튼 */}
 
-      <SelectBox
+      {/* <SelectBox
         style={{
           position: "absolute",
           top: "1.75%",
@@ -78,7 +78,7 @@ const HomeContent = ({
           "admin_2",
           "super_admin_1",
         ]}
-      />
+      /> */}
 
       {/* 임시 버튼 끝 */}
       <ContentLayout
