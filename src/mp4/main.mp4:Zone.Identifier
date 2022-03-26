@@ -1,4 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-ReferrerUrl=https://videopresso.co.kr/
-HostUrl=https://lambda-seoul.s3.ap-northeast-2.amazonaws.com/output/YtaaGv_c_1648277399490.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT3UAL5KVQHAOOTF4%2F20220326%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20220326T065832Z&X-Amz-Expires=900&X-Amz-Signature=cb414b56d7de887658c150e44cb3c19f556e416085eca4b291121d61a8ebae7b&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22main.mp4%22
