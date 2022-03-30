@@ -3,10 +3,11 @@
  * @method PUT
  * @request @header YAT token
  */
+ import _ from "../../../config/env";
 
  const editUserAdminRegion = (userID, regions) => {
      let payload = JSON.stringify(regions)
-     return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/admins/'+userID, {
+     return fetch(`${_.SERVER_URL}:8080/v1/apis/admins/${userID}`, {
          method: 'PUT',
          headers : {
             "Content-Type": "application/json",

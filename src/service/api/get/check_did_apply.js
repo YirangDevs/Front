@@ -5,6 +5,7 @@
 
 
 import NotificationPool from "../../../containers/redux/components/NotificationPool";
+import _ from "../../../config/env";
 
 /**
  * @description 봉사 신청 여부
@@ -12,7 +13,7 @@ import NotificationPool from "../../../containers/redux/components/NotificationP
  * @request @headers YAT token
  */
 const checkDidApply = (noticeId) => {
-    return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/apply/apply-check/notices/'+noticeId, {
+    return fetch(`${_.SERVER_URL}:8080/v1/apis/apply/apply-check/notices/${noticeId}`, {
         method: 'GET',
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("YAT")

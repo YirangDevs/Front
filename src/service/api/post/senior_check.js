@@ -1,4 +1,5 @@
 //import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+import _ from "../../../config/env";
 
 /**
  * @description Senior
@@ -15,7 +16,7 @@ const SeniorCheck = async (data) => {
     seniorData = seniorData.replace(/노력봉사/g,'work') //노력봉사 영문으로 전환
     seniorData = seniorData.replace(/말벗봉사/g,'talk') //말벗봉사 영문으로 전환
 
-    return fetch("http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/seniors/check", {
+    return fetch(`${_.SERVER_URL}:8080/v1/apis/seniors/check`, {
         method: 'POST',
         headers : {
             'Content-type' : 'application/json',

@@ -3,9 +3,9 @@
  * @method GET
  * @request @headers YAT Token
  */
-
+ import _ from "../../../config/env";
  const getAllUsers = () => {
-     return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/admins/user-auths', {
+     return fetch(`${_.SERVER_URL}:8080/v1/apis/admins/user-auths`, {
          method : 'GET',
          headers: {
             'Authorization': "Bearer " + localStorage.getItem("YAT")

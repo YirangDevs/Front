@@ -4,13 +4,15 @@
  */
 
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+import _ from "../../../config/env";
+
 /**
  * @description 본인 role 확인
  * @method GET
  * @request @headers YAT token
  */
 const getMyRole = () => {
-    return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/admins/authority', {
+    return fetch(`${_.SERVER_URL}:8080/v1/apis/admins/authority`, {
         method: 'GET',
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("YAT")

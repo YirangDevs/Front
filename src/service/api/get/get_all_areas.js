@@ -1,5 +1,5 @@
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
-
+import _ from "../../../config/env";
 /**
  * @description 할당된 모든 구역 받아오기
  * @method GET
@@ -7,7 +7,7 @@ import NotificationPool from "../../../containers/redux/components/NotificationP
  * @request @body data{title , content , region , nor , dov , tov , dod}
  */
 const getAllAreas = () => {
-        return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/seniors/myArea', {
+        return fetch(`${_.SERVER_URL}:8080/v1/apis/seniors/myArea`, {
                 method: 'GET',
                 headers: {
                     'Authorization': "Bearer " + localStorage.getItem("YAT")

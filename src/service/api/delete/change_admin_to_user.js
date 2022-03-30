@@ -3,9 +3,10 @@
  * @method DELETE
  * @request @headers YAT token
  */
+ import _ from "../../../config/env";
 
  const changeAdminToUser = (userID) => {
-    return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/admins/'+userID, {
+    return fetch(`${_.SERVER_URL}:8080/v1/apis/admins/${userID}`, {
         method: 'DELETE',
         headers : {
             'Authorization' : "Bearer "+ localStorage.getItem("YAT")

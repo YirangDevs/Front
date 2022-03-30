@@ -1,11 +1,13 @@
 import NotificationPool from "../../../containers/redux/components/NotificationPool/";
+import _ from "../../../config/env";
+
 /**
  * @description 내정보 받아오기
  * @method GET
  * @request @headers YAT token
  */
 const getMyInfo = () => {
-    return fetch('http://ec2-3-35-99-114.ap-northeast-2.compute.amazonaws.com:8080/v1/apis/info/myinfo', {
+    return fetch(`${_.SERVER_URL}:8080/v1/apis/info/myinfo`, {
         method: 'GET',
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("YAT")
